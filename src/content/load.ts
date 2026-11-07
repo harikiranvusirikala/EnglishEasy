@@ -6,6 +6,8 @@ import type { Day } from "./types";
  */
 const dayFiles: Record<string, () => Promise<{ day: Day }>> = {
   "sentence-basics": () => import("./main/w01/sentence-basics"),
+  "i-am-you-are": () => import("./main/w01/i-am-you-are"),
+  "present-simple-every-day": () => import("./main/w01/present-simple-every-day"),
 };
 
 /** Ids of every written day, in registry order (which is course order). */

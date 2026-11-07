@@ -1,0 +1,221 @@
+import type { Lesson } from "../../types";
+
+/** Week 1, Day 2 (CURRICULUM §3): Who + am / is / are + what / how. */
+export const day: Lesson = {
+  id: "i-am-you-are",
+  kind: "lesson",
+  title: { en: "I Am, You Are", te: "నేను, మీరు" },
+  subtitle: "am / is / are",
+  summary: {
+    en: "Learn to say who you are and how you feel with am, is and are.",
+    te: "am, is, are తో మీరు ఎవరో, ఎలా ఉన్నారో ఇంగ్లీష్‌లో చెప్పడం నేర్చుకుందాం.",
+  },
+  seo: {
+    title: "I Am, You Are: am, is, are in English for Telugu Speakers",
+    description:
+      "Learn am, is and are in English from a Telugu speaker's point of view. Say who you are and how you feel, with simple examples and Telugu explanations.",
+  },
+  pattern: [
+    { text: "I", role: "who" },
+    { text: "am", role: "action" },
+    { text: "hungry", role: "what" },
+  ],
+  core: [
+    { en: "I am Lakshmi.", te: "నేను లక్ష్మి.", extra: ["is"] },
+    { en: "I am hungry.", te: "నాకు ఆకలిగా ఉంది.", extra: ["is"] },
+    { en: "He is my friend.", te: "అతను నా స్నేహితుడు.", extra: ["am"] },
+    { en: "She is a teacher.", te: "ఆమె టీచర్.", extra: ["are"] },
+    { en: "We are happy.", te: "మేము సంతోషంగా ఉన్నాం.", extra: ["is"] },
+    { en: "Are you tired?", te: "మీకు అలసటగా ఉందా?", extra: ["is"] },
+    { en: "Yes, I am.", te: "అవును, అలాగే ఉంది.", extra: ["is"] },
+  ],
+  key: [0, 1, 3, 5],
+  tryToday: {
+    en: "Introduce yourself to someone. Say: Hello, I am (your name).",
+    te: "ఎవరికైనా మిమ్మల్ని పరిచయం చేసుకోండి. ఇలా చెప్పండి: Hello, I am (మీ పేరు).",
+  },
+  words: [
+    { en: "hungry", te: "ఆకలిగా" },
+    { en: "tired", te: "అలసటగా" },
+    { en: "happy", te: "సంతోషంగా" },
+    { en: "friend", te: "స్నేహితుడు" },
+    { en: "teacher", te: "టీచర్" },
+  ],
+  grammar: ["am-is-are", "yes-no-questions"],
+  topics: ["people", "feelings"],
+  learn: [
+    {
+      id: "l1",
+      type: "explain",
+      heading: { en: "I am hungry", te: "నాకు ఆకలిగా ఉంది" },
+      body: {
+        en: "In Telugu we say ఆకలిగా ఉన్నాను, and ఉన్నాను is the word for am. In English you must say am, is or are. Without it, the sentence is not complete.",
+        te: "తెలుగులో 'ఆకలిగా ఉన్నాను' అంటాం. ఇంగ్లీష్‌లో am, is, are అనే పదం తప్పనిసరిగా ఉండాలి: I am hungry. ఈ పదం లేకపోతే వాక్యం పూర్తికాదు.",
+      },
+      bridge: {
+        te: ["నేను", "ఆకలిగా", "ఉన్నాను"],
+        en: [
+          { text: "I", role: "who" },
+          { text: "am", role: "action" },
+          { text: "hungry", role: "what" },
+        ],
+      },
+      examples: [
+        { en: "I am Lakshmi.", te: "నేను లక్ష్మి." },
+        { en: "I am hungry.", te: "నాకు ఆకలిగా ఉంది." },
+        { en: "We are happy.", te: "మేము సంతోషంగా ఉన్నాం." },
+      ],
+    },
+    {
+      id: "l2",
+      type: "whenToUse",
+      heading: { en: "Which one: am, is or are?", te: "am, is, are — ఏది వాడాలి?" },
+      items: [
+        {
+          form: "I → am",
+          useFor: { en: "Use am only with I.", te: "am ని I తో మాత్రమే వాడాలి." },
+          example: { en: "I am tired.", te: "నాకు అలసటగా ఉంది." },
+        },
+        {
+          form: "he, she → is",
+          useFor: { en: "Use is for one person: he, she.", te: "ఒక్క వ్యక్తికి is వాడాలి: he, she." },
+          example: { en: "She is a teacher.", te: "ఆమె టీచర్." },
+        },
+        {
+          form: "we, you, they → are",
+          useFor: { en: "Use are with we, you and they.", te: "we, you, they తో are వాడాలి." },
+          example: { en: "We are happy.", te: "మేము సంతోషంగా ఉన్నాం." },
+        },
+      ],
+    },
+    {
+      id: "l3",
+      type: "dontSay",
+      wrong: "I hungry.",
+      right: "I am hungry.",
+      why: {
+        en: "Do not leave out am. English needs am, is or are.",
+        te: "am ని వదిలేయకండి. ఇంగ్లీష్‌లో am, is, are ఉండాలి.",
+      },
+    },
+    {
+      id: "l4",
+      type: "dontSay",
+      wrong: "He are my friend.",
+      right: "He is my friend.",
+      why: {
+        en: "For one person (he or she), use is. Are is for we, you and they.",
+        te: "ఒక్క వ్యక్తికి (he, she) is వాడాలి. are ని we, you, they తో వాడాలి.",
+      },
+    },
+  ],
+  practice: [
+    {
+      id: "p1",
+      type: "choose",
+      prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
+      options: ["I hungry.", "I am hungry.", "I is hungry."],
+      answer: 1,
+      why: {
+        en: "With I, use am: I am hungry.",
+        te: "I తో am వాడాలి: I am hungry.",
+      },
+    },
+    {
+      id: "p2",
+      type: "fillBlank",
+      sentence: "She ___ a teacher.",
+      te: "ఆమె టీచర్.",
+      options: ["am", "is", "are"],
+      answer: 1,
+      why: {
+        en: "She is one person, so use is.",
+        te: "she ఒక్క వ్యక్తి, కాబట్టి is వాడాలి.",
+      },
+    },
+    {
+      id: "p3",
+      type: "choose",
+      prompt: { en: "Which sentence means: మేము సంతోషంగా ఉన్నాం?", te: "మేము సంతోషంగా ఉన్నాం — ఇంగ్లీష్‌లో ఏది సరైనది?" },
+      options: ["We happy.", "We is happy.", "We are happy."],
+      answer: 2,
+    },
+    {
+      id: "p4",
+      type: "findMistake",
+      sentence: "He am my friend.",
+      wrongIndex: 1,
+      fix: "He is my friend.",
+      why: {
+        en: "Am is only for I. For he, say is.",
+        te: "am ని I తో మాత్రమే వాడతాం. he తో is వాడాలి.",
+      },
+    },
+  ],
+  speak: [
+    {
+      id: "s1",
+      type: "situation",
+      situation: {
+        en: "A new neighbour says: Hello! Who are you? Tell your name in English.",
+        te: "కొత్త పొరుగు వాళ్లు అడుగుతున్నారు: Hello! మీరు ఎవరు? మీ పేరు ఇంగ్లీష్‌లో చెప్పండి.",
+      },
+      expected: ["I am Lakshmi.", "I am Ramana.", "I am Padma."],
+      options: ["I Lakshmi.", "I am Lakshmi.", "I is Lakshmi."],
+      answer: 1,
+    },
+    {
+      id: "s2",
+      type: "situation",
+      situation: {
+        en: "A friend asks: Are you tired? Say yes, in English.",
+        te: "మీ స్నేహితులు అడుగుతున్నారు: Are you tired? అవును అని ఇంగ్లీష్‌లో చెప్పండి.",
+      },
+      expected: ["Yes, I am.", "Yes, I am tired."],
+      options: ["Yes, I are.", "Yes, I am.", "Yes, I is."],
+      answer: 1,
+    },
+  ],
+  roleplay: {
+    id: "r1",
+    type: "roleplay",
+    title: { en: "Meeting a new neighbour", te: "కొత్త పొరుగు వాళ్లతో పరిచయం" },
+    scene: {
+      en: "Usha, a new neighbour, says hello. Answer with short sentences.",
+      te: "కొత్తగా వచ్చిన పొరుగింటి ఉష మీతో మాట్లాడుతోంది. చిన్న వాక్యాలతో జవాబు చెప్పండి.",
+    },
+    partner: { en: "Usha (a neighbour)", te: "ఉష (పొరుగింటావిడ)" },
+    skills: [{ id: "be", label: { en: "am / is / are", te: "am / is / are వాడకం" } }],
+    turns: [
+      {
+        partner: "Hello! I am Usha. Who are you?",
+        te: "నమస్తే! నేను ఉషని. మీరు ఎవరు?",
+        hint: { en: "Say I am, then your name.", te: "ముందు I am, తర్వాత మీ పేరు చెప్పండి." },
+        replies: [
+          { say: "I am Lakshmi.", good: true, skill: "be" },
+          { say: "I Lakshmi.", good: false, skill: "be" },
+          { say: "I is Lakshmi.", good: false, skill: "be" },
+        ],
+      },
+      {
+        partner: "Are you tired?",
+        te: "మీకు అలసటగా ఉందా?",
+        hint: { en: "Say yes: Yes, I am.", te: "అవును అని చెప్పండి: Yes, I am." },
+        replies: [
+          { say: "Yes, I am.", good: true, skill: "be" },
+          { say: "Yes, I are.", good: false, skill: "be" },
+          { say: "Yes, I tired.", good: false, skill: "be" },
+        ],
+      },
+      {
+        partner: "Is he your friend?",
+        te: "అతను మీ స్నేహితుడా?",
+        hint: { en: "Say yes: Yes, he is.", te: "అవును అని చెప్పండి: Yes, he is." },
+        replies: [
+          { say: "Yes, he is.", good: true, skill: "be" },
+          { say: "Yes, he are.", good: false, skill: "be" },
+        ],
+      },
+    ],
+  },
+};

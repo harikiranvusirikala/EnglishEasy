@@ -54,7 +54,7 @@ test("Day 1's role play by tapping, with a correction and the summary", async ({
   await expect(page.getByText(/Conversation:/)).toContainText("7 / 10");
   await page.screenshot({ path: `${SHOTS}/roleplay-summary.png` });
   await next(page);
-  await expect(page.getByRole("button", { name: /^Finish/ })).toBeVisible();
+  await expect(page.getByRole("button", { name: /^(Finish|Continue to Day 2)/ })).toBeVisible();
 });
 
 test("Day 1's role play by voice; night mode", async ({ page }) => {

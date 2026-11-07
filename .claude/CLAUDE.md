@@ -8,8 +8,9 @@ EnglishEasy: a mobile-first English learning and speaking app for Telugu-speakin
 
 ## Documents that drive all work
 
-- **`docs/BUILD_PLAN.md`**: architecture (Part A), rules (Part B), steps (Part C), Progress table (Part D; status lives only there). Work = one step at a time.
-- **`docs/VISION.md`**: the product (lesson design §4, activities §5, speech §6, role play §7, progress §9, screens §10, curriculum §11, decision log §18). Steps cite its sections.
+- **`docs/BUILD_PLAN.md`**: architecture (Part A), rules (Part B), steps to launch (Part C), Progress and Content-released tables (Part D; status lives only there), adding content after launch (Part E). Work = one step or one content task at a time.
+- **`docs/VISION.md`**: the product (lesson design §4, activities §5, speech §6, role play §7, progress §9, screens §10, curriculum structure §11, decision log §18). Steps cite its sections.
+- **`docs/CURRICULUM.md`**: the course map — content style guide §1, grammar spiral §2, Stage 1 lesson by lesson §3, Stages 2–5 week by week §4–§7, optional tracks §8. Content tasks read §1, their §2 rows and their own week only.
 - `docs/INITIAL_VISION.md`: the owner's original text. Never edit it.
 
 Read only the sections a step lists (`grep -n '^#' <file>`, then `Read` with `offset`/`limit`). Never read these files whole: the build runs on a daily budget.
@@ -27,9 +28,11 @@ Read only the sections a step lists (`grep -n '^#' <file>`, then `Read` with `of
 - **No AI at runtime, ever.** The app never calls Claude or any other paid AI or speech API. Content is written ahead of time as data; voice and speech recognition are the browser's free built-in APIs. Don't add an AI SDK or API key.
 - **No text inputs anywhere.** Answers are buttons, word tiles or voice.
 - **Content is data** (`src/content/`), validated by `content.test.ts`; the engine (`src/learning/`) is pure and unit-tested; browser APIs live in thin wrappers in `src/lib/`.
-- **Activity ids never change once shipped** (they key saved progress).
+- **Ids are permanent** (they key saved progress and addresses): day ids and activity ids are never renamed, reused or renumbered after release; core sentences are append-only (BUILD_PLAN A3). Day numbers are computed from position, never stored.
 - **Speaking never blocks progress**: every speaking activity offers "Choose instead".
-- **Labels are bilingual** via `Bi` (English first in the DOM, Telugu with `lang="te"`).
+- **Learn-in mode decides the language**: labels via `Bi` (English first in the DOM; Telugu with `lang="te"` only in Telugu mode); explanation text via `BiText`. Every content `Bi` has both languages.
+- **Everything can be heard**: English sentences and explanations have 🔊 🐢; mixed Telugu–English text is narrated with two voices; auto-play respects its setting.
+- **The main path never assumes the learner has a spouse, children or grandchildren**; those scenes belong to optional tracks (CURRICULUM §1, §8).
 - **Every colour class has a `dark:` twin**; theme and text size are applied before first paint.
 - **Never read `new Date()`, `localStorage` or speech APIs while rendering**: only after hydration (`useSyncExternalStore`, server snapshot `null`).
 - Google Tag Manager only on the landing page, never under `/learn`.

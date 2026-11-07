@@ -3,12 +3,15 @@ import { beforeAll, describe, expect, it, vi } from "vitest";
 import day1 from "../../../public/content/sentence-basics.json";
 import type { Activity, PlayableDay } from "@/content/types";
 import { updateSettings } from "@/lib/settings-store";
+import { narrate } from "@/lib/speak";
 import { Choose } from "./Choose";
 import { DontSayCard, ExplainCard, WhenToUseCard } from "./cards";
 import { FillBlank } from "./FillBlank";
+import { ListenChoose } from "./ListenChoose";
 import { Player } from "./Player";
 
 vi.mock("next/navigation", () => ({ useRouter: () => ({ push: vi.fn() }) }));
+vi.mock("@/lib/speak", async (importOriginal) => ({ ...(await importOriginal<typeof import("@/lib/speak")>()), narrate: vi.fn() }));
 
 const choose: Extract<Activity, { type: "choose" }> = {
   id: "d.p1",
@@ -91,9 +94,26 @@ describe("cards", () => {
     render(<ExplainCard activity={explain} onNext={onNext} />);
     expect(screen.getByRole("heading").textContent).toBe(explain.heading[mode]);
     expect(screen.getByText("Who")).toBeTruthy(); // the chip label, not only colour
-    expect((screen.getAllByRole("button", { name: "Listen" })[0] as HTMLButtonElement).disabled).toBe(true); // until Step 7
     fireEvent.click(screen.getByRole("button", { name: /^Continue/ }));
     expect(onNext).toHaveBeenCalledOnce();
+  });
+
+  it("ExplainCard reads its explanation by itself in the Learn in language, and 🐢 reads it slowly", () => {
+    updateSettings({ learnIn: "te" });
+    vi.mocked(narrate).mockClear();
+    render(<ExplainCard activity={explain} onNext={vi.fn()} />);
+    expect(narrate).toHaveBeenCalledWith(explain.body.te, { voice: undefined });
+    fireEvent.click(screen.getAllByRole("button", { name: "Listen slowly" })[0]);
+    expect(narrate).toHaveBeenLastCalledWith(explain.body.te, { slow: true, voice: undefined });
+  });
+
+  it("nothing plays by itself when Auto-play is off, but 🔊 still works", () => {
+    updateSettings({ autoPlay: false });
+    vi.mocked(narrate).mockClear();
+    render(<ExplainCard activity={explain} onNext={vi.fn()} />);
+    expect(narrate).not.toHaveBeenCalled();
+    fireEvent.click(screen.getAllByRole("button", { name: "Listen" })[0]);
+    expect(narrate).toHaveBeenCalledOnce();
   });
 
   it("WhenToUseCard lists each form with its example", () => {
@@ -121,6 +141,38 @@ describe("cards", () => {
     expect(screen.getByText("I rice eat.")).toBeTruthy();
     expect(screen.getByText("I eat rice.")).toBeTruthy();
     expect(screen.getByText("The action comes second.")).toBeTruthy();
+  });
+});
+
+describe("ListenChoose", () => {
+  const listen: Extract<Activity, { type: "listenChoose" }> = {
+    id: "d.g-listen-3",
+    type: "listenChoose",
+    say: "I eat rice.",
+    prompt: { en: "Listen. What does it mean?", te: "వినండి. దాని అర్థం ఏమిటి?" },
+    options: ["నేను టీ తాగుతాను.", "నేను అన్నం తింటాను."],
+    answer: 1,
+  };
+
+  it("plays the sentence by itself without showing it, and again after Check", () => {
+    updateSettings({ learnIn: "en", autoPlay: true });
+    vi.mocked(narrate).mockClear();
+    render(<ListenChoose activity={listen} onAnswer={vi.fn()} onNext={vi.fn()} />);
+    expect(narrate).toHaveBeenCalledTimes(1);
+    expect(narrate).toHaveBeenCalledWith("I eat rice.", { voice: undefined });
+    expect(screen.queryByText("I eat rice.")).toBeNull(); // heard, not read
+    fireEvent.click(screen.getByRole("button", { name: "నేను అన్నం తింటాను." }));
+    fireEvent.click(screen.getByRole("button", { name: /^Check/ }));
+    expect(screen.getByText("Correct!")).toBeTruthy();
+    expect(narrate).toHaveBeenCalledTimes(2); // the correct sentence plays after Check
+    expect(narrate).toHaveBeenLastCalledWith("I eat rice.", { voice: undefined });
+  });
+
+  it("stays silent with Auto-play off", () => {
+    updateSettings({ autoPlay: false });
+    vi.mocked(narrate).mockClear();
+    render(<ListenChoose activity={listen} onAnswer={vi.fn()} onNext={vi.fn()} />);
+    expect(narrate).not.toHaveBeenCalled();
   });
 });
 

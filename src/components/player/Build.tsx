@@ -99,9 +99,10 @@ export function Build({ activity, onAnswer, onNext }: Props) {
               <p className="flex flex-wrap items-center gap-1 text-lg">
                 <span>{strings.answerIs.en}:</span>
                 <span className="font-semibold">{activity.answer}</span>
-                <Narrate text={activity.answer} />
+                <Narrate text={activity.answer} auto />
               </p>
             )}
+            {result === "correct" && <Narrate text={activity.answer} auto />}
           </FeedbackPanel>
         )}
         {result === null && <MainButton label={strings.check} onClick={check} disabled={placed.length === 0} />}

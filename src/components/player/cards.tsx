@@ -44,7 +44,7 @@ export function ExplainCard({ activity, onNext }: CardProps<"explain">) {
           <BiText text={activity.heading} />
         </h2>
         <p className="text-lg">
-          <BiText text={activity.body} />
+          <BiText text={activity.body} /> <Narrate text={activity.body} auto />
         </p>
         {activity.bridge && (
           <div className={`${card} flex flex-col gap-3`}>
@@ -88,7 +88,7 @@ export function WhenToUseCard({ activity, onNext }: CardProps<"whenToUse">) {
             <li key={i} className={`${card} flex flex-col gap-2`}>
               <p className="text-xl font-bold text-teal-800 dark:text-teal-300">{item.form}</p>
               <p className="text-base">
-                <BiText text={item.useFor} />
+                <BiText text={item.useFor} /> <Narrate text={item.useFor} />
               </p>
               <ul>
                 <Example sentence={item.example} />
@@ -121,11 +121,11 @@ export function DontSayCard({ activity, onNext }: CardProps<"dontSay">) {
           </p>
           <p className="flex flex-wrap items-center gap-1 text-xl font-semibold">
             {activity.right}
-            <Narrate text={activity.right} />
+            <Narrate text={activity.right} auto />
           </p>
         </div>
         <p className="text-lg">
-          <BiText text={activity.why} />
+          <BiText text={activity.why} /> <Narrate text={activity.why} />
         </p>
       </div>
       <Next onNext={onNext} />

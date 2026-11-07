@@ -4,7 +4,6 @@ import { BiText } from "@/components/ui/BiText";
 import type { Activity } from "@/content/types";
 import { strings } from "@/lib/strings";
 import { Question } from "./Question";
-import { Narrate } from "./Narrate";
 
 /** Tap the word that completes the sentence. The sentence has one `___`; the Telugu meaning (if any) sits under it. */
 export function FillBlank({
@@ -23,10 +22,7 @@ export function FillBlank({
       <p className="text-base text-stone-600 dark:text-stone-400">
         <BiText text={strings.fillBlankPrompt} />
       </p>
-      <div className="flex flex-wrap items-center gap-1">
-        <p className="text-2xl font-semibold">{activity.sentence.replace("___", "_____")}</p>
-        <Narrate text={full} />
-      </div>
+      <p className="text-2xl font-semibold">{activity.sentence.replace("___", "_____")}</p>
       {activity.te && (
         <p lang="te" className="text-lg text-stone-600 dark:text-stone-400">
           {activity.te}

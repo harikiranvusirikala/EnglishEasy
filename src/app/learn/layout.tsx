@@ -1,3 +1,4 @@
+import { ShellDialogs } from "@/components/learn/ShellDialogs";
 import { TabBar } from "@/components/learn/TabBar";
 
 // The app shell for every learning screen: a centred column and the bottom tab bar.
@@ -6,6 +7,7 @@ export default function LearnLayout({ children }: { children: React.ReactNode })
     <div className="mx-auto max-w-xl pb-[calc(4.5rem+env(safe-area-inset-bottom))]">
       {children}
       <TabBar />
+      <ShellDialogs />
     </div>
   );
 }

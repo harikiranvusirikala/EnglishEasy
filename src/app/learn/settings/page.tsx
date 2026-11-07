@@ -8,6 +8,7 @@ import { Skeleton } from "@/components/ui/Skeleton";
 import { Switch } from "@/components/ui/Switch";
 import { button } from "@/components/ui/button";
 import { card, cardText, cardTitle } from "@/components/ui/card";
+import { VoiceSettings } from "@/components/learn/VoiceSettings";
 import { SUPPORT_URL } from "@/components/support";
 import { updateSettings, useSettings } from "@/lib/settings-store";
 import { strings, type Bi as BiLabel } from "@/lib/strings";
@@ -114,10 +115,11 @@ export default function SettingsPage() {
               hint={strings.noSpeakingHint}
             />
           </section>
+
+          <VoiceSettings />
         </>
       )}
 
-      <Later title={strings.voice} />
       <Later title={strings.myTracks} />
       <Later title={strings.account} />
 

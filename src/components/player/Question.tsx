@@ -43,7 +43,7 @@ export function Question({
     <>
       <div className="flex flex-col gap-4">
         {children}
-        {say && <Narrate text={say} />}
+        {say && <Narrate text={say} auto />}
         <div role="group" className="flex flex-col gap-2">
           {options.map((option, i) => (
             <OptionButton key={i} text={option} state={stateOf(i)} disabled={result !== null} onClick={() => setSelected(i)} />
@@ -53,16 +53,18 @@ export function Question({
       <BottomBar>
         {result && (
           <FeedbackPanel kind={result === "correct" ? "correct" : result === "almost" ? "almost" : "answer"}>
-            {result === "failed" && (
-              <p className="flex flex-wrap items-center gap-1 text-lg">
-                <span>{strings.answerIs.en}:</span>
-                <Text className="font-semibold">{answerText}</Text>
-                <Narrate text={answerText} />
-              </p>
-            )}
+            <p className="flex flex-wrap items-center gap-1 text-lg">
+              {result === "failed" && (
+                <>
+                  <span>{strings.answerIs.en}:</span>
+                  <Text className="font-semibold">{answerText}</Text>
+                </>
+              )}
+              <Narrate text={say ?? answerText} auto />
+            </p>
             {why && (
               <p className="text-base">
-                <BiText text={why} />
+                <BiText text={why} /> <Narrate text={why} />
               </p>
             )}
           </FeedbackPanel>

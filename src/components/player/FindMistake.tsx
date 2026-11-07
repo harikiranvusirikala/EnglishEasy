@@ -53,10 +53,10 @@ export function FindMistake({ activity, onAnswer, onNext }: Props) {
                 <p className="flex flex-wrap items-center gap-1 text-lg">
                   <span>{strings.sayItLike.en}:</span>
                   <span className="font-semibold">{activity.fix}</span>
-                  <Narrate text={activity.fix} />
+                  <Narrate text={activity.fix} auto />
                 </p>
                 <p className="text-base">
-                  <BiText text={activity.why} />
+                  <BiText text={activity.why} /> <Narrate text={activity.why} />
                 </p>
               </>
             )}

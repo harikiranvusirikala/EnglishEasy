@@ -42,8 +42,8 @@ const PANEL: Record<FeedbackKind, string> = {
   answer: "border-amber-300 bg-amber-50 text-amber-950 dark:border-amber-700 dark:bg-amber-950 dark:text-amber-100",
 };
 
-/** ✓ Correct! (green) or ↻ Almost (amber), announced to screen readers; `children` hold the reason and the answer. */
-export function FeedbackPanel({ kind, children }: { kind: FeedbackKind; children?: ReactNode }) {
+/** ✓ Correct! (green) or ↻ Almost (amber), announced to screen readers; `children` hold the reason and the answer. `label` replaces the heading (Great, Good, Try again). */
+export function FeedbackPanel({ kind, label, children }: { kind: FeedbackKind; label?: BiLabel; children?: ReactNode }) {
   return (
     <div
       aria-live="polite"
@@ -51,7 +51,7 @@ export function FeedbackPanel({ kind, children }: { kind: FeedbackKind; children
     >
       <p className="flex items-center gap-2 text-lg font-bold">
         <Icon name={kind === "correct" ? "check" : "retry"} />
-        <Bi label={kind === "correct" ? strings.correct : strings.almost} className="items-start" />
+        <Bi label={label ?? (kind === "correct" ? strings.correct : strings.almost)} className="items-start" />
       </p>
       {children}
     </div>

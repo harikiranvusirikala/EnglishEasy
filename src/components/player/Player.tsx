@@ -21,6 +21,8 @@ import { FindMistake } from "./FindMistake";
 import { ListenChoose } from "./ListenChoose";
 import { Match } from "./Match";
 import { Narrate } from "./Narrate";
+import { Repeat } from "./Repeat";
+import { Situation } from "./Situation";
 import { BottomBar, MainButton } from "./parts";
 
 const SECTION_NAME: Record<SectionKind, BiLabel> = {
@@ -183,8 +185,12 @@ function ActivityView({
       return <FindMistake activity={activity} onAnswer={onAnswer} onNext={onNext} />;
     case "listenChoose":
       return <ListenChoose activity={activity} onAnswer={onAnswer} onNext={onNext} />;
+    case "repeat":
+      return <Repeat activity={activity} onAnswer={onAnswer} onNext={onNext} />;
+    case "situation":
+      return <Situation activity={activity} onAnswer={onAnswer} onNext={onNext} />;
     default:
-      return <ComingSoon onSkip={onSkip} />; // built in Steps 8–9
+      return <ComingSoon onSkip={onSkip} />; // built in Step 9
   }
 }
 

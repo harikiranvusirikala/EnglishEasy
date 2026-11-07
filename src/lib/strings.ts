@@ -124,6 +124,37 @@ export const strings = {
   mistakePrompt: { en: "Tap the word that is wrong.", te: "తప్పు పదాన్ని నొక్కండి." },
   sayItLike: { en: "Say it like this", te: "ఇలా చెప్పండి" },
   fillBlankPrompt: { en: "Choose the word that fits.", te: "సరిపోయే పదాన్ని ఎంచుకోండి." },
+  // Speaking
+  speak: { en: "Speak", te: "మాట్లాడండి" },
+  listening: { en: "Listening…", te: "వింటున్నాను…" },
+  speakAgain: { en: "Speak again", te: "మళ్ళీ మాట్లాడండి" },
+  chooseInstead: { en: "Choose instead", te: "ఎంచుకోండి" },
+  repeatPrompt: { en: "Listen, then say it.", te: "విని, తర్వాత చెప్పండి." },
+  great: { en: "Great!", te: "చాలా బాగుంది" },
+  good: { en: "Good", te: "బాగుంది" },
+  youSaid: { en: "You said", te: "మీరు చెప్పింది" },
+  youCouldSay: { en: "You can say", te: "ఇలా చెప్పవచ్చు" },
+  micNoSpeech: {
+    en: "We did not hear you. Tap Speak and try again.",
+    te: "మీ మాట వినబడలేదు. Speak నొక్కి మళ్ళీ ప్రయత్నించండి.",
+  },
+  micDeniedNote: {
+    en: "The microphone is not allowed, so let us choose instead.",
+    te: "మైక్రోఫోన్‌కు అనుమతి లేదు, కాబట్టి ఎంచుకుందాం.",
+  },
+  micUnsupportedNote: {
+    en: "This phone cannot listen to speech, so let us choose instead.",
+    te: "ఈ ఫోన్ మాటను వినలేదు, కాబట్టి ఎంచుకుందాం.",
+  },
+  micHelpTitle: { en: "Use the microphone", te: "మైక్రోఫోన్ వాడండి" },
+  micHelpBody: {
+    en: "Your phone will ask to use the microphone. Tap Allow, then say the sentence. Your voice is only used to check your words. It is not saved.",
+    te: "మైక్రోఫోన్ వాడటానికి మీ ఫోన్ అనుమతి అడుగుతుంది. Allow నొక్కి, వాక్యాన్ని చెప్పండి. మీ స్వరం మీ మాటలను సరిచూడటానికి మాత్రమే. అది సేవ్ చేయబడదు.",
+  },
+  micHelpSkip: {
+    en: "You can always tap Choose instead.",
+    te: "మీరు ఎప్పుడైనా Choose instead నొక్కవచ్చు.",
+  },
   listen: { en: "Listen", te: "వినండి" },
   listenSlow: { en: "Listen slowly", te: "నెమ్మదిగా వినండి" },
   progressLabel: { en: "Lesson progress", te: "పాఠం ప్రోగ్రెస్" },

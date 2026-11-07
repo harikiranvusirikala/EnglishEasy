@@ -1,6 +1,16 @@
 /** A label in both languages. Every UI label lives here, never in a component. */
 export type Bi = { en: string; te: string };
 
+/** Puts values into a label: `{n}` in both languages is replaced. A value may itself be a `Bi` (its English goes into English, Telugu into Telugu). */
+export function fill(label: Bi, values: Record<string, string | number | Bi>): Bi {
+  const put = (text: string, lang: keyof Bi) =>
+    text.replace(/\{(\w+)\}/g, (whole, key: string) => {
+      const value = values[key];
+      return value === undefined ? whole : typeof value === "object" ? value[lang] : String(value);
+    });
+  return { en: put(label.en, "en"), te: put(label.te, "te") };
+}
+
 export const strings = {
   appName: { en: "EnglishEasy", te: "ఇంగ్లీష్ ఈజీ" },
   comingSoon: { en: "Coming soon", te: "త్వరలో వస్తుంది" },
@@ -195,6 +205,29 @@ export const strings = {
   roleAction: { en: "Action", te: "ఏం చేశారు" },
   roleWhat: { en: "What / Where", te: "ఏమిటి / ఎక్కడ" },
   roleWhen: { en: "When", te: "ఎప్పుడు" },
+
+  // Lesson overview (/lessons/[id]) and lesson complete
+  overviewHome: { en: "Home", te: "హోమ్" },
+  overviewLearn: { en: "What you will learn", te: "మీరు నేర్చుకునేవి" },
+  overviewExamples: { en: "Example sentences", te: "ఉదాహరణ వాక్యాలు" },
+  overviewDayLabel: { en: "Day {n}", te: "{n}వ రోజు" },
+  overviewProgress: { en: "Your progress", te: "మీ ప్రోగ్రెస్" },
+  overviewCount: { en: "{done} of {total} done · {left} left", te: "{total} లో {done} పూర్తి · {left} మిగిలాయి" },
+  overviewPercent: { en: "{n}% done", te: "{n}% పూర్తి" },
+  overviewPlanned: { en: "This lesson is not ready yet.", te: "ఈ పాఠం ఇంకా సిద్ధంగా లేదు." },
+  startLesson: { en: "Start", te: "మొదలుపెట్టు" },
+  continueLesson: { en: "Continue", te: "కొనసాగించు" },
+  reviewLesson: { en: "Review", te: "మళ్ళీ చూడండి" },
+  shareLesson: { en: "Share this lesson", te: "ఈ పాఠాన్ని షేర్ చేయండి" },
+  shareLine: { en: "Learn {title} — explained in Telugu. Free.", te: "{title} నేర్చుకోండి — తెలుగులో వివరణతో. ఉచితం." },
+  linkCopied: { en: "Link copied", te: "లింక్ కాపీ అయింది" },
+  dayComplete: { en: "Day {n} Complete!", te: "{n}వ రోజు పూర్తయింది!" },
+  lessonCompleteLabel: { en: "Lesson complete", te: "పాఠం పూర్తయింది" },
+  practiceQuestions: { en: "{n} practice questions", te: "{n} సాధన ప్రశ్నలు" },
+  yourSentencesToday: { en: "Your sentences today", te: "ఈ రోజు మీ వాక్యాలు" },
+  nextDay: { en: "Next: Day {n} — {title}", te: "తర్వాత: {n}వ రోజు — {title}" },
+  continueToDay: { en: "Continue to Day {n}", te: "{n}వ రోజుకు కొనసాగండి" },
+  reviewToday: { en: "Review today's lesson", te: "ఈ రోజు పాఠాన్ని మళ్ళీ చూడండి" },
 
   // Lesson review page (/dev/lesson/[id])
   devTelugu: { en: "Telugu mode", te: "తెలుగు మోడ్" },

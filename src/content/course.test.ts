@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { course, mainWeeks, releasedDayRefs } from "./course";
+import { course, dayAfter, findDay, mainWeeks, releasedDayRefs } from "./course";
 import { grammar } from "./grammar";
 import { topics } from "./topics";
 
@@ -51,5 +51,24 @@ describe("tag lists", () => {
     }
     expect(grammar["past-simple"]).toBeDefined();
     expect(Object.keys(topics)).toHaveLength(22);
+  });
+});
+
+describe("findDay", () => {
+  it("computes Day N from the week and position", () => {
+    expect(findDay("sentence-basics")?.number).toBe(1);
+    expect(findDay("w1-review")?.number).toBe(7);
+  });
+  it("is null for an unknown id", () => {
+    expect(findDay("nope")).toBeNull();
+  });
+});
+
+describe("dayAfter", () => {
+  it("is the next day of the week, and null after the last released day", () => {
+    expect(dayAfter("sentence-basics")?.ref.id).toBe("i-am-you-are");
+    expect(dayAfter("sentence-basics")?.number).toBe(2);
+    expect(dayAfter("w1-review")).toBeNull();
+    expect(dayAfter("nope")).toBeNull();
   });
 });

@@ -7,12 +7,13 @@ import { BiText } from "@/components/ui/BiText";
 import { Dialog } from "@/components/ui/Dialog";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { button, iconButton } from "@/components/ui/button";
-import { card } from "@/components/ui/card";
 import { Icon } from "@/components/ui/icons";
 import type { Activity, PlayableDay, SectionKind } from "@/content/types";
 import { activityCount } from "@/content/generate";
-import { emptyProgress, markViewed, recordAnswer, skipActivity, type Progress } from "@/learning/progress";
-import { strings, type Bi as BiLabel } from "@/lib/strings";
+import { addPracticeDay, completeDay, dateKey, emptyProgress, markViewed, recordAnswer, setPosition, skipActivity, type Progress } from "@/learning/progress";
+import { nextActivity } from "@/learning/stats";
+import { getProgress, updateProgress, useProgress } from "@/lib/progress-store";
+import { strings } from "@/lib/strings";
 import { Build } from "./Build";
 import { Choose } from "./Choose";
 import { ComingSoon, DontSayCard, ExplainCard, WhenToUseCard } from "./cards";
@@ -21,20 +22,12 @@ import { FindMistake } from "./FindMistake";
 import { ListenChoose } from "./ListenChoose";
 import { Dialogue } from "./Dialogue";
 import { Match } from "./Match";
-import { Narrate } from "./Narrate";
 import { Repeat } from "./Repeat";
 import { RolePlay } from "./RolePlay";
 import { Situation } from "./Situation";
-import { BottomBar, MainButton } from "./parts";
-
-const SECTION_NAME: Record<SectionKind, BiLabel> = {
-  warmup: strings.sectionWarmup,
-  learn: strings.sectionLearn,
-  practice: strings.sectionPractice,
-  speak: strings.sectionSpeak,
-  roleplay: strings.sectionRoleplay,
-  wrapup: strings.sectionWrapup,
-};
+import { LessonComplete } from "./LessonComplete";
+import { BottomBar, MainButton, PlayerSkeleton } from "./parts";
+import { SECTION_NAME } from "./sections";
 
 const CARD_TYPES: Activity["type"][] = ["explain", "whenToUse", "dontSay"];
 const SCORED_SECTIONS: SectionKind[] = ["warmup", "practice", "speak"];
@@ -60,23 +53,68 @@ function buildSteps(day: PlayableDay): Step[] {
   return steps;
 }
 
+/** Where to start: the first activity not done yet (its section intro if it opens a section), the end if all are done, the start on a replay. */
+function startIndex(day: PlayableDay, steps: Step[], p: Progress): number {
+  if (day.id in p.completed) return 0;
+  const id = nextActivity(day, p);
+  if (id === null) {
+    const wrapup = steps.findIndex((s) => s.kind === "wrapup");
+    return wrapup >= 0 ? wrapup : 0;
+  }
+  const i = steps.findIndex((s) => s.kind === "activity" && day.sections[s.section].activities[s.activity].id === id);
+  if (i < 0) return 0;
+  return steps[i - 1]?.kind === "intro" ? i - 1 : i;
+}
+
+/** Waits for saved progress (after hydration), then plays. "Review" starts a fresh pass over a finished day. */
 export function Player({ day }: { day: PlayableDay }) {
+  const saved = useProgress();
+  const [pass, setPass] = useState(0);
+  if (!saved) return <PlayerSkeleton />;
+  return <PlayerInner key={pass} day={day} initial={saved} onReview={() => setPass((n) => n + 1)} />;
+}
+
+function PlayerInner({ day, initial, onReview }: { day: PlayableDay; initial: Progress; onReview: () => void }) {
   const router = useRouter();
   const steps = useMemo(() => buildSteps(day), [day]);
   const total = activityCount(day);
-  const [index, setIndex] = useState(0);
-  const [progress, setProgress] = useState<Progress>(() => emptyProgress());
+  // A finished day replayed keeps its completion: answers stay in this pass and nothing about the day is saved.
+  const [replay] = useState(() => day.id in initial.completed);
+  const [index, setIndex] = useState(() => startIndex(day, steps, initial));
+  const [local, setLocal] = useState<Progress>(() => emptyProgress());
+  const stored = useProgress() ?? initial;
+  const progress = replay ? local : stored;
   const [leaving, setLeaving] = useState(false);
   const main = useRef<HTMLElement>(null);
+
+  const now = () => new Date().toISOString();
+  /** Change this pass's progress; the practice day is always recorded. */
+  const change = (fn: (p: Progress) => Progress) => {
+    if (replay) setLocal(fn);
+    else updateProgress(fn);
+    updateProgress((p) => addPracticeDay(p, dateKey(new Date()), now()));
+  };
+
+  const step = steps[index];
+  const currentId = step.kind === "activity" ? day.sections[step.section].activities[step.activity].id : null;
 
   useEffect(() => {
     main.current?.focus({ preventScroll: true });
     if (main.current) main.current.scrollTop = 0;
   }, [index]);
 
-  const step = steps[index];
+  // Remember where the learner is, so Continue returns to this activity.
+  useEffect(() => {
+    if (!replay && currentId) updateProgress((p) => setPosition(p, day.id, currentId, new Date().toISOString()));
+  }, [replay, currentId, day.id]);
+
+  // Reaching the end finishes the day (once).
+  const atEnd = step.kind === "wrapup";
+  useEffect(() => {
+    if (atEnd && !replay && !(day.id in getProgress().completed)) updateProgress((p) => completeDay(p, day, new Date().toISOString()));
+  }, [atEnd, replay, day]);
+
   const next = () => setIndex((i) => Math.min(i + 1, steps.length - 1));
-  const now = () => new Date().toISOString();
 
   const done = steps.slice(0, index).filter((s) => s.kind === "activity").length;
   const shown = Math.min(total, done + (step.kind === "activity" ? 1 : 0));
@@ -115,15 +153,15 @@ export function Player({ day }: { day: PlayableDay }) {
           <ActivityView
             key={section.activities[step.activity].id}
             activity={section.activities[step.activity]}
-            onAnswer={(correct) => setProgress((p) => recordAnswer(p, section.activities[step.activity].id, correct, now()))}
+            onAnswer={(correct) => change((p) => recordAnswer(p, section.activities[step.activity].id, correct, now()))}
             onNext={() => {
               const id = section.activities[step.activity].id;
-              setProgress((p) => (isQuestion(section.activities[step.activity]) ? p : markViewed(p, id, now())));
+              change((p) => (isQuestion(section.activities[step.activity]) ? p : markViewed(p, id, now())));
               next();
             }}
             onSkip={() => {
               const id = section.activities[step.activity].id;
-              setProgress((p) => skipActivity(p, id, now()));
+              change((p) => skipActivity(p, id, now()));
               next();
             }}
           />
@@ -131,12 +169,7 @@ export function Player({ day }: { day: PlayableDay }) {
 
         {step.kind === "summary" && <Summary section={section} progress={progress} onNext={next} />}
 
-        {step.kind === "wrapup" && day.wrapup && <Wrapup wrapup={day.wrapup} onFinish={() => router.push("/learn")} />}
-        {step.kind === "wrapup" && !day.wrapup && (
-          <BottomBar>
-            <MainButton label={strings.finish} onClick={() => router.push("/learn")} />
-          </BottomBar>
-        )}
+        {step.kind === "wrapup" && <LessonComplete day={day} onReview={onReview} />}
       </main>
 
       <Dialog open={leaving} onClose={() => setLeaving(false)} title={strings.leaveTitle.en}>
@@ -232,56 +265,5 @@ function Summary({ section, progress, onNext }: { section: PlayableDay["sections
         <MainButton label={strings.continue} onClick={onNext} />
       </BottomBar>
     </div>
-  );
-}
-
-function Wrapup({ wrapup, onFinish }: { wrapup: NonNullable<PlayableDay["wrapup"]>; onFinish: () => void }) {
-  return (
-    <>
-      <div className="flex flex-col gap-5">
-        <h1 className="text-2xl font-bold">
-          <Bi label={strings.wrapupToday} className="items-start" />
-        </h1>
-        <ul className="flex flex-col gap-2">
-          {wrapup.key.map((sentence, i) => (
-            <li key={i} className={`${card} flex items-center justify-between gap-2`}>
-              <div>
-                <p className="text-xl font-semibold">{sentence.en}</p>
-                <p lang="te" className="text-base text-stone-600 dark:text-stone-400">
-                  {sentence.te}
-                </p>
-              </div>
-              <Narrate text={sentence.en} />
-            </li>
-          ))}
-        </ul>
-        <section className="flex flex-col gap-2">
-          <h2 className="text-lg font-bold">
-            <Bi label={strings.wrapupWords} className="items-start" />
-          </h2>
-          <ul className="grid grid-cols-2 gap-2">
-            {wrapup.words.map((word, i) => (
-              <li key={i} className={card}>
-                <p className="text-lg font-semibold">{word.en}</p>
-                <p lang="te" className="text-base text-stone-600 dark:text-stone-400">
-                  {word.te}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </section>
-        <section className={`${card} flex flex-col gap-1`}>
-          <h2 className="text-lg font-bold">
-            <Bi label={strings.wrapupTry} className="items-start" />
-          </h2>
-          <p className="text-lg">
-            <BiText text={wrapup.tryToday} />
-          </p>
-        </section>
-      </div>
-      <BottomBar>
-        <MainButton label={strings.finish} onClick={onFinish} />
-      </BottomBar>
-    </>
   );
 }

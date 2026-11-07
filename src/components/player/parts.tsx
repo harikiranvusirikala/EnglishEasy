@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import { Bi } from "@/components/ui/Bi";
 import { Icon } from "@/components/ui/icons";
+import { Skeleton } from "@/components/ui/Skeleton";
 import { button } from "@/components/ui/button";
 import { strings, type Bi as BiLabel } from "@/lib/strings";
 
@@ -81,5 +82,17 @@ export function OptionButton({ text, state, disabled, onClick }: { text: string;
       {state === "right" && <Icon name="check" />}
       {state === "wrong" && <Icon name="retry" />}
     </button>
+  );
+}
+
+/** The player's shape while the lesson or saved progress is loading. */
+export function PlayerSkeleton() {
+  return (
+    <div className="mx-auto flex h-dvh max-w-xl flex-col gap-4 p-4" aria-busy="true">
+      <Skeleton className="h-13 w-full" />
+      <Skeleton className="h-40 w-full" />
+      <Skeleton className="h-13 w-full" />
+      <Skeleton className="h-13 w-full" />
+    </div>
   );
 }

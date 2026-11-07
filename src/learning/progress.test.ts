@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { makePlayable, standardShape } from "../../test/fixtures/course";
-import { addPracticeDay, chooseTracks, completeDay, dayIdOf, emptyProgress, markViewed, recordAnswer, setPosition, skipActivity } from "./progress";
+import { addPracticeDay, chooseTracks, completeDay, dateKey, dayIdOf, emptyProgress, markViewed, parseProgress, recordAnswer, setPosition, skipActivity } from "./progress";
 
 const T = (n: number) => `2026-11-0${n}T10:00:00.000Z`;
 
@@ -102,5 +102,47 @@ describe("completeDay", () => {
   it("keeps a resume position in another day", () => {
     const p = completeDay(setPosition(emptyProgress(), "a2", "a2.learn1", T(1)), day, T(2));
     expect(p.position?.dayId).toBe("a2");
+  });
+});
+
+describe("parseProgress", () => {
+  it("empty or missing gives empty progress", () => {
+    expect(parseProgress(null).completed).toEqual({});
+    expect(parseProgress("").version).toBe(1);
+  });
+  it("corrupt JSON, wrong shape or another version fall back safely", () => {
+    for (const raw of ["{not json", "[]", "42", '{"version":2,"completed":{"a":{}}}', "null"]) {
+      expect(parseProgress(raw)).toEqual(emptyProgress());
+    }
+  });
+  it("round-trips saved progress", () => {
+    let p = recordAnswer(emptyProgress("2026-01-01T00:00:00.000Z"), "d.p1", true, "2026-01-02T00:00:00.000Z");
+    p = setPosition(p, "d", "d.p2", "2026-01-02T00:00:01.000Z");
+    p = addPracticeDay(p, "2026-01-02", "2026-01-02T00:00:02.000Z");
+    expect(parseProgress(JSON.stringify(p))).toEqual(p);
+  });
+  it("drops single bad entries and keeps the rest", () => {
+    const raw = JSON.stringify({
+      version: 1,
+      activities: { "d.p1": { correct: true, attempts: 1, at: "t" }, "d.p2": { correct: "yes" } },
+      completed: { d: { at: "t", correct: 3, total: 4 }, e: 7 },
+      mistakes: { "d.p1": "t", "d.p3": 5 },
+      practiceDays: ["2026-01-01", 4],
+      position: { dayId: "d" },
+      tracks: ["abroad", 1],
+    });
+    const p = parseProgress(raw);
+    expect(Object.keys(p.activities)).toEqual(["d.p1"]);
+    expect(Object.keys(p.completed)).toEqual(["d"]);
+    expect(Object.keys(p.mistakes)).toEqual(["d.p1"]);
+    expect(p.practiceDays).toEqual(["2026-01-01"]);
+    expect(p.position).toBeUndefined();
+    expect(p.tracks).toEqual(["abroad"]);
+  });
+});
+
+describe("dateKey", () => {
+  it("formats a local date", () => {
+    expect(dateKey(new Date(2026, 0, 5, 23, 59))).toBe("2026-01-05");
   });
 });

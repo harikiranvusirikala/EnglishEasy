@@ -5,22 +5,11 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Bi } from "@/components/ui/Bi";
 import { BiText } from "@/components/ui/BiText";
-import { Skeleton } from "@/components/ui/Skeleton";
 import { button } from "@/components/ui/button";
 import { loadLesson } from "@/lib/lesson-data";
 import { strings } from "@/lib/strings";
 import { Player } from "./Player";
-
-function PlayerSkeleton() {
-  return (
-    <div className="mx-auto flex h-dvh max-w-xl flex-col gap-4 p-4" aria-busy="true">
-      <Skeleton className="h-13 w-full" />
-      <Skeleton className="h-40 w-full" />
-      <Skeleton className="h-13 w-full" />
-      <Skeleton className="h-13 w-full" />
-    </div>
-  );
-}
+import { PlayerSkeleton } from "./parts";
 
 function Loaded({ id }: { id: string }) {
   return <Player day={use(loadLesson(id))} />;

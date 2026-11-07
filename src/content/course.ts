@@ -309,3 +309,21 @@ export function releasedDayRefs(): { ref: DayRef; week: Week; stage: number | nu
   const tracks = course.tracks.flatMap((t) => t.weeks.map((w) => ({ w, stage: null as number | null, lane: t.id as string })));
   return [...main, ...tracks].flatMap(({ w, stage, lane }) => w.days.map((ref) => ({ ref, week: w, stage, lane })));
 }
+
+/** A day's place in the course: "Day N" is computed from its week and position, never stored. `null` if the id is unknown. */
+export function findDay(id: string): { ref: DayRef; week: Week; lane: string; number: number } | null {
+  for (const { ref, week, lane } of releasedDayRefs()) {
+    if (ref.id === id) return { ref, week, lane, number: (week.n - 1) * 7 + week.days.indexOf(ref) + 1 };
+  }
+  return null;
+}
+
+/** The day after this one in the same lane (main path or a track), or `null` at the end of what is released. */
+export function dayAfter(id: string): { ref: DayRef; number: number } | null {
+  const here = findDay(id);
+  if (!here) return null;
+  const lane = releasedDayRefs().filter((d) => d.lane === here.lane);
+  const i = lane.findIndex((d) => d.ref.id === id);
+  const next = lane[i + 1];
+  return next ? { ref: next.ref, number: (next.week.n - 1) * 7 + next.week.days.indexOf(next.ref) + 1 } : null;
+}

@@ -102,3 +102,56 @@ export function completeDay(p: Progress, day: PlayableDay, now: string): Progres
   if (p.position?.dayId === day.id) delete next.position;
   return next;
 }
+
+export const PROGRESS_KEY = "englisheasy.progress.v1";
+
+const isRecord = (v: unknown): v is Record<string, unknown> => typeof v === "object" && v !== null && !Array.isArray(v);
+
+/**
+ * Read saved progress. Anything missing, corrupt or from another version gives empty progress; single bad entries
+ * are dropped, so one damaged value never loses the rest.
+ */
+export function parseProgress(raw: string | null): Progress {
+  if (!raw) return emptyProgress();
+  let data: unknown;
+  try {
+    data = JSON.parse(raw);
+  } catch {
+    return emptyProgress();
+  }
+  if (!isRecord(data) || data.version !== 1) return emptyProgress();
+  const out = emptyProgress(typeof data.updatedAt === "string" ? data.updatedAt : undefined);
+  if (isRecord(data.activities)) {
+    for (const [id, r] of Object.entries(data.activities)) {
+      if (isRecord(r) && typeof r.correct === "boolean" && typeof r.attempts === "number" && typeof r.at === "string") {
+        out.activities[id] = { correct: r.correct, attempts: r.attempts, at: r.at, ...(r.skipped === true ? { skipped: true as const } : {}) };
+      }
+    }
+  }
+  if (isRecord(data.completed)) {
+    for (const [id, r] of Object.entries(data.completed)) {
+      if (isRecord(r) && typeof r.at === "string" && typeof r.correct === "number" && typeof r.total === "number") {
+        out.completed[id] = { at: r.at, correct: r.correct, total: r.total };
+      }
+    }
+  }
+  if (isRecord(data.mistakes)) {
+    for (const [id, at] of Object.entries(data.mistakes)) if (typeof at === "string") out.mistakes[id] = at;
+  }
+  if (Array.isArray(data.practiceDays)) {
+    out.practiceDays = data.practiceDays.filter((d): d is string => typeof d === "string").slice(-MAX_PRACTICE_DAYS);
+  }
+  const pos = data.position;
+  if (isRecord(pos) && typeof pos.dayId === "string" && typeof pos.activityId === "string" && typeof pos.at === "string") {
+    out.position = { dayId: pos.dayId, activityId: pos.activityId, at: pos.at };
+  }
+  if (Array.isArray(data.tracks)) out.tracks = data.tracks.filter((t): t is string => typeof t === "string");
+  out.tracksAsked = data.tracksAsked === true;
+  return out;
+}
+
+/** A local date as "YYYY-MM-DD" (the practice-day format). */
+export function dateKey(d: Date): string {
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+}

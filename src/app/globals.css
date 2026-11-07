@@ -67,3 +67,21 @@ html[data-learn-in="en"] [data-bi-te] {
     transform: translateX(0.3rem);
   }
 }
+
+/* Lesson complete: confetti falls once (CSS only; the pieces are hidden with reduced motion). */
+@keyframes confetti-fall {
+  from {
+    opacity: 1;
+    transform: translateY(-2rem) rotate(0deg);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(100dvh) rotate(540deg);
+  }
+}
+
+/* Server-rendered lesson pages hold Telugu and English text for search engines; the Learn in setting shows one. */
+html[data-learn-in="en"] [data-lang="te"],
+html[data-learn-in="te"] [data-lang="en"] {
+  display: none;
+}

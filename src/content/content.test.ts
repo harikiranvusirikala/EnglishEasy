@@ -42,7 +42,8 @@ describe("every written day", () => {
   it("knows which days are written", () => {
     expect(isWritten("sentence-basics")).toBe(true);
     expect(isWritten("i-am-you-are")).toBe(true);
-    expect(isWritten("past-simple-yesterday")).toBe(false);
+    expect(isWritten("past-simple-yesterday")).toBe(true);
+    expect(isWritten("future-will-tomorrow")).toBe(false);
   });
 });
 

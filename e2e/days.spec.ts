@@ -6,6 +6,8 @@ test.skip(({ isMobile }) => !isMobile, "the player is checked on the phone proje
 const DAYS = [
   { id: "i-am-you-are", title: "I Am, You Are", first: "I am Lakshmi." },
   { id: "present-simple-every-day", title: "Every Day", first: "I walk every morning." },
+  { id: "present-continuous-right-now", title: "Right Now", first: "I am cooking." },
+  { id: "past-simple-yesterday", title: "Yesterday", first: "I went to the market." },
 ];
 
 for (const learnIn of ["en", "te"] as const) {

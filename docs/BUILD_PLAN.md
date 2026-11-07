@@ -685,6 +685,8 @@ Each task is one fresh Sonnet session (medium effort). Each reads only CURRICULU
 
 ## E1. Detail a stage (before its first week is written)
 
+Run this one in an **Opus** session (curriculum design benefits most from the stronger model); every other Part E task runs on Sonnet medium. Use what learners reported and where they struggled in earlier stages.
+
 ```text
 Detail Stage S in docs/CURRICULUM.md.
 Read CURRICULUM.md §1, §2 and the Stage S section only.

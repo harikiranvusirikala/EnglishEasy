@@ -5,6 +5,8 @@ import Link from "next/link";
 import type { Course } from "@/learning/recommend";
 import { recommendedDay } from "@/learning/recommend";
 import { dayStats } from "@/learning/stats";
+import { firstName, greetWithName } from "@/learning/account";
+import { useAccount } from "@/lib/account";
 import { isFirstVisit, locateDay, practisedThisWeek, timeOfDay, weekStrip, type DayPlace } from "@/learning/home";
 import type { Progress } from "@/learning/progress";
 import { Bi } from "@/components/ui/Bi";
@@ -177,12 +179,13 @@ export function Home({ course, written }: { course: Course; written: string[] })
   const settings = useSettings();
   const progress = useProgress();
   const clock = useClock();
+  const name = firstName(useAccount());
   if (settings && !settings.onboarded) return <Onboarding />;
   const practised = progress && clock ? practisedThisWeek(progress.practiceDays, clock.today) : 0;
   return (
     <main className="flex flex-col gap-5 p-4 pt-6">
       <h1 className="min-h-8 text-2xl font-bold text-stone-900 dark:text-stone-100">
-        {clock ? <Bi label={GREETING[timeOfDay(clock.hour)]} className="items-start" /> : <span className="sr-only">{strings.homeTitle.en}</span>}
+        {clock ? <Bi label={greetWithName(GREETING[timeOfDay(clock.hour)], name)} className="items-start" /> : <span className="sr-only">{strings.homeTitle.en}</span>}
       </h1>
       {progress && settings ? (
         <>

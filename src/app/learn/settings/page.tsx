@@ -8,6 +8,7 @@ import { Skeleton } from "@/components/ui/Skeleton";
 import { Switch } from "@/components/ui/Switch";
 import { button } from "@/components/ui/button";
 import { card, cardText, cardTitle } from "@/components/ui/card";
+import { Account } from "@/components/learn/Account";
 import { MyTracks } from "@/components/learn/Tracks";
 import { VoiceSettings } from "@/components/learn/VoiceSettings";
 import { SUPPORT_URL } from "@/components/support";
@@ -29,19 +30,6 @@ function Section({ title, hint, children }: { title: BiLabel; hint?: BiLabel; ch
         </p>
       )}
       {children}
-    </section>
-  );
-}
-
-function Later({ title }: { title: BiLabel }) {
-  return (
-    <section className={`${card} flex min-h-13 items-center justify-between gap-4`}>
-      <h2 className={cardTitle}>
-        <Bi label={title} className="items-start" />
-      </h2>
-      <span className="text-sm text-stone-600 dark:text-stone-400">
-        <Bi label={strings.comingSoon} />
-      </span>
     </section>
   );
 }
@@ -125,7 +113,7 @@ export default function SettingsPage() {
       )}
 
       {progress && <MyTracks course={course} progress={progress} />}
-      <Later title={strings.account} />
+      <Account />
 
       <section className={`${card} flex flex-col gap-3`}>
         <p className={cardText}>

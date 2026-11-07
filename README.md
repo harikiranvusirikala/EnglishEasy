@@ -12,6 +12,8 @@ npm run lint
 npm run typecheck
 npm test             # Vitest; one file: npx vitest run <file>
 npm run build
+npm run db:ping      # check the MongoDB connection (.env.local)
+npm run db:setup     # create the indexes in MONGODB_DB
 npm run images       # favicon, icons and link preview from src/app/icon.svg
 npm run test:e2e     # Playwright on port 3100 (projects: phone, desktop)
 ```
@@ -22,4 +24,19 @@ npm run test:e2e     # Playwright on port 3100 (projects: phone, desktop)
 |------|-------|-----|
 | `GTM_ID` | Vercel Production only (read at build) | Google Tag Manager container, e.g. `GTM-ABC123`; loaded on the landing page only. Unset: not loaded. |
 
+| `MONGODB_URI`, `MONGODB_DB` | `.env.local`, Vercel | Atlas connection string and database: `englisheasy_dev` locally, `englisheasy_preview` for previews, `englisheasy` in Production. |
+| `BETTER_AUTH_SECRET` | `.env.local`, Vercel | Signs sessions. A different value in every environment (`openssl rand -base64 32`). |
+| `BETTER_AUTH_URL` | `.env.local` (`http://localhost:3000`), Vercel Production only | The app's own address; previews use Vercel's own hosts. |
+| `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` | `.env.local`, Vercel | The Google OAuth client. |
+| `OAUTH_PROXY_SECRET` | Vercel Production and Preview (same value), only if previews are used | Lets previews sign in through production. |
+
 Each one added in a later step goes in `.env.example` and here.
+
+## Run your own copy
+
+1. **MongoDB Atlas.** Create a free cluster, a database user with read and write access, and allow network access from anywhere (Vercel has no fixed address). Copy the connection string into `MONGODB_URI`; set `MONGODB_DB` to `englisheasy_dev` locally and `englisheasy` in Vercel Production (`englisheasy_preview` for Preview).
+2. **Google OAuth client.** In Google Cloud Console, set up the OAuth consent screen (app name EnglishEasy, the privacy page `/privacy` as the privacy policy link), then create a Web application client. Authorised redirect URIs: `http://localhost:3000/api/auth/callback/google` and `https://<your production domain>/api/auth/callback/google`. Copy the client id and secret into `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`.
+3. **Local.** `cp .env.example .env.local`, fill it in, then `npm run db:ping` (checks the connection) and `npm run db:setup` (creates the indexes; run it once for each database, `englisheasy` before the first production deploy).
+4. **Vercel.** Add the variables in the table above for Production (and Preview if used); `BETTER_AUTH_URL` in Production only; a different `BETTER_AUTH_SECRET` per environment. Vercel's system variables (`VERCEL_ENV`, `VERCEL_URL`, `VERCEL_BRANCH_URL`, `VERCEL_PROJECT_PRODUCTION_URL`) must be exposed. Deploy `master`.
+
+`npm run db:ping` and `npm run db:setup` read `.env.local`.

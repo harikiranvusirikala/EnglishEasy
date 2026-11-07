@@ -83,6 +83,38 @@ export const strings = {
   gotIt: { en: "Got it", te: "అర్థమైంది" },
   myTracks: { en: "My tracks", te: "నా ట్రాక్‌లు" },
   account: { en: "Account", te: "ఖాతా" },
+  accountHint: {
+    en: "Sign in to keep your progress safe and the same on every phone. You can learn without signing in.",
+    te: "మీ ప్రోగ్రెస్ సురక్షితంగా, ప్రతి ఫోన్‌లో ఒకేలా ఉండేందుకు సైన్ ఇన్ చేయండి. సైన్ ఇన్ చేయకుండానే నేర్చుకోవచ్చు.",
+  },
+  accountSignedInHint: {
+    en: "Signed in with Google. Your progress is kept with your account.",
+    te: "Google తో సైన్ ఇన్ అయ్యారు. మీ ప్రోగ్రెస్ మీ ఖాతాలో భద్రంగా ఉంటుంది.",
+  },
+  signInGoogle: { en: "Sign in with Google", te: "Google తో సైన్ ఇన్ చేయండి" },
+  signInOpening: { en: "Opening Google…", te: "Google తెరుస్తున్నాము…" },
+  signInFailed: {
+    en: "Couldn't reach the sign-in service. Please try again.",
+    te: "సైన్ ఇన్ సేవను చేరుకోలేకపోయాము. దయచేసి మళ్ళీ ప్రయత్నించండి.",
+  },
+  signInCancelled: { en: "Sign-in was cancelled.", te: "సైన్ ఇన్ రద్దు అయింది." },
+  signInEmailNotVerified: {
+    en: "Google hasn't verified your account's email address, so it can't be used here.",
+    te: "మీ ఖాతా ఇమెయిల్ చిరునామాను Google ధృవీకరించలేదు, కాబట్టి దీన్ని ఇక్కడ వాడలేము.",
+  },
+  signInOther: {
+    en: "Sign-in didn't finish, perhaps because it took too long. Please try again.",
+    te: "సైన్ ఇన్ పూర్తి కాలేదు, బహుశా ఎక్కువ సమయం పట్టడం వల్ల. దయచేసి మళ్ళీ ప్రయత్నించండి.",
+  },
+  signOut: { en: "Sign out", te: "సైన్ అవుట్" },
+  signOutAsk: { en: "Sign out of EnglishEasy?", te: "ఇంగ్లీష్ ఈజీ నుండి సైన్ అవుట్ చేయాలా?" },
+  signOutBody: {
+    en: "Your progress stays safe in your account. Signing out here clears nothing you have learned.",
+    te: "మీ ప్రోగ్రెస్ మీ ఖాతాలో భద్రంగా ఉంటుంది. ఇక్కడ సైన్ అవుట్ చేస్తే మీరు నేర్చుకున్నదేదీ పోదు.",
+  },
+  signOutKeep: { en: "Stay signed in", te: "సైన్ ఇన్‌లోనే ఉండండి" },
+  signOutFailed: { en: "Couldn't sign out. Please try again.", te: "సైన్ అవుట్ చేయలేకపోయాము. దయచేసి మళ్ళీ ప్రయత్నించండి." },
+  accountPhotoAlt: { en: "Your Google photo", te: "మీ Google ఫోటో" },
   supportCoffee: { en: "Buy me a coffee", te: "నాకు ఒక కాఫీ కొనివ్వండి" },
   supportHint: {
     en: "EnglishEasy is free. If it helps you, you can support it.",

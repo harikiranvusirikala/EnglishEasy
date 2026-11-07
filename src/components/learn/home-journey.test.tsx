@@ -5,6 +5,8 @@ import { completeDay } from "@/learning/progress";
 import { updateProgress } from "@/lib/progress-store";
 import { updateSettings } from "@/lib/settings-store";
 import { fixtureCourse, makePlayable, standardShape } from "../../../test/fixtures/course";
+vi.mock("@/lib/account", () => ({ useAccount: () => ({ kind: "signedOut" }) }));
+
 import { Home } from "./Home";
 import { Journey } from "./Journey";
 

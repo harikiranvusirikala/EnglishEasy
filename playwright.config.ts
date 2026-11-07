@@ -23,6 +23,7 @@ export default defineConfig({
     command: `npm run build && npm run start -- --port ${PORT}`,
     url: `http://localhost:${PORT}`,
     reuseExistingServer: false,
+    env: { ENABLE_DEV_PAGES: "1" }, // /dev/ui is a 404 without it
     timeout: 180_000,
   },
 });

@@ -649,7 +649,7 @@ As Step 13, for `present-continuous-right-now` and `past-simple-yesterday` (CURR
 |------|------|--------|-------|
 | 0 | Vision, curriculum, plan, CLAUDE.md | ✅ 2026-11-07 | Opus 5.5 planning session |
 | 1 | Skeleton and tooling | ✅ 2026-11-07 | Next 16.4.5, React 19.3.1. No `cacheComponents` (A1). |
-| 2 | Look and feel foundation | ☐ | |
+| 2 | Look and feel foundation | ✅ 2026-11-07 | Next 16 error pages get a `retry` prop (not `reset`); Continue reloads as planned. Tab bar is hidden on `/learn/play` (`NO_TAB_BAR` in `TabBar.tsx`) so the Step 5 player can own its bottom button. Journey and Practice tabs 404 until Steps 11–12. `Bi` omits Telugu identical to English ("A+"). Settings script also sets `data-learn-in` on `<html>`; CSS hides `[data-bi-te]` for English before hydration. `ENABLE_DEV_PAGES=1` set in Playwright `webServer.env`. |
 | 3 | Content model, generator and Day 1 | ☐ | |
 | 4 | Learning engine | ☐ | |
 | 5 | Lesson player I | ☐ | |

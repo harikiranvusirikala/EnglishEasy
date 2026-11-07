@@ -7,4 +7,86 @@ export const strings = {
   openLearn: { en: "Open the lessons", te: "పాఠాలను తెరవండి" },
   learnTitle: { en: "Lessons", te: "పాఠాలు" },
   learnSoon: { en: "Your lessons will be here.", te: "మీ పాఠాలు ఇక్కడ ఉంటాయి." },
+
+  // Tab bar
+  tabBar: { en: "Main menu", te: "ప్రధాన మెనూ" },
+  tabHome: { en: "Home", te: "హోమ్" },
+  tabJourney: { en: "Journey", te: "ప్రయాణం" },
+  tabPractice: { en: "Practice", te: "సాధన" },
+  tabSettings: { en: "Settings", te: "సెట్టింగ్స్" },
+
+  // Settings
+  settingsTitle: { en: "Settings", te: "సెట్టింగ్స్" },
+  learnIn: { en: "Learn in", te: "నేర్చుకునే భాష" },
+  learnInTelugu: { en: "Telugu", te: "తెలుగు" },
+  learnInEnglish: { en: "English", te: "ఇంగ్లీష్" },
+  learnInHint: {
+    en: "Explanations are shown in this language. Practice sentences are always English.",
+    te: "వివరణలు ఈ భాషలో కనిపిస్తాయి. ప్రాక్టీస్ వాక్యాలు ఎప్పుడూ ఇంగ్లీష్‌లోనే ఉంటాయి.",
+  },
+  theme: { en: "Theme", te: "థీమ్" },
+  themeDay: { en: "Day", te: "పగలు" },
+  themeNight: { en: "Night", te: "రాత్రి" },
+  themeSystem: { en: "Follow phone", te: "ఫోన్ ప్రకారం" },
+  textSize: { en: "Text size", te: "అక్షరాల పరిమాణం" },
+  textSizeA: { en: "A", te: "A" },
+  textSizeAPlus: { en: "A+", te: "A+" },
+  textSizeAPlusPlus: { en: "A++", te: "A++" },
+  textSizeSample: {
+    en: "I go to the market every morning.",
+    te: "నేను ప్రతి ఉదయం మార్కెట్‌కి వెళ్తాను.",
+  },
+  autoPlay: { en: "Auto-play audio", te: "ఆడియో ఆటోమేటిక్‌గా వినిపించు" },
+  autoPlayHint: {
+    en: "New sentences are read out as they appear.",
+    te: "కొత్త వాక్యాలు కనిపించగానే చదివి వినిపిస్తాయి.",
+  },
+  noSpeaking: { en: "I can't speak now", te: "ఇప్పుడు మాట్లాడలేను" },
+  noSpeakingHint: {
+    en: "Speaking questions turn into choices.",
+    te: "మాట్లాడే ప్రశ్నలు ఎంపికలుగా మారతాయి.",
+  },
+  voice: { en: "Voice", te: "స్వరం" },
+  myTracks: { en: "My tracks", te: "నా ట్రాక్‌లు" },
+  account: { en: "Account", te: "ఖాతా" },
+  supportCoffee: { en: "Buy me a coffee", te: "నాకు ఒక కాఫీ కొనివ్వండి" },
+  supportHint: {
+    en: "EnglishEasy is free. If it helps you, you can support it.",
+    te: "ఇంగ్లీష్ ఈజీ ఉచితం. మీకు ఉపయోగపడితే, మీరు సహాయం చేయవచ్చు.",
+  },
+  opensNewTab: { en: "(opens in a new tab)", te: "(కొత్త ట్యాబ్‌లో తెరుచుకుంటుంది)" },
+
+  // Common
+  close: { en: "Close", te: "మూసివేయి" },
+  continue: { en: "Continue", te: "కొనసాగించు" },
+  cancel: { en: "Cancel", te: "రద్దు చేయి" },
+  stepDone: { en: "Done", te: "పూర్తయింది" },
+  stepCurrent: { en: "In progress", te: "జరుగుతోంది" },
+  stepTodo: { en: "Not started", te: "మొదలుపెట్టలేదు" },
+
+  // Error screens
+  errorTitle: { en: "Something went wrong", te: "ఏదో పొరపాటు జరిగింది" },
+  errorBody: {
+    en: "Your progress is safe. Tap Continue to try again.",
+    te: "మీ ప్రోగ్రెస్ భద్రంగా ఉంది. మళ్ళీ ప్రయత్నించడానికి కొనసాగించు నొక్కండి.",
+  },
+
+  // Component gallery (/dev/ui)
+  galleryTitle: { en: "Component gallery", te: "కాంపోనెంట్ గ్యాలరీ" },
+  galleryProgress: { en: "Lesson progress", te: "పాఠం ప్రోగ్రెస్" },
+  galleryDialogOpen: { en: "Open a dialog", te: "డైలాగ్ తెరవండి" },
+  galleryDialogTitle: { en: "A dialog", te: "ఒక డైలాగ్" },
+  galleryDialogBody: { en: "Dialogs close with Escape, a tap outside, or Close.", te: "Escape, బయట నొక్కడం లేదా మూసివేయి తో డైలాగ్ మూసుకుంటుంది." },
+  galleryToastShow: { en: "Show a message", te: "సందేశం చూపించు" },
+  galleryToast: { en: "Saved.", te: "సేవ్ అయింది." },
+  galleryPrimary: { en: "Primary", te: "ప్రధాన" },
+  gallerySecondary: { en: "Secondary", te: "రెండవ" },
+  galleryGhost: { en: "Ghost", te: "ఘోస్ట్" },
+  galleryDanger: { en: "Danger", te: "ప్రమాదం" },
+  galleryDisabled: { en: "Disabled", te: "నిలిపివేయబడింది" },
+  galleryLarge: { en: "Large", te: "పెద్దది" },
+  galleryStep1: { en: "Meet the sentence", te: "వాక్యాన్ని పరిచయం చేసుకోండి" },
+  galleryStep2: { en: "Try it yourself", te: "మీరే ప్రయత్నించండి" },
+  galleryStep3: { en: "Say it aloud", te: "బిగ్గరగా చెప్పండి" },
+  galleryCard: { en: "A card", te: "ఒక కార్డ్" },
 } satisfies Record<string, Bi>;

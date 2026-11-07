@@ -21,3 +21,26 @@
   font-family: var(--font-telugu);
   line-height: 1.7;
 }
+
+html {
+  font-size: 18px; /* text size A; the settings script sets 20px (A+) or 22px (A++) before first paint */
+}
+
+/* Learn in: English mode hides the Telugu half of labels until React removes it (no flash on load). */
+html[data-learn-in="en"] [data-bi-te] {
+  display: none;
+}
+
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+}

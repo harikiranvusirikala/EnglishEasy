@@ -29,6 +29,7 @@ import { course } from "@/content/course";
 import { weekEnd } from "@/learning/week-complete";
 import { LessonComplete } from "./LessonComplete";
 import { WeekComplete } from "./WeekComplete";
+import { ReportButton } from "./ReportButton";
 import { BottomBar, MainButton, PlayerSkeleton } from "./parts";
 import { SECTION_NAME } from "./sections";
 
@@ -134,6 +135,7 @@ function PlayerInner({ day, initial, onReview }: { day: PlayableDay; initial: Pr
           <span className="min-w-14 text-right text-base font-semibold tabular-nums">
             {shown} / {total}
           </span>
+          <ReportButton dayId={day.id} activityId={currentId} />
         </div>
         <p className="px-3 text-sm text-stone-600 dark:text-stone-400">
           <Bi label={SECTION_NAME[section.kind]} className="items-start" />

@@ -14,6 +14,7 @@ npm test             # Vitest; one file: npx vitest run <file>
 npm run build
 npm run db:ping      # check the MongoDB connection (.env.local)
 npm run db:setup     # create the indexes in MONGODB_DB
+npm run reports      # latest problem reports and client errors (.env.local)
 npm run test:db      # repository tests against MongoDB (needs MONGODB_URI; uses throwaway englisheasy_test_* databases)
 npm run images       # favicon, icons and link preview from src/app/icon.svg
 npm run test:e2e     # Playwright on port 3100 (projects: phone, desktop)

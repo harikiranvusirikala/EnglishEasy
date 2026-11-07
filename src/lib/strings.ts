@@ -136,6 +136,14 @@ export const strings = {
   stepCurrent: { en: "In progress", te: "జరుగుతోంది" },
   stepTodo: { en: "Not started", te: "మొదలుపెట్టలేదు" },
 
+  // Report a problem (player)
+  reportProblem: { en: "Report a problem", te: "సమస్యను తెలియజేయండి" },
+  reportReasonTelugu: { en: "Telugu is wrong", te: "తెలుగు తప్పుగా ఉంది" },
+  reportReasonEnglish: { en: "English is wrong", te: "ఇంగ్లీష్ తప్పుగా ఉంది" },
+  reportReasonAudio: { en: "Audio problem", te: "ఆడియో సమస్య" },
+  reportReasonOther: { en: "Something else", te: "ఇంకేదో" },
+  reportThanks: { en: "Thank you", te: "ధన్యవాదాలు" },
+
   // Error screens
   errorTitle: { en: "Something went wrong", te: "ఏదో పొరపాటు జరిగింది" },
   errorBody: {

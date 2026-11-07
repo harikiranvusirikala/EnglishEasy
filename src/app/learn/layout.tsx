@@ -1,4 +1,5 @@
 import { ProgressSync } from "@/components/learn/ProgressSync";
+import { ReportingShell } from "@/components/learn/ReportingShell";
 import { PwaShell } from "@/components/learn/PwaShell";
 import { ShellDialogs } from "@/components/learn/ShellDialogs";
 import { TabBar } from "@/components/learn/TabBar";
@@ -13,6 +14,7 @@ export default function LearnLayout({ children }: { children: React.ReactNode })
       <TabBar />
       <ShellDialogs />
       <ProgressSync />
+      <ReportingShell />
       <PwaShell course={course} written={writtenDayIds()} />
     </div>
   );

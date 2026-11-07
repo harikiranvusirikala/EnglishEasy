@@ -19,6 +19,7 @@
     "test:e2e": "playwright test",
     "db:ping": "node --import tsx --env-file-if-exists=.env.local scripts/db-ping.mts",
     "db:setup": "node --import tsx --env-file-if-exists=.env.local scripts/db-setup.mts",
+    "reports": "node --import tsx --env-file-if-exists=.env.local scripts/reports.mts",
     "images": "node --import tsx scripts/site-images.mts",
     "content": "node --import tsx --env-file-if-exists=.env.local scripts/build-content.mts"
   },

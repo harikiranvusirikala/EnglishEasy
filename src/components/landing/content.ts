@@ -9,7 +9,7 @@ export const DESCRIPTION =
   "Learn to speak English step by step, with Telugu explanations. Short daily lessons you can hear and speak, with no typing. Free and made for adults and elders.";
 
 /** Google Search Console's check that the owner runs the live site. Empty until the owner adds the code (the content="..." of the verification tag). */
-export const GOOGLE_SITE_VERIFICATION = "";
+export const GOOGLE_SITE_VERIFICATION = "iS4OF4-2DT8drLIM-FZU8JA8b-ALGsTFZEbWyQEoj8Y";
 
 export interface Question {
   question: string;

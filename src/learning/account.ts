@@ -1,4 +1,5 @@
 import type { Bi } from "@/lib/strings";
+import type { Progress } from "./progress";
 
 /** What Settings → Account shows. `loading` until the session is known (never guess signed-out). */
 export type AccountState =
@@ -38,4 +39,12 @@ export function signInErrorKind(code: string | null | undefined): SignInErrorKin
   if (code === "access_denied") return "cancelled";
   if (code === "email_not_verified") return "emailNotVerified";
   return "other";
+}
+
+export const SAVE_CARD_ID = "save-progress-card";
+
+/** "Save your progress with Google": for a signed-out learner who has done something, until they dismiss it. */
+export function saveCardVisible(account: AccountState, progress: Progress, dismissed: string[]): boolean {
+  if (account.kind !== "signedOut" || dismissed.includes(SAVE_CARD_ID)) return false;
+  return Object.keys(progress.completed).length > 0 || Object.keys(progress.activities).length > 0;
 }

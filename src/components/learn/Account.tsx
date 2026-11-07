@@ -43,11 +43,11 @@ function SignInError() {
 }
 
 /** Google's "Sign in with Google" button (its branding guidelines): the standard G, white with a grey outline by day, Google's dark theme at night. Don't restyle it like the app's buttons. */
-function GoogleButton({ onFailed }: { onFailed: () => void }) {
+export function GoogleButton({ onFailed, returnTo }: { onFailed: () => void; returnTo?: string }) {
   const [pending, setPending] = useState(false);
   async function signIn() {
     setPending(true);
-    const back = window.location.pathname;
+    const back = returnTo ?? window.location.pathname;
     const { error } = await authClient.signIn.social({ provider: "google", callbackURL: back, errorCallbackURL: "/learn/settings" });
     if (error) {
       setPending(false);

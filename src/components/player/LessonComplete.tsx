@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { SaveProgressCard } from "@/components/learn/SaveProgressCard";
 import { ShareLesson } from "@/components/learn/ShareLesson";
 import { Bi } from "@/components/ui/Bi";
 import { BiText } from "@/components/ui/BiText";
@@ -145,6 +146,7 @@ export function LessonComplete({ day, onReview }: { day: PlayableDay; onReview: 
             <BiText text={fill(strings.nextDay, { n: after.number, title: after.ref.title })} />
           </p>
         )}
+        <SaveProgressCard />
         <ShareLesson id={day.id} title={day.title} />
       </div>
 

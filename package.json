@@ -15,6 +15,7 @@
     "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:db": "vitest run --config vitest.db.config.mts",
     "test:e2e": "playwright test",
     "db:ping": "node --import tsx --env-file-if-exists=.env.local scripts/db-ping.mts",
     "db:setup": "node --import tsx --env-file-if-exists=.env.local scripts/db-setup.mts",

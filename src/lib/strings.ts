@@ -91,6 +91,12 @@ export const strings = {
     en: "Signed in with Google. Your progress is kept with your account.",
     te: "Google తో సైన్ ఇన్ అయ్యారు. మీ ప్రోగ్రెస్ మీ ఖాతాలో భద్రంగా ఉంటుంది.",
   },
+  saveProgressTitle: { en: "Save your progress with Google", te: "మీ ప్రోగ్రెస్‌ను Google తో సేవ్ చేయండి" },
+  saveProgressText: {
+    en: "Sign in once and your lessons are safe, and the same on every phone. What you have done so far is kept.",
+    te: "ఒక్కసారి సైన్ ఇన్ చేస్తే మీ పాఠాలు సురక్షితంగా, ప్రతి ఫోన్‌లో ఒకేలా ఉంటాయి. ఇప్పటివరకు మీరు చేసినది అలాగే ఉంటుంది.",
+  },
+  saveProgressNotNow: { en: "Not now", te: "ఇప్పుడు వద్దు" },
   signInGoogle: { en: "Sign in with Google", te: "Google తో సైన్ ఇన్ చేయండి" },
   signInOpening: { en: "Opening Google…", te: "Google తెరుస్తున్నాము…" },
   signInFailed: {

@@ -46,6 +46,11 @@ export function updateProgress(change: (p: Progress) => Progress) {
   notify();
 }
 
+/** Call `listener` whenever progress changes (this tab or another). Returns the unsubscribe function. */
+export function subscribeProgress(listener: () => void): () => void {
+  return subscribe(listener);
+}
+
 function subscribe(listener: () => void) {
   listeners.add(listener);
   // Another tab saved progress.

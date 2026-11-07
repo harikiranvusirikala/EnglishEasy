@@ -21,6 +21,7 @@ import { useProgress } from "@/lib/progress-store";
 import { useSettings } from "@/lib/settings-store";
 import { fill, strings } from "@/lib/strings";
 import { InstallCard } from "./InstallCard";
+import { SaveProgressCard } from "./SaveProgressCard";
 import { Onboarding } from "./Onboarding";
 import { TrackSuggestionCard, TracksCard } from "./Tracks";
 
@@ -190,6 +191,7 @@ export function Home({ course, written }: { course: Course; written: string[] })
       {progress && settings ? (
         <>
           <TodayCard course={course} progress={progress} written={written} />
+          <SaveProgressCard />
           <InstallCard />
           <TrackSuggestionCard course={course} progress={progress} written={written} />
           <TracksCard course={course} progress={progress} />

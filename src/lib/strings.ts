@@ -402,4 +402,18 @@ export const strings = {
   galleryStep2: { en: "Try it yourself", te: "మీరే ప్రయత్నించండి" },
   galleryStep3: { en: "Say it aloud", te: "బిగ్గరగా చెప్పండి" },
   galleryCard: { en: "A card", te: "ఒక కార్డ్" },
+
+  // Installable app and offline (Step 17)
+  updatedReload: { en: "Updated — tap to reload", te: "అప్‌డేట్ అయింది — రీలోడ్ చేయడానికి నొక్కండి" },
+  installTitle: { en: "Install EnglishEasy", te: "EnglishEasy ఇన్‌స్టాల్ చేయండి" },
+  installText: { en: "Open it from your Home screen like any app, and practise without internet.", te: "ఏ యాప్ లాగానే హోమ్ స్క్రీన్ నుండి తెరవండి, ఇంటర్నెట్ లేకుండా ప్రాక్టీస్ చేయండి." },
+  installButton: { en: "Install", te: "ఇన్‌స్టాల్" },
+  installNotNow: { en: "Not now", te: "ఇప్పుడు వద్దు" },
+  installIosIntro: { en: "To put EnglishEasy on your iPhone Home screen:", te: "EnglishEasy ను మీ iPhone హోమ్ స్క్రీన్ పై పెట్టడానికి:" },
+  installIosStep1: { en: "Tap the Share button at the bottom of Safari.", te: "Safari అడుగున ఉన్న షేర్ బటన్ నొక్కండి." },
+  installIosStep2: { en: "Choose Add to Home Screen.", te: "Add to Home Screen ఎంచుకోండి." },
+  installIosStep3: { en: "Tap Add at the top.", te: "పైన Add నొక్కండి." },
+  offlineTitle: { en: "You are offline", te: "మీరు ఆఫ్‌లైన్‌లో ఉన్నారు" },
+  offlineText: { en: "This page is not on your phone yet. Lessons you have opened still work.", te: "ఈ పేజీ ఇంకా మీ ఫోన్‌లో లేదు. మీరు తెరిచిన పాఠాలు ఇప్పటికీ పనిచేస్తాయి." },
+  offlineOpenLessons: { en: "Open my lessons", te: "నా పాఠాలు తెరవండి" },
 } satisfies Record<string, Bi>;

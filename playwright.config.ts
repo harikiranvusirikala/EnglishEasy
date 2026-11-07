@@ -13,6 +13,7 @@ export default defineConfig({
   use: {
     baseURL: `http://localhost:${PORT}`,
     trace: "retain-on-failure",
+    serviceWorkers: "block", // specs stub files with page.route, which a service worker would bypass; e2e/offline.spec.ts allows it
   },
   projects: [
     { name: "phone", use: { ...devices["iPhone 13"], defaultBrowserType: "chromium", channel } },

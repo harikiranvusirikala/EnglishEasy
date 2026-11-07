@@ -18,6 +18,7 @@ import { loadLesson } from "@/lib/lesson-data";
 import { useProgress } from "@/lib/progress-store";
 import { useSettings } from "@/lib/settings-store";
 import { fill, strings } from "@/lib/strings";
+import { InstallCard } from "./InstallCard";
 import { Onboarding } from "./Onboarding";
 import { TrackSuggestionCard, TracksCard } from "./Tracks";
 
@@ -186,6 +187,7 @@ export function Home({ course, written }: { course: Course; written: string[] })
       {progress && settings ? (
         <>
           <TodayCard course={course} progress={progress} written={written} />
+          <InstallCard />
           <TrackSuggestionCard course={course} progress={progress} written={written} />
           <TracksCard course={course} progress={progress} />
           <WeekStrip course={course} progress={progress} written={written} />

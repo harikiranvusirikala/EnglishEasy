@@ -13,9 +13,12 @@ import type { Activity, PlayableDay, SectionKind } from "@/content/types";
 import { activityCount } from "@/content/generate";
 import { emptyProgress, markViewed, recordAnswer, skipActivity, type Progress } from "@/learning/progress";
 import { strings, type Bi as BiLabel } from "@/lib/strings";
+import { Build } from "./Build";
 import { Choose } from "./Choose";
 import { ComingSoon, DontSayCard, ExplainCard, WhenToUseCard } from "./cards";
 import { FillBlank } from "./FillBlank";
+import { FindMistake } from "./FindMistake";
+import { Match } from "./Match";
 import { Narrate } from "./Narrate";
 import { BottomBar, MainButton } from "./parts";
 
@@ -170,8 +173,15 @@ function ActivityView({
       return <Choose activity={activity} onAnswer={onAnswer} onNext={onNext} />;
     case "fillBlank":
       return <FillBlank activity={activity} onAnswer={onAnswer} onNext={onNext} />;
+    case "arrange":
+    case "translate":
+      return <Build activity={activity} onAnswer={onAnswer} onNext={onNext} />;
+    case "match":
+      return <Match activity={activity} onAnswer={onAnswer} onNext={onNext} />;
+    case "findMistake":
+      return <FindMistake activity={activity} onAnswer={onAnswer} onNext={onNext} />;
     default:
-      return <ComingSoon onSkip={onSkip} />; // built in Steps 6–9
+      return <ComingSoon onSkip={onSkip} />; // built in Steps 7–9
   }
 }
 

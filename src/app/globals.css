@@ -58,3 +58,12 @@ html[data-learn-in="en"] [data-bi-te] {
     transform: translateY(-0.75rem);
   }
 }
+
+@keyframes shake {
+  25% {
+    transform: translateX(-0.3rem);
+  }
+  75% {
+    transform: translateX(0.3rem);
+  }
+}

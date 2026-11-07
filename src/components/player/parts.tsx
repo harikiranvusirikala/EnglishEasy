@@ -60,7 +60,7 @@ export function FeedbackPanel({ kind, children }: { kind: FeedbackKind; children
 
 export type OptionState = "idle" | "selected" | "right" | "wrong";
 
-const OPTION: Record<OptionState, string> = {
+export const OPTION: Record<OptionState, string> = {
   idle: "border-stone-300 bg-white text-stone-900 hover:bg-stone-100 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:hover:bg-stone-800",
   selected: "border-teal-700 bg-teal-50 text-stone-900 ring-2 ring-teal-700 dark:border-teal-400 dark:bg-teal-950 dark:text-stone-100 dark:ring-teal-400",
   right: "border-emerald-500 bg-emerald-50 text-emerald-950 dark:border-emerald-600 dark:bg-emerald-950 dark:text-emerald-100",

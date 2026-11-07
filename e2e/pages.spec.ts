@@ -9,6 +9,6 @@ test("home and learn pages load, Telugu renders", async ({ page }) => {
 
   await page.getByRole("link", { name: "Open the lessons" }).click();
   await expect(page).toHaveURL(/\/learn$/);
-  await expect(page.getByRole("heading", { name: "Lessons" })).toBeVisible();
-  await expect(page.locator('[lang="te"]', { hasText: "పాఠాలు" }).first()).toBeVisible();
+  await expect(page.getByRole("heading", { name: /How would you like to learn/ })).toBeVisible(); // first visit
+  await expect(page.locator('[lang="te"]', { hasText: "తెలుగులో వివరణలు" }).first()).toBeVisible();
 });

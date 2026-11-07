@@ -1,0 +1,55 @@
+import { describe, expect, it } from "vitest";
+import { course, mainWeeks, releasedDayRefs } from "./course";
+import { grammar } from "./grammar";
+import { topics } from "./topics";
+
+describe("course map", () => {
+  it("has five stages covering weeks 1–150 without gaps", () => {
+    expect(course.stages.map((s) => [s.firstWeek, s.lastWeek])).toEqual([[1, 12], [13, 40], [41, 80], [81, 120], [121, 150]]);
+    expect(mainWeeks().map((w) => w.n)).toEqual(Array.from({ length: 150 }, (_, i) => i + 1));
+    for (const s of course.stages) {
+      expect(s.weeks[0].n).toBe(s.firstWeek);
+      expect(s.weeks.at(-1)?.n).toBe(s.lastWeek);
+    }
+  });
+
+  it("has both languages for every title", () => {
+    const bis = [
+      ...course.stages.flatMap((s) => [s.title, s.canDo, ...s.weeks.map((w) => w.title)]),
+      ...course.tracks.flatMap((t) => [t.title, t.forWho, ...t.weeks.map((w) => w.title)]),
+    ];
+    for (const b of bis) {
+      expect(b.en.trim()).not.toBe("");
+      expect(b.te).toMatch(/[ఀ-౿]/);
+    }
+  });
+
+  it("releases only Week 1, with seven day refs and unique ids", () => {
+    expect(mainWeeks().filter((w) => w.released).map((w) => w.n)).toEqual([1]);
+    for (const w of [...mainWeeks(), ...course.tracks.flatMap((t) => t.weeks)]) {
+      if (!w.released) expect(w.days).toEqual([]);
+    }
+    const refs = releasedDayRefs();
+    expect(refs).toHaveLength(7);
+    expect(refs[0].ref.id).toBe("sentence-basics");
+    expect(refs[6]).toMatchObject({ ref: { id: "w1-review", kind: "review" } });
+    const ids = refs.map((r) => r.ref.id);
+    expect(new Set(ids).size).toBe(ids.length);
+    for (const id of ids) expect(id.length).toBeLessThanOrEqual(40);
+  });
+
+  it("lists the two tracks offered at Week 13, all unreleased", () => {
+    expect(course.tracks.map((t) => [t.id, t.weeks.length, t.offerAtWeek])).toEqual([["grandchildren", 8, 13], ["abroad", 12, 13]]);
+  });
+});
+
+describe("tag lists", () => {
+  it("have both languages and the keys the plan names", () => {
+    for (const b of [...Object.values(grammar), ...Object.values(topics)]) {
+      expect(b.en).not.toBe("");
+      expect(b.te.trim()).not.toBe("");
+    }
+    expect(grammar["past-simple"]).toBeDefined();
+    expect(Object.keys(topics)).toHaveLength(22);
+  });
+});

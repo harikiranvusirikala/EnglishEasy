@@ -9,6 +9,11 @@ describe("indexes", () => {
     expect(INDEXES).toContainEqual({ collection: "clientErrors", key: { at: -1 } });
   });
 
+  it("makes pushSubscriptions.endpoint unique and indexes the hour", () => {
+    expect(INDEXES).toContainEqual({ collection: "pushSubscriptions", key: { endpoint: 1 }, unique: true });
+    expect(INDEXES).toContainEqual({ collection: "pushSubscriptions", key: { hour: 1 } });
+  });
+
   it("covers Better Auth's collections, with TTL on sessions and verifications", () => {
     const ttl = INDEXES.filter((i) => i.expireAfterSeconds === 0).map((i) => i.collection);
     expect(ttl.sort()).toEqual(["sessions", "verifications"]);

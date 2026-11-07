@@ -139,3 +139,37 @@ function networkFirst(request) {
     });
   });
 }
+
+// Daily reminders (BUILD_PLAN Step 21): the server sends { title, body, url }; tapping opens the app.
+self.addEventListener("push", function (event) {
+  var data = {};
+  try {
+    data = event.data ? event.data.json() : {};
+  } catch {
+    data = {};
+  }
+  event.waitUntil(
+    self.registration.showNotification(data.title || "EnglishEasy", {
+      body: data.body || "",
+      icon: "/icons/icon-192.png",
+      badge: "/icons/icon-192.png",
+      tag: "daily-reminder", // a second reminder replaces the first
+      data: { url: data.url || "/learn" },
+    }),
+  );
+});
+
+self.addEventListener("notificationclick", function (event) {
+  event.notification.close();
+  var target = new URL((event.notification.data && event.notification.data.url) || "/learn", self.location.origin).href;
+  event.waitUntil(
+    self.clients.matchAll({ type: "window", includeUncontrolled: true }).then(function (list) {
+      for (var i = 0; i < list.length; i++) {
+        if (list[i].url.indexOf(self.location.origin) === 0 && "focus" in list[i]) {
+          return list[i].focus().then(function (client) { return "navigate" in client ? client.navigate(target) : client; });
+        }
+      }
+      return self.clients.openWindow(target);
+    }),
+  );
+});

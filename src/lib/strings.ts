@@ -462,4 +462,26 @@ export const strings = {
   offlineTitle: { en: "You are offline", te: "మీరు ఆఫ్‌లైన్‌లో ఉన్నారు" },
   offlineText: { en: "This page is not on your phone yet. Lessons you have opened still work.", te: "ఈ పేజీ ఇంకా మీ ఫోన్‌లో లేదు. మీరు తెరిచిన పాఠాలు ఇప్పటికీ పనిచేస్తాయి." },
   offlineOpenLessons: { en: "Open my lessons", te: "నా పాఠాలు తెరవండి" },
+  // Daily reminders (Step 21)
+  reminderTitle: { en: "Daily reminder", te: "రోజువారీ గుర్తు" },
+  reminderHint: {
+    en: "Your phone will ask permission to show notifications. We remind you only on days you have not practised yet.",
+    te: "నోటిఫికేషన్లు చూపించడానికి మీ ఫోన్ అనుమతి అడుగుతుంది. మీరు ఇంకా ప్రాక్టీస్ చేయని రోజుల్లో మాత్రమే గుర్తు చేస్తాము.",
+  },
+  reminderOff: { en: "Off", te: "ఆఫ్" },
+  reminderMorning: { en: "Morning 8:00", te: "ఉదయం 8:00" },
+  reminderAfternoon: { en: "Afternoon 1:00", te: "మధ్యాహ్నం 1:00" },
+  reminderEvening: { en: "Evening 6:00", te: "సాయంత్రం 6:00" },
+  reminderNight: { en: "Night 8:00", te: "రాత్రి 8:00" },
+  reminderDenied: {
+    en: "Notifications are blocked. Allow them for EnglishEasy in your phone's settings, then try again.",
+    te: "నోటిఫికేషన్లు బ్లాక్ అయ్యాయి. మీ ఫోన్ సెట్టింగ్స్‌లో EnglishEasy కు అనుమతించి, మళ్ళీ ప్రయత్నించండి.",
+  },
+  reminderUnsupported: { en: "This browser cannot show reminders.", te: "ఈ బ్రౌజర్ గుర్తులను చూపించలేదు." },
+  reminderFailed: { en: "Could not set the reminder. Check your internet and try again.", te: "గుర్తు సెట్ చేయలేకపోయాము. ఇంటర్నెట్ చూసి మళ్ళీ ప్రయత్నించండి." },
+  reminderInstallFirst: { en: "Install the app first to get reminders", te: "గుర్తులు రావడానికి ముందు యాప్‌ను ఇన్‌స్టాల్ చేయండి" },
+  reminderCardTitle: { en: "Want a reminder every day?", te: "ప్రతిరోజూ గుర్తు కావాలా?" },
+  reminderCardText: { en: "Pick a time. We remind you only on days you have not practised yet.", te: "సమయం ఎంచుకోండి. మీరు ఇంకా ప్రాక్టీస్ చేయని రోజుల్లో మాత్రమే గుర్తు చేస్తాము." },
+  reminderNotNow: { en: "Not now", te: "ఇప్పుడు వద్దు" },
+  reminderMessage: { en: "Today's English is ready 🌱", te: "ఈరోజు ఇంగ్లీష్ పాఠం సిద్ధం" },
 } satisfies Record<string, Bi>;

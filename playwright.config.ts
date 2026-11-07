@@ -24,7 +24,10 @@ export default defineConfig({
     command: `npm run build && npm run start -- --port ${PORT}`,
     url: `http://localhost:${PORT}`,
     reuseExistingServer: false,
-    env: { ENABLE_DEV_PAGES: "1" }, // /dev/ui is a 404 without it
+    env: {
+      ENABLE_DEV_PAGES: "1", // /dev/ui is a 404 without it
+      NEXT_PUBLIC_VAPID_PUBLIC_KEY: "BPFofdnxejiCSnWqFoceeKAoMpB5uMKEk6A1v6RQ_-ATrN7X_vg4PZdaO5xhjJ-lvmJqV6eQtdqWMY0vM7NKGqE", // a throwaway public key; the e2e subscribe is stubbed
+    },
     timeout: 180_000,
   },
 });

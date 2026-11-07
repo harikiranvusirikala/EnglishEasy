@@ -18,6 +18,30 @@ const STEPS = [
   { text: strings.installIosStep3, icon: "check" as const },
 ];
 
+/** The iPhone's three picture steps for adding the app to the Home screen (also shown by Settings → Daily reminder). */
+export function IosInstallSteps() {
+  return (
+    <>
+      <p className={cardText}>
+        <BiText text={strings.installIosIntro} />
+      </p>
+      <ol className="flex flex-col gap-2">
+        {STEPS.map((s, i) => (
+          <li key={s.text.en} className="flex items-center gap-3">
+            <span aria-hidden="true" className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-stone-100 text-teal-800 dark:bg-stone-800 dark:text-teal-300">
+              <Icon name={s.icon} />
+            </span>
+            <span className="text-base text-stone-900 dark:text-stone-100">
+              <span className="font-semibold">{i + 1}. </span>
+              <BiText text={s.text} />
+            </span>
+          </li>
+        ))}
+      </ol>
+    </>
+  );
+}
+
 /** Home's one-time "Install EnglishEasy" card: Android's Install button, or the iPhone's Share steps in pictures. Hidden once installed or dismissed. */
 export function InstallCard() {
   const settings = useSettings();
@@ -41,24 +65,7 @@ export function InstallCard() {
           </button>
         </>
       ) : (
-        <>
-          <p className={cardText}>
-            <BiText text={strings.installIosIntro} />
-          </p>
-          <ol className="flex flex-col gap-2">
-            {STEPS.map((s, i) => (
-              <li key={s.text.en} className="flex items-center gap-3">
-                <span aria-hidden="true" className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-stone-100 text-teal-800 dark:bg-stone-800 dark:text-teal-300">
-                  <Icon name={s.icon} />
-                </span>
-                <span className="text-base text-stone-900 dark:text-stone-100">
-                  <span className="font-semibold">{i + 1}. </span>
-                  <BiText text={s.text} />
-                </span>
-              </li>
-            ))}
-          </ol>
-        </>
+        <IosInstallSteps />
       )}
       <button type="button" onClick={dismiss} className={`${button("ghost")} w-full`}>
         <Bi label={strings.installNotNow} />

@@ -9,6 +9,7 @@ import { Switch } from "@/components/ui/Switch";
 import { button } from "@/components/ui/button";
 import { card, cardText, cardTitle } from "@/components/ui/card";
 import { Account } from "@/components/learn/Account";
+import { ReminderSettings } from "@/components/learn/Reminder";
 import { MyTracks } from "@/components/learn/Tracks";
 import { VoiceSettings } from "@/components/learn/VoiceSettings";
 import { SUPPORT_URL } from "@/components/support";
@@ -112,6 +113,7 @@ export default function SettingsPage() {
         </>
       )}
 
+      <ReminderSettings />
       {progress && <MyTracks course={course} progress={progress} />}
       <Account />
 

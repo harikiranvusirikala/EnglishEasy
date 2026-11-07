@@ -1,0 +1,21 @@
+name: reminders
+
+# Sends the daily reminders that are due this hour (BUILD_PLAN A7). Needs the GitHub secret REMINDER_SECRET and
+# the GitHub variable REMINDER_URL (the production address, e.g. https://englisheasy.example). Also runnable by hand.
+on:
+  schedule:
+    - cron: "5 * * * *"
+  workflow_dispatch:
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send due reminders
+        env:
+          REMINDER_URL: ${{ vars.REMINDER_URL }}
+          REMINDER_SECRET: ${{ secrets.REMINDER_SECRET }}
+        run: |
+          curl --fail-with-body --silent --show-error --max-time 60 \
+            -X POST "$REMINDER_URL/api/reminders/send" \
+            -H "Authorization: Bearer $REMINDER_SECRET"

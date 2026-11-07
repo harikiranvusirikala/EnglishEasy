@@ -16,6 +16,7 @@ npm run db:ping      # check the MongoDB connection (.env.local)
 npm run db:setup     # create the indexes in MONGODB_DB
 npm run reports      # latest problem reports and client errors (.env.local)
 npm run test:db      # repository tests against MongoDB (needs MONGODB_URI; uses throwaway englisheasy_test_* databases)
+npm run vapid        # print a new VAPID key pair for daily reminders
 npm run images       # favicon, icons and link preview from src/app/icon.svg
 npm run test:e2e     # Playwright on port 3100 (projects: phone, desktop)
 ```
@@ -31,6 +32,8 @@ npm run test:e2e     # Playwright on port 3100 (projects: phone, desktop)
 | `BETTER_AUTH_URL` | `.env.local` (`http://localhost:3000`), Vercel Production only | The app's own address; previews use Vercel's own hosts. |
 | `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` | `.env.local`, Vercel | The Google OAuth client. |
 | `OAUTH_PROXY_SECRET` | Vercel Production and Preview (same value), only if previews are used | Lets previews sign in through production. |
+| `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, `VAPID_SUBJECT` | `.env.local`, Vercel | Daily reminders (web push). Run `npm run vapid` for the keys; the subject is `mailto:` your email. |
+| `REMINDER_SECRET` | Vercel and the GitHub repository secrets (same value); GitHub variable `REMINDER_URL` = the production address | The hourly workflow `.github/workflows/reminders.yml` calls `POST /api/reminders/send` with it. |
 
 Each one added in a later step goes in `.env.example` and here.
 
@@ -40,5 +43,6 @@ Each one added in a later step goes in `.env.example` and here.
 2. **Google OAuth client.** In Google Cloud Console, set up the OAuth consent screen (app name EnglishEasy, the privacy page `/privacy` as the privacy policy link), then create a Web application client. Authorised redirect URIs: `http://localhost:3000/api/auth/callback/google` and `https://<your production domain>/api/auth/callback/google`. Copy the client id and secret into `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`.
 3. **Local.** `cp .env.example .env.local`, fill it in, then `npm run db:ping` (checks the connection) and `npm run db:setup` (creates the indexes; run it once for each database, `englisheasy` before the first production deploy).
 4. **Vercel.** Add the variables in the table above for Production (and Preview if used); `BETTER_AUTH_URL` in Production only; a different `BETTER_AUTH_SECRET` per environment. Vercel's system variables (`VERCEL_ENV`, `VERCEL_URL`, `VERCEL_BRANCH_URL`, `VERCEL_PROJECT_PRODUCTION_URL`) must be exposed. Deploy `master`.
+5. **Daily reminders.** `npm run vapid`, put the three lines in `.env.local` and Vercel; add `REMINDER_SECRET` (any long random text) in Vercel and as a GitHub repository secret, and `REMINDER_URL` as a GitHub repository variable; run `npm run db:setup`. After pushing, run the "reminders" workflow once by hand from the GitHub Actions tab.
 
 `npm run db:ping` and `npm run db:setup` read `.env.local`.

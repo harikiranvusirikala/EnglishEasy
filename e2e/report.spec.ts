@@ -31,17 +31,21 @@ test("report a problem from the player: reasons, thank you, and not offered twic
 
 test("a report made offline is sent when the phone is back online", async ({ page, context }) => {
   const sent: string[] = [];
+  let offline = false; // routes answer before the network layer, so "offline" is simulated here too
   await page.route("**/api/report", (route) => {
+    if (offline) return route.abort("internetdisconnected");
     sent.push(route.request().postData() ?? "");
     return route.fulfill({ json: { ok: true } });
   });
   await page.goto("/learn/play?l=sentence-basics");
   await page.getByRole("button", { name: /^Start/ }).click();
+  offline = true;
   await context.setOffline(true);
   await page.getByRole("button", { name: "Report a problem" }).click();
   await page.getByRole("dialog").getByRole("button", { name: /^Audio problem/ }).click();
   await expect(page.getByRole("status")).toContainText("Thank you");
   expect(sent).toHaveLength(0);
+  offline = false;
   await context.setOffline(false);
   await expect.poll(() => sent.length).toBe(1);
 });

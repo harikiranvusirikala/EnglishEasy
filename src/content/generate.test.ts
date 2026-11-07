@@ -104,11 +104,44 @@ describe("expandLesson", () => {
   });
 });
 
-describe("buildReview (placeholder)", () => {
-  it("makes two generated items per lesson, with ids under the review day", () => {
-    const lessons = [makeLesson("one"), makeLesson("two")];
-    const day = buildReview({ id: "w1-review", kind: "review", title: { en: "Review", te: "పునశ్చరణ" } }, lessons);
+describe("buildReview", () => {
+  const reviewDay = { id: "w1-review", kind: "review" as const, title: { en: "Review", te: "పునశ్చరణ" } };
+  const lessons = [makeLesson("one"), makeLesson("two"), makeLesson("three")];
+  const convo = {
+    id: "w2-conversation",
+    kind: "conversation" as const,
+    title: { en: "Talk", te: "మాట" },
+    summary: { en: "s", te: "సార" },
+    topics: [],
+    dialogue: { id: "d1", type: "repeat" as const, say: "Hi.", te: "హాయ్" },
+    roleplays: [{ id: "r1", type: "roleplay" as const, title: { en: "t", te: "శీ" }, scene: { en: "s", te: "సీ" }, partner: { en: "p", te: "పా" }, skills: [], turns: [] }],
+    situations: [],
+  };
+
+  it("makes two items per lesson (one authored copy, one generated), with review ids", () => {
+    const day = buildReview(reviewDay, lessons);
     const items = day.sections[0].activities;
-    expect(items.map((a) => a.id)).toEqual(["w1-review.g-0", "w1-review.g-1", "w1-review.g-2", "w1-review.g-3"]);
+    expect(items).toHaveLength(6);
+    expect(items.map((a) => a.id).sort()).toEqual(["w1-review.g-0", "w1-review.g-1", "w1-review.g-2", "w1-review.g-3", "w1-review.g-4", "w1-review.g-5"]);
+    expect(items.filter((a) => a.type === "arrange" || a.type === "translate")).toHaveLength(3);
+    expect(day.sections[day.sections.length - 1].kind).toBe("wrapup");
+  });
+
+  it("is deterministic and never reuses a lesson's own activity ids", () => {
+    expect(buildReview(reviewDay, lessons)).toEqual(buildReview(reviewDay, lessons));
+    const ids = buildReview(reviewDay, lessons).sections.flatMap((s) => s.activities.map((a) => a.id));
+    expect(ids.every((i) => i.startsWith("w1-review.g-"))).toBe(true);
+  });
+
+  it("replays the Conversation Day's role play, then the extras (role plays go in their own section)", () => {
+    const extras = [
+      { id: "t1", type: "repeat" as const, say: "Go.", te: "వెళ్ళు" },
+      { ...convo.roleplays[0], id: "r1" },
+    ];
+    const day = buildReview({ ...reviewDay, extras }, lessons, convo);
+    const practice = day.sections.find((s) => s.kind === "practice")!.activities;
+    expect(practice.at(-1)?.id).toBe("w1-review.t1");
+    const rp = day.sections.find((s) => s.kind === "roleplay")!.activities;
+    expect(rp.map((a) => a.id)).toEqual(["w1-review.g-6", "w1-review.r1"]);
   });
 });

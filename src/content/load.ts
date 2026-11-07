@@ -10,6 +10,8 @@ const dayFiles: Record<string, () => Promise<{ day: Day }>> = {
   "present-simple-every-day": () => import("./main/w01/present-simple-every-day"),
   "present-continuous-right-now": () => import("./main/w01/present-continuous-right-now"),
   "past-simple-yesterday": () => import("./main/w01/past-simple-yesterday"),
+  "future-will-tomorrow": () => import("./main/w01/future-will-tomorrow"),
+  "w1-review": () => import("./main/w01/w1-review"),
 };
 
 /** Ids of every written day, in registry order (which is course order). */

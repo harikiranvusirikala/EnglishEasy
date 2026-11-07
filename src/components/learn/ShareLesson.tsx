@@ -9,8 +9,8 @@ import type { Bi as ContentBi } from "@/content/types";
 import { useLearnIn } from "@/lib/settings-store";
 import { fill, strings } from "@/lib/strings";
 
-/** Share this lesson: the phone's share sheet (`navigator.share`), or a copied link with a short message. */
-export function ShareLesson({ id, title }: { id: string; title: ContentBi }) {
+/** Share this lesson (or, with `label`, `line` and `path`, a week): the phone's share sheet (`navigator.share`), or a copied link with a short message. */
+export function ShareLesson({ id, title, label = strings.shareLesson, line = strings.shareLine, path }: { id: string; title: ContentBi; label?: ContentBi; line?: ContentBi; path?: string }) {
   const learnIn = useLearnIn();
   const [message, setMessage] = useState<string | null>(null);
   const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
@@ -23,8 +23,8 @@ export function ShareLesson({ id, title }: { id: string; title: ContentBi }) {
   };
 
   const share = async () => {
-    const url = `${location.origin}/lessons/${encodeURIComponent(id)}`;
-    const text = fill(strings.shareLine, { title })[learnIn];
+    const url = `${location.origin}${path ?? `/lessons/${encodeURIComponent(id)}`}`;
+    const text = fill(line, { title })[learnIn];
     if (typeof navigator.share === "function") {
       try {
         await navigator.share({ title: title[learnIn], text, url });
@@ -45,7 +45,7 @@ export function ShareLesson({ id, title }: { id: string; title: ContentBi }) {
     <>
       <button type="button" onClick={share} className={`${button("secondary")} w-full`}>
         <Icon name="share" />
-        <Bi label={strings.shareLesson} />
+        <Bi label={label} />
       </button>
       {message && <Toast className="fixed inset-x-0 bottom-24 z-20 px-4">{message}</Toast>}
     </>

@@ -86,5 +86,5 @@ test("the lesson page holds the Learn content in both languages for search engin
   expect(html).toContain("వాక్య నిర్మాణం");
   expect(html).toMatch(/<title>[^<]+<\/title>/);
   expect(html).toContain('name="description"');
-  expect((await request.get("/lessons/future-will-tomorrow")).status()).toBe(404); // planned, not written yet
+  expect((await request.get("/lessons/not-a-lesson")).status()).toBe(404); // no such lesson
 });

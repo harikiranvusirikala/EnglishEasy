@@ -172,36 +172,50 @@ export function expandConversation(day: ConversationDay): PlayableDay {
 }
 
 /**
- * PLACEHOLDER (finished in Step 15): two generated items per lesson of the week (arrange core[1], translate core[2]),
- * then the day's `extras`. Step 15 adds the authored mix and the Conversation Day role play.
+ * A Review Day (VISION §4.6): two items per lesson of the week, mixed (the lesson's own authored question, then a
+ * generated arrange or translate from its core sentences), then one role play replayed from the week's Conversation
+ * Day (if it has one), then the day's `extras` (Week 1: the timeline and the long role play).
+ *
+ * Every item gets a review id `${dayId}.g-<n>` (a copy, so saved answers never mix with the lesson's own). Items are
+ * shuffled with the day id as seed; extras keep their authored order. Role plays go in the role play section.
  */
-export function buildReview(review: ReviewDay, weekDays: Lesson[]): PlayableDay {
+export function buildReview(review: ReviewDay, weekDays: Lesson[], conversation?: ConversationDay): PlayableDay {
   const id = review.id;
   let n = 0;
   const items: Activity[] = [];
-  for (const lesson of weekDays) {
-    const arrange = lesson.core[1];
-    const translate = lesson.core[2];
-    items.push({ id: `${id}.g-${n++}`, type: "arrange", te: arrange.te, answer: arrange.en, extra: arrange.extra });
-    items.push({ id: `${id}.g-${n++}`, type: "translate", te: translate.te, answer: translate.en, extra: translate.extra });
-  }
-  items.push(...(review.extras ?? []).map((x) => authored(id, x)));
+  weekDays.forEach((lesson, i) => {
+    const own = lesson.practice.filter((x) => x.type !== "findMistake");
+    const pool = own.length > 0 ? own : lesson.practice;
+    if (pool.length > 0) items.push({ ...pool[i % pool.length], id: `${id}.g-${n++}` } as Activity);
+    const c = i % 2 === 0 ? lesson.core[1] : lesson.core[2];
+    items.push(
+      i % 2 === 0
+        ? { id: `${id}.g-${n++}`, type: "arrange", te: c.te, answer: c.en, extra: c.extra }
+        : { id: `${id}.g-${n++}`, type: "translate", te: c.te, answer: c.en, extra: c.extra },
+    );
+  });
+  const mixed = shuffle(items, id);
+  const replay = conversation?.roleplays[0];
+  const extras = (review.extras ?? []).map((x) => authored(id, x));
+  const roleplays = [...(replay ? [{ ...replay, id: `${id}.g-${n++}` } as Activity] : []), ...extras.filter((x) => x.type === "roleplay")];
+  const practice = [...mixed, ...extras.filter((x) => x.type !== "roleplay")];
   return {
     id,
     kind: "review",
     title: review.title,
     sections: [
-      { kind: "practice", activities: items },
+      { kind: "practice", activities: practice },
+      ...(roleplays.length > 0 ? [{ kind: "roleplay" as const, activities: roleplays }] : []),
       { kind: "wrapup", activities: [] },
     ],
   };
 }
 
-/** Expand any day. `earlier` = lessons before it in course order; `weekLessons` = the lessons of its week (review days). */
-export function expandDay(day: Day, earlier: Lesson[], weekLessons: Lesson[]): PlayableDay {
+/** Expand any day. `earlier` = lessons before it in course order; `weekLessons` and `weekConversation` = its week's lessons and Conversation Day (review days). */
+export function expandDay(day: Day, earlier: Lesson[], weekLessons: Lesson[], weekConversation?: ConversationDay): PlayableDay {
   if (day.kind === "lesson") return expandLesson(day, earlier);
   if (day.kind === "conversation") return expandConversation(day);
-  return buildReview(day, weekLessons);
+  return buildReview(day, weekLessons, weekConversation);
 }
 
 /** Number of activities a player will run for a day (the Wrap-up screen is not an activity). */

@@ -25,7 +25,10 @@ import { Match } from "./Match";
 import { Repeat } from "./Repeat";
 import { RolePlay } from "./RolePlay";
 import { Situation } from "./Situation";
+import { course } from "@/content/course";
+import { weekEnd } from "@/learning/week-complete";
 import { LessonComplete } from "./LessonComplete";
+import { WeekComplete } from "./WeekComplete";
 import { BottomBar, MainButton, PlayerSkeleton } from "./parts";
 import { SECTION_NAME } from "./sections";
 
@@ -169,7 +172,7 @@ function PlayerInner({ day, initial, onReview }: { day: PlayableDay; initial: Pr
 
         {step.kind === "summary" && <Summary section={section} progress={progress} onNext={next} />}
 
-        {step.kind === "wrapup" && <LessonComplete day={day} onReview={onReview} />}
+        {step.kind === "wrapup" && (weekEnd(course, day.id) ? <WeekComplete day={day} onReview={onReview} /> : <LessonComplete day={day} onReview={onReview} />)}
       </main>
 
       <Dialog open={leaving} onClose={() => setLeaving(false)} title={strings.leaveTitle.en}>

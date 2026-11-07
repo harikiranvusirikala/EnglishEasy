@@ -227,6 +227,14 @@ export const strings = {
   yourSentencesToday: { en: "Your sentences today", te: "ఈ రోజు మీ వాక్యాలు" },
   nextDay: { en: "Next: Day {n} — {title}", te: "తర్వాత: {n}వ రోజు — {title}" },
   continueToDay: { en: "Continue to Day {n}", te: "{n}వ రోజుకు కొనసాగండి" },
+  weekComplete: { en: "Week {n} Complete!", te: "{n}వ వారం పూర్తయింది!" },
+  stageComplete: { en: "Stage {n} Complete!", te: "{n}వ దశ పూర్తయింది!" },
+  weekDays: { en: "{done} / {total} days", te: "{done} / {total} రోజులు" },
+  youPractised: { en: "You practised:", te: "మీరు సాధన చేసినవి:" },
+  stageCanDo: { en: "You can now:", te: "ఇప్పుడు మీరు చేయగలరు:" },
+  shareWeek: { en: "Share with family", te: "కుటుంబంతో షేర్ చేయండి" },
+  shareWeekLine: { en: "I finished {title} on EnglishEasy — learning English with Telugu explanations. Free.", te: "నేను EnglishEasy లో {title} పూర్తి చేశాను — తెలుగు వివరణలతో ఇంగ్లీష్. ఉచితం." },
+  startWeek: { en: "Start Week {n}", te: "{n}వ వారం మొదలుపెట్టండి" },
   reviewToday: { en: "Review today's lesson", te: "ఈ రోజు పాఠాన్ని మళ్ళీ చూడండి" },
 
   // First visit, Home and Journey

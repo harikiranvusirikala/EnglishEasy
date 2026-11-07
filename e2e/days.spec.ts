@@ -8,6 +8,7 @@ const DAYS = [
   { id: "present-simple-every-day", title: "Every Day", first: "I walk every morning." },
   { id: "present-continuous-right-now", title: "Right Now", first: "I am cooking." },
   { id: "past-simple-yesterday", title: "Yesterday", first: "I went to the market." },
+  { id: "future-will-tomorrow", title: "Tomorrow", first: "I will call you tomorrow." },
 ];
 
 for (const learnIn of ["en", "te"] as const) {

@@ -26,7 +26,7 @@ const PIECES = [
 ];
 
 /** A short burst of falling pieces, CSS only; not shown when the phone asks for less motion. */
-function Confetti() {
+export function Confetti() {
   return (
     <div aria-hidden="true" data-testid="confetti" className="pointer-events-none fixed inset-0 z-20 overflow-hidden motion-reduce:hidden">
       {Array.from({ length: 18 }, (_, i) => (
@@ -41,7 +41,7 @@ function Confetti() {
 }
 
 /** The next day's button only appears once its lesson file can be loaded (days are added over time). */
-function useNextReady(id: string | undefined): boolean {
+export function useNextReady(id: string | undefined): boolean {
   const [ready, setReady] = useState<string | null>(null);
   useEffect(() => {
     if (!id) return;

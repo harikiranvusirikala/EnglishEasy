@@ -1,0 +1,23 @@
+@import "tailwindcss";
+@import "@fontsource-variable/noto-sans-telugu";
+
+/* Night theme: `dark:` follows the "dark" class on <html> (set before first paint, Step 2). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+@theme inline {
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-telugu: "Noto Sans Telugu Variable", system-ui, sans-serif;
+}
+
+:lang(te) {
+  font-family: var(--font-telugu);
+  line-height: 1.7;
+}

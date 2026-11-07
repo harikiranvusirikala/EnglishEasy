@@ -648,7 +648,7 @@ As Step 13, for `present-continuous-right-now` and `past-simple-yesterday` (CURR
 | Step | Name | Status | Notes |
 |------|------|--------|-------|
 | 0 | Vision, curriculum, plan, CLAUDE.md | ✅ 2026-11-07 | Opus 5.5 planning session |
-| 1 | Skeleton and tooling | ☐ | |
+| 1 | Skeleton and tooling | ✅ 2026-11-07 | Next 16.4.5, React 19.3.1. No `cacheComponents` (A1). |
 | 2 | Look and feel foundation | ☐ | |
 | 3 | Content model, generator and Day 1 | ☐ | |
 | 4 | Learning engine | ☐ | |

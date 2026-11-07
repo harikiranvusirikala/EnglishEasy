@@ -4,6 +4,21 @@ A mobile-first English learning and speaking app for Telugu-speaking adults and 
 
 Plan and vision are in `docs/` (start with `docs/BUILD_PLAN.md`).
 
+## Features
+
+- Seven-day Week 1 of Stage 1, lesson by lesson: explain, practise, speak, role play, review.
+- Learn in Telugu or English; every English sentence and explanation can be heard (browser voices), slow too.
+- No typing: answers are buttons, word tiles or voice; speaking never blocks progress ("Choose instead").
+- Home, Journey, Practice hub (sentences, speaking, role plays, tracks), weekly review.
+- Guest first; optional Google sign-in syncs progress.
+- Installable, works offline for lessons in use; optional daily reminders.
+- Report a problem from any screen; Day / Night / Follow phone themes; text sizes A, A+, A++.
+- No AI or paid speech API at runtime.
+
+## Screenshots
+
+Final screenshots live in `docs/screenshots/` (day and night: home, journey, lesson, settings). To refresh them, run `npm run test:e2e` (they are written to `test-results/screenshots/`, for example `home.png`, `home-night.png`, `journey.png`, `settings-phone.png`, `polish-home-light-en.png`, `polish-home-dark-te.png`) and copy the ones you want into `docs/screenshots/`.
+
 ## Commands
 
 ```bash
@@ -46,3 +61,11 @@ Each one added in a later step goes in `.env.example` and here.
 5. **Daily reminders.** `npm run vapid`, put the three lines in `.env.local` and Vercel; add `REMINDER_SECRET` (any long random text) in Vercel and as a GitHub repository secret, and `REMINDER_URL` as a GitHub repository variable; run `npm run db:setup`. After pushing, run the "reminders" workflow once by hand from the GitHub Actions tab.
 
 `npm run db:ping` and `npm run db:setup` read `.env.local`.
+
+## Adding content
+
+Content is data in `src/content/` and is validated by `content.test.ts`. To add or fix lessons, follow `docs/BUILD_PLAN.md` Part E: E2 writes a week, E3 writes or rewrites one day, E4 fixes reported problems (`npm run reports` lists them), E5 writes a track week. Ids are permanent once released. Run `npm run content` and `npm test` before committing.
+
+## Launch check
+
+Run Lighthouse (phone) on the production URL; targets are Performance 90 or more, Accessibility 95 or more, Best Practices 95 or more, SEO 100.

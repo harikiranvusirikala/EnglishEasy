@@ -29,10 +29,10 @@ import { LessonComplete } from "./LessonComplete";
 import { BottomBar, MainButton, PlayerSkeleton } from "./parts";
 import { SECTION_NAME } from "./sections";
 
-const CARD_TYPES: Activity["type"][] = ["explain", "whenToUse", "dontSay"];
+export const CARD_TYPES: Activity["type"][] = ["explain", "whenToUse", "dontSay"];
 const SCORED_SECTIONS: SectionKind[] = ["warmup", "practice", "speak"];
 /** Questions have a right answer; cards, dialogues and role plays do not. */
-const isQuestion = (activity: Activity) => !CARD_TYPES.includes(activity.type) && activity.type !== "roleplay" && activity.type !== "dialogue";
+export const isQuestion = (activity: Activity) => !CARD_TYPES.includes(activity.type) && activity.type !== "roleplay" && activity.type !== "dialogue";
 
 type Step =
   | { kind: "intro"; section: number }
@@ -189,7 +189,7 @@ function PlayerInner({ day, initial, onReview }: { day: PlayableDay; initial: Pr
   );
 }
 
-function ActivityView({
+export function ActivityView({
   activity,
   onAnswer,
   onNext,

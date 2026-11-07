@@ -8,8 +8,11 @@ import { Skeleton } from "@/components/ui/Skeleton";
 import { Switch } from "@/components/ui/Switch";
 import { button } from "@/components/ui/button";
 import { card, cardText, cardTitle } from "@/components/ui/card";
+import { MyTracks } from "@/components/learn/Tracks";
 import { VoiceSettings } from "@/components/learn/VoiceSettings";
 import { SUPPORT_URL } from "@/components/support";
+import { course } from "@/content/course";
+import { useProgress } from "@/lib/progress-store";
 import { updateSettings, useSettings } from "@/lib/settings-store";
 import { strings, type Bi as BiLabel } from "@/lib/strings";
 import type { LearnIn, TextSize, ThemeChoice } from "@/learning/settings";
@@ -45,6 +48,7 @@ function Later({ title }: { title: BiLabel }) {
 
 export default function SettingsPage() {
   const settings = useSettings();
+  const progress = useProgress();
   return (
     <main className="flex flex-col gap-4 p-4">
       <h1 className="text-2xl font-bold">
@@ -120,7 +124,7 @@ export default function SettingsPage() {
         </>
       )}
 
-      <Later title={strings.myTracks} />
+      {progress && <MyTracks course={course} progress={progress} />}
       <Later title={strings.account} />
 
       <section className={`${card} flex flex-col gap-3`}>

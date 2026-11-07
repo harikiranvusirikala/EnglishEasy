@@ -4,7 +4,7 @@ import { Suspense, use, useState } from "react";
 import Link from "next/link";
 import type { Stage, Week } from "@/content/course";
 import type { Course } from "@/learning/recommend";
-import { recommendedDay } from "@/learning/recommend";
+import { offerableTracks, recommendedDay } from "@/learning/recommend";
 import { currentStageIndex, dayNumber, locateDay } from "@/learning/home";
 import { dayStats, stageStats, weekStats, type State } from "@/learning/stats";
 import type { Progress } from "@/learning/progress";
@@ -196,6 +196,33 @@ function JourneyBody({ course, progress, written }: { course: Course; progress: 
   );
 }
 
+/** "My tracks": each chosen track that has released lessons, with its weeks. Hidden when none. */
+function TracksSection({ course, progress, written }: { course: Course; progress: Progress; written: string[] }) {
+  const [openWeek, setOpenWeek] = useState<string | null>(null);
+  const chosen = offerableTracks(course).filter((t) => progress.tracks.includes(t.id));
+  if (chosen.length === 0) return null;
+  return (
+    <section aria-label={strings.myTracks.en} className="flex flex-col gap-3">
+      <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">
+        <Bi label={strings.myTracks} className="items-start" />
+      </h2>
+      {chosen.map((track) => (
+        <details key={track.id} open className={`${card} p-2`}>
+          <summary className={`${ROW} cursor-pointer list-none text-lg font-semibold text-stone-900 dark:text-stone-100`}>
+            <BiText text={track.title} />
+          </summary>
+          <ul className="mt-1 flex flex-col">
+            {track.weeks.map((week) => {
+              const key = `${track.id}-${week.n}`;
+              return <WeekRow key={key} week={week} progress={progress} written={written} open={openWeek === key} onToggle={() => setOpenWeek(openWeek === key ? null : key)} />;
+            })}
+          </ul>
+        </details>
+      ))}
+    </section>
+  );
+}
+
 /** Journey (VISION §10.3): stages, weeks with status and %, a week opens its days. */
 export function Journey({ course, written }: { course: Course; written: string[] }) {
   const progress = useProgress();
@@ -205,7 +232,10 @@ export function Journey({ course, written }: { course: Course; written: string[]
         <Bi label={strings.journeyTitle} className="items-start" />
       </h1>
       {progress ? (
-        <JourneyBody course={course} progress={progress} written={written} />
+        <>
+          <JourneyBody course={course} progress={progress} written={written} />
+          <TracksSection course={course} progress={progress} written={written} />
+        </>
       ) : (
         <div aria-busy="true" className="flex flex-col gap-3">
           <Skeleton className="h-96 w-full" />

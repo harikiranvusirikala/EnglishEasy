@@ -266,6 +266,36 @@ export const strings = {
   journeyPercent: { en: "{n}%", te: "{n}%" },
   journeyDays: { en: "Days in this week", te: "ఈ వారంలోని రోజులు" },
 
+  // Practice hub (/learn/practice)
+  practiceTitle: { en: "Practice", te: "సాధన" },
+  practiceBack: { en: "Back to Practice", te: "సాధనకు తిరిగి వెళ్ళండి" },
+  practiceAgainHint: { en: "Questions you got wrong, until you get them right.", te: "మీరు తప్పు చేసిన ప్రశ్నలు, సరిగ్గా చెప్పే వరకు." },
+  practiceRolePlaysHint: { en: "Play a conversation from a finished lesson again.", te: "పూర్తైన పాఠంలోని సంభాషణను మళ్ళీ ఆడండి." },
+  practiceSentencesHint: { en: "The key sentences of your finished lessons.", te: "పూర్తైన పాఠాల ముఖ్య వాక్యాలు." },
+  practiceSpeaking: { en: "Speaking only", te: "మాట్లాడటం మాత్రమే" },
+  practiceSpeakingHint: { en: "Listen and repeat sentences from your finished lessons.", te: "పూర్తైన పాఠాల వాక్యాలను విని చెప్పండి." },
+  practiceEmptyAgain: { en: "Nothing to practise again. Well done!", te: "మళ్ళీ సాధన చేయడానికి ఏమీ లేదు. బాగుంది!" },
+  practiceEmptyLessons: { en: "Finish a lesson first, and it will appear here.", te: "ముందు ఒక పాఠం పూర్తి చేయండి, అది ఇక్కడ కనిపిస్తుంది." },
+  practiceStart: { en: "Start", te: "మొదలుపెట్టండి" },
+  practiceDone: { en: "Practice complete", te: "సాధన పూర్తైంది" },
+  practiceDoneCount: { en: "{n} of {total} right", te: "{total}లో {n} సరైనవి" },
+  practiceFinish: { en: "Done", te: "అయింది" },
+  practiceLeft: { en: "{n} left", te: "{n} మిగిలాయి" },
+  practiceFromDay: { en: "From: {title}", te: "{title} నుండి" },
+  practiceSayIt: { en: "Say it", te: "చెప్పండి" },
+  practiceLoadFailed: { en: "Some lessons could not be loaded.", te: "కొన్ని పాఠాలు లోడ్ కాలేదు." },
+
+  // Optional tracks
+  tracksCardTitle: { en: "Want extra lessons for your life?", te: "మీ జీవితానికి సరిపోయే అదనపు పాఠాలు కావాలా?" },
+  tracksCardHint: { en: "Tap all that fit.", te: "సరిపోయినవన్నీ నొక్కండి." },
+  tracksNone: { en: "None of these", te: "ఇవేవీ కాదు" },
+  tracksSave: { en: "Save", te: "సేవ్ చేయండి" },
+  tracksSelected: { en: "Selected", te: "ఎంచుకున్నవి" },
+  tracksNext: { en: "Your extra lesson", te: "మీ అదనపు పాఠం" },
+  tracksNextCardLabel: { en: "Extra lesson: {title}", te: "అదనపు పాఠం: {title}" },
+  tracksOpen: { en: "Start extra lesson", te: "అదనపు పాఠం మొదలుపెట్టండి" },
+  tracksSettingsHint: { en: "Choose the extra courses you want. They appear in Journey.", te: "మీకు కావలసిన అదనపు కోర్సులను ఎంచుకోండి. అవి ప్రయాణంలో కనిపిస్తాయి." },
+
   // Lesson review page (/dev/lesson/[id])
   devTelugu: { en: "Telugu mode", te: "తెలుగు మోడ్" },
   devEnglish: { en: "English mode", te: "ఇంగ్లీష్ మోడ్" },

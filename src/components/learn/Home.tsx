@@ -19,6 +19,7 @@ import { useProgress } from "@/lib/progress-store";
 import { useSettings } from "@/lib/settings-store";
 import { fill, strings } from "@/lib/strings";
 import { Onboarding } from "./Onboarding";
+import { TrackSuggestionCard, TracksCard } from "./Tracks";
 
 const GREETING = { morning: strings.greetMorning, afternoon: strings.greetAfternoon, evening: strings.greetEvening };
 
@@ -145,9 +146,9 @@ function WeekStrip({ course, progress, written }: { course: Course; progress: Pr
 function PracticeTiles({ progress }: { progress: Progress }) {
   const finished = Object.keys(progress.completed).length;
   const tiles = [
-    { label: strings.homePracticeAgain, count: Object.keys(progress.mistakes).length },
-    { label: strings.homeRolePlays, count: finished },
-    { label: strings.homeMySentences, count: finished },
+    { label: strings.homePracticeAgain, count: Object.keys(progress.mistakes).length, href: "/learn/practice/again" },
+    { label: strings.homeRolePlays, count: finished, href: "/learn/practice/roleplays" },
+    { label: strings.homeMySentences, count: finished, href: "/learn/practice/sentences" },
   ];
   return (
     <section aria-label={strings.homePracticeMore.en} className="flex flex-col gap-2">
@@ -157,7 +158,7 @@ function PracticeTiles({ progress }: { progress: Progress }) {
       <ul className="grid grid-cols-3 gap-2">
         {tiles.map((t) => (
           <li key={t.label.en}>
-            <Link href="/learn/practice" className={`${cardLink} flex h-full min-h-20 flex-col items-center justify-center gap-1 p-2 text-center`}>
+            <Link href={t.href} className={`${cardLink} flex h-full min-h-20 flex-col items-center justify-center gap-1 p-2 text-center`}>
               <span className={`${cardTitle} text-base`}>
                 <Bi label={t.label} />
               </span>
@@ -185,6 +186,8 @@ export function Home({ course, written }: { course: Course; written: string[] })
       {progress && settings ? (
         <>
           <TodayCard course={course} progress={progress} written={written} />
+          <TrackSuggestionCard course={course} progress={progress} written={written} />
+          <TracksCard course={course} progress={progress} />
           <WeekStrip course={course} progress={progress} written={written} />
           {practised > 0 && (
             <p className="text-base text-stone-700 dark:text-stone-300">

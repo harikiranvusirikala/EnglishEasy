@@ -44,3 +44,17 @@ html[data-learn-in="en"] [data-bi-te] {
     transform: translateY(0.5rem);
   }
 }
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+}
+
+@keyframes chip-in {
+  from {
+    opacity: 0;
+    transform: translateY(-0.75rem);
+  }
+}

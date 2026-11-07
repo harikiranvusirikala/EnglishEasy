@@ -1,3 +1,4 @@
+import { shuffle } from "../learning/shuffle";
 import type { Activity, Bi, Day, Lesson, PlayableDay, PlayableSection, ReviewDay, ConversationDay } from "./types";
 
 /**
@@ -23,26 +24,7 @@ export const MATCH_PAIRS = 4;
 const promptWarmup = (sentence: string): Bi => ({ en: `What does "${sentence}" mean?`, te: `"${sentence}" అంటే ఏమిటి?` });
 const promptListen: Bi = { en: "Listen. What does it mean?", te: "విని, దాని అర్థం ఏమిటో ఎంచుకోండి." };
 
-// ---- seeded shuffle and tiles ----
-
-function hash(text: string): number {
-  let h = 2166136261;
-  for (let i = 0; i < text.length; i++) {
-    h ^= text.charCodeAt(i);
-    h = Math.imul(h, 16777619);
-  }
-  return h >>> 0;
-}
-
-function random(seed: string): () => number {
-  let s = hash(seed) || 1;
-  return () => {
-    s = (s + 0x6d2b79f5) | 0;
-    let t = Math.imul(s ^ (s >>> 15), 1 | s);
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
+// ---- tiles ----
 
 /** The words of an answer; punctuation stays on its word ("rice." is one tile). */
 export function answerWords(answer: string): string[] {
@@ -52,12 +34,7 @@ export function answerWords(answer: string): string[] {
 /** Answer words + distractors, shuffled with a seed. The result is never in answer order (unless it cannot be avoided). */
 export function buildTiles(answer: string, extra: string[] | undefined, seed: string): string[] {
   const words = answerWords(answer);
-  const tiles = [...words, ...(extra ?? [])];
-  const next = random(seed);
-  for (let i = tiles.length - 1; i > 0; i--) {
-    const j = Math.floor(next() * (i + 1));
-    [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
-  }
+  const tiles = shuffle([...words, ...(extra ?? [])], seed);
   const inOrder = tiles.length === words.length && tiles.every((t, i) => t === words[i]);
   if (inOrder && new Set(tiles).size > 1) tiles.push(tiles.shift() as string);
   return tiles;
@@ -173,6 +150,7 @@ export function expandLesson(lesson: Lesson, earlier: Lesson[]): PlayableDay {
     kind: "lesson",
     title: lesson.title,
     sections,
+    ...(lesson.optional ? { optional: lesson.optional } : {}),
     wrapup: { key: lesson.key.map((i) => lesson.core[i]), tryToday: lesson.tryToday, words: lesson.words },
   };
 }

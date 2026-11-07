@@ -95,6 +95,8 @@ export type PlayableDay = {
   kind: Day["kind"];
   title: Bi;
   sections: PlayableSection[];
+  /** Only for lessons: sections that need not be finished for the day to be complete (VISION §9.2). */
+  optional?: SectionKind[];
   /** Only for lessons: the pieces the Wrap-up and complete screens show. */
   wrapup?: { key: CoreSentence[]; tryToday: Bi; words: { en: string; te: string }[] };
 };

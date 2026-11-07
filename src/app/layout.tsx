@@ -1,11 +1,17 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { SETTINGS_SCRIPT } from "@/lib/settings-script";
-import { strings } from "@/lib/strings";
+import { DESCRIPTION, SITE_NAME } from "@/components/landing/content";
+import { siteUrl } from "@/server/site";
 
 export const metadata: Metadata = {
-  title: strings.appName.en,
-  description: "Learn to speak English, step by step, in Telugu and English.",
+  // Makes link-preview images and canonical links full addresses (src/server/site.ts).
+  metadataBase: new URL(siteUrl(process.env)),
+  title: SITE_NAME,
+  description: DESCRIPTION,
+  openGraph: { siteName: SITE_NAME, type: "website" },
+  twitter: { card: "summary_large_image" },
+  appleWebApp: { title: SITE_NAME },
 };
 
 export const viewport: Viewport = {

@@ -48,6 +48,7 @@ npm run lint
 npm run typecheck
 npm test             # Vitest; one file: npx vitest run <file>
 npm run build        # allowlisted; run exactly as written, alone
+npm run images       # favicon, apple icon, PWA icons, link preview from src/app/icon.svg
 npm run content      # write public/content/<dayId>.json (also runs before dev and build)
 npm run test:e2e     # Playwright on port 3100, projects phone + desktop; allowlisted, run alone
 ```

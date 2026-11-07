@@ -17,6 +17,7 @@ import type {
   Day,
 } from "@/content/types";
 import { fill, strings } from "@/lib/strings";
+import { siteUrl } from "@/server/site";
 
 // One static page per released, written day (BUILD_PLAN Step 10). The Learn content is in the page in both languages so search
 // engines can find "past tense explained in Telugu"; the Learn in setting shows one of them (globals.css).
@@ -146,8 +147,20 @@ export default async function LessonPage({
   const { id } = await params;
   const day = await dayFor(id);
   const place = findDay(id)!;
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    name: day.kind === "lesson" ? day.seo.title : day.title.en,
+    description: day.kind === "lesson" ? day.seo.description : day.kind === "conversation" ? day.summary.en : day.title.en,
+    url: `${siteUrl(process.env)}/lessons/${encodeURIComponent(id)}`,
+    inLanguage: ["en", "te"],
+    isAccessibleForFree: true,
+    learningResourceType: "Lesson",
+    isPartOf: { "@type": "Course", name: "English for Telugu speakers", url: `${siteUrl(process.env)}/` },
+  };
   return (
     <main className="mx-auto flex max-w-xl flex-col gap-6 p-4 pb-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }} />
       <nav>
         <Link href="/learn" className={button("ghost")}>
           <Icon name="home" />

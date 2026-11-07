@@ -16,6 +16,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
+    "images": "node --import tsx scripts/site-images.mts",
     "content": "node --import tsx --env-file-if-exists=.env.local scripts/build-content.mts"
   },
   "dependencies": {

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- The app's icon: a speech bubble holding "A" and "అ". scripts/site-images.mts makes favicon.ico, apple-icon.png and the PWA icons from this file. -->
+  <rect id="tile" width="64" height="64" rx="14" fill="#0f766e"/>
+  <path d="M12 14h40a4 4 0 0 1 4 4v22a4 4 0 0 1-4 4H30l-10 9v-9h-8a4 4 0 0 1-4-4V18a4 4 0 0 1 4-4Z" fill="#ffffff"/>
+  <text x="21" y="37" text-anchor="middle" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#0f766e">A</text>
+  <text x="43" y="37" text-anchor="middle" font-family="Noto Sans Telugu, Gautami, Telugu Sangam MN, sans-serif" font-size="22" font-weight="700" fill="#0f766e">అ</text>
+</svg>

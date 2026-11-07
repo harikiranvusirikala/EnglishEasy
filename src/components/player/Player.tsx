@@ -19,9 +19,11 @@ import { ComingSoon, DontSayCard, ExplainCard, WhenToUseCard } from "./cards";
 import { FillBlank } from "./FillBlank";
 import { FindMistake } from "./FindMistake";
 import { ListenChoose } from "./ListenChoose";
+import { Dialogue } from "./Dialogue";
 import { Match } from "./Match";
 import { Narrate } from "./Narrate";
 import { Repeat } from "./Repeat";
+import { RolePlay } from "./RolePlay";
 import { Situation } from "./Situation";
 import { BottomBar, MainButton } from "./parts";
 
@@ -189,8 +191,12 @@ function ActivityView({
       return <Repeat activity={activity} onAnswer={onAnswer} onNext={onNext} />;
     case "situation":
       return <Situation activity={activity} onAnswer={onAnswer} onNext={onNext} />;
+    case "dialogue":
+      return <Dialogue activity={activity} onNext={onNext} />;
+    case "roleplay":
+      return <RolePlay activity={activity} onNext={onNext} />;
     default:
-      return <ComingSoon onSkip={onSkip} />; // built in Step 9
+      return <ComingSoon onSkip={onSkip} />;
   }
 }
 

@@ -18,6 +18,8 @@ export type SpeakOptions = {
   slow?: boolean;
   /** Dialogue speaker: "b" gets a different voice if there is one, else a lower pitch. */
   voice?: "a" | "b";
+  /** Called once when everything has been read (not when speech is replaced or stopped). Dialogues use it to move to the next line. */
+  onEnd?: () => void;
 };
 
 const synth = (): SpeechSynthesis | null => (typeof speechSynthesis === "undefined" ? null : speechSynthesis);
@@ -104,6 +106,9 @@ function playFile(url: string, options: SpeakOptions) {
   const audio = new Audio(url);
   audio.playbackRate = options.slow ? RATE_SLOW / RATE_NORMAL : 1;
   playing = audio;
+  audio.onended = () => {
+    if (playing === audio) options.onEnd?.();
+  };
   void audio.play().catch(() => {});
 }
 
@@ -133,13 +138,14 @@ const stallLimit = (u: SpeechSynthesisUtterance) => 3000 + (u.text.length * 250)
  * and a watchdog cancels one that stalls and moves on, so a hung voice cannot silence everything after it.
  * After a cancel, Chrome drops speech started in the same tick, so wait a moment then.
  */
-function enqueue(utterances: SpeechSynthesisUtterance[], afterCancel: boolean) {
+function enqueue(utterances: SpeechSynthesisUtterance[], afterCancel: boolean, onEnd?: () => void) {
   const s = synth();
   if (!s) return;
   const mine = token;
   let i = 0;
   const next = () => {
-    if (mine !== token || i >= utterances.length) return;
+    if (mine !== token) return;
+    if (i >= utterances.length) return onEnd?.();
     const u = utterances[i++];
     let finished = false;
     const finish = () => {
@@ -180,7 +186,7 @@ function utterance(text: string, voice: SpeechSynthesisVoice | null, fallbackLan
 
 function say(runs: Run[], options: SpeakOptions, afterCancel: boolean) {
   const s = synth();
-  if (!s) return;
+  if (!s) return void (options.onEnd && setTimeout(options.onEnd, 0)); // no voice at all: carry on
   const voices = getVoices();
   const settings = getSettings();
   const first = pickEnglishVoice(voices, settings.voiceURI);
@@ -196,7 +202,7 @@ function say(runs: Run[], options: SpeakOptions, afterCancel: boolean) {
       utterances.push(utterance(run.text, english, "en-IN", options, lowered ? 0.8 : 1));
     }
   }
-  enqueue(utterances, afterCancel);
+  enqueue(utterances, afterCancel, options.onEnd);
 }
 
 function playRecording(text: string, options: SpeakOptions): boolean {

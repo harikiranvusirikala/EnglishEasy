@@ -33,7 +33,7 @@ test("Night, A++ and English mode apply before first paint, survive a reload, an
   await page.reload();
   await expect(page.getByRole("button", { name: "Night" })).toHaveAttribute("aria-pressed", "true");
   await expect(page.getByRole("button", { name: "A++" })).toHaveAttribute("aria-pressed", "true");
-  await expect(page.getByRole("button", { name: "English" })).toHaveAttribute("aria-pressed", "true");
+  await expect(page.getByRole("button", { name: "English", exact: true })).toHaveAttribute("aria-pressed", "true");
   await expect(page.locator("html")).toHaveClass(/dark/);
   await expect(page.locator('[lang="te"]')).toHaveCount(0);
   await expect(page.getByRole("link", { name: "Settings", exact: true })).toHaveAttribute("aria-current", "page");

@@ -56,7 +56,7 @@ test("the landing page in night colours", async ({ page, isMobile }) => {
 test("the privacy page and the search engine files", async ({ page, request }) => {
   await page.goto("/privacy");
   await expect(page.getByRole("heading", { level: 1, name: /Privacy/ })).toBeVisible();
-  await expect(page.getByText(/Speech and voices/i).first()).toBeVisible();
+  await expect(page.getByRole("heading", { level: 2, name: /గొంతులు/ })).toBeVisible();
 
   // A local production build is not the live site: search engines are asked to stay away.
   const robots = await (await request.get("/robots.txt")).text();

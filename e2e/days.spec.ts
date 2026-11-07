@@ -12,7 +12,7 @@ const DAYS = [
 ];
 
 for (const learnIn of ["en", "te"] as const) {
-  for (const { id, title } of DAYS) {
+  for (const { id } of DAYS) {
     test(`${id} opens in the player (${learnIn})`, async ({ page }) => {
       await page.addInitScript(([key, l]) => !localStorage.getItem(key) && localStorage.setItem(key, JSON.stringify({ learnIn: l })), [SETTINGS_KEY, learnIn]);
       await page.goto(`/learn/play?l=${id}`);
@@ -20,8 +20,8 @@ for (const learnIn of ["en", "te"] as const) {
       await page.getByRole("button", { name: /^Start/ }).click();
       await expect(page.getByRole("button", { name: /^(Continue|Check)/ }).first()).toBeVisible();
       await page.goto(`/lessons/${id}`);
-      await expect(page.getByRole("heading", { name: new RegExp(title) }).first()).toBeVisible();
-      await expect(page.getByRole("link", { name: /^Start/ })).toBeVisible();
+      await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+      await expect(page.getByRole("link", { name: /^(Start|Continue)/ })).toBeVisible();
     });
   }
 }

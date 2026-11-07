@@ -4,7 +4,7 @@ The product is described in [VISION.md](VISION.md) and the course in [CURRICULUM
 
 The build runs on **Sonnet 5.5 at medium effort**, one step per session, to fit a daily Claude budget. Steps are small, list exactly what to read, and end with checks.
 
-**Order:** app features (Steps 1–12) → Week 1 content (Steps 13–15) → landing and search engines, installable app, sign-in, sync, problem reports, polish and launch (Steps 16–21). After launch, content is added week by week with the Part E prompts.
+**Order:** app features (Steps 1–12) → Week 1 content (Steps 13–15) → landing and search engines, installable app, sign-in, sync, problem reports and error log, daily reminders, polish and launch (Steps 16–22). Features for after launch are listed in [FUTURE_FEATURES.md](FUTURE_FEATURES.md). After launch, content is added week by week with the Part E prompts.
 
 ---
 
@@ -19,7 +19,8 @@ The build runs on **Sonnet 5.5 at medium effort**, one step per session, to fit 
 - Browser APIs: `speechSynthesis` (English and Telugu voices), `SpeechRecognition` / `webkitSpeechRecognition` (speaking), `localStorage` (progress, settings), service worker (offline), `navigator.share` (sharing).
 - Fonts: system stack for Latin text, **Noto Sans Telugu** self-hosted from npm (`@fontsource-variable/noto-sans-telugu` or `@fontsource/noto-sans-telugu`, whichever the mirror has). No Google Fonts CDN (blocked on the owner's machine).
 - Tests: **Vitest** (+ Testing Library, jsdom) and **Playwright** (installed Chrome locally).
-- No UI library, no icon package, no state library, no PWA library.
+- No UI library, no icon package, no state library, no PWA library. One exception: `web-push` on the server for daily reminders (Step 21).
+- **GitHub Actions** runs an hourly job that triggers reminder sending (Step 21); no other scheduled work.
 - **No AI at runtime** (VISION §18): no AI SDK, no paid speech service. Claude writes code and content at build time only. The running cost is zero apart from free tiers.
 
 ## A2. Folder layout
@@ -37,31 +38,38 @@ src/app/
   learn/practice/…                Practice hub, mistakes, role plays, sentences, speaking Step 12
   learn/settings/page.tsx         Settings                                                Step 2
   dev/ui/page.tsx                 component gallery, 404 outside dev/e2e                  Step 2
+  dev/lesson/[id]/page.tsx        whole day on one page, both languages (content review)  Step 5
+  error.tsx, learn/error.tsx      friendly error screens (progress kept)                  Step 2
   api/auth/[...all]/route.ts      Better Auth                                             Step 18
   api/progress/route.ts           GET/PUT synced progress                                 Step 19
   api/report/route.ts             POST a problem report                                   Step 20
+  api/client-error/route.ts       POST a client error                                     Step 20
+  api/reminders/route.ts          PUT/DELETE a push subscription                          Step 21
+  api/reminders/send/route.ts     hourly sender (secret-protected)                        Step 21
   manifest.ts, robots.ts, sitemap.ts, icon.svg, apple-icon.png, opengraph-image.png
 src/content/
   types.ts, schema.ts             content types (A3) and their zod schema
   course.ts                       the course map: stages, weeks, day refs, tracks (A4)
+  grammar.ts, topics.ts           fixed tag lists (A3)
   generate.ts                     PURE: expand a lesson (generated activities, warm-up), build a review day
   load.ts                         server/build-side: import a lesson file by id
   main/w01/sentence-basics.ts …   one file per day; tracks in tracks/<track>/<week>/
 src/learning/                     PURE logic, no browser APIs, fully unit-tested
   progress.ts, stats.ts, recommend.ts, merge.ts, speech-match.ts, voice-pick.ts,
-  split-scripts.ts, roleplay-score.ts, shuffle.ts
+  split-scripts.ts, roleplay-score.ts, shuffle.ts, reminder-due.ts
 src/lib/                          browser services (thin wrappers, mockable)
-  settings-store.ts, progress-store.ts, lesson-data.ts (fetch + cache lesson JSON),
-  speak.ts, listen.ts, sync.ts
+  strings.ts (every UI label as Bi, one place), settings-store.ts, progress-store.ts,
+  lesson-data.ts (fetch + cache lesson JSON), speak.ts, listen.ts, sync.ts, reminders.ts, report-error.ts
 src/components/ui/                design kit (Step 2)
 src/components/player/            Player + one file per activity type (Steps 5–9)
 src/components/learn/             Home, Journey, overview, completion pieces (Steps 10–12)
 src/components/landing/           landing page parts + content.ts (Step 16)
-src/server/                       server-only: db.ts, auth.ts, auth-options.ts, progress-repo.ts, reports-repo.ts
+src/server/                       server-only: db.ts, auth.ts, auth-options.ts, progress-repo.ts, reports-repo.ts, reminders-repo.ts
 scripts/build-content.mts         writes public/content/<id>.json for every released day (A3)
 scripts/site-images.mts           icons and link preview from icon.svg (Step 16)
 public/sw.js                      service worker (Step 17)
 e2e/                              Playwright specs + fixtures (speech stubs)
+.github/workflows/reminders.yml   hourly call to /api/reminders/send (Step 21)
 ```
 
 ## A3. Content model (`src/content/types.ts`)
@@ -108,13 +116,16 @@ export type Lesson = {
   core: CoreSentence[];                              // 6–8, simplest first; append-only after release
   key: number[];                                     // 3–4 indexes into core → My Sentences
   tryToday: Bi;
+  words: { en: string; te: string }[];               // 4–6 new words, each introduced once in the course
+  grammar: string[];                                 // keys from grammar.ts (one per CURRICULUM §2 row)
+  topics: string[];                                  // keys from topics.ts (doctor, bank, market, phone, …)
   learn: Activity[];                                 // explain, whenToUse, dontSay
   practice: Activity[];                              // 3–4 authored (choose, fillBlank, findMistake, …)
   speak: Activity[];                                 // 1–2 authored situations
   roleplay: RolePlay & { id: string };
   optional?: SectionKind[];
 };
-export type ConversationDay = { id: string; kind: "conversation"; title: Bi; summary: Bi;
+export type ConversationDay = { id: string; kind: "conversation"; title: Bi; summary: Bi; topics: string[];
   dialogue: Activity; roleplays: Activity[]; situations: Activity[] };
 export type ReviewDay = { id: string; kind: "review"; title: Bi; extras?: Activity[] };
 export type Day = Lesson | ConversationDay | ReviewDay;
@@ -129,7 +140,11 @@ export type Day = Lesson | ConversationDay | ReviewDay;
 
 **Lesson data files.** `scripts/build-content.mts` (run by `predev` and `prebuild`) expands every released day and writes `public/content/<dayId>.json` (git-ignored). The player fetches these, so the app's code stays small with 1,000+ lessons and the service worker can cache lessons individually. Overview pages and tests import the TypeScript directly.
 
-**Content rules** (checked by `src/content/content.test.ts` for every released day): ids unique; `answer`/`wrongIndex` in range; one `___` per fillBlank; seo description ≤ 160 chars; arrange/translate tiles = answer words (punctuation stays on its word) + `extra`; each role-play turn has a good reply; `key` indexes valid; 6–8 core sentences; every `Bi` has both languages; Telugu text contains Telugu script; expanded lessons have 14–19 activities.
+**Content rules** (checked by `src/content/content.test.ts` for every released day): ids unique; `answer`/`wrongIndex` in range; one `___` per fillBlank; seo description ≤ 160 chars; arrange/translate tiles = answer words (punctuation stays on its word) + `extra`; each role-play turn has a good reply; `key` indexes valid; 6–8 core sentences; every `Bi` has both languages; Telugu text contains Telugu script; expanded lessons have 14–19 activities; `grammar`/`topics` keys exist; each new word is introduced only once in the course.
+
+**Content quality checks** (same test file, catching typical writing mistakes): main-path days contain none of the words in a family-assumption list (`your son`, `your daughter`, `your grandchild`, `your husband`, `your wife`, `my grandson`, …; tracks are exempt); English sentences stay within the stage's length limit (CURRICULUM §1); wrong options never equal the answer and options are distinct; no duplicate core sentences within a week; every `Bi` pair is non-empty and not identical.
+
+**Tags** (`words`, `grammar`, `topics`) are not shown much at launch (words appear on the lesson complete screen), but they let future features (FUTURE_FEATURES.md) work across all lessons without editing them again.
 
 ## A4. Course map (`src/content/course.ts`)
 
@@ -172,6 +187,7 @@ export type Progress = {
 - **Telugu voice:** saved `teluguVoiceURI` → any voice whose `lang` starts with `te` → none (report "missing").
 - **Mixed narration** (`split-scripts.ts`, pure): split text into runs by script (Telugu block U+0C00–U+0C7F vs everything else); spaces, digits and punctuation join the run before them. `speak.ts` queues one utterance per run with the matching voice; Telugu runs are skipped when no Telugu voice exists.
 - Rates: normal `0.9`, slow `0.65`; dialogue voice "b" uses a different voice if available, else a lower pitch. Cancel current speech before new speech. Voices load asynchronously (`voiceschanged`).
+- **Audio hook:** `speak` and `narrate` first look up the text in `/audio/manifest.json` (text hash → recorded file); if found, they play the file instead of the phone voice. No manifest exists at launch; adding recorded audio later (FUTURE_FEATURES.md) changes no screen.
 - **Auto-play** (setting on by default): a new card/question/situation/turn plays when it appears, the correct sentence plays after Check, the partner's next line plays after the learner's reply. Speech only starts after a tap has happened on the page (browsers require it); the first-visit screen and every Continue/Check provide that.
 - **Speech match** (`speech-match.ts`, pure): lower-case, strip punctuation, expand contractions (`i'm`, `don't`, `didn't`, `won't`, `can't`, `it's`, `i'll`, …), drop fillers. Score = longest common word subsequence ÷ expected word count, best over accepted answers and recognition alternatives. `≥ 0.85` great, `≥ 0.6` good (accepted), else try again.
 - **Recognition** (`listen.ts`): `lang = "en-IN"`, up to 3 alternatives, 8 s timeout; reports `unsupported`, `denied`, `no-speech` or transcripts.
@@ -184,6 +200,8 @@ export type Progress = {
 - `mergeProgress(a, b)`: completed = union (earlier `at`, best score); activities = later `at` per id (attempts = max), dropped if the day is completed; mistakes = union minus ids answered correctly after they were added; practiceDays = sorted union, last 60; position = later `at`; tracks = union; tracksAsked = either.
 - Sync: on sign-in and on app open → GET, merge, save locally, PUT if changed; after changes → PUT debounced 3 s; offline → retry on `online`.
 - `reports`: `{ activityId, dayId, reason: "telugu" | "english" | "audio" | "other", learnIn, at }`, anonymous; `POST /api/report` (zod, ≤ 1 KB); one report per activity per device (remembered locally). `npm run reports` prints the latest reports grouped by day for the "Fix reported problems" session (Part E).
+- `clientErrors`: `{ message, stack (first 2 KB), path, userAgent, appVersion, at }` from the error screens and `window.onerror`; at most 5 per device per day; `npm run reports` shows them too.
+- **Daily reminders** (Step 21): `pushSubscriptions` `{ endpoint (unique), keys, hour, timeZone, learnIn, lastPracticeDay, lastSentDay, createdAt }`, anonymous (guests too). The learner picks Morning 8:00 / Afternoon 1:00 / Evening 6:00 / Night 8:00 in their own time zone (`Intl` time zone stored). The client updates `lastPracticeDay` when it records the first answer of a day. `.github/workflows/reminders.yml` calls `POST /api/reminders/send` hourly with `REMINDER_SECRET`; the route sends (with `web-push`, VAPID keys) to subscriptions whose local hour matches, who haven't practised today and weren't sent one today; it deletes subscriptions the push service reports gone (404/410). `src/learning/reminder-due.ts` holds the pure "is it due?" rule. iPhones receive web push only when the app is installed (iOS 16.4+); Settings says so.
 
 ## A8. Environment variables
 
@@ -194,6 +212,8 @@ export type Progress = {
 | `BETTER_AUTH_SECRET` (different per environment), `BETTER_AUTH_URL` (Production only) | `.env.local`, Vercel | 18 |
 | `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` | `.env.local`, Vercel | 18 |
 | `OAUTH_PROXY_SECRET` (only if previews are used) | Vercel | 18 |
+| `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, `VAPID_SUBJECT` (`mailto:` the owner) | `.env.local`, Vercel | 21 |
+| `REMINDER_SECRET` | Vercel and the GitHub repository secrets (same value); GitHub variable `REMINDER_URL` (production URL) | 21 |
 
 Never name an app variable `ANTHROPIC_*`. Every variable goes in `.env.example` and README.
 
@@ -217,6 +237,7 @@ Never name an app variable `ANTHROPIC_*`. Every variable goes in `.env.example` 
 
 - **Mobile-first.** Design at 390 px wide. On wider screens, learning screens are a centred column (`max-w-xl`); the landing page may use the width.
 - **No text inputs anywhere.** Buttons, switches, word tiles, voice.
+- **All UI text lives in `src/lib/strings.ts`** (each label a `Bi`); components never hard-code label text.
 - **Labels:** the `Bi` component renders English (bold) then Telugu (smaller, `lang="te"`) in Telugu mode, English only in English mode. The English word comes first in the DOM, so tests find buttons by their English name.
 - **Explanation text** (`Bi` content fields: body, why, hint, situation, prompts) shows the `te` or `en` version by the Learn-in setting, with 🔊 🐢 narration.
 - **Text size:** root font size 18 px (A), 20 px (A+), 22 px (A++), set on `<html>` before first paint; use `rem` everywhere. Telugu line-height ≥ 1.7.
@@ -293,6 +314,7 @@ Each step: **Goal · Read first · Build · Done when · Try this · Owner**. Si
 - **Checkpoint:** kit done, unit tests pass.
 - `src/app/learn/layout.tsx`: bottom tab bar (Home, Journey, Practice, Settings; icon + `Bi`; active tab `aria-current="page"`), safe-area padding.
 - `src/app/learn/settings/page.tsx`: Learn in (Telugu / English), Theme, Text size (live preview), Auto-play audio switch, I can't speak now switch, placeholders for Voice, My tracks and Account (later steps), Buy me a coffee link (`SUPPORT_URL = "https://buymeacoffee.com/harikiranvusirikala"` in `src/components/support.ts`).
+- `src/lib/strings.ts` with every label used so far; `src/app/error.tsx` and `src/app/learn/error.tsx`: friendly "Something went wrong" · ఏదో పొరపాటు జరిగింది screen with **Continue** (reloads; progress is in localStorage, so nothing is lost). Sending errors to the server comes in Step 20.
 - `src/app/dev/ui/page.tsx`: every kit component in every state, in both Learn-in modes (404 unless `next dev` or `ENABLE_DEV_PAGES=1`, which Playwright's web server sets).
 
 **Done when:** unit tests for the settings store and components; e2e `settings.spec.ts`: switch Night, A++ and English mode, reload, no flash (class present before hydration), choices kept, labels change to English only. Screenshots: `ui-day.png`, `ui-night.png`, `settings-phone.png`.
@@ -306,12 +328,13 @@ Each step: **Goal · Read first · Build · Done when · Try this · Owner**. Si
 **Read first:** A3, A4; VISION §4, §5; CURRICULUM §1, §3 (Week 1 table and the Stage 1 week titles), the stage headings and week tables of §4–§8 (titles only, for `course.ts`).
 
 **Build:**
+- `src/content/grammar.ts` (one key per CURRICULUM §2 row, e.g. `past-simple`, with its English + Telugu name) and `topics.ts` (life topics: home, food, market, shopping, money, health, doctor, pharmacy, bank, transport, directions, phone, technology, neighbours, festivals, family, travel, offices, weather, feelings, time, people).
 - `src/content/types.ts`, `schema.ts` (zod), `course.ts` (all stages with week titles in English + Telugu, Week 1 released with its seven day refs, tracks with weeks unreleased), `load.ts`.
 - `src/content/generate.ts`: `expandLesson`, a placeholder `buildReview` (finished in Step 15), the fixed core-sentence mapping documented in a comment and in A3 if it differs.
 - **Checkpoint:** types, course map and generator with unit tests (determinism, ids, tile building).
 - `src/content/main/w01/sentence-basics.ts`: full Day 1 per CURRICULUM §1 and §3 (both Learn-in languages for every `Bi`).
 - `scripts/build-content.mts` (`node --import tsx`), hooked into `predev`/`prebuild`, writing `public/content/<dayId>.json`.
-- `src/content/content.test.ts` (A3 rules for every released day).
+- `src/content/content.test.ts` (A3 rules and content quality checks for every released day, each with a failing example in a fixture so the checks themselves are tested).
 
 **Done when:** `npm test`, lint and typecheck pass; `npm run build` writes `public/content/sentence-basics.json`.
 
@@ -341,10 +364,11 @@ Each step: **Goal · Read first · Build · Done when · Try this · Owner**. Si
 - `src/components/learn/PatternChips.tsx` (reused on overview and landing).
 - **Checkpoint:** frame + cards working.
 - Placeholder for not-yet-built activity types: a "Coming soon — Skip" card so Day 1 is playable end to end.
+- `src/app/dev/lesson/[id]/page.tsx` (dev/e2e only): the whole expanded day on one page — every section and activity with its answer marked, in Telugu and English side by side, with 🔊 — for reviewing new content quickly. Later activity steps add their types to it.
 
 **Done when:** component tests for each activity (right answer, wrong twice → answer shown, both Learn-in modes); e2e `player.spec.ts` (phone): Day 1 Learn and first practice questions, section summary. Screenshots: `player-explain.png`, `player-feedback.png` (+ night).
 
-**Try this:** play Day 1 on the phone in both Learn-in modes; get one wrong twice on purpose.
+**Try this:** play Day 1 on the phone in both Learn-in modes; get one wrong twice on purpose; open `/dev/lesson/sentence-basics`.
 
 ## Step 6 — Lesson player II: word tiles, match, find the mistake (M)
 
@@ -370,7 +394,7 @@ Each step: **Goal · Read first · Build · Done when · Try this · Owner**. Si
 
 **Build:**
 - `src/learning/voice-pick.ts` (English and Telugu picks; unit-tested with fake voice lists from Android, iPhone, Windows, Mac) and `src/learning/split-scripts.ts` (unit-tested with mixed Telugu–English sentences).
-- `src/lib/speak.ts`: `speak(text, { slow })` for English, `narrate(text, { slow })` for mixed text (queue per run), `voicesReady()`, `hasTeluguVoice()`.
+- `src/lib/speak.ts`: `speak(text, { slow })` for English, `narrate(text, { slow })` for mixed text (queue per run), `voicesReady()`, `hasTeluguVoice()`, and the audio hook (A6; unit-tested with a fake manifest).
 - **Checkpoint:** voice modules + unit tests.
 - `SpeakButtons` (🔊 + 🐢) on every English sentence and every explanation; auto-play on appear, after Check, and for role-play/dialogue lines (wired in Step 9), all off when Auto-play is off.
 - `ListenChoose` activity.
@@ -422,7 +446,8 @@ Each step: **Goal · Read first · Build · Done when · Try this · Owner**. Si
 - Resume at `nextActivity`; replaying a finished day starts at the beginning and keeps its completion.
 - **Checkpoint:** saving + resume.
 - `src/app/lessons/[id]/page.tsx`: static (`generateStaticParams` over released days, `generateMetadata` from `seo`), title, pattern chips, the Learn content (server-rendered, Telugu and English versions both in the page; the visible one follows Learn-in after hydration), and a client progress card (%, section StepList, Start / Continue / Review).
-- Wrap-up screen = lesson complete (VISION §10.6): CSS confetti, done list, key sentences with 🔊, Try it today, next day, Continue / Review.
+- Wrap-up screen = lesson complete (VISION §10.6): CSS confetti, done list, key sentences with 🔊, today's new words, Try it today, next day, Continue / Review.
+- **Share this lesson** on the overview page and the complete screen: `navigator.share` with the lesson's title, a short line ("Learn past tense — explained in Telugu. Free.") and its `/lessons/<id>` link; copy-link fallback (a button).
 
 **Done when:** unit tests for the store; e2e: half of Day 1, reload, Continue resumes at the same activity; finish → complete screen; overview shows 100%. Screenshots: `overview.png`, `lesson-complete.png` (+ night).
 
@@ -519,11 +544,11 @@ As Step 13, for `present-continuous-right-now` and `past-simple-yesterday` (CURR
 
 **Build:**
 - `src/app/manifest.ts` (name, short name, `start_url: "/learn"`, `display: "standalone"`, theme colours, Step 16 icons).
-- `public/sw.js` (hand-written, versioned): precache the app shell (`/learn`, `/learn/play`, Journey, Practice, Settings, offline page) and their assets; `/content/*.json` cache-first; navigations network-first with cache fallback; static assets cache-first.
+- `public/sw.js` (hand-written, versioned): precache the app shell (`/learn`, `/learn/play`, Journey, Practice, Settings, offline page) and their assets; `/content/*.json` **stale-while-revalidate** (answer from the cache at once, fetch the latest in the background and update the cache — so content fixes reach every phone on its next visit); navigations network-first with cache fallback; hashed static assets cache-first.
 - The app asks the service worker to cache the lesson files of the current and next week (and every lesson opened). Register in production only; new version → toast "Updated — tap to reload".
 - Home: one-time "Install EnglishEasy" card — Android `beforeinstallprompt` button; iPhone picture instructions (Share → Add to Home Screen); hidden when installed.
 
-**Done when:** unit tests for the service worker's routing decisions (pure function); e2e: manifest valid; after one visit, offline (`context.setOffline(true)`) still opens and plays Day 1.
+**Done when:** unit tests for the service worker's routing decisions (pure function); e2e: manifest valid; after one visit, offline (`context.setOffline(true)`) still opens and plays Day 1; a changed lesson file is shown on the visit after next (stale-while-revalidate).
 
 **Try this:** on Android Chrome, install the app, turn on airplane mode, open a lesson.
 
@@ -536,7 +561,7 @@ As Step 13, for `present-continuous-right-now` and `past-simple-yesterday` (CURR
 **Build:**
 - `src/server/db.ts`, `auth.ts`, `auth-options.ts`, `auth-urls.ts` (exact origins only), `/api/auth/[...all]`, `getUser()`, `oAuthProxy` only when `OAUTH_PROXY_SECRET` is set.
 - **Checkpoint:** server side + unit tests.
-- `scripts/db-ping.mts`, `scripts/db-setup.mts` (Better Auth's indexes, `progress.userId` unique, `reports` by `dayId` and `at`), run with `node --import tsx --env-file-if-exists=.env.local`; npm scripts `db:ping`, `db:setup`.
+- `scripts/db-ping.mts`, `scripts/db-setup.mts` (Better Auth's indexes, `progress.userId` unique, `reports` by `dayId` and `at`, `clientErrors` by `at`), run with `node --import tsx --env-file-if-exists=.env.local`; npm scripts `db:ping`, `db:setup`.
 - Settings → Account: Google button following Google's branding (signed out); avatar + name + email + Sign out (signed in). Home greets with the Google first name.
 - `.env.example`; README "Run your own copy" (Atlas, Google OAuth client with redirect URIs, Vercel variables).
 
@@ -562,26 +587,51 @@ As Step 13, for `present-continuous-right-now` and `past-simple-yesterday` (CURR
 
 **Try this:** do half of Day 2 as a guest on the phone, sign in, open the app on the computer, sign in — the progress is there.
 
-## Step 20 — Report a problem (S)
+## Step 20 — Report a problem and error log (S)
 
-**Goal:** learners can flag content mistakes in two taps, so Telugu and English errors get fixed.
+**Goal:** learners can flag content mistakes in two taps, and app crashes on learners' phones reach the owner.
 
-**Read first:** A7 (reports); VISION §10.5 (⚑ line), §13; `src/components/player/Player.tsx` (top bar); `src/server/db.ts` (exports).
+**Read first:** A7 (reports, clientErrors); VISION §10.5 (⚑ line), §13; `src/components/player/Player.tsx` (top bar); `src/app/learn/error.tsx`; `src/server/db.ts` (exports).
 
-**Build:** ⚑ in the player's top bar → dialog with four reason buttons → `POST /api/report` → "Thank you" toast; one report per activity per device; works for guests; queued and sent later when offline. `src/server/reports-repo.ts`; `scripts/reports.mts` (`npm run reports`: latest reports grouped by day and reason).
+**Build:**
+- ⚑ in the player's top bar → dialog with four reason buttons → `POST /api/report` → "Thank you" toast; one report per activity per device; works for guests; queued and sent later when offline. `src/server/reports-repo.ts`.
+- `src/lib/report-error.ts`: the error screens and `window.onerror` / `unhandledrejection` send `POST /api/client-error` (limit 5 per device per day; never blocks the screen).
+- `scripts/reports.mts` (`npm run reports`): latest reports grouped by day and reason, then the latest client errors grouped by message.
 
-**Done when:** unit tests (zod, repo with `test:db`); e2e: report from the player shows the toast and a second report on the same activity is not offered.
+**Done when:** unit tests (zod, limits, repo with `test:db`); e2e: report from the player shows the toast and is not offered twice for the same activity; a forced error on a dev page shows the friendly screen and sends one error.
 
 **Try this:** report a problem on the phone, then run `npm run reports`.
 
-## Step 21 — Polish and launch (M)
+## Step 21 — Daily reminders (M)
+
+**Goal:** a gentle daily nudge at the time the learner chose — and none on days they already practised.
+
+**Read first:** A7 (daily reminders), A8; VISION §10.2 (reminder card), §10.9 (Daily reminder), §13; `public/sw.js`; `src/lib/progress-store.ts` (where the first answer of a day is recorded); `src/server/db.ts` (exports); the `web-push` package README (`npm pack web-push` into `/tmp/englisheasy-scratch/`, read only).
+
+**Build:**
+- `src/learning/reminder-due.ts` (pure: local hour and day from a time zone, due or not; unit-tested across time zones, India and abroad).
+- `src/lib/reminders.ts` and Settings → **Daily reminder** · రోజువారీ గుర్తు: Off / Morning 8:00 / Afternoon 1:00 / Evening 6:00 / Night 8:00. Picking a time asks for notification permission (with a short note first), subscribes through the service worker and `PUT /api/reminders`; Off unsubscribes (`DELETE`). On iPhone outside the installed app: "Install the app first to get reminders" with the Step 17 instructions.
+- One-time card after the first finished lesson: "Want a reminder every day?" with the same time buttons.
+- **Checkpoint:** subscription flow.
+- `src/server/reminders-repo.ts`; `POST /api/reminders/send` (401 without `REMINDER_SECRET`): due subscriptions get "Today's English is ready 🌱 · ఈరోజు ఇంగ్లీష్ పాఠం సిద్ధం" (English only for English mode, stored with the subscription), tapping opens `/learn`; gone subscriptions are deleted; `lastSentDay` set.
+- The service worker's `push` and `notificationclick` handlers. The client updates `lastPracticeDay` on the first answer of a day (only when subscribed).
+- `.github/workflows/reminders.yml`: hourly `curl` to `$REMINDER_URL/api/reminders/send` with the secret; also runnable by hand.
+- `db:setup` adds the indexes (`endpoint` unique; `hour`). `npm run vapid` prints a new VAPID key pair (`web-push generateVAPIDKeys` through a small script).
+
+**Done when:** unit tests (due rule, route auth, repo with `test:db`); e2e: choosing a time calls the subscribe flow with a stubbed `PushManager` and sends the right hour and time zone; Off removes it.
+
+**Try this:** on Android, pick a time one hour ahead (or run the workflow by hand), wait for the notification, tap it.
+
+**Owner:** run `npm run vapid` and set the A8 variables in `.env.local` and Vercel; add `REMINDER_SECRET` as a GitHub secret and `REMINDER_URL` as a GitHub variable; run `npm run db:setup` for `englisheasy`; after pushing, run the "reminders" workflow once by hand from GitHub Actions.
+
+## Step 22 — Polish and launch (M)
 
 **Goal:** release quality, checked as an elder would use it.
 
 **Read first:** VISION §2, §14, §17; B2.
 
 **Build / check:**
-- Elder walkthrough on the phone project at A++ in Night and Day, in both Learn-in modes: every screen has one clear next step, nothing is cut off, every tap target ≥ 52 px (an e2e check measures buttons).
+- Elder walkthrough on the phone project at A++ in Night and Day, in both Learn-in modes (and once with a reminder notification): every screen has one clear next step, nothing is cut off, every tap target ≥ 52 px (an e2e check measures buttons).
 - Accessibility pass: focus order and rings, `aria-live` feedback, landmark names, `lang="te"` on Telugu.
 - Performance: no layout shift on Home and the player; images sized; fonts subset.
 - Final screenshots of the main screens (day + night) into `docs/screenshots/` and the README.
@@ -617,8 +667,9 @@ As Step 13, for `present-continuous-right-now` and `past-simple-yesterday` (CURR
 | 17 | Installable app and offline | ☐ | |
 | 18 | Google sign-in | ☐ | |
 | 19 | Progress sync | ☐ | |
-| 20 | Report a problem | ☐ | |
-| 21 | Polish and launch | ☐ | |
+| 20 | Report a problem and error log | ☐ | |
+| 21 | Daily reminders | ☐ | |
+| 22 | Polish and launch | ☐ | |
 
 ## Content released
 
@@ -630,7 +681,7 @@ As Step 13, for `present-continuous-right-now` and `past-simple-yesterday` (CURR
 
 # Part E — Adding content after launch
 
-Each task is one fresh Sonnet session (medium effort). Each reads only CURRICULUM §1 (style guide), the §2 rows for its grammar, its own week, `src/content/types.ts`, and the most recent day file of the same kind as a model. Each ends with `npm test` (content rules), `npm run build`, a quick e2e smoke of the new days, an entry in the "Content released" table, and the owner's OK before committing to `master`.
+Each task is one fresh Sonnet session (medium effort). Each reads only CURRICULUM §1 (style guide), the §2 rows for its grammar, its own week, `src/content/types.ts`, and the most recent day file of the same kind as a model. Each fills in every lesson's `words`, `grammar` and `topics`, and ends with `npm test` (content rules and quality checks), `npm run build`, a look at `/dev/lesson/<id>` for each new day (the owner can review the week there in minutes), a quick e2e smoke of the new days, an entry in the "Content released" table, and the owner's OK before committing to `master`.
 
 ## E1. Detail a stage (before its first week is written)
 

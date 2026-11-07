@@ -11,6 +11,7 @@ EnglishEasy: a mobile-first English learning and speaking app for Telugu-speakin
 - **`docs/BUILD_PLAN.md`**: architecture (Part A), rules (Part B), steps to launch (Part C), Progress and Content-released tables (Part D; status lives only there), adding content after launch (Part E). Work = one step or one content task at a time.
 - **`docs/VISION.md`**: the product (lesson design §4, activities §5, speech §6, role play §7, progress §9, screens §10, curriculum structure §11, decision log §18). Steps cite its sections.
 - **`docs/CURRICULUM.md`**: the course map — content style guide §1, grammar spiral §2, Stage 1 lesson by lesson §3, Stages 2–5 week by week §4–§7, optional tracks §8. Content tasks read §1, their §2 rows and their own week only.
+- `docs/FUTURE_FEATURES.md`: features for after launch (F1…), built one at a time; a picked feature gets a BUILD_PLAN step section and the owner's OK before any code.
 - `docs/INITIAL_VISION.md`: the owner's original text. Never edit it.
 
 Read only the sections a step lists (`grep -n '^#' <file>`, then `Read` with `offset`/`limit`). Never read these files whole: the build runs on a daily budget.
@@ -27,6 +28,7 @@ Read only the sections a step lists (`grep -n '^#' <file>`, then `Read` with `of
 
 - **No AI at runtime, ever.** The app never calls Claude or any other paid AI or speech API. Content is written ahead of time as data; voice and speech recognition are the browser's free built-in APIs. Don't add an AI SDK or API key.
 - **No text inputs anywhere.** Answers are buttons, word tiles or voice.
+- **All UI text lives in `src/lib/strings.ts`** as `Bi` labels; components never hard-code label text.
 - **Content is data** (`src/content/`), validated by `content.test.ts`; the engine (`src/learning/`) is pure and unit-tested; browser APIs live in thin wrappers in `src/lib/`.
 - **Ids are permanent** (they key saved progress and addresses): day ids and activity ids are never renamed, reused or renumbered after release; core sentences are append-only (BUILD_PLAN A3). Day numbers are computed from position, never stored.
 - **Speaking never blocks progress**: every speaking activity offers "Choose instead".

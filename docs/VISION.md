@@ -1,7 +1,7 @@
 # EnglishEasy
 ## Product Vision & Learning Architecture (v3, 2026-11-07)
 
-The original vision is kept unchanged in [INITIAL_VISION.md](INITIAL_VISION.md). This version adds the owner's decisions, a tighter lesson design and a 150-week course structure. The full course map is in [CURRICULUM.md](CURRICULUM.md); how the app is built is in [BUILD_PLAN.md](BUILD_PLAN.md).
+The original vision is kept unchanged in [INITIAL_VISION.md](INITIAL_VISION.md). This version adds the owner's decisions, a tighter lesson design and a 150-week course structure. The full course map is in [CURRICULUM.md](CURRICULUM.md); how the app is built is in [BUILD_PLAN.md](BUILD_PLAN.md); features planned for after launch are in [FUTURE_FEATURES.md](FUTURE_FEATURES.md).
 
 ### What changed from the initial vision
 
@@ -15,6 +15,7 @@ The original vision is kept unchanged in [INITIAL_VISION.md](INITIAL_VISION.md).
 - **No typing anywhere.** Buttons, word tiles or voice only.
 - **Speaking never blocks progress.** "Choose instead" is always available.
 - **Day numbers, not weekdays.** "Day 3", never "Wednesday".
+- **Daily reminders:** an optional notification at the learner's chosen time, skipped on days they already practised.
 - **Product decisions:** optional Google sign-in (guest first), the phone's built-in voices, installable web app, larger text option, Day/Night theme, search-engine-ready landing and lesson pages, no AI while the app runs.
 
 ---
@@ -373,7 +374,7 @@ Practice something else
 [Practice again (4)]  [Role plays]  [My Sentences]
 ```
 
-Also on Home, when relevant: the one-time **tracks** card (Section 11.4), the one-time **Install the app** card, and for guests with progress, **Save your progress with Google**. The learner should immediately know: **What should I do now?**
+Also on Home, when relevant (one at a time): the one-time **tracks** card (Section 11.4), the one-time **Install the app** card, the one-time **daily reminder** card (after the first finished lesson), and for guests with progress, **Save your progress with Google**. The learner should immediately know: **What should I do now?**
 
 ## 10.3 Journey
 
@@ -399,7 +400,7 @@ The current stage is open; finished stages are folded; future stages are one car
 
 ## 10.4 Lesson overview
 
-Title (English + Telugu), the pattern, % and section checklist, **Start / Continue / Review**. The Learn content is shown on this page too, so search engines can find "past tense explained in Telugu".
+Title (English + Telugu), the pattern, % and section checklist, **Start / Continue / Review**, and **Share this lesson** (WhatsApp). The Learn content is shown on this page too, so search engines can find "past tense explained in Telugu".
 
 ## 10.5 Lesson player
 
@@ -434,7 +435,7 @@ Next: Day 6 — Tomorrow
 [Continue to Day 6]        [Review today's lesson]
 ```
 
-A gentle confetti burst plays (not with reduced motion). After the first lesson, a card offers **Save your progress with Google** (dismissible).
+The complete screen also lists today's new words and offers **Share this lesson**. A gentle confetti burst plays (not with reduced motion). After the first lesson, cards offer **Save your progress with Google** and a **daily reminder** (both dismissible).
 
 ## 10.7 Week and stage complete
 
@@ -465,6 +466,7 @@ All choices are buttons or switches:
 - **Text size:** A / A+ / A++
 - **Voice:** English voice (pick + sample); Telugu voice (status, help if missing)
 - **Auto-play audio:** on / off; **I can't speak now:** on / off
+- **Daily reminder:** Off / Morning 8:00 / Afternoon 1:00 / Evening 6:00 / Night 8:00 (iPhones: only in the installed app)
 - **My tracks:** which optional courses are on
 - **Account:** Save progress with Google / signed in as … / Sign out
 - Privacy, Buy me a coffee
@@ -554,7 +556,8 @@ The app launches with **Week 1**. After launch, weeks are added on request, one 
 - **Guest first.** Anyone can start Day 1 immediately. Progress is saved on the phone.
 - **Optional Google sign-in** ("Save your progress with Google"), offered after the first lesson and in Settings. On sign-in, the phone's progress is merged into the account (nothing is lost on either side); from then on it stays in sync across devices.
 - Stored per account: learning progress (including chosen tracks) plus the Google name, email and photo for the greeting and Settings. Learn-in language, theme, text size, voices and audio switches stay on the device.
-- **Problem reports** store the activity, the reason tapped and the time — nothing personal.
+- **Problem reports** store the activity, the reason tapped and the time — nothing personal. **Error logs** store the error message, the page and the phone/browser type, to fix crashes.
+- **Daily reminders** store the phone's notification address, the chosen time, the time zone and the last day practised — nothing personal; turning reminders off deletes it.
 - A plain-language privacy page explains this, including that the phone's speech recognition may send audio to the phone maker's service (Google on Android) to turn speech into text.
 
 ---
@@ -567,13 +570,15 @@ The app launches with **Week 1**. After launch, weeks are added on request, one 
 - **Colours:** calm and warm. Correct = green with ✓; try again = amber with ↻ (never red for a learner's answer); pattern colours are the same in every lesson; colour is never the only signal.
 - **Delight, lightly:** confetti on lesson, week and stage completion; friendly messages; no noise.
 - **Accessible:** large touch targets, visible focus, screen-reader names, respects reduced motion.
+- **Calm when things break:** a friendly "Something went wrong — Continue" screen; progress is never lost.
 
 ---
 
 # 15. Reach
 
 - **Search engines:** a static landing page (what it is, how it works, a lesson preview, FAQ) and indexable lesson overview pages with readable addresses (`/lessons/past-simple-yesterday`), structured data, sitemap and robots for production only, and Google Search Console verification. Every released week adds more pages.
-- **WhatsApp sharing:** a good link preview image and the Week-complete "Share with family" button.
+- **WhatsApp sharing:** a good link preview image, **Share this lesson** on every lesson page and complete screen, and the Week-complete "Share with family" button.
+- **Daily reminders:** "Today's English is ready 🌱" at the learner's chosen time, only on days they haven't practised yet.
 - **Installable app:** "Add to Home screen" gives an app icon, full-screen app and offline lessons. Home shows a one-time "Install EnglishEasy" card with the right instructions for Android or iPhone.
 - **Analytics:** Google Tag Manager on the landing page only, never inside lessons.
 - **Support:** a "Buy me a coffee" link in the landing footer and Settings.
@@ -582,7 +587,7 @@ The app launches with **Week 1**. After launch, weeks are added on request, one 
 
 # 16. Not in V1
 
-Runtime AI of any kind, paid voices, pre-recorded Telugu audio (possible later via a free text-to-speech tier, generated once at build time), sound effects, leaderboards and streak penalties, typing answers, branching role plays, placement tests, a native Play Store app, story and reading activities (added with Stage 3 content), content beyond Week 1 at launch.
+Everything in FUTURE_FEATURES.md, runtime AI of any kind, paid voices, pre-recorded Telugu audio (possible later via a free text-to-speech tier, generated once at build time), sound effects, leaderboards and streak penalties, typing answers, branching role plays, placement tests, a native Play Store app, story and reading activities (added with Stage 3 content), content beyond Week 1 at launch.
 
 ---
 
@@ -620,3 +625,6 @@ Every feature should support that goal.
 | 2026-11-07 | Learn-in toggle: Telugu (with English words where natural) or English explanations; English mode shows English-only buttons. |
 | 2026-11-07 | Explanations read aloud: Telugu parts with the phone's Telugu voice, English parts with the English voice; where no Telugu voice exists, Telugu is text only (with Android install help). Auto-play on by default. |
 | 2026-11-07 | Lessons have stable ids used in addresses and saved progress; many activities and review days are generated from core sentences by code. |
+| 2026-11-07 | Added before launch because they are cheap now and costly later: lesson tags (new words, grammar, topics), automatic content quality checks, a content preview page, all UI text in one file, an audio hook for future recorded audio, friendly error screen + error log, Share this lesson, and content updates that reach phones with cached lessons. |
+| 2026-11-07 | Daily reminders (web push) at the learner's chosen time in their own time zone, skipped on days already practised; triggered hourly by a free GitHub Actions job. |
+| 2026-11-07 | Features for after launch are kept in FUTURE_FEATURES.md and built one at a time, each getting a BUILD_PLAN section first. |

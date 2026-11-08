@@ -48,7 +48,7 @@ export function HowItWorks() {
 /** One feature told with a real screen: eyebrow, headline, a sentence, three ✓ lines; the screen alternates sides. */
 function Spotlight({ id, eyebrow, title, text, points, shot, alt, flip = false }: { id: string; eyebrow: BiLabel; title: BiLabel; text: BiLabel; points: BiLabel[]; shot: StaticImageData; alt: BiLabel; flip?: boolean }) {
   return (
-    <div id={id} className="grid scroll-mt-24 items-center gap-10 md:grid-cols-2 md:gap-16">
+    <div id={id} className="grid scroll-mt-24 grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-16">
       <div className={`flex flex-col gap-4 ${flip ? "md:order-2" : ""}`}>
         <p className="text-sm font-bold tracking-wider text-brand uppercase">{eyebrow.en}</p>
         <h3 className="font-display text-[1.9rem] leading-tight font-bold text-ink sm:text-4xl">{title.en}</h3>

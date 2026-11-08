@@ -14,15 +14,16 @@ export function Hero() {
         <div className="absolute -top-40 -left-32 size-[34rem] rounded-full bg-[radial-gradient(closest-side,rgb(20_184_166/0.22),transparent)] dark:bg-[radial-gradient(closest-side,rgb(45_212_191/0.14),transparent)]" />
         <div className="absolute -top-24 right-[-10rem] size-[36rem] rounded-full bg-[radial-gradient(closest-side,rgb(251_191_36/0.22),transparent)] dark:bg-[radial-gradient(closest-side,rgb(251_191_36/0.10),transparent)]" />
       </div>
-      <div className="mx-auto grid w-full max-w-6xl items-center gap-12 px-5 pt-12 pb-16 sm:pt-16 lg:grid-cols-[1.05fr_1fr] lg:gap-8 lg:pt-20 lg:pb-24">
+      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-12 px-5 pt-12 pb-16 sm:pt-16 lg:grid-cols-[1.05fr_1fr] lg:gap-8 lg:pt-20 lg:pb-24">
         <div className="flex flex-col items-center gap-6 text-center lg:items-start lg:text-left">
           <p className="inline-flex items-center gap-2 rounded-full border border-line bg-surface/80 px-4 py-1.5 text-sm font-semibold text-ink-2 shadow-card">
             <span aria-hidden="true" className="size-2 rounded-full bg-accent" />
             {strings.landingEyebrow.en}
           </p>
           <h1 id="hero-title" className="flex flex-col gap-3">
-            <span className="font-display text-[2.75rem] leading-[1.05] font-bold tracking-tight text-ink sm:text-6xl">
-              Speak English <span className="text-brand">with confidence</span>
+            {/* Two set lines; on phones the size follows the screen's width so "with confidence" fits on one line. */}
+            <span className="font-display text-[min(2.75rem,10.5vw)] leading-[1.05] font-bold tracking-tight text-ink sm:text-6xl">
+              <span className="block">Speak English</span> <span className="block text-brand">with confidence</span>
             </span>
             <span lang="te" className="font-display text-2xl leading-snug font-semibold text-ink-2 sm:text-[2rem]">
               {strings.landingHeadline.te}
@@ -39,8 +40,9 @@ export function Hero() {
         </div>
 
         <div className="relative mx-auto flex w-full max-w-md items-end justify-center lg:max-w-none">
-          <PhoneFrame src={home} alt={strings.landingShotHome.en} priority className="w-[14.5rem] -rotate-3 sm:w-64" />
-          <PhoneFrame src={question} alt={strings.landingShotQuestion.en} className="-ml-12 mb-[-2rem] w-[14.5rem] rotate-3 sm:w-64" />
+          {/* Sized from the screen, not fixed: two fixed phones were wider than a phone and pushed the text off it. */}
+          <PhoneFrame src={home} alt={strings.landingShotHome.en} priority className="w-[52%] max-w-64 -rotate-3" />
+          <PhoneFrame src={question} alt={strings.landingShotQuestion.en} className="-ml-[10%] mb-[-2rem] w-[52%] max-w-64 rotate-3" />
           <span aria-hidden="true" className="absolute -bottom-6 left-1/2 hidden -translate-x-1/2 sm:block">
             <Logo size="sm" className="rounded-full border border-line bg-surface/90 py-1.5 pr-4 pl-1.5 shadow-raised" />
           </span>

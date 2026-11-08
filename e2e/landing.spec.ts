@@ -1,8 +1,28 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 import { PROGRESS_KEY } from "../src/learning/progress";
 import { SETTINGS_KEY } from "../src/learning/settings";
 
 const SHOTS = "test-results/screenshots";
+
+/**
+ * Screenshots one screen at a time (`<name>-01.png`, …): a full-page shot of the long phone page is taller than Chrome
+ * can capture and repeats parts of it, and full-page shots leave the frosted sticky header blank. Each screen waits for
+ * its lazy pictures.
+ */
+async function screens(page: Page, name: string) {
+  const { height, step } = await page.evaluate(() => ({ height: document.documentElement.scrollHeight, step: window.innerHeight }));
+  for (let y = 0, n = 1; y < height; y += step, n++) {
+    await page.evaluate((top) => window.scrollTo(0, top), y);
+    await page.waitForFunction(() =>
+      [...document.images].every((img) => {
+        const r = img.getBoundingClientRect();
+        return r.bottom < 0 || r.top > window.innerHeight || (img.complete && img.naturalWidth > 0);
+      }),
+    );
+    await page.screenshot({ path: `${SHOTS}/${name}-${String(n).padStart(2, "0")}.png` });
+  }
+  await page.evaluate(() => window.scrollTo(0, 0));
+}
 
 test("the landing page tells what it is and starts Day 1", async ({ page, isMobile }) => {
   await page.goto("/");
@@ -15,7 +35,7 @@ test("the landing page tells what it is and starts Day 1", async ({ page, isMobi
 
   // The sections: how it works, the spotlights, the journey with Week 1 links, made for parents, privacy, the FAQ and the footer.
   await expect(page.getByRole("heading", { name: "Learn in four small steps" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Every idea explained in Telugu, and read aloud" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Every idea explained in Telugu" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "From your first sentence to natural English" })).toBeVisible();
   await expect(page.getByRole("link", { name: /Day 1: / })).toHaveAttribute("href", "/lessons/sentence-basics");
   await expect(page.getByRole("heading", { name: "Easy on the eyes, easy on the mind" })).toBeVisible();
@@ -31,10 +51,19 @@ test("the landing page tells what it is and starts Day 1", async ({ page, isMobi
   const data = JSON.parse((await page.locator('script[type="application/ld+json"]').first().textContent())!);
   expect(data["@graph"].map((node: { "@type": string }) => node["@type"])).toEqual(["WebSite", "Course", "FAQPage"]);
 
-  // No horizontal scrolling.
+  // No horizontal scrolling, and no text cut off at the screen's edge (a section that clips its overflow hides it from the first check).
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  const outside = await page.evaluate(() =>
+    [...document.querySelectorAll("main :is(h1, h2, h3, p, a, li)")]
+      .filter((el) => {
+        const r = el.getBoundingClientRect();
+        return r.width > 0 && (r.left < -1 || r.right > window.innerWidth + 1);
+      })
+      .map((el) => el.textContent?.trim().slice(0, 40)),
+  );
+  expect(outside).toEqual([]);
 
-  await page.screenshot({ path: `${SHOTS}/${isMobile ? "landing-phone" : "landing-desktop"}.png`, fullPage: true });
+  await screens(page, isMobile ? "landing-phone" : "landing-desktop");
 
   await page.getByRole("link", { name: /Start Day 1/ }).click();
   await expect(page).toHaveURL(/\/learn$/);
@@ -52,7 +81,7 @@ test("the landing page in night colours", async ({ page, isMobile }) => {
   await page.addInitScript(([key]) => localStorage.setItem(key, JSON.stringify({ learnIn: "en", theme: "dark" })), [SETTINGS_KEY]);
   await page.goto("/");
   await expect(page.locator("html")).toHaveClass(/dark/);
-  await page.screenshot({ path: `${SHOTS}/landing-night.png`, fullPage: true });
+  await screens(page, "landing-night");
 });
 
 test("the privacy page and the search engine files", async ({ page, request }) => {

@@ -12,8 +12,8 @@ const LINK = `inline-flex min-h-12 items-center gap-2 rounded-lg text-base text-
 export function LandingFooter() {
   return (
     <footer aria-label={strings.landingFooter.en} className="border-t border-line bg-surface/60">
-      <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 sm:grid-cols-[2fr_1fr_1fr]">
-        <div className="flex flex-col gap-3">
+      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-10 px-5 py-14 sm:grid-cols-[2fr_1fr_1fr]">
+        <div className="col-span-2 flex flex-col gap-3 sm:col-span-1">
           <Logo />
           <p className="max-w-xs text-base text-ink-2">{strings.landingFooterLine.en}</p>
         </div>

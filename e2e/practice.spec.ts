@@ -48,7 +48,7 @@ test("a mistake appears in Practice again and disappears after a correct answer"
   await expect(page.getByText("0 left")).toBeVisible();
 
   await page.reload();
-  await expect(page.getByText("Nothing to practise again. Well done!")).toBeVisible();
+  await expect(page.getByText("Nothing to practice again. Well done!")).toBeVisible();
 });
 
 test("My Sentences lists Day 1's key sentences", async ({ page }) => {

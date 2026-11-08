@@ -18,7 +18,7 @@ test("Night, A++ and English mode apply before first paint, survive a reload, an
   await page.getByRole("button", { name: /^English/ }).click();
   await expect(page.locator("html")).toHaveClass(/dark/);
   await expect(page.locator("html")).toHaveCSS("font-size", "22px");
-  await expect(page.locator('[lang="te"]')).toHaveCount(0);
+  await expect(page.locator('[lang="te"]')).toHaveText(["తెలుగు"]); // only the Learn in choice, by its own name
 
   // Reload with every script file blocked: only the inline script in <head> can have run.
   await context.route("**/_next/static/**/*.js", (route) => route.abort());
@@ -35,7 +35,7 @@ test("Night, A++ and English mode apply before first paint, survive a reload, an
   await expect(page.getByRole("button", { name: "A++" })).toHaveAttribute("aria-pressed", "true");
   await expect(page.getByRole("button", { name: "English", exact: true })).toHaveAttribute("aria-pressed", "true");
   await expect(page.locator("html")).toHaveClass(/dark/);
-  await expect(page.locator('[lang="te"]')).toHaveCount(0);
+  await expect(page.locator('[lang="te"]')).toHaveText(["తెలుగు"]); // only the Learn in choice, by its own name
   await expect(page.getByRole("link", { name: "Settings", exact: true })).toHaveAttribute("aria-current", "page");
   await expect(page.getByRole("link", { name: "Buy me a coffee (opens in a new tab)" })).toHaveAttribute("rel", "noopener noreferrer");
 

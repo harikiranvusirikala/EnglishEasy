@@ -60,7 +60,7 @@ export function GoogleButton({ onFailed, returnTo }: { onFailed: () => void; ret
       type="button"
       onClick={signIn}
       disabled={pending}
-      className="flex min-h-13 items-center justify-center gap-2.5 self-start rounded-full border border-[#747775] bg-surface px-4 text-base font-medium tracking-[0.25px] text-[#1f1f1f] outline-none transition-shadow hover:shadow-md focus-visible:ring-2 focus-visible:ring-brand disabled:opacity-60 dark:border-[#8e918f] dark:bg-[#131314] dark:text-[#e3e3e3]"
+      className="flex min-h-13 items-center justify-center gap-2.5 self-center rounded-full border border-[#747775] bg-surface px-4 text-base font-medium tracking-[0.25px] text-[#1f1f1f] outline-none transition-shadow hover:shadow-md focus-visible:ring-2 focus-visible:ring-brand disabled:opacity-60 dark:border-[#8e918f] dark:bg-[#131314] dark:text-[#e3e3e3]"
     >
       <GoogleLogo />
       {/* Google's wording is fixed; the Telugu meaning goes below in Telugu mode */}

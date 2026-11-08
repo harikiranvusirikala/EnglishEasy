@@ -29,6 +29,8 @@ const SIZES = {
   lg: "min-h-14 rounded-2xl px-6 text-lg",
   /** A rounded pill (Listen / Slow). */
   pill: "min-h-12 rounded-full px-4 text-base",
+  /** A square holding only an icon (its name comes from aria-label), e.g. the phone header's My lessons. */
+  icon: "size-13 rounded-2xl",
 };
 
 export type ButtonVariant = keyof typeof VARIANTS;

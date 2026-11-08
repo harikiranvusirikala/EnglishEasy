@@ -74,14 +74,14 @@ beforeEach(() => {
 afterEach(() => vi.useRealTimers());
 
 describe("RolePlay", () => {
-  it("plays by tapping: good reply, correction on a not-good one, then the summary", () => {
+  it("plays by tapping: a good reply goes straight on, a not-good one is corrected, then the summary", async () => {
     const onNext = vi.fn();
     render(<RolePlay activity={roleplay} onNext={onNext} />);
     expect(screen.getByText("What do you drink?")).toBeTruthy();
     click("I drink tea.");
-    expect(screen.getByText("Good")).toBeTruthy();
-    click(/^Continue/);
-    expect(screen.getByText("And what do you eat?")).toBeTruthy();
+    expect(screen.queryByText("Good")).toBeNull(); // no panel and no Continue after a good reply
+    expect(screen.queryByRole("button", { name: /^Continue/ })).toBeNull();
+    expect(await screen.findByText("And what do you eat?")).toBeTruthy(); // the partner answers by itself
     click("I idli eat.");
     expect(screen.getByText("Almost")).toBeTruthy();
     expect(screen.getByText("I eat idli.")).toBeTruthy(); // the better reply
@@ -102,11 +102,10 @@ describe("RolePlay", () => {
     expect(screen.getByText("Try again")).toBeTruthy();
     vi.mocked(listen).mockResolvedValueOnce(hear("I drink tea"));
     await speakNow();
-    expect(screen.getByText("Good")).toBeTruthy();
-    click(/^Continue/);
+    expect(await screen.findByText("And what do you eat?")).toBeTruthy();
     vi.mocked(listen).mockResolvedValueOnce(hear("I eat idli"));
     await speakNow();
-    click(/^See how it went/);
+    expect(await screen.findByText("Role play complete")).toBeTruthy(); // a good last reply opens the summary by itself
     expect(screen.getByTestId("score-speaking").textContent).toContain("10 / 10");
     expect(screen.getByTestId("score-conversation").textContent).toContain("10 / 10");
   });
@@ -144,7 +143,7 @@ describe("RolePlay", () => {
     expect(screen.getByText(/microphone is not allowed/)).toBeTruthy();
     expect(screen.queryByRole("button", { name: /^Speak/ })).toBeNull();
     click("I drink tea.");
-    expect(screen.getByText("Good")).toBeTruthy();
+    expect(await screen.findByText("And what do you eat?")).toBeTruthy();
   });
 });
 

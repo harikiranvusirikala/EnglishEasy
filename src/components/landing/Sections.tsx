@@ -30,13 +30,14 @@ export function HowItWorks() {
       <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {STEPS.map((step, i) => (
           <li key={i} className={`${card} flex flex-col gap-3`}>
-            <span className="flex items-center justify-between">
-              <span aria-hidden="true" className="flex size-12 items-center justify-center rounded-2xl bg-brand-soft text-brand">
+            {/* Icon, title and step number on one row (shorter cards on phones), the sentence under them. */}
+            <span className="flex items-center gap-3">
+              <span aria-hidden="true" className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-brand-soft text-brand">
                 <Icon name={step.icon} />
               </span>
-              <span className="font-display flex size-9 items-center justify-center rounded-full bg-ink text-base font-bold text-page">{i + 1}</span>
+              <h3 className="font-display min-w-0 flex-1 text-xl font-semibold text-ink">{step.title.en}</h3>
+              <span className="font-display flex size-9 shrink-0 items-center justify-center rounded-full bg-ink text-base font-bold text-page">{i + 1}</span>
             </span>
-            <h3 className="font-display text-xl font-semibold text-ink">{step.title.en}</h3>
             <p className="text-base text-ink-2">{step.text.en}</p>
           </li>
         ))}
@@ -172,10 +173,12 @@ export function WhyItWorks() {
       <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {REASONS.map((reason) => (
           <li key={reason.title.en} className={`${card} flex flex-col gap-3`}>
-            <span aria-hidden="true" className="flex size-12 items-center justify-center rounded-2xl bg-accent-soft text-accent-ink">
-              <Icon name={reason.icon} />
+            <span className="flex items-center gap-3">
+              <span aria-hidden="true" className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-accent-soft text-accent-ink">
+                <Icon name={reason.icon} />
+              </span>
+              <h3 className="font-display min-w-0 flex-1 text-xl font-semibold text-ink">{reason.title.en}</h3>
             </span>
-            <h3 className="font-display text-xl font-semibold text-ink">{reason.title.en}</h3>
             <p className="text-base text-ink-2">{reason.text.en}</p>
           </li>
         ))}

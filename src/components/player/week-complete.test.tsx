@@ -13,7 +13,7 @@ const day = (id: string): PlayableDay => ({ id, kind: "lesson", title: { en: id,
 beforeEach(() => updateSettings({ learnIn: "en" }));
 
 describe("WeekComplete", () => {
-  it("shows Week N complete with the days practised and a share button", () => {
+  it("shows Week N complete with the days practiced and a share button", () => {
     render(<WeekComplete day={day("a2")} onReview={vi.fn()} course={fixtureCourse} />);
     expect(screen.getByRole("heading", { name: "Week 12 Complete!" })).toBeTruthy();
     expect(screen.getByText("2 / 2 days")).toBeTruthy();

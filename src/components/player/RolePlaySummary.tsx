@@ -24,7 +24,7 @@ function Score({ label, value, testId }: { label: BiLabel; value: number; testId
   );
 }
 
-/** "Role play complete": what went well, what to practise, and the Speaking and Conversation scores out of 10 (VISION §7). */
+/** "Role play complete": what went well, what to practice, and the Speaking and Conversation scores out of 10 (VISION §7). */
 export function RolePlaySummary({ roleplay, score, onNext }: { roleplay: Pick<RolePlay, "skills">; score: RolePlayScore; onNext: () => void }) {
   const label = (id: string) => roleplay.skills.find((s) => s.id === id)?.label;
   return (

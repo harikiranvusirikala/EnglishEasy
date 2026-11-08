@@ -47,7 +47,7 @@ export function PracticeRunner({ items, mode, onExit }: { items: PracticeItem[];
             {Math.min(index + 1, items.length)} / {items.length}
           </span>
         </header>
-        <main ref={main} tabIndex={-1} className="flex-1 overflow-y-auto px-4 pt-4 pb-[26rem] outline-none">
+        <main ref={main} tabIndex={-1} className="flex-1 overflow-y-auto px-4 pt-4 pb-[calc(var(--bar-h,10rem)+1.5rem)] outline-none">
           {!finished ? (
             <ActivityView
               key={item.activity.id}

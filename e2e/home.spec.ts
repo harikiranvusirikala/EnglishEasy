@@ -23,7 +23,7 @@ test("fresh visitor: language choice, Home, Day 1, back Home shows progress", as
   await page.getByRole("button", { name: /^Continue/ }).click();
   await page.goto("/learn");
   await expect(page.getByRole("link", { name: /Continue Lesson/ })).toBeVisible();
-  await expect(page.getByText(/\d+ of \d+ done/)).not.toContainText("0 of");
+  await expect(page.getByText(/\d+ of \d+ done · /)).not.toContainText("0 of"); // the today card's count (the week card has its own "of 7 done")
 });
 
 test("Home at night", async ({ page }) => {

@@ -52,12 +52,12 @@ test("the landing page tells what it is and starts Day 1", async ({ page, isMobi
   expect(data["@graph"].map((node: { "@type": string }) => node["@type"])).toEqual(["WebSite", "Course", "FAQPage"]);
 
   // No horizontal scrolling, and no text cut off at the screen's edge (a section that clips its overflow hides it from the first check).
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= Math.min(window.innerWidth, screen.width))).toBe(true);
   const outside = await page.evaluate(() =>
     [...document.querySelectorAll("main :is(h1, h2, h3, p, a, li)")]
       .filter((el) => {
         const r = el.getBoundingClientRect();
-        return r.width > 0 && (r.left < -1 || r.right > window.innerWidth + 1);
+        return r.width > 0 && (r.left < -1 || r.right > Math.min(window.innerWidth, screen.width) + 1);
       })
       .map((el) => el.textContent?.trim().slice(0, 40)),
   );

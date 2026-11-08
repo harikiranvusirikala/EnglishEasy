@@ -15,7 +15,7 @@ const CHOICES: { choice: ThemeChoice; label: BiLabel; icon: IconName }[] = [
 ];
 
 /**
- * The theme as one icon button with a menu (Day, Night, Follow phone), in the header from tablets up and on
+ * The theme as one icon button with a menu (Day, Night, Device), in the header from tablets up and on
  * the public pages. It shows the current choice; Settings has the same choice as buttons.
  */
 export function ThemeMenu() {

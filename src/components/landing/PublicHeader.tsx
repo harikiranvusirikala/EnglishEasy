@@ -10,15 +10,23 @@ export function PublicHeader() {
   return (
     <header className="sticky top-0 z-30 border-b border-line/70 bg-page/80 backdrop-blur-md">
       <div className="mx-auto flex h-18 max-w-6xl items-center gap-4 px-5">
-        <Link href="/" aria-label={strings.appName.en} className={`rounded-xl ${focusRing}`}>
+        <Link href="/" aria-label={strings.appName.en} className={`shrink-0 rounded-xl ${focusRing}`}>
           <Logo size="sm" />
         </Link>
-        <div className="ml-auto flex items-center gap-3">
+        <div className="ml-auto flex shrink-0 items-center gap-3">
           <ThemeMenu />
-          <Link href="/learn" className={button("primary", "md")}>
-            <Icon name="home" className="size-5" />
-            {strings.myLessons.en}
-          </Link>
+          {/* On phones My lessons is a home icon, so the logo, the theme and it fit side by side; the words from tablets up. */}
+          <span className="sm:hidden">
+            <Link href="/learn" aria-label={strings.myLessons.en} title={strings.myLessons.en} className={button("primary", "icon")}>
+              <Icon name="home" className="size-6" />
+            </Link>
+          </span>
+          <span className="hidden sm:block">
+            <Link href="/learn" className={button("primary", "md")}>
+              <Icon name="home" className="size-5" />
+              {strings.myLessons.en}
+            </Link>
+          </span>
         </div>
       </div>
     </header>

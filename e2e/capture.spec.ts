@@ -90,8 +90,6 @@ test("a role play", async ({ page }) => {
   await only(page, "roleplay", () => true);
   await expect(page.getByText("What do you drink in the morning?")).toBeVisible();
   await page.getByRole("button", { name: "I drink tea.", exact: true }).click();
-  await expect(page.getByText("Good", { exact: true })).toBeVisible();
-  await page.getByRole("button", { name: /^Continue/ }).click();
   await expect(page.getByText("And what do you eat?")).toBeVisible();
   await shot(page, "roleplay");
 });
@@ -113,6 +111,6 @@ test("the journey", async ({ page }) => {
   await settings(page, { learnIn: "en" });
   await page.goto("/learn/journey");
   await expect(page.getByRole("button", { name: /Week 1 English Foundations/ })).toBeVisible();
-  await expect(page.getByRole("link", { name: /Who Does What/ })).toContainText("0%"); // the day's percent has loaded
+  await expect(page.getByRole("link", { name: /Who Does What/ })).toBeVisible(); // a day not started shows no percent
   await shot(page, "journey");
 });

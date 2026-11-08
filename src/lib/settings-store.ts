@@ -66,7 +66,7 @@ function subscribe(listener: () => void) {
     applyToDocument(read());
     notify();
   };
-  // The phone switched Day/Night (matters for "Follow phone"); another tab changed a setting.
+  // The phone switched Day/Night (matters for "Device"); another tab changed a setting.
   const storageChanged = (event: StorageEvent) => {
     if (event.key === SETTINGS_KEY || event.key === null) changed();
   };

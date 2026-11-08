@@ -3,7 +3,7 @@
 const BASE = "inline-flex min-h-7 shrink-0 items-center gap-1 rounded-full px-2.5 text-sm font-semibold leading-none whitespace-nowrap";
 
 const TONES = {
-  brand: "bg-brand-soft text-brand-ink",
+  brand: "bg-brand-soft-hover text-brand-ink ring-1 ring-inset ring-brand/25", // a shade deeper with a line, so it stands out on teal-tinted backgrounds
   accent: "bg-accent-soft text-accent-ink ring-1 ring-inset ring-accent/40",
   good: "bg-good-soft text-good ring-1 ring-inset ring-good-line",
   neutral: "bg-sunken text-ink-2 ring-1 ring-inset ring-line",

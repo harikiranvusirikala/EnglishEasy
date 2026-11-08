@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { Bi } from "@/components/ui/Bi";
 import { BiText } from "@/components/ui/BiText";
-import { button } from "@/components/ui/button";
 import { Nudge } from "@/components/ui/Nudge";
 import { SAVE_CARD_ID, saveCardVisible } from "@/learning/account";
 import { useAccount } from "@/lib/account";
@@ -25,14 +24,9 @@ export function SaveProgressCard() {
       label={strings.saveProgressTitle.en}
       icon="shield"
       title={<Bi label={strings.saveProgressTitle} className="items-start" />}
-      actions={
-        <>
-          <GoogleButton onFailed={() => setFailed(true)} returnTo="/learn" />
-          <button type="button" onClick={dismiss} className={`${button("ghost")} w-full`}>
-            <Bi label={strings.saveProgressNotNow} />
-          </button>
-        </>
-      }
+      onDismiss={dismiss}
+      dismissLabel={strings.saveProgressNotNow.en}
+      actions={<GoogleButton onFailed={() => setFailed(true)} returnTo="/learn" />}
     >
       <BiText text={strings.saveProgressText} />
       {failed && (

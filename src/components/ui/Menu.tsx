@@ -48,6 +48,16 @@ export function Menu(props: {
     document.getElementById(`${id}-button`)?.focus();
   };
 
+  // Kept on the screen: a menu whose button is not at the screen's edge could open past it, so shift it back in.
+  useLayoutEffect(() => {
+    const el = panel.current;
+    if (!open || !el) return;
+    const margin = 12;
+    const { left, right } = el.getBoundingClientRect();
+    const shift = left < margin ? margin - left : right > window.innerWidth - margin ? window.innerWidth - margin - right : 0;
+    el.style.translate = shift ? `${shift}px 0` : "";
+  }, [open]);
+
   useEffect(() => {
     if (!open) return;
     const items = [...(panel.current?.querySelectorAll<HTMLElement>(ITEMS) ?? [])];

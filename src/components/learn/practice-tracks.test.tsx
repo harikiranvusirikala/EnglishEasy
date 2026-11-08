@@ -34,7 +34,7 @@ const finish = (...ids: string[]) => updateProgress((p) => ids.reduce((acc, id) 
 describe("tracks (fixture course: one track released)", () => {
   it("is hidden before the offer week and with nothing released", async () => {
     const first = render(<Home course={fixtureCourse} written={written} />);
-    await screen.findByText(/Week 12/);
+    await screen.findByText(/Week 12 • Day/);
     expect(screen.queryByText("Want extra lessons for your life?")).toBeNull();
 
     const unreleased: Course = { ...fixtureCourse, tracks: fixtureCourse.tracks.map((t) => ({ ...t, weeks: t.weeks.map((w) => ({ ...w, released: false, days: [] })) })) };
@@ -125,9 +125,9 @@ describe("Practice", () => {
     expect(Object.keys(getProgress().mistakes)).toEqual(["a1.practice1"]);
   });
 
-  it("says so when there is nothing to practise again", async () => {
+  it("says so when there is nothing to practice again", async () => {
     render(<PracticeAgain />);
-    expect(await screen.findByText("Nothing to practise again. Well done!")).toBeTruthy();
+    expect(await screen.findByText("Nothing to practice again. Well done!")).toBeTruthy();
   });
 
   it("My Sentences lists the key sentences of finished lessons only", async () => {

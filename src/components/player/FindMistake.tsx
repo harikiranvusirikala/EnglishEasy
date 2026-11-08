@@ -36,7 +36,7 @@ export function FindMistake({ activity, onAnswer, onNext }: Props) {
         <Instruction>
           <BiText text={strings.mistakePrompt} />
         </Instruction>
-        <div ref={box} role="group" className="flex scroll-mb-96 flex-wrap gap-2.5 rounded-[1.25rem] border border-line bg-surface p-4 shadow-card">
+        <div ref={box} role="group" className="flex flex-wrap gap-2.5 rounded-[1.25rem] border border-line bg-surface p-4 shadow-card">
           {words.map((w, i) => (
             <button
               key={i}
@@ -55,13 +55,12 @@ export function FindMistake({ activity, onAnswer, onNext }: Props) {
       </div>
       <BottomBar tone={tone}>
         {kind && (
-          <FeedbackPanel kind={kind}>
+          <FeedbackPanel kind={kind} action={judged && <Narrate text={activity.fix} auto variant="compact" />}>
             {judged && (
               <>
                 <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-lg">
                   <span>{strings.sayItLike.en}:</span>
                   <span className="font-semibold">{activity.fix}</span>
-                  <Narrate text={activity.fix} auto variant="compact" />
                 </p>
                 <p className="text-base text-ink-2">
                   <ContentText text={activity.why} />

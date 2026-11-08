@@ -35,12 +35,12 @@ describe("isDue", () => {
     const sydney = { hour: 18, timeZone: "Australia/Sydney" };
     expect(isDue(sydney, at("2026-11-07T07:00:00Z"))).toBe(true); // 18:00 AEDT
   });
-  it("is not due after practising today, or after a reminder today", () => {
+  it("is not due after practicing today, or after a reminder today", () => {
     const now = at("2026-11-07T02:30:00Z");
     expect(isDue({ ...india, lastPracticeDay: "2026-11-07" }, now)).toBe(false);
     expect(isDue({ ...india, lastSentDay: "2026-11-07" }, now)).toBe(false);
   });
-  it("is due again the next day, and when only an older day was practised", () => {
+  it("is due again the next day, and when only an older day was practiced", () => {
     expect(isDue({ ...india, lastPracticeDay: "2026-11-06", lastSentDay: "2026-11-06" }, at("2026-11-07T02:30:00Z"))).toBe(true);
   });
   it("judges the practice day by the learner's date, not UTC's", () => {

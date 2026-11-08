@@ -121,14 +121,16 @@ function LearnActivity({ activity }: { activity: Activity }) {
     case "dontSay":
       return (
         <section className="grid gap-3 sm:grid-cols-2">
-          <div className="flex flex-col gap-1 rounded-[1.25rem] border-2 border-almost-line bg-almost-soft p-5">
-            <p className="text-base font-semibold text-almost">✗ {strings.dontSay.en}</p>
-            <p className="text-xl text-almost line-through decoration-2">{activity.wrong}</p>
-          </div>
-          <div className="flex flex-col gap-1 rounded-[1.25rem] border-2 border-good-line bg-good-soft p-5">
-            <p className="text-base font-semibold text-good">✓ {strings.say.en}</p>
-            <p className="text-xl font-semibold text-good">{activity.right}</p>
-          </div>
+          <p className="flex items-baseline gap-2.5 rounded-[1.25rem] border-2 border-almost-line bg-almost-soft px-4 py-3.5 text-xl text-almost">
+            <span aria-hidden="true" className="font-semibold">✗</span>
+            <span className="sr-only">{strings.dontSay.en}: </span>
+            <span className="line-through decoration-2">{activity.wrong}</span>
+          </p>
+          <p className="flex items-baseline gap-2.5 rounded-[1.25rem] border-2 border-good-line bg-good-soft px-4 py-3.5 text-xl font-semibold text-good">
+            <span aria-hidden="true">✓</span>
+            <span className="sr-only">{strings.say.en}: </span>
+            <span>{activity.right}</span>
+          </p>
           <p className="text-lg text-ink-2 sm:col-span-2">
             <Both text={activity.why} />
           </p>

@@ -44,10 +44,8 @@ test("Day 1's role play by tapping, with a correction and the summary", async ({
   await next(page);
   await expect(page.getByText("And what do you eat?")).toBeVisible();
   await page.getByRole("button", { name: "I eat rice.", exact: true }).click();
-  await expect(page.getByText("Good", { exact: true })).toBeVisible();
-  await next(page);
-  await page.getByRole("button", { name: "I read the newspaper.", exact: true }).click();
-  await next(page, /^See how it went/);
+  await expect(page.getByRole("button", { name: /^Continue/ })).toHaveCount(0); // a good reply goes straight on
+  await page.getByRole("button", { name: "I read the newspaper.", exact: true }).click(); // waits for the next turn
 
   await expect(page.getByRole("heading", { name: "Role play complete" })).toBeVisible();
   await expect(page.getByTestId("score-conversation")).toContainText("7 / 10");
@@ -64,15 +62,13 @@ test("Day 1's role play by voice; night mode", async ({ page }) => {
   await expect(page.getByText("Try again", { exact: true })).toBeVisible();
   await transcript(page, "I drink tea");
   await page.getByRole("button", { name: "Speak again" }).click();
-  await expect(page.getByText("Good", { exact: true })).toBeVisible();
+  await expect(page.getByText("And what do you eat?")).toBeVisible(); // the partner answers by itself
   await page.screenshot({ path: `${SHOTS}/roleplay-night.png` });
-  await next(page);
   await transcript(page, "I eat idli");
   await page.getByRole("button", { name: "Speak" }).click();
-  await next(page);
+  await expect(page.getByText("What do you read?")).toBeVisible(); // the next line, before the next transcript is set
   await transcript(page, "I read the newspaper");
   await page.getByRole("button", { name: "Speak" }).click();
-  await next(page, /^See how it went/);
   await expect(page.getByTestId("score-speaking")).toContainText("10 / 10");
   await expect(page.getByTestId("score-conversation")).toContainText("10 / 10");
   await page.screenshot({ path: `${SHOTS}/roleplay-summary-night.png` });

@@ -72,7 +72,7 @@ export function Build({ activity, onAnswer, onNext }: Props) {
           ref={tray}
           role="group"
           aria-label={strings.yourSentence.en}
-          className={`flex min-h-24 scroll-mb-96 flex-wrap content-start items-start gap-2 rounded-[1.25rem] border-2 border-dashed p-3 transition-colors ${
+          className={`flex min-h-24 flex-wrap content-start items-start gap-2 rounded-[1.25rem] border-2 border-dashed p-3 transition-colors ${
             placed.length === 0 ? "border-line-strong bg-sunken/60" : "border-brand/40 bg-surface"
           }`}
         >
@@ -108,16 +108,13 @@ export function Build({ activity, onAnswer, onNext }: Props) {
 
       <BottomBar tone={tone}>
         {kind && (
-          <FeedbackPanel kind={kind}>
-            <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-lg">
-              {result === "failed" && (
-                <>
-                  <span>{strings.answerIs.en}:</span>
-                  <span className="font-semibold">{activity.answer}</span>
-                </>
-              )}
-              {judged && <Narrate text={activity.answer} auto variant="compact" />}
-            </p>
+          <FeedbackPanel kind={kind} action={judged && <Narrate text={activity.answer} auto variant="compact" />}>
+            {result === "failed" && (
+              <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-lg">
+                <span>{strings.answerIs.en}:</span>
+                <span className="font-semibold">{activity.answer}</span>
+              </p>
+            )}
           </FeedbackPanel>
         )}
         {result === null && <MainButton label={strings.check} onClick={check} disabled={placed.length === 0} />}

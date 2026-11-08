@@ -128,26 +128,25 @@ export function DontSayCard({ activity, onNext }: CardProps<"dontSay">) {
   return (
     <>
       <div className="flex flex-col gap-4">
-        <div className="flex flex-col gap-2 rounded-[1.25rem] border-2 border-almost-line bg-almost-soft p-5">
-          <p className="flex items-center gap-2 text-base font-semibold text-almost">
-            <span aria-hidden="true" className="flex size-7 items-center justify-center rounded-full bg-almost text-almost-soft">
-              <Icon name="close" className="size-4" strokeWidth={3} />
-            </span>
-            <Bi label={strings.dontSay} />
+        {/* The ✗ and ✓ say it: no "Don't say" / "Say" line (screen readers still hear them), to save space on phones. */}
+        <div className="flex items-center gap-3 rounded-[1.25rem] border-2 border-almost-line bg-almost-soft px-4 py-3.5">
+          <span aria-hidden="true" className="flex size-7 shrink-0 items-center justify-center rounded-full bg-almost text-almost-soft">
+            <Icon name="close" className="size-4" strokeWidth={3} />
+          </span>
+          <p className="min-w-0 flex-1 text-2xl text-almost line-through decoration-2">
+            <span className="sr-only">{strings.dontSay.en}: </span>
+            {activity.wrong}
           </p>
-          <p className="text-2xl text-almost line-through decoration-2">{activity.wrong}</p>
         </div>
-        <div className="flex flex-col gap-2 rounded-[1.25rem] border-2 border-good-line bg-good-soft p-5">
-          <p className="flex items-center gap-2 text-base font-semibold text-good">
-            <span aria-hidden="true" className="flex size-7 items-center justify-center rounded-full bg-good text-good-soft">
-              <Icon name="check" className="size-4" strokeWidth={3} />
-            </span>
-            <Bi label={strings.say} />
+        <div className="flex items-center gap-3 rounded-[1.25rem] border-2 border-good-line bg-good-soft px-4 py-3.5">
+          <span aria-hidden="true" className="flex size-7 shrink-0 items-center justify-center rounded-full bg-good text-good-soft">
+            <Icon name="check" className="size-4" strokeWidth={3} />
+          </span>
+          <p className="min-w-0 flex-1 text-2xl font-semibold text-good">
+            <span className="sr-only">{strings.say.en}: </span>
+            {activity.right}
           </p>
-          <div className="flex items-center justify-between gap-3">
-            <p className="text-2xl font-semibold text-good">{activity.right}</p>
-            <Narrate text={activity.right} auto variant="compact" />
-          </div>
+          <Narrate text={activity.right} auto variant="compact" />
         </div>
         <div className={`${card} flex items-start gap-3`}>
           <span aria-hidden="true" className="flex size-10 shrink-0 items-center justify-center rounded-2xl bg-accent-soft text-accent-ink">

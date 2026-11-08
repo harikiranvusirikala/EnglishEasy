@@ -48,9 +48,13 @@ function PartnerBubble({ name, english, telugu, auto }: { name: RolePlayActivity
 }
 
 /**
- * A scripted conversation (no AI): the partner's line plays, the learner speaks a reply or taps one, a not-good reply
- * gets a gentle correction, and the conversation goes on. After the last turn comes the summary.
+ * A scripted conversation (no AI): the partner's line plays, the learner speaks a reply or taps one. A good reply moves
+ * straight on to the partner's next line (owner, 2026-11-08: no "Good" panel or Continue button, it flows like a real
+ * talk); a not-good reply gets a gentle correction and Continue. After the last turn comes the summary.
  */
+/** How long a good reply's ✓ bubble shows before the partner's next line. */
+export const GOOD_REPLY_PAUSE_MS = 700;
+
 export function RolePlay({ activity, onNext }: { activity: RolePlayActivity; onAnswer?: (correct: boolean) => void; onNext: () => void }) {
   const { turns } = activity;
   const { choosing, note, choose } = useChoosing();
@@ -61,6 +65,7 @@ export function RolePlay({ activity, onNext }: { activity: RolePlayActivity; onA
   const [miss, setMiss] = useState<Miss | null>(null);
   const [listening, setListening] = useState(false);
   const gone = useRef(false);
+  const timer = useRef<number | undefined>(undefined);
   const end = useRef<HTMLDivElement>(null);
 
   const replied = log.length > turn; // this turn has its reply
@@ -72,6 +77,7 @@ export function RolePlay({ activity, onNext }: { activity: RolePlayActivity; onA
     gone.current = false;
     return () => {
       gone.current = true;
+      window.clearTimeout(timer.current);
       stopListening();
     };
   }, []);
@@ -80,11 +86,21 @@ export function RolePlay({ activity, onNext }: { activity: RolePlayActivity; onA
     end.current?.scrollIntoView?.({ block: "nearest" });
   }, [turn, log.length, hint, miss]);
 
+  const forward = () => {
+    if (last) setSummary(true);
+    else {
+      setTurn((t) => t + 1);
+      setHint(null);
+    }
+  };
+
   const reply = (index: number, speech?: number) => {
     const chosen = current.replies[index];
     const better = chosen.good ? undefined : current.replies.find((r) => r.good)?.say;
     setLog((l) => [...l, { text: chosen.say, good: chosen.good, skill: chosen.skill, speech, better }]);
     setMiss(null);
+    // A good reply stays on screen a moment (the ✓ bubble), then the partner answers.
+    if (chosen.good) timer.current = window.setTimeout(() => !gone.current && forward(), GOOD_REPLY_PAUSE_MS);
   };
 
   const speak = async () => {
@@ -100,18 +116,11 @@ export function RolePlay({ activity, onNext }: { activity: RolePlayActivity; onA
     reply(judged.best, judged.score);
   };
 
-  const forward = () => {
-    if (last) setSummary(true);
-    else {
-      setTurn((t) => t + 1);
-      setHint(null);
-    }
-  };
-
   if (summary)
     return <RolePlaySummary roleplay={activity} score={scoreRolePlay(activity, log)} onNext={onNext} />;
 
   const lastReply = log[turn];
+  const corrected = replied && lastReply && !lastReply.good; // only a not-good reply waits for Continue
   return (
     <>
       <div className="flex flex-col gap-4">
@@ -177,9 +186,9 @@ export function RolePlay({ activity, onNext }: { activity: RolePlayActivity; onA
         <div ref={end} />
       </div>
 
-      <BottomBar tone={replied && lastReply ? (lastReply.good ? "good" : "almost") : miss ? "almost" : "neutral"}>
-        {replied && lastReply && (
-          <FeedbackPanel kind={lastReply.good ? "correct" : "almost"} label={lastReply.good ? strings.good : strings.almost}>
+      <BottomBar tone={corrected || (!replied && miss) ? "almost" : "neutral"}>
+        {corrected && (
+          <FeedbackPanel kind="almost" label={strings.almost}>
             {lastReply.better && (
               <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-lg">
                 <span>{strings.betterReply.en}:</span>
@@ -189,7 +198,7 @@ export function RolePlay({ activity, onNext }: { activity: RolePlayActivity; onA
             )}
           </FeedbackPanel>
         )}
-        {replied && <MainButton label={last ? strings.seeSummary : strings.continue} onClick={forward} tone={lastReply?.good ? "good" : "almost"} />}
+        {corrected && <MainButton label={last ? strings.seeSummary : strings.continue} onClick={forward} tone="almost" />}
 
         {!replied && miss && (
           <FeedbackPanel kind="almost" label={strings.tryAgain}>

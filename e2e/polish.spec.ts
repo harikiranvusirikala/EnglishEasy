@@ -18,7 +18,8 @@ async function problems(page: Page) {
       if (!name) out.push(`no name: ${el.outerHTML.slice(0, 80)}`);
       if (r.height < 51.5 && !el.closest("details > summary, [data-small-ok]")) out.push(`${Math.round(r.height)}px: ${name.slice(0, 40)}`);
     }
-    if (document.documentElement.scrollWidth > window.innerWidth + 1) out.push("horizontal overflow");
+    // Against the screen too: an emulated phone zooms out to fit a page that is too wide, and innerWidth grows with it.
+    if (document.documentElement.scrollWidth > Math.min(window.innerWidth, screen.width) + 1) out.push("horizontal overflow");
     return out;
   });
 }

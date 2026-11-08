@@ -37,7 +37,7 @@ export const FAQ: Question[] = [
   },
   {
     question: "Does it work without internet?",
-    answer: "Once a lesson has been opened, the app can keep it on your phone so you can practise offline. Your progress is saved on your phone.",
+    answer: "Once a lesson has been opened, the app can keep it on your phone so you can practice offline. Your progress is saved on your phone.",
   },
   {
     question: "Do I need an account?",

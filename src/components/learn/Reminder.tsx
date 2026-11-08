@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Bi } from "@/components/ui/Bi";
 import { BiText } from "@/components/ui/BiText";
-import { button, focusRing } from "@/components/ui/button";
+import { focusRing } from "@/components/ui/button";
 import { Nudge } from "@/components/ui/Nudge";
 import { card, cardText, cardTitle } from "@/components/ui/card";
 import { REMINDER_TIMES, type ReminderMode, type ReminderTimeId } from "@/learning/reminder-due";
@@ -127,11 +127,8 @@ export function ReminderCard({ finishedLessons }: { finishedLessons: number }) {
       icon="bell"
       tone="accent"
       title={<Bi label={strings.reminderCardTitle} className="items-start" />}
-      actions={
-        <button type="button" onClick={dismiss} className={`${button("ghost")} w-full`}>
-          <Bi label={strings.reminderNotNow} />
-        </button>
-      }
+      onDismiss={dismiss}
+      dismissLabel={strings.reminderNotNow.en}
     >
       <BiText text={strings.reminderCardText} />
       <ReminderChoices withOff={false} onChosen={dismiss} />

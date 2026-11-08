@@ -109,7 +109,11 @@ const DAY_STYLE = {
   todo: "bg-surface text-ink-2 ring-2 ring-inset ring-line-strong",
 };
 
-/** This week: seven day circles (✓ done, the current day ringed in marigold), and the days practised. */
+/**
+ * This week: the week's name and how many lessons are done, the seven days as a connected row (✓ done, the current day
+ * ringed in marigold with "Next" under it; the line turns green between finished days), and a quiet line with the days
+ * practised. The numbers are the day numbers; each written day links to its overview page.
+ */
 function WeekCard({ course, progress, written, practised }: { course: Course; progress: Progress; written: string[]; practised: number }) {
   const target = recommendedDay(course, progress);
   const place = target ? locateDay(course, target.dayId) : null;
@@ -117,31 +121,40 @@ function WeekCard({ course, progress, written, practised }: { course: Course; pr
   const current = target && !(target.dayId in progress.completed) ? target.dayId : null;
   const days = weekStrip(place.week, progress, current);
   const done = days.filter((d) => d.state === "done").length;
+  const joined = (i: number) => days[i]?.state === "done" && days[i + 1]?.state !== "todo"; // the line from day i to day i + 1 is green
   return (
-    <section aria-label={strings.homeThisWeek.en} className={`${card} flex flex-col gap-4`}>
-      <div className="flex items-center justify-between gap-3">
-        <h2 className={sectionTitle}>
-          <Bi label={strings.homeThisWeek} className="items-start" />
-        </h2>
-        <span className={badge("good")}>
-          {done} / {days.length}
-        </span>
+    <section aria-label={strings.homeThisWeek.en} className={`${card} flex flex-col gap-5`}>
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex min-w-0 flex-col gap-0.5">
+          <h2 className={sectionTitle}>
+            <Bi label={strings.homeThisWeek} className="items-start" />
+          </h2>
+          <p className="text-base text-ink-2">
+            {fill(strings.journeyWeek, { n: place.week.n }).en} · {place.week.title.en}
+          </p>
+        </div>
+        <span className={`${badge(done > 0 ? "good" : "neutral")} shrink-0`}>{fill(strings.homeWeekDone, { done, total: days.length }).en}</span>
       </div>
-      <ul className="grid grid-cols-7 gap-1">
-        {days.map((d) => {
+      <ul className="grid grid-cols-7">
+        {days.map((d, i) => {
           const content = (
             <>
-              <span aria-hidden="true" className={`flex size-10 items-center justify-center rounded-full font-display text-base font-bold ${DAY_STYLE[d.state]}`}>
-                {d.state === "done" ? <Icon name="check" className="size-5" strokeWidth={3} /> : d.number}
+              <span aria-hidden="true" className="relative flex w-full justify-center">
+                {i > 0 && <span className={`absolute top-1/2 right-1/2 left-0 h-1 -translate-y-1/2 ${joined(i - 1) ? "bg-good" : "bg-line"}`} />}
+                {i < days.length - 1 && <span className={`absolute top-1/2 right-0 left-1/2 h-1 -translate-y-1/2 ${joined(i) ? "bg-good" : "bg-line"}`} />}
+                <span className={`relative flex aspect-square w-[78%] max-w-10 items-center justify-center rounded-full font-display text-base font-bold ${DAY_STYLE[d.state]}`}>
+                  {d.state === "done" ? <Icon name="check" className="size-[55%]" strokeWidth={3} /> : d.number}
+                </span>
               </span>
-              <span className={`text-sm ${d.state === "current" ? "font-bold text-ink" : "text-ink-2"}`}>{fill(strings.homeDayChip, { n: d.number }).en}</span>
+              <span aria-hidden="true" className="min-h-5 text-sm leading-5 font-bold text-accent-ink">
+                {d.state === "current" ? strings.homeUpNext.en : ""}
+              </span>
               <span className="sr-only">
-                {" "}
-                — {(d.state === "done" ? strings.stepDone : d.state === "current" ? strings.stepCurrent : strings.stepTodo).en}
+                {fill(strings.homeDayChip, { n: d.number }).en} — {(d.state === "done" ? strings.stepDone : d.state === "current" ? strings.stepCurrent : strings.stepTodo).en}
               </span>
             </>
           );
-          const style = `flex min-h-16 flex-col items-center justify-center gap-1 rounded-2xl ${focusRing}`;
+          const style = `flex min-h-14 flex-col items-center justify-start gap-1.5 rounded-xl pt-1 ${focusRing}`;
           return (
             <li key={d.ref.id}>
               {written.includes(d.ref.id) ? (
@@ -156,8 +169,8 @@ function WeekCard({ course, progress, written, practised }: { course: Course; pr
         })}
       </ul>
       {practised > 0 && (
-        <p className="flex items-center gap-2 rounded-2xl bg-good-soft px-3 py-2.5 text-base text-good">
-          <Icon name="leaf" className="size-5" />
+        <p className="flex items-center gap-2 border-t border-line pt-4 text-base text-ink-2">
+          <Icon name="leaf" className="size-5 shrink-0 text-good" />
           {(practised === 1 ? strings.homePractisedOne : fill(strings.homePractised, { n: practised })).en}
         </p>
       )}
@@ -238,7 +251,7 @@ export function Home({ course, written }: { course: Course; written: string[] })
         </p>
       </header>
       {progress && settings ? (
-        <div className="grid gap-5 lg:grid-cols-[1.35fr_1fr] lg:items-start">
+        <div className="grid grid-cols-1 gap-5 lg:grid-cols-[1.35fr_1fr] lg:items-start">
           <div className="flex flex-col gap-5">
             <TodayCard course={course} progress={progress} written={written} />
             <TrackSuggestionCard course={course} progress={progress} written={written} />

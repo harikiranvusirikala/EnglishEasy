@@ -6,7 +6,7 @@ Plan and vision are in `docs/` (start with `docs/BUILD_PLAN.md`).
 
 ## Features
 
-- Seven-day Week 1 of Stage 1, lesson by lesson: explain, practise, speak, role play, review.
+- Seven-day Week 1 of Stage 1, lesson by lesson: explain, practice, speak, role play, review.
 - Learn in Telugu or English; every English sentence and explanation can be heard (browser voices), slow too.
 - No typing: answers are buttons, word tiles or voice; speaking never blocks progress ("Choose instead").
 - Home, Journey, Practice hub (sentences, speaking, role plays, tracks), weekly review.

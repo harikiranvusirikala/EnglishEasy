@@ -6,7 +6,7 @@ import type { Stage, Week } from "@/content/course";
 import type { Course } from "@/learning/recommend";
 import { offerableTracks, recommendedDay } from "@/learning/recommend";
 import { currentStageIndex, dayNumber, locateDay } from "@/learning/home";
-import { dayStats, stageStats, weekStats, type State } from "@/learning/stats";
+import { dayStarted, dayStats, stageStats, weekStats, type State } from "@/learning/stats";
 import type { Progress } from "@/learning/progress";
 import { Bi } from "@/components/ui/Bi";
 import { BiText } from "@/components/ui/BiText";
@@ -45,6 +45,7 @@ function Node({ state, soon, size = "md" }: { state: State; soon?: boolean; size
 }
 
 const ROW = `relative flex min-h-16 w-full items-center gap-3 rounded-2xl px-2 py-2 text-left ${focusRing}`;
+const DAY_ROW = `relative flex min-h-13 w-full items-center gap-3 rounded-2xl px-2 py-1.5 text-left ${focusRing}`;
 
 function Percent({ value }: { value: number }) {
   return <span className={badge(value === 100 ? "good" : value > 0 ? "brand" : "neutral")}>{fill(strings.journeyPercent, { n: value }).en}</span>;
@@ -62,22 +63,24 @@ function LoadedDayPercent({ id, progress }: { id: string; progress: Progress }) 
   return <Percent value={dayStats(use(loadLesson(id)), progress).percent} />;
 }
 
-/** One day in an opened week: its title and %, a link to its overview. Days not written yet say "coming soon". */
+/**
+ * One day in an opened week, on one line ("Day 1 · Who Does What"), a link to its overview. The % shows once the
+ * day is started (a day not started loads nothing); days not written yet say "coming soon".
+ */
 function DayRow({ id, title, number, progress, written }: { id: string; title: BiLabel; number: number; progress: Progress; written: boolean }) {
   const done = id in progress.completed;
-  const state: State = done ? "complete" : "not-started";
+  const started = !done && dayStarted(id, progress);
+  const state: State = done ? "complete" : started ? "in-progress" : "not-started";
   const name = (
-    <span className="flex min-w-0 flex-1 flex-col">
-      <span className="text-sm text-ink-3">{fill(strings.homeDayChip, { n: number }).en}</span>
-      <span className="text-base font-semibold text-ink">
-        {title.en}
-      </span>
+    <span className="min-w-0 flex-1 text-base font-semibold text-ink">
+      <span className="font-normal text-ink-3">{fill(strings.homeDayChip, { n: number }).en} · </span>
+      {title.en}
     </span>
   );
   if (!written) {
     return (
       <li>
-        <span className={`${ROW} opacity-70`}>
+        <span className={`${DAY_ROW} opacity-70`}>
           <Node state={state} soon size="sm" />
           {name}
           <Soon />
@@ -87,17 +90,16 @@ function DayRow({ id, title, number, progress, written }: { id: string; title: B
   }
   return (
     <li>
-      <Link href={`/lessons/${encodeURIComponent(id)}`} className={`${ROW} hover:bg-sunken`}>
+      <Link href={`/lessons/${encodeURIComponent(id)}`} className={`${DAY_ROW} hover:bg-sunken`}>
         <Node state={state} size="sm" />
         {name}
-        {done ? (
-          <Percent value={100} />
-        ) : (
+        {done && <Percent value={100} />}
+        {started && (
           <Suspense fallback={<Skeleton className="h-7 w-12" />}>
             <LoadedDayPercent id={id} progress={progress} />
           </Suspense>
         )}
-        <Icon name="chevron" className="size-5 text-ink-3" />
+        <Icon name="chevron" className="size-5 shrink-0 text-ink-3" />
       </Link>
     </li>
   );

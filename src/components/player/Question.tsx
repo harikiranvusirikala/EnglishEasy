@@ -84,7 +84,7 @@ export function Question({
       <div className="flex flex-col gap-5">
         {typeof children === "function" ? children(selected, judged) : children}
         {say && (hero ? <ListenHero say={say} /> : <Narrate text={say} auto slow />)}
-        <div ref={group} role="group" className="flex scroll-mb-96 flex-col gap-3">
+        <div ref={group} role="group" className="flex flex-col gap-3">
           {options.map((option, i) => (
             <OptionButton key={i} index={i} text={option} state={stateOf(i)} disabled={result !== null} onClick={() => setSelected(i)} />
           ))}
@@ -92,16 +92,13 @@ export function Question({
       </div>
       <BottomBar tone={tone}>
         {kind && (
-          <FeedbackPanel kind={kind}>
-            <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-lg">
-              {result === "failed" && (
-                <>
-                  <span>{strings.answerIs.en}:</span>
-                  <Text className="font-semibold">{answerText}</Text>
-                </>
-              )}
-              <Narrate text={say ?? answerText} auto variant="compact" />
-            </p>
+          <FeedbackPanel kind={kind} action={<Narrate text={say ?? answerText} auto variant="compact" />}>
+            {result === "failed" && (
+              <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-lg">
+                <span>{strings.answerIs.en}:</span>
+                <Text className="font-semibold">{answerText}</Text>
+              </p>
+            )}
             {why && (
               <p className="text-base text-ink-2">
                 <ContentText text={why} />
@@ -118,12 +115,20 @@ export function Question({
 }
 
 /**
- * After Check the feedback fills the bottom bar; this scrolls the answers (`ref`, which has a big `scroll-mb-*`)
- * up above it, so the learner sees which one turned green or amber.
+ * After Check the feedback fills the bottom bar. If that covers the answers (`ref`), scroll just enough to show them
+ * above it; when they are already in view nothing moves.
  */
 export function useRevealAbove(ref: React.RefObject<HTMLElement | null>, result: unknown) {
   useEffect(() => {
-    if (result) ref.current?.scrollIntoView?.({ block: "end", behavior: "smooth" });
+    if (!result) return;
+    const frame = requestAnimationFrame(() => {
+      const el = ref.current;
+      const bar = document.querySelector("[data-bottom-bar]");
+      if (!el || !bar) return;
+      const hidden = el.getBoundingClientRect().bottom - (bar.getBoundingClientRect().top - 12);
+      if (hidden > 0) el.closest("main")?.scrollBy({ top: hidden, behavior: "smooth" }); // the step's own scroller, never the page
+    });
+    return () => cancelAnimationFrame(frame);
   }, [ref, result]);
 }
 

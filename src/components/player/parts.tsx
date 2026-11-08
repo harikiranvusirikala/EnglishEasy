@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import { Bi } from "@/components/ui/Bi";
 import { Icon, type IconName } from "@/components/ui/icons";
 import { Skeleton } from "@/components/ui/Skeleton";
@@ -32,9 +32,27 @@ const BAR_TONE: Record<BarTone, string> = {
  * The bottom of the player, fixed to the screen's foot: the main button, and after Check the feedback. The whole bar
  * turns green (correct) or amber (almost) with the feedback in it, so the result is impossible to miss.
  */
+/**
+ * The fixed bar at the bottom of a step (feedback and the main button). Its height is published as `--bar-h`, so the
+ * step above leaves just that much room at its end (Player and PracticeRunner) and nothing is hidden under it.
+ */
 export function BottomBar({ children, tone = "neutral" }: { children: ReactNode; tone?: BarTone }) {
+  const bar = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = bar.current;
+    const root = document.documentElement;
+    if (!el || typeof ResizeObserver === "undefined") return;
+    const observer = new ResizeObserver(() => root.style.setProperty("--bar-h", `${el.offsetHeight}px`));
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      root.style.removeProperty("--bar-h");
+    };
+  }, []);
   return (
     <div
+      ref={bar}
+      data-bottom-bar
       className={`fixed inset-x-0 bottom-0 z-10 border-t pb-[env(safe-area-inset-bottom)] transition-colors duration-200 motion-reduce:transition-none ${BAR_TONE[tone]}`}
     >
       <div className="mx-auto flex max-w-xl flex-col gap-3 px-4 pt-4 pb-4">{children}</div>
@@ -60,19 +78,21 @@ export const toneOf = (kind: FeedbackKind | null | undefined): BarTone => (kind 
  * The feedback at the top of the tinted bottom bar: ✓ Correct! (green) or ↻ Almost (amber) in a badge, announced to
  * screen readers; `children` hold the answer, Listen / Slow and the reason. `label` replaces the heading (Great, Good, Try again).
  */
-export function FeedbackPanel({ kind, label, children }: { kind: FeedbackKind; label?: BiLabel; children?: ReactNode }) {
+export function FeedbackPanel({ kind, label, action, children }: { kind: FeedbackKind; label?: BiLabel; action?: ReactNode; children?: ReactNode }) {
   const good = kind === "correct";
   return (
-    <div aria-live="polite" className={`flex animate-panel-in items-start gap-3 motion-reduce:animate-none ${good ? "text-good" : "text-almost"}`}>
-      <span aria-hidden="true" className={`flex size-11 shrink-0 animate-pop-in items-center justify-center rounded-full motion-reduce:animate-none ${good ? "bg-good text-good-soft" : "bg-almost text-almost-soft"}`}>
-        <Icon name={good ? "check" : "retry"} className="size-6" strokeWidth={2.8} />
-      </span>
-      <div className="flex min-w-0 flex-1 flex-col gap-1.5 pt-1">
-        <p className="font-display text-2xl leading-tight font-bold">
+    <div aria-live="polite" className={`flex animate-panel-in flex-col gap-2 motion-reduce:animate-none ${good ? "text-good" : "text-almost"}`}>
+      {/* One row: the mark, the word, and its Listen button (`action`) at the end; the answer and reason go under it. */}
+      <div className="flex items-center gap-3">
+        <span aria-hidden="true" className={`flex size-10 shrink-0 animate-pop-in items-center justify-center rounded-full motion-reduce:animate-none ${good ? "bg-good text-good-soft" : "bg-almost text-almost-soft"}`}>
+          <Icon name={good ? "check" : "retry"} className="size-6" strokeWidth={2.8} />
+        </span>
+        <p className="font-display min-w-0 flex-1 text-2xl leading-tight font-bold">
           <Bi label={label ?? (good ? strings.correct : strings.almost)} className="items-start" />
         </p>
-        {children && <div className="flex flex-col gap-1.5 text-ink">{children}</div>}
+        {action}
       </div>
+      {children && <div className="flex flex-col gap-1.5 text-ink">{children}</div>}
     </div>
   );
 }

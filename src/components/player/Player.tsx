@@ -106,7 +106,8 @@ function PlayerInner({ day, initial, onReview }: { day: PlayableDay; initial: Pr
 
   useEffect(() => {
     main.current?.focus({ preventScroll: true });
-    if (main.current) main.current.scrollTop = 0;
+    if (main.current) main.current.scrollTop = 0; // each step starts at its top
+    window.scrollTo(0, 0);
   }, [index]);
 
   // Remember where the learner is, so Continue returns to this activity.
@@ -147,7 +148,7 @@ function PlayerInner({ day, initial, onReview }: { day: PlayableDay; initial: Pr
         ) : null}
       </header>
 
-      <main ref={main} tabIndex={-1} className="flex-1 overflow-y-auto px-4 pt-4 pb-[26rem] outline-none">
+      <main ref={main} tabIndex={-1} className="flex-1 overflow-y-auto px-4 pt-4 pb-[calc(var(--bar-h,10rem)+1.5rem)] outline-none">
         {step.kind === "intro" && (
           <SectionIntro
             kind={section.kind}

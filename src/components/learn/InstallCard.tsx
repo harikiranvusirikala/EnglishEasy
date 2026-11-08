@@ -56,18 +56,15 @@ export function InstallCard() {
       label={strings.installTitle.en}
       icon="phone"
       title={<Bi label={strings.installTitle} className="items-start" />}
+      onDismiss={dismiss}
+      dismissLabel={strings.installNotNow.en}
       actions={
-        <>
-          {mode === "prompt" && (
-            <button type="button" onClick={() => void promptInstall()} className={`${button("primary")} w-full`}>
-              <Icon name="download" />
-              <Bi label={strings.installButton} />
-            </button>
-          )}
-          <button type="button" onClick={dismiss} className={`${button("ghost")} w-full`}>
-            <Bi label={strings.installNotNow} />
+        mode === "prompt" && (
+          <button type="button" onClick={() => void promptInstall()} className={`${button("primary")} w-full`}>
+            <Icon name="download" />
+            <Bi label={strings.installButton} />
           </button>
-        </>
+        )
       }
     >
       {mode === "prompt" ? <BiText text={strings.installText} /> : <IosInstallSteps />}

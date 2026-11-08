@@ -21,7 +21,22 @@ Plan and vision are in `docs/` (start with `docs/BUILD_PLAN.md`).
 
 ## Screenshots
 
-Final screenshots live in `docs/screenshots/` (day and night: home, journey, lesson, settings). To refresh them, run `npm run test:e2e` (they are written to `test-results/screenshots/`, for example `home.png`, `home-night.png`, `journey.png`, `settings-phone.png`, `polish-home-light-en.png`, `polish-home-dark-te.png`) and copy the ones you want into `docs/screenshots/`.
+<table>
+  <tr>
+    <td align="center" width="25%"><img src="docs/screenshots/home.png" width="200" alt="Home: today's lesson and this week"><br><sub>Home: today's lesson and this week</sub></td>
+    <td align="center" width="25%"><img src="docs/screenshots/explain.png" width="200" alt="Learn: the idea explained in Telugu"><br><sub>Learn: the idea explained in Telugu</sub></td>
+    <td align="center" width="25%"><img src="docs/screenshots/question.png" width="200" alt="Practice: tap the right answer"><br><sub>Practice: tap the right answer</sub></td>
+    <td align="center" width="25%"><img src="docs/screenshots/tiles.png" width="200" alt="Build a sentence from word tiles"><br><sub>Build a sentence from word tiles</sub></td>
+  </tr>
+  <tr>
+    <td align="center" width="25%"><img src="docs/screenshots/speak.png" width="200" alt="Speak: say it aloud"><br><sub>Speak: say it aloud</sub></td>
+    <td align="center" width="25%"><img src="docs/screenshots/roleplay.png" width="200" alt="Role play: a short conversation"><br><sub>Role play: a short conversation</sub></td>
+    <td align="center" width="25%"><img src="docs/screenshots/complete.png" width="200" alt="Lesson complete"><br><sub>Lesson complete</sub></td>
+    <td align="center" width="25%"><img src="docs/screenshots/journey.png" width="200" alt="Journey: five stages, week by week"><br><sub>Journey: five stages, week by week</sub></td>
+  </tr>
+</table>
+
+These are real phone screens from `e2e/capture.spec.ts`. To refresh them, run `npm run test:e2e`, copy `test-results/screenshots/capture-*.png` into `docs/screenshots/` (without the `capture-` prefix), then run `npm run images`. It rebuilds the landing page's pictures and the link and social previews from them.
 
 ## Commands
 

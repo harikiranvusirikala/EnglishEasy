@@ -88,14 +88,21 @@ function brandCard(width: number, height: number, margin: number, shot: string):
   ${text(margin, top + 182, 68, 800, "#1c1917", "Speak English")}
   ${text(margin, top + 262, 68, 800, TEAL, "with confidence")}
   ${text(margin, top + 330, 38, 600, "#57534e", "ఆత్మవిశ్వాసంతో ఇంగ్లీష్ మాట్లాడండి", TELUGU_FONT)}
-  ${pill(margin, "Telugu help", 170)}${pill(margin + 184, "Hear every sentence", 236)}${pill(margin + 434, "No typing · Free", 206)}
+  ${pill(margin, "100% free", 150)}${pill(margin + 164, "Telugu help", 170)}${pill(margin + 348, "No typing", 150)}${pill(margin + 512, "Open source", 176)}
 
   <g filter="url(#shadow)">
     <rect x="${phoneX}" y="${phoneY}" width="${phoneW}" height="${phoneH}" rx="40" fill="#1c1917"/>
     <rect x="${phoneX + 10}" y="${phoneY + 10}" width="${phoneW - 20}" height="${phoneH - 20}" rx="32" fill="#fbf8f3"/>
   </g>
   <clipPath id="screen"><rect x="${phoneX + 10}" y="${phoneY + 10}" width="${phoneW - 20}" height="${phoneH - 20}" rx="32"/></clipPath>
-  <image x="${phoneX + 10}" y="${phoneY + 10}" width="${phoneW - 20}" height="${phoneH - 20}" preserveAspectRatio="xMidYMin slice" clip-path="url(#screen)" href="${shot}"/>
+  <!-- A status bar above the app (time, the camera, signal and battery), so the camera never covers the screen's top row. -->
+  ${text(phoneX + 34, phoneY + 34, 13, 700, "#1c1917", "9:41")}
+  <rect x="${phoneX + phoneW / 2 - 34}" y="${phoneY + 18}" width="68" height="20" rx="10" fill="#1c1917"/>
+  <g fill="#1c1917" transform="translate(${phoneX + phoneW - 76} ${phoneY + 23})">
+    <rect x="0" y="8" width="3" height="4" rx="1"/><rect x="4.5" y="5.5" width="3" height="6.5" rx="1"/><rect x="9" y="3" width="3" height="9" rx="1"/><rect x="13.5" y="0.5" width="3" height="11.5" rx="1"/>
+    <rect x="21" y="1" width="18" height="10" rx="2.5" fill="none" stroke="#1c1917" stroke-width="1.2"/><rect x="23" y="3" width="13" height="6" rx="1.2"/>
+  </g>
+  <image x="${phoneX + 10}" y="${phoneY + 46}" width="${phoneW - 20}" height="${phoneH - 56}" preserveAspectRatio="xMidYMin slice" clip-path="url(#screen)" href="${shot}"/>
 </svg>`;
 }
 

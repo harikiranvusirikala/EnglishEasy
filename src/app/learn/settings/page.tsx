@@ -13,7 +13,6 @@ import { SettingsCard } from "@/components/learn/SettingsCard";
 import { Account } from "@/components/learn/Account";
 import { ReminderSettings } from "@/components/learn/Reminder";
 import { MyTracks } from "@/components/learn/Tracks";
-import { VoiceSettings } from "@/components/learn/VoiceSettings";
 import { SUPPORT_URL } from "@/components/support";
 import { course } from "@/content/course";
 import { useProgress } from "@/lib/progress-store";
@@ -103,8 +102,6 @@ export default function SettingsPage() {
               />
             </div>
           </SettingsCard>
-
-          <VoiceSettings />
         </>
       )}
 

@@ -1,4 +1,3 @@
-import { Logo } from "@/components/ui/Logo";
 import { strings } from "@/lib/strings";
 import { PhoneFrame } from "./PhoneFrame";
 import { StartButton } from "./StartButton";
@@ -43,9 +42,6 @@ export function Hero() {
           {/* Sized from the screen, not fixed: two fixed phones were wider than a phone and pushed the text off it. */}
           <PhoneFrame src={home} alt={strings.landingShotHome.en} priority className="w-[52%] max-w-64 -rotate-3" />
           <PhoneFrame src={question} alt={strings.landingShotQuestion.en} className="-ml-[10%] mb-[-2rem] w-[52%] max-w-64 rotate-3" />
-          <span aria-hidden="true" className="absolute -bottom-6 left-1/2 hidden -translate-x-1/2 sm:block">
-            <Logo size="sm" className="rounded-full border border-line bg-surface/90 py-1.5 pr-4 pl-1.5 shadow-raised" />
-          </span>
         </div>
       </div>
     </section>

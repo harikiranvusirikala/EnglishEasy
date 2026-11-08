@@ -5,7 +5,6 @@ import { clearSpoken, installSpeechStub, spoken } from "./speech-stub";
 
 test.skip(({ isMobile }) => !isMobile, "voice is checked on the phone project");
 
-const SHOTS = "test-results/screenshots";
 const EXAMPLE = "I eat rice.";
 
 const start = (page: Page) => page.getByRole("button", { name: /^Start/ }).click();
@@ -65,17 +64,3 @@ for (const autoPlay of [true, false]) {
     }
   });
 }
-
-test("Settings → Voice: pick a voice and hear the sample", async ({ page }) => {
-  await installSpeechStub(page);
-  await page.goto("/learn/settings");
-  await expect(page.getByRole("button", { name: "Google English (India) (en-IN)" })).toHaveAttribute("aria-pressed", "true");
-  await page.screenshot({ path: `${SHOTS}/settings-voice.png`, fullPage: true });
-
-  await clearSpoken(page);
-  await page.getByRole("button", { name: "English United States (en-US)" }).click();
-  await expect(page.getByRole("button", { name: "English United States (en-US)" })).toHaveAttribute("aria-pressed", "true");
-  expect(await spoken(page)).toMatchObject([{ voiceURI: "us", lang: "en-US", rate: 0.9 }]);
-  await page.reload();
-  await expect(page.getByRole("button", { name: "English United States (en-US)" })).toHaveAttribute("aria-pressed", "true");
-});

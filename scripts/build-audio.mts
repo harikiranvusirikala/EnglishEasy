@@ -11,7 +11,6 @@ import { pathToFileURL } from "node:url";
 import { buildAll } from "../src/content/build";
 import { audioKey, speechText, type AudioVoice } from "../src/learning/audio-manifest";
 import { spokenTexts, type Spoken } from "../src/learning/spoken";
-import { strings } from "../src/lib/strings";
 
 /** Shruti reads Telugu and the English inside it with an Indian accent; Mohan is the second dialogue voice. */
 const VOICES: Record<AudioVoice, string> = { a: "te-IN-ShrutiNeural", b: "te-IN-MohanNeural" };
@@ -46,11 +45,10 @@ async function record(text: string, voice: AudioVoice): Promise<Buffer> {
   }
 }
 
-// Everything the app reads aloud: every released day, plus the Settings voice sample.
+// Everything the app reads aloud: every released day (the Settings voice sample is the phone's voice on purpose).
 const wanted = new Map<string, Spoken>();
 const want = (item: Spoken) => wanted.set(audioKey(item.text, item.voice), item);
 for (const { playable } of await buildAll()) spokenTexts(playable).forEach(want);
-want({ text: strings.voiceSampleText.en, voice: "a" });
 
 await mkdir(outDir, { recursive: true });
 const todo = [...wanted].filter(([key]) => !existsSync(join(outDir, `${key}.mp3`)));

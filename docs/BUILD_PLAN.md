@@ -746,6 +746,9 @@ As Step 13, for `present-continuous-right-now` and `past-simple-yesterday` (CURR
 - **Text:** quote marks are dropped before speaking and before hashing (`speechText`), for recordings and the phone voice alike. A question whose prompt contains its sentence reads the whole prompt in the Learn-in language (`"I walk every morning." అంటే ఏమిటి?`); listening questions read only the sentence.
 - **Playback:** one shared audio element (phones allow later plays once one was started by a tap); Slow plays the file at 0.72×; if a clip can't play, the phone voice reads it. The player fetches the day's clips when a lesson opens and the service worker keeps them (cache-first), so they work offline. The Android "install a Telugu voice" help appears only for text without a recording.
 - **Done when:** unit tests cover `spokenTexts`, `speechText`, voice-keyed manifest entries and the playback fallback; e2e still uses the speech stub (it serves an empty manifest); the owner runs `npm run audio`, hears the voice in the app, and commits `public/audio/`.
+- **Later (owner, 2026-11-08):** clips stay in one flat folder named by text hash (one clip per sentence, shared across days; no folders by week or day). Two milestones:
+  - **Around Week 10–12 (~1,500 clips):** split the folder by the hash's first two characters (`public/audio/3f/3f9a12bc.mp3`): `scripts/build-audio.mts` writes the subfolder, the manifest stores the path. GitHub's file list stops near 1,000 files per folder.
+  - **Before Stage 2 (~25 MB and growing ~1.7 MB a week):** move the clips out of git to free file storage (Cloudflare R2, Vercel Blob or a GitHub Release); only `manifest.json` stays in the repo, with full links. The app and the service worker keep reading the manifest.
 
 ## After launch: a Journey page worth living in (owner request)
 

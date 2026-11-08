@@ -28,7 +28,7 @@ export default function PrivacyPage() {
           <Bi label={strings.privacyBack} />
         </Link>
       </nav>
-      <h1 className="text-3xl font-bold text-stone-900 dark:text-stone-100">
+      <h1 className="text-3xl font-bold text-ink">
         <Bi label={strings.privacyTitle} className="items-start" />
       </h1>
       <p className="text-lg">

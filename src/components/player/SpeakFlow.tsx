@@ -39,7 +39,7 @@ export function useChoosing() {
 export function ChooseNote({ note }: { note: Note | null }) {
   if (!note) return null;
   return (
-    <p className="rounded-xl border border-amber-300 bg-amber-50 p-3 text-base text-amber-950 dark:border-amber-700 dark:bg-amber-950 dark:text-amber-100">
+    <p className="rounded-xl border border-almost-line bg-almost-soft p-3 text-base text-almost">
       <BiText text={note === "denied" ? strings.micDeniedNote : strings.micUnsupportedNote} />
     </p>
   );

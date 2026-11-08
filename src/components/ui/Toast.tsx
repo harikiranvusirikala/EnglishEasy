@@ -6,7 +6,7 @@ export function Toast({ children, className = "" }: { children: ReactNode; class
     <div className={`pointer-events-none flex justify-center ${className}`}>
       <div
         role="status"
-        className="pointer-events-auto flex min-h-13 animate-[toast-in_180ms_ease-out] items-center gap-3 rounded-xl bg-stone-900 px-5 text-base text-white shadow-lg motion-reduce:animate-none dark:bg-stone-100 dark:text-stone-900"
+        className="pointer-events-auto flex min-h-13 animate-toast-in items-center gap-3 rounded-2xl bg-ink px-5 text-base font-medium text-page shadow-raised motion-reduce:animate-none"
       >
         {children}
       </div>

@@ -26,11 +26,11 @@ function Example({ sentence }: { sentence: CoreSentence }) {
     <li className={`${card} flex items-center justify-between gap-2`}>
       <div>
         <p className="text-xl font-semibold">{sentence.en}</p>
-        <p lang="te" className="text-base text-stone-600 dark:text-stone-400">
+        <p lang="te" className="text-base text-ink-2">
           {sentence.te}
         </p>
       </div>
-      <Narrate text={sentence.en} />
+      <Narrate text={sentence.en} variant="compact" />
     </li>
   );
 }
@@ -48,17 +48,17 @@ export function ExplainCard({ activity, onNext }: CardProps<"explain">) {
         </p>
         {activity.bridge && (
           <div className={`${card} flex flex-col gap-3`}>
-            <p className="text-sm font-semibold text-stone-600 dark:text-stone-400">
+            <p className="text-sm font-semibold text-ink-2">
               <Bi label={strings.bridgeTelugu} className="items-start" />
             </p>
             <ul className="flex flex-wrap gap-2">
               {activity.bridge.te.map((word, i) => (
-                <li key={i} lang="te" className="rounded-lg border border-stone-300 bg-stone-100 px-3 py-2 text-lg dark:border-stone-700 dark:bg-stone-800">
+                <li key={i} lang="te" className="rounded-lg border border-line-strong bg-sunken px-3 py-2 text-lg">
                   {word}
                 </li>
               ))}
             </ul>
-            <p className="text-sm font-semibold text-stone-600 dark:text-stone-400">
+            <p className="text-sm font-semibold text-ink-2">
               <Bi label={strings.bridgeEnglish} className="items-start" />
             </p>
             <PatternChips chips={activity.bridge.en} animate />
@@ -86,7 +86,7 @@ export function WhenToUseCard({ activity, onNext }: CardProps<"whenToUse">) {
         <ul className="flex flex-col gap-3">
           {activity.items.map((item, i) => (
             <li key={i} className={`${card} flex flex-col gap-2`}>
-              <p className="text-xl font-bold text-teal-800 dark:text-teal-300">{item.form}</p>
+              <p className="text-xl font-bold text-brand">{item.form}</p>
               <p className="text-base">
                 <BiText text={item.useFor} /> <Narrate text={item.useFor} />
               </p>
@@ -107,14 +107,14 @@ export function DontSayCard({ activity, onNext }: CardProps<"dontSay">) {
   return (
     <>
       <div className="flex flex-col gap-3">
-        <div className="flex flex-col gap-1 rounded-xl border border-amber-300 bg-amber-50 p-4 text-amber-950 dark:border-amber-700 dark:bg-amber-950 dark:text-amber-100">
+        <div className="flex flex-col gap-1 rounded-xl border border-almost-line bg-almost-soft p-4 text-almost">
           <p className="flex items-center gap-2 text-sm font-semibold">
             <Icon name="close" className="size-5" />
             <Bi label={strings.dontSay} />
           </p>
           <p className="text-xl line-through decoration-2">{activity.wrong}</p>
         </div>
-        <div className="flex flex-col gap-1 rounded-xl border border-emerald-300 bg-emerald-50 p-4 text-emerald-950 dark:border-emerald-700 dark:bg-emerald-950 dark:text-emerald-100">
+        <div className="flex flex-col gap-1 rounded-xl border border-good-line bg-good-soft p-4 text-good">
           <p className="flex items-center gap-2 text-sm font-semibold">
             <Icon name="check" className="size-5" />
             <Bi label={strings.say} />
@@ -141,7 +141,7 @@ export function ComingSoon({ onSkip }: { onSkip: () => void }) {
         <p className="text-xl font-semibold">
           <Bi label={strings.comingSoon} />
         </p>
-        <p className="text-base text-stone-600 dark:text-stone-400">
+        <p className="text-base text-ink-2">
           <BiText text={strings.comingSoonCard} />
         </p>
       </div>

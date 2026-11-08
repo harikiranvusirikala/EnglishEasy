@@ -85,7 +85,7 @@ export function LessonComplete({ day, onReview }: { day: PlayableDay; onReview: 
 
         <ul className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-base">
           {done.map((s) => (
-            <li key={s.kind} className="flex items-center gap-1 text-emerald-900 dark:text-emerald-200">
+            <li key={s.kind} className="flex items-center gap-1 text-good">
               <Icon name="check" className="size-5" />
               {s.kind === "practice" ? <Bi label={fill(strings.practiceQuestions, { n: s.activities.length })} /> : <Bi label={SECTION_NAME[s.kind]} />}
             </li>
@@ -105,11 +105,11 @@ export function LessonComplete({ day, onReview }: { day: PlayableDay; onReview: 
                   <li key={i} className={`${card} flex items-center justify-between gap-2`}>
                     <div>
                       <p className="text-xl font-semibold">{sentence.en}</p>
-                      <p lang="te" className="text-base text-stone-600 dark:text-stone-400">
+                      <p lang="te" className="text-base text-ink-2">
                         {sentence.te}
                       </p>
                     </div>
-                    <Narrate text={sentence.en} />
+                    <Narrate text={sentence.en} variant="compact" />
                   </li>
                 ))}
               </ul>
@@ -123,7 +123,7 @@ export function LessonComplete({ day, onReview }: { day: PlayableDay; onReview: 
                   {day.wrapup.words.map((word, i) => (
                     <li key={i} className={card}>
                       <p className="text-lg font-semibold">{word.en}</p>
-                      <p lang="te" className="text-base text-stone-600 dark:text-stone-400">
+                      <p lang="te" className="text-base text-ink-2">
                         {word.te}
                       </p>
                     </li>

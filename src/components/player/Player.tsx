@@ -137,7 +137,7 @@ function PlayerInner({ day, initial, onReview }: { day: PlayableDay; initial: Pr
           </span>
           <ReportButton dayId={day.id} activityId={currentId} />
         </div>
-        <p className="px-3 text-sm text-stone-600 dark:text-stone-400">
+        <p className="px-3 text-sm text-ink-2">
           <Bi label={SECTION_NAME[section.kind]} className="items-start" />
         </p>
       </header>
@@ -245,7 +245,7 @@ function Summary({ section, progress, onNext }: { section: PlayableDay["sections
   const added = section.activities.filter((a) => a.id in progress.mistakes).length;
   return (
     <div className="flex flex-col items-center gap-3 pt-12 text-center">
-      <span className="flex size-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-900 dark:bg-emerald-950 dark:text-emerald-100">
+      <span className="flex size-16 items-center justify-center rounded-full bg-good-soft text-good">
         <Icon name="check" className="size-9" />
       </span>
       <h1 className="text-2xl">
@@ -262,7 +262,7 @@ function Summary({ section, progress, onNext }: { section: PlayableDay["sections
         </p>
       )}
       {added > 0 && (
-        <p className="text-base text-stone-600 dark:text-stone-400">
+        <p className="text-base text-ink-2">
           {added} <BiText text={strings.addedToPracticeAgain} />
         </p>
       )}

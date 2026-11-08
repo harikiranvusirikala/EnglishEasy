@@ -2,7 +2,7 @@
 // - From src/app/icon.svg: favicon.ico (16, 32 and 48 px), apple-icon.png (180 px, square, since iPhones round
 //   the corners themselves) and the installable app's icons in public/icons (192, 512 and a maskable 512).
 // - src/app/opengraph-image.png (1200 x 630, under 300 KB): the link preview WhatsApp, search results and
-//   social sites show.
+//   social sites show; docs/social-preview.png (1280 x 640): GitHub's social preview, the same drawing.
 // Text is drawn with the fonts of the machine that runs this (Helvetica Neue and a Telugu font on macOS).
 // sharp is Next.js's own image library, installed with it.
 import { mkdir, readFile, writeFile } from "node:fs/promises";
@@ -56,26 +56,62 @@ const maskable = `<svg xmlns="http://www.w3.org/2000/svg" width="512" height="51
 </svg>`;
 await writeFile("public/icons/icon-maskable-512.png", await sharp(Buffer.from(maskable)).png().toBuffer());
 
-/** The link preview: the icon, the name, the headline in English and Telugu, and what it is. */
-function preview(width: number, height: number): string {
-  const text = (x: number, y: number, size: number, weight: number, fill: string, content: string, font = FONT) =>
-    `<text x="${x}" y="${y}" font-family="${font}" font-size="${size}" font-weight="${weight}" fill="${fill}">${content}</text>`;
+/**
+ * The brand card: the icon and name, the headline in English and Telugu, what it is, and a phone showing a
+ * lesson question. Everything that matters stays `margin` px in from every edge (GitHub's social preview
+ * template asks for 80 px; chat apps may crop the link preview's sides).
+ */
+function brandCard(width: number, height: number, margin: number): string {
+  const text = (x: number, y: number, size: number, weight: number, fill: string, content: string, font = FONT, anchor = "start") =>
+    `<text x="${x}" y="${y}" font-family="${font}" font-size="${size}" font-weight="${weight}" fill="${fill}" text-anchor="${anchor}">${content}</text>`;
+  const top = margin;
+  const phoneW = 300;
+  const phoneH = height - 2 * margin;
+  const phoneX = width - margin - phoneW;
+  const phoneY = margin;
+  const option = (y: number, label: string, chosen = false) => `
+    <rect x="${phoneX + 28}" y="${y}" width="${phoneW - 56}" height="52" rx="14" fill="${chosen ? "#ecfdf5" : "#ffffff"}" stroke="${chosen ? "#34d399" : "#e7e0d5"}" stroke-width="2"/>
+    ${text(phoneX + 48, y + 34, 22, chosen ? 700 : 500, chosen ? "#047857" : "#1c1917", label)}
+    ${chosen ? `<path d="M${phoneX + phoneW - 64} ${y + 27}l7 7 13-14" stroke="#047857" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>` : ""}`;
+  const pill = (x: number, label: string, w: number) => `
+    <rect x="${x}" y="${height - margin - 46}" width="${w}" height="46" rx="23" fill="#e3f3f0"/>
+    ${text(x + w / 2, height - margin - 16, 20, 600, "#0b4f49", label, FONT, "middle")}`;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
   <defs>
-    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f0fdfa"/><stop offset="1" stop-color="#fafaf9"/></linearGradient>
-    <radialGradient id="glow"><stop offset="0" stop-color="#99f6e4" stop-opacity="0.8"/><stop offset="1" stop-color="#99f6e4" stop-opacity="0"/></radialGradient>
+    <radialGradient id="glow"><stop offset="0" stop-color="#99f6e4" stop-opacity="0.7"/><stop offset="1" stop-color="#99f6e4" stop-opacity="0"/></radialGradient>
+    <radialGradient id="sun"><stop offset="0" stop-color="#fde68a" stop-opacity="0.8"/><stop offset="1" stop-color="#fde68a" stop-opacity="0"/></radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#0f766e" flood-opacity="0.22"/></filter>
   </defs>
-  <rect width="${width}" height="${height}" fill="url(#paper)"/>
-  <circle cx="1060" cy="120" r="380" fill="url(#glow)"/>
-  <image x="80" y="80" width="96" height="96" href="${dataUrl("image/svg+xml", icon)}"/>
-  ${text(200, 148, 44, 700, "#0f766e", "EnglishEasy")}
-  ${text(80, 300, 76, 800, "#1c1917", "Speak English")}
-  ${text(80, 392, 76, 800, TEAL, "with confidence")}
-  ${text(80, 478, 46, 600, "#44403c", "ఆత్మవిశ్వాసంతో ఇంగ్లీష్ మాట్లాడండి", TELUGU_FONT)}
-  ${text(80, 560, 28, 400, "#57534e", "Free daily lessons with Telugu help. No typing.")}
+  <rect width="${width}" height="${height}" fill="#fbf8f3"/>
+  <circle cx="${phoneX + phoneW / 2}" cy="${height / 2}" r="${height * 0.62}" fill="url(#glow)"/>
+  <circle cx="${margin + 40}" cy="${height - 40}" r="220" fill="url(#sun)"/>
+
+  <image x="${margin}" y="${top}" width="72" height="72" href="${dataUrl("image/svg+xml", icon)}"/>
+  ${text(margin + 92, top + 50, 40, 800, "#1c1917", 'English<tspan fill="#0f766e">Easy</tspan>')}
+  ${text(margin, top + 182, 68, 800, "#1c1917", "Speak English")}
+  ${text(margin, top + 262, 68, 800, TEAL, "with confidence")}
+  ${text(margin, top + 330, 38, 600, "#57534e", "ఆత్మవిశ్వాసంతో ఇంగ్లీష్ మాట్లాడండి", TELUGU_FONT)}
+  ${pill(margin, "Telugu help", 170)}${pill(margin + 184, "Hear every sentence", 236)}${pill(margin + 434, "No typing · Free", 206)}
+
+  <g filter="url(#shadow)">
+    <rect x="${phoneX}" y="${phoneY}" width="${phoneW}" height="${phoneH}" rx="40" fill="#1c1917"/>
+    <rect x="${phoneX + 10}" y="${phoneY + 10}" width="${phoneW - 20}" height="${phoneH - 20}" rx="32" fill="#fbf8f3"/>
+  </g>
+  <rect x="${phoneX + 28}" y="${phoneY + 40}" width="${phoneW - 56}" height="12" rx="6" fill="#f3eee6"/>
+  <rect x="${phoneX + 28}" y="${phoneY + 40}" width="${(phoneW - 56) * 0.55}" height="12" rx="6" fill="#0f766e"/>
+  <rect x="${phoneX + 28}" y="${phoneY + 70}" width="104" height="30" rx="15" fill="#e3f3f0"/>
+  ${text(phoneX + 80, phoneY + 91, 17, 700, "#0b4f49", "Practice", FONT, "middle")}
+  ${text(phoneX + 28, phoneY + 146, 27, 800, "#1c1917", "Yesterday I ___")}
+  ${text(phoneX + 28, phoneY + 180, 27, 800, "#1c1917", "to the market.")}
+  ${option(phoneY + 198, "go")}${option(phoneY + 258, "went", true)}${option(phoneY + 318, "will go")}
+  <rect x="${phoneX + 28}" y="${phoneY + phoneH - 82}" width="${phoneW - 56}" height="54" rx="16" fill="#0f766e"/>
+  ${text(phoneX + phoneW / 2, phoneY + phoneH - 47, 22, 700, "#ffffff", "Continue", FONT, "middle")}
 </svg>`;
 }
 
 /** As small a PNG as looks the same: chat apps skip big link previews (WhatsApp's limit is about 300 KB). */
-await writeFile("src/app/opengraph-image.png", await sharp(Buffer.from(preview(1200, 630))).png({ palette: true, quality: 90, effort: 10 }).toBuffer());
-console.log("Wrote favicon.ico, apple-icon.png, opengraph-image.png in src/app and the app icons in public/icons");
+const smallPng = (svg: string) => sharp(Buffer.from(svg)).png({ palette: true, quality: 90, effort: 10 }).toBuffer();
+await writeFile("src/app/opengraph-image.png", await smallPng(brandCard(1200, 630, 64)));
+// GitHub's social preview (Settings → General → Social preview): 1280 x 640, 80 px safe area (GitHub's template).
+await writeFile("docs/social-preview.png", await smallPng(brandCard(1280, 640, 80)));
+console.log("Wrote favicon.ico, apple-icon.png, opengraph-image.png in src/app, the app icons in public/icons, and docs/social-preview.png");

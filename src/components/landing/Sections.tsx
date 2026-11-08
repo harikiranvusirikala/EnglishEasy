@@ -25,7 +25,7 @@ export function HowItWorks() {
       <ol className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
         {STEPS.map((step, i) => (
           <li key={i} className={`${card} flex flex-col gap-2`}>
-            <span className="flex items-center gap-2 text-teal-800 dark:text-teal-300">
+            <span className="flex items-center gap-2 text-brand">
               <Icon name={step.icon} />
               <span className="text-sm font-bold">{i + 1}</span>
             </span>
@@ -51,7 +51,7 @@ export function Journey() {
       <ol className="flex flex-col gap-4">
         {course.stages.map((stage) => (
           <li key={stage.n} className={`${card} flex flex-col gap-2`}>
-            <p className="text-sm font-semibold text-teal-800 dark:text-teal-300">
+            <p className="text-sm font-semibold text-brand">
               <BiText text={fill(strings.landingStageLabel, { n: stage.n })} />
             </p>
             <h3 className={cardTitle}>
@@ -62,7 +62,7 @@ export function Journey() {
             </p>
             {stage.n === 1 && (
               <div className="mt-2 flex flex-col gap-2">
-                <p className="text-base font-semibold text-stone-900 dark:text-stone-100">
+                <p className="text-base font-semibold text-ink">
                   <BiText text={strings.landingWeekOne} />
                 </p>
                 <ul className="flex flex-col gap-2">
@@ -70,7 +70,7 @@ export function Journey() {
                     <li key={ref.id}>
                       <Link
                         href={`/lessons/${encodeURIComponent(ref.id)}`}
-                        className="flex min-h-13 items-center rounded-xl border border-stone-200 px-4 text-base font-semibold text-teal-800 outline-none hover:bg-stone-100 focus-visible:ring-2 focus-visible:ring-teal-700 dark:border-stone-800 dark:text-teal-300 dark:hover:bg-stone-800 dark:focus-visible:ring-teal-300"
+                        className="flex min-h-13 items-center rounded-xl border border-line px-4 text-base font-semibold text-brand outline-none hover:bg-sunken focus-visible:ring-2 focus-visible:ring-brand"
                       >
                         <span>
                           {fill(strings.homeDayChip, { n: (week.n - 1) * 7 + week.days.indexOf(ref) + 1 }).en}: {ref.title.en}

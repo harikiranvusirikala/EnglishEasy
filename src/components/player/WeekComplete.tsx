@@ -54,7 +54,7 @@ export function WeekComplete({ day, onReview, course = realCourse }: { day: Play
           </h2>
           <ul className="flex flex-wrap gap-x-4 gap-y-1 text-base">
             {days.map((d) => (
-              <li key={d.id} className="flex items-center gap-1 text-emerald-900 dark:text-emerald-200">
+              <li key={d.id} className="flex items-center gap-1 text-good">
                 <Icon name="check" className="size-5" />
                 <BiText text={d.title} />
               </li>

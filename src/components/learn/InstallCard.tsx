@@ -3,7 +3,8 @@
 import { Bi } from "@/components/ui/Bi";
 import { BiText } from "@/components/ui/BiText";
 import { button } from "@/components/ui/button";
-import { card, cardText, cardTitle } from "@/components/ui/card";
+import { cardText } from "@/components/ui/card";
+import { Nudge } from "@/components/ui/Nudge";
 import { Icon } from "@/components/ui/icons";
 import { installMode } from "@/learning/offline";
 import { promptInstall, useInstallState } from "@/lib/pwa";
@@ -28,10 +29,10 @@ export function IosInstallSteps() {
       <ol className="flex flex-col gap-2">
         {STEPS.map((s, i) => (
           <li key={s.text.en} className="flex items-center gap-3">
-            <span aria-hidden="true" className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-stone-100 text-teal-800 dark:bg-stone-800 dark:text-teal-300">
+            <span aria-hidden="true" className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-brand-soft text-brand">
               <Icon name={s.icon} />
             </span>
-            <span className="text-base text-stone-900 dark:text-stone-100">
+            <span className="text-base text-ink">
               <span className="font-semibold">{i + 1}. </span>
               <BiText text={s.text} />
             </span>
@@ -51,25 +52,25 @@ export function InstallCard() {
   if (mode === "none") return null;
   const dismiss = () => updateSettings({ dismissed: [...new Set([...settings.dismissed, INSTALL_CARD_ID])] });
   return (
-    <section aria-label={strings.installTitle.en} className={`${card} flex flex-col gap-3`}>
-      <h2 className={cardTitle}>
-        <Bi label={strings.installTitle} className="items-start" />
-      </h2>
-      {mode === "prompt" ? (
+    <Nudge
+      label={strings.installTitle.en}
+      icon="phone"
+      title={<Bi label={strings.installTitle} className="items-start" />}
+      actions={
         <>
-          <p className={cardText}>
-            <BiText text={strings.installText} />
-          </p>
-          <button type="button" onClick={() => void promptInstall()} className={`${button("primary")} w-full`}>
-            <Bi label={strings.installButton} />
+          {mode === "prompt" && (
+            <button type="button" onClick={() => void promptInstall()} className={`${button("primary")} w-full`}>
+              <Icon name="download" />
+              <Bi label={strings.installButton} />
+            </button>
+          )}
+          <button type="button" onClick={dismiss} className={`${button("ghost")} w-full`}>
+            <Bi label={strings.installNotNow} />
           </button>
         </>
-      ) : (
-        <IosInstallSteps />
-      )}
-      <button type="button" onClick={dismiss} className={`${button("ghost")} w-full`}>
-        <Bi label={strings.installNotNow} />
-      </button>
-    </section>
+      }
+    >
+      {mode === "prompt" ? <BiText text={strings.installText} /> : <IosInstallSteps />}
+    </Nudge>
   );
 }

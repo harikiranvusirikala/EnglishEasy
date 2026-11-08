@@ -67,11 +67,11 @@ function Sentence({ sentence }: { sentence: CoreSentence }) {
     <li className={`${card} flex items-center justify-between gap-2`}>
       <div>
         <p className="text-xl font-semibold">{sentence.en}</p>
-        <p lang="te" className="text-base text-stone-600 dark:text-stone-400">
+        <p lang="te" className="text-base text-ink-2">
           {sentence.te}
         </p>
       </div>
-      <Narrate text={sentence.en} />
+      <Narrate text={sentence.en} variant="compact" />
     </li>
   );
 }
@@ -129,7 +129,7 @@ function LearnActivity({ activity }: { activity: Activity }) {
             </span>{" "}
             {activity.right}
           </p>
-          <p className="text-base text-stone-600 dark:text-stone-400">
+          <p className="text-base text-ink-2">
             <Both text={activity.why} />
           </p>
         </section>
@@ -169,14 +169,14 @@ export default async function LessonPage({
       </nav>
 
       <header className="flex flex-col gap-3">
-        <p className="text-base font-semibold text-teal-800 dark:text-teal-300">
+        <p className="text-base font-semibold text-brand">
           <Both text={fill(strings.overviewDayLabel, { n: place.number })} />
         </p>
         <h1 className="text-3xl font-bold">
           <Both text={day.title} />
         </h1>
         {day.kind === "lesson" && (
-          <p className="text-xl text-stone-700 dark:text-stone-300">
+          <p className="text-xl text-ink-2">
             {day.subtitle}
           </p>
         )}

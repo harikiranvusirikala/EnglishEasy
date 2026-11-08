@@ -21,7 +21,7 @@ function Both({ text }: { text: Bi }) {
 const Options = ({ options, answer }: { options: string[]; answer: number }) => (
   <ol className="list-decimal pl-6">
     {options.map((option, i) => (
-      <li key={i} data-answer={i === answer ? "" : undefined} className={i === answer ? "font-bold text-emerald-800 dark:text-emerald-300" : ""}>
+      <li key={i} data-answer={i === answer ? "" : undefined} className={i === answer ? "font-bold text-good" : ""}>
         {option}
         {i === answer && " ✓"}
       </li>
@@ -44,7 +44,7 @@ function Body({ activity }: { activity: Activity }) {
           <ul>
             {activity.examples.map((e, i) => (
               <li key={i}>
-                {e.en} <span lang="te">{e.te}</span> <Narrate text={e.en} />
+                {e.en} <span lang="te">{e.te}</span> <Narrate text={e.en} variant="compact" />
               </li>
             ))}
           </ul>
@@ -59,7 +59,7 @@ function Body({ activity }: { activity: Activity }) {
               <b>{item.form}</b>
               <Both text={item.useFor} />
               <p>
-                {item.example.en} <Narrate text={item.example.en} />
+                {item.example.en} <Narrate text={item.example.en} variant="compact" />
               </p>
             </div>
           ))}
@@ -69,7 +69,7 @@ function Body({ activity }: { activity: Activity }) {
       return (
         <>
           <p>✗ {activity.wrong}</p>
-          <p className="font-bold text-emerald-800 dark:text-emerald-300">✓ {activity.right}</p>
+          <p className="font-bold text-good">✓ {activity.right}</p>
           <Both text={activity.why} />
         </>
       );
@@ -96,12 +96,12 @@ function Body({ activity }: { activity: Activity }) {
         <>
           <p>
             {activity.sentence.split(" ").map((word, i) => (
-              <span key={i} className={i === activity.wrongIndex ? "font-bold text-red-700 underline dark:text-red-300" : ""}>
+              <span key={i} className={i === activity.wrongIndex ? "font-bold text-danger underline" : ""}>
                 {word}{" "}
               </span>
             ))}
           </p>
-          <p className="font-bold text-emerald-800 dark:text-emerald-300">✓ {activity.fix}</p>
+          <p className="font-bold text-good">✓ {activity.fix}</p>
           <Both text={activity.why} />
         </>
       );
@@ -114,7 +114,7 @@ export function LessonReview({ day }: { day: PlayableDay }) {
   return (
     <main className="mx-auto flex max-w-5xl flex-col gap-6 p-4">
       <h1 className="text-3xl font-bold">{day.title.en}</h1>
-      <div className="grid grid-cols-2 gap-3 text-sm font-semibold text-stone-600 dark:text-stone-400">
+      <div className="grid grid-cols-2 gap-3 text-sm font-semibold text-ink-2">
         <p>{strings.devTelugu.en}</p>
         <p>{strings.devEnglish.en}</p>
       </div>
@@ -123,7 +123,7 @@ export function LessonReview({ day }: { day: PlayableDay }) {
           <h2 className="text-2xl font-bold capitalize">{section.kind}</h2>
           {section.activities.map((activity) => (
             <article key={activity.id} className={`${card} flex flex-col gap-2`}>
-              <p className="text-sm text-stone-600 dark:text-stone-400">
+              <p className="text-sm text-ink-2">
                 {activity.id} · {activity.type}
               </p>
               <Body activity={activity} />

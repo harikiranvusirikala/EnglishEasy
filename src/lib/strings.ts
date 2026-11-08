@@ -26,6 +26,8 @@ export const strings = {
 
   // Settings
   settingsTitle: { en: "Settings", te: "సెట్టింగ్స్" },
+  settingsIntro: { en: "Make EnglishEasy comfortable for you.", te: "ఇంగ్లీష్ ఈజీని మీకు సౌకర్యంగా మార్చుకోండి." },
+  audioTitle: { en: "Sound and speaking", te: "శబ్దం, మాట్లాడటం" },
   learnIn: { en: "Learn in", te: "నేర్చుకునే భాష" },
   learnInTelugu: { en: "Telugu", te: "తెలుగు" },
   learnInEnglish: { en: "English", te: "ఇంగ్లీష్" },
@@ -287,6 +289,11 @@ export const strings = {
   onboardTelugu: { en: "Explanations in Telugu", te: "తెలుగులో వివరణలు" },
   onboardEnglish: { en: "Explanations in English", te: "Explanations in English" },
   onboardHint: { en: "You can change this later in Settings.", te: "దీన్ని తర్వాత సెట్టింగ్స్‌లో మార్చుకోవచ్చు." },
+  onboardWelcome: { en: "Welcome to EnglishEasy", te: "ఇంగ్లీష్ ఈజీకి స్వాగతం" },
+  onboardTeluguSample: { en: "\u201cPast tense అంటే ఇప్పటికే జరిగిపోయిన పని.\u201d", te: "\u201cPast tense అంటే ఇప్పటికే జరిగిపోయిన పని.\u201d" },
+  onboardEnglishSample: { en: "\u201cPast tense is for things that already happened.\u201d", te: "\u201cPast tense is for things that already happened.\u201d" },
+  homeReady: { en: "Ready for today's English?", te: "ఈరోజు ఇంగ్లీష్‌కి సిద్ధమా?" },
+  homeStreakTitle: { en: "Days you practised", te: "మీరు సాధన చేసిన రోజులు" },
   greetMorning: { en: "Good morning", te: "శుభోదయం" },
   greetAfternoon: { en: "Good afternoon", te: "శుభ మధ్యాహ్నం" },
   greetEvening: { en: "Good evening", te: "శుభ సాయంత్రం" },
@@ -310,6 +317,7 @@ export const strings = {
   homeRolePlays: { en: "Role plays", te: "రోల్ ప్లేలు" },
   homeMySentences: { en: "My Sentences", te: "నా వాక్యాలు" },
   journeyTitle: { en: "Your journey", te: "మీ ప్రయాణం" },
+  journeyIntro: { en: "Five stages, one small step a day. Go at your own pace.", te: "ఐదు దశలు, రోజుకు ఒక చిన్న అడుగు. మీ వేగంలో నడవండి." },
   journeyStage: { en: "Stage {n} · {title}", te: "{n}వ దశ · {title}" },
   journeyWeeks: { en: "{n} weeks", te: "{n} వారాలు" },
   journeyWeek: { en: "Week {n}", te: "{n}వ వారం" },
@@ -321,6 +329,7 @@ export const strings = {
 
   // Practice hub (/learn/practice)
   practiceTitle: { en: "Practice", te: "సాధన" },
+  practiceIntro: { en: "Practise anything you have learned, as often as you like.", te: "నేర్చుకున్నదాన్ని ఎన్నిసార్లైనా సాధన చేయండి." },
   practiceBack: { en: "Back to Practice", te: "సాధనకు తిరిగి వెళ్ళండి" },
   practiceAgainHint: { en: "Questions you got wrong, until you get them right.", te: "మీరు తప్పు చేసిన ప్రశ్నలు, సరిగ్గా చెప్పే వరకు." },
   practiceRolePlaysHint: { en: "Play a conversation from a finished lesson again.", te: "పూర్తైన పాఠంలోని సంభాషణను మళ్ళీ ఆడండి." },
@@ -432,6 +441,9 @@ export const strings = {
 
   // Component gallery (/dev/ui)
   galleryTitle: { en: "Component gallery", te: "కాంపోనెంట్ గ్యాలరీ" },
+  galleryAccent: { en: "Celebrate", te: "సంబరం" },
+  galleryEmptyTitle: { en: "Nothing here yet", te: "ఇక్కడ ఇంకా ఏమీ లేదు" },
+  galleryEmptyText: { en: "When you get a question wrong twice, it waits here for you.", te: "ఒక ప్రశ్న రెండుసార్లు తప్పయితే, అది ఇక్కడ మీ కోసం ఉంటుంది." },
   galleryProgress: { en: "Lesson progress", te: "పాఠం ప్రోగ్రెస్" },
   galleryDialogOpen: { en: "Open a dialog", te: "డైలాగ్ తెరవండి" },
   galleryDialogTitle: { en: "A dialog", te: "ఒక డైలాగ్" },
@@ -462,6 +474,13 @@ export const strings = {
   offlineTitle: { en: "You are offline", te: "మీరు ఆఫ్‌లైన్‌లో ఉన్నారు" },
   offlineText: { en: "This page is not on your phone yet. Lessons you have opened still work.", te: "ఈ పేజీ ఇంకా మీ ఫోన్‌లో లేదు. మీరు తెరిచిన పాఠాలు ఇప్పటికీ పనిచేస్తాయి." },
   offlineOpenLessons: { en: "Open my lessons", te: "నా పాఠాలు తెరవండి" },
+  notFoundTitle: { en: "This page isn't here", te: "ఈ పేజీ ఇక్కడ లేదు" },
+  notFoundBody: {
+    en: "The link may be old or mistyped. Your lessons and progress are safe.",
+    te: "లింక్ పాతది కావచ్చు లేదా తప్పుగా ఉండవచ్చు. మీ పాఠాలు, ప్రగతి సురక్షితంగా ఉన్నాయి.",
+  },
+  goToLessons: { en: "Go to my lessons", te: "నా పాఠాలకు వెళ్ళండి" },
+  goToStart: { en: "Back to the start", te: "మొదటి పేజీకి" },
   // Daily reminders (Step 21)
   reminderTitle: { en: "Daily reminder", te: "రోజువారీ గుర్తు" },
   reminderHint: {

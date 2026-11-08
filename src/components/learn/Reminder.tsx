@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { Bi } from "@/components/ui/Bi";
 import { BiText } from "@/components/ui/BiText";
-import { button } from "@/components/ui/button";
+import { button, focusRing } from "@/components/ui/button";
+import { Nudge } from "@/components/ui/Nudge";
 import { card, cardText, cardTitle } from "@/components/ui/card";
 import { REMINDER_TIMES, type ReminderMode, type ReminderTimeId } from "@/learning/reminder-due";
 import { useProgress } from "@/lib/progress-store";
@@ -22,10 +23,8 @@ const TIME_LABEL: Record<ReminderTimeId, BiLabel> = {
 };
 
 const choice = (selected: boolean) =>
-  `min-h-13 rounded-xl border px-2 text-base outline-none transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-teal-700 dark:focus-visible:ring-teal-300 ${
-    selected
-      ? "border-teal-700 bg-teal-700 text-white dark:border-teal-400 dark:bg-teal-400 dark:text-stone-950"
-      : "border-stone-300 bg-white text-stone-900 hover:bg-stone-100 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:hover:bg-stone-800"
+  `min-h-13 rounded-2xl border px-2 text-base font-medium transition-colors duration-150 ${focusRing} ${
+    selected ? "border-brand bg-brand-fill text-on-brand shadow-card" : "border-line-strong bg-surface text-ink hover:border-brand/50 hover:bg-sunken"
   }`;
 
 /** The last day practised on this phone ("YYYY-MM-DD"), if any. */
@@ -68,7 +67,7 @@ function ReminderChoices({ withOff, onChosen }: { withOff: boolean; onChosen?: (
         ))}
       </div>
       {problem && (
-        <p role="alert" className="text-base text-red-700 dark:text-red-400">
+        <p role="alert" className="text-base text-danger">
           <BiText text={problem === "denied" ? strings.reminderDenied : strings.reminderFailed} />
         </p>
       )}
@@ -123,18 +122,20 @@ export function ReminderCard({ finishedLessons }: { finishedLessons: number }) {
   if (mode !== "ready" || hour !== null || finishedLessons < 1 || settings.dismissed.includes(REMINDER_CARD_ID)) return null;
   const dismiss = () => updateSettings({ dismissed: [...new Set([...settings.dismissed, REMINDER_CARD_ID])] });
   return (
-    <section aria-label={strings.reminderCardTitle.en} className={`${card} flex flex-col gap-3`}>
-      <h2 className={cardTitle}>
-        <Bi label={strings.reminderCardTitle} className="items-start" />
-      </h2>
-      <p className={cardText}>
-        <BiText text={strings.reminderCardText} />
-      </p>
+    <Nudge
+      label={strings.reminderCardTitle.en}
+      icon="bell"
+      tone="accent"
+      title={<Bi label={strings.reminderCardTitle} className="items-start" />}
+      actions={
+        <button type="button" onClick={dismiss} className={`${button("ghost")} w-full`}>
+          <Bi label={strings.reminderNotNow} />
+        </button>
+      }
+    >
+      <BiText text={strings.reminderCardText} />
       <ReminderChoices withOff={false} onChosen={dismiss} />
-      <button type="button" onClick={dismiss} className={`${button("ghost")} w-full`}>
-        <Bi label={strings.reminderNotNow} />
-      </button>
-    </section>
+    </Nudge>
   );
 }
 

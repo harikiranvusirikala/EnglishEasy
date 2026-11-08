@@ -16,7 +16,7 @@ type Props = {
   onNext: () => void;
 };
 
-const TILE = `flex min-h-13 items-center rounded-xl border px-4 py-2 text-xl font-medium outline-none focus-visible:ring-2 focus-visible:ring-teal-700 disabled:pointer-events-none dark:focus-visible:ring-teal-300`;
+const TILE = `flex min-h-13 items-center rounded-xl border px-4 py-2 text-xl font-medium outline-none focus-visible:ring-2 focus-visible:ring-brand disabled:pointer-events-none`;
 
 /** Arrange the English words, or build the English for a Telugu sentence (Translate): tap a tile to place it, tap it again to take it back. */
 export function Build({ activity, onAnswer, onNext }: Props) {
@@ -45,7 +45,7 @@ export function Build({ activity, onAnswer, onNext }: Props) {
   return (
     <>
       <div className="flex flex-col gap-4">
-        <p className="text-base text-stone-600 dark:text-stone-400">
+        <p className="text-base text-ink-2">
           <BiText text={prompt} />
         </p>
         {activity.te && (
@@ -57,9 +57,9 @@ export function Build({ activity, onAnswer, onNext }: Props) {
         <div
           role="group"
           aria-label={strings.yourSentence.en}
-          className="flex min-h-20 flex-wrap content-start gap-2 border-b-2 border-stone-300 pb-3 dark:border-stone-700"
+          className="flex min-h-20 flex-wrap content-start gap-2 border-b-2 border-line-strong pb-3"
         >
-          {placed.length === 0 && <p className="self-center text-base text-stone-600 dark:text-stone-400">{strings.tapWordsBelow.en}</p>}
+          {placed.length === 0 && <p className="self-center text-base text-ink-2">{strings.tapWordsBelow.en}</p>}
           {placed.map((id) => (
             <button key={id} type="button" disabled={locked} onClick={() => setPlaced(placed.filter((p) => p !== id))} className={`${TILE} ${locked ? style : OPTION.selected}`}>
               {word(id)}

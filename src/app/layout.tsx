@@ -16,6 +16,11 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   viewportFit: "cover", // lets the tab bar use the safe-area insets on notched phones
+  // The browser's bar matches the page (globals.css --page in Day and Night).
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fbf8f3" },
+    { media: "(prefers-color-scheme: dark)", color: "#0b1416" },
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -25,7 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script dangerouslySetInnerHTML={{ __html: SETTINGS_SCRIPT }} />
       </head>
-      <body className="min-h-dvh bg-stone-50 font-sans text-stone-900 antialiased dark:bg-stone-950 dark:text-stone-100">
+      <body className="min-h-dvh bg-page font-sans text-ink antialiased">
         {children}
       </body>
     </html>

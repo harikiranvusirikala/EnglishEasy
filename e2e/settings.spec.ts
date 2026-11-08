@@ -9,7 +9,7 @@ test("Night, A++ and English mode apply before first paint, survive a reload, an
   await page.goto("/learn/settings");
   // Defaults: Day, Telugu mode (Telugu labels shown).
   await expect(page.getByRole("heading", { name: "Settings" })).toBeVisible();
-  await expect(page.locator('[lang="te"]').first()).toBeVisible();
+  await expect(page.locator('[lang="te"]:visible').first()).toBeVisible(); // the header (computers) is hidden on phones
   await expect(page.locator("html")).not.toHaveClass(/dark/);
   await page.screenshot({ path: `${SHOTS}/settings-phone.png`, fullPage: true });
 

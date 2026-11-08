@@ -36,7 +36,7 @@ function SignInError() {
   const kind = signInErrorKind(useSearchParams()?.get("error"));
   if (!kind) return null;
   return (
-    <p role="alert" className="text-base text-red-700 dark:text-red-400">
+    <p role="alert" className="text-base text-danger">
       <BiText text={ERROR_LABEL[kind]} />
     </p>
   );
@@ -60,7 +60,7 @@ export function GoogleButton({ onFailed, returnTo }: { onFailed: () => void; ret
       type="button"
       onClick={signIn}
       disabled={pending}
-      className="flex min-h-13 items-center justify-center gap-2.5 self-start rounded-full border border-[#747775] bg-white px-4 text-base font-medium tracking-[0.25px] text-[#1f1f1f] outline-none transition-shadow hover:shadow-md focus-visible:ring-2 focus-visible:ring-teal-700 disabled:opacity-60 dark:border-[#8e918f] dark:bg-[#131314] dark:text-[#e3e3e3] dark:focus-visible:ring-teal-300"
+      className="flex min-h-13 items-center justify-center gap-2.5 self-start rounded-full border border-[#747775] bg-surface px-4 text-base font-medium tracking-[0.25px] text-[#1f1f1f] outline-none transition-shadow hover:shadow-md focus-visible:ring-2 focus-visible:ring-brand disabled:opacity-60 dark:border-[#8e918f] dark:bg-[#131314] dark:text-[#e3e3e3]"
     >
       <GoogleLogo />
       {/* Google's wording is fixed; the Telugu meaning goes below in Telugu mode */}
@@ -92,7 +92,7 @@ function SignOut() {
             <BiText text={strings.signOutBody} />
           </p>
           {failed && (
-            <p role="alert" className="text-base text-red-700 dark:text-red-400">
+            <p role="alert" className="text-base text-danger">
               <BiText text={strings.signOutFailed} />
             </p>
           )}
@@ -126,7 +126,7 @@ export function AccountView({ state }: { state: AccountState }) {
             <SignInError />
           </Suspense>
           {failed && (
-            <p role="alert" className="text-base text-red-700 dark:text-red-400">
+            <p role="alert" className="text-base text-danger">
               <BiText text={strings.signInFailed} />
             </p>
           )}
@@ -139,13 +139,13 @@ export function AccountView({ state }: { state: AccountState }) {
               // eslint-disable-next-line @next/next/no-img-element -- Google's photo, small and already sized
               <img src={state.image} alt={strings.accountPhotoAlt.en} width={48} height={48} referrerPolicy="no-referrer" className="size-12 shrink-0 rounded-full" />
             ) : (
-              <span aria-hidden="true" className="flex size-12 shrink-0 items-center justify-center rounded-full bg-teal-700 text-xl font-bold text-white dark:bg-teal-400 dark:text-stone-950">
+              <span aria-hidden="true" className="flex size-12 shrink-0 items-center justify-center rounded-full bg-brand-fill text-xl font-bold text-on-brand">
                 {state.name.slice(0, 1).toUpperCase()}
               </span>
             )}
             <div className="min-w-0">
               <p className="truncate text-lg font-semibold">{state.name}</p>
-              <p className="truncate text-base text-stone-600 dark:text-stone-400">{state.email}</p>
+              <p className="truncate text-base text-ink-2">{state.email}</p>
             </div>
           </div>
           <p className={cardText}>

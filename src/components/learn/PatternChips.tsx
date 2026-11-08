@@ -9,13 +9,13 @@ const ROLE: Record<Chip["role"], { label: (typeof strings)["roleWho"]; box: stri
   who: { label: strings.roleWho, box: "border-sky-300 bg-sky-100 text-sky-950 dark:border-sky-700 dark:bg-sky-950 dark:text-sky-100" },
   action: {
     label: strings.roleAction,
-    box: "border-emerald-300 bg-emerald-100 text-emerald-950 dark:border-emerald-700 dark:bg-emerald-950 dark:text-emerald-100",
+    box: "border-good-line bg-good-soft text-good",
   },
   what: {
     label: strings.roleWhat,
     box: "border-violet-300 bg-violet-100 text-violet-950 dark:border-violet-700 dark:bg-violet-950 dark:text-violet-100",
   },
-  when: { label: strings.roleWhen, box: "border-amber-300 bg-amber-100 text-amber-950 dark:border-amber-700 dark:bg-amber-950 dark:text-amber-100" },
+  when: { label: strings.roleWhen, box: "border-almost-line bg-almost-soft text-almost" },
 };
 
 export function PatternChips({ chips, animate = false }: { chips: Chip[]; animate?: boolean }) {
@@ -28,7 +28,7 @@ export function PatternChips({ chips, animate = false }: { chips: Chip[]; animat
           className={`flex flex-col items-center gap-1 ${animate ? "animate-[chip-in_200ms_ease-out_backwards] motion-reduce:animate-none" : ""}`}
         >
           <span className={`rounded-lg border px-3 py-2 text-lg font-semibold ${ROLE[chip.role].box}`}>{chip.text}</span>
-          <span className="text-sm text-stone-600 dark:text-stone-400">
+          <span className="text-sm text-ink-2">
             <Bi label={ROLE[chip.role].label} />
           </span>
         </li>

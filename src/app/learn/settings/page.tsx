@@ -1,13 +1,15 @@
 "use client";
 
-import type { ReactNode } from "react";
 import { Bi } from "@/components/ui/Bi";
 import { BiText } from "@/components/ui/BiText";
 import { SegmentedControl } from "@/components/ui/SegmentedControl";
 import { Skeleton } from "@/components/ui/Skeleton";
 import { Switch } from "@/components/ui/Switch";
 import { button } from "@/components/ui/button";
-import { card, cardText, cardTitle } from "@/components/ui/card";
+import { well } from "@/components/ui/card";
+import { Icon } from "@/components/ui/icons";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { SettingsCard } from "@/components/learn/SettingsCard";
 import { Account } from "@/components/learn/Account";
 import { ReminderSettings } from "@/components/learn/Reminder";
 import { MyTracks } from "@/components/learn/Tracks";
@@ -16,33 +18,19 @@ import { SUPPORT_URL } from "@/components/support";
 import { course } from "@/content/course";
 import { useProgress } from "@/lib/progress-store";
 import { updateSettings, useSettings } from "@/lib/settings-store";
-import { strings, type Bi as BiLabel } from "@/lib/strings";
+import { strings } from "@/lib/strings";
 import type { LearnIn, TextSize, ThemeChoice } from "@/learning/settings";
-
-function Section({ title, hint, children }: { title: BiLabel; hint?: BiLabel; children: ReactNode }) {
-  return (
-    <section className={`${card} flex flex-col gap-3`}>
-      <h2 className={cardTitle}>
-        <Bi label={title} className="items-start" />
-      </h2>
-      {hint && (
-        <p className={cardText}>
-          <BiText text={hint} />
-        </p>
-      )}
-      {children}
-    </section>
-  );
-}
 
 export default function SettingsPage() {
   const settings = useSettings();
   const progress = useProgress();
   return (
-    <main className="flex flex-col gap-4 p-4">
-      <h1 className="text-2xl font-bold">
-        <Bi label={strings.settingsTitle} className="items-start" />
-      </h1>
+    <main className="mx-auto flex w-full max-w-2xl flex-col gap-5 px-4 pt-6 pb-6 md:px-6 md:pt-8">
+      <PageHeader
+        title={<Bi label={strings.settingsTitle} className="items-start" />}
+      >
+        <BiText text={strings.settingsIntro} />
+      </PageHeader>
 
       {!settings ? (
         <div aria-hidden="true" className="flex flex-col gap-4">
@@ -53,7 +41,11 @@ export default function SettingsPage() {
         </div>
       ) : (
         <>
-          <Section title={strings.learnIn} hint={strings.learnInHint}>
+          <SettingsCard
+            icon="globe"
+            title={strings.learnIn}
+            hint={strings.learnInHint}
+          >
             <SegmentedControl<LearnIn>
               name={strings.learnIn.en}
               value={settings.learnIn}
@@ -63,9 +55,9 @@ export default function SettingsPage() {
                 { value: "en", label: strings.learnInEnglish },
               ]}
             />
-          </Section>
+          </SettingsCard>
 
-          <Section title={strings.theme}>
+          <SettingsCard icon="sun" title={strings.theme}>
             <SegmentedControl<ThemeChoice>
               name={strings.theme.en}
               value={settings.theme}
@@ -76,9 +68,9 @@ export default function SettingsPage() {
                 { value: "system", label: strings.themeSystem },
               ]}
             />
-          </Section>
+          </SettingsCard>
 
-          <Section title={strings.textSize}>
+          <SettingsCard icon="textSize" title={strings.textSize}>
             <SegmentedControl<TextSize>
               name={strings.textSize.en}
               value={settings.textSize}
@@ -89,25 +81,27 @@ export default function SettingsPage() {
                 { value: "A++", label: strings.textSizeAPlusPlus },
               ]}
             />
-            <p className="rounded-xl bg-stone-100 p-3 text-lg dark:bg-stone-800">
+            <p className={`${well} text-lg text-ink`}>
               <BiText text={strings.textSizeSample} />
             </p>
-          </Section>
+          </SettingsCard>
 
-          <section className={`${card} flex flex-col divide-y divide-stone-200 dark:divide-stone-800`}>
-            <Switch
-              checked={settings.autoPlay}
-              onChange={(autoPlay) => updateSettings({ autoPlay })}
-              label={strings.autoPlay}
-              hint={strings.autoPlayHint}
-            />
-            <Switch
-              checked={settings.noSpeaking}
-              onChange={(noSpeaking) => updateSettings({ noSpeaking })}
-              label={strings.noSpeaking}
-              hint={strings.noSpeakingHint}
-            />
-          </section>
+          <SettingsCard icon="speaker" title={strings.audioTitle}>
+            <div className="flex flex-col divide-y divide-line">
+              <Switch
+                checked={settings.autoPlay}
+                onChange={(autoPlay) => updateSettings({ autoPlay })}
+                label={strings.autoPlay}
+                hint={strings.autoPlayHint}
+              />
+              <Switch
+                checked={settings.noSpeaking}
+                onChange={(noSpeaking) => updateSettings({ noSpeaking })}
+                label={strings.noSpeaking}
+                hint={strings.noSpeakingHint}
+              />
+            </div>
+          </SettingsCard>
 
           <VoiceSettings />
         </>
@@ -117,10 +111,11 @@ export default function SettingsPage() {
       {progress && <MyTracks course={course} progress={progress} />}
       <Account />
 
-      <section className={`${card} flex flex-col gap-3`}>
-        <p className={cardText}>
-          <BiText text={strings.supportHint} />
-        </p>
+      <SettingsCard
+        icon="coffee"
+        title={strings.supportCoffee}
+        hint={strings.supportHint}
+      >
         <a
           href={SUPPORT_URL}
           target="_blank"
@@ -128,9 +123,11 @@ export default function SettingsPage() {
           aria-label={`${strings.supportCoffee.en} ${strings.opensNewTab.en}`}
           className={button("secondary")}
         >
+          <Icon name="coffee" />
           <Bi label={strings.supportCoffee} />
+          <Icon name="external" className="size-5 text-ink-3" />
         </a>
-      </section>
+      </SettingsCard>
     </main>
   );
 }

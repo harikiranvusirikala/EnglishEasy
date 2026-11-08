@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Bi } from "@/components/ui/Bi";
 import { BiText } from "@/components/ui/BiText";
 import { button } from "@/components/ui/button";
-import { card, cardText, cardTitle } from "@/components/ui/card";
+import { Nudge } from "@/components/ui/Nudge";
 import { SAVE_CARD_ID, saveCardVisible } from "@/learning/account";
 import { useAccount } from "@/lib/account";
 import { useProgress } from "@/lib/progress-store";
@@ -21,22 +21,25 @@ export function SaveProgressCard() {
   if (!progress || !settings || !saveCardVisible(account, progress, settings.dismissed)) return null;
   const dismiss = () => updateSettings({ dismissed: [...new Set([...settings.dismissed, SAVE_CARD_ID])] });
   return (
-    <section aria-label={strings.saveProgressTitle.en} className={`${card} flex flex-col gap-3`}>
-      <h2 className={cardTitle}>
-        <Bi label={strings.saveProgressTitle} className="items-start" />
-      </h2>
-      <p className={cardText}>
-        <BiText text={strings.saveProgressText} />
-      </p>
+    <Nudge
+      label={strings.saveProgressTitle.en}
+      icon="shield"
+      title={<Bi label={strings.saveProgressTitle} className="items-start" />}
+      actions={
+        <>
+          <GoogleButton onFailed={() => setFailed(true)} returnTo="/learn" />
+          <button type="button" onClick={dismiss} className={`${button("ghost")} w-full`}>
+            <Bi label={strings.saveProgressNotNow} />
+          </button>
+        </>
+      }
+    >
+      <BiText text={strings.saveProgressText} />
       {failed && (
-        <p role="alert" className="text-base text-red-700 dark:text-red-400">
+        <p role="alert" className="text-base text-danger">
           <BiText text={strings.signInFailed} />
         </p>
       )}
-      <GoogleButton onFailed={() => setFailed(true)} returnTo="/learn" />
-      <button type="button" onClick={dismiss} className={`${button("ghost")} w-full`}>
-        <Bi label={strings.saveProgressNotNow} />
-      </button>
-    </section>
+    </Nudge>
   );
 }

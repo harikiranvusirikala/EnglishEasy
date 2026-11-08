@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { Bi } from "@/components/ui/Bi";
 import { BiText } from "@/components/ui/BiText";
+import { EmptyState } from "@/components/ui/EmptyState";
 import { button } from "@/components/ui/button";
 import { reportError } from "@/lib/report-error";
 import { strings } from "@/lib/strings";
@@ -14,16 +15,19 @@ export function ErrorScreen({ error }: { error: unknown }) {
     reportError(error);
   }, [error]);
   return (
-    <main className="mx-auto flex min-h-[70dvh] max-w-xl flex-col items-center justify-center gap-4 p-6 text-center">
-      <h1 className="text-2xl font-bold">
-        <Bi label={strings.errorTitle} />
-      </h1>
-      <p className="text-lg text-stone-600 dark:text-stone-400">
+    <main className="mx-auto flex min-h-[80dvh] max-w-xl flex-col items-center justify-center p-6">
+      <EmptyState
+        as="h1"
+        illustration="offline"
+        title={<Bi label={strings.errorTitle} />}
+        action={
+          <button type="button" onClick={() => window.location.reload()} className={`${button("primary", "lg")} w-full`}>
+            <Bi label={strings.continue} />
+          </button>
+        }
+      >
         <BiText text={strings.errorBody} />
-      </p>
-      <button type="button" onClick={() => window.location.reload()} className={button("primary", "lg")}>
-        <Bi label={strings.continue} />
-      </button>
+      </EmptyState>
     </main>
   );
 }

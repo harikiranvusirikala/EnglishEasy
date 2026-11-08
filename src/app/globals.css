@@ -1,29 +1,209 @@
 @import "tailwindcss";
 @import "@fontsource-variable/noto-sans-telugu";
+@import "@fontsource-variable/baloo-tammudu-2";
 
 /* Night theme: `dark:` follows the "dark" class on <html> (set before first paint, Step 2). */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/*
+ * The design system's colours (BUILD_PLAN "a production look", the table of tokens). Each is a CSS variable
+ * switched by the `dark` class, and exposed to Tailwind below (`bg-page`, `text-ink`, `bg-brand-fill`, …),
+ * so a class written with a token needs no `dark:` twin. Raw palette classes (stone, teal…) still do.
+ */
 :root {
   color-scheme: light;
+  --page: #fbf8f3;
+  --surface: #ffffff;
+  --sunken: #f3eee6;
+  --line: #e7e0d5;
+  --line-strong: #d3c8b8;
+  --ink: #1c1917;
+  --ink-2: #57534e;
+  --ink-3: #78716c;
+  --brand: #0f766e;
+  --brand-strong: #0b5f58;
+  --brand-fill: #0f766e;
+  --brand-fill-hover: #0b5f58;
+  --on-brand: #ffffff;
+  --brand-soft: #e3f3f0;
+  --brand-soft-hover: #d0ebe6;
+  --brand-ink: #0b4f49;
+  --accent: #f59e0b;
+  --accent-soft: #fef3c7;
+  --accent-ink: #92400e;
+  --on-accent: #3b2503;
+  --good: #047857;
+  --good-soft: #ecfdf5;
+  --good-line: #6ee7b7;
+  --almost: #92400e;
+  --almost-soft: #fffbeb;
+  --almost-line: #fcd34d;
+  --danger: #b91c1c;
+  --danger-fill: #b91c1c;
+  --on-danger: #ffffff;
+  --scrim: rgb(28 25 23 / 0.5);
+  --card-shadow: 0 1px 2px rgb(41 37 36 / 0.05), 0 8px 24px -12px rgb(41 37 36 / 0.16);
+  --raised-shadow: 0 2px 4px rgb(41 37 36 / 0.06), 0 16px 40px -16px rgb(41 37 36 / 0.28);
+  /* Pattern chips: who, action, what, when. */
+  --who-bg: #e0f2fe;
+  --who-ink: #075985;
+  --who-line: #bae6fd;
+  --action-bg: #d1fae5;
+  --action-ink: #065f46;
+  --action-line: #a7f3d0;
+  --what-bg: #ede9fe;
+  --what-ink: #5b21b6;
+  --what-line: #ddd6fe;
+  --when-bg: #fef3c7;
+  --when-ink: #92400e;
+  --when-line: #fde68a;
 }
 
 .dark {
   color-scheme: dark;
+  --page: #0b1416;
+  --surface: #122023;
+  --sunken: #0e1a1c;
+  --line: #22363a;
+  --line-strong: #31494d;
+  --ink: #ecf3f2;
+  --ink-2: #a9bdbb;
+  --ink-3: #809694;
+  --brand: #7dd3c6;
+  --brand-strong: #a6e6dc;
+  --brand-fill: #7dd3c6;
+  --brand-fill-hover: #9be2d7;
+  --on-brand: #062a27;
+  --brand-soft: #143a37;
+  --brand-soft-hover: #1a4844;
+  --brand-ink: #b8ece4;
+  --accent: #fbbf24;
+  --accent-soft: #3a2c0c;
+  --accent-ink: #fde68a;
+  --on-accent: #2a1a02;
+  --good: #6ee7b7;
+  --good-soft: #062e22;
+  --good-line: #0f5f45;
+  --almost: #fcd34d;
+  --almost-soft: #33240a;
+  --almost-line: #7a5410;
+  --danger: #fca5a5;
+  --danger-fill: #f87171;
+  --on-danger: #2a0606;
+  --scrim: rgb(0 0 0 / 0.6);
+  --card-shadow: 0 0 #0000;
+  --raised-shadow: 0 20px 48px -20px rgb(0 0 0 / 0.7);
+  --who-bg: #0c2a3b;
+  --who-ink: #bae6fd;
+  --who-line: #164e63;
+  --action-bg: #0b2e24;
+  --action-ink: #a7f3d0;
+  --action-line: #065f46;
+  --what-bg: #24183f;
+  --what-ink: #ddd6fe;
+  --what-line: #4c1d95;
+  --when-bg: #33250a;
+  --when-ink: #fde68a;
+  --when-line: #78350f;
 }
 
 @theme inline {
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-telugu: "Noto Sans Telugu Variable", system-ui, sans-serif;
+  --font-display: "Baloo Tammudu 2 Variable", "Noto Sans Telugu Variable", system-ui, sans-serif;
+
+  --color-page: var(--page);
+  --color-surface: var(--surface);
+  --color-sunken: var(--sunken);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-fill: var(--brand-fill);
+  --color-brand-fill-hover: var(--brand-fill-hover);
+  --color-on-brand: var(--on-brand);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-soft-hover: var(--brand-soft-hover);
+  --color-brand-ink: var(--brand-ink);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-ink: var(--accent-ink);
+  --color-on-accent: var(--on-accent);
+  --color-good: var(--good);
+  --color-good-soft: var(--good-soft);
+  --color-good-line: var(--good-line);
+  --color-almost: var(--almost);
+  --color-almost-soft: var(--almost-soft);
+  --color-almost-line: var(--almost-line);
+  --color-danger: var(--danger);
+  --color-danger-fill: var(--danger-fill);
+  --color-on-danger: var(--on-danger);
+  --color-scrim: var(--scrim);
+  --color-who-bg: var(--who-bg);
+  --color-who-ink: var(--who-ink);
+  --color-who-line: var(--who-line);
+  --color-action-bg: var(--action-bg);
+  --color-action-ink: var(--action-ink);
+  --color-action-line: var(--action-line);
+  --color-what-bg: var(--what-bg);
+  --color-what-ink: var(--what-ink);
+  --color-what-line: var(--what-line);
+  --color-when-bg: var(--when-bg);
+  --color-when-ink: var(--when-ink);
+  --color-when-line: var(--when-line);
+
+  --shadow-card: var(--card-shadow);
+  --shadow-raised: var(--raised-shadow);
+
+  --animate-dialog-in: dialog-in 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  --animate-sheet-in: sheet-in 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  --animate-menu-in: menu-in 140ms ease-out;
+  --animate-toast-in: toast-in 200ms ease-out;
+  --animate-panel-in: panel-in 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  --animate-fade-in: fade-in 220ms ease-out;
+  --animate-pop-in: pop-in 320ms cubic-bezier(0.2, 0.9, 0.3, 1.3);
 }
 
-:lang(te) {
-  font-family: var(--font-telugu);
-  line-height: 1.7;
-}
+@layer base {
+  html {
+    font-size: 18px; /* text size A; the settings script sets 20px (A+) or 22px (A++) before first paint */
+    -webkit-tap-highlight-color: transparent;
+  }
 
-html {
-  font-size: 18px; /* text size A; the settings script sets 20px (A+) or 22px (A++) before first paint */
+  body {
+    background-color: var(--page);
+    color: var(--ink);
+  }
+
+  :lang(te) {
+    font-family: var(--font-telugu);
+    line-height: 1.6;
+  }
+
+  /* Headings in the display font keep it for their Telugu words too (one family covers both scripts). */
+  .font-display :lang(te),
+  .font-display:lang(te) {
+    font-family: var(--font-display);
+    line-height: 1.35;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--brand-soft);
+    color: var(--brand-ink);
+  }
 }
 
 /* Learn in: English mode hides the Telugu half of labels until React removes it (no flash on load). */
@@ -31,10 +211,30 @@ html[data-learn-in="en"] [data-bi-te] {
   display: none;
 }
 
+/* Server-rendered lesson pages hold Telugu and English text for search engines; the Learn in setting shows one. */
+html[data-learn-in="en"] [data-lang="te"],
+html[data-learn-in="te"] [data-lang="en"] {
+  display: none;
+}
+
 @keyframes dialog-in {
   from {
     opacity: 0;
-    transform: translateY(0.75rem);
+    transform: translateY(0.75rem) scale(0.98);
+  }
+}
+
+@keyframes sheet-in {
+  from {
+    opacity: 0.4;
+    transform: translateY(100%);
+  }
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: scale(0.98) translateY(-0.25rem);
   }
 }
 
@@ -48,7 +248,20 @@ html[data-learn-in="en"] [data-bi-te] {
 @keyframes panel-in {
   from {
     opacity: 0;
-    transform: translateY(1rem);
+    transform: translateY(1.5rem);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
   }
 }
 
@@ -68,6 +281,16 @@ html[data-learn-in="en"] [data-bi-te] {
   }
 }
 
+/* The mic button's ring while it listens. */
+@keyframes listen-pulse {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--brand) 45%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 1.25rem color-mix(in srgb, var(--brand) 0%, transparent);
+  }
+}
+
 /* Lesson complete: confetti falls once (CSS only; the pieces are hidden with reduced motion). */
 @keyframes confetti-fall {
   from {
@@ -80,8 +303,10 @@ html[data-learn-in="en"] [data-bi-te] {
   }
 }
 
-/* Server-rendered lesson pages hold Telugu and English text for search engines; the Learn in setting shows one. */
-html[data-learn-in="en"] [data-lang="te"],
-html[data-learn-in="te"] [data-lang="en"] {
+/* Scrolling rows (the week strip) hide their scrollbar; they still scroll by touch and keyboard. */
+.scrollbar-none {
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
   display: none;
 }

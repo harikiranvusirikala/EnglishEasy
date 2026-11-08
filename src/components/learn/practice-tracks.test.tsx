@@ -149,7 +149,7 @@ describe("Practice", () => {
     render(<PracticeHub />);
     const links = await screen.findAllByRole("link");
     expect(links.map((l) => l.getAttribute("href"))).toEqual(["/learn/practice/again", "/learn/practice/roleplays", "/learn/practice/sentences", "/learn/practice/speaking"]);
-    expect(within(links[0]).getByText("(1)")).toBeTruthy();
+    expect(within(links[0]).getByText("1")).toBeTruthy(); // the count badge
   });
 
   it("Role plays shows the empty state when no finished day has one", async () => {

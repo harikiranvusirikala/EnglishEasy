@@ -21,7 +21,7 @@ export function Text({ children, className = "" }: { children: string; className
 /** The bottom of the player: the main button (and the feedback panel above it) fixed to the screen's foot. */
 export function BottomBar({ children }: { children: ReactNode }) {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-10 border-t border-stone-200 bg-white pb-[env(safe-area-inset-bottom)] dark:border-stone-800 dark:bg-stone-900">
+    <div className="fixed inset-x-0 bottom-0 z-10 border-t border-line bg-surface pb-[env(safe-area-inset-bottom)]">
       <div className="mx-auto flex max-w-xl flex-col gap-3 p-4">{children}</div>
     </div>
   );
@@ -38,9 +38,9 @@ export function MainButton({ label, onClick, disabled }: { label: BiLabel; onCli
 export type FeedbackKind = "correct" | "almost" | "answer";
 
 const PANEL: Record<FeedbackKind, string> = {
-  correct: "border-emerald-300 bg-emerald-50 text-emerald-950 dark:border-emerald-700 dark:bg-emerald-950 dark:text-emerald-100",
-  almost: "border-amber-300 bg-amber-50 text-amber-950 dark:border-amber-700 dark:bg-amber-950 dark:text-amber-100",
-  answer: "border-amber-300 bg-amber-50 text-amber-950 dark:border-amber-700 dark:bg-amber-950 dark:text-amber-100",
+  correct: "border-good-line bg-good-soft text-good",
+  almost: "border-almost-line bg-almost-soft text-almost",
+  answer: "border-almost-line bg-almost-soft text-almost",
 };
 
 /** ✓ Correct! (green) or ↻ Almost (amber), announced to screen readers; `children` hold the reason and the answer. `label` replaces the heading (Great, Good, Try again). */
@@ -62,10 +62,10 @@ export function FeedbackPanel({ kind, label, children }: { kind: FeedbackKind; l
 export type OptionState = "idle" | "selected" | "right" | "wrong";
 
 export const OPTION: Record<OptionState, string> = {
-  idle: "border-stone-300 bg-white text-stone-900 hover:bg-stone-100 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:hover:bg-stone-800",
-  selected: "border-teal-700 bg-teal-50 text-stone-900 ring-2 ring-teal-700 dark:border-teal-400 dark:bg-teal-950 dark:text-stone-100 dark:ring-teal-400",
-  right: "border-emerald-500 bg-emerald-50 text-emerald-950 dark:border-emerald-600 dark:bg-emerald-950 dark:text-emerald-100",
-  wrong: "border-amber-500 bg-amber-50 text-amber-950 dark:border-amber-600 dark:bg-amber-950 dark:text-amber-100",
+  idle: "border-line-strong bg-surface text-ink hover:bg-sunken",
+  selected: "border-brand bg-brand-soft text-ink ring-2 ring-brand",
+  right: "border-good-line bg-good-soft text-good",
+  wrong: "border-almost-line bg-almost-soft text-almost",
 };
 
 /** One answer button. A ✓ or ↻ goes with the colour once the answer is judged. */
@@ -76,7 +76,7 @@ export function OptionButton({ text, state, disabled, onClick }: { text: string;
       aria-pressed={state === "selected"}
       disabled={disabled}
       onClick={onClick}
-      className={`flex min-h-13 w-full items-center justify-between gap-3 rounded-xl border px-4 py-3 text-left text-lg font-medium outline-none focus-visible:ring-2 focus-visible:ring-teal-700 disabled:pointer-events-none dark:focus-visible:ring-teal-300 ${OPTION[state]}`}
+      className={`flex min-h-13 w-full items-center justify-between gap-3 rounded-xl border px-4 py-3 text-left text-lg font-medium outline-none focus-visible:ring-2 focus-visible:ring-brand disabled:pointer-events-none ${OPTION[state]}`}
     >
       <Text>{text}</Text>
       {state === "right" && <Icon name="check" />}

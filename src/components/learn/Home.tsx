@@ -11,15 +11,18 @@ import { isFirstVisit, locateDay, practisedThisWeek, timeOfDay, weekStrip, type 
 import type { Progress } from "@/learning/progress";
 import { Bi } from "@/components/ui/Bi";
 import { BiText } from "@/components/ui/BiText";
-import { ProgressBar } from "@/components/ui/ProgressBar";
+import { Logo } from "@/components/ui/Logo";
+import { ProgressRing } from "@/components/ui/ProgressRing";
 import { Skeleton } from "@/components/ui/Skeleton";
-import { button } from "@/components/ui/button";
-import { card, cardLink, cardText, cardTitle } from "@/components/ui/card";
+import { badge } from "@/components/ui/badge";
+import { button, focusRing } from "@/components/ui/button";
+import { brandCard, card, cardFlush, sectionTitle } from "@/components/ui/card";
+import { Icon, type IconName } from "@/components/ui/icons";
 import { useClock } from "@/lib/clock";
 import { loadLesson } from "@/lib/lesson-data";
 import { useProgress } from "@/lib/progress-store";
 import { useSettings } from "@/lib/settings-store";
-import { fill, strings } from "@/lib/strings";
+import { fill, strings, type Bi as BiLabel } from "@/lib/strings";
 import { InstallCard } from "./InstallCard";
 import { ReminderCard } from "./Reminder";
 import { SaveProgressCard } from "./SaveProgressCard";
@@ -28,15 +31,17 @@ import { TrackSuggestionCard, TracksCard } from "./Tracks";
 
 const GREETING = { morning: strings.greetMorning, afternoon: strings.greetAfternoon, evening: strings.greetEvening };
 
-function TodaySkeleton() {
-  return <Skeleton className="h-56 w-full" />;
+/** The two speech bubbles of the logo, faint in the brand card's corner. Decorative. */
+function CardBubbles() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 120 100" className="pointer-events-none absolute -right-6 -bottom-6 w-44 opacity-[0.13]">
+      <path d="M14 8h56a12 12 0 0 1 12 12v22a12 12 0 0 1-12 12H40L22 68V54h-8A12 12 0 0 1 2 42V20A12 12 0 0 1 14 8Z" fill="#fff" />
+      <path d="M58 40h48a12 12 0 0 1 12 12v20a12 12 0 0 1-12 12h-4v14L88 84H58a12 12 0 0 1-12-12V52a12 12 0 0 1 12-12Z" fill="#fde68a" />
+    </svg>
+  );
 }
 
-function Heading({ children }: { children: React.ReactNode }) {
-  return <h2 className="text-lg font-semibold text-stone-900 dark:text-stone-100">{children}</h2>;
-}
-
-/** The day's card once its content is known: title, percent, counts and the button. */
+/** The day's progress and button once its content is known. */
 function LoadedToday({ place, progress, first }: { place: DayPlace; progress: Progress; first: boolean }) {
   const day = use(loadLesson(place.ref.id));
   const stats = dayStats(day, progress);
@@ -44,11 +49,16 @@ function LoadedToday({ place, progress, first }: { place: DayPlace; progress: Pr
   const action = stats.state === "complete" ? strings.homeReviewLesson : stats.state === "in-progress" ? strings.homeContinueLesson : first ? fill(strings.homeStartDay, { n: place.number }) : strings.homeStartLesson;
   return (
     <>
-      <ProgressBar label={strings.progressLabel.en} value={stats.done} max={stats.total} />
-      <p className={cardText}>
-        <BiText text={fill(strings.overviewCount, { done: stats.done, total: stats.total, left })} />
-      </p>
-      <Link href={`/learn/play?l=${encodeURIComponent(place.ref.id)}`} className={`${button("primary", "lg")} w-full`}>
+      <div className="flex items-center gap-4">
+        <ProgressRing label={strings.progressLabel.en} value={stats.done} max={stats.total} size={64} stroke={6} tone="onBrand">
+          <span className="font-display text-base font-bold tabular-nums">{stats.percent}%</span>
+        </ProgressRing>
+        <p className="text-base text-white/90">
+          <BiText text={fill(strings.overviewCount, { done: stats.done, total: stats.total, left })} />
+        </p>
+      </div>
+      <Link href={`/learn/play?l=${encodeURIComponent(place.ref.id)}`} className={`${button("onBrand", "lg")} w-full`}>
+        <Icon name={stats.state === "complete" ? "retry" : "play"} className="size-6" />
         <Bi label={action} />
       </Link>
     </>
@@ -60,10 +70,8 @@ function TodayCard({ course, progress, written }: { course: Course; progress: Pr
   const place = target ? locateDay(course, target.dayId) : null;
   if (!target || !place) {
     return (
-      <section className={card}>
-        <p className={cardText}>
-          <BiText text={strings.homeAllDone} />
-        </p>
+      <section className={`${card} text-base text-ink-2`}>
+        <BiText text={strings.homeAllDone} />
       </section>
     );
   }
@@ -71,108 +79,151 @@ function TodayCard({ course, progress, written }: { course: Course; progress: Pr
   const label = first ? strings.homeFirstTitle : target.reason === "resume" || Object.keys(progress.completed).length > 0 ? strings.homeWelcomeBack : strings.homeToday;
   const ready = written.includes(place.ref.id);
   return (
-    <section aria-label={label.en} className={`${card} flex flex-col gap-3`}>
-      <p className="text-base font-semibold text-teal-800 dark:text-teal-300">
-        <BiText text={label} />
-      </p>
-      <div>
-        <p className={cardText}>
-          <BiText text={fill(strings.homeWeekDay, { week: place.week.n, n: place.number })} />
+    <section aria-label={label.en} className={`${brandCard} flex flex-col gap-5 p-6`}>
+      <CardBubbles />
+      <div className="relative flex flex-col gap-2">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className={badge("onBrand")}>
+            <BiText text={fill(strings.homeWeekDay, { week: place.week.n, n: place.number })} />
+          </span>
+        </div>
+        <p className="mt-1 text-base font-semibold text-[#fde68a]">
+          <BiText text={label} />
         </p>
-        <h2 className="text-2xl font-bold text-stone-900 dark:text-stone-100">
+        <h2 className="font-display text-[2rem] leading-[1.15] font-bold">
           <BiText text={place.ref.title} />
         </h2>
       </div>
-      {ready ? (
-        <Suspense fallback={<Skeleton className="h-28 w-full" />}>
-          <LoadedToday place={place} progress={progress} first={first} />
-        </Suspense>
-      ) : (
-        <p className={cardText}>
-          <BiText text={strings.overviewPlanned} />
-        </p>
-      )}
-      {target.reason === "next" && !first && ready && (
-        <p className={cardText}>
-          <BiText text={strings.homeNextWhenReady} />
-        </p>
-      )}
+      <div className="relative flex flex-col gap-4">
+        {ready ? (
+          <Suspense fallback={<Skeleton tone="onBrand" className="h-36 w-full" />}>
+            <LoadedToday place={place} progress={progress} first={first} />
+          </Suspense>
+        ) : (
+          <p className="text-base text-white/85">
+            <BiText text={strings.overviewPlanned} />
+          </p>
+        )}
+        {target.reason === "next" && !first && ready && (
+          <p className="text-sm text-white/75">
+            <BiText text={strings.homeNextWhenReady} />
+          </p>
+        )}
+      </div>
     </section>
   );
 }
 
-const MARK = {
-  done: { glyph: "✓", sr: strings.stepDone, style: "bg-emerald-100 text-emerald-900 dark:bg-emerald-950 dark:text-emerald-200" },
-  current: { glyph: "●", sr: strings.stepCurrent, style: "bg-teal-700 text-white dark:bg-teal-400 dark:text-stone-950" },
-  todo: { glyph: "○", sr: strings.stepTodo, style: "bg-stone-200 text-stone-700 dark:bg-stone-800 dark:text-stone-300" },
+const DAY_STYLE = {
+  done: "bg-good text-surface",
+  current: "bg-brand-fill text-on-brand ring-4 ring-accent/50",
+  todo: "bg-surface text-ink-2 ring-2 ring-inset ring-line-strong",
 };
 
-function WeekStrip({ course, progress, written }: { course: Course; progress: Progress; written: string[] }) {
+/** This week: seven day circles (✓ done, the current day ringed in marigold), and the days practised. */
+function WeekCard({ course, progress, written, practised }: { course: Course; progress: Progress; written: string[]; practised: number }) {
   const target = recommendedDay(course, progress);
   const place = target ? locateDay(course, target.dayId) : null;
   if (!place) return null;
   const current = target && !(target.dayId in progress.completed) ? target.dayId : null;
   const days = weekStrip(place.week, progress, current);
+  const done = days.filter((d) => d.state === "done").length;
   return (
-    <section aria-label={strings.homeThisWeek.en} className="flex flex-col gap-2">
-      <Heading>
-        <Bi label={strings.homeThisWeek} className="items-start" />
-      </Heading>
-      <ul className="grid grid-cols-7 gap-2">
+    <section aria-label={strings.homeThisWeek.en} className={`${card} flex flex-col gap-4`}>
+      <div className="flex items-center justify-between gap-3">
+        <h2 className={sectionTitle}>
+          <Bi label={strings.homeThisWeek} className="items-start" />
+        </h2>
+        <span className={badge("good")}>
+          {done} / {days.length}
+        </span>
+      </div>
+      <ul className="grid grid-cols-7 gap-1">
         {days.map((d) => {
-          const mark = MARK[d.state];
           const content = (
             <>
-              <span aria-hidden="true" className={`flex size-8 items-center justify-center rounded-full text-sm font-bold ${mark.style}`}>
-                {mark.glyph}
+              <span aria-hidden="true" className={`flex size-10 items-center justify-center rounded-full font-display text-base font-bold ${DAY_STYLE[d.state]}`}>
+                {d.state === "done" ? <Icon name="check" className="size-5" strokeWidth={3} /> : d.number}
               </span>
-              <span className="text-xs font-semibold">{fill(strings.homeDayChip, { n: d.number }).en}</span>
-              <span className="sr-only"> — {mark.sr.en}</span>
+              <span className={`text-sm ${d.state === "current" ? "font-bold text-ink" : "text-ink-2"}`}>{fill(strings.homeDayChip, { n: d.number }).en}</span>
+              <span className="sr-only">
+                {" "}
+                — {(d.state === "done" ? strings.stepDone : d.state === "current" ? strings.stepCurrent : strings.stepTodo).en}
+              </span>
             </>
           );
-          const style = "flex min-h-13 flex-col items-center justify-center gap-0.5 rounded-xl text-stone-900 outline-none focus-visible:ring-2 focus-visible:ring-teal-700 dark:text-stone-100 dark:focus-visible:ring-teal-300";
+          const style = `flex min-h-16 flex-col items-center justify-center gap-1 rounded-2xl ${focusRing}`;
           return (
             <li key={d.ref.id}>
               {written.includes(d.ref.id) ? (
-                <Link href={`/lessons/${encodeURIComponent(d.ref.id)}`} className={`${style} hover:bg-stone-200/70 dark:hover:bg-stone-800`}>
+                <Link href={`/lessons/${encodeURIComponent(d.ref.id)}`} className={`${style} hover:bg-sunken`}>
                   {content}
                 </Link>
               ) : (
-                <span className={`${style} opacity-70`}>{content}</span>
+                <span className={`${style} opacity-60`}>{content}</span>
               )}
             </li>
           );
         })}
       </ul>
+      {practised > 0 && (
+        <p className="flex items-center gap-2 rounded-2xl bg-good-soft px-3 py-2.5 text-base text-good">
+          <Icon name="leaf" className="size-5" />
+          <BiText text={practised === 1 ? strings.homePractisedOne : fill(strings.homePractised, { n: practised })} />
+        </p>
+      )}
     </section>
   );
 }
 
-function PracticeTiles({ progress }: { progress: Progress }) {
+const TILE_TONE = {
+  accent: "bg-accent-soft text-accent-ink",
+  brand: "bg-brand-soft text-brand",
+  who: "bg-who-bg text-who-ink",
+};
+
+/** Practice something else: rows with an icon, a hint and the count. */
+function PracticeList({ progress }: { progress: Progress }) {
   const finished = Object.keys(progress.completed).length;
-  const tiles = [
-    { label: strings.homePracticeAgain, count: Object.keys(progress.mistakes).length, href: "/learn/practice/again" },
-    { label: strings.homeRolePlays, count: finished, href: "/learn/practice/roleplays" },
-    { label: strings.homeMySentences, count: finished, href: "/learn/practice/sentences" },
+  const rows: { label: BiLabel; count: number; href: string; icon: IconName; tone: keyof typeof TILE_TONE }[] = [
+    { label: strings.homePracticeAgain, count: Object.keys(progress.mistakes).length, href: "/learn/practice/again", icon: "retry", tone: "accent" },
+    { label: strings.homeRolePlays, count: finished, href: "/learn/practice/roleplays", icon: "chat", tone: "brand" },
+    { label: strings.homeMySentences, count: finished, href: "/learn/practice/sentences", icon: "book", tone: "who" },
   ];
   return (
-    <section aria-label={strings.homePracticeMore.en} className="flex flex-col gap-2">
-      <Heading>
+    <section aria-label={strings.homePracticeMore.en} className="flex flex-col gap-3">
+      <h2 className={sectionTitle}>
         <Bi label={strings.homePracticeMore} className="items-start" />
-      </Heading>
-      <ul className="grid grid-cols-3 gap-2">
-        {tiles.map((t) => (
-          <li key={t.label.en}>
-            <Link href={t.href} className={`${cardLink} flex h-full min-h-20 flex-col items-center justify-center gap-1 p-2 text-center`}>
-              <span className={`${cardTitle} text-base`}>
-                <Bi label={t.label} />
+      </h2>
+      <ul className={`${cardFlush} divide-y divide-line`}>
+        {rows.map((r) => (
+          <li key={r.href}>
+            <Link href={r.href} className={`flex min-h-18 items-center gap-4 px-4 py-3 transition-colors hover:bg-sunken ${focusRing} focus-visible:ring-inset`}>
+              <span aria-hidden="true" className={`flex size-12 shrink-0 items-center justify-center rounded-2xl ${TILE_TONE[r.tone]}`}>
+                <Icon name={r.icon} />
               </span>
-              {t.count > 0 && <span className="text-sm font-semibold text-teal-800 tabular-nums dark:text-teal-300">({t.count})</span>}
+              <span className="min-w-0 flex-1 text-lg font-semibold text-ink">
+                <Bi label={r.label} className="items-start" />
+              </span>
+              {r.count > 0 && <span className={badge(r.tone === "accent" ? "accent" : "brand")}>{r.count}</span>}
+              <Icon name="chevron" className="size-5 text-ink-3" />
             </Link>
           </li>
         ))}
       </ul>
     </section>
+  );
+}
+
+function HomeSkeleton() {
+  return (
+    <div aria-busy="true" className="grid gap-5 lg:grid-cols-[1.35fr_1fr]">
+      <Skeleton className="h-80 w-full" />
+      <div className="flex flex-col gap-5">
+        <Skeleton className="h-44 w-full" />
+        <Skeleton className="h-56 w-full" />
+      </div>
+    </div>
   );
 }
 
@@ -185,28 +236,35 @@ export function Home({ course, written }: { course: Course; written: string[] })
   if (settings && !settings.onboarded) return <Onboarding />;
   const practised = progress && clock ? practisedThisWeek(progress.practiceDays, clock.today) : 0;
   return (
-    <main className="flex flex-col gap-5 p-4 pt-6">
-      <h1 className="min-h-8 text-2xl font-bold text-stone-900 dark:text-stone-100">
-        {clock ? <Bi label={greetWithName(GREETING[timeOfDay(clock.hour)], name)} className="items-start" /> : <span className="sr-only">{strings.homeTitle.en}</span>}
-      </h1>
+    <main className="mx-auto flex w-full max-w-xl flex-col gap-6 px-4 pt-5 pb-6 md:max-w-6xl md:px-6 md:pt-8">
+      <div className="flex items-center justify-between md:hidden">
+        <Logo size="sm" />
+      </div>
+      <header className="flex flex-col gap-1">
+        <h1 className="font-display min-h-10 text-[2rem] leading-tight font-bold text-ink">
+          {clock ? <Bi label={greetWithName(GREETING[timeOfDay(clock.hour)], name)} className="items-start" /> : <span className="sr-only">{strings.homeTitle.en}</span>}
+        </h1>
+        <p className="text-lg text-ink-2">
+          <BiText text={strings.homeReady} />
+        </p>
+      </header>
       {progress && settings ? (
-        <>
-          <TodayCard course={course} progress={progress} written={written} />
-          <SaveProgressCard />
-          <ReminderCard finishedLessons={Object.keys(progress.completed).length} />
-          <InstallCard />
-          <TrackSuggestionCard course={course} progress={progress} written={written} />
-          <TracksCard course={course} progress={progress} />
-          <WeekStrip course={course} progress={progress} written={written} />
-          {practised > 0 && (
-            <p className="text-base text-stone-700 dark:text-stone-300">
-              <BiText text={practised === 1 ? strings.homePractisedOne : fill(strings.homePractised, { n: practised })} />
-            </p>
-          )}
-          <PracticeTiles progress={progress} />
-        </>
+        <div className="grid gap-5 lg:grid-cols-[1.35fr_1fr] lg:items-start">
+          <div className="flex flex-col gap-5">
+            <TodayCard course={course} progress={progress} written={written} />
+            <TrackSuggestionCard course={course} progress={progress} written={written} />
+            <SaveProgressCard />
+            <ReminderCard finishedLessons={Object.keys(progress.completed).length} />
+            <TracksCard course={course} progress={progress} />
+            <InstallCard />
+          </div>
+          <div className="flex flex-col gap-5">
+            <WeekCard course={course} progress={progress} written={written} practised={practised} />
+            <PracticeList progress={progress} />
+          </div>
+        </div>
       ) : (
-        <TodaySkeleton />
+        <HomeSkeleton />
       )}
     </main>
   );

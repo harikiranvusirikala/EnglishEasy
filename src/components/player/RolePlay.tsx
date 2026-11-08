@@ -30,10 +30,10 @@ function PartnerBubble({ name, english, telugu, auto }: { name: RolePlayActivity
     <Bubble side="left" name={<BiText text={name} />}>
       <p className="flex flex-wrap items-center gap-x-1">
         <span>{english}</span>
-        <Narrate text={english} auto={auto} />
+        <Narrate text={english} auto={auto} variant="compact" />
       </p>
       {meaning && (
-        <p lang="te" className="mt-1 text-base text-stone-600 dark:text-stone-400">
+        <p lang="te" className="mt-1 text-base text-ink-2">
           {telugu}
         </p>
       )}
@@ -116,7 +116,7 @@ export function RolePlay({ activity, onNext }: { activity: RolePlayActivity; onA
           <h1 className="text-xl font-bold">
             <BiText text={activity.title} />
           </h1>
-          <p className="text-base text-stone-600 dark:text-stone-400">
+          <p className="text-base text-ink-2">
             <BiText text={activity.scene} />
           </p>
           <p className="text-base">
@@ -138,7 +138,7 @@ export function RolePlay({ activity, onNext }: { activity: RolePlayActivity; onA
                   </p>
                 </Bubble>
                 {i < turn && log[i].better && (
-                  <p className="px-1 text-base text-amber-900 dark:text-amber-200">
+                  <p className="px-1 text-base text-almost">
                     {strings.betterReply.en}: <span className="font-semibold">{log[i].better}</span>
                   </p>
                 )}
@@ -155,7 +155,7 @@ export function RolePlay({ activity, onNext }: { activity: RolePlayActivity; onA
 
         {!replied && (
           <div role="group" aria-label={strings.replyPrompt.en} className="flex flex-col gap-2">
-            <p className="text-base text-stone-600 dark:text-stone-400">
+            <p className="text-base text-ink-2">
               <BiText text={strings.replyPrompt} />
             </p>
             {order.map((i) => (

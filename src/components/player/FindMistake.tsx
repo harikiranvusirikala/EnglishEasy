@@ -25,7 +25,7 @@ export function FindMistake({ activity, onAnswer, onNext }: Props) {
   return (
     <>
       <div className="flex flex-col gap-4">
-        <p className="text-base text-stone-600 dark:text-stone-400">
+        <p className="text-base text-ink-2">
           <BiText text={strings.mistakePrompt} />
         </p>
         <div role="group" className="flex flex-wrap gap-2">
@@ -36,7 +36,7 @@ export function FindMistake({ activity, onAnswer, onNext }: Props) {
               aria-pressed={stateOf(i) === "selected"}
               disabled={result !== null}
               onClick={() => setSelected(i)}
-              className={`flex min-h-13 items-center gap-2 rounded-xl border px-4 py-2 text-xl font-medium outline-none focus-visible:ring-2 focus-visible:ring-teal-700 disabled:pointer-events-none dark:focus-visible:ring-teal-300 ${OPTION[stateOf(i)]}`}
+              className={`flex min-h-13 items-center gap-2 rounded-xl border px-4 py-2 text-xl font-medium outline-none focus-visible:ring-2 focus-visible:ring-brand disabled:pointer-events-none ${OPTION[stateOf(i)]}`}
             >
               {w}
               {stateOf(i) === "right" && <Icon name="check" />}

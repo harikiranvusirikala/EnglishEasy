@@ -41,7 +41,7 @@ function Loaded({ id, progress }: { id: string; progress: Progress }) {
           <BiText text={fill(strings.overviewPercent, { n: stats.percent })} />
         </p>
         <ProgressBar label={strings.progressLabel.en} value={stats.done} max={stats.total} />
-        <p className="text-base text-stone-600 dark:text-stone-400">
+        <p className="text-base text-ink-2">
           <BiText text={fill(strings.overviewCount, { done: stats.done, total: stats.total, left })} />
         </p>
         <StepList steps={stats.sections.map((s) => ({ id: s.kind, label: SECTION_NAME[s.kind], state: STEP_STATE[s.state] }))} />

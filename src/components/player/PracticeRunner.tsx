@@ -36,7 +36,7 @@ export function PracticeRunner({ items, mode, onExit }: { items: PracticeItem[];
   };
 
   return (
-    <div role="dialog" aria-modal="true" aria-label={strings.practiceTitle.en} className="fixed inset-0 z-30 bg-stone-50 text-stone-900 dark:bg-stone-950 dark:text-stone-100">
+    <div role="dialog" aria-modal="true" aria-label={strings.practiceTitle.en} className="fixed inset-0 z-30 bg-page text-ink">
       <div className="mx-auto flex h-dvh max-w-xl flex-col">
         <header className="flex items-center gap-2 px-2 pt-2">
           <button type="button" aria-label={strings.close.en} onClick={onExit} className={iconButton}>
@@ -65,7 +65,7 @@ export function PracticeRunner({ items, mode, onExit }: { items: PracticeItem[];
             />
           ) : (
             <div className="flex flex-col items-center gap-3 pt-12 text-center">
-              <span className="flex size-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-900 dark:bg-emerald-950 dark:text-emerald-100">
+              <span className="flex size-16 items-center justify-center rounded-full bg-good-soft text-good">
                 <Icon name="check" className="size-9" />
               </span>
               <h1 className="text-2xl">

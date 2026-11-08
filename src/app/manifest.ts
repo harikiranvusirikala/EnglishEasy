@@ -14,7 +14,7 @@ export default function manifest(): MetadataRoute.Manifest {
     orientation: "portrait",
     lang: "en",
     categories: ["education"],
-    background_color: "#fafaf9", // stone-50
+    background_color: "#fbf8f3", // the Day page colour (globals.css --page)
     theme_color: "#0f766e", // teal-700, the icon's tile
     icons: [
       { src: "/icons/icon-192.png", sizes: "192x192", type: "image/png", purpose: "any" },

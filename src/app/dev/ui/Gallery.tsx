@@ -4,15 +4,23 @@ import { useState, type ReactNode } from "react";
 import { Bi } from "@/components/ui/Bi";
 import { BiText } from "@/components/ui/BiText";
 import { Dialog } from "@/components/ui/Dialog";
+import { EmptyState } from "@/components/ui/EmptyState";
+import { Logo, LogoMark } from "@/components/ui/Logo";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { ProgressBar } from "@/components/ui/ProgressBar";
+import { ProgressRing } from "@/components/ui/ProgressRing";
 import { SegmentedControl } from "@/components/ui/SegmentedControl";
 import { Skeleton } from "@/components/ui/Skeleton";
 import { StepList } from "@/components/ui/StepList";
 import { Switch } from "@/components/ui/Switch";
 import { Toast } from "@/components/ui/Toast";
-import { button, iconButton } from "@/components/ui/button";
-import { card, cardText, cardTitle } from "@/components/ui/card";
+import { badge } from "@/components/ui/badge";
+import { button, iconButton, outlineIconButton, softIconButton } from "@/components/ui/button";
+import { accentCard, brandCard, card, cardLink, cardText, cardTitle, well } from "@/components/ui/card";
 import { ICON_NAMES, Icon } from "@/components/ui/icons";
+import { ILLUSTRATION_NAMES, Illustration } from "@/components/illustrations/Illustration";
+import { Narrate } from "@/components/player/Narrate";
+import { ThemeMenu } from "@/components/ThemeMenu";
 import { strings } from "@/lib/strings";
 import type { LearnIn } from "@/learning/settings";
 
@@ -20,8 +28,8 @@ const MODES: LearnIn[] = ["te", "en"];
 
 function Block({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <section className={`${card} flex flex-col gap-3`}>
-      <h2 className="text-sm font-semibold tracking-wide text-stone-600 uppercase dark:text-stone-400">{title}</h2>
+    <section className={`${card} flex flex-col gap-4`}>
+      <h2 className="text-sm font-semibold tracking-wide text-ink-3 uppercase">{title}</h2>
       {children}
     </section>
   );
@@ -33,7 +41,7 @@ function BothModes({ children }: { children: (mode: LearnIn) => ReactNode }) {
     <div className="grid gap-4">
       {MODES.map((mode) => (
         <div key={mode} className="flex flex-col gap-2">
-          <span className="text-xs text-stone-600 dark:text-stone-400">{mode === "te" ? "Telugu mode" : "English mode"}</span>
+          <span className="text-sm text-ink-3">{mode === "te" ? "Telugu mode" : "English mode"}</span>
           {children(mode)}
         </div>
       ))}
@@ -48,10 +56,16 @@ export function Gallery() {
   const [pick, setPick] = useState("b");
 
   return (
-    <main className="mx-auto flex max-w-xl flex-col gap-4 p-4 pb-24">
-      <h1 className="text-2xl font-bold">
-        <Bi label={strings.galleryTitle} className="items-start" />
-      </h1>
+    <main className="mx-auto flex max-w-xl flex-col gap-5 p-4 pb-24">
+      <PageHeader title={<Bi label={strings.galleryTitle} className="items-start" />} actions={<ThemeMenu />} />
+
+      <Block title="Logo">
+        <div className="flex flex-wrap items-center gap-6">
+          <Logo size="lg" />
+          <Logo />
+          <LogoMark className="size-14" />
+        </div>
+      </Block>
 
       <Block title="Buttons">
         <BothModes>
@@ -63,8 +77,16 @@ export function Gallery() {
               <button type="button" className={button("secondary")}>
                 <Bi mode={mode} label={strings.gallerySecondary} />
               </button>
+              <button type="button" className={button("soft")}>
+                <Icon name="hint" />
+                <Bi mode={mode} label={strings.hint} />
+              </button>
               <button type="button" className={button("ghost")}>
                 <Bi mode={mode} label={strings.galleryGhost} />
+              </button>
+              <button type="button" className={button("accent")}>
+                <Icon name="star" />
+                <Bi mode={mode} label={strings.galleryAccent} />
               </button>
               <button type="button" className={button("danger")}>
                 <Bi mode={mode} label={strings.galleryDanger} />
@@ -72,38 +94,42 @@ export function Gallery() {
               <button type="button" disabled className={button("primary")}>
                 <Bi mode={mode} label={strings.galleryDisabled} />
               </button>
-              <button type="button" className={button("primary", "lg")}>
+              <button type="button" className={`${button("primary", "lg")} w-full`}>
                 <Bi mode={mode} label={strings.galleryLarge} />
               </button>
             </div>
           )}
         </BothModes>
-      </Block>
-
-      <Block title="Icons">
         <div className="flex flex-wrap gap-2">
-          {ICON_NAMES.map((name) => (
-            <span key={name} title={name} className={iconButton}>
-              <Icon name={name} />
-            </span>
-          ))}
+          <span className={iconButton}>
+            <Icon name="close" />
+          </span>
+          <span className={outlineIconButton}>
+            <Icon name="moon" />
+          </span>
+          <span className={softIconButton}>
+            <Icon name="speaker" />
+          </span>
         </div>
       </Block>
 
-      <Block title="Bi and BiText">
-        <BothModes>
-          {(mode) => (
-            <div className="flex flex-col gap-2">
-              <Bi mode={mode} label={strings.continue} className="items-start" />
-              <p className="text-lg">
-                <BiText mode={mode} text={strings.textSizeSample} />
-              </p>
-            </div>
-          )}
-        </BothModes>
+      <Block title="Listen and Slow">
+        <Narrate text="I went to the market yesterday." />
+        <div className={`${well} flex items-center justify-between gap-3`}>
+          <span className="text-lg font-medium">I eat rice.</span>
+          <Narrate text="I eat rice." variant="compact" />
+        </div>
       </Block>
 
-      <Block title="Card">
+      <Block title="Cards">
+        <div className={brandCard}>
+          <span className={badge("onBrand")}>Week 1 · Day 3</span>
+          <p className="font-display mt-3 text-2xl font-semibold">Every Day</p>
+          <p lang="te" className="text-white/85">
+            రోజూ చేసే పనులు
+          </p>
+          <ProgressBar label={strings.galleryProgress.en} value={9} max={15} tone="onBrand" className="mt-4" />
+        </div>
         <div className={card}>
           <p className={cardTitle}>
             <Bi label={strings.galleryCard} className="items-start" />
@@ -112,12 +138,40 @@ export function Gallery() {
             <BiText text={strings.learnSoon} />
           </p>
         </div>
+        <a href="#cards" className={cardLink}>
+          <p className={cardTitle}>Interactive card</p>
+          <p className={cardText}>The whole card is a link.</p>
+        </a>
+        <div className={accentCard}>
+          <p className="font-display text-lg font-semibold">Try it today 💬</p>
+          <p className="text-ink-2">Tell someone what you did yesterday — in English.</p>
+        </div>
       </Block>
 
-      <Block title="Progress bar">
+      <Block title="Badges">
+        <div className="flex flex-wrap gap-2">
+          <span className={badge("brand")}>4</span>
+          <span className={badge("accent")}>Today</span>
+          <span className={badge("good")}>✓ Done</span>
+          <span className={badge("neutral")}>Soon</span>
+        </div>
+      </Block>
+
+      <Block title="Progress">
         <ProgressBar label={strings.galleryProgress.en} value={0} max={12} />
         <ProgressBar label={strings.galleryProgress.en} value={5} max={12} />
         <ProgressBar label={strings.galleryProgress.en} value={12} max={12} />
+        <div className="flex items-center gap-4">
+          <ProgressRing label={strings.galleryProgress.en} value={0} max={10}>
+            <span className="font-display text-lg font-bold">0%</span>
+          </ProgressRing>
+          <ProgressRing label={strings.galleryProgress.en} value={6} max={10}>
+            <span className="font-display text-lg font-bold">60%</span>
+          </ProgressRing>
+          <ProgressRing label={strings.galleryProgress.en} value={10} max={10} tone="good">
+            <Icon name="check" className="size-7 text-good" strokeWidth={2.6} />
+          </ProgressRing>
+        </div>
       </Block>
 
       <Block title="Step list (done, current, not started)">
@@ -146,6 +200,41 @@ export function Gallery() {
             { value: "c", label: strings.textSizeAPlusPlus },
           ]}
         />
+      </Block>
+
+      <Block title="Icons">
+        <div className="flex flex-wrap gap-1">
+          {ICON_NAMES.map((name) => (
+            <span key={name} title={name} className={iconButton}>
+              <Icon name={name} />
+            </span>
+          ))}
+        </div>
+      </Block>
+
+      <Block title="Illustrations">
+        <div className="grid grid-cols-2 gap-3">
+          {ILLUSTRATION_NAMES.map((name) => (
+            <figure key={name} className="flex flex-col items-center gap-1">
+              <Illustration name={name} className="w-full" />
+              <figcaption className="text-sm text-ink-3">{name}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </Block>
+
+      <Block title="Empty state">
+        <EmptyState
+          illustration="empty"
+          title={<Bi label={strings.galleryEmptyTitle} />}
+          action={
+            <button type="button" className={`${button("primary")} w-full`}>
+              <Bi label={strings.continue} />
+            </button>
+          }
+        >
+          <BiText text={strings.galleryEmptyText} />
+        </EmptyState>
       </Block>
 
       <Block title="Skeleton">

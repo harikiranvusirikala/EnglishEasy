@@ -69,7 +69,7 @@ export function Dialogue({ activity, onNext }: { activity: DialogueActivity; onA
             <Bubble key={i} side={line.voice === "b" ? "right" : "left"} name={<BiText text={line.speaker} />} active={playing === i}>
               <p className="flex flex-wrap items-center gap-x-1">
                 <span>{line.en}</span>
-                {!listening && <Narrate text={line.en} voice={line.voice} />}
+                {!listening && <Narrate text={line.en} voice={line.voice} variant="compact" />}
               </p>
               {learnIn === "te" && (
                 <p lang="te" className="mt-1 text-base opacity-80">
@@ -80,7 +80,7 @@ export function Dialogue({ activity, onNext }: { activity: DialogueActivity; onA
           ))}
         </div>
         {asking !== null && (
-          <p className="pt-2 text-sm font-semibold text-stone-600 dark:text-stone-400">
+          <p className="pt-2 text-sm font-semibold text-ink-2">
             {asking + 1} / {questions.length}
           </p>
         )}

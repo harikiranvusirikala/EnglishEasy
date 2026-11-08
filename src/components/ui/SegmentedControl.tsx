@@ -1,9 +1,13 @@
 "use client";
 
 import { Bi } from "./Bi";
+import { focusRing } from "./button";
 import type { Bi as BiLabel } from "@/lib/strings";
 
-/** A row of choices, one picked (Learn in, Theme, Text size). Buttons with `aria-pressed`; `name` is the group's accessible name. */
+/**
+ * A row of choices, one picked (Learn in, Theme, Text size): a sunken track with the chosen option raised.
+ * Buttons with `aria-pressed`; `name` is the group's accessible name.
+ */
 export function SegmentedControl<T extends string>({
   name,
   value,
@@ -16,7 +20,7 @@ export function SegmentedControl<T extends string>({
   onChange: (value: T) => void;
 }) {
   return (
-    <div role="group" aria-label={name} className="grid auto-cols-fr grid-flow-col gap-2">
+    <div role="group" aria-label={name} className="grid auto-cols-fr grid-flow-col gap-1 rounded-2xl bg-sunken p-1 ring-1 ring-inset ring-line">
       {options.map((option) => {
         const selected = option.value === value;
         return (
@@ -25,10 +29,8 @@ export function SegmentedControl<T extends string>({
             type="button"
             aria-pressed={selected}
             onClick={() => onChange(option.value)}
-            className={`min-h-13 rounded-xl border px-2 text-base outline-none transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-teal-700 dark:focus-visible:ring-teal-300 ${
-              selected
-                ? "border-teal-700 bg-teal-700 text-white dark:border-teal-400 dark:bg-teal-400 dark:text-stone-950"
-                : "border-stone-300 bg-white text-stone-900 hover:bg-stone-100 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:hover:bg-stone-800"
+            className={`min-h-12 rounded-xl px-2 py-1.5 text-base transition-[background-color,color,box-shadow] duration-150 motion-reduce:transition-none ${focusRing} ${
+              selected ? "bg-surface text-brand shadow-card ring-1 ring-line" : "text-ink-2 hover:text-ink"
             }`}
           >
             <Bi label={option.label} />

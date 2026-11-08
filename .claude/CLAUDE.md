@@ -35,7 +35,8 @@ Read only the sections a step lists (`grep -n '^#' <file>`, then `Read` with `of
 - **Learn-in mode decides the language**: labels via `Bi` (English first in the DOM; Telugu with `lang="te"` only in Telugu mode); explanation text via `BiText`. Every content `Bi` has both languages.
 - **Everything can be heard**: English sentences and explanations have 🔊 🐢; mixed Telugu–English text is narrated with two voices; auto-play respects its setting.
 - **The main path never assumes the learner has a spouse, children or grandchildren**; those scenes belong to optional tracks (CURRICULUM §1, §8).
-- **Every colour class has a `dark:` twin**; theme and text size are applied before first paint.
+- **Colours are design tokens** (`bg-page`, `bg-surface`, `text-ink`, `text-brand`, `bg-brand-fill`… in `globals.css`), which follow Night by themselves; a raw palette class (`bg-stone-100`) still needs a `dark:` twin. Every token is defined for Day and Night (`kit.test.tsx`). Theme and text size are applied before first paint.
+- **Use the building blocks** (`src/components/ui/`: `button()`, `card`, `badge()`, `ProgressBar`, `ProgressRing`, `StepList`, `SegmentedControl`, `Switch`, `Dialog`, `Menu`, `Toast`, `EmptyState`, `PageHeader`, `Logo`; `Narrate` for Listen / Slow; `Illustration`) instead of hand-written styles; never add a conflicting utility on top of a class string, add a variant.
 - **Never read `new Date()`, `localStorage` or speech APIs while rendering**: only after hydration (`useSyncExternalStore`, server snapshot `null`).
 - Google Tag Manager only on the landing page, never under `/learn`.
 - No UI, icon, state or PWA libraries; icons go in `src/components/ui/icons.tsx`.

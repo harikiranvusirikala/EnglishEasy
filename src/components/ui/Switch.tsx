@@ -3,6 +3,7 @@
 import { useId } from "react";
 import { Bi } from "./Bi";
 import { BiText } from "./BiText";
+import { focusRing } from "./button";
 import type { Bi as BiLabel } from "@/lib/strings";
 
 /** An on/off row: the whole row is the button. `hint` is explanation text (follows Learn in). */
@@ -15,24 +16,24 @@ export function Switch({ checked, onChange, label, hint }: { checked: boolean; o
       aria-checked={checked}
       aria-describedby={hint ? hintId : undefined}
       onClick={() => onChange(!checked)}
-      className="flex min-h-13 w-full items-center justify-between gap-4 rounded-xl py-2 text-left outline-none focus-visible:ring-2 focus-visible:ring-teal-700 dark:focus-visible:ring-teal-300"
+      className={`flex min-h-13 w-full items-center justify-between gap-4 rounded-xl py-2 text-left ${focusRing}`}
     >
       <span className="flex flex-col gap-0.5">
-        <Bi label={label} className="items-start" />
+        <Bi label={label} className="items-start text-ink" />
         {hint && (
-          <span id={hintId} className="text-sm text-stone-600 dark:text-stone-400">
+          <span id={hintId} className="text-sm text-ink-2">
             <BiText text={hint} />
           </span>
         )}
       </span>
       <span
         aria-hidden="true"
-        className={`flex h-8 w-14 shrink-0 items-center rounded-full p-1 transition-colors duration-150 motion-reduce:transition-none ${
-          checked ? "bg-teal-700 dark:bg-teal-400" : "bg-stone-300 dark:bg-stone-700"
+        className={`flex h-8 w-14 shrink-0 items-center rounded-full p-1 transition-colors duration-200 motion-reduce:transition-none ${
+          checked ? "bg-brand-fill" : "bg-line-strong"
         }`}
       >
         <span
-          className={`flex size-6 items-center justify-center rounded-full bg-white text-xs font-bold text-teal-800 transition-transform duration-150 motion-reduce:transition-none dark:bg-stone-950 dark:text-teal-300 ${
+          className={`flex size-6 items-center justify-center rounded-full bg-white text-xs font-bold text-brand shadow-sm transition-transform duration-200 motion-reduce:transition-none dark:text-[#0b4f49] ${
             checked ? "translate-x-6" : "translate-x-0"
           }`}
         >

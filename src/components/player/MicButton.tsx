@@ -55,7 +55,7 @@ export function MicButton({
         <p className="text-base">
           <BiText text={strings.micHelpBody} />
         </p>
-        <p className="mt-2 text-base text-stone-600 dark:text-stone-400">
+        <p className="mt-2 text-base text-ink-2">
           <BiText text={strings.micHelpSkip} />
         </p>
         <button type="button" onClick={understood} className={`${button("primary")} mt-4 w-full`}>

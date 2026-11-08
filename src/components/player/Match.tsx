@@ -39,7 +39,7 @@ export function Match({ activity, onAnswer, onNext }: Props) {
     }
   };
 
-  const base = "flex min-h-13 w-full items-center justify-between gap-2 rounded-xl border px-3 py-2 text-left text-base font-medium outline-none focus-visible:ring-2 focus-visible:ring-teal-700 disabled:pointer-events-none dark:focus-visible:ring-teal-300";
+  const base = "flex min-h-13 w-full items-center justify-between gap-2 rounded-xl border px-3 py-2 text-left text-base font-medium outline-none focus-visible:ring-2 focus-visible:ring-brand disabled:pointer-events-none";
   const card = (i: number, side: "te" | "en") => {
     const locked = matched.includes(i);
     const bad = wrong !== null && wrong[side] === i;
@@ -50,7 +50,7 @@ export function Match({ activity, onAnswer, onNext }: Props) {
   return (
     <>
       <div className="flex flex-col gap-4">
-        <p className="text-base text-stone-600 dark:text-stone-400">
+        <p className="text-base text-ink-2">
           <BiText text={strings.matchPrompt} />
         </p>
         <div className="grid grid-cols-2 gap-3">

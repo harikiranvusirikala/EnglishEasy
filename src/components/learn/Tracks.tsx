@@ -4,7 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { Bi } from "@/components/ui/Bi";
 import { BiText } from "@/components/ui/BiText";
-import { button } from "@/components/ui/button";
+import { button, focusRing } from "@/components/ui/button";
+import { Nudge } from "@/components/ui/Nudge";
 import { card, cardText, cardTitle } from "@/components/ui/card";
 import { Icon } from "@/components/ui/icons";
 import type { Track } from "@/content/course";
@@ -28,16 +29,14 @@ function TrackToggles({ tracks, selected, onToggle }: { tracks: Track[]; selecte
               type="button"
               aria-pressed={on}
               onClick={() => onToggle(t.id)}
-              className={`flex min-h-13 w-full items-center gap-3 rounded-xl border p-3 text-left outline-none focus-visible:ring-2 focus-visible:ring-teal-700 dark:focus-visible:ring-teal-300 ${
-                on
-                  ? "border-teal-700 bg-teal-50 dark:border-teal-400 dark:bg-teal-950"
-                  : "border-stone-300 bg-white hover:bg-stone-100 dark:border-stone-700 dark:bg-stone-900 dark:hover:bg-stone-800"
+              className={`flex min-h-13 w-full items-center gap-3 rounded-2xl border p-3 text-left transition-colors ${focusRing} ${
+                on ? "border-brand bg-brand-soft" : "border-line-strong bg-surface hover:bg-sunken"
               }`}
             >
               <span
                 aria-hidden="true"
                 className={`flex size-7 shrink-0 items-center justify-center rounded-md border ${
-                  on ? "border-teal-700 bg-teal-700 text-white dark:border-teal-400 dark:bg-teal-400 dark:text-stone-950" : "border-stone-400 dark:border-stone-600"
+                  on ? "border-brand bg-brand-fill text-on-brand" : "border-line-strong bg-surface"
                 }`}
               >
                 {on && <Icon name="check" className="size-5" />}
@@ -65,21 +64,25 @@ export function TracksCard({ course, progress }: { course: Course; progress: Pro
   const [selected, setSelected] = useState<string[]>([]);
   if (!shouldOfferTracks(course, progress)) return null;
   return (
-    <section aria-label={strings.tracksCardTitle.en} className={`${card} flex flex-col gap-3`}>
-      <h2 className={cardTitle}>
-        <BiText text={strings.tracksCardTitle} />
-      </h2>
-      <p className={cardText}>
-        <BiText text={strings.tracksCardHint} />
-      </p>
+    <Nudge
+      label={strings.tracksCardTitle.en}
+      icon="sparkle"
+      tone="accent"
+      title={<BiText text={strings.tracksCardTitle} />}
+      actions={
+        <>
+          <button type="button" disabled={selected.length === 0} onClick={() => save(selected)} className={`${button("primary", "lg")} w-full`}>
+            <Bi label={strings.tracksSave} />
+          </button>
+          <button type="button" onClick={() => save([])} className={`${button("secondary")} w-full`}>
+            <Bi label={strings.tracksNone} />
+          </button>
+        </>
+      }
+    >
+      <BiText text={strings.tracksCardHint} />
       <TrackToggles tracks={offerableTracks(course)} selected={selected} onToggle={(id) => setSelected((s) => toggle(s, id))} />
-      <button type="button" disabled={selected.length === 0} onClick={() => save(selected)} className={`${button("primary", "lg")} w-full`}>
-        <Bi label={strings.tracksSave} />
-      </button>
-      <button type="button" onClick={() => save([])} className={`${button("secondary")} w-full`}>
-        <Bi label={strings.tracksNone} />
-      </button>
-    </section>
+    </Nudge>
   );
 }
 
@@ -90,22 +93,22 @@ export function TrackSuggestionCard({ course, progress, written }: { course: Cou
   const track = next ? course.tracks.find((t) => t.id === next.trackId) : null;
   if (!next || !place || !track || !written.includes(next.dayId)) return null;
   return (
-    <section aria-label={strings.tracksNext.en} className={`${card} flex flex-col gap-3`}>
-      <p className="text-base font-semibold text-teal-800 dark:text-teal-300">
+    <Nudge
+      label={strings.tracksNext.en}
+      icon="route"
+      tone="accent"
+      title={<BiText text={place.ref.title} />}
+      actions={
+        <Link href={`/learn/play?l=${encodeURIComponent(next.dayId)}`} className={`${button("secondary", "lg")} w-full`}>
+          <Bi label={strings.tracksOpen} />
+        </Link>
+      }
+    >
+      <span className="font-semibold text-accent-ink">
         <BiText text={strings.tracksNext} />
-      </p>
-      <div>
-        <p className={cardText}>
-          <BiText text={track.title} />
-        </p>
-        <h2 className="text-xl font-bold text-stone-900 dark:text-stone-100">
-          <BiText text={place.ref.title} />
-        </h2>
-      </div>
-      <Link href={`/learn/play?l=${encodeURIComponent(next.dayId)}`} className={`${button("secondary", "lg")} w-full`}>
-        <Bi label={strings.tracksOpen} />
-      </Link>
-    </section>
+      </span>
+      <BiText text={track.title} />
+    </Nudge>
   );
 }
 

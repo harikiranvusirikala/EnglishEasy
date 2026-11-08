@@ -4,10 +4,14 @@ import { useState, type ReactNode } from "react";
 import Link from "next/link";
 import { Bi } from "@/components/ui/Bi";
 import { BiText } from "@/components/ui/BiText";
+import { EmptyState } from "@/components/ui/EmptyState";
+import { Illustration, type IllustrationName } from "@/components/illustrations/Illustration";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { Skeleton } from "@/components/ui/Skeleton";
-import { button, iconButton } from "@/components/ui/button";
-import { card, cardLink, cardText, cardTitle } from "@/components/ui/card";
-import { Icon } from "@/components/ui/icons";
+import { badge } from "@/components/ui/badge";
+import { button, focusRing, listenButton } from "@/components/ui/button";
+import { card, cardFlush } from "@/components/ui/card";
+import { Icon, type IconName } from "@/components/ui/icons";
 import { PracticeRunner } from "@/components/player/PracticeRunner";
 import { Narrate } from "@/components/player/Narrate";
 import type { PlayableDay } from "@/content/types";
@@ -28,18 +32,16 @@ import { useDays } from "@/lib/use-days";
 /** The newest finished lessons first, and only so many speaking drills at once. */
 const SPEAKING_LIMIT = 10;
 
-function Page({ title, back, children }: { title: BiLabel; back?: boolean; children: ReactNode }) {
+function Page({ title, hint, back, children }: { title: BiLabel; hint?: BiLabel; back?: boolean; children: ReactNode }) {
   return (
-    <main className="flex flex-col gap-4 p-4 pt-6">
+    <main className="mx-auto flex w-full max-w-2xl flex-col gap-5 px-4 pt-6 pb-6 md:px-6 md:pt-8">
       {back && (
-        <Link href="/learn/practice" className="inline-flex min-h-13 items-center gap-1 self-start text-base font-semibold text-teal-800 outline-none focus-visible:ring-2 focus-visible:ring-teal-700 dark:text-teal-300 dark:focus-visible:ring-teal-300">
-          <Icon name="chevron" className="size-5 rotate-180" />
+        <Link href="/learn/practice" className={`${button("ghost")} -ml-2 self-start px-3`}>
+          <Icon name="arrowLeft" className="size-5" />
           <Bi label={strings.practiceBack} />
         </Link>
       )}
-      <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-100">
-        <Bi label={title} className="items-start" />
-      </h1>
+      <PageHeader title={<Bi label={title} className="items-start" />}>{hint && <BiText text={hint} />}</PageHeader>
       {children}
     </main>
   );
@@ -52,48 +54,75 @@ const Loading = () => (
   </div>
 );
 
-const Empty = ({ text }: { text: BiLabel }) => (
-  <p className={`${card} ${cardText}`}>
-    <BiText text={text} />
-  </p>
+const Empty = ({ text, illustration = "empty" }: { text: BiLabel; illustration?: IllustrationName }) => (
+  <div className={card}>
+    <EmptyState illustration={illustration} title={<BiText text={text} />} />
+  </div>
 );
+
+/** A card with an illustration, a sentence and the big Start button (Practice again, Speaking only). */
+function StartCard({ illustration, text, onStart }: { illustration: IllustrationName; text: BiLabel; onStart: () => void }) {
+  return (
+    <div className={`${card} flex flex-col items-center gap-4 text-center`}>
+      <Illustration name={illustration} className="w-44" />
+      <p className="text-lg text-ink">
+        <BiText text={text} />
+      </p>
+      <button type="button" onClick={onStart} className={`${button("primary", "lg")} w-full`}>
+        <Icon name="play" />
+        <Bi label={strings.practiceStart} />
+      </button>
+    </div>
+  );
+}
 
 function Failed() {
   return (
-    <p className="rounded-xl border border-amber-300 bg-amber-50 p-3 text-base text-amber-950 dark:border-amber-700 dark:bg-amber-950 dark:text-amber-100">
+    <p className="rounded-2xl border border-almost-line bg-almost-soft p-4 text-base text-almost">
       <BiText text={strings.practiceLoadFailed} />
     </p>
   );
 }
 
-/** Practice hub (VISION §10.8). */
+const HUB_TONE = {
+  accent: "bg-accent-soft text-accent-ink",
+  brand: "bg-brand-soft text-brand",
+  who: "bg-who-bg text-who-ink",
+  what: "bg-what-bg text-what-ink",
+};
+
+/** Practice hub (VISION §10.8): four rows with an icon, a hint and the count. */
 export function PracticeHub() {
   const progress = useProgress();
   const finished = progress ? Object.keys(progress.completed).length : 0;
-  const rows = progress
+  const rows: { href: string; label: BiLabel; hint: BiLabel; count: number; icon: IconName; tone: keyof typeof HUB_TONE }[] = progress
     ? [
-        { href: "/learn/practice/again", label: strings.homePracticeAgain, hint: strings.practiceAgainHint, count: Object.keys(progress.mistakes).length },
-        { href: "/learn/practice/roleplays", label: strings.homeRolePlays, hint: strings.practiceRolePlaysHint, count: finished },
-        { href: "/learn/practice/sentences", label: strings.homeMySentences, hint: strings.practiceSentencesHint, count: finished },
-        { href: "/learn/practice/speaking", label: strings.practiceSpeaking, hint: strings.practiceSpeakingHint, count: finished },
+        { href: "/learn/practice/again", label: strings.homePracticeAgain, hint: strings.practiceAgainHint, count: Object.keys(progress.mistakes).length, icon: "retry", tone: "accent" },
+        { href: "/learn/practice/roleplays", label: strings.homeRolePlays, hint: strings.practiceRolePlaysHint, count: finished, icon: "chat", tone: "brand" },
+        { href: "/learn/practice/sentences", label: strings.homeMySentences, hint: strings.practiceSentencesHint, count: finished, icon: "book", tone: "who" },
+        { href: "/learn/practice/speaking", label: strings.practiceSpeaking, hint: strings.practiceSpeakingHint, count: finished, icon: "mic", tone: "what" },
       ]
     : [];
   return (
-    <Page title={strings.practiceTitle}>
+    <Page title={strings.practiceTitle} hint={strings.practiceIntro}>
       {progress ? (
-        <ul className="flex flex-col gap-3">
+        <ul className={`${cardFlush} divide-y divide-line`}>
           {rows.map((r) => (
             <li key={r.href}>
-              <Link href={r.href} className={`${cardLink} flex items-center justify-between gap-3`}>
-                <span className="flex flex-col gap-1">
-                  <span className={cardTitle}>
+              <Link href={r.href} className={`flex min-h-20 items-center gap-4 px-4 py-4 transition-colors hover:bg-sunken ${focusRing} focus-visible:ring-inset`}>
+                <span aria-hidden="true" className={`flex size-13 shrink-0 items-center justify-center rounded-2xl ${HUB_TONE[r.tone]}`}>
+                  <Icon name={r.icon} className="size-7" />
+                </span>
+                <span className="flex min-w-0 flex-1 flex-col gap-0.5">
+                  <span className="text-lg font-semibold text-ink">
                     <Bi label={r.label} className="items-start" />
                   </span>
-                  <span className={cardText}>
+                  <span className="text-base text-ink-2">
                     <BiText text={r.hint} />
                   </span>
                 </span>
-                {r.count > 0 && <span className="text-lg font-semibold text-teal-800 tabular-nums dark:text-teal-300">({r.count})</span>}
+                {r.count > 0 && <span className={badge(r.tone === "accent" ? "accent" : "brand")}>{r.count}</span>}
+                <Icon name="chevron" className="size-5 text-ink-3" />
               </Link>
             </li>
           ))}
@@ -132,16 +161,9 @@ function AgainList({ list, failed }: { list: PracticeItem[]; failed: boolean }) 
     <>
       {failed && <Failed />}
       {list.length === 0 ? (
-        <Empty text={strings.practiceEmptyAgain} />
+        <Empty text={strings.practiceEmptyAgain} illustration="complete" />
       ) : (
-        <div className={`${card} flex flex-col gap-3`}>
-          <p className={cardText}>
-            <BiText text={fill(strings.practiceLeft, { n: left })} />
-          </p>
-          <button type="button" onClick={() => setRunning(true)} className={`${button("primary", "lg")} w-full`}>
-            <Bi label={strings.practiceStart} />
-          </button>
-        </div>
+        <StartCard illustration="practice" text={fill(strings.practiceLeft, { n: left })} onStart={() => setRunning(true)} />
       )}
       {running && <PracticeRunner items={list} mode="mistakes" onExit={() => setRunning(false)} />}
     </>
@@ -178,16 +200,20 @@ export function PracticeRolePlays() {
               {items.length === 0 ? (
                 <Empty text={strings.practiceEmptyLessons} />
               ) : (
-                <ul className="flex flex-col gap-3">
+                <ul className={`${cardFlush} divide-y divide-line`}>
                   {items.map((item) => (
                     <li key={item.activity.id}>
-                      <button type="button" onClick={() => setOpen(item)} className={`${cardLink} w-full text-left`}>
-                        <span className={cardTitle}>
-                          {item.activity.type === "roleplay" ? <BiText text={item.activity.title} /> : null}
+                      <button type="button" onClick={() => setOpen(item)} className={`flex min-h-20 w-full items-center gap-4 px-4 py-4 text-left transition-colors hover:bg-sunken ${focusRing} focus-visible:ring-inset`}>
+                        <span aria-hidden="true" className="flex size-13 shrink-0 items-center justify-center rounded-2xl bg-brand-soft text-brand">
+                          <Icon name="chat" className="size-7" />
                         </span>
-                        <span className={`block ${cardText}`}>
-                          <BiText text={fill(strings.practiceFromDay, { title: title(item.dayId) })} />
+                        <span className="flex min-w-0 flex-1 flex-col gap-0.5">
+                          <span className="text-lg font-semibold text-ink">{item.activity.type === "roleplay" ? <BiText text={item.activity.title} /> : null}</span>
+                          <span className="text-base text-ink-2">
+                            <BiText text={fill(strings.practiceFromDay, { title: title(item.dayId) })} />
+                          </span>
                         </span>
+                        <Icon name="play" className="size-6 text-brand" />
                       </button>
                     </li>
                   ))}
@@ -217,26 +243,27 @@ export function PracticeSentences() {
                 <Empty text={strings.practiceEmptyLessons} />
               ) : (
                 groups.map((g) => (
-                  <section key={g.dayId} aria-label={g.title.en} className="flex flex-col gap-2">
-                    <h2 className="text-lg font-semibold text-stone-900 dark:text-stone-100">
+                  <section key={g.dayId} aria-label={g.title.en} className="flex flex-col gap-3">
+                    <h2 className="font-display text-xl font-semibold text-ink">
                       <BiText text={g.title} />
                     </h2>
-                    <ul className="flex flex-col gap-2">
+                    <ul className={`${cardFlush} divide-y divide-line`}>
                       {g.sentences.map((s, i) => (
-                        <li key={i} className={`${card} flex items-center justify-between gap-2`}>
-                          <div>
-                            <p className="text-xl font-semibold">{s.en}</p>
-                            <p lang="te" className="text-base text-stone-600 dark:text-stone-400">
+                        <li key={i} className="flex flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
+                          <div className="min-w-0">
+                            <p className="text-xl font-semibold text-ink">{s.en}</p>
+                            <p lang="te" className="text-base text-ink-2">
                               {s.te}
                             </p>
                           </div>
-                          <div className="flex shrink-0 items-center gap-1">
-                            <Narrate text={s.en} />
+                          <div className="flex shrink-0 items-center gap-2">
+                            <Narrate text={s.en} variant="compact" />
                             <button
                               type="button"
                               aria-label={`${strings.practiceSayIt.en}: ${s.en}`}
+                              title={strings.practiceSayIt.en}
                               onClick={() => setSaying({ dayId: g.dayId, activity: { id: `${g.dayId}.my-${i}`, type: "repeat", say: s.en, te: s.te } })}
-                              className={iconButton}
+                              className={listenButton("md")}
                             >
                               <Icon name="mic" />
                             </button>
@@ -270,14 +297,7 @@ export function PracticeSpeaking() {
               {items.length === 0 ? (
                 <Empty text={strings.practiceEmptyLessons} />
               ) : (
-                <div className={`${card} flex flex-col gap-3`}>
-                  <p className={cardText}>
-                    <BiText text={strings.practiceSpeakingHint} />
-                  </p>
-                  <button type="button" onClick={() => setRunning(true)} className={`${button("primary", "lg")} w-full`}>
-                    <Bi label={strings.practiceStart} />
-                  </button>
-                </div>
+                <StartCard illustration="speak" text={strings.practiceSpeakingHint} onStart={() => setRunning(true)} />
               )}
               {running && <PracticeRunner items={items} mode="plain" onExit={() => setRunning(false)} />}
             </>

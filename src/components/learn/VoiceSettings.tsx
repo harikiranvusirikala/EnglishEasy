@@ -49,17 +49,17 @@ export function VoiceSettings() {
                     aria-pressed={selected}
                     aria-label={`${voice.name} (${voice.lang})`}
                     onClick={() => sample(voice.voiceURI)}
-                    className={`flex min-h-13 w-full items-center justify-between gap-3 rounded-xl border px-4 py-2 text-left outline-none focus-visible:ring-2 focus-visible:ring-teal-700 dark:focus-visible:ring-teal-300 ${
+                    className={`flex min-h-13 w-full items-center justify-between gap-3 rounded-xl border px-4 py-2 text-left outline-none focus-visible:ring-2 focus-visible:ring-brand ${
                       selected
-                        ? "border-teal-700 bg-teal-50 ring-2 ring-teal-700 dark:border-teal-400 dark:bg-teal-950 dark:ring-teal-400"
-                        : "border-stone-300 bg-white hover:bg-stone-100 dark:border-stone-700 dark:bg-stone-900 dark:hover:bg-stone-800"
+                        ? "border-brand bg-brand-soft ring-2 ring-brand"
+                        : "border-line-strong bg-surface hover:bg-sunken"
                     }`}
                   >
                     <span className="flex flex-col">
                       <span className="text-base font-semibold">{voice.name}</span>
-                      <span className="text-sm text-stone-600 dark:text-stone-400">{voice.lang}</span>
+                      <span className="text-sm text-ink-2">{voice.lang}</span>
                     </span>
-                    <span className="flex items-center gap-1 text-sm font-semibold text-teal-800 dark:text-teal-300">
+                    <span className="flex items-center gap-1 text-sm font-semibold text-brand">
                       {selected && <Icon name="check" className="size-5" />}
                       <Bi label={strings.voiceSample} />
                     </span>
@@ -85,7 +85,7 @@ export function VoiceSettings() {
           <span
             data-testid="telugu-voice-status"
             className={`flex items-center gap-1 rounded-full px-3 py-1 text-sm font-semibold ${
-              telugu ? "bg-emerald-100 text-emerald-900 dark:bg-emerald-950 dark:text-emerald-100" : "bg-amber-100 text-amber-900 dark:bg-amber-950 dark:text-amber-100"
+              telugu ? "bg-good-soft text-good" : "bg-almost-soft text-almost"
             }`}
           >
             <Icon name={telugu ? "check" : "retry"} className="size-5" />

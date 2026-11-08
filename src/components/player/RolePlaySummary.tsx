@@ -14,7 +14,7 @@ export function RolePlaySummary({ roleplay, score, onNext }: { roleplay: Pick<Ro
   return (
     <div className="flex flex-col gap-5 pt-6">
       <div className="flex flex-col items-center gap-3 text-center">
-        <span className="flex size-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-900 dark:bg-emerald-950 dark:text-emerald-100">
+        <span className="flex size-16 items-center justify-center rounded-full bg-good-soft text-good">
           <Icon name="check" className="size-9" />
         </span>
         <h1 className="text-2xl">
@@ -29,7 +29,7 @@ export function RolePlaySummary({ roleplay, score, onNext }: { roleplay: Pick<Ro
           </h2>
           <ul className="flex flex-col gap-1">
             {score.good.map((id) => (
-              <li key={id} className="flex items-center gap-2 text-lg text-emerald-900 dark:text-emerald-200">
+              <li key={id} className="flex items-center gap-2 text-lg text-good">
                 <Icon name="check" className="size-5 shrink-0" />
                 {label(id) && <BiText text={label(id)!} />}
               </li>
@@ -45,7 +45,7 @@ export function RolePlaySummary({ roleplay, score, onNext }: { roleplay: Pick<Ro
           </h2>
           <ul className="flex flex-col gap-1">
             {score.practiceMore.map((id) => (
-              <li key={id} className="flex items-center gap-2 text-lg text-amber-900 dark:text-amber-200">
+              <li key={id} className="flex items-center gap-2 text-lg text-almost">
                 <Icon name="retry" className="size-5 shrink-0" />
                 {label(id) && <BiText text={label(id)!} />}
               </li>

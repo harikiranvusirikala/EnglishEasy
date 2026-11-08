@@ -25,6 +25,7 @@
     "content": "node --import tsx --env-file-if-exists=.env.local scripts/build-content.mts"
   },
   "dependencies": {
+    "@fontsource-variable/baloo-tammudu-2": "^5.3.0",
     "@fontsource-variable/noto-sans-telugu": "^5.3.0",
     "@types/web-push": "^3.6.4",
     "better-auth": "^1.7.18",

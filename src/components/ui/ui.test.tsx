@@ -143,11 +143,14 @@ describe("Skeleton, Toast, icons, button", () => {
       expect(container.querySelector("svg")?.getAttribute("aria-hidden")).toBe("true");
     }
   });
-  it("every button class has a dark twin and a 52px target", () => {
-    for (const variant of ["primary", "secondary", "ghost", "danger"] as const) {
-      const classes = button(variant);
-      expect(classes).toContain("dark:");
-      expect(classes).toMatch(/min-h-1[34]/);
+  it("every button uses design tokens (they follow Night by themselves) and keeps a 52px target", () => {
+    for (const variant of ["primary", "secondary", "soft", "ghost", "accent", "danger"] as const) {
+      for (const size of ["md", "lg", "pill"] as const) {
+        const classes = button(variant, size);
+        // A raw palette colour would need a dark: twin; buttons use tokens only.
+        expect(classes).not.toMatch(/(?:^|\s)(?:bg|text|border)-(?:stone|teal|zinc|gray|emerald|amber|red)-\d/);
+        expect(classes).toMatch(/min-h-1[234]/);
+      }
     }
   });
 });

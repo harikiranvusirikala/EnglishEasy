@@ -36,12 +36,12 @@ export function Repeat({
   return (
     <>
       <div className="flex flex-col gap-4">
-        <p className="text-base text-stone-600 dark:text-stone-400">
+        <p className="text-base text-ink-2">
           <BiText text={strings.repeatPrompt} />
         </p>
         <div className={`${card} flex flex-col gap-2`}>
           <p className="text-2xl font-semibold">{activity.say}</p>
-          <p lang="te" className="text-base text-stone-600 dark:text-stone-400">
+          <p lang="te" className="text-base text-ink-2">
             {activity.te}
           </p>
           <Narrate text={activity.say} auto />

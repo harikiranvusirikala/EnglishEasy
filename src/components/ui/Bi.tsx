@@ -17,7 +17,7 @@ export function Bi({ label, mode, className = "" }: { label: BiLabel; mode?: Lea
     <span className={`inline-flex flex-col items-center ${className}`}>
       <span className="font-semibold">{label.en}</span>
       {showTelugu && (
-        <span lang="te" data-bi-te="" className="text-[0.8em] leading-snug font-normal">
+        <span lang="te" data-bi-te="" className="text-[0.875em] leading-snug font-normal opacity-90">
           {label.te}
         </span>
       )}

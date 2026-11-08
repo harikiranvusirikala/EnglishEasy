@@ -83,11 +83,29 @@ describe("Journey", () => {
   it("opens a week to its days with a % each", async () => {
     render(<Journey course={big} written={["a1", "a2", "b1"]} />);
     // Week 1 is open: it holds the recommended day.
-    const week1 = await screen.findByRole("button", { name: /Week 1.*W1/ });
+    const week1 = await screen.findByRole("button", { name: /W1.*Week 1/ });
     expect(week1.getAttribute("aria-expanded")).toBe("true");
     expect(await screen.findAllByText("0%")).not.toHaveLength(0);
-    fireEvent.click(screen.getByRole("button", { name: /Week 2.*W2/ }));
+    fireEvent.click(screen.getByRole("button", { name: /W2.*Week 2/ }));
     expect(screen.getByRole("link", { name: /Title b1/ })).toBeTruthy();
+  });
+
+  it("marks the next lesson with its own Start button, done days with a tick", async () => {
+    updateProgress((p) => completeDay(p, makePlayable("a1", standardShape), "2026-11-07T10:00:00.000Z"));
+    render(<Journey course={big} written={["a1", "a2", "b1"]} />);
+    expect(await screen.findByRole("link", { name: /^Done\.\s*Title a1\s*Day 1 Done$/ })).toBeTruthy();
+    expect(screen.getByRole("link", { name: /Title a2\s*Day 2 Next/ })).toBeTruthy();
+    expect(screen.getByRole("link", { name: "Start Day 2" }).getAttribute("href")).toBe("/learn/play?l=a2");
+    expect(screen.getByRole("button", { name: /W1\s*Week 1 1 of 2 days/ })).toBeTruthy();
+    await act(async () => {});
+  });
+
+  it("opens at the lesson a lesson page links to (?day=)", async () => {
+    window.history.replaceState(null, "", "/learn/journey?day=b1");
+    render(<Journey course={big} written={["a1", "a2", "b1"]} />);
+    expect((await screen.findByRole("button", { name: /W2.*Week 2/ })).getAttribute("aria-expanded")).toBe("true");
+    expect(screen.getByRole("button", { name: /W1.*Week 1/ }).getAttribute("aria-expanded")).toBe("false");
+    window.history.replaceState(null, "", "/");
   });
 
   it("folds a finished stage", async () => {

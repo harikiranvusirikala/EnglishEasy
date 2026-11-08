@@ -8,6 +8,9 @@ export const card = `${SURFACE} p-5`;
 /** A card without padding, for lists whose rows bring their own. */
 export const cardFlush = `${SURFACE} overflow-hidden`;
 
+/** A card holding a path (Journey's stages and tracks): less padding on phones, so lesson names get the width. */
+export const cardPath = `${SURFACE} p-3 sm:p-5`;
+
 /** A card that is a link or button as a whole. */
 export const cardLink = `${SURFACE} block p-5 outline-none transition-[border-color,box-shadow,transform] duration-150 hover:border-brand/40 hover:shadow-raised active:scale-[0.99] focus-visible:ring-[3px] focus-visible:ring-brand/60 motion-reduce:transition-none motion-reduce:active:scale-100`;
 

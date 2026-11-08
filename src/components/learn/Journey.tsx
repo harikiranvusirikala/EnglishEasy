@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, use, useState } from "react";
+import { Suspense, use, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import type { Stage, Week } from "@/content/course";
 import type { Course } from "@/learning/recommend";
@@ -14,8 +14,8 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { Skeleton } from "@/components/ui/Skeleton";
 import { badge } from "@/components/ui/badge";
-import { focusRing } from "@/components/ui/button";
-import { card } from "@/components/ui/card";
+import { button, focusRing } from "@/components/ui/button";
+import { card, cardPath } from "@/components/ui/card";
 import { Icon } from "@/components/ui/icons";
 import { loadLesson } from "@/lib/lesson-data";
 import { useProgress } from "@/lib/progress-store";
@@ -23,104 +23,160 @@ import { fill, strings, type Bi as BiLabel } from "@/lib/strings";
 
 const SR: Record<State, BiLabel> = { complete: strings.stepDone, "in-progress": strings.stepCurrent, "not-started": strings.stepTodo };
 
-/** A node on the path: ✓ complete, a ringed dot in progress, an empty ring not started, a faint dot not written yet. */
-function Node({ state, soon, size = "md" }: { state: State; soon?: boolean; size?: "md" | "sm" }) {
-  const box = size === "md" ? "size-10" : "size-8";
+/**
+ * A week or day on the path: a tick when complete; otherwise its number in a circle, with an arc for the part done
+ * (in progress) or faint (not written yet). Sized in rem, so it grows with the text size.
+ */
+function Node({ n, state, percent = 0, soon, size = "md" }: { n: number; state: State; percent?: number; soon?: boolean; size?: "md" | "sm" }) {
+  const box = size === "md" ? "size-11 text-base" : "size-9 text-sm";
   const style = soon
-    ? "bg-sunken ring-2 ring-inset ring-line"
+    ? "bg-sunken text-ink-3 ring-2 ring-inset ring-line"
     : state === "complete"
       ? "bg-good text-surface"
       : state === "in-progress"
-        ? "bg-surface ring-[3px] ring-brand"
-        : "bg-surface ring-2 ring-inset ring-line-strong";
+        ? "bg-surface text-brand-ink ring-[3px] ring-inset ring-brand/20"
+        : "bg-surface text-ink-2 ring-2 ring-inset ring-line-strong";
   return (
     <>
-      <span aria-hidden="true" className={`relative z-[1] flex shrink-0 items-center justify-center rounded-full ${box} ${style}`}>
-        {!soon && state === "complete" && <Icon name="check" className={size === "md" ? "size-5" : "size-4"} strokeWidth={3} />}
-        {!soon && state === "in-progress" && <span className="size-3 rounded-full bg-brand" />}
+      <span aria-hidden="true" className={`relative z-[1] flex shrink-0 items-center justify-center rounded-full font-bold tabular-nums ${box} ${style}`}>
+        {!soon && state === "in-progress" && (
+          <svg viewBox="0 0 36 36" className="absolute inset-0 size-full -rotate-90">
+            <circle
+              cx="18"
+              cy="18"
+              r="16.5"
+              fill="none"
+              stroke="var(--brand)"
+              strokeWidth="3"
+              strokeLinecap="round"
+              pathLength={100}
+              strokeDasharray={100}
+              strokeDashoffset={100 - Math.max(percent, 8)}
+              className="transition-[stroke-dashoffset] duration-700 ease-out motion-reduce:transition-none"
+            />
+          </svg>
+        )}
+        {!soon && state === "complete" ? <Icon name="check" className={size === "md" ? "size-5" : "size-4"} strokeWidth={3} /> : n}
       </span>
       <span className="sr-only">{SR[state].en}. </span>
     </>
   );
 }
 
+// Rows line their circles up on one path line (WeekPath): a week's circle (2.75rem) sits 0.5rem in, a day's
+// (2.25rem) 0.75rem in, so both centres are 1.875rem from the left.
 const ROW = `relative flex min-h-16 w-full items-center gap-3 rounded-2xl px-2 py-2 text-left ${focusRing}`;
-const DAY_ROW = `relative flex min-h-13 w-full items-center gap-3 rounded-2xl px-2 py-1.5 text-left ${focusRing}`;
+const DAY_ROW = `relative flex min-h-16 w-full items-center gap-3 rounded-2xl py-2 pr-2 pl-3 text-left ${focusRing}`;
 
-function Percent({ value }: { value: number }) {
-  return <span className={badge(value === 100 ? "good" : value > 0 ? "brand" : "neutral")}>{fill(strings.journeyPercent, { n: value }).en}</span>;
-}
-
-function Soon() {
+/** A name with a small line under it ("Day 2 · 41% done"), so the name gets the row's whole width. */
+function RowText({ title, caption, status, statusTone = "text-ink-3", big }: { title: string; caption: string; status?: string; statusTone?: string; big?: boolean }) {
   return (
-    <span className={badge("neutral")}>
-      <Bi label={strings.journeyComingSoon} />
+    <span className="flex min-w-0 flex-1 flex-col gap-0.5">
+      <span className={`leading-snug font-semibold text-ink ${big ? "text-lg" : "text-base"}`}>{title}</span>
+      <span className="text-sm text-ink-3">
+        {caption}
+        {status && (
+          <>
+            <span aria-hidden="true"> ·</span> <span className={statusTone}>{status}</span>
+          </>
+        )}
+      </span>
     </span>
   );
 }
 
-function LoadedDayPercent({ id, progress }: { id: string; progress: Progress }) {
-  return <Percent value={dayStats(use(loadLesson(id)), progress).percent} />;
+type DayView = { id: string; title: BiLabel; number: number; state: State; percent?: number; next: boolean };
+
+function DayLink({ day }: { day: DayView }) {
+  const { state, percent } = day;
+  const status =
+    state === "complete"
+      ? strings.stepDone.en
+      : state === "in-progress"
+        ? !percent
+          ? strings.stepCurrent.en
+          : fill(strings.journeyPercentDone, { n: percent }).en
+        : day.next
+          ? strings.homeUpNext.en
+          : undefined;
+  const tone = state === "complete" ? "font-semibold text-good" : "font-semibold text-brand-ink";
+  return (
+    <Link href={`/lessons/${encodeURIComponent(day.id)}`} className={`${DAY_ROW} ${day.next ? "hover:bg-brand-soft-hover" : "hover:bg-sunken"}`}>
+      <Node n={day.number} state={state} percent={percent} size="sm" />
+      <RowText title={day.title.en} caption={fill(strings.homeDayChip, { n: day.number }).en} status={status} statusTone={tone} />
+      <Icon name="chevron" className="size-5 shrink-0 text-ink-3" />
+    </Link>
+  );
+}
+
+/** The next lesson stands out on the path: tinted, with its own Start / Continue button straight into the lesson (full width on phones, so it stays one line at A++). */
+function DayBody({ day }: { day: DayView }) {
+  if (!day.next) return <DayLink day={day} />;
+  const action = day.state === "in-progress" ? strings.homeContinueLesson : fill(strings.homeStartDay, { n: day.number });
+  return (
+    <div className="my-1 rounded-2xl bg-brand-soft ring-1 ring-brand/25 ring-inset">
+      <DayLink day={day} />
+      <div className="px-3 pb-3 sm:pl-[3.75rem]">
+        <Link href={`/learn/play?l=${encodeURIComponent(day.id)}`} className={`${button("primary", "md")} w-full`}>
+          <Icon name="play" className="size-5" />
+          {action.en}
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+function LoadedDay({ day, progress }: { day: DayView; progress: Progress }) {
+  return <DayBody day={{ ...day, percent: dayStats(use(loadLesson(day.id)), progress).percent }} />;
 }
 
 /**
- * One day in an opened week, on one line ("Day 1 · Who Does What"), a link to its overview. The % shows once the
- * day is started (a day not started loads nothing); days not written yet say "coming soon".
+ * One day in an opened week, a link to its overview. A started day loads its lesson for the % (a day not started
+ * loads nothing); days not written yet say "coming soon". `scrollTo` brings it into view once, if it is off screen.
  */
-function DayRow({ id, title, number, progress, written }: { id: string; title: BiLabel; number: number; progress: Progress; written: boolean }) {
+function DayRow({ id, title, number, progress, written, next, scrollTo }: { id: string; title: BiLabel; number: number; progress: Progress; written: boolean; next: boolean; scrollTo: boolean }) {
+  const ref = useRef<HTMLLIElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!scrollTo || !el) return;
+    const box = el.getBoundingClientRect();
+    if (box.top < 0 || box.bottom > window.innerHeight) el.scrollIntoView?.({ block: "center" });
+  }, [scrollTo]);
   const done = id in progress.completed;
   const started = !done && dayStarted(id, progress);
   const state: State = done ? "complete" : started ? "in-progress" : "not-started";
-  const name = (
-    <span className="min-w-0 flex-1 text-base font-semibold text-ink">
-      <span className="font-normal text-ink-3">{fill(strings.homeDayChip, { n: number }).en} · </span>
-      {title.en}
-    </span>
-  );
   if (!written) {
     return (
-      <li>
-        <span className={`${DAY_ROW} opacity-70`}>
-          <Node state={state} soon size="sm" />
-          {name}
-          <Soon />
+      <li ref={ref}>
+        <span className={`${DAY_ROW} opacity-75`}>
+          <Node n={number} state={state} soon size="sm" />
+          <RowText title={title.en} caption={fill(strings.homeDayChip, { n: number }).en} status={strings.journeyComingSoon.en} />
         </span>
       </li>
     );
   }
+  const day: DayView = { id, title, number, state, percent: done ? 100 : undefined, next: next && !done };
   return (
-    <li>
-      <Link href={`/lessons/${encodeURIComponent(id)}`} className={`${DAY_ROW} hover:bg-sunken`}>
-        <Node state={state} size="sm" />
-        {name}
-        {done && <Percent value={100} />}
-        {started && (
-          <Suspense fallback={<Skeleton className="h-7 w-12" />}>
-            <LoadedDayPercent id={id} progress={progress} />
-          </Suspense>
-        )}
-        <Icon name="chevron" className="size-5 shrink-0 text-ink-3" />
-      </Link>
+    <li ref={ref}>
+      {started ? (
+        <Suspense fallback={<DayBody day={day} />}>
+          <LoadedDay day={day} progress={progress} />
+        </Suspense>
+      ) : (
+        <DayBody day={day} />
+      )}
     </li>
   );
 }
 
-function WeekRow({ week, progress, written, open, onToggle }: { week: Week; progress: Progress; written: string[]; open: boolean; onToggle: () => void }) {
-  const title = (
-    <span className="flex min-w-0 flex-1 flex-col">
-      <span className="text-sm text-ink-3">{fill(strings.journeyWeek, { n: week.n }).en}</span>
-      <span className="text-lg leading-snug font-semibold text-ink">
-        {week.title.en}
-      </span>
-    </span>
-  );
+function WeekRow({ week, progress, written, open, onToggle, nextDay, scrollDay }: { week: Week; progress: Progress; written: string[]; open: boolean; onToggle: () => void; nextDay: string | null; scrollDay: string | null }) {
+  const caption = fill(strings.journeyWeek, { n: week.n }).en;
   if (!week.released) {
     return (
       <li className="relative">
         <span className={`${ROW} opacity-75`}>
-          <Node state="not-started" soon />
-          {title}
-          <Soon />
+          <Node n={week.n} state="not-started" soon />
+          <RowText title={week.title.en} caption={caption} status={strings.journeyComingSoon.en} big />
         </span>
       </li>
     );
@@ -128,16 +184,30 @@ function WeekRow({ week, progress, written, open, onToggle }: { week: Week; prog
   const stats = weekStats(week, progress);
   return (
     <li className="relative">
-      <button type="button" aria-expanded={open} onClick={onToggle} className={`${ROW} hover:bg-sunken ${open ? "bg-sunken/60" : ""}`}>
-        <Node state={stats.state} />
-        {title}
-        <Percent value={stats.percent} />
-        <Icon name="chevronDown" className={`size-5 text-ink-3 transition-transform duration-200 motion-reduce:transition-none ${open ? "rotate-180" : ""}`} />
+      <button type="button" aria-expanded={open} onClick={onToggle} className={`${ROW} hover:bg-sunken ${open ? "bg-sunken" : ""}`}>
+        <Node n={week.n} state={stats.state} percent={stats.percent} />
+        <RowText
+          title={week.title.en}
+          caption={caption}
+          status={fill(strings.journeyDaysDone, { done: stats.done, total: stats.total }).en}
+          statusTone={stats.state === "complete" ? "font-semibold text-good" : undefined}
+          big
+        />
+        <Icon name="chevronDown" className={`size-5 shrink-0 text-ink-3 transition-transform duration-200 motion-reduce:transition-none ${open ? "rotate-180" : ""}`} />
       </button>
       {open && (
-        <ul aria-label={strings.journeyDays.en} className="mt-1 mb-2 ml-[1.15rem] flex animate-fade-in flex-col border-l-2 border-dashed border-line-strong pl-4 motion-reduce:animate-none">
+        <ul aria-label={strings.journeyDays.en} className="mt-1 mb-3 flex animate-fade-in flex-col gap-0.5 motion-reduce:animate-none">
           {week.days.map((ref, i) => (
-            <DayRow key={ref.id} id={ref.id} title={ref.title} number={dayNumber(week, i)} progress={progress} written={written.includes(ref.id)} />
+            <DayRow
+              key={ref.id}
+              id={ref.id}
+              title={ref.title}
+              number={dayNumber(week, i)}
+              progress={progress}
+              written={written.includes(ref.id)}
+              next={ref.id === nextDay}
+              scrollTo={ref.id === scrollDay}
+            />
           ))}
         </ul>
       )}
@@ -145,11 +215,18 @@ function WeekRow({ week, progress, written, open, onToggle }: { week: Week; prog
   );
 }
 
-/** The weeks of a stage or track, joined by a line down their circles. */
+/** The weeks of a stage or track, and an opened week's days, joined by one line through their circles. */
 function WeekPath({ children }: { children: React.ReactNode }) {
   return (
-    <ul className="relative mt-3 flex flex-col before:absolute before:top-6 before:bottom-6 before:left-[1.75rem] before:w-0.5 before:rounded-full before:bg-line">{children}</ul>
+    <ul className="relative mt-3 flex flex-col gap-0.5 before:absolute before:top-8 before:bottom-8 before:left-[calc(1.875rem-1px)] before:w-0.5 before:rounded-full before:bg-line">
+      {children}
+    </ul>
   );
+}
+
+/** The day a lesson page's Journey link names (`?day=`): its week opens and it scrolls into view. Read in the browser only (the bodies render once progress has loaded). */
+function linkedDay(): string | null {
+  return new URLSearchParams(window.location.search).get("day");
 }
 
 function StageMedal({ n, state }: { n: number; state: State | "future" }) {
@@ -176,20 +253,23 @@ function StageHeader({ stage, progress }: { stage: Stage; progress: Progress }) 
           <span className="sr-only">
             {(fill(strings.journeyStage, { n: stage.n, title: stage.title })).en}
           </span>
-          <span aria-hidden="true" className="text-sm font-semibold text-brand">
-            {(fill(strings.landingStageLabel, { n: stage.n })).en}
+          <span className="text-sm text-ink-3">
+            <span aria-hidden="true" className="font-semibold text-brand">
+              {fill(strings.landingStageLabel, { n: stage.n }).en}
+            </span>
+            <span aria-hidden="true"> ·</span> {fill(strings.journeyWeeks, { n: stage.weeks.length }).en}
           </span>
           <span aria-hidden="true" className="font-display text-xl leading-snug font-semibold text-ink">
             {stage.title.en}
           </span>
-          <span className="flex flex-wrap items-center gap-2 text-base text-ink-2">
-            {fill(strings.journeyWeeks, { n: stage.weeks.length }).en}
-            <Percent value={stats.percent} />
-          </span>
         </span>
-        <Icon name="chevronDown" className="size-5 text-ink-3 transition-transform duration-200 group-open:rotate-180 motion-reduce:transition-none" />
+        <Icon name="chevronDown" className="size-5 shrink-0 text-ink-3 transition-transform duration-200 group-open:rotate-180 motion-reduce:transition-none" />
       </span>
-      <ProgressBar label={fill(strings.journeyStage, { n: stage.n, title: stage.title }).en} value={stats.percent} max={100} size="sm" />
+      {/* One bar with its % beside it (no second % badge). */}
+      <span className="flex items-center gap-3">
+        <ProgressBar label={fill(strings.journeyStage, { n: stage.n, title: stage.title }).en} value={stats.percent} max={100} size="sm" className="flex-1" />
+        <span className={`text-sm font-semibold tabular-nums ${stats.percent === 100 ? "text-good" : "text-ink-2"}`}>{fill(strings.journeyPercent, { n: stats.percent }).en}</span>
+      </span>
     </span>
   );
 }
@@ -197,18 +277,24 @@ function StageHeader({ stage, progress }: { stage: Stage; progress: Progress }) 
 function JourneyBody({ course, progress, written }: { course: Course; progress: Progress; written: string[] }) {
   const current = currentStageIndex(course, progress);
   const target = recommendedDay(course, progress);
-  const [openWeek, setOpenWeek] = useState<number | null>(() => (target ? (locateDay(course, target.dayId)?.week.n ?? null) : null));
+  const nextDay = target && !(target.dayId in progress.completed) ? target.dayId : null;
+  const [linked] = useState(linkedDay);
+  const linkedPlace = linked ? locateDay(course, linked) : null;
+  // The linked day's week opens (and its stage, even a finished one); otherwise the week of the next lesson.
+  const [openWeek, setOpenWeek] = useState<number | null>(() =>
+    linkedPlace?.stage ? linkedPlace.week.n : target ? (locateDay(course, target.dayId)?.week.n ?? null) : null,
+  );
   return (
     <div className="flex flex-col gap-4">
       {course.stages.map((stage, i) => {
         const name = fill(strings.journeyStage, { n: stage.n, title: stage.title });
         if (i > current) {
-          // Future stages are one card each: name, the "can do" line, week count.
+          // Future stages are one card each: name, then the "can do" line (full width) and week count.
           return (
-            <section key={stage.n} aria-label={name.en} className={`${card} flex gap-4`}>
-              <StageMedal n={stage.n} state="future" />
-              <div className="flex min-w-0 flex-1 flex-col gap-2">
-                <h2 className="flex flex-col">
+            <section key={stage.n} aria-label={name.en} className={`${card} flex flex-col gap-3`}>
+              <div className="flex items-center gap-4">
+                <StageMedal n={stage.n} state="future" />
+                <h2 className="flex min-w-0 flex-1 flex-col">
                   <span className="sr-only">
                     {name.en}
                   </span>
@@ -219,22 +305,22 @@ function JourneyBody({ course, progress, written }: { course: Course; progress: 
                     {stage.title.en}
                   </span>
                 </h2>
-                <p className="text-base text-ink-2">
-                  <BiText text={stage.canDo} />
-                </p>
-                <p className="flex flex-wrap gap-2">
-                  <span className={badge("neutral")}>{fill(strings.journeyWeeks, { n: stage.weeks.length }).en}</span>
-                  <span className={badge("neutral")}>
-                    <Icon name="lock" className="size-4" />
-                    <Bi label={strings.journeyComingLater} />
-                  </span>
-                </p>
               </div>
+              <p className="text-base text-ink-2">
+                <BiText text={stage.canDo} />
+              </p>
+              <p className="flex flex-wrap gap-2">
+                <span className={badge("neutral")}>{fill(strings.journeyWeeks, { n: stage.weeks.length }).en}</span>
+                <span className={badge("neutral")}>
+                  <Icon name="lock" className="size-4" />
+                  <Bi label={strings.journeyComingLater} />
+                </span>
+              </p>
             </section>
           );
         }
         return (
-          <details key={stage.n} open={i === current} className={`${card} group p-4`}>
+          <details key={stage.n} open={i === current || stage.n === linkedPlace?.stage?.n} className={`${cardPath} group`}>
             <summary className={`cursor-pointer list-none rounded-2xl p-1 [&::-webkit-details-marker]:hidden ${focusRing}`}>
               <StageHeader stage={stage} progress={progress} />
             </summary>
@@ -247,6 +333,8 @@ function JourneyBody({ course, progress, written }: { course: Course; progress: 
                   written={written}
                   open={openWeek === week.n}
                   onToggle={() => setOpenWeek(openWeek === week.n ? null : week.n)}
+                  nextDay={nextDay}
+                  scrollDay={linked ?? nextDay}
                 />
               ))}
             </WeekPath>
@@ -259,7 +347,12 @@ function JourneyBody({ course, progress, written }: { course: Course; progress: 
 
 /** "My tracks": each chosen track that has released lessons, with its weeks. Hidden when none. */
 function TracksSection({ course, progress, written }: { course: Course; progress: Progress; written: string[] }) {
-  const [openWeek, setOpenWeek] = useState<string | null>(null);
+  const [linked] = useState(linkedDay);
+  const [openWeek, setOpenWeek] = useState<string | null>(() => {
+    const place = linked ? locateDay(course, linked) : null;
+    const track = place && !place.stage ? course.tracks.find((t) => t.weeks.includes(place.week)) : undefined;
+    return track && place ? `${track.id}-${place.week.n}` : null;
+  });
   const chosen = offerableTracks(course).filter((t) => progress.tracks.includes(t.id));
   if (chosen.length === 0) return null;
   return (
@@ -268,7 +361,7 @@ function TracksSection({ course, progress, written }: { course: Course; progress
         <Bi label={strings.myTracks} className="items-start" />
       </h2>
       {chosen.map((track) => (
-        <details key={track.id} open className={`${card} group p-4`}>
+        <details key={track.id} open className={`${cardPath} group`}>
           <summary className={`flex cursor-pointer list-none items-center gap-4 rounded-2xl p-1 [&::-webkit-details-marker]:hidden ${focusRing}`}>
             <span aria-hidden="true" className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-accent-soft text-accent-ink">
               <Icon name="route" className="size-7" />
@@ -281,7 +374,18 @@ function TracksSection({ course, progress, written }: { course: Course; progress
           <WeekPath>
             {track.weeks.map((week) => {
               const key = `${track.id}-${week.n}`;
-              return <WeekRow key={key} week={week} progress={progress} written={written} open={openWeek === key} onToggle={() => setOpenWeek(openWeek === key ? null : key)} />;
+              return (
+                <WeekRow
+                  key={key}
+                  week={week}
+                  progress={progress}
+                  written={written}
+                  open={openWeek === key}
+                  onToggle={() => setOpenWeek(openWeek === key ? null : key)}
+                  nextDay={null}
+                  scrollDay={linked}
+                />
+              );
             })}
           </WeekPath>
         </details>

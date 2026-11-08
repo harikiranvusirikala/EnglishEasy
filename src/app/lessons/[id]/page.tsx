@@ -176,7 +176,7 @@ export default async function LessonPage({
   };
   return (
     <>
-      <PublicHeader />
+      <PublicHeader journeyDay={id} />
       <main>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }} />
         <section aria-labelledby="lesson-title" className="relative overflow-hidden border-b border-line">

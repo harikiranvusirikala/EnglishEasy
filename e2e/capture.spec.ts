@@ -110,7 +110,7 @@ test("lesson complete", async ({ page, request }) => {
 test("the journey", async ({ page }) => {
   await settings(page, { learnIn: "en" });
   await page.goto("/learn/journey");
-  await expect(page.getByRole("button", { name: /Week 1 English Foundations/ })).toBeVisible();
+  await expect(page.getByRole("button", { name: /English Foundations.*Week 1/ })).toBeVisible();
   await expect(page.getByRole("link", { name: /Who Does What/ })).toBeVisible(); // a day not started shows no percent
   await shot(page, "journey");
 });

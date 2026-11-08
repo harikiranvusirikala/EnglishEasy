@@ -339,6 +339,8 @@ export const strings = {
   journeyCanDo: { en: "You will be able to", te: "మీరు చేయగలిగేవి" },
   journeyPercent: { en: "{n}%", te: "{n}%" },
   journeyDays: { en: "Days in this week", te: "ఈ వారంలోని రోజులు" },
+  journeyDaysDone: { en: "{done} of {total} days", te: "{total} రోజుల్లో {done}" },
+  journeyPercentDone: { en: "{n}% done", te: "{n}% పూర్తయింది" },
 
   // Practice hub (/learn/practice)
   practiceTitle: { en: "Practice", te: "సాధన" },

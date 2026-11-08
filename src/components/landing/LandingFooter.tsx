@@ -20,8 +20,9 @@ export function LandingFooter() {
         </div>
         <nav aria-label={strings.landingFooterPage.en} className="flex flex-col gap-1">
           <p className="mb-1 text-sm font-bold tracking-wider text-ink uppercase">{strings.landingFooterPage.en}</p>
+          {/* "/#…": the footer is on lesson pages and privacy too, where the sections are on the landing page. */}
           {LANDING_SECTIONS.map((s) => (
-            <a key={s.id} href={`#${s.id}`} className={LINK}>
+            <a key={s.id} href={`/#${s.id}`} className={LINK}>
               {s.label.en}
             </a>
           ))}

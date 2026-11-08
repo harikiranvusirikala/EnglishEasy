@@ -81,7 +81,7 @@ describe("tracks (fixture course: one track released)", () => {
     render(<Journey course={fixtureCourse} written={written} />);
     const section = await screen.findByRole("region", { name: "My tracks" });
     expect(within(section).getByText("Grandchildren")).toBeTruthy();
-    fireEvent.click(within(section).getByRole("button", { name: /Week 1.*T1/ }));
+    fireEvent.click(within(section).getByRole("button", { name: /T1.*Week 1/ }));
     expect(within(section).getByRole("link", { name: /g1/ })).toBeTruthy();
   });
 

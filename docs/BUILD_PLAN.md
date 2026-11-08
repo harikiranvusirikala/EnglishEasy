@@ -814,6 +814,7 @@ As Step 13, for `present-continuous-right-now` and `past-simple-yesterday` (CURR
 |------|------|----------|-------|
 | 1 | 1–7 | ✅ 2026-11-07 (all seven days written; owner to review on `/dev/lesson/<id>`) | Steps 3, 13–15 |
 | 2 | 8–14 | ✅ 2026-11-08 (five lessons, the first Conversation Day, the review; 128 clips) | Question words: what/where, when/what time, who/whose, how, why/because; Conversation Day at a wedding; review "Question Time" with a question-word round. Written with `docs/CONTENT_PLAYBOOK.md`. |
+| 3–12 | 15–84 | ✅ 2026-11-09 (all of Stage 1: fifty lessons, ten Conversation Days, ten reviews) | Numbers, time and money; people; home; food; daily routine; can and asking for help; the past; plans and the future; feelings and health; putting it together, ending with the Stage 1 review and a celebration role play. Written with `docs/CONTENT_PLAYBOOK.md`; each week checked with `scripts/check-week.mts` before registering; no new word repeats across the course. |
 
 ---
 

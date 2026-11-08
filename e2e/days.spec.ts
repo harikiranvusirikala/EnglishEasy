@@ -1,4 +1,6 @@
 import { expect, test } from "@playwright/test";
+import { course } from "../src/content/course";
+import { loadDay } from "../src/content/load";
 import { SETTINGS_KEY } from "../src/learning/settings";
 
 test.skip(({ isMobile }) => !isMobile, "the player is checked on the phone project");
@@ -42,3 +44,24 @@ test("Week 2's Conversation Day opens on its dialogue, and its review day opens"
   await page.getByRole("button", { name: /^Start/ }).click();
   await expect(page.getByRole("button", { name: /^(Continue|Check)/ }).first()).toBeVisible();
 });
+
+// Weeks 3–12: every day opens in the player and on its lesson page (English mode; Weeks 1–2 above cover Telugu mode too).
+for (const week of course.stages[0].weeks.filter((w) => w.n >= 3)) {
+  test(`Week ${week.n}: every day opens in the player and on its lesson page`, async ({ page }) => {
+    test.setTimeout(90_000);
+    await page.addInitScript(([key]) => !localStorage.getItem(key) && localStorage.setItem(key, JSON.stringify({ learnIn: "en" })), [SETTINGS_KEY]);
+    for (const ref of week.days) {
+      await page.goto(`/learn/play?l=${ref.id}`);
+      await page.getByRole("button", { name: /^Start/ }).click();
+      if (ref.kind === "conversation") {
+        const day = await loadDay(ref.id);
+        const title = day.kind === "conversation" && day.dialogue.type === "dialogue" ? day.dialogue.title.en : "";
+        await expect(page.getByText(title)).toBeVisible();
+      } else {
+        await expect(page.getByRole("button", { name: /^(Continue|Check)/ }).first()).toBeVisible();
+      }
+      await page.goto(`/lessons/${ref.id}`);
+      await expect(page.getByRole("heading", { level: 1, name: ref.title.en })).toBeVisible();
+    }
+  });
+}

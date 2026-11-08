@@ -34,7 +34,7 @@ test("Home at night", async ({ page }) => {
   await page.screenshot({ path: `${SHOTS}/home-night.png`, fullPage: true });
 });
 
-test("Journey: Stage 1 open, Week 1 playable, later stages are cards", async ({ page }) => {
+test("Journey: Stage 1 open with all twelve weeks, later stages are cards", async ({ page }) => {
   await page.addInitScript(([key]) => localStorage.setItem(key, JSON.stringify({ learnIn: "en", onboarded: true })), [SETTINGS_KEY]);
   await page.goto("/learn");
   await page.getByRole("link", { name: "Journey" }).click();
@@ -44,7 +44,7 @@ test("Journey: Stage 1 open, Week 1 playable, later stages are cards", async ({ 
   const week1 = page.getByRole("button", { name: /English Foundations.*Week 1/ });
   await expect(week1).toHaveAttribute("aria-expanded", "true");
   await expect(page.getByRole("link", { name: /Who Does What/ })).toBeVisible();
-  await expect(page.getByText("coming soon").first()).toBeVisible();
+  await expect(page.getByRole("button", { name: /Putting It Together.*Week 12/ })).toBeVisible(); // all of Stage 1 is released
   await expect(page.getByRole("region", { name: /Stage 2/ })).toBeVisible(); // a card
   await expect(page.getByRole("region", { name: /Stage 5/ })).toBeVisible();
   await page.screenshot({ path: `${SHOTS}/journey.png`, fullPage: true });

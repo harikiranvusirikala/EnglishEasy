@@ -79,7 +79,10 @@ Give it a real title (Week 1 "My Day", Week 2 "Question Time"), the same in `cou
 # Words already introduced (a new lesson's words must not be in this list):
 grep -h -A8 "words: \[" src/content/main/w*/*.ts | grep -o 'en: "[^"]*"'
 
-npx vitest run src/content/content.test.ts src/content/course.test.ts   # content rules
+# Check a week before registering it (every content rule, plus new words against the written course):
+node --import tsx scripts/check-week.mts <week> <the seven day ids in order>
+
+npx vitest run src/content/content.test.ts src/content/course.test.ts   # content rules, after registering
 npm run audio      # record the new sentences (owner's terminal if the sandbox blocks the voice host)
 npm test           # all unit tests, including the voice coverage test
 npm run lint
@@ -92,9 +95,10 @@ The messages say what to fix:
 | Message starts with | Usual fix |
 |---|---|
 | `sentence-length` | Shorten the line (role-play lines and replies count too) |
-| `bi-identical` / `telugu-script` | A heading like "when, what time" needs Telugu words in its `te` |
+| `bi-identical` / `telugu-script` | Every `te` needs Telugu letters: a heading, skill label or "why" like "on / at" or "buy → bought" gets a Telugu word ("on / at వాడకం", "buy గతం bought") |
 | `word-once` | Pick another new word; the old one can still be used, just not listed |
 | `tiles` | The distractor is also a word of the answer; pick another |
+| `sentence-length` on an expected answer | Long "expected" alternatives count too; keep each ≤ 7 words |
 | `activity-count` | A slot count changed; go back to the table in §2 |
 | audio coverage | Run `npm run audio` and commit `public/audio/` |
 

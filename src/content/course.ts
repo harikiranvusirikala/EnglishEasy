@@ -35,21 +35,128 @@ const week2Days: DayRef[] = [
   { id: "w2-review", kind: "review", title: { en: "Question Time", te: "ప్రశ్నల సమయం" } },
 ];
 
+// Week 3 (CURRICULUM §3).
+const week3Days: DayRef[] = [
+  { id: "numbers-and-counting", kind: "lesson", title: { en: "Numbers", te: "సంఖ్యలు" } },
+  { id: "telling-the-time", kind: "lesson", title: { en: "Telling the Time", te: "సమయం చెప్పడం" } },
+  { id: "days-and-dates", kind: "lesson", title: { en: "Days, Months & Dates", te: "రోజులు, నెలలు, తేదీలు" } },
+  { id: "prices-and-money", kind: "lesson", title: { en: "Prices & Money", te: "ధరలు, డబ్బు" } },
+  { id: "big-numbers-lakh", kind: "lesson", title: { en: "Big Numbers", te: "పెద్ద సంఖ్యలు" } },
+  { id: "w3-conversation", kind: "conversation", title: { en: "At the Vegetable Market", te: "కూరగాయల మార్కెట్‌లో" } },
+  { id: "w3-review", kind: "review", title: { en: "Numbers Everywhere", te: "అంతటా సంఖ్యలు" } },
+];
+
+// Week 4 (CURRICULUM §3).
+const week4Days: DayRef[] = [
+  { id: "have-and-has", kind: "lesson", title: { en: "Have & Has", te: "నాకు ఉంది, అతనికి ఉంది" } },
+  { id: "my-your-his-her", kind: "lesson", title: { en: "My, Your, His, Her", te: "నా, మీ, అతని, ఆమె" } },
+  { id: "possessive-s", kind: "lesson", title: { en: "Ravi's House", te: "ఒకరి వస్తువు ('s)" } },
+  { id: "describing-people", kind: "lesson", title: { en: "Describing People", te: "మనుషుల వర్ణన" } },
+  { id: "this-that-these-those", kind: "lesson", title: { en: "This, That, These, Those", te: "ఇది, అది, ఇవి, అవి" } },
+  { id: "w4-conversation", kind: "conversation", title: { en: "A New Friend at the Park", te: "పార్క్‌లో కొత్త స్నేహితులు" } },
+  { id: "w4-review", kind: "review", title: { en: "People Around Me", te: "నా చుట్టూ మనుషులు" } },
+];
+
+// Week 5 (CURRICULUM §3).
+const week5Days: DayRef[] = [
+  { id: "there-is-there-are", kind: "lesson", title: { en: "There Is, There Are", te: "ఉంది, ఉన్నాయి" } },
+  { id: "a-an-the", kind: "lesson", title: { en: "A, An, The", te: "a, an, the (ఒక, ఆ)" } },
+  { id: "in-on-under-next-to", kind: "lesson", title: { en: "In, On, Under, Next To", te: "ఎక్కడ ఉంది" } },
+  { id: "one-and-many", kind: "lesson", title: { en: "One and Many", te: "ఒకటి, చాలా" } },
+  { id: "rooms-and-things", kind: "lesson", title: { en: "Around the House", te: "ఇంట్లో" } },
+  { id: "w5-conversation", kind: "conversation", title: { en: "A Guest at Home", te: "ఇంటికి అతిథి" } },
+  { id: "w5-review", kind: "review", title: { en: "My Home, My Words", te: "నా ఇల్లు, నా మాటలు" } },
+];
+
+// Week 6 (CURRICULUM §3).
+const week6Days: DayRef[] = [
+  { id: "i-like-i-dont-like", kind: "lesson", title: { en: "I Like, I Don't Like", te: "నాకు ఇష్టం, ఇష్టం లేదు" } },
+  { id: "i-would-like", kind: "lesson", title: { en: "I Would Like", te: "నాకు … కావాలి (మర్యాదగా)" } },
+  { id: "some-and-any", kind: "lesson", title: { en: "Some & Any", te: "కొంచెం, ఏమైనా" } },
+  { id: "how-much-how-many", kind: "lesson", title: { en: "How Much, How Many", te: "ఎంత, ఎన్ని" } },
+  { id: "cooking-instructions", kind: "lesson", title: { en: "Cooking Steps", te: "వంట సూచనలు" } },
+  { id: "w6-conversation", kind: "conversation", title: { en: "Lunch at a Friend's House", te: "స్నేహితుల ఇంట్లో భోజనం" } },
+  { id: "w6-review", kind: "review", title: { en: "Food Talk", te: "భోజనం మాటలు" } },
+];
+
+// Week 7 (CURRICULUM §3).
+const week7Days: DayRef[] = [
+  { id: "always-usually-never", kind: "lesson", title: { en: "Always, Usually, Never", te: "ఎప్పుడూ, సాధారణంగా, ఎప్పుడూ కాదు" } },
+  { id: "he-goes-she-watches", kind: "lesson", title: { en: "He Goes, She Watches", te: "he/she తో verb" } },
+  { id: "routine-questions", kind: "lesson", title: { en: "Do You …? Does She …?", te: "రోజువారీ ప్రశ్నలు" } },
+  { id: "morning-to-night", kind: "lesson", title: { en: "Morning to Night", te: "ఉదయం నుండి రాత్రి వరకు" } },
+  { id: "weekdays-and-weekends", kind: "lesson", title: { en: "Weekdays and Weekends", te: "వారం రోజులు, వారాంతం" } },
+  { id: "w7-conversation", kind: "conversation", title: { en: "A Day in Your Life", te: "మీ రోజు" } },
+  { id: "w7-review", kind: "review", title: { en: "My Routine", te: "నా దినచర్య" } },
+];
+
+// Week 8 (CURRICULUM §3).
+const week8Days: DayRef[] = [
+  { id: "can-and-cant", kind: "lesson", title: { en: "Can & Can't", te: "చేయగలను" } },
+  { id: "can-i", kind: "lesson", title: { en: "Can I …?", te: "అనుమతి" } },
+  { id: "can-could-would", kind: "lesson", title: { en: "Can, Could, Would", te: "మర్యాదగా అడగడం" } },
+  { id: "could-in-the-past", kind: "lesson", title: { en: "I Could … (before)", te: "ఒకప్పుడు చేయగలిగేవాళ్ళం" } },
+  { id: "sorry-can-you-repeat", kind: "lesson", title: { en: "Sorry, Can You Repeat?", te: "అర్థం కాకపోతే" } },
+  { id: "w8-conversation", kind: "conversation", title: { en: "Help at the Railway Station", te: "రైల్వే స్టేషన్‌లో సహాయం" } },
+  { id: "w8-review", kind: "review", title: { en: "Asking for Help", te: "సహాయం అడగడం" } },
+];
+
+// Week 9 (CURRICULUM §3).
+const week9Days: DayRef[] = [
+  { id: "was-and-were", kind: "lesson", title: { en: "Was & Were", te: "ఉన్నాను, ఉన్నారు (గతం)" } },
+  { id: "regular-past-verbs", kind: "lesson", title: { en: "Walked, Cooked, Called", te: "-ed తో గతం" } },
+  { id: "irregular-past-verbs", kind: "lesson", title: { en: "Went, Ate, Saw", te: "మారిపోయే verbs" } },
+  { id: "what-did-you-do", kind: "lesson", title: { en: "What Did You Do?", te: "ఏం చేశారు?" } },
+  { id: "last-week-ago", kind: "lesson", title: { en: "Last Week, Two Days Ago", te: "పోయిన వారం, రెండు రోజుల క్రితం" } },
+  { id: "w9-conversation", kind: "conversation", title: { en: "Telling About a Trip", te: "ప్రయాణం గురించి" } },
+  { id: "w9-review", kind: "review", title: { en: "Last Week", te: "పోయిన వారం" } },
+];
+
+// Week 10 (CURRICULUM §3).
+const week10Days: DayRef[] = [
+  { id: "going-to-plans", kind: "lesson", title: { en: "Going To", te: "ప్రణాళికలు" } },
+  { id: "will-or-going-to", kind: "lesson", title: { en: "Will or Going To?", te: "will ఆ, going to ఆ?" } },
+  { id: "ill-help-you", kind: "lesson", title: { en: "I'll Help You", te: "సహాయం, మాట" } },
+  { id: "invitations", kind: "lesson", title: { en: "Would You Like to Come?", te: "ఆహ్వానాలు" } },
+  { id: "next-week-soon", kind: "lesson", title: { en: "Next Week, Soon", te: "త్వరలో" } },
+  { id: "w10-conversation", kind: "conversation", title: { en: "Planning a Temple Trip", te: "గుడికి ప్రయాణం" } },
+  { id: "w10-review", kind: "review", title: { en: "Plans Ahead", te: "ముందున్న ప్రణాళికలు" } },
+];
+
+// Week 11 (CURRICULUM §3).
+const week11Days: DayRef[] = [
+  { id: "i-feel", kind: "lesson", title: { en: "I Feel …", te: "నాకు … గా ఉంది" } },
+  { id: "my-head-hurts", kind: "lesson", title: { en: "My Head Hurts", te: "శరీరం, నొప్పి" } },
+  { id: "should-and-shouldnt", kind: "lesson", title: { en: "Should & Shouldn't", te: "సలహా" } },
+  { id: "at-the-clinic", kind: "lesson", title: { en: "At the Clinic", te: "క్లినిక్‌లో" } },
+  { id: "get-well-soon", kind: "lesson", title: { en: "Get Well Soon", te: "సానుభూతి" } },
+  { id: "w11-conversation", kind: "conversation", title: { en: "A Visit to the Doctor", te: "డాక్టర్ దగ్గరికి" } },
+  { id: "w11-review", kind: "review", title: { en: "Take Care", te: "జాగ్రత్త" } },
+];
+
+// Week 12 (CURRICULUM §3).
+const week12Days: DayRef[] = [
+  { id: "and-but", kind: "lesson", title: { en: "And, But", te: "మరియు, కానీ" } },
+  { id: "because-and-so", kind: "lesson", title: { en: "Because, So", te: "ఎందుకంటే, అందుకే" } },
+  { id: "all-about-me", kind: "lesson", title: { en: "All About Me", te: "నా గురించి" } },
+  { id: "four-times-together", kind: "lesson", title: { en: "Every Day, Now, Yesterday, Tomorrow", te: "అన్ని కాలాలు" } },
+  { id: "all-question-types", kind: "lesson", title: { en: "All Kinds of Questions", te: "అన్ని ప్రశ్నలు" } },
+  { id: "w12-conversation", kind: "conversation", title: { en: "A Long Chat at a Function", te: "ఫంక్షన్‌లో మాటలు" } },
+  { id: "w12-review", kind: "review", title: { en: "Stage 1 Review", te: "పునాది పునశ్చరణ" } },
+];
 const stage1Weeks: Week[] = [
   { ...week(1, ["English Foundations", "ఇంగ్లీష్ పునాది"]), released: true, days: week1Days },
   { ...week(2, ["Asking Questions", "ప్రశ్నలు అడగడం"]), released: true, days: week2Days },
-  ...weeks(3, [
-    ["Numbers, Time & Money", "సంఖ్యలు, సమయం, డబ్బు"],
-    ["People", "మనుషులు"],
-    ["My Home", "నా ఇల్లు"],
-    ["Food & Cooking", "ఆహారం, వంట"],
-    ["My Daily Routine", "నా దినచర్య"],
-    ["Can & Asking for Help", "సహాయం అడగడం"],
-    ["Yesterday & Last Week", "నిన్న, పోయిన వారం"],
-    ["Plans & Future", "ప్రణాళికలు"],
-    ["Feelings & Health", "భావాలు, ఆరోగ్యం"],
-    ["Putting It Together", "అన్నీ కలిపి"],
-  ]),
+  { ...week(3, ["Numbers, Time & Money", "సంఖ్యలు, సమయం, డబ్బు"]), released: true, days: week3Days },
+  { ...week(4, ["People", "మనుషులు"]), released: true, days: week4Days },
+  { ...week(5, ["My Home", "నా ఇల్లు"]), released: true, days: week5Days },
+  { ...week(6, ["Food & Cooking", "ఆహారం, వంట"]), released: true, days: week6Days },
+  { ...week(7, ["My Daily Routine", "నా దినచర్య"]), released: true, days: week7Days },
+  { ...week(8, ["Can & Asking for Help", "సహాయం అడగడం"]), released: true, days: week8Days },
+  { ...week(9, ["Yesterday & Last Week", "నిన్న, పోయిన వారం"]), released: true, days: week9Days },
+  { ...week(10, ["Plans & Future", "ప్రణాళికలు"]), released: true, days: week10Days },
+  { ...week(11, ["Feelings & Health", "భావాలు, ఆరోగ్యం"]), released: true, days: week11Days },
+  { ...week(12, ["Putting It Together", "అన్నీ కలిపి"]), released: true, days: week12Days },
 ];
 
 const stage2Weeks = weeks(13, [

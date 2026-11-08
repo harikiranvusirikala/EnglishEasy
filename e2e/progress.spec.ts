@@ -37,6 +37,9 @@ test("half of Day 1, reload, Continue resumes at the same activity", async ({ pa
   await page.goto("/lessons/sentence-basics");
   await expect(page.getByRole("link", { name: /^Continue/ })).toBeVisible();
   await expect(page.getByText(/% done/)).not.toContainText("0% done");
+  await expect(page.getByText("Next: Practice")).toBeVisible(); // the part Continue goes to
+  await page.getByRole("region", { name: "Your progress" }).screenshot({ path: `${SHOTS}/overview-under-way.png` });
+  await page.screenshot({ path: `${SHOTS}/overview-under-way-page.png` });
   await page.getByRole("link", { name: /^Continue/ }).click();
   await expect(page.getByRole("button", { name: "speak", exact: true })).toBeVisible();
 });
@@ -70,6 +73,8 @@ for (const theme of ["light", "dark"] as const) {
 
     await page.goto("/lessons/sentence-basics");
     await expect(page.getByText("100% done")).toBeVisible();
+    await expect(page.getByText("Every part done")).toBeVisible();
+    await expect(page.getByRole("button", { name: "Share this lesson" })).toBeVisible(); // a square beside Review
     await expect(page.getByRole("link", { name: /^Review/ })).toBeVisible();
     await page.screenshot({ path: `${SHOTS}/overview${suffix}.png`, fullPage: true });
 

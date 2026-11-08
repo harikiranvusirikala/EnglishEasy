@@ -184,7 +184,7 @@ export default async function LessonPage({
             <div className="absolute -top-32 -left-24 size-[28rem] rounded-full bg-[radial-gradient(closest-side,rgb(20_184_166/0.18),transparent)]" />
             <div className="absolute -top-24 right-[-8rem] size-[28rem] rounded-full bg-[radial-gradient(closest-side,rgb(251_191_36/0.18),transparent)]" />
           </div>
-          <div className="mx-auto flex max-w-5xl flex-col gap-4 px-5 pt-10 pb-12">
+          <div className="mx-auto flex max-w-5xl flex-col gap-4 px-5 pt-6 pb-8 sm:pt-10 sm:pb-12">
             <p className="flex flex-wrap items-center gap-2">
               <span className={badge("brand")}>{fill(strings.overviewDayLabel, { n: place.number }).en}</span>
               {day.kind === "lesson" && <span className={badge("neutral")}>{day.subtitle}</span>}
@@ -209,7 +209,7 @@ export default async function LessonPage({
           </div>
         </section>
 
-        <div className="mx-auto grid max-w-5xl gap-10 px-5 py-10 lg:grid-cols-[1fr_22rem] lg:items-start">
+        <div className="mx-auto grid max-w-5xl gap-8 px-5 py-6 sm:gap-10 sm:py-10 lg:grid-cols-[1fr_22rem] lg:items-start">
           <div className="order-2 flex flex-col gap-10 lg:order-1">
             {day.kind === "lesson" && (
               <article className="flex flex-col gap-10">

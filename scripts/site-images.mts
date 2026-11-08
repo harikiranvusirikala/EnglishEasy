@@ -62,12 +62,14 @@ await writeFile("public/icons/icon-maskable-512.png", await sharp(Buffer.from(ma
  * lesson question. Everything that matters stays `margin` px in from every edge (GitHub's social preview
  * template asks for 80 px; chat apps may crop the link preview's sides).
  */
-function brandCard(width: number, height: number, margin: number, shot: string): string {
+function brandCard(width: number, height: number, margin: number, shot: string, shotAspect: number): string {
   const text = (x: number, y: number, size: number, weight: number, fill: string, content: string, font = FONT, anchor = "start") =>
     `<text x="${x}" y="${y}" font-family="${font}" font-size="${size}" font-weight="${weight}" fill="${fill}" text-anchor="${anchor}">${content}</text>`;
   const top = margin;
-  const phoneW = 300;
+  // The phone is as wide as the whole screenshot needs at this height (status bar 46 px, 10 px frame), so nothing
+  // is cut off at the bottom (the Continue button).
   const phoneH = height - 2 * margin;
+  const phoneW = Math.round((phoneH - 56) * shotAspect) + 20;
   const phoneX = width - margin - phoneW;
   const phoneY = margin;
   const pill = (x: number, label: string, w: number) => `
@@ -109,10 +111,13 @@ function brandCard(width: number, height: number, margin: number, shot: string):
 /** As small a PNG as looks the same: chat apps skip big link previews (WhatsApp's limit is about 300 KB). */
 const smallPng = (svg: string) => sharp(Buffer.from(svg)).png({ palette: true, quality: 90, effort: 10 }).toBuffer();
 // The phone in the pictures shows a real screen: a question answered right (docs/screenshots/, from e2e/capture.spec.ts).
-const question = dataUrl("image/png", await sharp("docs/screenshots/question.png").resize({ width: 560 }).png().toBuffer());
-await writeFile("src/app/opengraph-image.png", await smallPng(brandCard(1200, 630, 64, question)));
+const questionPng = await sharp("docs/screenshots/question.png").resize({ width: 560 }).png().toBuffer();
+const questionSize = await sharp(questionPng).metadata();
+const questionAspect = (questionSize.width ?? 1) / (questionSize.height ?? 1);
+const question = dataUrl("image/png", questionPng);
+await writeFile("src/app/opengraph-image.png", await smallPng(brandCard(1200, 630, 64, question, questionAspect)));
 // GitHub's social preview (Settings → General → Social preview): 1280 x 640, 80 px safe area (GitHub's template).
-await writeFile("docs/social-preview.png", await smallPng(brandCard(1280, 640, 80, question)));
+await writeFile("docs/social-preview.png", await smallPng(brandCard(1280, 640, 80, question, questionAspect)));
 
 // The landing page's pictures: phone screens from docs/screenshots/ as WebP, 640 px wide (shown at up to 320 CSS px).
 await mkdir("src/components/landing/images", { recursive: true });

@@ -9,8 +9,11 @@ import type { Bi as ContentBi } from "@/content/types";
 import { useLearnIn } from "@/lib/settings-store";
 import { fill, strings } from "@/lib/strings";
 
-/** Share this lesson (or, with `label`, `line` and `path`, a week): the phone's share sheet (`navigator.share`), or a copied link with a short message. */
-export function ShareLesson({ id, title, label = strings.shareLesson, line = strings.shareLine, path }: { id: string; title: ContentBi; label?: ContentBi; line?: ContentBi; path?: string }) {
+/**
+ * Share this lesson (or, with `label`, `line` and `path`, a week): the phone's share sheet (`navigator.share`), or a
+ * copied link with a short message. `iconOnly` draws a square icon button (its name is the label), e.g. beside Continue.
+ */
+export function ShareLesson({ id, title, label = strings.shareLesson, line = strings.shareLine, path, iconOnly = false }: { id: string; title: ContentBi; label?: ContentBi; line?: ContentBi; path?: string; iconOnly?: boolean }) {
   const learnIn = useLearnIn();
   const [message, setMessage] = useState<string | null>(null);
   const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
@@ -43,10 +46,16 @@ export function ShareLesson({ id, title, label = strings.shareLesson, line = str
 
   return (
     <>
-      <button type="button" onClick={share} className={`${button("secondary")} w-full`}>
-        <Icon name="share" />
-        <Bi label={label} />
-      </button>
+      {iconOnly ? (
+        <button type="button" onClick={share} aria-label={label.en} title={label.en} className={button("secondary", "icon")}>
+          <Icon name="share" />
+        </button>
+      ) : (
+        <button type="button" onClick={share} className={`${button("secondary")} w-full`}>
+          <Icon name="share" />
+          <Bi label={label} />
+        </button>
+      )}
       {message && <Toast className="fixed inset-x-0 bottom-24 z-20 px-4">{message}</Toast>}
     </>
   );

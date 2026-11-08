@@ -19,9 +19,10 @@ describe("service worker routing", () => {
     expect(decide("/audio/manifest.json")).toBe("stale-while-revalidate");
   });
 
-  it("keeps hashed files and icons cache-first", () => {
+  it("keeps hashed files, icons and recorded clips cache-first", () => {
     expect(decide("/_next/static/chunks/abc123.js")).toBe("cache-first");
     expect(decide("/icons/icon-192.png")).toBe("cache-first");
+    expect(decide("/audio/1a2b3c4d.mp3")).toBe("cache-first");
   });
 
   it("loads pages from the network first", () => {

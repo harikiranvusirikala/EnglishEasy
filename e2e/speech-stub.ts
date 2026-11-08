@@ -1,6 +1,6 @@
 import type { Page } from "@playwright/test";
 
-// Replaces the browser's speech synthesis and speech recognition, so no e2e test depends on a real voice or
+// Serves an empty recordings manifest and replaces the browser's speech synthesis and speech recognition, so no e2e test depends on a real voice or
 // microphone (BUILD_PLAN B3). Synthesis records what was spoken and with which voice; recognition answers with
 // `window.__nextTranscript` (a string, or an array of alternatives), or fails with `window.__recognitionError`.
 
@@ -20,6 +20,8 @@ export const IPHONE_VOICES: StubVoice[] = [
 ];
 
 export async function installSpeechStub(page: Page, voices: StubVoice[] = ANDROID_VOICES) {
+  // No recorded clips here: everything goes through the stubbed phone voice, so tests can see what was read.
+  await page.route("**/audio/manifest.json", (route) => route.fulfill({ json: {} }));
   await page.addInitScript((voiceList) => {
     const w = window as unknown as Record<string, unknown>;
     w.__spoken = [];

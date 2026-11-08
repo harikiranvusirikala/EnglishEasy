@@ -1,12 +1,14 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import { audioUrl, parseManifest, type AudioManifest } from "@/learning/audio-manifest";
+import { audioUrl, parseManifest, speechText, type AudioManifest } from "@/learning/audio-manifest";
+import type { Spoken } from "@/learning/spoken";
 import { splitScripts, type Run } from "@/learning/split-scripts";
 import { pickEnglishVoice, pickPartnerVoice, pickTeluguVoice } from "@/learning/voice-pick";
 import { getSettings } from "./settings-store";
 
-// The phone's own voices (BUILD_PLAN A6). Browser only: every function is a no-op where speech does not exist.
+// Recorded clips first (`npm run audio`; BUILD_PLAN "one recorded voice"), else the phone's own voices (A6). Browser only:
+// every function is a no-op where speech does not exist.
 // Nothing here runs while rendering; screens call it from effects and event handlers.
 
 export const RATE_NORMAL = 0.9;
@@ -77,39 +79,67 @@ export function useVoices(): SpeechSynthesisVoice[] | null {
   return useSyncExternalStore(subscribeVoices, voicesSnapshot, () => null);
 }
 
-// ---- the audio hook (recorded files, if a manifest exists)
+// ---- the audio hook (recorded files, listed in the manifest)
 
 let manifest: AudioManifest | null = null;
-let manifestRequested = false;
+let manifestLoad: Promise<void> | null = null;
 
-/** Fetches `/audio/manifest.json` once. Missing or broken means no recordings (the launch state). */
-export async function loadManifest(): Promise<void> {
-  if (manifestRequested || typeof fetch === "undefined") return;
-  manifestRequested = true;
-  try {
-    const response = await fetch(MANIFEST_URL);
-    manifest = response.ok ? parseManifest(await response.json()) : {};
-  } catch {
-    manifest = {};
+/** Fetches `/audio/manifest.json` once (later calls share it). Missing or broken means no recordings: the phone voice reads everything. */
+export function loadManifest(): Promise<void> {
+  if (manifestLoad) return manifestLoad;
+  if (typeof fetch === "undefined") return Promise.resolve();
+  manifestLoad = fetch(MANIFEST_URL)
+    .then(async (response) => {
+      manifest = response.ok ? parseManifest(await response.json()) : {};
+    })
+    .catch(() => {
+      manifest = {};
+    });
+  return manifestLoad;
+}
+
+/** For tests: set the manifest directly (null forgets it and allows a new fetch); also forgets the audio element. */
+export function setManifest(next: AudioManifest | null) {
+  manifest = next;
+  manifestLoad = next === null ? null : Promise.resolve();
+  player = null;
+}
+
+/** Whether `text` has a recording (false until the manifest has loaded). */
+export function hasRecording(text: string, voice: SpeakOptions["voice"] = "a"): boolean {
+  return audioUrl(manifest, text, voice) !== null;
+}
+
+/** Fetches a lesson's clips in the background, so the service worker keeps them for offline. */
+export async function prefetchAudio(items: Spoken[]) {
+  await loadManifest();
+  for (const item of items) {
+    const url = audioUrl(manifest, item.text, item.voice);
+    if (url) void fetch(url).catch(() => {});
   }
 }
 
-/** For tests: set the manifest directly (null forgets it and allows a new fetch). */
-export function setManifest(next: AudioManifest | null) {
-  manifest = next;
-  manifestRequested = next !== null;
-}
+// One element for every clip: phones let a page play sound on an element once a tap has started it, so the
+// role play's next line can play by itself after the learner's reply.
+let player: HTMLAudioElement | null = null;
 
-let playing: HTMLAudioElement | null = null;
-
-function playFile(url: string, options: SpeakOptions) {
-  const audio = new Audio(url);
-  audio.playbackRate = options.slow ? RATE_SLOW / RATE_NORMAL : 1;
-  playing = audio;
+function playFile(url: string, options: SpeakOptions, fallback: () => void) {
+  player ??= new Audio();
+  const audio = player;
+  const mine = token;
+  const rate = options.slow ? RATE_SLOW / RATE_NORMAL : 1;
   audio.onended = () => {
-    if (playing === audio) options.onEnd?.();
+    if (mine === token) options.onEnd?.();
   };
-  void audio.play().catch(() => {});
+  audio.onerror = () => {
+    if (mine === token) fallback(); // the file is missing or could not load: the phone voice reads it
+  };
+  audio.src = url;
+  audio.defaultPlaybackRate = rate; // a new src resets playbackRate to this
+  audio.playbackRate = rate;
+  void audio.play()?.catch((error: unknown) => {
+    if (mine === token && (error as { name?: string })?.name !== "AbortError") fallback();
+  });
 }
 
 // ---- speaking
@@ -126,8 +156,7 @@ export function stopSpeaking() {
   const s = synth();
   if (s && (s.speaking || s.pending)) s.cancel();
   live.clear();
-  playing?.pause();
-  playing = null;
+  player?.pause();
 }
 
 /** A stuck utterance (Chrome on macOS sometimes never finishes one, and everything queued behind it waits forever) is given up on after this long. */
@@ -205,28 +234,32 @@ function say(runs: Run[], options: SpeakOptions, afterCancel: boolean) {
   enqueue(utterances, afterCancel, options.onEnd);
 }
 
-function playRecording(text: string, options: SpeakOptions): boolean {
-  void loadManifest();
-  const url = audioUrl(manifest, text);
-  if (!url || typeof Audio === "undefined") return false;
-  playFile(url, options);
-  return true;
+/**
+ * Plays the recording of `text` if there is one, else reads `runs` with the phone's voices. Waits for the manifest
+ * the first time (a newer request makes this one stale meanwhile).
+ */
+function start(text: string, runs: Run[], options: SpeakOptions) {
+  const busy = isBusy();
+  stopSpeaking();
+  const mine = token;
+  const go = () => {
+    if (mine !== token) return;
+    const url = typeof Audio === "undefined" ? null : audioUrl(manifest, text, options.voice);
+    if (url) playFile(url, options, () => say(runs, options, false));
+    else say(runs, options, busy);
+  };
+  if (manifest) go();
+  else void loadManifest().then(go);
 }
 
-/** Reads an English sentence aloud (a recording if the manifest has one), cancelling anything already playing. */
+/** Reads an English sentence aloud (its recording if there is one), cancelling anything already playing. Quote marks are not read. */
 export function speak(text: string, options: SpeakOptions = {}) {
-  const busy = isBusy();
-  stopSpeaking();
-  if (playRecording(text, options)) return;
-  say([{ text, script: "en" }], options, busy);
+  start(text, [{ text: speechText(text), script: "en" }], options);
 }
 
-/** Reads mixed Telugu–English text: one utterance per script run, each with its own voice. Telugu runs are skipped when no Telugu voice exists. */
+/** Reads mixed Telugu–English text (its recording if there is one; else one utterance per script run, each with its own voice). */
 export function narrate(text: string, options: SpeakOptions = {}) {
-  const busy = isBusy();
-  stopSpeaking();
-  if (playRecording(text, options)) return;
-  say(splitScripts(text), options, busy);
+  start(text, splitScripts(speechText(text)), options);
 }
 
 /** Whether this is an Android phone (the only place the Telugu voice can be installed from the Settings help). Browser only. */

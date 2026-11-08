@@ -34,14 +34,14 @@ Read only the sections a task needs (`grep -n '^#' <file>`, then `Read` with `of
 
 ## Invariants (hold them in every change)
 
-- **No AI at runtime, ever.** The app never calls Claude or any other paid AI or speech API. Content is written ahead of time as data; voice and speech recognition are the browser's free built-in APIs. Don't add an AI SDK or API key.
+- **No AI at runtime, ever.** The app never calls Claude or any other paid AI or speech API. Content is written ahead of time as data; so is the voice: `npm run audio` records every spoken text once (Microsoft Edge's free voices via `msedge-tts`, installed only in `tools/audio/`) into `public/audio/` with a manifest, and the phone's own voice is only the fallback. Speech recognition is the browser's free built-in API. Don't add an AI SDK or API key.
 - **No text inputs anywhere.** Answers are buttons, word tiles or voice.
 - **All UI text lives in `src/lib/strings.ts`** as `Bi` (`{ en, te }`) entries; components never hard-code label text.
 - **Content is data** (`src/content/`), validated by `content.test.ts`; the engine (`src/learning/`) is pure and unit-tested; browser APIs live in thin wrappers in `src/lib/`.
 - **Ids are permanent** (they key saved progress and addresses): day ids and activity ids are never renamed, reused or renumbered after release; core sentences are append-only (BUILD_PLAN A3). Day numbers are computed from position, never stored.
 - **Speaking never blocks progress**: every speaking activity offers "Choose instead".
 - **Language** (owner, 2026-11-08): simple words — buttons, labels, titles, counts — are English only (`Bi` or `.en`); sentences that explain something follow Learn in (`BiText` for the app's own, `ContentText` for lesson content); a sentence's Telugu meaning appears only in Telugu mode (`Meaning`). Every content `Bi` still has both languages.
-- **Audio** (owner, 2026-11-08): Listen / Slow are round icon buttons (`Narrate`). Listen only where it helps (example and key sentences, the question's sentence, the correct answer, role-play and dialogue lines); explanations, reasons and hints are not read aloud. Slow only for sentences of medium or high complexity (`needsSlow`, 6+ words), on questions too. Auto-play respects its setting.
+- **Audio** (owner, 2026-11-08): Listen / Slow are round icon buttons (`Narrate`). Listen only where it helps (example and key sentences, the question's sentence, the correct answer, role-play and dialogue lines); explanations, reasons and hints are not read aloud. Slow only for sentences of medium or high complexity (`needsSlow`, 6+ words), on questions too. A question whose prompt contains its sentence reads the whole prompt, Telugu included (`askText`); quote marks are never read (`speechText`). Anything new the screens read aloud must also be listed in `spokenTexts` (`src/learning/spoken.ts`), or it gets no recording. Auto-play respects its setting.
 - **The main path never assumes the learner has a spouse, children or grandchildren**; those scenes belong to optional tracks (CURRICULUM §1, §8).
 - **Colours are design tokens** (`bg-page`, `bg-surface`, `text-ink`, `text-brand`, `bg-brand-fill`…), which follow Night by themselves; a raw palette class (`bg-stone-100`) still needs a `dark:` twin. Every token is defined for Day and Night (`kit.test.tsx`).
 - **Use the building blocks** (`button()`, `card`, `badge()`, `ProgressBar`, `ProgressRing`, `StepList`, `SegmentedControl`, `Switch`, `Dialog`, `Menu`, `Toast`, `EmptyState`, `PageHeader`, `Nudge`, `Logo`, `Narrate`, `Illustration`) instead of hand-written styles; never add a conflicting utility on top of a class string, add a variant.
@@ -59,6 +59,7 @@ npm test               # Vitest (jsdom); one file: npx vitest run <file>; by nam
 npm run build          # allowlisted; run exactly as written, alone
 npm run test:e2e       # Playwright: builds, serves on 3100, projects phone + desktop; allowlisted, run alone
 npm run content        # write public/content/<dayId>.json (also runs before dev and build)
+npm run audio          # record new spoken texts into public/audio/ (owner's terminal; commit public/audio/)
 npm run images         # icons, link preview, docs/social-preview.png and the landing WebP pictures
 npm run test:db        # MongoDB repository tests (*.db.test.ts); needs MONGODB_URI in .env.local
 npm run db:ping        # check the MongoDB connection
@@ -82,5 +83,6 @@ npm run vapid          # print a new VAPID key pair for reminders
 - **Vitest's shared setup** (`test/setup.ts`) clears `localStorage` after each test, so a `// @vitest-environment node` marker breaks a test file; leave the default jsdom.
 - **`npm run images`** draws with the machine's fonts (sharp/librsvg), which don't include the web fonts; `src/app/icon.svg` uses system fonts for that reason.
 - **`ANTHROPIC_*` variables** are set by Claude Code in every process; never name an app variable `ANTHROPIC_*`.
+- **`npm run audio`** needs `speech.platform.bing.com`, which the Claude Code security sandbox may block; then the owner runs it. Run it after every content change (unchanged texts are skipped, unused clips removed) and commit `public/audio/`.
 - `next build` may warn about a stray `package-lock.json` in the home folder; ignore it.
 - Family Tree (`~/GitHub/Family Tree with AI`) is the owner's reference app for quality and patterns (theme, UI kit, landing/SEO, Better Auth): read only the files a task names; never import from it.

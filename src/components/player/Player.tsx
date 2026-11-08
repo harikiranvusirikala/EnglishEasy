@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { prefetchAudio } from "@/lib/speak";
+import { spokenTexts } from "@/learning/spoken";
 import { useRouter } from "next/navigation";
 import { Bi } from "@/components/ui/Bi";
 import { BiText } from "@/components/ui/BiText";
@@ -74,6 +76,7 @@ function startIndex(day: PlayableDay, steps: Step[], p: Progress): number {
 
 /** Waits for saved progress (after hydration), then plays. "Review" starts a fresh pass over a finished day. */
 export function Player({ day }: { day: PlayableDay }) {
+  useEffect(() => void prefetchAudio(spokenTexts(day)), [day]); // the day's recorded clips, kept by the service worker for offline
   const saved = useProgress();
   const [pass, setPass] = useState(0);
   if (!saved) return <PlayerSkeleton />;

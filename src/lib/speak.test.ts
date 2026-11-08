@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { textHash } from "@/learning/audio-manifest";
+import { audioKey, textHash } from "@/learning/audio-manifest";
 import { DEFAULT_SETTINGS } from "@/learning/settings";
 import { narrate, RATE_NORMAL, RATE_SLOW, setManifest, speak, stopSpeaking, hasTeluguVoice } from "./speak";
 import { updateSettings } from "./settings-store";
@@ -138,12 +138,54 @@ describe("audio hook", () => {
     speak("I eat rice.", { slow: true });
     narrate("I eat rice.");
     expect(spoken).toEqual([]);
-    expect(made.map((a) => a.src)).toEqual(["/audio/rice.mp3", "/audio/rice.mp3"]);
-    expect(made[0].playbackRate).toBeCloseTo(RATE_SLOW / RATE_NORMAL);
+    expect(made).toHaveLength(1); // one shared element, so phones let later clips play
+    expect(made[0].src).toBe("/audio/rice.mp3");
+    expect(made[0].playbackRate).toBe(1); // the last one (narrate) at normal speed
     expect(play).toHaveBeenCalledTimes(2);
 
     speak("I eat tea.");
     expect(spoken.map((s) => s.text)).toEqual(["I eat tea."]); // not in the manifest: the phone voice
+  });
+
+  const stubAudio = (play: () => Promise<void>) => {
+    const made: { src: string }[] = [];
+    vi.stubGlobal(
+      "Audio",
+      class {
+        src = "";
+        playbackRate = 1;
+        defaultPlaybackRate = 1;
+        constructor() {
+          made.push(this);
+        }
+        play = play;
+        pause = vi.fn();
+      },
+    );
+    return made;
+  };
+
+  it("reads with the phone voice when the clip cannot play", async () => {
+    install([veena]);
+    stubAudio(() => Promise.reject(Object.assign(new Error("blocked"), { name: "NotAllowedError" })));
+    setManifest({ [textHash("I eat rice.")]: "rice.mp3" });
+    speak("I eat rice.");
+    await vi.waitFor(() => expect(spoken.map((s) => s.text)).toEqual(["I eat rice."]));
+  });
+
+  it("gives the second dialogue voice its own recording", () => {
+    install([veena]);
+    const made = stubAudio(() => Promise.resolve());
+    setManifest({ [audioKey("Hello.")]: "a.mp3", [audioKey("Hello.", "b")]: "b.mp3" });
+    speak("Hello.", { voice: "b" });
+    expect(made[0].src).toBe("/audio/b.mp3");
+  });
+
+  it("never reads quote marks aloud", () => {
+    install([veena]);
+    setManifest({});
+    narrate('"I walk every morning." means this.');
+    expect(spoken.map((s) => s.text).join(" ")).not.toContain('"');
   });
 });
 

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { listenButton } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icons";
 import { getSettings, useLearnIn, useSettings } from "@/lib/settings-store";
-import { hasTeluguVoice, isAndroid, narrate, useVoices, type SpeakOptions } from "@/lib/speak";
+import { hasRecording, hasTeluguVoice, isAndroid, loadManifest, narrate, useVoices, type SpeakOptions } from "@/lib/speak";
 import { strings, type Bi as BiLabel } from "@/lib/strings";
 import { needsSlow } from "@/learning/complexity";
 import { showTeluguHelp, TELUGU_HELP_ID } from "./TeluguVoiceHelp";
@@ -40,13 +40,17 @@ export function Narrate({
   const autoPlay = auto && settings?.autoPlay === true;
 
   useEffect(() => {
+    void loadManifest(); // the recordings list, so the first tap already plays the recorded voice
+  }, []);
+
+  useEffect(() => {
     if (autoPlay) narrate(say, { voice });
   }, [autoPlay, say, voice]);
 
   const play = (slow: boolean) => {
     narrate(say, { slow, voice });
     // Android phones usually have a Telugu voice that only needs installing: say how, once.
-    if (HAS_TELUGU.test(say) && isAndroid() && !hasTeluguVoice() && !getSettings().dismissed.includes(TELUGU_HELP_ID)) showTeluguHelp();
+    if (HAS_TELUGU.test(say) && !hasRecording(say, voice) && isAndroid() && !hasTeluguVoice() && !getSettings().dismissed.includes(TELUGU_HELP_ID)) showTeluguHelp();
   };
 
   // "hidden": only the auto-play (the screen has its own buttons, like the big Listen button).

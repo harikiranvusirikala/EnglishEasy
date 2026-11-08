@@ -17,6 +17,7 @@
     if (path.indexOf("/content/") === 0 && /\.json$/.test(path)) return "stale-while-revalidate";
     if (path === "/audio/manifest.json") return "stale-while-revalidate";
     if (path.indexOf("/_next/static/") === 0 || path.indexOf("/icons/") === 0) return "cache-first";
+    if (path.indexOf("/audio/") === 0 && /\.mp3$/.test(path)) return "cache-first"; // a clip's name changes with its text
     if (request.mode === "navigate") return "network-first";
     return "ignore"; // includes Next's own page-data requests (?_rsc=): if they fail, Next reloads the page, which is a navigation
   }

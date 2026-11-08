@@ -22,7 +22,8 @@
     "vapid": "node --import tsx scripts/vapid.mts",
     "reports": "node --import tsx --env-file-if-exists=.env.local scripts/reports.mts",
     "images": "node --import tsx scripts/site-images.mts",
-    "content": "node --import tsx --env-file-if-exists=.env.local scripts/build-content.mts"
+    "content": "node --import tsx --env-file-if-exists=.env.local scripts/build-content.mts",
+    "audio": "npm install --prefix tools/audio --ignore-scripts --no-audit --no-fund --loglevel=error && node --import tsx scripts/build-audio.mts"
   },
   "dependencies": {
     "@fontsource-variable/noto-sans-telugu": "^5.3.0",

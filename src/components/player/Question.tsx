@@ -50,6 +50,7 @@ export function Question({
   answerText,
   why,
   say,
+  ask,
   hero = false,
   onAnswer,
   onNext,
@@ -60,6 +61,8 @@ export function Question({
   answerText: string;
   why?: BiLabel;
   say?: string;
+  /** What the question's Listen reads, when more than `say` (the whole prompt; `askText`). The feedback still reads `say`. */
+  ask?: string | BiLabel;
   /** Play `say` from a big central button instead of the small pair. */
   hero?: boolean;
   onAnswer: (correct: boolean) => void;
@@ -83,7 +86,7 @@ export function Question({
     <>
       <div className="flex flex-col gap-5">
         {typeof children === "function" ? children(selected, judged) : children}
-        {say && (hero ? <ListenHero say={say} /> : <Narrate text={say} auto slow />)}
+        {say && (hero ? <ListenHero say={say} /> : <Narrate text={ask ?? say} auto slow />)}
         <div ref={group} role="group" className="flex flex-col gap-3">
           {options.map((option, i) => (
             <OptionButton key={i} index={i} text={option} state={stateOf(i)} disabled={result !== null} onClick={() => setSelected(i)} />

@@ -1,0 +1,8 @@
+{
+  "name": "englisheasy-audio-tools",
+  "private": true,
+  "description": "Only for `npm run audio` (makes public/audio). Kept out of the app's install: msedge-tts has a preinstall script that breaks a plain npm install, and the app never needs it.",
+  "dependencies": {
+    "msedge-tts": "2.1.1"
+  }
+}

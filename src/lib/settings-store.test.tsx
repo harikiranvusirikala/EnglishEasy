@@ -25,6 +25,11 @@ describe("settings store", () => {
     expect(JSON.parse(localStorage.getItem(SETTINGS_KEY)!)).toMatchObject({ theme: "dark", textSize: "A++", learnIn: "en" });
   });
 
+  it("A- makes the text smaller than the default", () => {
+    act(() => updateSettings({ textSize: "A-" }));
+    expect(document.documentElement.style.fontSize).toBe("16px");
+  });
+
   it("keeps the other settings when one changes", () => {
     act(() => updateSettings({ autoPlay: false }));
     act(() => updateSettings({ noSpeaking: true }));

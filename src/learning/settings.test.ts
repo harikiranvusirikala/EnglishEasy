@@ -19,6 +19,7 @@ describe("parseSettings", () => {
     const parsed = parseSettings(JSON.stringify({ theme: "purple", textSize: "A+", autoPlay: "yes", dismissed: ["a", 3] }));
     expect(parsed.theme).toBe("system");
     expect(parsed.textSize).toBe("A+");
+    expect(parseSettings(JSON.stringify({ textSize: "A-" })).textSize).toBe("A-");
     expect(parsed.autoPlay).toBe(true);
     expect(parsed.dismissed).toEqual(["a"]);
   });

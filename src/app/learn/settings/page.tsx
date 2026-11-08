@@ -76,6 +76,7 @@ export default function SettingsPage() {
               value={settings.textSize}
               onChange={(textSize) => updateSettings({ textSize })}
               options={[
+                { value: "A-", label: strings.textSizeAMinus },
                 { value: "A", label: strings.textSizeA },
                 { value: "A+", label: strings.textSizeAPlus },
                 { value: "A++", label: strings.textSizeAPlusPlus },

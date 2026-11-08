@@ -3,7 +3,7 @@
 export const SETTINGS_KEY = "englisheasy.settings.v1";
 
 export type ThemeChoice = "light" | "dark" | "system";
-export type TextSize = "A" | "A+" | "A++";
+export type TextSize = "A-" | "A" | "A+" | "A++";
 export type LearnIn = "te" | "en";
 
 export type Settings = {
@@ -32,10 +32,10 @@ export const DEFAULT_SETTINGS: Settings = {
 };
 
 /** Root font size in px for each text size; every length in the app is `rem`, so this scales everything. */
-export const TEXT_SIZE_PX: Record<TextSize, number> = { A: 18, "A+": 20, "A++": 22 };
+export const TEXT_SIZE_PX: Record<TextSize, number> = { "A-": 16, A: 18, "A+": 20, "A++": 22 };
 
 const THEMES: ThemeChoice[] = ["light", "dark", "system"];
-const TEXT_SIZES: TextSize[] = ["A", "A+", "A++"];
+const TEXT_SIZES: TextSize[] = ["A-", "A", "A+", "A++"];
 const LEARN_IN: LearnIn[] = ["te", "en"];
 
 function pick<T extends string>(value: unknown, allowed: T[], fallback: T): T {

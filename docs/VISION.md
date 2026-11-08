@@ -44,7 +44,7 @@ Principles every screen follows:
 2. **No typing.** Answers are buttons, word tiles or voice. There are no text fields in the app.
 3. **Learner's choice of explanation language.** Telugu mode shows buttons as the English word with its Telugu meaning (**Continue** · కొనసాగించు); English mode shows English only.
 4. **Hear everything.** Every English sentence and every explanation can be heard; new content plays automatically.
-5. **Big and calm.** Large text (A / A+ / A++), large touch targets, generous spacing, high contrast in Day and Night themes.
+5. **Big and calm.** Large text (A- / A / A+ / A++), large touch targets, generous spacing, high contrast in Day and Night themes.
 6. **Never blocked, never punished.** No lives, no hearts, no streak that resets, no red "wrong" screens. Mistakes say "Almost" and show the right answer with a short reason.
 7. **Encouraging, not competitive.** "You practised 4 days this week", never leaderboards.
 8. **Works on a basic phone, on patchy data.** Installable, fast, works offline for the lessons in use.
@@ -463,7 +463,7 @@ All choices are buttons or switches:
 
 - **Learn in:** Telugu / English
 - **Theme:** Day / Night / Follow phone
-- **Text size:** A / A+ / A++
+- **Text size:** A- / A / A+ / A++
 - **Voice:** English voice (pick + sample); Telugu voice (status, help if missing)
 - **Auto-play audio:** on / off; **I can't speak now:** on / off
 - **Daily reminder:** Off / Morning 8:00 / Afternoon 1:00 / Evening 6:00 / Night 8:00 (iPhones: only in the installed app)
@@ -566,7 +566,7 @@ The app launches with **Week 1**. After launch, weeks are added on request, one 
 
 - **Production quality:** consistent spacing, one set of reusable components, smooth short animations, skeletons while loading, no layout jumps.
 - **Themes:** Day, Night, Follow phone — no flash of the wrong theme on load.
-- **Text:** large base size; A / A+ / A++; Telugu set in Noto Sans Telugu with comfortable line spacing.
+- **Text:** large base size; A- / A / A+ / A++; Telugu set in Noto Sans Telugu with comfortable line spacing.
 - **Colours:** calm and warm. Correct = green with ✓; try again = amber with ↻ (never red for a learner's answer); pattern colours are the same in every lesson; colour is never the only signal.
 - **Delight, lightly:** confetti on lesson, week and stage completion; friendly messages; no noise.
 - **Accessible:** large touch targets, visible focus, screen-reader names, respects reduced motion.

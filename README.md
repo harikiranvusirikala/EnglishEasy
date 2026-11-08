@@ -12,7 +12,7 @@ Plan and vision are in `docs/` (start with `docs/BUILD_PLAN.md`).
 - Home, Journey, Practice hub (sentences, speaking, role plays, tracks), weekly review.
 - Guest first; optional Google sign-in syncs progress.
 - Installable, works offline for lessons in use; optional daily reminders.
-- Report a problem from any screen; Day / Night / Follow phone themes; text sizes A, A+, A++.
+- Report a problem from any screen; Day / Night / Device themes; text sizes A-, A, A+, A++.
 - No AI or paid speech API at runtime.
 
 ## Screenshots

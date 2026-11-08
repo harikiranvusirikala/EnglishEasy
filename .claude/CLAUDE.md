@@ -11,6 +11,7 @@ EnglishEasy: a free, open-source (MIT) mobile-first English learning and speakin
 - **`docs/BUILD_PLAN.md`**: architecture (Part A), rules (Part B), steps to launch and owner-request sections such as "a production look" (Part C), Progress and Content-released tables (Part D; status lives only there), adding content after launch (Part E). Work = one step or one content task at a time.
 - **`docs/VISION.md`**: the product (lesson design §4, activities §5, speech §6, role play §7, progress §9, screens §10, curriculum structure §11, decision log §18 — later rows override earlier sections).
 - **`docs/CURRICULUM.md`**: the course map — content style guide §1, grammar spiral §2, Stage 1 lesson by lesson §3, Stages 2–5 week by week §4–§7, optional tracks §8. Content tasks read §1, their §2 rows and their own week only.
+- **`docs/CONTENT_PLAYBOOK.md`**: the recipe for writing a week (files, slot counts that give 19 activities, generator positions, registering, checks, common fixes). Content tasks follow it; `src/content/main/w02/` is the model.
 - `docs/FUTURE_FEATURES.md`: features for after launch (F1…), built one at a time; a picked feature gets a BUILD_PLAN step section and the owner's OK before any code.
 - `docs/INITIAL_VISION.md`: the owner's original text. Never edit it.
 

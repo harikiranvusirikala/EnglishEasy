@@ -9,6 +9,11 @@ const DAYS = [
   { id: "present-continuous-right-now", title: "Right Now", first: "I am cooking." },
   { id: "past-simple-yesterday", title: "Yesterday", first: "I went to the market." },
   { id: "future-will-tomorrow", title: "Tomorrow", first: "I will call you tomorrow." },
+  { id: "what-and-where", title: "What & Where", first: "What is this?" },
+  { id: "when-and-what-time", title: "When & What Time", first: "When is the function?" },
+  { id: "who-and-whose", title: "Who & Whose", first: "Who is that man?" },
+  { id: "how-questions", title: "How Questions", first: "How are you?" },
+  { id: "why-and-because", title: "Why & Because", first: "Why are you late?" },
 ];
 
 for (const learnIn of ["en", "te"] as const) {
@@ -25,3 +30,15 @@ for (const learnIn of ["en", "te"] as const) {
     });
   }
 }
+
+test("Week 2's Conversation Day opens on its dialogue, and its review day opens", async ({ page }) => {
+  await page.addInitScript(([key]) => !localStorage.getItem(key) && localStorage.setItem(key, JSON.stringify({ learnIn: "en" })), [SETTINGS_KEY]);
+  await page.goto("/learn/play?l=w2-conversation");
+  await page.getByRole("button", { name: /^Start/ }).click();
+  await expect(page.getByText("Two guests at a wedding")).toBeVisible();
+  await page.goto("/lessons/w2-conversation");
+  await expect(page.getByRole("heading", { level: 1, name: "Meeting Someone at a Wedding" })).toBeVisible();
+  await page.goto("/learn/play?l=w2-review");
+  await page.getByRole("button", { name: /^Start/ }).click();
+  await expect(page.getByRole("button", { name: /^(Continue|Check)/ }).first()).toBeVisible();
+});

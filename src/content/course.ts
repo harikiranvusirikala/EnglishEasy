@@ -24,10 +24,21 @@ const week1Days: DayRef[] = [
   { id: "w1-review", kind: "review", title: { en: "My Day", te: "నా రోజు" } },
 ];
 
+// Week 2 (CURRICULUM §3): the question words, a Conversation Day and the review.
+const week2Days: DayRef[] = [
+  { id: "what-and-where", kind: "lesson", title: { en: "What & Where", te: "ఏమిటి, ఎక్కడ" } },
+  { id: "when-and-what-time", kind: "lesson", title: { en: "When & What Time", te: "ఎప్పుడు, ఎన్ని గంటలకు" } },
+  { id: "who-and-whose", kind: "lesson", title: { en: "Who & Whose", te: "ఎవరు, ఎవరిది" } },
+  { id: "how-questions", kind: "lesson", title: { en: "How Questions", te: "ఎలా, ఎంత" } },
+  { id: "why-and-because", kind: "lesson", title: { en: "Why & Because", te: "ఎందుకు, ఎందుకంటే" } },
+  { id: "w2-conversation", kind: "conversation", title: { en: "Meeting Someone at a Wedding", te: "పెళ్లిలో పరిచయం" } },
+  { id: "w2-review", kind: "review", title: { en: "Question Time", te: "ప్రశ్నల సమయం" } },
+];
+
 const stage1Weeks: Week[] = [
   { ...week(1, ["English Foundations", "ఇంగ్లీష్ పునాది"]), released: true, days: week1Days },
-  ...weeks(2, [
-    ["Asking Questions", "ప్రశ్నలు అడగడం"],
+  { ...week(2, ["Asking Questions", "ప్రశ్నలు అడగడం"]), released: true, days: week2Days },
+  ...weeks(3, [
     ["Numbers, Time & Money", "సంఖ్యలు, సమయం, డబ్బు"],
     ["People", "మనుషులు"],
     ["My Home", "నా ఇల్లు"],

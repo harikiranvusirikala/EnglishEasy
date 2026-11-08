@@ -810,6 +810,7 @@ As Step 13, for `present-continuous-right-now` and `past-simple-yesterday` (CURR
 | Week | Days | Released | Notes |
 |------|------|----------|-------|
 | 1 | 1–7 | ✅ 2026-11-07 (all seven days written; owner to review on `/dev/lesson/<id>`) | Steps 3, 13–15 |
+| 2 | 8–14 | ✅ 2026-11-08 (five lessons, the first Conversation Day, the review; 128 clips) | Question words: what/where, when/what time, who/whose, how, why/because; Conversation Day at a wedding; review "Question Time" with a question-word round. Written with `docs/CONTENT_PLAYBOOK.md`. |
 
 ---
 
@@ -830,10 +831,12 @@ Stop and show me the tables before committing.
 
 ## E2. Write a week (the usual request)
 
+The step-by-step recipe (files, slot counts, generator positions, registration, checks, common fixes) is **`docs/CONTENT_PLAYBOOK.md`**; Week 2 (`src/content/main/w02/`) is the model.
+
 ```text
-Write Week N of the main path, following Part E of docs/BUILD_PLAN.md.
+Write Week N of the main path, following docs/CONTENT_PLAYBOOK.md.
 Read CURRICULUM.md §1, the §2 rows for this week's grammar, and the Week N entry.
-Use src/content/types.ts and the latest lesson and conversation files as models.
+Use src/content/main/w02/ as the model.
 Write the five lessons and the Conversation Day, add the review day, register the week in course.ts and load.ts, mark it released.
 When the checks pass, stop and show me the results.
 ```

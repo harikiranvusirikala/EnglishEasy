@@ -24,15 +24,17 @@ describe("course map", () => {
     }
   });
 
-  it("releases only Week 1, with seven day refs and unique ids", () => {
-    expect(mainWeeks().filter((w) => w.released).map((w) => w.n)).toEqual([1]);
+  it("releases Weeks 1 and 2, with seven day refs each and unique ids", () => {
+    expect(mainWeeks().filter((w) => w.released).map((w) => w.n)).toEqual([1, 2]);
     for (const w of [...mainWeeks(), ...course.tracks.flatMap((t) => t.weeks)]) {
       if (!w.released) expect(w.days).toEqual([]);
     }
     const refs = releasedDayRefs();
-    expect(refs).toHaveLength(7);
+    expect(refs).toHaveLength(14);
     expect(refs[0].ref.id).toBe("sentence-basics");
     expect(refs[6]).toMatchObject({ ref: { id: "w1-review", kind: "review" } });
+    expect(refs[12]).toMatchObject({ ref: { id: "w2-conversation", kind: "conversation" } });
+    expect(refs[13]).toMatchObject({ ref: { id: "w2-review", kind: "review" } });
     const ids = refs.map((r) => r.ref.id);
     expect(new Set(ids).size).toBe(ids.length);
     for (const id of ids) expect(id.length).toBeLessThanOrEqual(40);
@@ -65,10 +67,11 @@ describe("findDay", () => {
 });
 
 describe("dayAfter", () => {
-  it("is the next day of the week, and null after the last released day", () => {
+  it("is the next day (across weeks), and null after the last released day", () => {
     expect(dayAfter("sentence-basics")?.ref.id).toBe("i-am-you-are");
     expect(dayAfter("sentence-basics")?.number).toBe(2);
-    expect(dayAfter("w1-review")).toBeNull();
+    expect(dayAfter("w1-review")).toMatchObject({ ref: { id: "what-and-where" }, number: 8 });
+    expect(dayAfter("w2-review")).toBeNull();
     expect(dayAfter("nope")).toBeNull();
   });
 });

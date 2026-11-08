@@ -40,13 +40,13 @@ export async function generateMetadata({
 }: {
   params: Promise<{ id: string }>;
 }): Promise<Metadata> {
-  const day = await dayFor((await params).id);
-  if (day.kind === "lesson")
-    return { title: day.seo.title, description: day.seo.description };
-  return {
-    title: `${day.title.en} | ${strings.appName.en}`,
-    description: day.kind === "conversation" ? day.summary.en : undefined,
-  };
+  const id = (await params).id;
+  const day = await dayFor(id);
+  const title = day.kind === "lesson" ? day.seo.title : `${day.title.en} | ${strings.appName.en}`;
+  const description = day.kind === "lesson" ? day.seo.description : day.kind === "conversation" ? day.summary.en : undefined;
+  // One address per lesson (canonical), and the same title and description in link previews.
+  const path = `/lessons/${encodeURIComponent(id)}`;
+  return { title, description, alternates: { canonical: path }, openGraph: { title, description, url: path, type: "article" } };
 }
 
 /** Both languages in the page; CSS hides the one that is not selected. */
@@ -149,16 +149,30 @@ export default async function LessonPage({
   const { id } = await params;
   const day = await dayFor(id);
   const place = findDay(id)!;
+  const site = siteUrl(process.env);
+  const url = `${site}/lessons/${encodeURIComponent(id)}`;
+  // The lesson, and its breadcrumb (EnglishEasy › Day N: title), which Google can show above the result.
   const data = {
     "@context": "https://schema.org",
-    "@type": "LearningResource",
-    name: day.kind === "lesson" ? day.seo.title : day.title.en,
-    description: day.kind === "lesson" ? day.seo.description : day.kind === "conversation" ? day.summary.en : day.title.en,
-    url: `${siteUrl(process.env)}/lessons/${encodeURIComponent(id)}`,
-    inLanguage: ["en", "te"],
-    isAccessibleForFree: true,
-    learningResourceType: "Lesson",
-    isPartOf: { "@type": "Course", name: "English for Telugu speakers", url: `${siteUrl(process.env)}/` },
+    "@graph": [
+      {
+        "@type": "LearningResource",
+        name: day.kind === "lesson" ? day.seo.title : day.title.en,
+        description: day.kind === "lesson" ? day.seo.description : day.kind === "conversation" ? day.summary.en : day.title.en,
+        url,
+        inLanguage: ["en", "te"],
+        isAccessibleForFree: true,
+        learningResourceType: "Lesson",
+        isPartOf: { "@type": "Course", name: "English for Telugu speakers", url: `${site}/` },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: strings.appName.en, item: `${site}/` },
+          { "@type": "ListItem", position: 2, name: `${fill(strings.overviewDayLabel, { n: place.number }).en}: ${day.title.en}`, item: url },
+        ],
+      },
+    ],
   };
   return (
     <>

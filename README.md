@@ -1,13 +1,17 @@
 # EnglishEasy
 
-A mobile-first English learning and speaking app for Telugu-speaking adults and elders. An installable web app (Next.js on Vercel); guest first, optional Google sign-in to sync progress. No AI at runtime.
+A **free and open-source** app for learning to speak English, made for Telugu-speaking adults and elders. Short daily lessons with Telugu explanations: hear a sentence, build it from word tiles, say it aloud, and practice it in a short role play. No typing, no ads, no subscription, and no account needed.
+
+It's an installable web app (Next.js on Vercel) that works offline. It's guest first, with optional Google sign-in to sync progress, and there's no AI at runtime: lessons and recordings are made ahead of time. The code is open source under the [MIT license](LICENSE), and it runs on free tiers.
+
+**Try it:** [learn-english-in-telugu.vercel.app](https://learn-english-in-telugu.vercel.app)
 
 Plan and vision are in `docs/` (start with `docs/BUILD_PLAN.md`).
 
 ## Features
 
 - Seven-day Week 1 of Stage 1, lesson by lesson: explain, practice, speak, role play, review.
-- Learn in Telugu or English; every English sentence and explanation can be heard (browser voices), slow too.
+- Learn in Telugu or English. One recorded Indian female voice on every phone (made ahead of time with `npm run audio`) reads the sentences, questions and role-play lines, and longer sentences can also be played slowly.
 - No typing: answers are buttons, word tiles or voice; speaking never blocks progress ("Choose instead").
 - Home, Journey, Practice hub (sentences, speaking, role plays, tracks), weekly review.
 - Guest first; optional Google sign-in syncs progress.
@@ -64,8 +68,16 @@ Each one added in a later step goes in `.env.example` and here.
 
 ## Adding content
 
-Content is data in `src/content/` and is validated by `content.test.ts`. To add or fix lessons, follow `docs/BUILD_PLAN.md` Part E: E2 writes a week, E3 writes or rewrites one day, E4 fixes reported problems (`npm run reports` lists them), E5 writes a track week. Ids are permanent once released. Run `npm run content` and `npm test` before committing.
+Content is data in `src/content/` and is validated by `content.test.ts`. To add or fix lessons, follow `docs/BUILD_PLAN.md` Part E: E2 writes a week, E3 writes or rewrites one day, E4 fixes reported problems (`npm run reports` lists them), E5 writes a track week. Ids are permanent once released. Run `npm run content` and `npm test` before committing, then `npm run audio` to record any new or changed sentences, and commit `public/audio/` too.
 
 ## Launch check
 
 Run Lighthouse (phone) on the production URL; targets are Performance 90 or more, Accessibility 95 or more, Best Practices 95 or more, SEO 100.
+
+**Search engines.** Only production is open to them (`robots.txt` keeps previews and `/learn` out). In [Google Search Console](https://search.google.com/search-console), add a **URL prefix** property for the production address and verify it with the **HTML tag** method (the code goes in `GOOGLE_SITE_VERIFICATION` in `src/components/landing/content.ts`; a copy of this repo needs its own code). Then submit `https://<your production domain>/sitemap.xml`. It lists the landing page, the privacy page and every released lesson's overview page, and grows by itself as weeks are released.
+
+## Free and open source
+
+EnglishEasy is free to use: there are no ads, no subscription and nothing to buy. Its code is open source under the [MIT license](LICENSE), so anyone can read it, suggest a fix or a lesson, or run their own copy on the free tiers of Vercel and MongoDB Atlas (see [Run your own copy](#run-your-own-copy)).
+
+If it helps you or your family, you can [buy me a coffee](https://buymeacoffee.com/harikiranvusirikala).

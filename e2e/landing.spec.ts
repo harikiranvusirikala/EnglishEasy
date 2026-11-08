@@ -43,13 +43,14 @@ test("the landing page tells what it is and starts Day 1", async ({ page, isMobi
   await page.getByRole("heading", { name: "Do I have to type?" }).click();
   await expect(page.getByText("There is no keyboard anywhere in the app.")).toBeVisible();
   await expect(page.getByRole("contentinfo").getByRole("link", { name: /^Privacy/ })).toHaveAttribute("href", "/privacy");
+  await expect(page.getByRole("contentinfo").getByRole("link", { name: /^Source code/ })).toHaveAttribute("href", "https://github.com/harikiranvusirikala/EnglishEasy");
   const coffee = page.getByRole("link", { name: /Buy me a coffee/ });
   await expect(coffee).toHaveAttribute("target", "_blank");
   await expect(coffee).toHaveAttribute("rel", /noopener/);
 
   // The course's structured data is in the page.
   const data = JSON.parse((await page.locator('script[type="application/ld+json"]').first().textContent())!);
-  expect(data["@graph"].map((node: { "@type": string }) => node["@type"])).toEqual(["WebSite", "Course", "FAQPage"]);
+  expect(data["@graph"].map((node: { "@type": string }) => node["@type"])).toEqual(["WebSite", "Course", "WebApplication", "FAQPage"]);
 
   // No horizontal scrolling, and no text cut off at the screen's edge (a section that clips its overflow hides it from the first check).
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= Math.min(window.innerWidth, screen.width))).toBe(true);

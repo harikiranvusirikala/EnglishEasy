@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { DESCRIPTION, FAQ, SITE_NAME, TITLE, structuredData } from "./content";
+import { DESCRIPTION, FAQ, SITE_NAME, SOURCE_URL, TITLE, structuredData } from "./content";
 
 describe("landing content", () => {
   test("the description fits a search result", () => {
@@ -19,6 +19,15 @@ describe("structuredData", () => {
     expect(ofType("Course")).toMatchObject({
       isAccessibleForFree: true,
       hasPart: [{ "@type": "LearningResource", name: "Sentence basics", url: `${site}/lessons/sentence-basics` }],
+    });
+  });
+
+  test("the app: free and open source (MIT), linked to its code", () => {
+    expect(ofType("WebApplication")).toMatchObject({
+      isAccessibleForFree: true,
+      offers: { price: "0" },
+      license: "https://opensource.org/license/mit",
+      sameAs: [SOURCE_URL],
     });
   });
 

@@ -70,7 +70,7 @@ function DayRow({ id, title, number, progress, written }: { id: string; title: B
     <span className="flex min-w-0 flex-1 flex-col">
       <span className="text-sm text-ink-3">{fill(strings.homeDayChip, { n: number }).en}</span>
       <span className="text-base font-semibold text-ink">
-        <BiText text={title} />
+        {title.en}
       </span>
     </span>
   );
@@ -108,7 +108,7 @@ function WeekRow({ week, progress, written, open, onToggle }: { week: Week; prog
     <span className="flex min-w-0 flex-1 flex-col">
       <span className="text-sm text-ink-3">{fill(strings.journeyWeek, { n: week.n }).en}</span>
       <span className="text-lg leading-snug font-semibold text-ink">
-        <BiText text={week.title} />
+        {week.title.en}
       </span>
     </span>
   );
@@ -170,13 +170,21 @@ function StageHeader({ stage, progress }: { stage: Stage; progress: Progress }) 
     <span className="flex w-full flex-col gap-3">
       <span className="flex items-center gap-4">
         <StageMedal n={stage.n} state={stats.state} />
-        <span className="flex min-w-0 flex-1 flex-col">
-          <span className="font-display text-xl leading-snug font-semibold text-ink">
-            <BiText text={fill(strings.journeyStage, { n: stage.n, title: stage.title })} />
+        <span className="flex min-w-0 flex-1 flex-col gap-1">
+          <span className="sr-only">
+            {(fill(strings.journeyStage, { n: stage.n, title: stage.title })).en}
           </span>
-          <span className="text-base text-ink-2">{fill(strings.journeyWeeks, { n: stage.weeks.length }).en}</span>
+          <span aria-hidden="true" className="text-sm font-semibold text-brand">
+            {(fill(strings.landingStageLabel, { n: stage.n })).en}
+          </span>
+          <span aria-hidden="true" className="font-display text-xl leading-snug font-semibold text-ink">
+            {stage.title.en}
+          </span>
+          <span className="flex flex-wrap items-center gap-2 text-base text-ink-2">
+            {fill(strings.journeyWeeks, { n: stage.weeks.length }).en}
+            <Percent value={stats.percent} />
+          </span>
         </span>
-        <Percent value={stats.percent} />
         <Icon name="chevronDown" className="size-5 text-ink-3 transition-transform duration-200 group-open:rotate-180 motion-reduce:transition-none" />
       </span>
       <ProgressBar label={fill(strings.journeyStage, { n: stage.n, title: stage.title }).en} value={stats.percent} max={100} size="sm" />
@@ -198,8 +206,16 @@ function JourneyBody({ course, progress, written }: { course: Course; progress: 
             <section key={stage.n} aria-label={name.en} className={`${card} flex gap-4`}>
               <StageMedal n={stage.n} state="future" />
               <div className="flex min-w-0 flex-1 flex-col gap-2">
-                <h2 className="font-display text-xl leading-snug font-semibold text-ink">
-                  <BiText text={name} />
+                <h2 className="flex flex-col">
+                  <span className="sr-only">
+                    {name.en}
+                  </span>
+                  <span aria-hidden="true" className="text-sm font-semibold text-ink-3">
+                    {(fill(strings.landingStageLabel, { n: stage.n })).en}
+                  </span>
+                  <span aria-hidden="true" className="font-display text-xl leading-snug font-semibold text-ink">
+                    {stage.title.en}
+                  </span>
                 </h2>
                 <p className="text-base text-ink-2">
                   <BiText text={stage.canDo} />
@@ -256,7 +272,7 @@ function TracksSection({ course, progress, written }: { course: Course; progress
               <Icon name="route" className="size-7" />
             </span>
             <span className="font-display flex-1 text-xl font-semibold text-ink">
-              <BiText text={track.title} />
+              {track.title.en}
             </span>
             <Icon name="chevronDown" className="size-5 text-ink-3 transition-transform duration-200 group-open:rotate-180" />
           </summary>

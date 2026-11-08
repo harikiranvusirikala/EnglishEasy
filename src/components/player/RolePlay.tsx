@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useLearnIn } from "@/lib/settings-store";
 import { Bi } from "@/components/ui/Bi";
 import { BiText } from "@/components/ui/BiText";
+import { ContentText } from "@/components/ui/ContentText";
 import { button } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icons";
 import { card } from "@/components/ui/card";
@@ -15,7 +17,7 @@ import { strings } from "@/lib/strings";
 import { Bubble } from "./Bubble";
 import { MicButton } from "./MicButton";
 import { Narrate } from "./Narrate";
-import { BottomBar, FeedbackPanel, MainButton, OptionButton, Text } from "./parts";
+import { BottomBar, FeedbackPanel, Instruction, MainButton, OptionButton, Text } from "./parts";
 import { RolePlaySummary } from "./RolePlaySummary";
 import { ChooseNote, useChoosing } from "./SpeakFlow";
 
@@ -26,20 +28,21 @@ type Miss = { heard: string | null }; // a spoken reply that was not understood 
 /** A partner line with its Telugu meaning one tap away. The newest line plays by itself. */
 function PartnerBubble({ name, english, telugu, auto }: { name: RolePlayActivity["partner"]; english: string; telugu: string; auto: boolean }) {
   const [meaning, setMeaning] = useState(false);
+  const learnIn = useLearnIn(); // the Telugu meaning is offered only to learners who learn in Telugu
   return (
-    <Bubble side="left" name={<BiText text={name} />}>
-      <p className="flex flex-wrap items-center gap-x-1">
-        <span>{english}</span>
-        <Narrate text={english} auto={auto} variant="compact" />
-      </p>
-      {meaning && (
+    <Bubble side="left" name={name.en} initial={name.en.trim().charAt(0).toUpperCase()}>
+      <p>{english}</p>
+      {meaning && learnIn === "te" && (
         <p lang="te" className="mt-1 text-base text-ink-2">
           {telugu}
         </p>
       )}
-      <button type="button" onClick={() => setMeaning((m) => !m)} aria-pressed={meaning} className={`${button("ghost")} -mx-3 mt-1 min-h-11 text-base`}>
-        <Bi label={meaning ? strings.hideTeluguMeaning : strings.teluguMeaning} />
-      </button>
+      <div className="mt-2 flex flex-wrap items-center gap-2">
+        <Narrate text={english} auto={auto} variant="compact" slow />
+        {learnIn === "te" && <button type="button" onClick={() => setMeaning((m) => !m)} aria-pressed={meaning} className="min-h-12 rounded-full px-3 text-base font-semibold text-brand transition-colors hover:bg-brand-soft">
+          <Bi label={meaning ? strings.hideTeluguMeaning : strings.teluguMeaning} />
+        </button>}
+      </div>
     </Bubble>
   );
 }
@@ -112,16 +115,21 @@ export function RolePlay({ activity, onNext }: { activity: RolePlayActivity; onA
   return (
     <>
       <div className="flex flex-col gap-4">
-        <div className={`${card} flex flex-col gap-1`}>
-          <h1 className="text-xl font-bold">
-            <BiText text={activity.title} />
-          </h1>
-          <p className="text-base text-ink-2">
-            <BiText text={activity.scene} />
-          </p>
-          <p className="text-base">
-            {strings.rolePlayYouAre.en} <BiText text={activity.partner} className="font-semibold" />
-          </p>
+        <div className={`${card} flex items-start gap-4`}>
+          <span aria-hidden="true" className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-brand-soft text-brand">
+            <Icon name="chat" className="size-7" />
+          </span>
+          <div className="flex min-w-0 flex-col gap-1">
+            <h1 className="font-display text-2xl leading-tight font-semibold text-ink">
+              {activity.title.en}
+            </h1>
+            <p className="text-base text-ink-2">
+              <ContentText text={activity.scene} />
+            </p>
+            <p className="text-base text-ink">
+              {strings.rolePlayYouAre.en} <span className="font-semibold">{activity.partner.en}</span>
+            </p>
+          </div>
         </div>
 
         <ChooseNote note={note} />
@@ -133,12 +141,12 @@ export function RolePlay({ activity, onNext }: { activity: RolePlayActivity; onA
               <>
                 <Bubble side="right" name={strings.youReplied.en}>
                   <p className="flex items-center gap-2">
-                    <Icon name={log[i].good ? "check" : "retry"} className="size-5 shrink-0" />
+                    <Icon name={log[i].good ? "check" : "retry"} className="size-5 shrink-0" strokeWidth={2.6} />
                     <span>{log[i].text}</span>
                   </p>
                 </Bubble>
                 {i < turn && log[i].better && (
-                  <p className="px-1 text-base text-almost">
+                  <p className="ml-auto max-w-[85%] rounded-2xl bg-almost-soft px-4 py-2 text-right text-base text-almost">
                     {strings.betterReply.en}: <span className="font-semibold">{log[i].better}</span>
                   </p>
                 )}
@@ -148,16 +156,19 @@ export function RolePlay({ activity, onNext }: { activity: RolePlayActivity; onA
         ))}
 
         {!replied && hint === turn && (
-          <p className={`${card} flex flex-wrap items-center gap-1 text-base`}>
-            <BiText text={current.hint} /> <Narrate text={current.hint} />
+          <p className="flex items-start gap-2 rounded-2xl bg-accent-soft px-4 py-3 text-base text-accent-ink">
+            <Icon name="hint" className="mt-0.5 size-5 shrink-0" />
+            <span className="flex-1">
+              <ContentText text={current.hint} />
+            </span>
           </p>
         )}
 
         {!replied && (
-          <div role="group" aria-label={strings.replyPrompt.en} className="flex flex-col gap-2">
-            <p className="text-base text-ink-2">
+          <div role="group" aria-label={strings.replyPrompt.en} className="flex flex-col gap-3 pt-2">
+            <Instruction>
               <BiText text={strings.replyPrompt} />
-            </p>
+            </Instruction>
             {order.map((i) => (
               <OptionButton key={i} text={current.replies[i].say} state="idle" onClick={() => reply(i)} />
             ))}
@@ -166,19 +177,19 @@ export function RolePlay({ activity, onNext }: { activity: RolePlayActivity; onA
         <div ref={end} />
       </div>
 
-      <BottomBar>
+      <BottomBar tone={replied && lastReply ? (lastReply.good ? "good" : "almost") : miss ? "almost" : "neutral"}>
         {replied && lastReply && (
           <FeedbackPanel kind={lastReply.good ? "correct" : "almost"} label={lastReply.good ? strings.good : strings.almost}>
             {lastReply.better && (
-              <p className="flex flex-wrap items-center gap-1 text-lg">
+              <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-lg">
                 <span>{strings.betterReply.en}:</span>
                 <Text className="font-semibold">{lastReply.better}</Text>
-                <Narrate text={lastReply.better} auto />
+                <Narrate text={lastReply.better} auto variant="compact" />
               </p>
             )}
           </FeedbackPanel>
         )}
-        {replied && <MainButton label={last ? strings.seeSummary : strings.continue} onClick={forward} />}
+        {replied && <MainButton label={last ? strings.seeSummary : strings.continue} onClick={forward} tone={lastReply?.good ? "good" : "almost"} />}
 
         {!replied && miss && (
           <FeedbackPanel kind="almost" label={strings.tryAgain}>
@@ -195,7 +206,7 @@ export function RolePlay({ activity, onNext }: { activity: RolePlayActivity; onA
         )}
         {!replied && !choosing && <MicButton listening={listening} onStart={speak} label={miss ? strings.speakAgain : strings.speak} />}
         {!replied && (
-          <button type="button" onClick={() => setHint((h) => (h === turn ? null : turn))} aria-expanded={hint === turn} className={`${button("ghost")} w-full`}>
+          <button type="button" onClick={() => setHint((h) => (h === turn ? null : turn))} aria-expanded={hint === turn} className={`${button("ghost")} self-center`}>
             <Icon name="hint" />
             <Bi label={strings.hint} />
           </button>

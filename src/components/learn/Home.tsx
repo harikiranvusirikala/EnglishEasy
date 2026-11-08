@@ -31,16 +31,6 @@ import { TrackSuggestionCard, TracksCard } from "./Tracks";
 
 const GREETING = { morning: strings.greetMorning, afternoon: strings.greetAfternoon, evening: strings.greetEvening };
 
-/** The two speech bubbles of the logo, faint in the brand card's corner. Decorative. */
-function CardBubbles() {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 120 100" className="pointer-events-none absolute -right-6 -bottom-6 w-44 opacity-[0.13]">
-      <path d="M14 8h56a12 12 0 0 1 12 12v22a12 12 0 0 1-12 12H40L22 68V54h-8A12 12 0 0 1 2 42V20A12 12 0 0 1 14 8Z" fill="#fff" />
-      <path d="M58 40h48a12 12 0 0 1 12 12v20a12 12 0 0 1-12 12h-4v14L88 84H58a12 12 0 0 1-12-12V52a12 12 0 0 1 12-12Z" fill="#fde68a" />
-    </svg>
-  );
-}
-
 /** The day's progress and button once its content is known. */
 function LoadedToday({ place, progress, first }: { place: DayPlace; progress: Progress; first: boolean }) {
   const day = use(loadLesson(place.ref.id));
@@ -54,7 +44,7 @@ function LoadedToday({ place, progress, first }: { place: DayPlace; progress: Pr
           <span className="font-display text-base font-bold tabular-nums">{stats.percent}%</span>
         </ProgressRing>
         <p className="text-base text-white/90">
-          <BiText text={fill(strings.overviewCount, { done: stats.done, total: stats.total, left })} />
+          {(fill(strings.overviewCount, { done: stats.done, total: stats.total, left })).en}
         </p>
       </div>
       <Link href={`/learn/play?l=${encodeURIComponent(place.ref.id)}`} className={`${button("onBrand", "lg")} w-full`}>
@@ -80,18 +70,17 @@ function TodayCard({ course, progress, written }: { course: Course; progress: Pr
   const ready = written.includes(place.ref.id);
   return (
     <section aria-label={label.en} className={`${brandCard} flex flex-col gap-5 p-6`}>
-      <CardBubbles />
       <div className="relative flex flex-col gap-2">
         <div className="flex flex-wrap items-center gap-2">
           <span className={badge("onBrand")}>
-            <BiText text={fill(strings.homeWeekDay, { week: place.week.n, n: place.number })} />
+            {(fill(strings.homeWeekDay, { week: place.week.n, n: place.number })).en}
           </span>
         </div>
         <p className="mt-1 text-base font-semibold text-[#fde68a]">
-          <BiText text={label} />
+          {label.en}
         </p>
         <h2 className="font-display text-[2rem] leading-[1.15] font-bold">
-          <BiText text={place.ref.title} />
+          {place.ref.title.en}
         </h2>
       </div>
       <div className="relative flex flex-col gap-4">
@@ -169,7 +158,7 @@ function WeekCard({ course, progress, written, practised }: { course: Course; pr
       {practised > 0 && (
         <p className="flex items-center gap-2 rounded-2xl bg-good-soft px-3 py-2.5 text-base text-good">
           <Icon name="leaf" className="size-5" />
-          <BiText text={practised === 1 ? strings.homePractisedOne : fill(strings.homePractised, { n: practised })} />
+          {(practised === 1 ? strings.homePractisedOne : fill(strings.homePractised, { n: practised })).en}
         </p>
       )}
     </section>
@@ -202,10 +191,10 @@ function PracticeList({ progress }: { progress: Progress }) {
               <span aria-hidden="true" className={`flex size-12 shrink-0 items-center justify-center rounded-2xl ${TILE_TONE[r.tone]}`}>
                 <Icon name={r.icon} />
               </span>
-              <span className="min-w-0 flex-1 text-lg font-semibold text-ink">
+              <span className="flex min-w-0 flex-1 items-center gap-2 text-lg font-semibold text-ink">
                 <Bi label={r.label} className="items-start" />
+                {r.count > 0 && <span className={badge(r.tone === "accent" ? "accent" : "brand")}>{r.count}</span>}
               </span>
-              {r.count > 0 && <span className={badge(r.tone === "accent" ? "accent" : "brand")}>{r.count}</span>}
               <Icon name="chevron" className="size-5 text-ink-3" />
             </Link>
           </li>
@@ -245,7 +234,7 @@ export function Home({ course, written }: { course: Course; written: string[] })
           {clock ? <Bi label={greetWithName(GREETING[timeOfDay(clock.hour)], name)} className="items-start" /> : <span className="sr-only">{strings.homeTitle.en}</span>}
         </h1>
         <p className="text-lg text-ink-2">
-          <BiText text={strings.homeReady} />
+          {strings.homeReady.en}
         </p>
       </header>
       {progress && settings ? (

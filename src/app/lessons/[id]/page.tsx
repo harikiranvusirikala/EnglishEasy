@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PatternChips } from "@/components/learn/PatternChips";
 import { OverviewProgress } from "@/components/learn/OverviewProgress";
 import { Narrate } from "@/components/player/Narrate";
-import { Bi } from "@/components/ui/Bi";
-import { button } from "@/components/ui/button";
-import { card } from "@/components/ui/card";
-import { Icon } from "@/components/ui/icons";
+import { badge } from "@/components/ui/badge";
+import { cardFlush } from "@/components/ui/card";
+import { LandingFooter } from "@/components/landing/LandingFooter";
+import { PublicHeader } from "@/components/landing/PublicHeader";
 import { findDay, releasedDayRefs } from "@/content/course";
 import { isWritten, loadDay, writtenDayIds } from "@/content/load";
 import type {
@@ -64,10 +63,10 @@ function Both({ text }: { text: ContentBi }) {
 
 function Sentence({ sentence }: { sentence: CoreSentence }) {
   return (
-    <li className={`${card} flex items-center justify-between gap-2`}>
-      <div>
-        <p className="text-xl font-semibold">{sentence.en}</p>
-        <p lang="te" className="text-base text-ink-2">
+    <li className="flex items-center justify-between gap-3 px-4 py-3.5">
+      <div className="min-w-0">
+        <p className="text-xl font-semibold text-ink">{sentence.en}</p>
+        <p lang="te" data-lang="te" className="text-base text-ink-2">
           {sentence.te}
         </p>
       </div>
@@ -80,33 +79,38 @@ function LearnActivity({ activity }: { activity: Activity }) {
   switch (activity.type) {
     case "explain":
       return (
-        <section className="flex flex-col gap-3">
-          <h3 className="text-xl font-bold">
+        <section className="flex flex-col gap-4">
+          <h3 className="font-display text-2xl leading-snug font-semibold text-ink">
             <Both text={activity.heading} />
           </h3>
-          <p className="text-lg">
+          <p className="text-lg leading-relaxed text-ink">
             <Both text={activity.body} />
           </p>
-          <ul className="flex flex-col gap-2">
-            {activity.examples.map((sentence, i) => (
-              <Sentence key={i} sentence={sentence} />
-            ))}
-          </ul>
+          {activity.examples.length > 0 && (
+            <ul className={`${cardFlush} divide-y divide-line`}>
+              {activity.examples.map((sentence, i) => (
+                <Sentence key={i} sentence={sentence} />
+              ))}
+            </ul>
+          )}
         </section>
       );
     case "whenToUse":
       return (
-        <section className="flex flex-col gap-3">
-          <h3 className="text-xl font-bold">
+        <section className="flex flex-col gap-4">
+          <h3 className="font-display text-2xl leading-snug font-semibold text-ink">
             <Both text={activity.heading} />
           </h3>
-          <ul className="flex flex-col gap-2">
+          <ul className="flex flex-col gap-4">
             {activity.items.map((item, i) => (
-              <li key={i} className="flex flex-col gap-2">
-                <p className="text-lg font-semibold">
-                  {item.form} — <Both text={item.useFor} />
-                </p>
-                <ul>
+              <li key={i} className={`${cardFlush} flex flex-col`}>
+                <div className="flex flex-col gap-2 p-5">
+                  <p className="font-display self-start rounded-xl bg-brand-soft px-3 py-1 text-xl font-bold text-brand-ink">{item.form}</p>
+                  <p className="text-lg text-ink">
+                    <Both text={item.useFor} />
+                  </p>
+                </div>
+                <ul className="border-t border-line bg-sunken/50">
                   <Sentence sentence={item.example} />
                 </ul>
               </li>
@@ -116,20 +120,16 @@ function LearnActivity({ activity }: { activity: Activity }) {
       );
     case "dontSay":
       return (
-        <section className={`${card} flex flex-col gap-1`}>
-          <p className="text-lg">
-            <span className="font-semibold">
-              <Both text={strings.dontSay} />:
-            </span>{" "}
-            <s>{activity.wrong}</s>
-          </p>
-          <p className="text-lg">
-            <span className="font-semibold">
-              <Both text={strings.say} />:
-            </span>{" "}
-            {activity.right}
-          </p>
-          <p className="text-base text-ink-2">
+        <section className="grid gap-3 sm:grid-cols-2">
+          <div className="flex flex-col gap-1 rounded-[1.25rem] border-2 border-almost-line bg-almost-soft p-5">
+            <p className="text-base font-semibold text-almost">✗ {strings.dontSay.en}</p>
+            <p className="text-xl text-almost line-through decoration-2">{activity.wrong}</p>
+          </div>
+          <div className="flex flex-col gap-1 rounded-[1.25rem] border-2 border-good-line bg-good-soft p-5">
+            <p className="text-base font-semibold text-good">✓ {strings.say.en}</p>
+            <p className="text-xl font-semibold text-good">{activity.right}</p>
+          </div>
+          <p className="text-lg text-ink-2 sm:col-span-2">
             <Both text={activity.why} />
           </p>
         </section>
@@ -159,47 +159,57 @@ export default async function LessonPage({
     isPartOf: { "@type": "Course", name: "English for Telugu speakers", url: `${siteUrl(process.env)}/` },
   };
   return (
-    <main className="mx-auto flex max-w-xl flex-col gap-6 p-4 pb-16">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }} />
-      <nav>
-        <Link href="/learn" className={button("ghost")}>
-          <Icon name="home" />
-          <Bi label={strings.overviewHome} />
-        </Link>
-      </nav>
+    <>
+      <PublicHeader />
+      <main>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }} />
+        <section aria-labelledby="lesson-title" className="relative overflow-hidden border-b border-line">
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+            <div className="absolute -top-32 -left-24 size-[28rem] rounded-full bg-[radial-gradient(closest-side,rgb(20_184_166/0.18),transparent)]" />
+            <div className="absolute -top-24 right-[-8rem] size-[28rem] rounded-full bg-[radial-gradient(closest-side,rgb(251_191_36/0.18),transparent)]" />
+          </div>
+          <div className="mx-auto flex max-w-5xl flex-col gap-4 px-5 pt-10 pb-12">
+            <p className="flex flex-wrap items-center gap-2">
+              <span className={badge("brand")}>{fill(strings.overviewDayLabel, { n: place.number }).en}</span>
+              {day.kind === "lesson" && <span className={badge("neutral")}>{day.subtitle}</span>}
+            </p>
+            <h1 id="lesson-title" className="font-display text-[2.5rem] leading-tight font-bold text-ink sm:text-5xl">
+              {day.title.en}
+            </h1>
+            {/* The Telugu title: in the page for search engines, shown in Telugu mode only (globals.css). */}
+            <p lang="te" data-lang="te" className="font-display -mt-2 text-2xl font-semibold text-ink-2">
+              {day.title.te}
+            </p>
+            {day.kind !== "review" && (
+              <p className="max-w-2xl text-xl text-ink-2">
+                <Both text={day.summary} />
+              </p>
+            )}
+            {day.kind === "lesson" && (
+              <div className="mt-2">
+                <PatternChips chips={day.pattern} size="lg" />
+              </div>
+            )}
+          </div>
+        </section>
 
-      <header className="flex flex-col gap-3">
-        <p className="text-base font-semibold text-brand">
-          <Both text={fill(strings.overviewDayLabel, { n: place.number })} />
-        </p>
-        <h1 className="text-3xl font-bold">
-          <Both text={day.title} />
-        </h1>
-        {day.kind === "lesson" && (
-          <p className="text-xl text-ink-2">
-            {day.subtitle}
-          </p>
-        )}
-        {day.kind !== "review" && (
-          <p className="text-lg">
-            <Both text={day.summary} />
-          </p>
-        )}
-        {day.kind === "lesson" && <PatternChips chips={day.pattern} />}
-      </header>
-
-      <OverviewProgress id={id} title={day.title} />
-
-      {day.kind === "lesson" && (
-        <article className="flex flex-col gap-5">
-          <h2 className="text-2xl font-bold">
-            <Bi label={strings.overviewLearn} className="items-start" />
-          </h2>
-          {day.learn.map((activity) => (
-            <LearnActivity key={activity.id} activity={activity} />
-          ))}
-        </article>
-      )}
-    </main>
+        <div className="mx-auto grid max-w-5xl gap-10 px-5 py-10 lg:grid-cols-[1fr_22rem] lg:items-start">
+          <div className="order-2 flex flex-col gap-10 lg:order-1">
+            {day.kind === "lesson" && (
+              <article className="flex flex-col gap-10">
+                <h2 className="text-sm font-bold tracking-wider text-brand uppercase">{strings.overviewLearn.en}</h2>
+                {day.learn.map((activity) => (
+                  <LearnActivity key={activity.id} activity={activity} />
+                ))}
+              </article>
+            )}
+          </div>
+          <aside className="order-1 lg:sticky lg:top-24 lg:order-2">
+            <OverviewProgress id={id} title={day.title} />
+          </aside>
+        </div>
+      </main>
+      <LandingFooter />
+    </>
   );
 }

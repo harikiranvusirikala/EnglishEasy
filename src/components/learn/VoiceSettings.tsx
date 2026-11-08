@@ -2,16 +2,16 @@
 
 import { Bi } from "@/components/ui/Bi";
 import { BiText } from "@/components/ui/BiText";
-import { TeluguVoiceHelp } from "@/components/player/TeluguVoiceHelp";
-import { button } from "@/components/ui/button";
-import { card, cardText, cardTitle } from "@/components/ui/card";
+import { button, focusRing } from "@/components/ui/button";
+import { SettingsCard } from "./SettingsCard";
+import { cardText } from "@/components/ui/card";
 import { Icon } from "@/components/ui/icons";
 import { updateSettings, useSettings } from "@/lib/settings-store";
-import { isAndroid, speak, useVoices } from "@/lib/speak";
+import { speak, useVoices } from "@/lib/speak";
 import { strings } from "@/lib/strings";
-import { englishVoices, pickEnglishVoice, pickTeluguVoice } from "@/learning/voice-pick";
+import { englishVoices, pickEnglishVoice } from "@/learning/voice-pick";
 
-/** Settings → Voice: pick the English voice (with a sample), and see whether the Telugu voice is there. */
+/** Settings → Voice: pick the English voice, with a sample. (Nothing is read aloud in Telugu since 2026-11-08, so there is no Telugu voice card.) */
 export function VoiceSettings() {
   const settings = useSettings();
   const voices = useVoices();
@@ -19,7 +19,6 @@ export function VoiceSettings() {
 
   const list = englishVoices(voices);
   const current = pickEnglishVoice(voices, settings.voiceURI);
-  const telugu = pickTeluguVoice(voices, settings.teluguVoiceURI);
   const sample = (voiceURI: string) => {
     updateSettings({ voiceURI });
     speak(strings.voiceSampleText.en); // reads with the voice just saved
@@ -27,13 +26,7 @@ export function VoiceSettings() {
 
   return (
     <>
-      <section className={`${card} flex flex-col gap-3`} aria-labelledby="voice-english">
-        <h2 id="voice-english" className={cardTitle}>
-          <Bi label={strings.voiceEnglish} className="items-start" />
-        </h2>
-        <p className={cardText}>
-          <BiText text={strings.voiceEnglishHint} />
-        </p>
+      <SettingsCard icon="headphones" title={strings.voiceEnglish} hint={strings.voiceEnglishHint} id="voice-english">
         {list.length === 0 ? (
           <p className={cardText}>
             <BiText text={strings.voiceNoEnglish} />
@@ -49,7 +42,7 @@ export function VoiceSettings() {
                     aria-pressed={selected}
                     aria-label={`${voice.name} (${voice.lang})`}
                     onClick={() => sample(voice.voiceURI)}
-                    className={`flex min-h-13 w-full items-center justify-between gap-3 rounded-xl border px-4 py-2 text-left outline-none focus-visible:ring-2 focus-visible:ring-brand ${
+                    className={`flex min-h-13 w-full items-center justify-between gap-3 rounded-2xl border px-4 py-2 text-left transition-colors ${focusRing} ${
                       selected
                         ? "border-brand bg-brand-soft ring-2 ring-brand"
                         : "border-line-strong bg-surface hover:bg-sunken"
@@ -75,32 +68,8 @@ export function VoiceSettings() {
             <Bi label={strings.voiceSample} />
           </button>
         )}
-      </section>
+      </SettingsCard>
 
-      <section className={`${card} flex flex-col gap-3`} aria-labelledby="voice-telugu">
-        <div className="flex items-center justify-between gap-3">
-          <h2 id="voice-telugu" className={cardTitle}>
-            <Bi label={strings.voiceTelugu} className="items-start" />
-          </h2>
-          <span
-            data-testid="telugu-voice-status"
-            className={`flex items-center gap-1 rounded-full px-3 py-1 text-sm font-semibold ${
-              telugu ? "bg-good-soft text-good" : "bg-almost-soft text-almost"
-            }`}
-          >
-            <Icon name={telugu ? "check" : "retry"} className="size-5" />
-            <Bi label={telugu ? strings.voiceTeluguFound : strings.voiceTeluguMissing} />
-          </span>
-        </div>
-        {telugu ? (
-          <p className={cardText}>{telugu.name}</p>
-        ) : (
-          <p className={cardText}>
-            <BiText text={strings.voiceTeluguMissingHint} />
-          </p>
-        )}
-        {!telugu && isAndroid() && <TeluguVoiceHelp />}
-      </section>
     </>
   );
 }

@@ -17,30 +17,21 @@ const label = { en: "Continue", te: "కొనసాగించు" };
 const same = { en: "A+", te: "A+" };
 
 describe("Bi", () => {
-  it("shows English first, then Telugu with lang=te, in Telugu mode", () => {
-    const { container } = render(<Bi label={label} />);
-    const spans = container.querySelectorAll("span > span");
-    expect(spans[0].textContent).toBe("Continue");
-    expect(spans[1].textContent).toBe("కొనసాగించు");
-    expect(spans[1].getAttribute("lang")).toBe("te");
-  });
-
-  it("shows English only in English mode", () => {
-    updateSettings({ learnIn: "en" });
+  it("is English only, in Telugu mode too (simple words stay English; owner's decision 2026-11-08)", () => {
+    updateSettings({ learnIn: "te" });
     const { container } = render(<Bi label={label} />);
     expect(container.textContent).toBe("Continue");
     expect(container.querySelector('[lang="te"]')).toBeNull();
   });
 
-  it("a forced mode wins, and identical text is not repeated", () => {
-    updateSettings({ learnIn: "en" });
+  it("ignores a forced mode", () => {
     const { container } = render(
       <>
         <Bi label={label} mode="te" />
         <Bi label={same} mode="te" />
       </>,
     );
-    expect(container.querySelectorAll('[lang="te"]')).toHaveLength(1);
+    expect(container.textContent).toBe("ContinueA+");
   });
 });
 

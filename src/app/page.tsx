@@ -4,7 +4,8 @@ import { DESCRIPTION, GOOGLE_SITE_VERIFICATION, TITLE, structuredData, type Less
 import { Faq } from "@/components/landing/Faq";
 import { Hero } from "@/components/landing/Hero";
 import { LandingFooter } from "@/components/landing/LandingFooter";
-import { HowItWorks, Journey, WhyItWorks } from "@/components/landing/Sections";
+import { LandingHeader } from "@/components/landing/LandingHeader";
+import { FinalCta, HowItWorks, Journey, Privacy, Spotlights, WhyItWorks } from "@/components/landing/Sections";
 import { releasedDayRefs } from "@/content/course";
 import { isWritten, loadDay } from "@/content/load";
 import { gtmId } from "@/server/tag-manager";
@@ -37,12 +38,16 @@ export default async function LandingPage() {
       {/* Google asks for its snippets first in <body>; they load only on this page (GTM_ID is read when the site is built). */}
       <GoogleTagManager id={gtmId(process.env)} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }} />
-      <Hero />
+      <LandingHeader />
       <main>
+        <Hero />
         <HowItWorks />
+        <Spotlights />
         <Journey />
         <WhyItWorks />
+        <Privacy />
         <Faq />
+        <FinalCta />
       </main>
       <LandingFooter />
     </>

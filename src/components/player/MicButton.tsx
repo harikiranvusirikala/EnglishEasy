@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Bi } from "@/components/ui/Bi";
 import { BiText } from "@/components/ui/BiText";
 import { Dialog } from "@/components/ui/Dialog";
-import { button } from "@/components/ui/button";
+import { button, focusRing } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icons";
 import { updateSettings, useSettings } from "@/lib/settings-store";
 import { strings, type Bi as BiLabel } from "@/lib/strings";
@@ -41,16 +41,26 @@ export function MicButton({
 
   return (
     <>
-      <button
-        type="button"
-        disabled={listening}
-        aria-label={listening ? strings.listening.en : label.en}
-        onClick={press}
-        className={`${button(variant, "lg")} w-full ${listening ? "animate-pulse motion-reduce:animate-none" : ""}`}
-      >
-        <Icon name="mic" />
-        <Bi label={listening ? strings.listening : label} />
-      </button>
+      <div className="flex flex-col items-center gap-2">
+        <button
+          type="button"
+          disabled={listening}
+          aria-label={listening ? strings.listening.en : label.en}
+          onClick={press}
+          className={`relative flex size-22 items-center justify-center rounded-full transition-[background-color,transform] duration-150 active:scale-95 disabled:pointer-events-none motion-reduce:active:scale-100 ${focusRing} ${
+            listening
+              ? "animate-[listen-pulse_1.2s_ease-out_infinite] bg-accent text-on-accent motion-reduce:animate-none"
+              : variant === "primary"
+                ? "bg-brand-fill text-on-brand shadow-[0_14px_30px_-12px_var(--brand)] ring-8 ring-brand-soft"
+                : "border-2 border-line-strong bg-surface text-brand"
+          }`}
+        >
+          <Icon name="mic" className="size-10" />
+        </button>
+        <span aria-hidden="true" className={`text-base font-semibold ${listening ? "text-accent-ink" : "text-ink"}`}>
+          <Bi label={listening ? strings.listening : label} />
+        </span>
+      </div>
       <Dialog open={help} onClose={() => setHelp(false)} title={strings.micHelpTitle.en}>
         <p className="text-base">
           <BiText text={strings.micHelpBody} />

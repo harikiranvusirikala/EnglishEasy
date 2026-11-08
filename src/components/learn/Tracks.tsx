@@ -43,7 +43,7 @@ function TrackToggles({ tracks, selected, onToggle }: { tracks: Track[]; selecte
               </span>
               <span className="flex flex-col">
                 <span className={cardTitle}>
-                  <BiText text={t.title} />
+                  {t.title.en}
                 </span>
                 <span className={cardText}>
                   <BiText text={t.forWho} />
@@ -68,7 +68,7 @@ export function TracksCard({ course, progress }: { course: Course; progress: Pro
       label={strings.tracksCardTitle.en}
       icon="sparkle"
       tone="accent"
-      title={<BiText text={strings.tracksCardTitle} />}
+      title={strings.tracksCardTitle.en}
       actions={
         <>
           <button type="button" disabled={selected.length === 0} onClick={() => save(selected)} className={`${button("primary", "lg")} w-full`}>
@@ -97,7 +97,7 @@ export function TrackSuggestionCard({ course, progress, written }: { course: Cou
       label={strings.tracksNext.en}
       icon="route"
       tone="accent"
-      title={<BiText text={place.ref.title} />}
+      title={place.ref.title.en}
       actions={
         <Link href={`/learn/play?l=${encodeURIComponent(next.dayId)}`} className={`${button("secondary", "lg")} w-full`}>
           <Bi label={strings.tracksOpen} />
@@ -105,9 +105,9 @@ export function TrackSuggestionCard({ course, progress, written }: { course: Cou
       }
     >
       <span className="font-semibold text-accent-ink">
-        <BiText text={strings.tracksNext} />
+        {strings.tracksNext.en}
       </span>
-      <BiText text={track.title} />
+      {track.title.en}
     </Nudge>
   );
 }

@@ -2,10 +2,10 @@
 
 import { useRef, useState } from "react";
 import { Bi } from "@/components/ui/Bi";
-import { BiText } from "@/components/ui/BiText";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { iconButton } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icons";
+import { Illustration } from "@/components/illustrations/Illustration";
 import { addPracticeDay, dateKey, recordAnswer, type Progress } from "@/learning/progress";
 import type { PracticeItem } from "@/learning/practice";
 import { updateProgress } from "@/lib/progress-store";
@@ -36,7 +36,7 @@ export function PracticeRunner({ items, mode, onExit }: { items: PracticeItem[];
   };
 
   return (
-    <div role="dialog" aria-modal="true" aria-label={strings.practiceTitle.en} className="fixed inset-0 z-30 bg-page text-ink">
+    <div role="dialog" aria-modal="true" aria-label={strings.practiceTitle.en} data-fullscreen className="fixed inset-0 z-30 bg-page text-ink">
       <div className="mx-auto flex h-dvh max-w-xl flex-col">
         <header className="flex items-center gap-2 px-2 pt-2">
           <button type="button" aria-label={strings.close.en} onClick={onExit} className={iconButton}>
@@ -47,7 +47,7 @@ export function PracticeRunner({ items, mode, onExit }: { items: PracticeItem[];
             {Math.min(index + 1, items.length)} / {items.length}
           </span>
         </header>
-        <main ref={main} tabIndex={-1} className="flex-1 overflow-y-auto px-4 pt-4 pb-72 outline-none">
+        <main ref={main} tabIndex={-1} className="flex-1 overflow-y-auto px-4 pt-4 pb-[26rem] outline-none">
           {!finished ? (
             <ActivityView
               key={item.activity.id}
@@ -64,16 +64,14 @@ export function PracticeRunner({ items, mode, onExit }: { items: PracticeItem[];
               onSkip={next}
             />
           ) : (
-            <div className="flex flex-col items-center gap-3 pt-12 text-center">
-              <span className="flex size-16 items-center justify-center rounded-full bg-good-soft text-good">
-                <Icon name="check" className="size-9" />
-              </span>
-              <h1 className="text-2xl">
+            <div className="flex flex-col items-center gap-3 pt-6 text-center">
+              <Illustration name="complete" className="w-52 animate-pop-in motion-reduce:animate-none" />
+              <h1 className="font-display text-[2rem] leading-tight font-bold text-ink">
                 <Bi label={strings.practiceDone} />
               </h1>
               {questions > 0 && mode === "mistakes" && (
-                <p className="text-3xl font-bold tabular-nums">
-                  <BiText text={fill(strings.practiceDoneCount, { n: right.size, total: questions })} />
+                <p className="font-display text-3xl font-bold text-good tabular-nums">
+                  {(fill(strings.practiceDoneCount, { n: right.size, total: questions })).en}
                 </p>
               )}
               <BottomBar>

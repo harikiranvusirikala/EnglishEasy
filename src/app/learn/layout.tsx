@@ -14,7 +14,7 @@ export default function LearnLayout({ children }: { children: React.ReactNode })
   return (
     <>
       <AppHeader />
-      <div className="pb-[calc(5.5rem+env(safe-area-inset-bottom))] md:pb-16">{children}</div>
+      <div className="pb-[calc(5.5rem+env(safe-area-inset-bottom))] has-[[data-fullscreen]]:pb-0 md:pb-16 md:has-[[data-fullscreen]]:pb-0">{children}</div>
       <TabBar />
       <ShellDialogs />
       <ProgressSync />

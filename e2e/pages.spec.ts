@@ -10,5 +10,6 @@ test("home and learn pages load, Telugu renders", async ({ page }) => {
   await page.getByRole("link", { name: /Start Day 1/ }).click();
   await expect(page).toHaveURL(/\/learn$/);
   await expect(page.getByRole("heading", { name: /How would you like to learn/ })).toBeVisible(); // first visit
-  await expect(page.locator('[lang="te"]', { hasText: "తెలుగులో వివరణలు" }).first()).toBeVisible();
+  await expect(page.getByRole("button", { name: /^Explanations in Telugu/ })).toBeVisible(); // simple words are English
+  await expect(page.locator('[lang="te"]', { hasText: "అంటే" }).first()).toBeVisible(); // its sample explanation is Telugu
 });

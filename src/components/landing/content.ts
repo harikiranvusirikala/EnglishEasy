@@ -46,7 +46,7 @@ export const FAQ: Question[] = [
   {
     question: "Does it use AI to talk to me?",
     answer:
-      "No. Every lesson is written ahead of time by people. The voices and speech recognition are the ones already built into your phone, so there is nothing to pay for and no surprises.",
+      "No. Every lesson is written ahead of time, so nothing is made up while you learn. The voices and speech recognition are the ones already built into your phone, so there is nothing to pay for and no surprises.",
   },
   {
     question: "Is it only for young people?",

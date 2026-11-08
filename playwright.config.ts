@@ -14,6 +14,7 @@ export default defineConfig({
     baseURL: `http://localhost:${PORT}`,
     trace: "retain-on-failure",
     serviceWorkers: "block", // specs stub files with page.route, which a service worker would bypass; e2e/offline.spec.ts allows it
+    reducedMotion: "reduce", // screenshots show each screen as it settles, not halfway through a fade (the app skips motion then)
   },
   projects: [
     { name: "phone", use: { ...devices["iPhone 13"], defaultBrowserType: "chromium", channel } },

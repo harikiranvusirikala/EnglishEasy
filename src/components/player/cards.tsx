@@ -1,13 +1,16 @@
 "use client";
 
 import { PatternChips } from "@/components/learn/PatternChips";
+import { useLearnIn } from "@/lib/settings-store";
+import { Meaning } from "@/components/ui/ContentText";
 import { Bi } from "@/components/ui/Bi";
 import { BiText } from "@/components/ui/BiText";
-import { card } from "@/components/ui/card";
+import { ContentText } from "@/components/ui/ContentText";
+import { card, cardFlush } from "@/components/ui/card";
 import { Icon } from "@/components/ui/icons";
 import type { Activity, CoreSentence } from "@/content/types";
 import { strings } from "@/lib/strings";
-import { BottomBar, MainButton } from "./parts";
+import { BottomBar, MainButton, Prompt } from "./parts";
 import { Narrate } from "./Narrate";
 
 type CardProps<T extends Activity["type"]> = { activity: Extract<Activity, { type: T }>; onNext: () => void };
@@ -20,55 +23,71 @@ function Next({ onNext }: { onNext: () => void }) {
   );
 }
 
-/** An English sentence with its Telugu meaning and 🔊 🐢. */
+/** An English sentence with its Telugu meaning and Listen / Slow (a row in a list of examples). */
 function Example({ sentence }: { sentence: CoreSentence }) {
   return (
-    <li className={`${card} flex items-center justify-between gap-2`}>
-      <div>
-        <p className="text-xl font-semibold">{sentence.en}</p>
-        <p lang="te" className="text-base text-ink-2">
-          {sentence.te}
-        </p>
+    <li className="flex items-center justify-between gap-3 px-4 py-3.5">
+      <div className="min-w-0">
+        <p className="text-xl font-semibold text-ink">{sentence.en}</p>
+        <Meaning>{sentence.te}</Meaning>
       </div>
       <Narrate text={sentence.en} variant="compact" />
     </li>
   );
 }
 
-/** The pattern: heading, explanation, the Telugu → English bridge as coloured blocks, and examples. */
+/** A small heading inside a card ("In Telugu", "Examples"). */
+function Label({ children }: { children: React.ReactNode }) {
+  return <p className="text-sm font-semibold text-ink-3">{children}</p>;
+}
+
+/** The pattern: heading, explanation (heard by itself), the Telugu → English bridge as coloured blocks, and examples. */
 export function ExplainCard({ activity, onNext }: CardProps<"explain">) {
+  const learnIn = useLearnIn();
   return (
     <>
-      <div className="flex flex-col gap-4">
-        <h2 className="text-2xl font-bold">
-          <BiText text={activity.heading} />
-        </h2>
-        <p className="text-lg">
-          <BiText text={activity.body} /> <Narrate text={activity.body} auto />
-        </p>
-        {activity.bridge && (
+      <div className="flex flex-col gap-5">
+        <Prompt>
+          <ContentText text={activity.heading} />
+        </Prompt>
+        <div className="text-lg leading-relaxed text-ink">
+          <ContentText text={activity.body} />
+        </div>
+        {activity.bridge && learnIn === "en" && (
+          <div className={card}>
+            <PatternChips chips={activity.bridge.en} animate />
+          </div>
+        )}
+        {activity.bridge && learnIn === "te" && (
           <div className={`${card} flex flex-col gap-3`}>
-            <p className="text-sm font-semibold text-ink-2">
+            <Label>
               <Bi label={strings.bridgeTelugu} className="items-start" />
-            </p>
+            </Label>
             <ul className="flex flex-wrap gap-2">
               {activity.bridge.te.map((word, i) => (
-                <li key={i} lang="te" className="rounded-lg border border-line-strong bg-sunken px-3 py-2 text-lg">
+                <li key={i} lang="te" className="rounded-xl border border-line-strong bg-sunken px-3 py-2 text-lg text-ink">
                   {word}
                 </li>
               ))}
             </ul>
-            <p className="text-sm font-semibold text-ink-2">
+            <div aria-hidden="true" className="flex items-center gap-2 text-ink-3">
+              <span className="h-px flex-1 bg-line" />
+              <Icon name="chevronDown" className="size-6 text-brand" />
+              <span className="h-px flex-1 bg-line" />
+            </div>
+            <Label>
               <Bi label={strings.bridgeEnglish} className="items-start" />
-            </p>
+            </Label>
             <PatternChips chips={activity.bridge.en} animate />
           </div>
         )}
-        <ul className="flex flex-col gap-2">
-          {activity.examples.map((example, i) => (
-            <Example key={i} sentence={example} />
-          ))}
-        </ul>
+        {activity.examples.length > 0 && (
+          <ul className={`${cardFlush} divide-y divide-line`}>
+            {activity.examples.map((example, i) => (
+              <Example key={i} sentence={example} />
+            ))}
+          </ul>
+        )}
       </div>
       <Next onNext={onNext} />
     </>
@@ -79,18 +98,20 @@ export function ExplainCard({ activity, onNext }: CardProps<"explain">) {
 export function WhenToUseCard({ activity, onNext }: CardProps<"whenToUse">) {
   return (
     <>
-      <div className="flex flex-col gap-4">
-        <h2 className="text-2xl font-bold">
-          <BiText text={activity.heading} />
-        </h2>
-        <ul className="flex flex-col gap-3">
+      <div className="flex flex-col gap-5">
+        <Prompt>
+          <ContentText text={activity.heading} />
+        </Prompt>
+        <ul className="flex flex-col gap-4">
           {activity.items.map((item, i) => (
-            <li key={i} className={`${card} flex flex-col gap-2`}>
-              <p className="text-xl font-bold text-brand">{item.form}</p>
-              <p className="text-base">
-                <BiText text={item.useFor} /> <Narrate text={item.useFor} />
-              </p>
-              <ul>
+            <li key={i} className={`${cardFlush} flex flex-col`}>
+              <div className="flex flex-col gap-2 p-5">
+                <p className="font-display self-start rounded-xl bg-brand-soft px-3 py-1 text-2xl font-bold text-brand-ink">{item.form}</p>
+                <p className="text-lg text-ink">
+                  <ContentText text={item.useFor} />
+                </p>
+              </div>
+              <ul className="border-t border-line bg-sunken/50">
                 <Example sentence={item.example} />
               </ul>
             </li>
@@ -106,27 +127,36 @@ export function WhenToUseCard({ activity, onNext }: CardProps<"whenToUse">) {
 export function DontSayCard({ activity, onNext }: CardProps<"dontSay">) {
   return (
     <>
-      <div className="flex flex-col gap-3">
-        <div className="flex flex-col gap-1 rounded-xl border border-almost-line bg-almost-soft p-4 text-almost">
-          <p className="flex items-center gap-2 text-sm font-semibold">
-            <Icon name="close" className="size-5" />
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-2 rounded-[1.25rem] border-2 border-almost-line bg-almost-soft p-5">
+          <p className="flex items-center gap-2 text-base font-semibold text-almost">
+            <span aria-hidden="true" className="flex size-7 items-center justify-center rounded-full bg-almost text-almost-soft">
+              <Icon name="close" className="size-4" strokeWidth={3} />
+            </span>
             <Bi label={strings.dontSay} />
           </p>
-          <p className="text-xl line-through decoration-2">{activity.wrong}</p>
+          <p className="text-2xl text-almost line-through decoration-2">{activity.wrong}</p>
         </div>
-        <div className="flex flex-col gap-1 rounded-xl border border-good-line bg-good-soft p-4 text-good">
-          <p className="flex items-center gap-2 text-sm font-semibold">
-            <Icon name="check" className="size-5" />
+        <div className="flex flex-col gap-2 rounded-[1.25rem] border-2 border-good-line bg-good-soft p-5">
+          <p className="flex items-center gap-2 text-base font-semibold text-good">
+            <span aria-hidden="true" className="flex size-7 items-center justify-center rounded-full bg-good text-good-soft">
+              <Icon name="check" className="size-4" strokeWidth={3} />
+            </span>
             <Bi label={strings.say} />
           </p>
-          <p className="flex flex-wrap items-center gap-1 text-xl font-semibold">
-            {activity.right}
-            <Narrate text={activity.right} auto />
+          <div className="flex items-center justify-between gap-3">
+            <p className="text-2xl font-semibold text-good">{activity.right}</p>
+            <Narrate text={activity.right} auto variant="compact" />
+          </div>
+        </div>
+        <div className={`${card} flex items-start gap-3`}>
+          <span aria-hidden="true" className="flex size-10 shrink-0 items-center justify-center rounded-2xl bg-accent-soft text-accent-ink">
+            <Icon name="hint" />
+          </span>
+          <p className="flex-1 pt-1 text-lg text-ink">
+            <ContentText text={activity.why} />
           </p>
         </div>
-        <p className="text-lg">
-          <BiText text={activity.why} /> <Narrate text={activity.why} />
-        </p>
       </div>
       <Next onNext={onNext} />
     </>

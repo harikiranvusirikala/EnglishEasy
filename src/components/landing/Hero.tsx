@@ -1,62 +1,51 @@
-import { Bi } from "@/components/ui/Bi";
-import { BiText } from "@/components/ui/BiText";
+import { Logo } from "@/components/ui/Logo";
 import { strings } from "@/lib/strings";
+import { PhoneFrame } from "./PhoneFrame";
 import { StartButton } from "./StartButton";
+import home from "./images/home.webp";
+import question from "./images/question.webp";
 
-const OPTION = "flex min-h-13 items-center rounded-xl border border-line-strong bg-surface px-4 text-base font-semibold text-ink";
-
-/** A drawing of the lesson player (not interactive): a practice question with three answers. */
-function PhoneMock() {
-  return (
-    <div
-      role="img"
-      aria-label={strings.landingMockLabel.en}
-      className="mx-auto w-64 shrink-0 rounded-[2.5rem] border-8 border-stone-800 bg-page p-4 shadow-xl dark:border-stone-600"
-    >
-      <div aria-hidden="true" className="flex flex-col gap-4">
-        <div className="flex items-center gap-2">
-          <span className="text-ink-2">✕</span>
-          <span className="h-2 flex-1 overflow-hidden rounded-full bg-sunken">
-            <span className="block h-full w-1/3 rounded-full bg-brand-fill" />
-          </span>
-          <span className="text-xs font-semibold text-ink-2">4 / 12</span>
-        </div>
-        <p className="text-sm font-semibold text-brand">{strings.landingMockSection.en}</p>
-        <p className="text-lg font-bold text-ink">{strings.landingMockPrompt.en}</p>
-        <div className="flex flex-col gap-2">
-          <span className={OPTION}>{strings.landingMockGo.en}</span>
-          <span className="flex min-h-13 items-center rounded-xl border border-emerald-600 bg-good-soft px-4 text-base font-semibold text-good dark:border-emerald-400">
-            ✓ {strings.landingMockWent.en}
-          </span>
-          <span className={OPTION}>{strings.landingMockWill.en}</span>
-        </div>
-        <span className="flex min-h-13 items-center justify-center rounded-xl bg-brand-fill font-semibold text-on-brand">{strings.landingMockCheck.en}</span>
-      </div>
-    </div>
-  );
-}
-
-/** The top of the landing page: the headline in English and Telugu, the start button and a picture of a lesson. */
+/** The top of the landing page: a soft glow, the promise in English and Telugu, Start, and two real app screens. */
 export function Hero() {
   return (
-    <header className="mx-auto flex w-full max-w-5xl flex-col items-center gap-10 px-5 pt-10 pb-8 md:flex-row md:justify-between md:pt-16">
-      <div className="flex flex-col items-start gap-5">
-        <p className="text-lg font-bold text-brand">{strings.appName.en}</p>
-        <h1 className="flex flex-col gap-2">
-          <span className="text-4xl font-bold text-ink sm:text-5xl">{strings.landingHeadline.en}</span>
-          <span lang="te" className="text-2xl font-semibold text-ink-2 sm:text-3xl">
-            {strings.landingHeadline.te}
-          </span>
-        </h1>
-        <p className="max-w-prose text-xl text-ink-2">
-          <BiText text={strings.landingSub} />
-        </p>
-        <StartButton />
-        <p className="text-base text-ink-2">
-          <Bi label={strings.landingTagline} className="items-start" />
-        </p>
+    <section aria-labelledby="hero-title" className="relative overflow-hidden">
+      {/* Soft teal and marigold light behind the top of the page. */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute -top-40 -left-32 size-[34rem] rounded-full bg-[radial-gradient(closest-side,rgb(20_184_166/0.22),transparent)] dark:bg-[radial-gradient(closest-side,rgb(45_212_191/0.14),transparent)]" />
+        <div className="absolute -top-24 right-[-10rem] size-[36rem] rounded-full bg-[radial-gradient(closest-side,rgb(251_191_36/0.22),transparent)] dark:bg-[radial-gradient(closest-side,rgb(251_191_36/0.10),transparent)]" />
       </div>
-      <PhoneMock />
-    </header>
+      <div className="mx-auto grid w-full max-w-6xl items-center gap-12 px-5 pt-12 pb-16 sm:pt-16 lg:grid-cols-[1.05fr_1fr] lg:gap-8 lg:pt-20 lg:pb-24">
+        <div className="flex flex-col items-center gap-6 text-center lg:items-start lg:text-left">
+          <p className="inline-flex items-center gap-2 rounded-full border border-line bg-surface/80 px-4 py-1.5 text-sm font-semibold text-ink-2 shadow-card">
+            <span aria-hidden="true" className="size-2 rounded-full bg-accent" />
+            {strings.landingEyebrow.en}
+          </p>
+          <h1 id="hero-title" className="flex flex-col gap-3">
+            <span className="font-display text-[2.75rem] leading-[1.05] font-bold tracking-tight text-ink sm:text-6xl">
+              Speak English <span className="text-brand">with confidence</span>
+            </span>
+            <span lang="te" className="font-display text-2xl leading-snug font-semibold text-ink-2 sm:text-[2rem]">
+              {strings.landingHeadline.te}
+            </span>
+          </h1>
+          <p className="max-w-xl text-lg text-ink-2 sm:text-xl">{strings.landingSub.en}</p>
+          <div className="flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row lg:items-start">
+            <StartButton />
+            <a href="#how" className="inline-flex min-h-14 items-center justify-center rounded-2xl px-6 text-lg font-semibold text-brand transition-colors hover:bg-brand-soft">
+              {strings.landingSeeHow.en}
+            </a>
+          </div>
+          <p className="text-base text-ink-3">{strings.landingNoSignup.en}</p>
+        </div>
+
+        <div className="relative mx-auto flex w-full max-w-md items-end justify-center lg:max-w-none">
+          <PhoneFrame src={home} alt={strings.landingShotHome.en} priority className="w-[14.5rem] -rotate-3 sm:w-64" />
+          <PhoneFrame src={question} alt={strings.landingShotQuestion.en} className="-ml-12 mb-[-2rem] w-[14.5rem] rotate-3 sm:w-64" />
+          <span aria-hidden="true" className="absolute -bottom-6 left-1/2 hidden -translate-x-1/2 sm:block">
+            <Logo size="sm" className="rounded-full border border-line bg-surface/90 py-1.5 pr-4 pl-1.5 shadow-raised" />
+          </span>
+        </div>
+      </div>
+    </section>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
+import { Meaning } from "@/components/ui/ContentText";
 import Link from "next/link";
 import { Bi } from "@/components/ui/Bi";
 import { BiText } from "@/components/ui/BiText";
@@ -114,14 +115,14 @@ export function PracticeHub() {
                   <Icon name={r.icon} className="size-7" />
                 </span>
                 <span className="flex min-w-0 flex-1 flex-col gap-0.5">
-                  <span className="text-lg font-semibold text-ink">
+                  <span className="flex items-center gap-2 text-lg font-semibold text-ink">
                     <Bi label={r.label} className="items-start" />
+                    {r.count > 0 && <span className={badge(r.tone === "accent" ? "accent" : "brand")}>{r.count}</span>}
                   </span>
                   <span className="text-base text-ink-2">
                     <BiText text={r.hint} />
                   </span>
                 </span>
-                {r.count > 0 && <span className={badge(r.tone === "accent" ? "accent" : "brand")}>{r.count}</span>}
                 <Icon name="chevron" className="size-5 text-ink-3" />
               </Link>
             </li>
@@ -208,9 +209,9 @@ export function PracticeRolePlays() {
                           <Icon name="chat" className="size-7" />
                         </span>
                         <span className="flex min-w-0 flex-1 flex-col gap-0.5">
-                          <span className="text-lg font-semibold text-ink">{item.activity.type === "roleplay" ? <BiText text={item.activity.title} /> : null}</span>
+                          <span className="text-lg font-semibold text-ink">{item.activity.type === "roleplay" ? item.activity.title.en : null}</span>
                           <span className="text-base text-ink-2">
-                            <BiText text={fill(strings.practiceFromDay, { title: title(item.dayId) })} />
+                            {(fill(strings.practiceFromDay, { title: title(item.dayId) })).en}
                           </span>
                         </span>
                         <Icon name="play" className="size-6 text-brand" />
@@ -245,16 +246,14 @@ export function PracticeSentences() {
                 groups.map((g) => (
                   <section key={g.dayId} aria-label={g.title.en} className="flex flex-col gap-3">
                     <h2 className="font-display text-xl font-semibold text-ink">
-                      <BiText text={g.title} />
+                      {g.title.en}
                     </h2>
                     <ul className={`${cardFlush} divide-y divide-line`}>
                       {g.sentences.map((s, i) => (
                         <li key={i} className="flex flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
                           <div className="min-w-0">
                             <p className="text-xl font-semibold text-ink">{s.en}</p>
-                            <p lang="te" className="text-base text-ink-2">
-                              {s.te}
-                            </p>
+                            <Meaning>{s.te}</Meaning>
                           </div>
                           <div className="flex shrink-0 items-center gap-2">
                             <Narrate text={s.en} variant="compact" />

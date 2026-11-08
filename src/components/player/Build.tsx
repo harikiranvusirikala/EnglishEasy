@@ -1,14 +1,15 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { Bi } from "@/components/ui/Bi";
+import { useMemo, useRef, useState } from "react";
+import { Meaning } from "@/components/ui/ContentText";
 import { BiText } from "@/components/ui/BiText";
-import { button } from "@/components/ui/button";
+import { focusRing } from "@/components/ui/button";
 import type { Activity } from "@/content/types";
 import { makeTiles, sameSentence, wordsOf } from "@/learning/tiles";
 import { strings } from "@/lib/strings";
 import { Narrate } from "./Narrate";
-import { BottomBar, FeedbackPanel, MainButton, OPTION } from "./parts";
+import { BottomBar, FeedbackPanel, Instruction, MainButton, toneOf } from "./parts";
+import { HintLine, useRevealAbove } from "./Question";
 
 type Props = {
   activity: Extract<Activity, { type: "arrange" | "translate" }>;
@@ -16,7 +17,14 @@ type Props = {
   onNext: () => void;
 };
 
-const TILE = `flex min-h-13 items-center rounded-xl border px-4 py-2 text-xl font-medium outline-none focus-visible:ring-2 focus-visible:ring-brand disabled:pointer-events-none`;
+/** A word tile, drawn like a key (a firm bottom edge that presses down). */
+const TILE = `flex min-h-13 items-center rounded-2xl border-2 px-4 py-2 text-xl font-medium transition-[transform,box-shadow,background-color] duration-100 active:translate-y-0.5 active:shadow-none disabled:pointer-events-none motion-reduce:transition-none ${focusRing}`;
+const TILE_TONE = {
+  bank: "border-line-strong bg-surface text-ink shadow-[0_3px_0_var(--line-strong)] hover:bg-sunken",
+  placed: "border-brand bg-brand-soft text-brand-ink shadow-[0_3px_0_var(--brand)]",
+  right: "border-good bg-good-soft text-good shadow-[0_3px_0_var(--good)]",
+  almost: "border-almost bg-almost-soft text-almost shadow-[0_3px_0_var(--almost-line)]",
+};
 
 /** Arrange the English words, or build the English for a Telugu sentence (Translate): tap a tile to place it, tap it again to take it back. */
 export function Build({ activity, onAnswer, onNext }: Props) {
@@ -30,6 +38,10 @@ export function Build({ activity, onAnswer, onNext }: Props) {
   const accepted = [activity.answer, ...(activity.type === "translate" ? (activity.accept ?? []) : [])];
   const judged = result === "correct" || result === "failed";
   const locked = result !== null;
+  const kind = result === "correct" ? "correct" : result ? "almost" : null;
+  const tone = toneOf(kind);
+  const tray = useRef<HTMLDivElement>(null);
+  useRevealAbove(tray, result);
 
   const check = () => {
     if (placed.length === 0 || locked) return;
@@ -40,81 +52,77 @@ export function Build({ activity, onAnswer, onNext }: Props) {
   };
 
   const prompt = activity.type === "translate" ? strings.translatePrompt : strings.arrangePrompt;
-  const style = result === "correct" ? OPTION.right : result === "almost" ? OPTION.wrong : OPTION.idle;
+  const placedTone = result === "correct" ? TILE_TONE.right : result === "almost" || result === "failed" ? TILE_TONE.almost : TILE_TONE.placed;
 
   return (
     <>
-      <div className="flex flex-col gap-4">
-        <p className="text-base text-ink-2">
+      <div className="flex flex-col gap-5">
+        <Instruction>
           <BiText text={prompt} />
-        </p>
-        {activity.te && (
-          <p lang="te" className="text-2xl font-semibold">
+        </Instruction>
+        {/* Translate is built on the Telugu sentence; Arrange shows its meaning only in Telugu mode. */}
+        {activity.te && activity.type === "translate" && (
+          <p lang="te" className="font-display text-[1.7rem] leading-snug font-semibold text-ink">
             {activity.te}
           </p>
         )}
+        {activity.te && activity.type === "arrange" && <Meaning className="text-lg text-ink-2">{activity.te}</Meaning>}
 
         <div
+          ref={tray}
           role="group"
           aria-label={strings.yourSentence.en}
-          className="flex min-h-20 flex-wrap content-start gap-2 border-b-2 border-line-strong pb-3"
+          className={`flex min-h-24 scroll-mb-96 flex-wrap content-start items-start gap-2 rounded-[1.25rem] border-2 border-dashed p-3 transition-colors ${
+            placed.length === 0 ? "border-line-strong bg-sunken/60" : "border-brand/40 bg-surface"
+          }`}
         >
-          {placed.length === 0 && <p className="self-center text-base text-ink-2">{strings.tapWordsBelow.en}</p>}
+          {placed.length === 0 && <p className="self-center px-1 text-base text-ink-3">{strings.tapWordsBelow.en}</p>}
           {placed.map((id) => (
-            <button key={id} type="button" disabled={locked} onClick={() => setPlaced(placed.filter((p) => p !== id))} className={`${TILE} ${locked ? style : OPTION.selected}`}>
+            <button key={id} type="button" disabled={locked} onClick={() => setPlaced(placed.filter((p) => p !== id))} className={`${TILE} animate-pop-in motion-reduce:animate-none ${placedTone}`}>
               {word(id)}
             </button>
           ))}
         </div>
 
-        <div role="group" aria-label={strings.wordBank.en} className="flex flex-wrap gap-2">
-          {tiles
-            .filter((t) => !placed.includes(t.id))
-            .map((t) => (
-              <button key={t.id} type="button" disabled={locked} onClick={() => setPlaced([...placed, t.id])} className={`${TILE} ${OPTION.idle}`}>
+        <div role="group" aria-label={strings.wordBank.en} className="flex min-h-16 flex-wrap gap-2.5">
+          {tiles.map((t) =>
+            placed.includes(t.id) ? (
+              // The tile's place stays, empty, so the others don't jump.
+              <span key={t.id} aria-hidden="true" className="min-h-13 rounded-2xl border-2 border-dashed border-line bg-sunken/50 px-4 py-2 text-xl text-transparent select-none">
+                {t.word}
+              </span>
+            ) : (
+              <button key={t.id} type="button" disabled={locked} onClick={() => setPlaced([...placed, t.id])} className={`${TILE} ${TILE_TONE.bank}`}>
                 {t.word}
               </button>
-            ))}
+            ),
+          )}
         </div>
 
         {!locked && (
-          <div className="flex flex-wrap items-center gap-3">
-            {hinted ? (
-              <p className="text-base">
-                <BiText text={strings.hintStarts} /> <strong className="text-lg">{wordsOf(activity.answer)[0]}</strong>
-              </p>
-            ) : (
-              <button type="button" onClick={() => setHinted(true)} className={button("secondary")}>
-                <Bi label={strings.hint} />
-              </button>
-            )}
-          </div>
+          <HintLine hinted={hinted} onHint={() => setHinted(true)}>
+            <BiText text={strings.hintStarts} /> <strong className="text-lg">{wordsOf(activity.answer)[0]}</strong>
+          </HintLine>
         )}
       </div>
 
-      <BottomBar>
-        {result && (
-          <FeedbackPanel kind={result === "correct" ? "correct" : "almost"}>
-            {result === "failed" && (
-              <p className="flex flex-wrap items-center gap-1 text-lg">
-                <span>{strings.answerIs.en}:</span>
-                <span className="font-semibold">{activity.answer}</span>
-                <Narrate text={activity.answer} auto />
-              </p>
-            )}
-            {result === "correct" && <Narrate text={activity.answer} auto />}
+      <BottomBar tone={tone}>
+        {kind && (
+          <FeedbackPanel kind={kind}>
+            <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-lg">
+              {result === "failed" && (
+                <>
+                  <span>{strings.answerIs.en}:</span>
+                  <span className="font-semibold">{activity.answer}</span>
+                </>
+              )}
+              {judged && <Narrate text={activity.answer} auto variant="compact" />}
+            </p>
           </FeedbackPanel>
         )}
         {result === null && <MainButton label={strings.check} onClick={check} disabled={placed.length === 0} />}
-        {result === "almost" && (
-          <MainButton
-            label={strings.tryAgain}
-            onClick={() => {
-              setResult(null);
-            }}
-          />
-        )}
-        {judged && <MainButton label={strings.continue} onClick={onNext} />}
+        {result === "almost" && <MainButton label={strings.tryAgain} onClick={() => setResult(null)} tone="almost" icon="retry" />}
+        {judged && <MainButton label={strings.continue} onClick={onNext} tone={tone} />}
       </BottomBar>
     </>
   );

@@ -5,7 +5,6 @@ import { narrate, RATE_NORMAL, RATE_SLOW, setManifest, speak, stopSpeaking, hasT
 import { updateSettings } from "./settings-store";
 
 type FakeVoice = { voiceURI: string; name: string; lang: string };
-const tick = () => new Promise((resolve) => setTimeout(resolve, 5));
 const veena: FakeVoice = { voiceURI: "veena", name: "Veena", lang: "en-IN" };
 const rishi: FakeVoice = { voiceURI: "rishi", name: "Rishi", lang: "en-IN" };
 const telugu: FakeVoice = { voiceURI: "te", name: "Google తెలుగు", lang: "te-IN" };
@@ -83,21 +82,22 @@ describe("narrate", () => {
   it("reads Telugu and English runs one after another, each with its own voice", async () => {
     install([veena, telugu]);
     narrate("verb ని past form లో వాడాలి.");
-    await tick();
-    expect(spoken.map((s) => [s.text, s.voice?.voiceURI, s.lang])).toEqual([
-      ["verb", "veena", "en-IN"],
-      ["ని", "te", "te-IN"],
-      ["past form", "veena", "en-IN"],
-      ["లో వాడాలి.", "te", "te-IN"],
-    ]);
+    // The runs play one after another; under load they can take more than one tick, so wait for all four.
+    await vi.waitFor(() =>
+      expect(spoken.map((s) => [s.text, s.voice?.voiceURI, s.lang])).toEqual([
+        ["verb", "veena", "en-IN"],
+        ["ని", "te", "te-IN"],
+        ["past form", "veena", "en-IN"],
+        ["లో వాడాలి.", "te", "te-IN"],
+      ]),
+    );
   });
 
   it("skips the Telugu runs when the phone has no Telugu voice", async () => {
     install([veena]);
     expect(hasTeluguVoice()).toBe(false);
     narrate("verb ని past form లో వాడాలి.");
-    await tick();
-    expect(spoken.map((s) => s.text)).toEqual(["verb", "past form"]);
+    await vi.waitFor(() => expect(spoken.map((s) => s.text)).toEqual(["verb", "past form"]));
   });
 });
 

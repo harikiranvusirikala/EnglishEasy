@@ -16,10 +16,10 @@ export function LogoMark({ className = "size-9" }: { className?: string }) {
       </defs>
       <rect width="64" height="64" rx="16" fill={`url(#${gradient})`} />
       <path d="M13 15h38a5 5 0 0 1 5 5v20a5 5 0 0 1-5 5H31l-10 8.5V45h-8a5 5 0 0 1-5-5V20a5 5 0 0 1 5-5Z" fill="#ffffff" />
-      <text x="22.5" y="38.5" textAnchor="middle" fontFamily="'Baloo Tammudu 2 Variable', 'Helvetica Neue', Arial, sans-serif" fontSize="21" fontWeight="800" fill="#0f766e">
+      <text x="22.5" y="38.5" textAnchor="middle" fontFamily="system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" fontSize="21" fontWeight="800" fill="#0f766e">
         A
       </text>
-      <text x="42" y="38.5" textAnchor="middle" fontFamily="'Baloo Tammudu 2 Variable', 'Noto Sans Telugu Variable', 'Telugu Sangam MN', sans-serif" fontSize="21" fontWeight="800" fill="#d97706">
+      <text x="42" y="38.5" textAnchor="middle" fontFamily="'Noto Sans Telugu Variable', 'Telugu Sangam MN', sans-serif" fontSize="21" fontWeight="800" fill="#d97706">
         అ
       </text>
       <circle cx="53" cy="11" r="4.5" fill="#fbbf24" stroke="#ffffff" strokeWidth="2" />

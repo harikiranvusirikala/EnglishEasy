@@ -89,8 +89,8 @@ describe("RolePlay", () => {
     expect(screen.getByText("Role play complete")).toBeTruthy();
     expect(screen.getByText("Word order")).toBeTruthy(); // good
     expect(screen.getByText("Food words")).toBeTruthy(); // practice more
-    expect(screen.getByText(/Conversation:/).textContent).toContain("5 / 10");
-    expect(screen.queryByText(/Speaking:/)).toBeNull();
+    expect(screen.getByTestId("score-conversation").textContent).toContain("5 / 10");
+    expect(screen.queryByTestId("score-speaking")).toBeNull();
     click(/^Continue/);
     expect(onNext).toHaveBeenCalledTimes(1);
   });
@@ -107,8 +107,8 @@ describe("RolePlay", () => {
     vi.mocked(listen).mockResolvedValueOnce(hear("I eat idli"));
     await speakNow();
     click(/^See how it went/);
-    expect(screen.getByText(/Speaking:/).textContent).toContain("10 / 10");
-    expect(screen.getByText(/Conversation:/).textContent).toContain("10 / 10");
+    expect(screen.getByTestId("score-speaking").textContent).toContain("10 / 10");
+    expect(screen.getByTestId("score-conversation").textContent).toContain("10 / 10");
   });
 
   it("a spoken not-good reply is corrected and the conversation continues", async () => {
@@ -121,11 +121,17 @@ describe("RolePlay", () => {
     expect(screen.getByText("And what do you eat?")).toBeTruthy();
   });
 
-  it("shows the Hint and the Telugu meaning on request", () => {
+  it("shows the Hint on request; the Telugu meaning is offered in Telugu mode only", () => {
     render(<RolePlay activity={roleplay} onNext={vi.fn()} />);
     expect(screen.queryByText("Say I drink …")).toBeNull();
     click(/^Hint/);
     expect(screen.getByText("Say I drink …")).toBeTruthy();
+    expect(screen.queryByRole("button", { name: /^Telugu meaning/ })).toBeNull();
+  });
+
+  it("in Telugu mode the partner's line has its Telugu meaning one tap away", () => {
+    updateSettings({ learnIn: "te" });
+    render(<RolePlay activity={roleplay} onNext={vi.fn()} />);
     expect(screen.queryByText("మీరు ఏం తాగుతారు?", { selector: "p" })).toBeNull();
     click(/^Telugu meaning/);
     expect(screen.getByText("మీరు ఏం తాగుతారు?", { selector: "p" })).toBeTruthy();

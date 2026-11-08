@@ -34,8 +34,7 @@ test("Day 1's role play by tapping, with a correction and the summary", async ({
   await expect.poll(async () => (await spoken(page)).map((s) => s.text)).toContain("What do you drink in the morning?");
   await page.screenshot({ path: `${SHOTS}/roleplay.png` });
 
-  await page.getByRole("button", { name: /^Telugu meaning/ }).click();
-  await expect(page.getByText("ఉదయం మీరు ఏం తాగుతారు?")).toBeVisible();
+  await expect(page.getByRole("button", { name: /^Telugu meaning/ })).toHaveCount(0); // offered in Telugu mode only
   await page.getByRole("button", { name: /^Hint/ }).click();
   await expect(page.getByText(/Say who, then the action/)).toBeVisible();
 
@@ -51,7 +50,7 @@ test("Day 1's role play by tapping, with a correction and the summary", async ({
   await next(page, /^See how it went/);
 
   await expect(page.getByRole("heading", { name: "Role play complete" })).toBeVisible();
-  await expect(page.getByText(/Conversation:/)).toContainText("7 / 10");
+  await expect(page.getByTestId("score-conversation")).toContainText("7 / 10");
   await page.screenshot({ path: `${SHOTS}/roleplay-summary.png` });
   await next(page);
   await expect(page.getByRole("button", { name: /^(Finish|Continue to Day 2)/ })).toBeVisible();
@@ -74,8 +73,8 @@ test("Day 1's role play by voice; night mode", async ({ page }) => {
   await transcript(page, "I read the newspaper");
   await page.getByRole("button", { name: "Speak" }).click();
   await next(page, /^See how it went/);
-  await expect(page.getByText(/Speaking:/)).toContainText("10 / 10");
-  await expect(page.getByText(/Conversation:/)).toContainText("10 / 10");
+  await expect(page.getByTestId("score-speaking")).toContainText("10 / 10");
+  await expect(page.getByTestId("score-conversation")).toContainText("10 / 10");
   await page.screenshot({ path: `${SHOTS}/roleplay-summary-night.png` });
 });
 

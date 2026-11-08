@@ -36,7 +36,8 @@ for (const theme of ["light", "dark"] as const) {
         await page.waitForTimeout(300);
         expect(await problems(page), url).toEqual([]);
         expect(await page.locator("h1").count(), `${url} has a heading`).toBeGreaterThan(0);
-        if (learnIn === "te") await expect(page.locator('[lang="te"]').first()).toBeAttached();
+        // Simple words are English; sentences that explain something follow Learn in (Journey, Practice, Settings, lessons).
+        if (learnIn === "te" && !/^\/learn$/.test(url)) await expect(page.locator('[lang="te"]').first()).toBeAttached();
       }
       await page.goto("/learn");
       await page.screenshot({ path: `${SHOTS}/polish-home-${theme}-${learnIn}.png`, fullPage: true });

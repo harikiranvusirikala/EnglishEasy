@@ -51,7 +51,7 @@ test("component gallery in Day and Night", async ({ page }) => {
   await page.getByRole("button", { name: "Close" }).click();
   await expect(page.getByRole("dialog")).toBeHidden();
   await page.getByRole("button", { name: "Show a message" }).click();
-  await expect(page.getByRole("status")).toHaveText("సేవ్ అయింది.");
+  await expect(page.getByRole("status")).toHaveText("Saved.");
   await page.screenshot({ path: `${SHOTS}/ui-day.png`, fullPage: true });
 
   await page.evaluate((key) => localStorage.setItem(key, JSON.stringify({ theme: "dark" })), SETTINGS_KEY);

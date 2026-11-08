@@ -5,7 +5,9 @@ import { useRouter } from "next/navigation";
 import { Bi } from "@/components/ui/Bi";
 import { BiText } from "@/components/ui/BiText";
 import { Dialog } from "@/components/ui/Dialog";
-import { ProgressBar } from "@/components/ui/ProgressBar";
+import { ProgressRing } from "@/components/ui/ProgressRing";
+import { badge } from "@/components/ui/badge";
+import { Illustration } from "@/components/illustrations/Illustration";
 import { button, iconButton } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icons";
 import type { Activity, PlayableDay, SectionKind } from "@/content/types";
@@ -13,7 +15,7 @@ import { activityCount } from "@/content/generate";
 import { addPracticeDay, completeDay, dateKey, emptyProgress, markViewed, recordAnswer, setPosition, skipActivity, type Progress } from "@/learning/progress";
 import { nextActivity } from "@/learning/stats";
 import { getProgress, updateProgress, useProgress } from "@/lib/progress-store";
-import { strings } from "@/lib/strings";
+import { fill, strings } from "@/lib/strings";
 import { Build } from "./Build";
 import { Choose } from "./Choose";
 import { ComingSoon, DontSayCard, ExplainCard, WhenToUseCard } from "./cards";
@@ -30,8 +32,8 @@ import { weekEnd } from "@/learning/week-complete";
 import { LessonComplete } from "./LessonComplete";
 import { WeekComplete } from "./WeekComplete";
 import { ReportButton } from "./ReportButton";
-import { BottomBar, MainButton, PlayerSkeleton } from "./parts";
-import { SECTION_NAME } from "./sections";
+import { BottomBar, MainButton, PlayerSkeleton, SectionChip, SegmentedProgress } from "./parts";
+import { SECTION_ABOUT, SECTION_ICON, SECTION_ILLUSTRATION, SECTION_NAME } from "./sections";
 
 export const CARD_TYPES: Activity["type"][] = ["explain", "whenToUse", "dontSay"];
 const SCORED_SECTIONS: SectionKind[] = ["warmup", "practice", "speak"];
@@ -124,52 +126,55 @@ function PlayerInner({ day, initial, onReview }: { day: PlayableDay; initial: Pr
   const shown = Math.min(total, done + (step.kind === "activity" ? 1 : 0));
   const section = day.sections[step.section];
 
+  const scoredSections = day.sections.filter((x) => x.kind !== "wrapup" && x.activities.length > 0);
+  const parts = scoredSections.map((x) => x.activities.length);
+
   return (
-    <div className="mx-auto flex h-dvh max-w-xl flex-col">
-      <header className="flex flex-col gap-1 px-2 pt-2">
+    <div data-fullscreen className="mx-auto flex h-dvh max-w-xl flex-col">
+      <header className="flex flex-col gap-2 px-2 pt-[calc(0.5rem+env(safe-area-inset-top))] pb-1">
         <div className="flex items-center gap-2">
           <button type="button" aria-label={strings.close.en} onClick={() => setLeaving(true)} className={iconButton}>
             <Icon name="close" />
           </button>
-          <ProgressBar label={strings.progressLabel.en} value={done} max={total} className="flex-1" />
-          <span className="min-w-14 text-right text-base font-semibold tabular-nums">
-            {shown} / {total}
-          </span>
+          <SegmentedProgress label={strings.progressLabel.en} parts={parts} done={step.kind === "wrapup" ? total : done} total={total} />
+          <span className="min-w-14 text-right text-base font-semibold text-ink-2 tabular-nums">{step.kind === "wrapup" ? "" : `${shown} / ${total}`}</span>
           <ReportButton dayId={day.id} activityId={currentId} />
         </div>
-        <p className="px-3 text-sm text-ink-2">
-          <Bi label={SECTION_NAME[section.kind]} className="items-start" />
-        </p>
+        {step.kind === "activity" || step.kind === "summary" ? (
+          <div className="px-2">
+            <SectionChip kind={section.kind} />
+          </div>
+        ) : null}
       </header>
 
-      <main ref={main} tabIndex={-1} className="flex-1 overflow-y-auto px-4 pt-4 pb-72 outline-none">
+      <main ref={main} tabIndex={-1} className="flex-1 overflow-y-auto px-4 pt-4 pb-[26rem] outline-none">
         {step.kind === "intro" && (
-          <div className="flex flex-col items-center gap-4 pt-12 text-center">
-            <h1 className="text-3xl">
-              <Bi label={SECTION_NAME[section.kind]} />
-            </h1>
-            <BottomBar>
-              <MainButton label={strings.start} onClick={next} />
-            </BottomBar>
-          </div>
+          <SectionIntro
+            kind={section.kind}
+            part={scoredSections.indexOf(section) + 1}
+            parts={scoredSections.length}
+            count={section.activities.length}
+            onStart={next}
+          />
         )}
 
         {step.kind === "activity" && (
-          <ActivityView
-            key={section.activities[step.activity].id}
-            activity={section.activities[step.activity]}
-            onAnswer={(correct) => change((p) => recordAnswer(p, section.activities[step.activity].id, correct, now()))}
-            onNext={() => {
-              const id = section.activities[step.activity].id;
-              change((p) => (isQuestion(section.activities[step.activity]) ? p : markViewed(p, id, now())));
-              next();
-            }}
-            onSkip={() => {
-              const id = section.activities[step.activity].id;
-              change((p) => skipActivity(p, id, now()));
-              next();
-            }}
-          />
+          <div key={section.activities[step.activity].id} className="animate-fade-in motion-reduce:animate-none">
+            <ActivityView
+              activity={section.activities[step.activity]}
+              onAnswer={(correct) => change((p) => recordAnswer(p, section.activities[step.activity].id, correct, now()))}
+              onNext={() => {
+                const id = section.activities[step.activity].id;
+                change((p) => (isQuestion(section.activities[step.activity]) ? p : markViewed(p, id, now())));
+                next();
+              }}
+              onSkip={() => {
+                const id = section.activities[step.activity].id;
+                change((p) => skipActivity(p, id, now()));
+                next();
+              }}
+            />
+          </div>
         )}
 
         {step.kind === "summary" && <Summary section={section} progress={progress} onNext={next} />}
@@ -238,32 +243,66 @@ export function ActivityView({
   }
 }
 
-/** "Practice complete · 7 / 8 correct", and how many sentences went to Practice again. */
+/** A section's intro: its illustration, "Part 2 of 5", its name, what happens in it, and how many activities. */
+function SectionIntro({ kind, part, parts, count, onStart }: { kind: SectionKind; part: number; parts: number; count: number; onStart: () => void }) {
+  return (
+    <div className="flex flex-col items-center gap-3 pt-4 text-center">
+      <Illustration name={SECTION_ILLUSTRATION[kind]} className="w-56 animate-pop-in motion-reduce:animate-none" />
+      <p className="mt-2 text-base font-semibold text-brand">
+        {(fill(strings.sectionPartOf, { n: part, total: parts })).en}
+      </p>
+      <h1 className="font-display text-[2.4rem] leading-tight font-bold text-ink">
+        <Bi label={SECTION_NAME[kind]} />
+      </h1>
+      <p className="max-w-sm text-lg text-ink-2">
+        <BiText text={SECTION_ABOUT[kind]} />
+      </p>
+      <span className={`${badge("neutral")} mt-1`}>
+        <Icon name={SECTION_ICON[kind]} className="size-4" />
+        {(count === 1 ? strings.sectionOne : fill(strings.sectionActivities, { n: count })).en}
+      </span>
+      <BottomBar>
+        <MainButton label={strings.start} onClick={onStart} icon="play" />
+      </BottomBar>
+    </div>
+  );
+}
+
+/** "Practice complete · 7 / 8 correct", with a score ring, and how many sentences went to Practice again. */
 function Summary({ section, progress, onNext }: { section: PlayableDay["sections"][number]; progress: Progress; onNext: () => void }) {
   const scored = section.activities.filter((a) => isQuestion(a) && progress.activities[a.id] && !progress.activities[a.id].skipped);
   const correct = scored.filter((a) => progress.activities[a.id].correct && progress.activities[a.id].attempts === 1).length;
   const added = section.activities.filter((a) => a.id in progress.mistakes).length;
   return (
-    <div className="flex flex-col items-center gap-3 pt-12 text-center">
-      <span className="flex size-16 items-center justify-center rounded-full bg-good-soft text-good">
-        <Icon name="check" className="size-9" />
-      </span>
-      <h1 className="text-2xl">
+    <div className="flex flex-col items-center gap-4 pt-8 text-center">
+      {scored.length > 0 ? (
+        <ProgressRing label={strings.correctCount.en} value={correct} max={scored.length} size={132} stroke={10} tone="good" className="animate-pop-in motion-reduce:animate-none">
+          <span className="flex flex-col items-center leading-tight">
+            <span className="font-display text-3xl font-bold text-ink tabular-nums">
+              {correct} / {scored.length}
+            </span>
+            <span className="text-sm text-ink-2">
+              {strings.correctCount.en}
+            </span>
+          </span>
+        </ProgressRing>
+      ) : (
+        <span className="flex size-24 animate-pop-in items-center justify-center rounded-full bg-good text-good-soft motion-reduce:animate-none">
+          <Icon name="check" className="size-12" strokeWidth={2.6} />
+        </span>
+      )}
+      <h1 className="font-display text-[2rem] leading-tight font-bold text-ink">
         <Bi label={SECTION_NAME[section.kind]} />
       </h1>
-      <p className="text-lg">
-        <BiText text={strings.sectionComplete} />
+      <p className="text-lg text-ink-2">
+        {strings.sectionComplete.en}
       </p>
-      {scored.length > 0 && (
-        <p className="text-3xl font-bold tabular-nums">
-          {correct} / {scored.length} <span className="text-lg font-semibold">
-            <BiText text={strings.correctCount} />
-          </span>
-        </p>
-      )}
       {added > 0 && (
-        <p className="text-base text-ink-2">
-          {added} <BiText text={strings.addedToPracticeAgain} />
+        <p className="flex items-center gap-2 rounded-2xl bg-accent-soft px-4 py-3 text-base text-accent-ink">
+          <Icon name="retry" className="size-5" />
+          <span>
+            {added} <BiText text={strings.addedToPracticeAgain} />
+          </span>
         </p>
       )}
       <BottomBar>

@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { Bi } from "@/components/ui/Bi";
-import { BiText } from "@/components/ui/BiText";
+import { ContentText } from "@/components/ui/ContentText";
 import { button } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icons";
+import { card } from "@/components/ui/card";
 import type { Activity } from "@/content/types";
 import { useLearnIn, useSettings } from "@/lib/settings-store";
 import { speak, stopSpeaking } from "@/lib/speak";
@@ -61,16 +62,34 @@ export function Dialogue({ activity, onNext }: { activity: DialogueActivity; onA
   return (
     <>
       <div className="flex flex-col gap-4">
-        <h1 className="text-xl font-bold">
-          <BiText text={activity.title} />
-        </h1>
+        <div className={`${card} flex items-center gap-4`}>
+          <span aria-hidden="true" className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-brand-soft text-brand">
+            <Icon name="headphones" className="size-7" />
+          </span>
+          <div className="flex min-w-0 flex-col gap-0.5">
+            <p className="text-base font-semibold text-brand">
+              <Bi label={strings.dialogueListen} className="items-start" />
+            </p>
+            <h1 className="font-display text-2xl leading-tight font-semibold text-ink">
+              {activity.title.en}
+            </h1>
+          </div>
+        </div>
         <div className="flex flex-col gap-3" aria-label={activity.title[learnIn]}>
           {lines.slice(0, visible).map((line, i) => (
-            <Bubble key={i} side={line.voice === "b" ? "right" : "left"} name={<BiText text={line.speaker} />} active={playing === i}>
-              <p className="flex flex-wrap items-center gap-x-1">
-                <span>{line.en}</span>
-                {!listening && <Narrate text={line.en} voice={line.voice} variant="compact" />}
-              </p>
+            <Bubble
+              key={i}
+              side={line.voice === "b" ? "right" : "left"}
+              name={line.speaker.en}
+              initial={line.voice === "b" ? undefined : line.speaker.en.trim().charAt(0).toUpperCase()}
+              active={playing === i}
+            >
+              <p>{line.en}</p>
+              {!listening && (
+                <div className="mt-2">
+                  <Narrate text={line.en} voice={line.voice} variant="compact" slow />
+                </div>
+              )}
               {learnIn === "te" && (
                 <p lang="te" className="mt-1 text-base opacity-80">
                   {line.te}
@@ -80,7 +99,7 @@ export function Dialogue({ activity, onNext }: { activity: DialogueActivity; onA
           ))}
         </div>
         {asking !== null && (
-          <p className="pt-2 text-sm font-semibold text-ink-2">
+          <p className="pt-2 text-base font-semibold text-brand">
             {asking + 1} / {questions.length}
           </p>
         )}
@@ -96,7 +115,7 @@ export function Dialogue({ activity, onNext }: { activity: DialogueActivity; onA
           onNext={() => (asking !== null && asking + 1 < questions.length ? setAsking(asking + 1) : onNext())}
         >
           <p className="text-xl font-semibold">
-            <BiText text={question.prompt} />
+            <ContentText text={question.prompt} />
           </p>
         </Question>
       ) : (

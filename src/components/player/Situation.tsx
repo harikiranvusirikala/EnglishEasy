@@ -1,8 +1,10 @@
 "use client";
 
-import { BiText } from "@/components/ui/BiText";
+import { Bi } from "@/components/ui/Bi";
+import { ContentText } from "@/components/ui/ContentText";
+import { Icon } from "@/components/ui/icons";
+import { strings } from "@/lib/strings";
 import type { Activity } from "@/content/types";
-import { Narrate } from "./Narrate";
 import { Question } from "./Question";
 import { ChooseNote, SpeakBar, useChoosing } from "./SpeakFlow";
 
@@ -18,9 +20,15 @@ export function Situation({
 }) {
   const { choosing, note, choose } = useChoosing();
   const head = (
-    <p className="text-xl font-semibold">
-      <BiText text={activity.situation} /> <Narrate text={activity.situation} auto={!choosing} />
-    </p>
+    <div className="flex flex-col gap-3 rounded-[1.25rem] border border-line bg-surface p-5 shadow-card">
+      <span className="inline-flex items-center gap-2 self-start rounded-full bg-accent-soft px-3 py-1 text-sm font-semibold text-accent-ink">
+        <Icon name="chat" className="size-4" />
+        <Bi label={strings.situationLabel} className="items-start" />
+      </span>
+      <p className="font-display text-[1.5rem] leading-snug font-semibold text-ink">
+        <ContentText text={activity.situation} />
+      </p>
+    </div>
   );
 
   if (choosing)
@@ -33,7 +41,7 @@ export function Situation({
 
   return (
     <>
-      <div className="flex flex-col gap-4">{head}</div>
+      <div className="flex flex-col gap-5">{head}</div>
       <SpeakBar expected={activity.expected} onAnswer={onAnswer} onNext={onNext} onChoose={choose} />
     </>
   );

@@ -13,14 +13,16 @@ test("the landing page tells what it is and starts Day 1", async ({ page, isMobi
   await expect(page.locator('link[rel="canonical"]')).toHaveCount(1);
   await expect(page.locator('meta[property="og:image"]')).toHaveCount(1);
 
-  // The sections: how it works, the journey with Week 1 links, why it works, the FAQ and the footer.
-  await expect(page.getByRole("heading", { name: /How it works/ })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /Your journey/ })).toBeVisible();
+  // The sections: how it works, the spotlights, the journey with Week 1 links, made for parents, privacy, the FAQ and the footer.
+  await expect(page.getByRole("heading", { name: "Learn in four small steps" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Every idea explained in Telugu, and read aloud" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "From your first sentence to natural English" })).toBeVisible();
   await expect(page.getByRole("link", { name: /Day 1: / })).toHaveAttribute("href", "/lessons/sentence-basics");
-  await expect(page.getByRole("heading", { name: /Why it works/ })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Easy on the eyes, easy on the mind" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Your learning stays yours" })).toBeVisible();
   await page.getByRole("heading", { name: "Do I have to type?" }).click();
   await expect(page.getByText("There is no keyboard anywhere in the app.")).toBeVisible();
-  await expect(page.getByRole("link", { name: /Privacy/ })).toHaveAttribute("href", "/privacy");
+  await expect(page.getByRole("contentinfo").getByRole("link", { name: /^Privacy/ })).toHaveAttribute("href", "/privacy");
   const coffee = page.getByRole("link", { name: /Buy me a coffee/ });
   await expect(coffee).toHaveAttribute("target", "_blank");
   await expect(coffee).toHaveAttribute("rel", /noopener/);

@@ -98,20 +98,13 @@ describe("cards", () => {
     expect(onNext).toHaveBeenCalledOnce();
   });
 
-  it("ExplainCard reads its explanation by itself in the Learn in language, and 🐢 reads it slowly", () => {
+  it("ExplainCard shows the explanation in the Learn in language; only its example sentences have Listen (no Slow)", () => {
     updateSettings({ learnIn: "te" });
     vi.mocked(narrate).mockClear();
     render(<ExplainCard activity={explain} onNext={vi.fn()} />);
-    expect(narrate).toHaveBeenCalledWith(explain.body.te, { voice: undefined });
-    fireEvent.click(screen.getAllByRole("button", { name: "Listen slowly" })[0]);
-    expect(narrate).toHaveBeenLastCalledWith(explain.body.te, { slow: true, voice: undefined });
-  });
-
-  it("nothing plays by itself when Auto-play is off, but 🔊 still works", () => {
-    updateSettings({ autoPlay: false });
-    vi.mocked(narrate).mockClear();
-    render(<ExplainCard activity={explain} onNext={vi.fn()} />);
-    expect(narrate).not.toHaveBeenCalled();
+    expect(screen.getByText(explain.body.te)).toBeTruthy();
+    expect(narrate).not.toHaveBeenCalled(); // explanations are not read aloud (owner's decision 2026-11-08)
+    expect(screen.queryByRole("button", { name: "Listen slowly" })).toBeNull();
     fireEvent.click(screen.getAllByRole("button", { name: "Listen" })[0]);
     expect(narrate).toHaveBeenCalledOnce();
   });

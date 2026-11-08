@@ -10,7 +10,7 @@ import { useSettings } from "@/lib/settings-store";
 import { strings } from "@/lib/strings";
 import { MicButton } from "./MicButton";
 import { Narrate } from "./Narrate";
-import { BottomBar, FeedbackPanel, MainButton, Text } from "./parts";
+import { BottomBar, FeedbackPanel, MainButton, Text, toneOf } from "./parts";
 
 type Note = "denied" | "unsupported";
 export const TRIES = 2;
@@ -39,7 +39,7 @@ export function useChoosing() {
 export function ChooseNote({ note }: { note: Note | null }) {
   if (!note) return null;
   return (
-    <p className="rounded-xl border border-almost-line bg-almost-soft p-3 text-base text-almost">
+    <p className="flex items-start gap-2 rounded-2xl border border-almost-line bg-almost-soft p-4 text-base text-almost">
       <BiText text={note === "denied" ? strings.micDeniedNote : strings.micUnsupportedNote} />
     </p>
   );
@@ -92,8 +92,10 @@ export function SpeakBar({
   const accepted = outcome !== null && outcome !== "none" && outcome.level !== "retry";
   const spent = tries >= TRIES && !accepted;
 
+  const kind = outcome === null ? null : outcome === "none" || !accepted ? "almost" : "correct";
+
   return (
-    <BottomBar>
+    <BottomBar tone={toneOf(kind)}>
       {outcome === "none" && (
         <FeedbackPanel kind="almost" label={strings.tryAgain}>
           <p className="text-base">
@@ -103,20 +105,20 @@ export function SpeakBar({
       )}
       {outcome !== null && outcome !== "none" && (
         <FeedbackPanel kind={accepted ? "correct" : "almost"} label={outcome.level === "great" ? strings.great : outcome.level === "good" ? strings.good : strings.tryAgain}>
-          <p className="flex flex-wrap items-center gap-1 text-lg">
+          <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-lg">
             <span>{strings.youSaid.en}:</span>
             <Text className="font-semibold">{outcome.heard}</Text>
           </p>
           {(accepted || spent) && (
-            <p className="flex flex-wrap items-center gap-1 text-lg">
+            <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-lg">
               <span>{strings.youCouldSay.en}:</span>
               <Text className="font-semibold">{expected[outcome.best]}</Text>
-              <Narrate text={expected[outcome.best]} auto />
+              <Narrate text={expected[outcome.best]} auto variant="compact" />
             </p>
           )}
         </FeedbackPanel>
       )}
-      {accepted && <MainButton label={strings.continue} onClick={onNext} />}
+      {accepted && <MainButton label={strings.continue} onClick={onNext} tone="good" />}
       {!accepted && spent && (
         <button type="button" onClick={() => onChoose()} className={`${button("primary", "lg")} w-full`}>
           <Bi label={strings.chooseInstead} />

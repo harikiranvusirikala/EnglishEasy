@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import { Meaning } from "@/components/ui/ContentText";
 import { BiText } from "@/components/ui/BiText";
 import type { Activity } from "@/content/types";
 import { strings } from "@/lib/strings";
@@ -8,6 +9,7 @@ import { Build } from "./Build";
 import { Narrate } from "./Narrate";
 import { SpeakBar, useChoosing, ChooseNote } from "./SpeakFlow";
 import { card } from "@/components/ui/card";
+import { Instruction } from "./parts";
 
 /** Hear an English sentence and say it. Choosing instead turns it into arranging the same sentence's words. */
 export function Repeat({
@@ -35,16 +37,14 @@ export function Repeat({
 
   return (
     <>
-      <div className="flex flex-col gap-4">
-        <p className="text-base text-ink-2">
+      <div className="flex flex-col gap-5">
+        <Instruction>
           <BiText text={strings.repeatPrompt} />
-        </p>
+        </Instruction>
         <div className={`${card} flex flex-col gap-2`}>
-          <p className="text-2xl font-semibold">{activity.say}</p>
-          <p lang="te" className="text-base text-ink-2">
-            {activity.te}
-          </p>
-          <Narrate text={activity.say} auto />
+          <p className="font-display text-[1.9rem] leading-snug font-semibold text-ink">{activity.say}</p>
+          <Meaning className="text-lg text-ink-2">{activity.te}</Meaning>
+          <Narrate text={activity.say} auto slow />
         </div>
       </div>
       <SpeakBar expected={[activity.say]} onAnswer={onAnswer} onNext={onNext} onChoose={choose} />

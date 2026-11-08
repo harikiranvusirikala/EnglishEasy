@@ -3,6 +3,7 @@
 //   the corners themselves) and the installable app's icons in public/icons (192, 512 and a maskable 512).
 // - src/app/opengraph-image.png (1200 x 630, under 300 KB): the link preview WhatsApp, search results and
 //   social sites show; docs/social-preview.png (1280 x 640): GitHub's social preview, the same drawing.
+// - src/components/landing/images/*.webp: the landing page's phone screens, from docs/screenshots/ (e2e/capture.spec.ts).
 // Text is drawn with the fonts of the machine that runs this (Helvetica Neue and a Telugu font on macOS).
 // sharp is Next.js's own image library, installed with it.
 import { mkdir, readFile, writeFile } from "node:fs/promises";
@@ -61,7 +62,7 @@ await writeFile("public/icons/icon-maskable-512.png", await sharp(Buffer.from(ma
  * lesson question. Everything that matters stays `margin` px in from every edge (GitHub's social preview
  * template asks for 80 px; chat apps may crop the link preview's sides).
  */
-function brandCard(width: number, height: number, margin: number): string {
+function brandCard(width: number, height: number, margin: number, shot: string): string {
   const text = (x: number, y: number, size: number, weight: number, fill: string, content: string, font = FONT, anchor = "start") =>
     `<text x="${x}" y="${y}" font-family="${font}" font-size="${size}" font-weight="${weight}" fill="${fill}" text-anchor="${anchor}">${content}</text>`;
   const top = margin;
@@ -69,10 +70,6 @@ function brandCard(width: number, height: number, margin: number): string {
   const phoneH = height - 2 * margin;
   const phoneX = width - margin - phoneW;
   const phoneY = margin;
-  const option = (y: number, label: string, chosen = false) => `
-    <rect x="${phoneX + 28}" y="${y}" width="${phoneW - 56}" height="52" rx="14" fill="${chosen ? "#ecfdf5" : "#ffffff"}" stroke="${chosen ? "#34d399" : "#e7e0d5"}" stroke-width="2"/>
-    ${text(phoneX + 48, y + 34, 22, chosen ? 700 : 500, chosen ? "#047857" : "#1c1917", label)}
-    ${chosen ? `<path d="M${phoneX + phoneW - 64} ${y + 27}l7 7 13-14" stroke="#047857" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>` : ""}`;
   const pill = (x: number, label: string, w: number) => `
     <rect x="${x}" y="${height - margin - 46}" width="${w}" height="46" rx="23" fill="#e3f3f0"/>
     ${text(x + w / 2, height - margin - 16, 20, 600, "#0b4f49", label, FONT, "middle")}`;
@@ -97,21 +94,28 @@ function brandCard(width: number, height: number, margin: number): string {
     <rect x="${phoneX}" y="${phoneY}" width="${phoneW}" height="${phoneH}" rx="40" fill="#1c1917"/>
     <rect x="${phoneX + 10}" y="${phoneY + 10}" width="${phoneW - 20}" height="${phoneH - 20}" rx="32" fill="#fbf8f3"/>
   </g>
-  <rect x="${phoneX + 28}" y="${phoneY + 40}" width="${phoneW - 56}" height="12" rx="6" fill="#f3eee6"/>
-  <rect x="${phoneX + 28}" y="${phoneY + 40}" width="${(phoneW - 56) * 0.55}" height="12" rx="6" fill="#0f766e"/>
-  <rect x="${phoneX + 28}" y="${phoneY + 70}" width="104" height="30" rx="15" fill="#e3f3f0"/>
-  ${text(phoneX + 80, phoneY + 91, 17, 700, "#0b4f49", "Practice", FONT, "middle")}
-  ${text(phoneX + 28, phoneY + 146, 27, 800, "#1c1917", "Yesterday I ___")}
-  ${text(phoneX + 28, phoneY + 180, 27, 800, "#1c1917", "to the market.")}
-  ${option(phoneY + 198, "go")}${option(phoneY + 258, "went", true)}${option(phoneY + 318, "will go")}
-  <rect x="${phoneX + 28}" y="${phoneY + phoneH - 82}" width="${phoneW - 56}" height="54" rx="16" fill="#0f766e"/>
-  ${text(phoneX + phoneW / 2, phoneY + phoneH - 47, 22, 700, "#ffffff", "Continue", FONT, "middle")}
+  <clipPath id="screen"><rect x="${phoneX + 10}" y="${phoneY + 10}" width="${phoneW - 20}" height="${phoneH - 20}" rx="32"/></clipPath>
+  <image x="${phoneX + 10}" y="${phoneY + 10}" width="${phoneW - 20}" height="${phoneH - 20}" preserveAspectRatio="xMidYMin slice" clip-path="url(#screen)" href="${shot}"/>
 </svg>`;
 }
 
 /** As small a PNG as looks the same: chat apps skip big link previews (WhatsApp's limit is about 300 KB). */
 const smallPng = (svg: string) => sharp(Buffer.from(svg)).png({ palette: true, quality: 90, effort: 10 }).toBuffer();
-await writeFile("src/app/opengraph-image.png", await smallPng(brandCard(1200, 630, 64)));
+// The phone in the pictures shows a real screen: a question answered right (docs/screenshots/, from e2e/capture.spec.ts).
+const question = dataUrl("image/png", await sharp("docs/screenshots/question.png").resize({ width: 560 }).png().toBuffer());
+await writeFile("src/app/opengraph-image.png", await smallPng(brandCard(1200, 630, 64, question)));
 // GitHub's social preview (Settings → General → Social preview): 1280 x 640, 80 px safe area (GitHub's template).
-await writeFile("docs/social-preview.png", await smallPng(brandCard(1280, 640, 80)));
-console.log("Wrote favicon.ico, apple-icon.png, opengraph-image.png in src/app, the app icons in public/icons, and docs/social-preview.png");
+await writeFile("docs/social-preview.png", await smallPng(brandCard(1280, 640, 80, question)));
+
+// The landing page's pictures: phone screens from docs/screenshots/ as WebP, 640 px wide (shown at up to 320 CSS px).
+await mkdir("src/components/landing/images", { recursive: true });
+for (const name of ["home", "explain", "question", "tiles", "speak", "roleplay", "complete", "journey"]) {
+  await writeFile(`src/components/landing/images/${name}.webp`, await sharp(`docs/screenshots/${name}.png`).resize({ width: 640 }).webp({ quality: 82, effort: 6 }).toBuffer());
+}
+// docs/screenshots/ stays small: the screenshots are kept as palette PNGs (they are flat colours and text).
+for (const name of ["home", "explain", "question", "tiles", "speak", "roleplay", "complete", "journey"]) {
+  const file = `docs/screenshots/${name}.png`;
+  const small = await sharp(file).png({ palette: true, quality: 92, effort: 10 }).toBuffer();
+  if (small.length < (await readFile(file)).length) await writeFile(file, small);
+}
+console.log("Wrote favicon.ico, apple-icon.png, opengraph-image.png in src/app, the app icons in public/icons, docs/social-preview.png and the landing pictures");

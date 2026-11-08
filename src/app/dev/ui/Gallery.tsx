@@ -114,7 +114,7 @@ export function Gallery() {
       </Block>
 
       <Block title="Listen and Slow">
-        <Narrate text="I went to the market yesterday." />
+        <Narrate text="I went to the market yesterday." slow />
         <div className={`${well} flex items-center justify-between gap-3`}>
           <span className="text-lg font-medium">I eat rice.</span>
           <Narrate text="I eat rice." variant="compact" />
@@ -253,7 +253,7 @@ export function Gallery() {
         </div>
         {toast && (
           <Toast>
-            <BiText text={strings.galleryToast} />
+            {strings.galleryToast.en}
           </Toast>
         )}
       </Block>

@@ -1,10 +1,11 @@
 "use client";
 
-import { BiText } from "@/components/ui/BiText";
+import { ContentText } from "@/components/ui/ContentText";
 import type { Activity } from "@/content/types";
+import { Prompt } from "./parts";
 import { Question } from "./Question";
 
-/** Hear an English sentence (it plays by itself) and choose what it means. The sentence is not shown, only played. */
+/** Hear an English sentence (it plays by itself, from a big play button) and choose what it means. The sentence is not shown, only played. */
 export function ListenChoose({
   activity,
   onAnswer,
@@ -20,12 +21,13 @@ export function ListenChoose({
       answer={activity.answer}
       answerText={activity.options[activity.answer]}
       say={activity.say}
+      hero
       onAnswer={onAnswer}
       onNext={onNext}
     >
-      <p className="text-xl font-semibold">
-        <BiText text={activity.prompt} />
-      </p>
+      <Prompt>
+        <ContentText text={activity.prompt} />
+      </Prompt>
     </Question>
   );
 }

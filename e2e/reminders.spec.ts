@@ -57,7 +57,8 @@ test("choosing a time subscribes and sends the hour and time zone; Off removes i
   await expect(group.getByRole("button", { name: /^Off/ })).toHaveAttribute("aria-pressed", "true");
   await expect.poll(() => sent.at(-1)?.method).toBe("DELETE");
   expect(sent.at(-1)?.body).toEqual({ endpoint: "https://push.example/e2e" });
-  expect(await page.evaluate(() => (window as unknown as { __push: { unsubscribed: number } }).__push.unsubscribed)).toBe(1);
+  // The phone unsubscribes only after the DELETE has been answered, so wait for it.
+  await expect.poll(() => page.evaluate(() => (window as unknown as { __push: { unsubscribed: number } }).__push.unsubscribed)).toBe(1);
 });
 
 test("on an iPhone outside the installed app, Settings says to install first", async ({ page }) => {

@@ -1,7 +1,8 @@
 "use client";
 
-import { BiText } from "@/components/ui/BiText";
+import { ContentText } from "@/components/ui/ContentText";
 import type { Activity } from "@/content/types";
+import { Prompt } from "./parts";
 import { Question } from "./Question";
 
 type Props<T extends Activity["type"]> = { activity: Extract<Activity, { type: T }>; onAnswer: (correct: boolean) => void; onNext: () => void };
@@ -18,9 +19,9 @@ export function Choose({ activity, onAnswer, onNext }: Props<"choose">) {
       onAnswer={onAnswer}
       onNext={onNext}
     >
-      <p className="text-xl font-semibold">
-        <BiText text={activity.prompt} />
-      </p>
+      <Prompt>
+        <ContentText text={activity.prompt} />
+      </Prompt>
     </Question>
   );
 }

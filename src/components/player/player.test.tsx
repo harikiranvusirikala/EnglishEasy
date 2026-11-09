@@ -53,17 +53,21 @@ describe.each([
     expect(onNext).toHaveBeenCalledOnce();
   });
 
-  it("wrong twice: Almost, one more try, then the answer is shown", () => {
+  it("wrong twice: Almost (the answer is neither shown nor read), one more try, then the answer is shown and read", () => {
+    updateSettings({ autoPlay: true });
+    vi.mocked(narrate).mockClear();
     const onAnswer = vi.fn();
     render(view({ onAnswer, onNext: vi.fn() }));
     fireEvent.click(screen.getByRole("button", { name: wrong }));
     fireEvent.click(screen.getByRole("button", { name: /^Check/ }));
     expect(screen.getByText("Almost")).toBeTruthy();
     expect(screen.queryByText(/The answer is/)).toBeNull();
+    expect(narrate).not.toHaveBeenCalled();
     fireEvent.click(screen.getByRole("button", { name: /^Try again/ }));
     fireEvent.click(screen.getByRole("button", { name: wrong }));
     fireEvent.click(screen.getByRole("button", { name: /^Check/ }));
     expect(screen.getByText(/The answer is/)).toBeTruthy();
+    expect(narrate).toHaveBeenCalledOnce();
     expect(onAnswer.mock.calls).toEqual([[false], [false]]);
     expect(screen.getByRole("button", { name: /^Continue/ })).toBeTruthy();
   });

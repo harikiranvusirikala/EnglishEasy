@@ -70,7 +70,7 @@ export function Question({
   children?: ReactNode | ((selected: number | null, judged: boolean) => ReactNode);
 }) {
   const { selected, setSelected, result, check, retry } = useQuestion(answer, onAnswer);
-  const judged = result === "correct" || result === "failed";
+  const judged = result === "correct" || result === "failed"; // only then is the answer read aloud: "Almost" must not give it away
   const kind = result === "correct" ? "correct" : result === "almost" ? "almost" : result === "failed" ? "answer" : null;
   const tone = toneOf(kind);
   const group = useRef<HTMLDivElement>(null);
@@ -95,7 +95,7 @@ export function Question({
       </div>
       <BottomBar tone={tone}>
         {kind && (
-          <FeedbackPanel kind={kind} action={<Narrate text={say ?? answerText} auto variant="compact" />}>
+          <FeedbackPanel kind={kind} action={judged && <Narrate text={say ?? answerText} auto variant="compact" />}>
             {result === "failed" && (
               <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-lg">
                 <span>{strings.answerIs.en}:</span>

@@ -12,3 +12,4 @@ public/content/
 # npm run audio installs its voice tool here (never part of the app)
 tools/audio/node_modules/
 tools/audio/package-lock.json
+tools/audio/out/

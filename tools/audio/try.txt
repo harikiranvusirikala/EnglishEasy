@@ -1,0 +1,6 @@
+# Sentences to hear in both voices: one per line. Lines starting with # are skipped.
+# Run `npm run voices`: the clips go to tools/audio/out/ (1-shruti.mp3, 1-mohan.mp3, …) and the folder opens.
+Can I have a kilo of onions, please?
+That's a bit expensive. Can you give it for fifty?
+ఈ టమాటాలు మరీ మెత్తగా ఉన్నాయి.
+will తర్వాత go వాడాలి.

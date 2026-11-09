@@ -510,7 +510,7 @@ export const strings = {
   privacyPhoneTitle: { en: "On your phone", te: "మీ ఫోన్‌లో" },
   privacyPhone: {
     en: "Your progress, mistakes, chosen language, text size and theme are saved in your phone's browser. You do not need an account. Clearing the browser's data removes them.",
-    te: "మీ ప్రోగ్రెస్, తప్పులు, ఎంచుకున్న భాష, అక్షర పరిమాణం, థీమ్ మీ ఫోన�� బ్రౌజర్‌లో సేవ్ అవుతాయి. ఖాతా అవసరం లేదు. బ్రౌజర్ డేటా తొలగిస్తే అవి పోతాయి.",
+    te: "మీ ప్రోగ్రెస్, తప్పులు, ఎంచుకున్న భాష, అక్షర పరిమాణం, థీమ్ మీ ఫోన్ బ్రౌజర్‌లో సేవ్ అవుతాయి. ఖాతా అవసరం లేదు. బ్రౌజర్ డేటా తొలగిస్తే అవి పోతాయి.",
   },
   privacyAccountTitle: { en: "In your account, if you sign in", te: "మీరు సైన్ ఇన్ చేస్తే, మీ ఖాతాలో" },
   privacyAccount: {

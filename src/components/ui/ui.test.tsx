@@ -70,7 +70,7 @@ describe("StepList", () => {
         steps={[
           { id: "a", label: { en: "Meet", te: "పరిచయం" }, state: "done" },
           { id: "b", label: { en: "Try", te: "ప్రయత్నం" }, state: "current" },
-          { id: "c", label: { en: "Say", te: "చెప్ప���డి" }, state: "todo" },
+          { id: "c", label: { en: "Say", te: "చెప్పండి" }, state: "todo" },
         ]}
       />,
     );

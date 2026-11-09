@@ -57,6 +57,11 @@ const maskable = `<svg xmlns="http://www.w3.org/2000/svg" width="512" height="51
 </svg>`;
 await writeFile("public/icons/icon-maskable-512.png", await sharp(Buffer.from(maskable)).png().toBuffer());
 
+/** The live site, shown on the previews (GitHub's card links to github.com, so this says where to try the app). */
+const SITE_HOST = "learn-english-in-telugu.vercel.app";
+/** What it is, in three short lines: English learned through Telugu, how a lesson goes, and that it is free. */
+const DESCRIPTION_LINES = ["Learn spoken English with the help of Telugu.", "Short daily lessons you hear, tap and speak.", "Free and open source, with no ads."];
+
 /** A phone with a real screen: a frame, a drawn status bar (so the camera never covers the app), the screenshot; tilted `angle` degrees. */
 function phone(id: string, x: number, y: number, w: number, h: number, shot: string, angle: number): string {
   const text = (tx: number, ty: number, content: string) => `<text x="${tx}" y="${ty}" font-family="${FONT}" font-size="12" font-weight="700" fill="#1c1917">${content}</text>`;
@@ -77,7 +82,8 @@ function phone(id: string, x: number, y: number, w: number, h: number, shot: str
 }
 
 /**
- * The brand card: the icon and name, the headline in English and Telugu, what it is, and two tilted phones like the
+ * The brand card: the icon and name, the headline in English and Telugu, what it is in three lines, the site's
+ * address, and two tilted phones like the
  * landing page's hero (Home behind, a lesson question answered right in front). Everything that matters stays
  * `margin` px in from every edge (GitHub's social preview template asks for 80 px; chat apps may crop the sides).
  */
@@ -94,9 +100,6 @@ function brandCard(width: number, height: number, margin: number, back: string, 
   const frontX = width - margin - phoneW;
   const backX = frontX - Math.round(phoneW * 0.62);
   const backY = Math.round((height - phoneH - drop) / 2);
-  const pill = (x: number, label: string, w: number) => `
-    <rect x="${x}" y="${height - margin - 46}" width="${w}" height="46" rx="23" fill="#e3f3f0"/>
-    ${text(x + w / 2, height - margin - 16, 20, 600, "#0b4f49", label, FONT, "middle")}`;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
   <defs>
     <radialGradient id="glow"><stop offset="0" stop-color="#99f6e4" stop-opacity="0.7"/><stop offset="1" stop-color="#99f6e4" stop-opacity="0"/></radialGradient>
@@ -109,10 +112,11 @@ function brandCard(width: number, height: number, margin: number, back: string, 
 
   <image x="${margin}" y="${top}" width="72" height="72" href="${dataUrl("image/svg+xml", icon)}"/>
   ${text(margin + 92, top + 50, 40, 800, "#1c1917", 'English<tspan fill="#0f766e">Easy</tspan>')}
-  ${text(margin, top + 182, 68, 800, "#1c1917", "Speak English")}
-  ${text(margin, top + 262, 68, 800, TEAL, "with confidence")}
-  ${text(margin, top + 330, 38, 600, "#57534e", "ఆత్మవిశ్వాసంతో ఇంగ్లీష్ మాట్లాడండి", TELUGU_FONT)}
-  ${pill(margin, "100% free", 150)}${pill(margin + 164, "Telugu help", 170)}${pill(margin + 348, "No typing", 150)}${pill(margin + 512, "Open source", 176)}
+  ${text(margin, top + 158, 60, 800, "#1c1917", "Speak English")}
+  ${text(margin, top + 228, 60, 800, TEAL, "with confidence")}
+  ${text(margin, top + 286, 34, 600, "#57534e", "ఆత్మవిశ్వాసంతో ఇంగ్లీష్ మాట్లాడండి", TELUGU_FONT)}
+  ${DESCRIPTION_LINES.map((line, i) => text(margin, top + 348 + i * 31, 23, 400, "#57534e", line)).join("")}
+  ${text(margin, top + 466, 20, 600, TEAL, SITE_HOST)}
 
   ${phone("back", backX, backY, phoneW, phoneH, back, -3)}
   ${phone("front", frontX, backY + drop, phoneW, phoneH, front, 3)}

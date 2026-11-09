@@ -262,6 +262,13 @@ export function narrate(text: string, options: SpeakOptions = {}) {
   start(text, splitScripts(speechText(text)), options);
 }
 
+/** Reads texts one after another (the feedback's sentence, then its reason); a newer request stops the rest. */
+export function narrateAll(texts: string[], options: SpeakOptions = {}) {
+  const [first, ...rest] = texts.filter((t) => t.trim());
+  if (first === undefined) return void options.onEnd?.();
+  narrate(first, { ...options, onEnd: rest.length > 0 ? () => narrateAll(rest, options) : options.onEnd });
+}
+
 /** Whether this is an Android phone (the only place the Telugu voice can be installed from the Settings help). Browser only. */
 export function isAndroid(): boolean {
   return typeof navigator !== "undefined" && /android/i.test(navigator.userAgent);

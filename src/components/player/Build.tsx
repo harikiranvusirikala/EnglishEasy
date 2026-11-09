@@ -7,7 +7,7 @@ import { focusRing } from "@/components/ui/button";
 import type { Activity } from "@/content/types";
 import { makeTiles, sameSentence, wordsOf } from "@/learning/tiles";
 import { strings } from "@/lib/strings";
-import { Narrate } from "./Narrate";
+import { ListenInline } from "./Narrate";
 import { BottomBar, FeedbackPanel, Instruction, MainButton, toneOf } from "./parts";
 import { HintLine, useRevealAbove } from "./Question";
 
@@ -108,11 +108,22 @@ export function Build({ activity, onAnswer, onNext }: Props) {
 
       <BottomBar tone={tone}>
         {kind && (
-          <FeedbackPanel kind={kind} action={judged && <Narrate text={activity.answer} auto variant="compact" />}>
-            {result === "failed" && (
-              <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-lg">
-                <span>{strings.answerIs.en}:</span>
+          <FeedbackPanel
+            kind={kind}
+            label={result === "failed" ? strings.answerIs : undefined}
+            answer={
+              result === "failed" ? (
+                <>
+                  <span className="font-bold">{activity.answer}</span>
+                  <ListenInline read={[activity.answer]} auto={[activity.answer]} />
+                </>
+              ) : undefined
+            }
+          >
+            {result === "correct" && (
+              <p className="text-lg">
                 <span className="font-semibold">{activity.answer}</span>
+                <ListenInline read={[activity.answer]} auto={[activity.answer]} />
               </p>
             )}
           </FeedbackPanel>

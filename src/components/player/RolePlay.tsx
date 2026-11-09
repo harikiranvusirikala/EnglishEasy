@@ -16,7 +16,7 @@ import { listen, stopListening } from "@/lib/listen";
 import { strings } from "@/lib/strings";
 import { Bubble } from "./Bubble";
 import { MicButton } from "./MicButton";
-import { Narrate } from "./Narrate";
+import { ListenInline, Narrate } from "./Narrate";
 import { BottomBar, FeedbackPanel, Instruction, MainButton, OptionButton, Text } from "./parts";
 import { RolePlaySummary } from "./RolePlaySummary";
 import { ChooseNote, useChoosing } from "./SpeakFlow";
@@ -190,10 +190,10 @@ export function RolePlay({ activity, onNext }: { activity: RolePlayActivity; onA
         {corrected && (
           <FeedbackPanel kind="almost" label={strings.almost}>
             {lastReply.better && (
-              <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-lg">
-                <span>{strings.betterReply.en}:</span>
+              <p className="text-lg">
+                <span>{strings.betterReply.en}: </span>
                 <Text className="font-semibold">{lastReply.better}</Text>
-                <Narrate text={lastReply.better} auto variant="compact" />
+                <ListenInline read={[lastReply.better]} auto={[lastReply.better]} />
               </p>
             )}
           </FeedbackPanel>

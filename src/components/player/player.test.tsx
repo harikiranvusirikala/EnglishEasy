@@ -1,9 +1,9 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { beforeAll, describe, expect, it, vi } from "vitest";
 import day1 from "../../../public/content/sentence-basics.json";
 import type { Activity, PlayableDay } from "@/content/types";
 import { updateSettings } from "@/lib/settings-store";
-import { narrate } from "@/lib/speak";
+import { narrate, narrateAll } from "@/lib/speak";
 import { Choose } from "./Choose";
 import { DontSayCard, ExplainCard, WhenToUseCard } from "./cards";
 import { FillBlank } from "./FillBlank";
@@ -11,7 +11,7 @@ import { ListenChoose } from "./ListenChoose";
 import { Player } from "./Player";
 
 vi.mock("next/navigation", () => ({ useRouter: () => ({ push: vi.fn() }) }));
-vi.mock("@/lib/speak", async (importOriginal) => ({ ...(await importOriginal<typeof import("@/lib/speak")>()), narrate: vi.fn() }));
+vi.mock("@/lib/speak", async (importOriginal) => ({ ...(await importOriginal<typeof import("@/lib/speak")>()), narrate: vi.fn(), narrateAll: vi.fn() }));
 
 const choose: Extract<Activity, { type: "choose" }> = {
   id: "d.p1",
@@ -37,9 +37,9 @@ const MODES = [
 ] as const;
 
 describe.each([
-  ["Choose", choose, (p: object) => <Choose activity={choose} {...(p as { onAnswer: () => void; onNext: () => void })} />, "I eat rice.", "I rice eat."],
-  ["FillBlank", fill, (p: object) => <FillBlank activity={fill} {...(p as { onAnswer: () => void; onNext: () => void })} />, "speak", "speaks"],
-] as const)("%s", (_name, activity, view, right, wrong) => {
+  ["Choose", choose, (p: object) => <Choose activity={choose} {...(p as { onAnswer: () => void; onNext: () => void })} />, "I eat rice.", "I rice eat.", "I eat rice."],
+  ["FillBlank", fill, (p: object) => <FillBlank activity={fill} {...(p as { onAnswer: () => void; onNext: () => void })} />, "speak", "speaks", "We speak Telugu."],
+] as const)("%s", (_name, activity, view, right, wrong, sentence) => {
   it("right answer: Check shows Correct! and Continue moves on", () => {
     const onAnswer = vi.fn();
     const onNext = vi.fn();
@@ -53,9 +53,10 @@ describe.each([
     expect(onNext).toHaveBeenCalledOnce();
   });
 
-  it("wrong twice: Almost (the answer is neither shown nor read), one more try, then the answer is shown and read", () => {
-    updateSettings({ autoPlay: true });
+  it("wrong twice: Almost reads only the reason (never the answer), one more try, then the answer is shown and read with the reason", () => {
+    updateSettings({ autoPlay: true, learnIn: "en" });
     vi.mocked(narrate).mockClear();
+    vi.mocked(narrateAll).mockClear();
     const onAnswer = vi.fn();
     render(view({ onAnswer, onNext: vi.fn() }));
     fireEvent.click(screen.getByRole("button", { name: wrong }));
@@ -63,11 +64,13 @@ describe.each([
     expect(screen.getByText("Almost")).toBeTruthy();
     expect(screen.queryByText(/The answer is/)).toBeNull();
     expect(narrate).not.toHaveBeenCalled();
+    expect(narrateAll).toHaveBeenCalledOnce();
+    expect(narrateAll).toHaveBeenLastCalledWith([activity.why!.en]); // a spoken hint
     fireEvent.click(screen.getByRole("button", { name: /^Try again/ }));
     fireEvent.click(screen.getByRole("button", { name: wrong }));
     fireEvent.click(screen.getByRole("button", { name: /^Check/ }));
     expect(screen.getByText(/The answer is/)).toBeTruthy();
-    expect(narrate).toHaveBeenCalledOnce();
+    expect(narrateAll).toHaveBeenLastCalledWith([sentence, activity.why!.en]); // the sentence, then the reason
     expect(onAnswer.mock.calls).toEqual([[false], [false]]);
     expect(screen.getByRole("button", { name: /^Continue/ })).toBeTruthy();
   });
@@ -141,6 +144,25 @@ describe("cards", () => {
   });
 });
 
+describe("a question with a sentence to hear", () => {
+  it("ends its prompt with a text-sized Listen that plays the whole prompt by itself", () => {
+    updateSettings({ learnIn: "te", autoPlay: true });
+    vi.mocked(narrateAll).mockClear();
+    const meaning: Extract<Activity, { type: "choose" }> = {
+      id: "d.w1",
+      type: "choose",
+      say: "I eat rice.",
+      prompt: { en: 'What does "I eat rice." mean?', te: '"I eat rice." అంటే ఏంటి?' },
+      options: ["నేను అన్నం తింటాను.", "నేను టీ తాగుతాను."],
+      answer: 0,
+    };
+    render(<Choose activity={meaning} onAnswer={vi.fn()} onNext={vi.fn()} />);
+    const heading = screen.getByRole("heading", { level: 2 });
+    expect(within(heading).getByRole("button", { name: "Listen" })).toBeTruthy(); // inside the question, not on its own row
+    expect(narrateAll).toHaveBeenCalledWith(['"I eat rice." అంటే ఏంటి?']);
+  });
+});
+
 describe("ListenChoose", () => {
   const listen: Extract<Activity, { type: "listenChoose" }> = {
     id: "d.g-listen-3",
@@ -154,6 +176,7 @@ describe("ListenChoose", () => {
   it("plays the sentence by itself without showing it, and again after Check", () => {
     updateSettings({ learnIn: "en", autoPlay: true });
     vi.mocked(narrate).mockClear();
+    vi.mocked(narrateAll).mockClear();
     render(<ListenChoose activity={listen} onAnswer={vi.fn()} onNext={vi.fn()} />);
     expect(narrate).toHaveBeenCalledTimes(1);
     expect(narrate).toHaveBeenCalledWith("I eat rice.", { voice: undefined });
@@ -161,8 +184,8 @@ describe("ListenChoose", () => {
     fireEvent.click(screen.getByRole("button", { name: "నేను అన్నం తింటాను." }));
     fireEvent.click(screen.getByRole("button", { name: /^Check/ }));
     expect(screen.getByText("Correct!")).toBeTruthy();
-    expect(narrate).toHaveBeenCalledTimes(2); // the correct sentence plays after Check
-    expect(narrate).toHaveBeenLastCalledWith("I eat rice.", { voice: undefined });
+    expect(narrate).toHaveBeenCalledTimes(1);
+    expect(narrateAll).toHaveBeenLastCalledWith(["I eat rice."]); // the correct sentence plays after Check
   });
 
   it("stays silent with Auto-play off", () => {

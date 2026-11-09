@@ -78,21 +78,25 @@ export const toneOf = (kind: FeedbackKind | null | undefined): BarTone => (kind 
  * The feedback at the top of the tinted bottom bar: ✓ Correct! (green) or ↻ Almost (amber) in a badge, announced to
  * screen readers; `children` hold the answer, Listen / Slow and the reason. `label` replaces the heading (Great, Good, Try again).
  */
-export function FeedbackPanel({ kind, label, action, children }: { kind: FeedbackKind; label?: BiLabel; action?: ReactNode; children?: ReactNode }) {
+/**
+ * The feedback after Check (owner, 2026-11-09): a compact mark and title (with the answer in bold after "The answer is"),
+ * then the line under it: the reason, or the sentence when there is none, ending in its text-sized Listen
+ * (`ListenInline`). Nothing else in the bar reads aloud.
+ */
+export function FeedbackPanel({ kind, label, answer, children }: { kind: FeedbackKind; label?: BiLabel; answer?: ReactNode; children?: ReactNode }) {
   const good = kind === "correct";
   return (
-    <div aria-live="polite" className={`flex animate-panel-in flex-col gap-2 motion-reduce:animate-none ${good ? "text-good" : "text-almost"}`}>
-      {/* One row: the mark, the word, and its Listen button (`action`) at the end; the answer and reason go under it. */}
-      <div className="flex items-center gap-3">
-        <span aria-hidden="true" className={`flex size-10 shrink-0 animate-pop-in items-center justify-center rounded-full motion-reduce:animate-none ${good ? "bg-good text-good-soft" : "bg-almost text-almost-soft"}`}>
-          <Icon name={good ? "check" : "retry"} className="size-6" strokeWidth={2.8} />
+    <div aria-live="polite" className={`flex animate-panel-in flex-col gap-1.5 motion-reduce:animate-none ${good ? "text-good" : "text-almost"}`}>
+      <div className="flex items-start gap-2.5">
+        <span aria-hidden="true" className={`flex size-8 shrink-0 animate-pop-in items-center justify-center rounded-full motion-reduce:animate-none ${good ? "bg-good text-good-soft" : "bg-almost text-almost-soft"}`}>
+          <Icon name={good ? "check" : "retry"} className="size-5" strokeWidth={2.8} />
         </span>
-        <p className="font-display min-w-0 flex-1 text-2xl leading-tight font-bold">
+        <p className="font-display min-w-0 flex-1 pt-0.5 text-xl leading-snug font-bold">
           <Bi label={label ?? (good ? strings.correct : strings.almost)} className="items-start" />
+          {answer && <span className="ml-1.5 text-ink">{answer}</span>}
         </p>
-        {action}
       </div>
-      {children && <div className="flex flex-col gap-1.5 text-ink">{children}</div>}
+      {children && <div className="flex flex-col gap-1 text-ink">{children}</div>}
     </div>
   );
 }

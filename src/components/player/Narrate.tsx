@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect } from "react";
-import { listenButton } from "@/components/ui/button";
+import { inlineListenButton, listenButton } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icons";
 import { getSettings, useLearnIn, useSettings } from "@/lib/settings-store";
-import { hasRecording, hasTeluguVoice, isAndroid, loadManifest, narrate, useVoices, type SpeakOptions } from "@/lib/speak";
+import { hasRecording, hasTeluguVoice, isAndroid, loadManifest, narrate, narrateAll, useVoices, type SpeakOptions } from "@/lib/speak";
 import { strings, type Bi as BiLabel } from "@/lib/strings";
 import { needsSlow } from "@/learning/complexity";
 import { showTeluguHelp, TELUGU_HELP_ID } from "./TeluguVoiceHelp";
@@ -64,6 +64,49 @@ export function Narrate({
       {slow && needsSlow(say) && (
         <button type="button" disabled={voices === null} onClick={() => play(true)} aria-label={strings.listenSlow.en} title={strings.listenSlow.en} className={listenButton(size)}>
           <Icon name="turtle" className={size === "lg" ? "size-7" : "size-6"} />
+        </button>
+      )}
+    </span>
+  );
+}
+
+/**
+ * A text-sized Listen at the end of the line it reads (owner, 2026-11-09): the question's prompt, or the feedback's
+ * line after Check. `read` plays in order on a tap (the sentence, then the reason); `auto` (if given) plays by itself
+ * when it appears, with Auto-play on. `slow` adds a text-sized Slow when the first text needs it (`needsSlow`).
+ * Bi texts follow Learn in. The icons look small, but each keeps a finger-sized tap area.
+ */
+export function ListenInline({ read, auto, slow = false }: { read: (string | BiLabel)[]; auto?: (string | BiLabel)[]; slow?: boolean }) {
+  const learnIn = useLearnIn();
+  const settings = useSettings();
+  const voices = useVoices();
+  const texts = read.map((t) => (typeof t === "string" ? t : t[learnIn]));
+  const autoTexts = (auto ?? []).map((t) => (typeof t === "string" ? t : t[learnIn]));
+  const autoKey = settings?.autoPlay === true ? autoTexts.join("\n") : "";
+
+  useEffect(() => {
+    void loadManifest();
+  }, []);
+
+  useEffect(() => {
+    if (autoKey) narrateAll(autoKey.split("\n"));
+  }, [autoKey]);
+
+  const play = (slowly: boolean) => {
+    if (slowly) narrate(texts[0], { slow: true });
+    else narrateAll(texts);
+    const telugu = texts.find((t) => HAS_TELUGU.test(t) && !hasRecording(t));
+    if (telugu && isAndroid() && !hasTeluguVoice() && !getSettings().dismissed.includes(TELUGU_HELP_ID)) showTeluguHelp();
+  };
+
+  return (
+    <span className="ml-1.5 inline-flex items-baseline gap-2 whitespace-nowrap" data-say={texts.join(" | ")}>
+      <button type="button" disabled={voices === null} onClick={() => play(false)} aria-label={strings.listen.en} title={strings.listen.en} className={inlineListenButton}>
+        <Icon name="speaker" className="size-[1.15em]" />
+      </button>
+      {slow && needsSlow(texts[0]) && (
+        <button type="button" disabled={voices === null} onClick={() => play(true)} aria-label={strings.listenSlow.en} title={strings.listenSlow.en} className={inlineListenButton}>
+          <Icon name="turtle" className="size-[1.15em]" />
         </button>
       )}
     </span>

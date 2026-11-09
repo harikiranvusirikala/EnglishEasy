@@ -4,7 +4,8 @@ import type { AudioVoice } from "./audio-manifest";
 /**
  * Everything the player reads aloud for a day, in both Learn-in languages, so `npm run audio` can record it all ahead
  * of time and the player can fetch a lesson's clips for offline (BUILD_PLAN "one recorded voice"). It mirrors what the
- * screens pass to `speak` / `narrate`; anything missed still plays, in the phone's own voice.
+ * screens pass to `speak` / `narrate`; anything missed still plays, in the phone's own voice. After Check, the feedback's
+ * speaker also reads the question's reason (`why`) in the Learn-in language (owner, 2026-11-09), so both are listed.
  */
 export type Spoken = { text: string; voice: AudioVoice };
 
@@ -25,14 +26,14 @@ function ofActivity(activity: Activity): (string | Bi | Spoken | undefined)[] {
     case "dontSay":
       return [activity.right];
     case "choose":
-      return [askText(activity.prompt, activity.say), activity.say ?? activity.options[activity.answer]];
+      return [askText(activity.prompt, activity.say), activity.say ?? activity.options[activity.answer], activity.why];
     case "fillBlank":
-      return [activity.sentence.replace("___", activity.options[activity.answer])];
+      return [activity.sentence.replace("___", activity.options[activity.answer]), activity.why];
     case "arrange":
     case "translate":
       return [activity.answer];
     case "findMistake":
-      return [activity.fix];
+      return [activity.fix, activity.why];
     case "listenChoose":
     case "repeat":
       return [activity.say];

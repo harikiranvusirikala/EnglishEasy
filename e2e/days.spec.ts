@@ -45,6 +45,15 @@ test("Week 2's Conversation Day opens on its dialogue, and its review day opens"
   await expect(page.getByRole("button", { name: /^(Continue|Check)/ }).first()).toBeVisible();
 });
 
+test("a warm-up question ends with a text-sized Listen inside the question", async ({ page }) => {
+  await page.addInitScript(([key]) => localStorage.setItem(key, JSON.stringify({ learnIn: "te", onboarded: true })), [SETTINGS_KEY]);
+  await page.goto("/learn/play?l=i-am-you-are");
+  await page.getByRole("button", { name: /^Start/ }).click();
+  const question = page.getByRole("heading", { level: 2, name: /అంటే ఏంటి/ });
+  await expect(question.getByRole("button", { name: "Listen" })).toBeVisible(); // inside the question, not on its own row
+  await page.screenshot({ path: "test-results/screenshots/question-listen-inline.png" });
+});
+
 // Weeks 3 on: every released day opens in the player and on its lesson page (English mode; Weeks 1–2 above cover Telugu mode too).
 for (const week of course.stages.flatMap((s) => s.weeks).filter((w) => w.released && w.n >= 3)) {
   test(`Week ${week.n}: every day opens in the player and on its lesson page`, async ({ page }) => {

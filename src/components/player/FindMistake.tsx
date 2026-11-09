@@ -6,7 +6,7 @@ import { focusRing } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icons";
 import type { Activity } from "@/content/types";
 import { strings } from "@/lib/strings";
-import { Narrate } from "./Narrate";
+import { ListenInline } from "./Narrate";
 import { BottomBar, FeedbackPanel, Instruction, MainButton, OPTION, toneOf, type OptionState } from "./parts";
 import { useQuestion } from "./useQuestion";
 import { useRevealAbove } from "./Question";
@@ -55,15 +55,13 @@ export function FindMistake({ activity, onAnswer, onNext }: Props) {
       </div>
       <BottomBar tone={tone}>
         {kind && (
-          <FeedbackPanel kind={kind} action={judged && <Narrate text={activity.fix} auto variant="compact" />}>
+          <FeedbackPanel kind={kind} label={result === "failed" ? strings.sayItLike : undefined} answer={result === "failed" ? <span className="font-bold">{activity.fix}</span> : undefined}>
             {judged && (
               <>
-                <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-lg">
-                  <span>{strings.sayItLike.en}:</span>
-                  <span className="font-semibold">{activity.fix}</span>
-                </p>
-                <p className="text-base text-ink-2">
+                {result === "correct" && <p className="text-lg font-semibold">{activity.fix}</p>}
+                <p className="text-lg">
                   <ContentText text={activity.why} />
+                  <ListenInline read={[activity.fix, activity.why]} auto={result === "failed" ? [activity.fix, activity.why] : [activity.fix]} />
                 </p>
               </>
             )}

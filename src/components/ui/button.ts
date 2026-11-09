@@ -56,6 +56,12 @@ export function listenButton(size: "md" | "lg" = "md"): string {
   return `inline-flex shrink-0 items-center justify-center rounded-full bg-brand-soft text-brand-ink ring-1 ring-inset ring-brand/15 transition-[background-color,transform] duration-150 hover:bg-brand-soft-hover active:scale-95 motion-reduce:active:scale-100 disabled:opacity-55 ${FOCUS} ${size === "lg" ? "size-14" : "size-13"}`;
 }
 
+/**
+ * A text-sized Listen / Slow at the end of a line (questions and feedback): a teal icon as big as the text, with an
+ * invisible tap area of about 44 px around it (`before:`), so it is still easy to hit.
+ */
+export const inlineListenButton = `relative inline-flex translate-y-[0.15em] items-center justify-center rounded-md text-brand transition-colors duration-150 before:absolute before:-inset-3 before:content-[''] hover:text-brand-ink disabled:opacity-55 motion-reduce:transition-none ${FOCUS}`;
+
 /** A button that stays chosen (reminder times, feedback faces and topics): teal when selected, set aria-pressed. */
 export function choiceButton(selected: boolean): string {
   return `min-h-13 rounded-2xl border px-3 text-base font-medium transition-colors duration-150 motion-reduce:transition-none disabled:opacity-55 ${FOCUS} ${

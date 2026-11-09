@@ -3,7 +3,6 @@
 import { ContentText } from "@/components/ui/ContentText";
 import type { Activity } from "@/content/types";
 import { askText } from "@/learning/spoken";
-import { Prompt } from "./parts";
 import { Question } from "./Question";
 
 type Props<T extends Activity["type"]> = { activity: Extract<Activity, { type: T }>; onAnswer: (correct: boolean) => void; onNext: () => void };
@@ -18,12 +17,9 @@ export function Choose({ activity, onAnswer, onNext }: Props<"choose">) {
       why={activity.why}
       say={activity.say}
       ask={askText(activity.prompt, activity.say)}
+      prompt={<ContentText text={activity.prompt} />}
       onAnswer={onAnswer}
       onNext={onNext}
-    >
-      <Prompt>
-        <ContentText text={activity.prompt} />
-      </Prompt>
-    </Question>
+    />
   );
 }

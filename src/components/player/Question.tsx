@@ -8,8 +8,8 @@ import { narrate, useVoices } from "@/lib/speak";
 import { listenButton } from "@/components/ui/button";
 import { needsSlow } from "@/learning/complexity";
 import { strings, type Bi as BiLabel } from "@/lib/strings";
-import { BottomBar, FeedbackPanel, MainButton, OptionButton, Text, toneOf, type OptionState } from "./parts";
-import { Narrate } from "./Narrate";
+import { BottomBar, FeedbackPanel, MainButton, OptionButton, Prompt, Text, toneOf, type OptionState } from "./parts";
+import { ListenInline, Narrate } from "./Narrate";
 import { useQuestion } from "./useQuestion";
 
 /** A big round play button for questions that are heard rather than read (Listen and choose); Slow beside it when the sentence is medium or high complexity. */
@@ -42,7 +42,12 @@ export function ListenHero({ say }: { say: string }) {
 /**
  * The shared body of a one-right-answer question: lettered answer cards, the Check → Continue button and the feedback
  * in the tinted bottom bar. `answerText` is the answer shown after two wrong tries; `why` is the reason (follows Learn in).
- * `children` may be a function of the selected option, for a live preview (the blank filled in).
+ * `prompt` is the question's text; with `say`, a text-sized Listen (and Slow) ends it. `children` may be a function of
+ * the selected option, for a live preview (the blank filled in).
+ *
+ * After Check (owner, 2026-11-09) the bar's one Listen ends the line under the title: right → the reason (or the
+ * sentence) is shown, the sentence plays, and a tap plays the sentence then the reason; "Almost" → only the reason,
+ * which plays as a hint (never the answer); wrong twice → "The answer is …", and the sentence then the reason play.
  */
 export function Question({
   options,
@@ -52,6 +57,7 @@ export function Question({
   say,
   ask,
   hero = false,
+  prompt,
   onAnswer,
   onNext,
   children,
@@ -63,8 +69,9 @@ export function Question({
   say?: string;
   /** What the question's Listen reads, when more than `say` (the whole prompt; `askText`). The feedback still reads `say`. */
   ask?: string | BiLabel;
-  /** Play `say` from a big central button instead of the small pair. */
+  /** Play `say` from a big central button (Listen and choose), not at the end of the prompt. */
   hero?: boolean;
+  prompt?: ReactNode;
   onAnswer: (correct: boolean) => void;
   onNext: () => void;
   children?: ReactNode | ((selected: number | null, judged: boolean) => ReactNode);
@@ -73,6 +80,12 @@ export function Question({
   const judged = result === "correct" || result === "failed"; // only then is the answer read aloud: "Almost" must not give it away
   const kind = result === "correct" ? "correct" : result === "almost" ? "almost" : result === "failed" ? "answer" : null;
   const tone = toneOf(kind);
+  const sentence = say ?? answerText; // what the feedback reads: the sentence heard or built, else the answer
+  // The line under the title: the reason; else the sentence, unless "Almost" (it would give the answer away) or the
+  // title already shows it ("The answer is …" with no separate sentence), where the Listen joins the title instead.
+  const line = why ? true : result === "correct" || (result === "failed" && say !== undefined);
+  const reads = result === "almost" && why ? [why] : why ? [sentence, why] : [sentence]; // a tap
+  const autoReads = result === "failed" ? reads : result === "almost" ? reads : [sentence]; // by itself: never the reason after a right answer
   const group = useRef<HTMLDivElement>(null);
   useRevealAbove(group, result);
 
@@ -85,8 +98,14 @@ export function Question({
   return (
     <>
       <div className="flex flex-col gap-5">
+        {prompt && (
+          <Prompt>
+            {prompt}
+            {say && !hero && <ListenInline read={[ask ?? say]} auto={[ask ?? say]} slow />}
+          </Prompt>
+        )}
         {typeof children === "function" ? children(selected, judged) : children}
-        {say && (hero ? <ListenHero say={say} /> : <Narrate text={ask ?? say} auto slow />)}
+        {say && hero && <ListenHero say={say} />}
         <div ref={group} role="group" className="flex flex-col gap-3">
           {options.map((option, i) => (
             <OptionButton key={i} index={i} text={option} state={stateOf(i)} disabled={result !== null} onClick={() => setSelected(i)} />
@@ -95,16 +114,22 @@ export function Question({
       </div>
       <BottomBar tone={tone}>
         {kind && (
-          <FeedbackPanel kind={kind} action={judged && <Narrate text={say ?? answerText} auto variant="compact" />}>
-            {result === "failed" && (
-              <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-lg">
-                <span>{strings.answerIs.en}:</span>
-                <Text className="font-semibold">{answerText}</Text>
-              </p>
-            )}
-            {why && (
-              <p className="text-base text-ink-2">
-                <ContentText text={why} />
+          <FeedbackPanel
+            kind={kind}
+            label={result === "failed" ? strings.answerIs : undefined}
+            answer={
+              result === "failed" ? (
+                <>
+                  <Text className="font-bold">{answerText}</Text>
+                  {!line && <ListenInline read={[sentence]} auto={[sentence]} />}
+                </>
+              ) : undefined
+            }
+          >
+            {line && (
+              <p className="text-lg">
+                {why ? <ContentText text={why} /> : <Text className="font-semibold">{sentence}</Text>}
+                <ListenInline read={reads} auto={autoReads} />
               </p>
             )}
           </FeedbackPanel>

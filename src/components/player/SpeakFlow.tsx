@@ -9,7 +9,7 @@ import { listen, stopListening, useListenSupport } from "@/lib/listen";
 import { useSettings } from "@/lib/settings-store";
 import { strings } from "@/lib/strings";
 import { MicButton } from "./MicButton";
-import { Narrate } from "./Narrate";
+import { ListenInline } from "./Narrate";
 import { BottomBar, FeedbackPanel, MainButton, Text, toneOf } from "./parts";
 
 type Note = "denied" | "unsupported";
@@ -110,10 +110,10 @@ export function SpeakBar({
             <Text className="font-semibold">{outcome.heard}</Text>
           </p>
           {(accepted || spent) && (
-            <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-lg">
-              <span>{strings.youCouldSay.en}:</span>
+            <p className="text-lg">
+              <span>{strings.youCouldSay.en}: </span>
               <Text className="font-semibold">{expected[outcome.best]}</Text>
-              <Narrate text={expected[outcome.best]} auto variant="compact" />
+              <ListenInline read={[expected[outcome.best]]} auto={[expected[outcome.best]]} />
             </p>
           )}
         </FeedbackPanel>

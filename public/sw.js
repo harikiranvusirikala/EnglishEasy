@@ -6,6 +6,7 @@ var VERSION = "1";
 var PAGES = "ee-pages-" + VERSION;
 var STATIC = "ee-static-" + VERSION;
 var CONTENT = "ee-content-" + VERSION;
+var CLIPS = "ee-clips-" + VERSION;
 var NAVIGATION_WAIT = 4000; // on a slow connection, a page already kept is shown after this long
 
 var routes = self.swRoutes;
@@ -24,10 +25,11 @@ self.addEventListener("activate", function (event) {
       .then(function (names) {
         return Promise.all(
           names
-            .filter(function (name) { return name.indexOf("ee-") === 0 && [PAGES, STATIC, CONTENT].indexOf(name) < 0; })
+            .filter(function (name) { return name.indexOf("ee-") === 0 && [PAGES, STATIC, CONTENT, CLIPS].indexOf(name) < 0; })
             .map(function (name) { return caches.delete(name); }),
         );
       })
+      .then(dropOldClips)
       .then(function () { return self.clients.claim(); }),
   );
 });
@@ -53,6 +55,7 @@ self.addEventListener("fetch", function (event) {
   var strategy = routes.strategyFor(request, self.location.origin);
   if (strategy === "ignore") return;
   if (strategy === "cache-first") event.respondWith(cacheFirst(request));
+  else if (strategy === "clip") event.respondWith(clip(request));
   else if (strategy === "stale-while-revalidate") event.respondWith(staleWhileRevalidate(request));
   else event.respondWith(networkFirst(request));
 });
@@ -102,6 +105,55 @@ function cacheFirst(request) {
         if (response.ok) cache.put(request, response.clone());
         return response;
       });
+    });
+  });
+}
+
+/**
+ * A recorded clip: from the clip cache, else the network. Each play moves the clip to the end of the cache's order, and
+ * the oldest beyond CLIP_LIMIT are deleted, so the clips of the lessons in use stay offline and storage stays small.
+ */
+function clip(request) {
+  return caches.open(CLIPS).then(function (cache) {
+    return cache.match(request).then(function (found) {
+      if (found) {
+        cache.put(request, found.clone()).catch(function () {}); // a put replaces the entry and moves it to the end
+        return found;
+      }
+      return fetch(request).then(function (response) {
+        // A part of a file (206, an audio element's range request) can't be kept.
+        if (response.status === 200) cache.put(request, response.clone()).then(trimClips).catch(function () {});
+        return response;
+      });
+    });
+  });
+}
+
+var trimming = null;
+function trimClips() {
+  if (!trimming) {
+    trimming = caches
+      .open(CLIPS)
+      .then(function (cache) {
+        return cache.keys().then(function (keys) {
+          return Promise.all(routes.clipsToDrop(keys, routes.CLIP_LIMIT).map(function (key) { return cache.delete(key); }));
+        });
+      })
+      .catch(function () {})
+      .then(function () { trimming = null; });
+  }
+  return trimming;
+}
+
+/** Clips kept by an older worker in the shared static cache (before the clip cache, and before clips had folders). */
+function dropOldClips() {
+  return caches.open(STATIC).then(function (cache) {
+    return cache.keys().then(function (keys) {
+      return Promise.all(
+        keys
+          .filter(function (key) { return new URL(key.url).pathname.indexOf("/audio/") === 0; })
+          .map(function (key) { return cache.delete(key); }),
+      );
     });
   });
 }

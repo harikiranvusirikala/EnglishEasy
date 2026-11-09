@@ -4,9 +4,11 @@ import { describe, expect, it } from "vitest";
 // public/sw-routes.js is a plain script (the service worker loads it); tests load it with require.
 const routes = createRequire(import.meta.url)("../../public/sw-routes.js") as {
   SHELL: string[];
+  CLIP_LIMIT: number;
   strategyFor: (request: { url: string; method: string; mode?: string }, origin: string) => string;
   pageKey: (href: string, origin: string) => string;
   assetsIn: (text: string) => string[];
+  clipsToDrop: <T>(keys: T[], limit: number) => T[];
 };
 
 const ORIGIN = "https://englisheasy.test";
@@ -22,7 +24,14 @@ describe("service worker routing", () => {
   it("keeps hashed files, icons and recorded clips cache-first", () => {
     expect(decide("/_next/static/chunks/abc123.js")).toBe("cache-first");
     expect(decide("/icons/icon-192.png")).toBe("cache-first");
-    expect(decide("/audio/1a2b3c4d.mp3")).toBe("cache-first");
+  });
+
+  it("keeps recorded clips in their own cache, dropping the oldest beyond the limit", () => {
+    expect(decide("/audio/1a/1a2b3c4d.mp3")).toBe("clip");
+    expect(decide("/audio/1a/b-1a2b3c4d.mp3")).toBe("clip");
+    expect(routes.clipsToDrop(["a", "b", "c", "d"], 3)).toEqual(["a"]);
+    expect(routes.clipsToDrop(["a", "b", "c"], 3)).toEqual([]);
+    expect(routes.CLIP_LIMIT).toBeGreaterThanOrEqual(1000);
   });
 
   it("loads pages from the network first", () => {

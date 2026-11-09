@@ -26,6 +26,9 @@ export function textHash(text: string): string {
 /** The manifest key: the text's hash, with `b-` in front for the second dialogue voice. */
 export const audioKey = (text: string, voice: AudioVoice = "a") => (voice === "b" ? `b-${textHash(text)}` : textHash(text));
 
+/** Where a key's clip lives under /audio/: a subfolder named by the hash's first two digits (`3f/b-3f9a12bc.mp3`). */
+export const clipFile = (key: string) => `${key.slice(-8, -6)}/${key}.mp3`;
+
 /** The URL of the recording for `text` in that voice, or null when there is none. */
 export function audioUrl(manifest: AudioManifest | null, text: string, voice: AudioVoice = "a"): string | null {
   const file = manifest?.[audioKey(text, voice)];

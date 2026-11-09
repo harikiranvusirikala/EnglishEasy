@@ -4,10 +4,13 @@
   /** The pages that make the app work offline; fetched when the worker installs. */
   var SHELL = ["/learn", "/learn/play", "/learn/journey", "/learn/practice", "/learn/settings", "/offline"];
 
+  /** Recorded clips a phone keeps (~20 MB, about two weeks of lessons); the least recently played go first. */
+  var CLIP_LIMIT = 1500;
+
   /**
    * What to do with a request: "ignore" (the browser handles it), "network-first" (pages),
    * "stale-while-revalidate" (lesson files: answer from the cache now, refresh it in the background),
-   * or "cache-first" (files whose address changes when they do).
+   * "cache-first" (files whose address changes when they do), or "clip" (cache-first, in the clip cache, which is trimmed).
    */
   function strategyFor(request, origin) {
     var url = new URL(request.url);
@@ -17,7 +20,7 @@
     if (path.indexOf("/content/") === 0 && /\.json$/.test(path)) return "stale-while-revalidate";
     if (path === "/audio/manifest.json") return "stale-while-revalidate";
     if (path.indexOf("/_next/static/") === 0 || path.indexOf("/icons/") === 0) return "cache-first";
-    if (path.indexOf("/audio/") === 0 && /\.mp3$/.test(path)) return "cache-first"; // a clip's name changes with its text
+    if (path.indexOf("/audio/") === 0 && /\.mp3$/.test(path)) return "clip"; // a clip's name changes with its text
     if (request.mode === "navigate") return "network-first";
     return "ignore"; // includes Next's own page-data requests (?_rsc=): if they fail, Next reloads the page, which is a navigation
   }
@@ -37,7 +40,12 @@
     return Object.keys(found);
   }
 
-  var api = { SHELL: SHELL, strategyFor: strategyFor, pageKey: pageKey, assetsIn: assetsIn };
+  /** The clips to delete: the oldest beyond the limit (`keys` in the clip cache's order, oldest first). */
+  function clipsToDrop(keys, limit) {
+    return keys.length > limit ? keys.slice(0, keys.length - limit) : [];
+  }
+
+  var api = { SHELL: SHELL, CLIP_LIMIT: CLIP_LIMIT, strategyFor: strategyFor, pageKey: pageKey, assetsIn: assetsIn, clipsToDrop: clipsToDrop };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.swRoutes = api;
 })(typeof self !== "undefined" ? self : globalThis);

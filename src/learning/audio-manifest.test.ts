@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { audioKey, audioUrl, parseManifest, speechText, textHash } from "./audio-manifest";
+import { audioKey, audioUrl, clipFile, parseManifest, speechText, textHash } from "./audio-manifest";
 
 describe("audio manifest", () => {
   it("hashes the same text to the same 8 hex digits, ignoring extra spaces", () => {
@@ -30,6 +30,12 @@ describe("audio manifest", () => {
 
   it("parses tolerantly", () => {
     expect(parseManifest({ a: "x.mp3", b: 3 })).toEqual({ a: "x.mp3" });
+  });
+
+  it("files a clip under the first two digits of its hash, for either voice", () => {
+    expect(clipFile("3f9a12bc")).toBe("3f/3f9a12bc.mp3");
+    expect(clipFile("b-3f9a12bc")).toBe("3f/b-3f9a12bc.mp3");
+    expect(audioUrl({ [audioKey("Hi.")]: clipFile(audioKey("Hi.")) }, "Hi.")).toBe(`/audio/${textHash("Hi.").slice(0, 2)}/${textHash("Hi.")}.mp3`);
     expect(parseManifest(null)).toEqual({});
     expect(parseManifest([1])).toEqual({});
     expect(parseManifest("x")).toEqual({});

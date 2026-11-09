@@ -26,7 +26,7 @@ export const day: Lesson = {
     { en: "I have two brothers.", te: "నాకు ఇద్దరు అన్నదమ్ములు ఉన్నారు.", extra: ["brother"] },
     { en: "We need five chairs.", te: "మాకు ఐదు కుర్చీలు కావాలి.", extra: ["chair"] },
     { en: "Count from one to ten.", te: "ఒకటి నుండి పది వరకు లెక్కపెట్టండి.", extra: ["at"] },
-    { en: "What is your phone number?", te: "మీ ఫోన్ నంబర్ ఏమిటి?", extra: ["Where"] },
+    { en: "What is your phone number?", te: "మీ ఫోన్ నంబర్ ఏంటి?", extra: ["Where"] },
     { en: "She is seventy-two years old.", te: "ఆవిడ వయసు డెబ్బై రెండు.", extra: ["has"] },
   ],
   key: [0, 1, 2, 5],

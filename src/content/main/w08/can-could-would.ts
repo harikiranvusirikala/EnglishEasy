@@ -202,7 +202,7 @@ export const day: Lesson = {
       },
       {
         partner: "Sure. What is it?",
-        te: "తప్పకుండా. ఏమిటి?",
+        te: "తప్పకుండా. ఏంటి?",
         hint: { en: "Ask: Could you read this sign for me?", te: "అడగండి: Could you read this sign for me?" },
         replies: [
           { say: "Could you read this sign for me?", good: true, skill: "polite" },

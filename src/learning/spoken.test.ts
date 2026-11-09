@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import type { PlayableDay } from "@/content/types";
 import { askText, spokenTexts } from "./spoken";
 
-const prompt = { en: 'What does "I walk every morning." mean?', te: '"I walk every morning." అంటే ఏమిటి?' };
+const prompt = { en: 'What does "I walk every morning." mean?', te: '"I walk every morning." అంటే ఏంటి?' };
 
 describe("askText", () => {
   it("reads the whole prompt when it holds the sentence, else the sentence", () => {

@@ -28,7 +28,7 @@ export const day: ConversationDay = {
       { speaker: { en: "Dr Lakshmi", te: "డాక్టర్ లక్ష్మి" }, voice: "a", en: "Yes, this one, twice a day.", te: "అవును, ఇది, రోజుకు రెండుసార్లు." },
     ],
     questions: [
-      { prompt: { en: "What is Ramana's problem?", te: "రమణ సమస్య ఏమిటి?" }, options: ["A headache and a cough", "A knee pain", "A stomach ache"], answer: 0 },
+      { prompt: { en: "What is Ramana's problem?", te: "రమణ సమస్య ఏంటి?" }, options: ["A headache and a cough", "A knee pain", "A stomach ache"], answer: 0 },
       { prompt: { en: "When did it start?", te: "అది ఎప్పుడు మొదలైంది?" }, options: ["Yesterday", "Three days ago", "Last week"], answer: 1 },
       { prompt: { en: "How often should he take the tablet?", te: "మాత్ర ఎన్నిసార్లు వేసుకోవాలి?" }, options: ["Once a day", "Twice a day", "Three times a day"], answer: 1 },
     ],

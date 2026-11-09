@@ -22,10 +22,10 @@ export const day: Lesson = {
     { text: "live?", role: "action" },
   ],
   core: [
-    { en: "What is this?", te: "ఇది ఏమిటి?", extra: ["Where"] },
+    { en: "What is this?", te: "ఇది ఏంటి?", extra: ["Where"] },
     { en: "Where is the bus stand?", te: "బస్ స్టాండ్ ఎక్కడ ఉంది?", extra: ["What"] },
     { en: "Where do you live?", te: "మీరు ఎక్కడ ఉంటారు?", extra: ["are"] },
-    { en: "What is your name?", te: "మీ పేరు ఏమిటి?", extra: ["Where"] },
+    { en: "What is your name?", te: "మీ పేరు ఏంటి?", extra: ["Where"] },
     { en: "What do you do?", te: "మీరు ఏం పని చేస్తారు?", extra: ["are"] },
     { en: "I live in Guntur.", te: "నేను గుంటూరులో ఉంటాను.", extra: ["at"] },
     { en: "Where are you going?", te: "మీరు ఎక్కడికి వెళ్తున్నారు?", extra: ["do"] },
@@ -63,7 +63,7 @@ export const day: Lesson = {
         ],
       },
       examples: [
-        { en: "What is this?", te: "ఇది ఏమిటి?" },
+        { en: "What is this?", te: "ఇది ఏంటి?" },
         { en: "Where is the bus stand?", te: "బస్ స్టాండ్ ఎక్కడ ఉంది?" },
         { en: "Where do you live?", te: "మీరు ఎక్కడ ఉంటారు?" },
       ],
@@ -76,7 +76,7 @@ export const day: Lesson = {
         {
           form: "what",
           useFor: { en: "Use what for a thing, a name or work.", te: "ఒక వస్తువు, పేరు లేదా పని గురించి అడగడానికి what." },
-          example: { en: "What is your name?", te: "మీ పేరు ఏమిటి?" },
+          example: { en: "What is your name?", te: "మీ పేరు ఏంటి?" },
         },
         {
           form: "where",
@@ -130,7 +130,7 @@ export const day: Lesson = {
       id: "p2",
       type: "fillBlank",
       sentence: "___ is your name?",
-      te: "మీ పేరు ఏమిటి?",
+      te: "మీ పేరు ఏంటి?",
       options: ["What", "Where", "Who"],
       answer: 0,
       why: {
@@ -204,7 +204,7 @@ export const day: Lesson = {
     turns: [
       {
         partner: "Hello! What is your name?",
-        te: "నమస్తే! మీ పేరు ఏమిటి?",
+        te: "నమస్తే! మీ పేరు ఏంటి?",
         hint: { en: "Say: My name is, then your name.", te: "My name is అని, తర్వాత మీ పేరు చెప్పండి." },
         replies: [
           { say: "My name is Padma.", good: true, skill: "answer" },

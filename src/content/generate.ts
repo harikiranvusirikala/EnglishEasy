@@ -21,7 +21,7 @@ import type { Activity, Bi, Day, Lesson, PlayableDay, PlayableSection, ReviewDay
 
 export const MATCH_PAIRS = 4;
 
-const promptWarmup = (sentence: string): Bi => ({ en: `What does "${sentence}" mean?`, te: `"${sentence}" అంటే ఏమిటి?` });
+const promptWarmup = (sentence: string): Bi => ({ en: `What does "${sentence}" mean?`, te: `"${sentence}" అంటే ఏంటి?` });
 const promptListen: Bi = { en: "Listen. What does it mean?", te: "విని, దాని అర్థం ఏమిటో ఎంచుకోండి." };
 
 // ---- tiles ----

@@ -92,7 +92,7 @@ export const day: ConversationDay = {
         },
         {
           partner: "What is her name?",
-          te: "ఆమె పేరు ఏమిటి?",
+          te: "ఆమె పేరు ఏంటి?",
           hint: { en: "Say: Her name is Usha.", te: "ఇలా చెప్పండి: Her name is Usha." },
           replies: [
             { say: "Her name is Usha.", good: true, skill: "whose" },

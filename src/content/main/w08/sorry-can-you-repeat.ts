@@ -24,7 +24,7 @@ export const day: Lesson = {
     { en: "Sorry, I don't understand.", te: "క్షమించండి, నాకు అర్థం కాలేదు.", extra: ["not"] },
     { en: "Could you say that again?", te: "మళ్ళీ ఒకసారి చెప్పగలరా?", extra: ["tell"] },
     { en: "Can you speak slowly, please?", te: "దయచేసి నెమ్మదిగా మాట్లాడగలరా?", extra: ["slow"] },
-    { en: "What does this word mean?", te: "ఈ పదానికి అర్థం ఏమిటి?", extra: ["means"] },
+    { en: "What does this word mean?", te: "ఈ పదానికి అర్థం ఏంటి?", extra: ["means"] },
     { en: "Please repeat the number.", te: "దయచేసి ఆ నంబర్ మళ్ళీ చెప్పండి.", extra: ["repeating"] },
     { en: "Can you spell that, please?", te: "దయచేసి దాని స్పెల్లింగ్ చెప్పగలరా?", extra: ["spelling"] },
     { en: "Sorry, the line is not clear.", te: "క్షమించండి, లైన్ సరిగ్గా వినిపించడం లేదు.", extra: ["clean"] },
@@ -84,7 +84,7 @@ export const day: Lesson = {
         {
           form: "What does … mean?",
           useFor: { en: "When you don't know a word.", te: "ఒక పదం తెలియనప్పుడు." },
-          example: { en: "What does this word mean?", te: "ఈ పదానికి అర్థం ఏమిటి?" },
+          example: { en: "What does this word mean?", te: "ఈ పదానికి అర్థం ఏంటి?" },
         },
       ],
     },

@@ -9,7 +9,7 @@ import type { AudioVoice } from "./audio-manifest";
 export type Spoken = { text: string; voice: AudioVoice };
 
 /**
- * What a question's Listen reads: the whole prompt when it contains the sentence (`"I walk every morning." అంటే ఏమిటి?`,
+ * What a question's Listen reads: the whole prompt when it contains the sentence (`"I walk every morning." అంటే ఏంటి?`,
  * owner 2026-11-08), else just the sentence. Listening questions keep the sentence alone (their prompt gives nothing more).
  */
 export function askText(prompt: Bi, say: string | undefined): Bi | string | undefined {

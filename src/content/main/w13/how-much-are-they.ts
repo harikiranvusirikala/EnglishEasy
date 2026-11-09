@@ -138,7 +138,7 @@ export const day: Lesson = {
       type: "choose",
       prompt: {
         en: "The seller says: That comes to 240 rupees. What does it mean?",
-        te: "అమ్మేవారు That comes to 240 rupees అన్నారు. అర్థం ఏమిటి?",
+        te: "అమ్మేవారు That comes to 240 rupees అన్నారు. అర్థం ఏంటి?",
       },
       options: ["The total is 240 rupees.", "One kilo is 240 rupees.", "You get 240 rupees back."],
       answer: 0,

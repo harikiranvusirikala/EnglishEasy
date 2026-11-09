@@ -136,7 +136,7 @@ export const day: Lesson = {
     {
       id: "p3",
       type: "choose",
-      prompt: { en: "What is the past of see?", te: "see కి గతం ఏమిటి?" },
+      prompt: { en: "What is the past of see?", te: "see కి గతం ఏంటి?" },
       options: ["seed", "saw", "seeing"],
       answer: 1,
       why: {

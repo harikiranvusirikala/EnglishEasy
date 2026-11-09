@@ -205,7 +205,7 @@ export const day: Lesson = {
       },
       {
         partner: "What is his name?",
-        te: "అతని పేరు ఏమిటి?",
+        te: "అతని పేరు ఏంటి?",
         hint: { en: "Say: His name is Ravi.", te: "ఇలా చెప్పండి: His name is Ravi." },
         replies: [
           { say: "His name is Ravi.", good: true, skill: "whose" },

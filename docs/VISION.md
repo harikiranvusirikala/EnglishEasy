@@ -482,21 +482,21 @@ The full map — every week of every stage, Stage 1 lesson by lesson, the tracks
 - **Grammar thread** — in a fixed order; each point returns 3–4 times, deeper each time (past tense: Week 1 "I went" → Week 20 "I was going when…" → Week 43 "I have been to…" → Week 83 storytelling).
 - **Life thread** — real situations everyone meets: home, food, health, market, bank, transport, phone calls, offices, neighbours, festivals, technology.
 
-**Each week = one life theme + one grammar focus + about 25 new words** (about 3,000 useful words by Week 150).
+**Each week = one life theme + one grammar focus + about 25 new words** (about 3,500 words by Week 150, counting the English words Telugu speakers already use; CURRICULUM §1a). No week is grammar alone. Persistent Telugu-speaker errors come back about every two weeks through the Fix-it strand (CURRICULUM §2).
 
 ## 11.2 Five stages
 
-No level labels are shown to learners; each stage promises what the learner **can do**.
+No level labels are shown to learners; each stage promises what the learner **can do**, and a checkpoint about every 12–14 weeks (CURRICULUM §2b) ends with a short check that never blocks progress and a certificate to share.
 
 | Stage | Weeks | The learner can… |
 |---|---|---|
-| 1. **Foundations** · పునాది | 1–12 | make simple sentences in the main tenses, ask questions, handle numbers, time, money, people and home |
-| 2. **Everyday Life** · రోజువారీ జీవితం | 13–40 | shop, see a doctor, use transport, make phone calls, bank, talk to neighbours, describe people and places |
-| 3. **Confident Conversations** · ధైర్యంగా మాట్లాడటం | 41–80 | tell what happened, explain a problem, give an opinion, handle officials and travel |
-| 4. **Fluent Everyday English** · సులభంగా ఇంగ్లీష్ | 81–120 | hold longer conversations, follow news and stories, use common phrasal verbs and idioms |
-| 5. **Natural English** · సహజమైన ఇంగ్లీష్ | 121–150 | speak politely or casually as needed, persuade, tell stories, understand fast natural speech |
+| 1. **Foundations** · పునాది | 1–12 | introduce themselves, give their phone number and address, spell their name, ask people to repeat slowly, ask for help |
+| 2. **Everyday Life** · రోజువారీ జీవితం | 13–40 | shop, get around, see a doctor, handle an emergency, stay safe from scam calls, use WhatsApp and UPI, deal with offices and government services, make small talk and plans |
+| 3. **Confident Conversations** · ధైర్యంగా మాట్లాడటం | 41–80 | tell stories from their life, give opinions, return things and complain politely, follow doctors, officials and announcements, persuade gently |
+| 4. **Fluent Everyday English** · సులభంగా ఇంగ్లీష్ | 81–120 | hold longer conversations, tell long stories, follow talks and news, speak at a meeting, choose formal or informal English |
+| 5. **Natural English** · సహజమైన ఇంగ్లీష్ | 121–150 | reply naturally, disagree politely, follow fast speech, stand up for their rights, give a short speech |
 
-Target: confident everyday English by about Week 120 and natural, polished English by Week 150 (roughly CEFR B1 → B1+/B2; listening may reach B2 before speaking does).
+Honest target (for writers; CURRICULUM §2b): at about 1.4–1.75 hours a week, A1 by the end of Stage 2, A2 by the end of Stage 3, B1 in listening and reading by Week 120, and B1 by Week 150. Survival and safety come first: emergencies, scam calls, address and spelling are in Stages 1–2.
 
 ## 11.3 Weekly rhythm
 
@@ -641,3 +641,4 @@ Every feature should support that goal.
 | 2026-11-09 | Reasons read aloud, text-sized Listen (owner; refines 2026-11-08's audio rule): after Check, the bar's one Listen sits at the end of the reason (or the sentence when there is none). A right answer plays the sentence then the reason by themselves (and again on a tap); "Almost" plays only the reason as a hint; wrong twice plays the sentence then the reason. Questions and the answer bar use a text-sized Listen (Slow beside it for 6+ words) at the end of their text; Listen and choose keeps its big button, Learn cards keep theirs. Learn-card explanations and hints are still not read. |
 | 2026-11-09 | Role play and lesson screens (owner): the role-play scene is read aloud (it plays first, in Learn in, then the partner's first line) and has a text-sized Listen; a partner line's Listen, Slow and "అ" (the Telugu meaning, Telugu mode only) sit on its name row; the role play's microphone is smaller (64 px) with Hint beside it, Listen & Speak's 76 px with "Choose instead" beside it. Every remaining round Listen in lists becomes a text-sized Listen at the start of the sentence (at the block's end for Say). Lesson complete is compact (small medal, one row of numbers, Review as a link). Listen and choose keeps its big button. |
 | 2026-11-09 | Content review (owner; two expert reviews before launch; refines §4.5, §4.6, §5, §7, §11): the right answer's position is shuffled; listening is heard before it is read (a dialogue's first question is answered by ear, "build what you hear" tiles); role-play replies are hidden until "Show replies", hints say what to do, and a weak or rude reply gets the partner's natural reaction; male partners speak in the male voice; a Sound of the week (CURRICULUM §2a) from Week 1, with a minimal-pair question in every lesson; long sentences are repeated in steps; warm-ups reach a week or a month back; a Daily review (5 key sentences a day, spaced 1, 3, 7, 21, 60 days) on Home and in Practice. English stays in the Shruti voice. Telugu follows the spoken-register and respect rules of CURRICULUM §1; the learner's own name is Kiran or Sai. |
+| 2026-11-09 | Curriculum review (owner; refines §11): 150 weeks and five stages stay, reordered: survival and safety earlier (emergencies W18, money safety and scams W21, WhatsApp and UPI W20, government services W28, small talk W34, Indian-English fixes W39), every grammar week given a life theme, repeated topics merged, phrasal-verb and idiom weeks cut to 2 and 1. Checkpoints at Weeks 12, 26, 40, 54, 67, 80, 94, 107, 120, 135, 150 with a non-blocking check and a shareable certificate. Stage 1 keeps its weeks with targeted swaps (lighter Week 1, "Sorry, can you repeat?" in Week 2, new "My address" and "Please help me" lessons). A Fix-it strand, a weekly "Read it" card, listening stories from Week 9 and the Sound of the week to Week 80. Tracks: a goal question on the first visit and each track offered at its own week, with new tracks My Family, English for Work, Hospital & Caregiving and Faith & Community (§11.4 until built). Honest levels replace the B1+/B2 claim. |

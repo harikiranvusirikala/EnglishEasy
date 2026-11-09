@@ -28,14 +28,17 @@ const SR: Record<State, BiLabel> = { complete: strings.stepDone, "in-progress": 
  * (in progress) or faint (not written yet). Sized in rem, so it grows with the text size.
  */
 function Node({ n, state, percent = 0, soon, size = "md" }: { n: number; state: State; percent?: number; soon?: boolean; size?: "md" | "sm" }) {
-  const box = size === "md" ? "size-11 text-base" : "size-9 text-sm";
+  // A week is a big filled station; a day a small stop on the line (owner, 2026-11-09).
+  const week = size === "md";
+  const box = week ? "size-12 text-lg" : "size-7 text-xs";
+  const ring = week ? "ring-2" : "ring-[1.5px]";
   const style = soon
-    ? "bg-sunken text-ink-3 ring-2 ring-inset ring-line"
+    ? `bg-sunken text-ink-3 ${ring} ring-inset ring-line`
     : state === "complete"
       ? "bg-good text-surface"
       : state === "in-progress"
-        ? "bg-surface text-brand-ink ring-[3px] ring-inset ring-brand/20"
-        : "bg-surface text-ink-2 ring-2 ring-inset ring-line-strong";
+        ? `${week ? "bg-sunken" : "bg-surface"} text-brand-ink ring-[3px] ring-inset ring-brand/20`
+        : `${week ? "bg-sunken" : "bg-surface"} text-ink-2 ${ring} ring-inset ring-line-strong`;
   return (
     <>
       <span aria-hidden="true" className={`relative z-[1] flex shrink-0 items-center justify-center rounded-full font-bold tabular-nums ${box} ${style}`}>
@@ -56,17 +59,17 @@ function Node({ n, state, percent = 0, soon, size = "md" }: { n: number; state: 
             />
           </svg>
         )}
-        {!soon && state === "complete" ? <Icon name="check" className={size === "md" ? "size-5" : "size-4"} strokeWidth={3} /> : n}
+        {!soon && state === "complete" ? <Icon name="check" className={week ? "size-5" : "size-3.5"} strokeWidth={3} /> : n}
       </span>
       <span className="sr-only">{SR[state].en}. </span>
     </>
   );
 }
 
-// Rows line their circles up on one path line (WeekPath): a week's circle (2.75rem) sits 0.5rem in, a day's
-// (2.25rem) 0.75rem in, so both centres are 1.875rem from the left.
+// Rows line their circles up on one path line (WeekPath): a week's circle (3rem) sits 0.5rem in, a day's
+// (1.75rem) 1.125rem in, so both centres are 2rem from the left.
 const ROW = `relative flex min-h-16 w-full items-center gap-3 rounded-2xl px-2 py-2 text-left ${focusRing}`;
-const DAY_ROW = `relative flex min-h-16 w-full items-center gap-3 rounded-2xl py-2 pr-2 pl-3 text-left ${focusRing}`;
+const DAY_ROW = `relative flex min-h-16 w-full items-center gap-3 rounded-2xl py-2 pr-2 pl-[1.125rem] text-left ${focusRing}`;
 
 /** A name with a small line under it ("Day 2 · 41% done"), so the name gets the row's whole width. */
 function RowText({ title, caption, status, statusTone = "text-ink-3", big }: { title: string; caption: string; status?: string; statusTone?: string; big?: boolean }) {
@@ -116,7 +119,7 @@ function DayBody({ day }: { day: DayView }) {
   return (
     <div className="my-1 rounded-2xl bg-brand-soft ring-1 ring-brand/25 ring-inset">
       <DayLink day={day} />
-      <div className="px-3 pb-3 sm:pl-[3.75rem]">
+      <div className="px-3 pb-3 sm:pl-[3.625rem]">
         <Link href={`/learn/play?l=${encodeURIComponent(day.id)}`} className={`${button("primary", "md")} w-full`}>
           <Icon name="play" className="size-5" />
           {action.en}
@@ -184,7 +187,7 @@ function WeekRow({ week, progress, written, open, onToggle, nextDay, scrollDay }
   const stats = weekStats(week, progress);
   return (
     <li className="relative">
-      <button type="button" aria-expanded={open} onClick={onToggle} className={`${ROW} hover:bg-sunken ${open ? "bg-sunken" : ""}`}>
+      <button type="button" aria-expanded={open} onClick={onToggle} className={`${ROW} hover:bg-sunken`}>
         <Node n={week.n} state={stats.state} percent={stats.percent} />
         <RowText
           title={week.title.en}
@@ -196,7 +199,7 @@ function WeekRow({ week, progress, written, open, onToggle, nextDay, scrollDay }
         <Icon name="chevronDown" className={`size-5 shrink-0 text-ink-3 transition-transform duration-200 motion-reduce:transition-none ${open ? "rotate-180" : ""}`} />
       </button>
       {open && (
-        <ul aria-label={strings.journeyDays.en} className="mt-1 mb-3 flex animate-fade-in flex-col gap-0.5 motion-reduce:animate-none">
+        <ul aria-label={strings.journeyDays.en} className="mt-1 mb-3 flex animate-fade-in flex-col gap-0.5 rounded-2xl bg-sunken/70 py-1.5 motion-reduce:animate-none">
           {week.days.map((ref, i) => (
             <DayRow
               key={ref.id}
@@ -218,7 +221,7 @@ function WeekRow({ week, progress, written, open, onToggle, nextDay, scrollDay }
 /** The weeks of a stage or track, and an opened week's days, joined by one line through their circles. */
 function WeekPath({ children }: { children: React.ReactNode }) {
   return (
-    <ul className="relative mt-3 flex flex-col gap-0.5 before:absolute before:top-8 before:bottom-8 before:left-[calc(1.875rem-1px)] before:w-0.5 before:rounded-full before:bg-line">
+    <ul className="relative mt-3 flex flex-col gap-0.5 before:absolute before:top-8 before:bottom-8 before:left-[calc(2rem-1px)] before:w-0.5 before:rounded-full before:bg-line">
       {children}
     </ul>
   );

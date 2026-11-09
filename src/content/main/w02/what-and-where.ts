@@ -4,11 +4,11 @@ import type { Lesson } from "../../types";
 export const day: Lesson = {
   id: "what-and-where",
   kind: "lesson",
-  title: { en: "What & Where", te: "ఏమిటి, ఎక్కడ" },
+  title: { en: "What & Where", te: "ఏంటి, ఎక్కడ" },
   subtitle: "what / where",
   summary: {
     en: "Learn to ask what something is and where something is, with the question word first.",
-    te: "ఏదైనా ఏమిటో, ఎక్కడ ఉందో అడగడం నేర్చుకుందాం. ఇంగ్లీష్‌లో ప్రశ్న పదం ముందు వస్తుంది.",
+    te: "ఏదైనా ఏంటో, ఎక్కడ ఉందో అడగడం నేర్చుకుందాం. ఇంగ్లీష్‌లో ప్రశ్న పదం ముందు వస్తుంది.",
   },
   seo: {
     title: "What and Where Questions in English for Telugu Speakers",
@@ -36,7 +36,7 @@ export const day: Lesson = {
     te: "ఎవరినైనా ఇంగ్లీష్‌లో రెండు ప్రశ్నలు అడగండి: What is your name? Where do you live?",
   },
   words: [
-    { en: "what", te: "ఏమిటి" },
+    { en: "what", te: "ఏంటి" },
     { en: "where", te: "ఎక్కడ" },
     { en: "live", te: "ఉండటం, నివసించడం" },
     { en: "name", te: "పేరు" },
@@ -87,7 +87,7 @@ export const day: Lesson = {
           form: "where + do",
           useFor: {
             en: "With an action word like live or work, add do after where.",
-            te: "live, work లాంటి పని పదాలు ఉంటే where తర్వాత do పెట్టాలి.",
+            te: "live, work లాంటి verbs ఉంటే where తర్వాత do పెట్టాలి.",
           },
           example: { en: "Where do you live?", te: "మీరు ఎక్కడ ఉంటారు?" },
         },
@@ -99,8 +99,8 @@ export const day: Lesson = {
       wrong: "Where you live?",
       right: "Where do you live?",
       why: {
-        en: "With an action word like live, the question needs do: Where do you live?",
-        te: "live లాంటి పని పదం ఉంటే ప్రశ్నలో do ఉండాలి: Where do you live?",
+        en: "Telugu needs no extra word, but with an action like live, English needs do: Where do you live?",
+        te: "తెలుగులో ప్రశ్నకి అదనపు పదం అక్కర్లేదు, కానీ live లాంటి verb ఉంటే ఇంగ్లీష్‌లో do కావాలి: Where do you live?",
       },
     },
     {
@@ -123,7 +123,7 @@ export const day: Lesson = {
       answer: 1,
       why: {
         en: "With you and an action word, use do: Where do you live?",
-        te: "you, పని పదం ఉంటే do వాడాలి: Where do you live?",
+        te: "you తో, live లాంటి verb ఉంటే do వాడాలి: Where do you live?",
       },
     },
     {
@@ -134,8 +134,8 @@ export const day: Lesson = {
       options: ["What", "Where", "Who"],
       answer: 0,
       why: {
-        en: "A name is a thing we ask about with what.",
-        te: "పేరు అడగడానికి what వాడతాం.",
+        en: "We ask for a name with what: What is your name?",
+        te: "పేరు అడగడానికి what వాడతాం: What is your name?",
       },
     },
     {
@@ -169,8 +169,8 @@ export const day: Lesson = {
       id: "s1",
       type: "situation",
       situation: {
-        en: "A new neighbour asks: Where do you live? Say your town in English.",
-        te: "కొత్త పొరుగు వాళ్లు అడుగుతున్నారు: Where do you live? మీ ఊరి పేరు ఇంగ్లీష్‌లో చెప్పండి.",
+        en: "Someone on the bus asks: Where do you live? Say your own town in English.",
+        te: "బస్సులో ఒకరు అడుగుతున్నారు: Where do you live? మీ ఊరి పేరు ఇంగ్లీష్‌లో చెప్పండి.",
       },
       expected: ["I live in Guntur.", "I live in Vijayawada.", "I live in Hyderabad."],
       options: ["I live in Guntur.", "I living in Guntur.", "I am live in Guntur."],
@@ -181,7 +181,7 @@ export const day: Lesson = {
       type: "situation",
       situation: {
         en: "You see a new fruit at the shop. Ask what it is.",
-        te: "షాప్‌లో ఒక కొత్త పండు కనిపించింది. అది ఏమిటో అడగండి.",
+        te: "షాప్‌లో ఒక కొత్త పండు కనిపించింది. అది ఏంటో అడగండి.",
       },
       expected: ["What is this?", "What is this fruit?"],
       options: ["This is what?", "What is this?", "Where is this?"],
@@ -193,10 +193,11 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "A new neighbour", te: "కొత్త పొరుగువారు" },
     scene: {
-      en: "Ravi has just moved in next door. He asks about you. Answer, then ask him a question.",
-      te: "రవి పక్కింటికి కొత్తగా వచ్చారు. మీ గురించి అడుగుతున్నారు. జవాబు చెప్పి, మీరూ ఒక ప్రశ్న అడగండి.",
+      en: "Imran has just moved in next door. He asks about you. Answer, then ask him a question.",
+      te: "ఇమ్రాన్ గారు పక్కింటికి కొత్తగా వచ్చారు. మీ గురించి అడుగుతున్నారు. జవాబు చెప్పి, మీరూ ఒక ప్రశ్న అడగండి.",
     },
-    partner: { en: "Ravi (a new neighbour)", te: "రవి (కొత్త పొరుగువారు)" },
+    partner: { en: "Imran (a new neighbour)", te: "ఇమ్రాన్ (కొత్త పొరుగువారు)" },
+    voice: "b",
     skills: [
       { id: "answer", label: { en: "Answer", te: "జవాబు చెప్పడం" } },
       { id: "ask", label: { en: "Ask", te: "ప్రశ్న అడగడం" } },
@@ -205,17 +206,21 @@ export const day: Lesson = {
       {
         partner: "Hello! What is your name?",
         te: "నమస్తే! మీ పేరు ఏంటి?",
-        hint: { en: "Say: My name is, then your name.", te: "My name is అని, తర్వాత మీ పేరు చెప్పండి." },
+        hint: { en: "Say your name. Start with My name is.", te: "మీ పేరు చెప్పండి. My name is తో మొదలుపెట్టండి." },
         replies: [
-          { say: "My name is Padma.", good: true, skill: "answer" },
-          { say: "My name Padma.", good: false, skill: "answer" },
-          { say: "Where is Padma?", good: false, skill: "answer" },
+          { say: "My name is Kiran.", good: true, skill: "answer" },
+          { say: "My name Kiran.", good: false, skill: "answer" },
+          {
+            say: "Why? Who are you?",
+            good: false,
+            react: { en: "Sorry! I am Imran, from next door.", te: "sorry అండీ! నేను ఇమ్రాన్, పక్కింట్లోకి వచ్చాను." },
+          },
         ],
       },
       {
         partner: "Where do you live?",
         te: "మీరు ఎక్కడ ఉంటారు?",
-        hint: { en: "Say: I live in this street.", te: "ఇలా చెప్పండి: I live in this street." },
+        hint: { en: "Say where you live. It is this street.", te: "మీరు ఇదే వీధిలో ఉంటారని చెప్పండి." },
         replies: [
           { say: "I live in this street.", good: true, skill: "answer" },
           { say: "I am live in this street.", good: false, skill: "answer" },
@@ -224,16 +229,17 @@ export const day: Lesson = {
       {
         partner: "What do you do?",
         te: "మీరు ఏం పని చేస్తారు?",
-        hint: { en: "Say your work, for example: I am a teacher.", te: "మీ పని చెప్పండి, ఉదాహరణకు: I am a teacher." },
+        hint: { en: "Say your own work. Retired is fine too.", te: "మీ పని చెప్పండి. retired అయినా అలాగే చెప్పండి." },
         replies: [
           { say: "I am a teacher.", good: true, skill: "answer" },
+          { say: "I am retired.", good: true, skill: "answer" },
           { say: "I teacher.", good: false, skill: "answer" },
         ],
       },
       {
         partner: "Nice to meet you!",
         te: "మిమ్మల్ని కలవడం సంతోషం!",
-        hint: { en: "Ask where he works: Where do you work?", te: "ఆయన ఎక్కడ పని చేస్తారో అడగండి: Where do you work?" },
+        hint: { en: "Now ask where he works.", te: "ఇప్పుడు ఆయన ఎక్కడ పని చేస్తారో అడగండి." },
         replies: [
           { say: "Where do you work?", good: true, skill: "ask" },
           { say: "Where you work?", good: false, skill: "ask" },

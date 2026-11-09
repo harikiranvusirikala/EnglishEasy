@@ -21,12 +21,12 @@ export const day: Lesson = {
     { text: "I stayed home", role: "action" },
   ],
   core: [
-    { en: "I stayed home because it was raining.", te: "వర్షం పడుతోంది కాబట్టి నేను ఇంట్లోనే ఉన్నాను.", extra: ["so"] },
-    { en: "It was raining, so I stayed home.", te: "వర్షం పడుతోంది, అందుకే ఇంట్లోనే ఉన్నాను.", extra: ["because"] },
-    { en: "I was tired, so I slept early.", te: "నాకు అలసటగా ఉంది, అందుకే తొందరగా పడుకున్నాను.", extra: ["because"] },
-    { en: "She is happy because Ravi called.", te: "రవి ఫోన్ చేశాడు కాబట్టి ఆమె సంతోషంగా ఉంది.", extra: ["so"] },
+    { en: "I stayed home because it was raining.", te: "వర్షం పడుతుండటంతో ఇంట్లోనే ఉండిపోయాను.", extra: ["so"] },
+    { en: "It was raining, so I stayed home.", te: "వర్షం పడుతూ ఉండింది, అందుకే ఇంట్లోనే ఉండిపోయాను.", extra: ["because"] },
+    { en: "I was tired, so I slept early.", te: "అలసిపోయాను, అందుకే తొందరగా పడుకున్నాను.", extra: ["because"] },
+    { en: "She is happy because Ravi called.", te: "రవి ఫోన్ చేశారని ఆవిడ సంతోషంగా ఉన్నారు.", extra: ["so"] },
     { en: "The shop was closed, so I left.", te: "షాప్ మూసి ఉంది, అందుకే నేను వెళ్ళిపోయాను.", extra: ["because"] },
-    { en: "I missed it because I was sick.", te: "నాకు ఒంట్లో బాగాలేదు, అందుకే వెళ్ళలేకపోయాను.", extra: ["so"] },
+    { en: "I missed it because I was sick.", te: "ఒంట్లో బాగాలేకపోవడంతో వెళ్ళలేకపోయాను.", extra: ["so"] },
     { en: "I'm hungry, so I'll eat now.", te: "నాకు ఆకలిగా ఉంది, అందుకే ఇప్పుడు తింటాను.", extra: ["because"] },
   ],
   key: [0, 1, 2, 5],
@@ -53,7 +53,7 @@ export const day: Lesson = {
         te: "because తర్వాత కారణం వస్తుంది: I stayed home because it was raining. so తర్వాత ఫలితం వస్తుంది: It was raining, so I stayed home. ఒకే విషయం, రెండు రకాలుగా.",
       },
       bridge: {
-        te: ["వర్షం పడుతోంది,", "అందుకే", "ఇంట్లోనే ఉన్నాను"],
+        te: ["వర్షం పడుతూ ఉండింది,", "అందుకే", "ఇంట్లోనే ఉండిపోయాను"],
         en: [
           { text: "It was raining,", role: "what" },
           { text: "so", role: "when" },
@@ -61,9 +61,9 @@ export const day: Lesson = {
         ],
       },
       examples: [
-        { en: "I stayed home because it was raining.", te: "వర్షం పడుతోంది కాబట్టి నేను ఇంట్లోనే ఉన్నాను." },
-        { en: "It was raining, so I stayed home.", te: "వర్షం పడుతోంది, అందుకే ఇంట్లోనే ఉన్నాను." },
-        { en: "I missed it because I was sick.", te: "నాకు ఒంట్లో బాగాలేదు, అందుకే వెళ్ళలేకపోయాను." },
+        { en: "I stayed home because it was raining.", te: "వర్షం పడుతుండటంతో ఇంట్లోనే ఉండిపోయాను." },
+        { en: "It was raining, so I stayed home.", te: "వర్షం పడుతూ ఉండింది, అందుకే ఇంట్లోనే ఉండిపోయాను." },
+        { en: "I missed it because I was sick.", te: "ఒంట్లో బాగాలేకపోవడంతో వెళ్ళలేకపోయాను." },
       ],
     },
     {
@@ -74,7 +74,7 @@ export const day: Lesson = {
         {
           form: "because + reason",
           useFor: { en: "Why it happened.", te: "ఎందుకు జరిగిందో." },
-          example: { en: "She is happy because Ravi called.", te: "రవి ఫోన్ చేశాడు కాబట్టి ఆమె సంతోషంగా ఉంది." },
+          example: { en: "She is happy because Ravi called.", te: "రవి ఫోన్ చేశారని ఆవిడ సంతోషంగా ఉన్నారు." },
         },
         {
           form: ", so + result",
@@ -84,7 +84,7 @@ export const day: Lesson = {
         {
           form: "only one of them",
           useFor: { en: "Never use because and so together.", te: "because, so రెండూ ఒకే వాక్యంలో వాడకూడదు." },
-          example: { en: "I was tired, so I slept early.", te: "నాకు అలసటగా ఉంది, అందుకే తొందరగా పడుకున్నాను." },
+          example: { en: "I was tired, so I slept early.", te: "అలసిపోయాను, అందుకే తొందరగా పడుకున్నాను." },
         },
       ],
     },
@@ -94,8 +94,8 @@ export const day: Lesson = {
       wrong: "Because it rained, so I stayed home.",
       right: "It rained, so I stayed home.",
       why: {
-        en: "Use because or so, not both.",
-        te: "because లేదా so, రెండూ కాదు.",
+        en: "English joins two ideas with one word only, because or so: It rained, so I stayed home.",
+        te: "ఇంగ్లీష్‌లో కలిపే మాట ఒక్కటే, because లేదా so, రెండూ కాదు: It rained, so I stayed home.",
       },
     },
     {
@@ -104,8 +104,8 @@ export const day: Lesson = {
       wrong: "I stayed home so it was raining.",
       right: "I stayed home because it was raining.",
       why: {
-        en: "The rain is the reason, so say because.",
-        te: "వర్షం కారణం, కాబట్టి because అనాలి.",
+        en: "The rain is the reason, and because goes before the reason: I stayed home because it was raining.",
+        te: "వర్షం కారణం; కారణం ముందు because వస్తుంది: I stayed home because it was raining.",
       },
     },
   ],
@@ -117,20 +117,20 @@ export const day: Lesson = {
       options: ["I was tired, because I slept early.", "I was tired, so I slept early.", "Because I was tired, so I slept early."],
       answer: 1,
       why: {
-        en: "Sleeping early is the result: so.",
-        te: "తొందరగా పడుకోవడం ఫలితం: so.",
+        en: "Sleeping early is the result of being tired, so use so: I was tired, so I slept early.",
+        te: "అలసట వల్ల తొందరగా పడుకున్నారు, అది ఫలితం, అందుకే so: I was tired, so I slept early.",
       },
     },
     {
       id: "p2",
       type: "fillBlank",
       sentence: "I missed it ___ I was sick.",
-      te: "నాకు ఒంట్లో బాగాలేదు, అందుకే వెళ్ళలేకపోయాను.",
+      te: "ఒంట్లో బాగాలేకపోవడంతో వెళ్ళలేకపోయాను.",
       options: ["because", "so", "but"],
       answer: 0,
       why: {
-        en: "Being sick is the reason: because.",
-        te: "ఒంట్లో బాగాలేకపోవడం కారణం: because.",
+        en: "Being sick is the reason, so because goes before it: I missed it because I was sick.",
+        te: "ఒంట్లో బాగాలేకపోవడం కారణం, దాని ముందు because: I missed it because I was sick.",
       },
     },
     {
@@ -140,8 +140,8 @@ export const day: Lesson = {
       options: ["Because it rained, so I stayed home.", "It rained, so I stayed home.", "It rained, because I stayed home."],
       answer: 1,
       why: {
-        en: "One joining word: so.",
-        te: "ఒకే కలిపే పదం: so.",
+        en: "Use one joining word; staying home is the result, so: It rained, so I stayed home.",
+        te: "కలిపే మాట ఒక్కటే చాలు; ఇంట్లో ఉండటం ఫలితం, అందుకే so: It rained, so I stayed home.",
       },
     },
     {
@@ -151,8 +151,8 @@ export const day: Lesson = {
       wrongIndex: 4,
       fix: "The shop was closed, so I left.",
       why: {
-        en: "Leaving is the result: so.",
-        te: "వెళ్ళిపోవడం ఫలితం: so.",
+        en: "You left because the shop was closed; that is a result, so: The shop was closed, so I left.",
+        te: "షాప్ మూసి ఉండటం వల్ల వెళ్ళిపోయారు, అది ఫలితం: The shop was closed, so I left.",
       },
     },
   ],
@@ -189,21 +189,28 @@ export const day: Lesson = {
       te: "కాలనీ మీటింగ్‌కి మీరు వెళ్ళలేదు. మీటింగ్ నడిపే మోహన్ ఎందుకని అడుగుతున్నారు.",
     },
     partner: { en: "Mohan (colony leader)", te: "మోహన్ (కాలనీ పెద్ద)" },
+    voice: "b",
     skills: [{ id: "reason", label: { en: "because / so", te: "because / so వాడకం" } }],
     turns: [
       {
         partner: "We missed you at the meeting!",
-        te: "మీటింగ్‌లో మీరు లేరు!",
-        hint: { en: "Say: I was sick, so I stayed home.", te: "ఇలా చెప్పండి: I was sick, so I stayed home." },
+        te: "మీటింగ్‌లో మీరు కనిపించలేదు!",
+        hint: { en: "Give the reason and the result, with so.", te: "కారణం, ఫలితం so తో కలిపి చెప్పండి." },
         replies: [
           { say: "I was sick, so I stayed home.", good: true, skill: "reason" },
           { say: "I was sick, because I stayed home.", good: false, skill: "reason" },
+          {
+            say: "Meetings are a waste of time.",
+            good: false,
+            skill: "reason",
+            react: { en: "Oh! This one was really useful.", te: "అయ్యో! ఈసారి మీటింగ్ నిజంగా ఉపయోగపడింది." },
+          },
         ],
       },
       {
         partner: "Oh! Are you better now?",
         te: "అయ్యో! ఇప్పుడు బాగున్నారా?",
-        hint: { en: "Say: Yes, much better, thank you.", te: "ఇలా చెప్పండి: Yes, much better, thank you." },
+        hint: { en: "Say you are much better, and thank him.", te: "ఇప్పుడు చాలా బాగుందని చెప్పి, థాంక్స్ చెప్పండి." },
         replies: [
           { say: "Yes, much better, thank you.", good: true },
           { say: "Yes, very better, thank you.", good: false },
@@ -212,7 +219,7 @@ export const day: Lesson = {
       {
         partner: "We talked about a new park.",
         te: "కొత్త పార్క్ గురించి మాట్లాడుకున్నాం.",
-        hint: { en: "Ask: Why do we need a new park?", te: "అడగండి: Why do we need a new park?" },
+        hint: { en: "Ask why a new park is needed.", te: "కొత్త పార్క్ ఎందుకు అవసరమో అడగండి." },
         replies: [
           { say: "Why do we need a new park?", good: true, skill: "reason" },
           { say: "Why we need a new park?", good: false, skill: "reason" },
@@ -221,7 +228,7 @@ export const day: Lesson = {
       {
         partner: "Because the old one is very small.",
         te: "ఎందుకంటే పాతది చాలా చిన్నది.",
-        hint: { en: "Say: Okay. I'll come next time.", te: "ఇలా చెప్పండి: Okay. I'll come next time." },
+        hint: { en: "Say okay, and promise to be there next time.", te: "సరే అని, వచ్చేసారి తప్పకుండా వస్తానని చెప్పండి." },
         replies: [
           { say: "Okay. I'll come next time.", good: true },
           { say: "Okay. I'll coming next time.", good: false },

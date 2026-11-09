@@ -104,8 +104,8 @@ export const day: Lesson = {
       wrong: "There is three rooms.",
       right: "There are three rooms.",
       why: {
-        en: "Three rooms are many, so there are.",
-        te: "మూడు గదులు అంటే చాలా, కాబట్టి there are.",
+        en: "Three rooms are many, so say there are, like Telugu ఉన్నాయి.",
+        te: "మూడు గదులు అంటే చాలా. 'ఉన్నాయి' లాగే there are.",
       },
     },
   ],
@@ -114,11 +114,11 @@ export const day: Lesson = {
       id: "p1",
       type: "choose",
       prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
-      options: ["There is two shops.", "There are two shops.", "There have two shops."],
+      options: ["There is two shops.", "There are two shops.", "There are two shop."],
       answer: 1,
       why: {
-        en: "Two shops are many: there are.",
-        te: "రెండు షాపులు అంటే చాలా: there are.",
+        en: "Two shops are many: there are, and shops with s.",
+        te: "రెండు షాపులు అంటే చాలా: there are, shops కి s.",
       },
     },
     {
@@ -126,7 +126,7 @@ export const day: Lesson = {
       type: "fillBlank",
       sentence: "___ there a bank near here?",
       te: "ఇక్కడ దగ్గర్లో బ్యాంక్ ఉందా?",
-      options: ["Is", "Are", "Has"],
+      options: ["Is", "Are", "Does"],
       answer: 0,
       why: {
         en: "One bank, so ask with is.",
@@ -151,8 +151,8 @@ export const day: Lesson = {
       wrongIndex: 1,
       fix: "There are three rooms.",
       why: {
-        en: "Many rooms, so are.",
-        te: "చాలా గదులు, కాబట్టి are.",
+        en: "Three rooms are many, so use are: There are three rooms.",
+        te: "మూడు గదులు అంటే చాలా, కాబట్టి are: There are three rooms.",
       },
     },
   ],
@@ -165,18 +165,18 @@ export const day: Lesson = {
         te: "మీ స్నేహితులు అడుగుతున్నారు: Is there a temple near your house? అవునని చెప్పండి.",
       },
       expected: ["Yes, there is.", "Yes, there is a temple."],
-      options: ["Yes, there is.", "Yes, there are.", "Yes, there have."],
+      options: ["Yes, there is.", "Yes, there are.", "Yes, temple is there."],
       answer: 0,
     },
     {
       id: "s2",
       type: "situation",
       situation: {
-        en: "Describe your house: it has two rooms.",
-        te: "మీ ఇంటిని వర్ణించండి: రెండు గదులు ఉన్నాయి.",
+        en: "Tell a friend about your house: it has two rooms.",
+        te: "మీ ఇంటి గురించి స్నేహితులకి చెప్పండి: రెండు గదులు ఉన్నాయి.",
       },
       expected: ["There are two rooms.", "My house has two rooms."],
-      options: ["There is two rooms.", "There are two rooms.", "There have two rooms."],
+      options: ["There is two rooms.", "There are two rooms.", "Two rooms are there."],
       answer: 1,
     },
   ],
@@ -186,7 +186,7 @@ export const day: Lesson = {
     title: { en: "My new house", te: "నా కొత్త ఇల్లు" },
     scene: {
       en: "Your friend Anitha asks about your new house and the area around it.",
-      te: "మీ స్నేహితురాలు అనిత మీ కొత్త ఇల్లు, దాని చుట్టుపక్కల గురించి అడుగుతోంది.",
+      te: "మీ స్నేహితురాలు అనిత గారు మీ కొత్త ఇల్లు, దాని చుట్టుపక్కల గురించి అడుగుతున్నారు.",
     },
     partner: { en: "Anitha (a friend)", te: "అనిత (స్నేహితురాలు)" },
     skills: [{ id: "there", label: { en: "there is / there are", te: "there is / there are వాడకం" } }],
@@ -194,16 +194,21 @@ export const day: Lesson = {
       {
         partner: "Is your new house big?",
         te: "మీ కొత్త ఇల్లు పెద్దదా?",
-        hint: { en: "Say: There are three rooms.", te: "ఇలా చెప్పండి: There are three rooms." },
+        hint: { en: "Say how many rooms it has. Use there are.", te: "ఎన్ని గదులు ఉన్నాయో చెప్పండి. there are వాడండి." },
         replies: [
           { say: "There are three rooms.", good: true, skill: "there" },
           { say: "There is three rooms.", good: false, skill: "there" },
+          {
+            say: "Bigger than your house!",
+            good: false,
+            react: { en: "Ha ha! Okay, okay. How many rooms?", te: "హహ! సరే, సరే. ఎన్ని గదులు?" },
+          },
         ],
       },
       {
         partner: "Is there a balcony?",
         te: "బాల్కనీ ఉందా?",
-        hint: { en: "Say yes: Yes, there is a small balcony.", te: "అవునని చెప్పండి: Yes, there is a small balcony." },
+        hint: { en: "Say yes, a small one. Use there is.", te: "అవును, చిన్నది ఉందని చెప్పండి. there is వాడండి." },
         replies: [
           { say: "Yes, there is a small balcony.", good: true, skill: "there" },
           { say: "Yes, there are a small balcony.", good: false, skill: "there" },
@@ -212,7 +217,7 @@ export const day: Lesson = {
       {
         partner: "Is there a temple nearby?",
         te: "దగ్గర్లో గుడి ఉందా?",
-        hint: { en: "Say: Yes, there is one nearby.", te: "ఇలా చెప్పండి: Yes, there is one nearby." },
+        hint: { en: "Say yes, one is close by.", te: "అవును, దగ్గర్లోనే ఒకటి ఉందని చెప్పండి." },
         replies: [
           { say: "Yes, there is one nearby.", good: true, skill: "there" },
           { say: "Yes, nearby one is there.", good: false, skill: "there" },
@@ -221,7 +226,7 @@ export const day: Lesson = {
       {
         partner: "Are there shops on your street?",
         te: "మీ వీధిలో షాపులు ఉన్నాయా?",
-        hint: { en: "Say: Yes, there are two shops.", te: "ఇలా చెప్పండి: Yes, there are two shops." },
+        hint: { en: "Say yes, and say how many.", te: "అవునని చెప్పి, ఎన్ని షాపులో చెప్పండి." },
         replies: [
           { say: "Yes, there are two shops.", good: true, skill: "there" },
           { say: "Yes, there is two shops.", good: false, skill: "there" },

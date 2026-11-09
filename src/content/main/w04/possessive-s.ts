@@ -94,8 +94,8 @@ export const day: Lesson = {
       wrong: "This is Ravi house.",
       right: "This is Ravi's house.",
       why: {
-        en: "Add 's to the owner's name.",
-        te: "ఎవరిదో ఆ పేరుకి 's చేర్చాలి.",
+        en: "Telugu says రవి ఇల్లు with no ending, but English adds 's: Ravi's house.",
+        te: "తెలుగులో 'రవి ఇల్లు' అంటాం, కానీ ఇంగ్లీష్‌లో పేరుకి 's చేర్చాలి: Ravi's house.",
       },
     },
     {
@@ -104,8 +104,8 @@ export const day: Lesson = {
       wrong: "This is the house of Ravi.",
       right: "This is Ravi's house.",
       why: {
-        en: "For people, 's is simple and natural.",
-        te: "మనుషుల విషయంలో 's సులభం, సహజం.",
+        en: "For a person, English uses 's, not of: Ravi's house.",
+        te: "మనుషులకి of కాదు, 's వాడతారు: Ravi's house.",
       },
     },
   ],
@@ -114,30 +114,30 @@ export const day: Lesson = {
       id: "p1",
       type: "choose",
       prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
-      options: ["This is Sita bag.", "This is Sita's bag.", "This is bag Sita."],
+      options: ["This is Sita bag.", "This is Sita's bag.", "This bag is Sita."],
       answer: 1,
       why: {
-        en: "Add 's to Sita: Sita's bag.",
-        te: "సీతకి 's: Sita's bag.",
+        en: "The bag belongs to Sita, so add 's: Sita's bag.",
+        te: "బ్యాగ్ సీతది, కాబట్టి పేరుకి 's: Sita's bag.",
       },
     },
     {
       id: "p2",
       type: "fillBlank",
-      sentence: "That is ___ car.",
-      te: "అది సురేష్ కారు.",
-      options: ["Suresh", "Suresh's", "Suresh car"],
+      sentence: "That car is ___.",
+      te: "ఆ కారు సురేష్‌ది.",
+      options: ["Suresh", "Suresh's", "of Suresh"],
       answer: 1,
       why: {
-        en: "The car is Suresh's, so add 's.",
-        te: "కారు సురేష్‌ది, కాబట్టి 's చేర్చాలి.",
+        en: "Telugu సురేష్‌ది becomes Suresh's in English, not of Suresh.",
+        te: "తెలుగులో 'సురేష్‌ది' అంటే ఇంగ్లీష్‌లో Suresh's. of Suresh అనరు.",
       },
     },
     {
       id: "p3",
       type: "choose",
       prompt: { en: "Whose phone is this? It belongs to Padma.", te: "ఈ ఫోన్ ఎవరిది? అది పద్మది." },
-      options: ["It is Padma's phone.", "It is Padma phone.", "It is phone of Padma's."],
+      options: ["It is Padma's phone.", "It is Padma phone.", "It is the phone of Padma."],
       answer: 0,
       why: {
         en: "Padma's phone: name + 's, then the thing.",
@@ -162,10 +162,10 @@ export const day: Lesson = {
       type: "situation",
       situation: {
         en: "A guest asks: Whose house is this? It is your friend Ravi's. Answer.",
-        te: "ఒక అతిథి అడుగుతున్నారు: Whose house is this? అది మీ స్నేహితుడు రవిది. జవాబు చెప్పండి.",
+        te: "ఒక అతిథి అడుగుతున్నారు: Whose house is this? అది మీ స్నేహితులు రవి గారిది. జవాబు చెప్పండి.",
       },
       expected: ["It is Ravi's house.", "This is Ravi's house."],
-      options: ["It is Ravi house.", "It is Ravi's house.", "It is house Ravi."],
+      options: ["It is Ravi house.", "It is Ravi's house.", "It is the house of Ravi."],
       answer: 1,
     },
     {
@@ -186,7 +186,7 @@ export const day: Lesson = {
     title: { en: "Who's who at the wedding", te: "పెళ్లిలో ఎవరెవరు" },
     scene: {
       en: "At your cousin's wedding, Kamala asks you about the people and things she sees.",
-      te: "మీ కజిన్ పెళ్లిలో, కమల తనకు కనిపించే మనుషులు, వస్తువుల గురించి మిమ్మల్ని అడుగుతోంది.",
+      te: "మీ కజిన్ పెళ్లిలో, కమల గారు ఆవిడకి కనిపించే మనుషులు, వస్తువుల గురించి మిమ్మల్ని అడుగుతున్నారు.",
     },
     partner: { en: "Kamala (a guest)", te: "కమల (అతిథి)" },
     skills: [{ id: "owner", label: { en: "name + 's", te: "పేరు + 's" } }],
@@ -194,7 +194,7 @@ export const day: Lesson = {
       {
         partner: "Who is that tall man?",
         te: "ఆ పొడుగ్గా ఉన్న ఆయన ఎవరు?",
-        hint: { en: "Say: He is Ravi's brother.", te: "ఇలా చెప్పండి: He is Ravi's brother." },
+        hint: { en: "Say whose brother he is. He is Ravi's.", te: "ఆయన ఎవరి బ్రదరో చెప్పండి: రవి గారి." },
         replies: [
           { say: "He is Ravi's brother.", good: true, skill: "owner" },
           { say: "He is Ravi brother.", good: false, skill: "owner" },
@@ -203,7 +203,7 @@ export const day: Lesson = {
       {
         partner: "And the woman in the green saree?",
         te: "మరి ఆకుపచ్చ చీరలో ఉన్న ఆవిడ?",
-        hint: { en: "Say: She is my friend's sister.", te: "ఇలా చెప్పండి: She is my friend's sister." },
+        hint: { en: "Say she is the sister of your friend. Use 's.", te: "ఆవిడ మీ స్నేహితుల చెల్లెలు అని చెప్పండి. 's వాడండి." },
         replies: [
           { say: "She is my friend's sister.", good: true, skill: "owner" },
           { say: "She is my friend sister.", good: false, skill: "owner" },
@@ -212,7 +212,7 @@ export const day: Lesson = {
       {
         partner: "Whose car is that outside?",
         te: "బయట ఉన్న కారు ఎవరిది?",
-        hint: { en: "Say: It is the doctor's car.", te: "ఇలా చెప్పండి: It is the doctor's car." },
+        hint: { en: "Say it belongs to the doctor. Use 's.", te: "కారు డాక్టర్ గారిది అని చెప్పండి. 's వాడండి." },
         replies: [
           { say: "It is the doctor's car.", good: true, skill: "owner" },
           { say: "It is the doctor car.", good: false, skill: "owner" },
@@ -221,10 +221,15 @@ export const day: Lesson = {
       {
         partner: "You know everyone here!",
         te: "ఇక్కడ అందరూ మీకు తెలుసే!",
-        hint: { en: "Say: Yes, it is my cousin's wedding.", te: "ఇలా చెప్పండి: Yes, it is my cousin's wedding." },
+        hint: { en: "Agree, and say whose wedding it is.", te: "అవునని చెప్పి, ఇది ఎవరి పెళ్లో చెప్పండి." },
         replies: [
           { say: "Yes, it is my cousin's wedding.", good: true, skill: "owner" },
           { say: "Yes, it is my cousin wedding.", good: false, skill: "owner" },
+          {
+            say: "Of course. Don't you know anyone?",
+            good: false,
+            react: { en: "Ha ha, no! Only the bride.", te: "హహ, లేదండీ! పెళ్లికూతురు ఒక్కరే తెలుసు." },
+          },
         ],
       },
     ],

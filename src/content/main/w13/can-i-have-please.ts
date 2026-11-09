@@ -4,7 +4,7 @@ import type { Lesson } from "../../types";
 export const day: Lesson = {
   id: "can-i-have-please",
   kind: "lesson",
-  title: { en: "Can I Have …, Please?", te: "… ఇవ్వగలరా?" },
+  title: { en: "Can I Have …, Please?", te: "… ఇస్తారా?" },
   subtitle: "Can I have …?",
   summary: {
     en: "Learn to ask for things politely at the market: Can I have a kilo of onions, please?",
@@ -22,9 +22,9 @@ export const day: Lesson = {
     { text: "a kilo of onions, please?", role: "what" },
   ],
   core: [
-    { en: "Can I have a bag, please?", te: "ఒక సంచి ఇవ్వగలరా?", extra: ["has"] },
-    { en: "Can I have a kilo of onions, please?", te: "ఒక కిలో ఉల్లిపాయలు ఇవ్వగలరా?", extra: ["give"] },
-    { en: "Can I have two kilos of tomatoes?", te: "రెండు కిలోల టమాటాలు ఇవ్వగలరా?", extra: ["kilo"] },
+    { en: "Can I have a bag, please?", te: "ఒక సంచి ఇస్తారా?", extra: ["has"] },
+    { en: "Can I have a kilo of onions, please?", te: "ఒక కిలో ఉల్లిపాయలు ఇస్తారా?", extra: ["give"] },
+    { en: "Can I have two kilos of tomatoes?", te: "రెండు కిలోల టమాటాలు ఇస్తారా?", extra: ["kilo"] },
     { en: "Can I have one cabbage, please?", te: "ఒక క్యాబేజీ ఇస్తారా?", extra: ["give"] },
     { en: "Yes, of course. Here you are.", te: "తప్పకుండా. ఇదిగోండి.", extra: ["Take"] },
     { en: "Can I have some green chillies too?", te: "కొన్ని పచ్చిమిర్చి కూడా ఇస్తారా?", extra: ["chilli"] },
@@ -36,7 +36,7 @@ export const day: Lesson = {
     te: "ఈ రోజు షాప్‌లో Can I have …, please? అని ఒక వస్తువు అడగండి.",
   },
   words: [
-    { en: "please", te: "దయచేసి, ప్లీజ్" },
+    { en: "please", te: "ప్లీజ్" },
     { en: "onions", te: "ఉల్లిపాయలు" },
     { en: "tomatoes", te: "టమాటాలు" },
     { en: "potatoes", te: "బంగాళాదుంపలు" },
@@ -54,7 +54,7 @@ export const day: Lesson = {
         te: "షాప్‌లో ఏదైనా అడగాలంటే Can I have …? అని, చివర please చేర్చండి: Can I have a kilo of onions, please? ఇది మర్యాదగా, సులభంగా ఉంటుంది.",
       },
       bridge: {
-        te: ["ఒక కిలో ఉల్లిపాయలు", "ఇవ్వగలరా?"],
+        te: ["ఒక కిలో ఉల్లిపాయలు", "ఇస్తారా?"],
         en: [
           { text: "Can", role: "action" },
           { text: "I", role: "who" },
@@ -63,8 +63,8 @@ export const day: Lesson = {
         ],
       },
       examples: [
-        { en: "Can I have a kilo of onions, please?", te: "ఒక కిలో ఉల్లిపాయలు ఇవ్వగలరా?" },
-        { en: "Can I have a bag, please?", te: "ఒక సంచి ఇవ్వగలరా?" },
+        { en: "Can I have a kilo of onions, please?", te: "ఒక కిలో ఉల్లిపాయలు ఇస్తారా?" },
+        { en: "Can I have a bag, please?", te: "ఒక సంచి ఇస్తారా?" },
         { en: "Can I have one cabbage, please?", te: "ఒక క్యాబేజీ ఇస్తారా?" },
       ],
     },
@@ -76,7 +76,7 @@ export const day: Lesson = {
         {
           form: "Can I have …?",
           useFor: { en: "Asking for something.", te: "ఏదైనా అడగడానికి." },
-          example: { en: "Can I have two kilos of tomatoes?", te: "రెండు కిలోల టమాటాలు ఇవ్వగలరా?" },
+          example: { en: "Can I have two kilos of tomatoes?", te: "రెండు కిలోల టమాటాలు ఇస్తారా?" },
         },
         {
           form: "… too?",
@@ -96,8 +96,8 @@ export const day: Lesson = {
       wrong: "I want one kilo onion.",
       right: "Can I have a kilo of onions, please?",
       why: {
-        en: "Ask with Can I have … please. Add of, and say onions.",
-        te: "Can I have … please తో అడగండి. of చేర్చి, onions అని చెప్పండి.",
+        en: "I want sounds like an order; ask with Can I have, add of, and say onions: Can I have a kilo of onions, please?",
+        te: "I want అంటే ఆర్డర్ లా ఉంటుంది; Can I have తో అడిగి, of చేర్చి, onions అనండి: Can I have a kilo of onions, please?",
       },
     },
     {
@@ -106,8 +106,8 @@ export const day: Lesson = {
       wrong: "Give one cover.",
       right: "Can I have a bag, please?",
       why: {
-        en: "Say bag, not cover, and ask with Can I have.",
-        te: "cover కాదు, bag అనండి. Can I have తో అడగండి.",
+        en: "Cover for a bag is heard only in India, and Give sounds like an order: Can I have a bag, please?",
+        te: "సంచిని cover అనడం మన దగ్గరే; Give అంటే ఆర్డర్ లా ఉంటుంది: Can I have a bag, please?",
       },
     },
   ],
@@ -119,31 +119,31 @@ export const day: Lesson = {
       options: ["Can I have a bag, please?", "I want bag.", "Can I has a bag?"],
       answer: 0,
       why: {
-        en: "Can I have …, please? is polite.",
-        te: "Can I have …, please? మర్యాదగా ఉంటుంది.",
+        en: "Can I have and please make it a kind request: Can I have a bag, please?",
+        te: "Can I have, please కలిస్తే మర్యాదగా అడిగినట్టు: Can I have a bag, please?",
       },
     },
     {
       id: "p2",
       type: "fillBlank",
       sentence: "Can I ___ two kilos of tomatoes?",
-      te: "రెండు కిలోల టమాటాలు ఇవ్వగలరా?",
+      te: "రెండు కిలోల టమాటాలు ఇస్తారా?",
       options: ["have", "has", "having"],
       answer: 0,
       why: {
-        en: "After Can I, say have.",
-        te: "Can I తర్వాత have వస్తుంది.",
+        en: "After can, the verb stays plain, so have: Can I have two kilos of tomatoes?",
+        te: "can తర్వాత verb మారదు, అందుకే have: Can I have two kilos of tomatoes?",
       },
     },
     {
       id: "p3",
       type: "choose",
-      prompt: { en: "The seller gives you the bag. What does she say?", te: "అమ్మే ఆమె సంచి ఇస్తోంది. ఏమంటుంది?" },
-      options: ["Here you are.", "Here are you.", "You are here."],
+      prompt: { en: "The seller gives you the bag. What does she say?", te: "అమ్మే ఆవిడ సంచి ఇస్తున్నారు. ఏమంటారు?" },
+      options: ["Here you are.", "Here is you.", "You take."],
       answer: 0,
       why: {
-        en: "When you give something: Here you are.",
-        te: "ఏదైనా ఇచ్చేటప్పుడు: Here you are.",
+        en: "This fixed phrase is said while handing something over: Here you are.",
+        te: "ఏదైనా చేతికి ఇచ్చేటప్పుడు అనే మాట ఇదే: Here you are.",
       },
     },
     {
@@ -153,8 +153,8 @@ export const day: Lesson = {
       wrongIndex: 4,
       fix: "Can I have two kilos of onions?",
       why: {
-        en: "Two kilos, with s.",
-        te: "రెండు అంటే kilos, s తో.",
+        en: "After two, kilo takes s: Can I have two kilos of onions?",
+        te: "రెండు అయితే kilo కి s చేర్చాలి: Can I have two kilos of onions?",
       },
     },
   ],
@@ -187,25 +187,32 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "Onions and tomatoes", te: "ఉల్లిపాయలు, టమాటాలు" },
     scene: {
-      en: "You are at a vegetable stall. Ramana, the seller, helps you.",
-      te: "మీరు కూరగాయల బండి దగ్గర ఉన్నారు. అమ్మే రమణ సహాయం చేస్తున్నారు.",
+      en: "You are at a vegetable stall. Rahim, the seller, helps you.",
+      te: "మీరు కూరగాయల బండి దగ్గర ఉన్నారు. అమ్మే రహీమ్ సహాయం చేస్తున్నారు.",
     },
-    partner: { en: "Ramana (vegetable seller)", te: "రమణ (కూరగాయలు అమ్మేవారు)" },
+    partner: { en: "Rahim (vegetable seller)", te: "రహీమ్ (కూరగాయలు అమ్మేవారు)" },
+    voice: "b",
     skills: [{ id: "ask", label: { en: "Can I have …?", te: "Can I have … అని అడగడం" } }],
     turns: [
       {
         partner: "Good morning! What do you need?",
         te: "నమస్కారం! మీకు ఏం కావాలి?",
-        hint: { en: "Say: Can I have a kilo of onions, please?", te: "ఇలా చెప్పండి: Can I have a kilo of onions, please?" },
+        hint: { en: "Ask politely for one kilo of onions.", te: "ఒక కిలో ఉల్లిపాయలు మర్యాదగా అడగండి." },
         replies: [
           { say: "Can I have a kilo of onions, please?", good: true, skill: "ask" },
           { say: "I want one kilo onion.", good: false, skill: "ask" },
+          {
+            say: "Onions. One kilo. Quick.",
+            good: false,
+            skill: "ask",
+            react: { en: "Coming! One minute, please.", te: "వస్తున్నా! ఒక్క నిమిషం అండీ." },
+          },
         ],
       },
       {
         partner: "Here you are. Anything else?",
         te: "ఇదిగోండి. ఇంకేమైనా?",
-        hint: { en: "Say: Can I have two kilos of tomatoes?", te: "ఇలా చెప్పండి: Can I have two kilos of tomatoes?" },
+        hint: { en: "Ask for tomatoes too: two kilos.", te: "టమాటాలు కూడా అడగండి: రెండు కిలోలు." },
         replies: [
           { say: "Can I have two kilos of tomatoes?", good: true, skill: "ask" },
           { say: "Can I have two kilo tomato?", good: false, skill: "ask" },
@@ -214,7 +221,7 @@ export const day: Lesson = {
       {
         partner: "Sure. Do you need a bag?",
         te: "సరే. సంచి కావాలా?",
-        hint: { en: "Say: Yes, can I have a bag, please?", te: "ఇలా చెప్పండి: Yes, can I have a bag, please?" },
+        hint: { en: "Say yes, and ask for one politely.", te: "అవునని, ఒక సంచి మర్యాదగా అడగండి." },
         replies: [
           { say: "Yes, can I have a bag, please?", good: true, skill: "ask" },
           { say: "Yes, give one cover.", good: false, skill: "ask" },
@@ -223,10 +230,10 @@ export const day: Lesson = {
       {
         partner: "Here you are. Is that all?",
         te: "ఇదిగోండి. అంతేనా?",
-        hint: { en: "Say: Yes, that's all. Thank you.", te: "ఇలా చెప్పండి: Yes, that's all. Thank you." },
+        hint: { en: "Say that is all, and thank him.", te: "అంతే అని, ఆయనకి థాంక్స్ చెప్పండి." },
         replies: [
           { say: "Yes, that's all. Thank you.", good: true },
-          { say: "Yes, that's all. Thank you very.", good: false },
+          { say: "Yes, that is all only. Thank you.", good: false },
         ],
       },
     ],

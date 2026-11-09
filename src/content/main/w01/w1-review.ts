@@ -29,10 +29,10 @@ export const day: ReviewDay = {
       type: "roleplay",
       title: { en: "A video call about your day", te: "మీ రోజు గురించి వీడియో కాల్" },
       scene: {
-        en: "A relative calls you on video. Talk about your day: every day, right now, yesterday and tomorrow.",
-        te: "ఒక బంధువు మీకు వీడియో కాల్ చేశారు. మీ రోజు గురించి చెప్పండి: రోజూ, ఇప్పుడు, నిన్న, రేపు.",
+        en: "Your cousin Jyothi calls you on video. Talk about your day: every day, right now, yesterday and tomorrow.",
+        te: "మీ బంధువు జ్యోతి గారు మీకు వీడియో కాల్ చేశారు. మీ రోజు గురించి చెప్పండి: రోజూ, ఇప్పుడు, నిన్న, రేపు.",
       },
-      partner: { en: "Relative", te: "బంధువు" },
+      partner: { en: "Jyothi (your cousin)", te: "జ్యోతి (బంధువు)" },
       skills: [
         { id: "every", label: { en: "Every day", te: "రోజూ" } },
         { id: "now", label: { en: "Right now", te: "ఇప్పుడు" } },
@@ -42,18 +42,22 @@ export const day: ReviewDay = {
       turns: [
         {
           partner: "Hello! How are you today?",
-          te: "హలో! ఈ రోజు ఎలా ఉన్నావు?",
-          hint: { en: "Say: I am fine, thank you.", te: "ఇలా చెప్పండి: I am fine, thank you." },
+          te: "హలో! ఈ రోజు ఎలా ఉన్నారు?",
+          hint: { en: "Say how you are, and thank her.", te: "మీరు ఎలా ఉన్నారో చెప్పి, thank you చెప్పండి." },
           replies: [
             { say: "I am fine, thank you.", good: true, skill: "every" },
             { say: "I fine, thank you.", good: false, skill: "every" },
-            { say: "I will fine, thank you.", good: false, skill: "every" },
+            {
+              say: "Fine. Why are you calling?",
+              good: false,
+              react: { en: "Just to say hello! I missed you.", te: "ఊరికే, పలకరిద్దామని! మీరు గుర్తొచ్చారు." },
+            },
           ],
         },
         {
           partner: "What do you do every morning?",
-          te: "ప్రతి ఉదయం నువ్వు ఏం చేస్తావు?",
-          hint: { en: "Say: I walk every morning.", te: "ఇలా చెప్పండి: I walk every morning." },
+          te: "ప్రతి ఉదయం మీరు ఏం చేస్తారు?",
+          hint: { en: "Say one thing you do every morning.", te: "ప్రతి ఉదయం మీరు చేసే ఒక పని చెప్పండి." },
           replies: [
             { say: "I walk every morning.", good: true, skill: "every" },
             { say: "I walking every morning.", good: false, skill: "every" },
@@ -62,8 +66,8 @@ export const day: ReviewDay = {
         },
         {
           partner: "What are you doing now?",
-          te: "ఇప్పుడు ఏం చేస్తున్నావు?",
-          hint: { en: "Say: I am cooking now.", te: "ఇలా చెప్పండి: I am cooking now." },
+          te: "ఇప్పుడు ఏం చేస్తున్నారు?",
+          hint: { en: "Say what you are doing right now.", te: "ఇప్పుడు మీరు ఏం చేస్తున్నారో చెప్పండి." },
           replies: [
             { say: "I am cooking now.", good: true, skill: "now" },
             { say: "I cooking now.", good: false, skill: "now" },
@@ -72,8 +76,8 @@ export const day: ReviewDay = {
         },
         {
           partner: "What did you do yesterday?",
-          te: "నిన్న నువ్వు ఏం చేశావు?",
-          hint: { en: "Say: I went to the market.", te: "ఇలా చెప్పండి: I went to the market." },
+          te: "నిన్న మీరు ఏం చేశారు?",
+          hint: { en: "Say where you went yesterday.", te: "నిన్న ఎక్కడికి వెళ్లారో చెప్పండి." },
           replies: [
             { say: "I went to the market.", good: true, skill: "past" },
             { say: "I go to the market.", good: false, skill: "past" },
@@ -82,8 +86,8 @@ export const day: ReviewDay = {
         },
         {
           partner: "Did you eat idli?",
-          te: "ఇడ్లీ తిన్నావా?",
-          hint: { en: "Say yes: Yes, I did.", te: "అవును అని చెప్పండి: Yes, I did." },
+          te: "ఇడ్లీ తిన్నారా?",
+          hint: { en: "Say yes, the short way or the full way.", te: "అవును అని చిన్నగా గానీ, పూర్తి వాక్యంగా గానీ చెప్పండి." },
           replies: [
             { say: "Yes, I did.", good: true, skill: "past" },
             { say: "Yes, I ate idli.", good: true, skill: "past" },
@@ -92,8 +96,8 @@ export const day: ReviewDay = {
         },
         {
           partner: "What will you do tomorrow?",
-          te: "రేపు నువ్వు ఏం చేస్తావు?",
-          hint: { en: "Say: I will go to the temple.", te: "ఇలా చెప్పండి: I will go to the temple." },
+          te: "రేపు మీరు ఏం చేస్తారు?",
+          hint: { en: "Say one plan for tomorrow.", te: "రేపటి మీ ప్లాన్ ఒకటి చెప్పండి." },
           replies: [
             { say: "I will go to the temple.", good: true, skill: "will" },
             { say: "I will going to the temple.", good: false, skill: "will" },

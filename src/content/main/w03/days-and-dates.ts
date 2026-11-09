@@ -94,8 +94,8 @@ export const day: Lesson = {
       wrong: "The temple is closed in Monday.",
       right: "The temple is closed on Mondays.",
       why: {
-        en: "Days take on. Every Monday is on Mondays.",
-        te: "వారాలకు on వాడాలి. ప్రతి సోమవారం అంటే on Mondays.",
+        en: "Use on with days, not in. Every Monday: on Mondays.",
+        te: "వారాలకి in కాదు, on వాడాలి. ప్రతి సోమవారం అంటే on Mondays.",
       },
     },
     {
@@ -117,8 +117,8 @@ export const day: Lesson = {
       options: ["Diwali is on November.", "Diwali is in November.", "Diwali is at November."],
       answer: 1,
       why: {
-        en: "A month takes in: in November.",
-        te: "నెలకి in: in November.",
+        en: "Use in with a month, on with a date: in November.",
+        te: "నెలకి in, తేదీకి on: in November.",
       },
     },
     {
@@ -129,19 +129,19 @@ export const day: Lesson = {
       options: ["in", "on", "at"],
       answer: 1,
       why: {
-        en: "Days take on: on Sundays.",
-        te: "వారాలకు on: on Sundays.",
+        en: "Use on with days. Every Sunday: on Sundays.",
+        te: "వారాలకి on వాడాలి. ప్రతి ఆదివారం అంటే on Sundays.",
       },
     },
     {
       id: "p3",
       type: "choose",
       prompt: { en: "Which question asks the date?", te: "తేదీ అడిగే ప్రశ్న ఏది?" },
-      options: ["What is the date today?", "What is the time now?", "Where is the date?"],
+      options: ["What is the date today?", "What is the time now?", "What day is it today?"],
       answer: 0,
       why: {
-        en: "Date means the day of the month: 15 August.",
-        te: "date అంటే తేదీ: ఆగస్టు 15 లాంటిది.",
+        en: "Date is the number, like 15 August. Day is Monday, Tuesday and so on.",
+        te: "date అంటే తేదీ, ఆగస్టు 15 లాంటిది. day అంటే వారం, సోమవారం లాంటిది.",
       },
     },
     {
@@ -185,10 +185,10 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "A day for the doctor", te: "డాక్టర్ దగ్గరికి ఏ రోజు?" },
     scene: {
-      en: "You call Dr Prasad's clinic to choose a day for your visit. Anitha answers the phone.",
-      te: "మీరు డాక్టర్ ప్రసాద్ క్లినిక్‌కి ఫోన్ చేసి, వెళ్లే రోజు నిర్ణయించుకుంటున్నారు. అనిత ఫోన్ ఎత్తింది.",
+      en: "You call Dr Prasad's clinic to book a visit. Mary answers the phone.",
+      te: "మీరు డాక్టర్ ప్రసాద్ గారి క్లినిక్‌కి ఫోన్ చేసి, ఏ రోజు రావాలో అడుగుతున్నారు. మేరీ గారు ఫోన్ ఎత్తారు.",
     },
-    partner: { en: "Anitha (clinic receptionist)", te: "అనిత (క్లినిక్ రిసెప్షనిస్ట్)" },
+    partner: { en: "Mary (clinic receptionist)", te: "మేరీ (క్లినిక్ రిసెప్షనిస్ట్)" },
     skills: [
       { id: "dates", label: { en: "on / in / at", te: "on / in / at వాడకం" } },
       { id: "answer", label: { en: "Answer", te: "జవాబు చెప్పడం" } },
@@ -196,8 +196,8 @@ export const day: Lesson = {
     turns: [
       {
         partner: "Good morning, Dr Prasad's clinic.",
-        te: "గుడ్ మార్నింగ్, డాక్టర్ ప్రసాద్ క్లినిక్.",
-        hint: { en: "Ask: Is the doctor free on Monday?", te: "అడగండి: Is the doctor free on Monday?" },
+        te: "గుడ్ మార్నింగ్, డాక్టర్ ప్రసాద్ గారి క్లినిక్.",
+        hint: { en: "Ask for a visit on Monday. Use on with the day.", te: "సోమవారం డాక్టర్ గారు ఖాళీగా ఉంటారా అని అడగండి. రోజుకి on." },
         replies: [
           { say: "Is the doctor free on Monday?", good: true, skill: "dates" },
           { say: "Is the doctor free in Monday?", good: false, skill: "dates" },
@@ -205,8 +205,8 @@ export const day: Lesson = {
       },
       {
         partner: "Sorry, we are closed on Mondays.",
-        te: "క్షమించండి, సోమవారాలు క్లినిక్ మూసి ఉంటుంది.",
-        hint: { en: "Ask about Tuesday: What about Tuesday?", te: "మంగళవారం గురించి అడగండి: What about Tuesday?" },
+        te: "సారీ అండీ, సోమవారాలు క్లినిక్ మూసి ఉంటుంది.",
+        hint: { en: "Ask about the next day, Tuesday.", te: "తర్వాతి రోజు, మంగళవారం గురించి అడగండి." },
         replies: [
           { say: "What about Tuesday?", good: true, skill: "dates" },
           { say: "What about in Tuesday?", good: false, skill: "dates" },
@@ -214,8 +214,8 @@ export const day: Lesson = {
       },
       {
         partner: "Yes, Tuesday at eleven. Okay?",
-        te: "అవును, మంగళవారం పదకొండు గంటలకు. సరేనా?",
-        hint: { en: "Say: Yes, Tuesday at eleven is fine.", te: "ఇలా చెప్పండి: Yes, Tuesday at eleven is fine." },
+        te: "అవును, మంగళవారం పదకొండు గంటలకి. సరేనా?",
+        hint: { en: "Say yes, the day and time are fine.", te: "ఆ రోజు, ఆ టైమ్ మీకు సరిపోతుందని చెప్పండి." },
         replies: [
           { say: "Yes, Tuesday at eleven is fine.", good: true, skill: "dates" },
           { say: "Yes, Tuesday on eleven is fine.", good: false, skill: "dates" },
@@ -223,11 +223,17 @@ export const day: Lesson = {
       },
       {
         partner: "Your name and age, please?",
-        te: "మీ పేరు, వయసు చెప్పండి.",
-        hint: { en: "Say your name and age: I am Kamala, sixty years old.", te: "పేరు, వయసు చెప్పండి: I am Kamala, sixty years old." },
+        te: "మీ పేరు, వయసు చెప్తారా?",
+        hint: { en: "Say your name and your own age.", te: "మీ పేరు, మీ వయసు చెప్పండి." },
         replies: [
-          { say: "I am Kamala, sixty years old.", good: true, skill: "answer" },
-          { say: "I am Kamala, sixty years.", good: false, skill: "answer" },
+          { say: "I am Kiran, sixty years old.", good: true, skill: "answer" },
+          { say: "I am Kiran, sixty years.", good: false, skill: "answer" },
+          {
+            say: "Why do you need my age?",
+            good: false,
+            skill: "answer",
+            react: { en: "It is for the doctor's file.", te: "డాక్టర్ గారి ఫైల్ కోసం అండీ." },
+          },
         ],
       },
     ],

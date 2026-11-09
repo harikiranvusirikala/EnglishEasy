@@ -6,7 +6,7 @@ import { SETTINGS_KEY } from "../src/learning/settings";
 test.skip(({ isMobile }) => !isMobile, "the player is checked on the phone project");
 
 const DAYS = [
-  { id: "i-am-you-are", title: "I Am, You Are", first: "I am Lakshmi." },
+  { id: "i-am-you-are", title: "I Am, You Are", first: "I am Kiran." },
   { id: "present-simple-every-day", title: "Every Day", first: "I walk every morning." },
   { id: "present-continuous-right-now", title: "Right Now", first: "I am cooking." },
   { id: "past-simple-yesterday", title: "Yesterday", first: "I went to the market." },

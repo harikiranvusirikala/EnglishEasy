@@ -26,7 +26,7 @@ export const day: Lesson = {
     { en: "You should see a doctor.", te: "మీరు డాక్టర్‌ని కలవాలి.", extra: ["to"] },
     { en: "Should I take a tablet?", te: "నేను మాత్ర వేసుకోవాలా?", extra: ["Do"] },
     { en: "You should drink hot water.", te: "మీరు వేడి నీళ్ళు తాగాలి.", extra: ["drinking"] },
-    { en: "He shouldn't walk in the rain.", te: "అతను వర్షంలో నడవకూడదు.", extra: ["don't"] },
+    { en: "He shouldn't walk in the rain.", te: "ఆయన వర్షంలో నడవకూడదు.", extra: ["don't"] },
     { en: "What should I do?", te: "నేను ఏం చేయాలి?", extra: ["will"] },
   ],
   key: [0, 1, 2, 3],
@@ -50,7 +50,7 @@ export const day: Lesson = {
       heading: { en: "Should for advice", te: "సలహాకి should" },
       body: {
         en: "To give advice, say should, then the action: You should rest. To say something is not good, say shouldn't: You shouldn't eat oily food. In Telugu, it is like …ాలి and …కూడదు.",
-        te: "సలహా ఇవ్వడానికి should, తర్వాత పని పదం: You should rest. మంచిది కాదని చెప్పడానికి shouldn't: You shouldn't eat oily food. తెలుగులో '…ాలి', '…కూడదు' లాంటిది.",
+        te: "సలహా ఇవ్వడానికి should, తర్వాత verb: You should rest. మంచిది కాదని చెప్పడానికి shouldn't: You shouldn't eat oily food. తెలుగులో '…ాలి', '…కూడదు' లాంటిది.",
       },
       bridge: {
         te: ["మీరు", "విశ్రాంతి", "తీసుకోవాలి"],
@@ -79,7 +79,7 @@ export const day: Lesson = {
         {
           form: "shouldn't",
           useFor: { en: "Not a good idea.", te: "మంచి ఆలోచన కాదు." },
-          example: { en: "He shouldn't walk in the rain.", te: "అతను వర్షంలో నడవకూడదు." },
+          example: { en: "He shouldn't walk in the rain.", te: "ఆయన వర్షంలో నడవకూడదు." },
         },
         {
           form: "Should I …?",
@@ -94,8 +94,8 @@ export const day: Lesson = {
       wrong: "You should to rest.",
       right: "You should rest.",
       why: {
-        en: "No to after should.",
-        te: "should తర్వాత to రాదు.",
+        en: "After should, the verb comes straight, with no to: You should rest.",
+        te: "should తర్వాత to రాదు, verb నేరుగా వస్తుంది: You should rest.",
       },
     },
     {
@@ -104,8 +104,8 @@ export const day: Lesson = {
       wrong: "You don't should eat oily food.",
       right: "You shouldn't eat oily food.",
       why: {
-        en: "Say shouldn't, not don't should.",
-        te: "don't should కాదు, shouldn't అనాలి.",
+        en: "Should makes its own no with n't, without don't: You shouldn't eat oily food.",
+        te: "should కి don't అక్కర్లేదు, shouldn't అంటే చాలు: You shouldn't eat oily food.",
       },
     },
   ],
@@ -117,8 +117,8 @@ export const day: Lesson = {
       options: ["You should to rest.", "You should rest.", "You should resting."],
       answer: 1,
       why: {
-        en: "Should + rest.",
-        te: "should తర్వాత rest.",
+        en: "After should, use the plain verb, with no to or -ing: You should rest.",
+        te: "should తర్వాత verb మామూలుగా వస్తుంది, to గానీ -ing గానీ రావు: You should rest.",
       },
     },
     {
@@ -129,19 +129,19 @@ export const day: Lesson = {
       options: ["shouldn't", "should", "don't should"],
       answer: 0,
       why: {
-        en: "Not a good idea: shouldn't.",
-        te: "మంచిది కాదు: shouldn't.",
+        en: "Oily food is not a good idea, so shouldn't: You shouldn't eat oily food.",
+        te: "నూనె పదార్థాలు మంచిది కాదు, అందుకే shouldn't: You shouldn't eat oily food.",
       },
     },
     {
       id: "p3",
       type: "choose",
       prompt: { en: "Your friend has a bad cough. Give advice.", te: "మీ స్నేహితుడికి బాగా దగ్గుగా ఉంది. సలహా ఇవ్వండి." },
-      options: ["You should see a doctor.", "You should seeing a doctor.", "You see should a doctor."],
+      options: ["You should see a doctor.", "You should seeing a doctor.", "You should go doctor."],
       answer: 0,
       why: {
-        en: "You should + see.",
-        te: "You should తర్వాత see.",
+        en: "After should, the plain verb, and a before doctor: You should see a doctor.",
+        te: "should తర్వాత verb మామూలుగానే, doctor ముందు a: You should see a doctor.",
       },
     },
     {
@@ -151,8 +151,8 @@ export const day: Lesson = {
       wrongIndex: 2,
       fix: "You should drink hot water.",
       why: {
-        en: "After should, drink.",
-        te: "should తర్వాత drink.",
+        en: "After should, say drink, not drinking: You should drink hot water.",
+        te: "should తర్వాత drinking కాదు, drink: You should drink hot water.",
       },
     },
   ],
@@ -185,25 +185,32 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "A friend with a cold", te: "జలుబుతో స్నేహితుడు" },
     scene: {
-      en: "Your friend Ravi has a bad cold. Give him good advice.",
-      te: "మీ స్నేహితుడు రవికి బాగా జలుబు చేసింది. మంచి సలహా ఇవ్వండి.",
+      en: "Your friend Imran has a bad cold. Give him good advice.",
+      te: "మీ స్నేహితుడు ఇమ్రాన్‌కి బాగా జలుబు చేసింది. మంచి సలహా ఇవ్వండి.",
     },
-    partner: { en: "Ravi (a friend)", te: "రవి (స్నేహితుడు)" },
+    partner: { en: "Imran (a friend)", te: "ఇమ్రాన్ (స్నేహితుడు)" },
+    voice: "b",
     skills: [{ id: "advice", label: { en: "should / shouldn't", te: "should / shouldn't వాడకం" } }],
     turns: [
       {
         partner: "I have a bad cold.",
         te: "నాకు బాగా జలుబు చేసింది.",
-        hint: { en: "Advise: You should drink hot water.", te: "సలహా ఇవ్వండి: You should drink hot water." },
+        hint: { en: "Advise him to drink something warm.", te: "వేడిగా ఏదైనా తాగమని సలహా ఇవ్వండి." },
         replies: [
           { say: "You should drink hot water.", good: true, skill: "advice" },
           { say: "You should drinking hot water.", good: false, skill: "advice" },
+          {
+            say: "Don't come near me!",
+            good: false,
+            skill: "advice",
+            react: { en: "Ha! Okay, I'll keep my distance.", te: "హా! సరే, దూరంగానే ఉంటాను." },
+          },
         ],
       },
       {
         partner: "Should I go to work?",
         te: "నేను పనికి వెళ్ళాలా?",
-        hint: { en: "Say: No, you should rest at home.", te: "ఇలా చెప్పండి: No, you should rest at home." },
+        hint: { en: "Say no, and advise rest at home.", te: "వద్దని చెప్పి, ఇంట్లో విశ్రాంతి తీసుకోమని సలహా ఇవ్వండి." },
         replies: [
           { say: "No, you should rest at home.", good: true, skill: "advice" },
           { say: "No, you should to rest at home.", good: false, skill: "advice" },
@@ -212,7 +219,7 @@ export const day: Lesson = {
       {
         partner: "Can I eat ice cream?",
         te: "ఐస్ క్రీం తినొచ్చా?",
-        hint: { en: "Say: No, you shouldn't eat cold things.", te: "ఇలా చెప్పండి: No, you shouldn't eat cold things." },
+        hint: { en: "Say no, with shouldn't.", te: "వద్దని shouldn't తో చెప్పండి." },
         replies: [
           { say: "No, you shouldn't eat cold things.", good: true, skill: "advice" },
           { say: "No, you don't should eat cold things.", good: false, skill: "advice" },
@@ -221,10 +228,10 @@ export const day: Lesson = {
       {
         partner: "Okay. Thank you for the advice.",
         te: "సరే. సలహాకి థాంక్యూ.",
-        hint: { en: "Say: Take care. Get well soon.", te: "ఇలా చెప్పండి: Take care. Get well soon." },
+        hint: { en: "Wish him well as you leave.", te: "వెళ్తూ, త్వరగా కోలుకోమని చెప్పండి." },
         replies: [
           { say: "Take care. Get well soon.", good: true },
-          { say: "Take care. Get good soon.", good: false },
+          { say: "Take care. Get well fastly.", good: false },
         ],
       },
     ],

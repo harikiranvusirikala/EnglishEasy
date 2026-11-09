@@ -31,8 +31,8 @@ export const day: Lesson = {
   ],
   key: [0, 1, 2, 3],
   tryToday: {
-    en: "At home, look at one fruit and say: It is ripe, or It is still raw.",
-    te: "ఇంట్లో ఒక పండు చూసి చెప్పండి: It is ripe, లేదా It is still raw.",
+    en: "At home, look at one fruit and say: It is ripe, or It is not ripe yet.",
+    te: "ఇంట్లో ఒక పండు చూసి చెప్పండి: It is ripe, లేదా It is not ripe yet.",
   },
   words: [
     { en: "fresh", te: "తాజా" },
@@ -49,8 +49,8 @@ export const day: Lesson = {
       type: "explain",
       heading: { en: "Is it good?", te: "బాగుందా?" },
       body: {
-        en: "To check fruit, ask: Is it ripe? Are they fresh? Too means more than you want: too soft, too big. Very just means a lot: very sweet.",
-        te: "పండ్లు చూడాలంటే అడగండి: Is it ripe? Are they fresh? too అంటే కావలసిన దానికంటే ఎక్కువ: too soft (మరీ మెత్తగా), too big (మరీ పెద్దది). very అంటే చాలా: very sweet.",
+        en: "To check fruit, ask: Is it ripe? Are they fresh? Too means more than you want: too soft, too big. Very just means a lot: very sweet. In India we say still raw for fruit that is not ripe; people abroad say still green, or not ripe yet.",
+        te: "పండ్లు చూడాలంటే అడగండి: Is it ripe? Are they fresh? too అంటే కావలసిన దానికంటే ఎక్కువ: too soft (మరీ మెత్తగా), too big (మరీ పెద్దది). very అంటే చాలా: very sweet. పండని పండుని మనం still raw అంటాం; బయటి దేశాల వాళ్ళు still green లేదా not ripe yet అంటారు.",
       },
       bridge: {
         te: ["ఈ టమాటాలు", "మరీ మెత్తగా", "ఉన్నాయి"],
@@ -83,7 +83,7 @@ export const day: Lesson = {
         },
         {
           form: "still raw",
-          useFor: { en: "Not ripe yet.", te: "ఇంకా పండలేదు." },
+          useFor: { en: "Not ripe yet. Abroad, say still green.", te: "ఇంకా పండలేదు. బయటి దేశాల్లో still green అంటారు." },
           example: { en: "These bananas are still raw.", te: "ఈ అరటిపండ్లు ఇంకా పచ్చిగా ఉన్నాయి." },
         },
       ],
@@ -94,8 +94,8 @@ export const day: Lesson = {
       wrong: "This papaya is too much big.",
       right: "This papaya is too big.",
       why: {
-        en: "Say too big, not too much big.",
-        te: "too much big కాదు, too big అనండి.",
+        en: "Too already means more than you want, so no much: This papaya is too big.",
+        te: "too అంటేనే అవసరానికి మించి; much అక్కర్లేదు: This papaya is too big.",
       },
     },
     {
@@ -104,8 +104,8 @@ export const day: Lesson = {
       wrong: "These mangoes are too sweet. I'll take them.",
       right: "These mangoes are very sweet. I'll take them.",
       why: {
-        en: "Sweet is good here: very, not too.",
-        te: "తీపి ఇక్కడ మంచిదే: too కాదు, very.",
+        en: "Too means a problem; sweet mangoes are good, so very: These mangoes are very sweet.",
+        te: "too అంటే సమస్య; తీపి మంచిదే, అందుకే very: These mangoes are very sweet.",
       },
     },
   ],
@@ -117,8 +117,8 @@ export const day: Lesson = {
       options: ["Are these mangoes ripe?", "Is these mangoes ripe?", "These mangoes ripe?"],
       answer: 0,
       why: {
-        en: "Many mangoes: are.",
-        te: "చాలా మామిడిపండ్లు: are.",
+        en: "Mangoes are more than one, so the question starts with are: Are these mangoes ripe?",
+        te: "మామిడిపండ్లు చాలా ఉన్నాయి, అందుకే ప్రశ్న are తో: Are these mangoes ripe?",
       },
     },
     {
@@ -129,8 +129,8 @@ export const day: Lesson = {
       options: ["too", "much", "so much"],
       answer: 0,
       why: {
-        en: "A problem: too.",
-        te: "సమస్య: too.",
+        en: "Too soft is a problem, which is why you don't want them: These tomatoes are too soft.",
+        te: "మరీ మెత్తగా ఉంటే సమస్య, అందుకే too: These tomatoes are too soft.",
       },
     },
     {
@@ -140,8 +140,8 @@ export const day: Lesson = {
       options: ["These bananas are still raw.", "These bananas are too ripe.", "These bananas are very soft."],
       answer: 0,
       why: {
-        en: "Green and hard: still raw.",
-        te: "పచ్చగా, గట్టిగా: still raw.",
+        en: "Green and hard means not ripe yet: These bananas are still raw. Abroad, people say still green.",
+        te: "పచ్చగా, గట్టిగా ఉంటే ఇంకా పండలేదు: These bananas are still raw. బయట still green అంటారు.",
       },
     },
     {
@@ -151,8 +151,8 @@ export const day: Lesson = {
       wrongIndex: 0,
       fix: "Is the spinach fresh today?",
       why: {
-        en: "Spinach counts as one thing: is.",
-        te: "spinach ని ఒక్కటిగా లెక్కిస్తాం: is.",
+        en: "We don't count spinach, we see it as one heap, so is: Is the spinach fresh today?",
+        te: "spinach ని లెక్కపెట్టం, ఒక్కటిగానే చూస్తాం, అందుకే is: Is the spinach fresh today?",
       },
     },
   ],
@@ -165,7 +165,7 @@ export const day: Lesson = {
         te: "ఈ మామిడిపండ్లు పండాయా అని అమ్మేవారిని అడగండి.",
       },
       expected: ["Are these mangoes ripe?", "Are they ripe?"],
-      options: ["Are these mangoes ripe?", "Is these mangoes ripe?", "These mangoes are ripe is?"],
+      options: ["Are these mangoes ripe?", "Is these mangoes ripe?", "Do these mangoes ripe?"],
       answer: 0,
     },
     {
@@ -186,15 +186,15 @@ export const day: Lesson = {
     title: { en: "Choosing good fruit", te: "మంచి పండ్లు ఎంచుకోవడం" },
     scene: {
       en: "You want mangoes for today. Rani, the fruit seller, shows you some.",
-      te: "ఈ రోజుకి మీకు మామిడిపండ్లు కావాలి. పండ్లు అమ్మే రాణి కొన్ని చూపిస్తోంది.",
+      te: "ఈ రోజుకి మీకు మామిడిపండ్లు కావాలి. పండ్లు అమ్మే రాణి కొన్ని చూపిస్తున్నారు.",
     },
-    partner: { en: "Rani (fruit seller)", te: "రాణి (పండ్లు అమ్మే ఆమె)" },
+    partner: { en: "Rani (fruit seller)", te: "రాణి (పండ్లు అమ్మే ఆవిడ)" },
     skills: [{ id: "describe", label: { en: "Describing fruit", te: "పండ్ల వర్ణన" } }],
     turns: [
       {
         partner: "These mangoes came today. Very sweet!",
         te: "ఈ మామిడిపండ్లు ఈ రోజే వచ్చాయి. చాలా తియ్యగా ఉంటాయి!",
-        hint: { en: "Ask: Are they ripe?", te: "అడగండి: Are they ripe?" },
+        hint: { en: "Ask if they are ready to eat.", te: "తినడానికి పండాయా అని అడగండి." },
         replies: [
           { say: "Are they ripe?", good: true, skill: "describe" },
           { say: "Is they ripe?", good: false, skill: "describe" },
@@ -203,16 +203,16 @@ export const day: Lesson = {
       {
         partner: "These two are ripe. These are still raw.",
         te: "ఈ రెండూ పండాయి. ఇవి ఇంకా పచ్చిగా ఉన్నాయి.",
-        hint: { en: "Say: Give me the ripe ones, please.", te: "ఇలా చెప్పండి: Give me the ripe ones, please." },
+        hint: { en: "Ask politely for the two that are ripe.", te: "పండిన ఆ రెండూ ఇవ్వమని మర్యాదగా అడగండి." },
         replies: [
           { say: "Give me the ripe ones, please.", good: true, skill: "describe" },
-          { say: "Give me the ripe one, please.", good: false, skill: "describe" },
+          { say: "Give me ripe one, please.", good: false, skill: "describe" },
         ],
       },
       {
         partner: "Do you want this big papaya too?",
         te: "ఈ పెద్ద బొప్పాయి కూడా కావాలా?",
-        hint: { en: "Say: No, it's too big for me.", te: "ఇలా చెప్పండి: No, it's too big for me." },
+        hint: { en: "Say no, and give the reason: its size.", te: "వద్దని, కారణం చెప్పండి: దాని సైజు." },
         replies: [
           { say: "No, it's too big for me.", good: true, skill: "describe" },
           { say: "No, it's too much big for me.", good: false, skill: "describe" },
@@ -221,10 +221,15 @@ export const day: Lesson = {
       {
         partner: "Okay. Anything else?",
         te: "సరే. ఇంకేమైనా?",
-        hint: { en: "Ask: Can I choose the tomatoes myself?", te: "అడగండి: Can I choose the tomatoes myself?" },
+        hint: { en: "Ask if you can pick the tomatoes yourself.", te: "టమాటాలు మీరే ఏరుకోవచ్చా అని అడగండి." },
         replies: [
           { say: "Can I choose the tomatoes myself?", good: true },
-          { say: "Can I choose the tomatoes me?", good: false },
+          { say: "Myself I will choose the tomatoes.", good: false },
+          {
+            say: "Let me choose. You give bad ones.",
+            good: false,
+            react: { en: "Bad ones? Never! But okay, choose yourself.", te: "చెడ్డవా? ఎప్పుడూ ఇవ్వను! సరే, మీరే ఏరుకోండి." },
+          },
         ],
       },
     ],

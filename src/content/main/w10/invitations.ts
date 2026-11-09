@@ -8,7 +8,7 @@ export const day: Lesson = {
   subtitle: "invite / accept / decline",
   summary: {
     en: "Learn to invite someone, say yes happily, and say no kindly with a reason.",
-    te: "ఎవరినైనా ఆహ్వానించడం, సంతోషంగా ఒప్పుకోవడం, కారణంతో మర్యాదగా వద్దనడం నేర్చుకుందాం.",
+    te: "ఎవరినైనా పిలవడం, సంతోషంగా ఒప్పుకోవడం, కారణంతో మర్యాదగా వద్దనడం నేర్చుకుందాం.",
   },
   seo: {
     title: "Invitations in English for Telugu Speakers: Would You Like to Come?",
@@ -23,11 +23,11 @@ export const day: Lesson = {
   core: [
     { en: "Would you like to come for lunch?", te: "మీరు భోజనానికి వస్తారా?", extra: ["coming"] },
     { en: "I'd love to.", te: "తప్పకుండా వస్తాను.", extra: ["loving"] },
-    { en: "Sorry, I can't.", te: "క్షమించండి, రాలేను.", extra: ["don't"] },
+    { en: "Sorry, I can't.", te: "sorry అండీ, రాలేను.", extra: ["don't"] },
     { en: "Please come to my house on Sankranti.", te: "సంక్రాంతికి మా ఇంటికి రండి.", extra: ["in"] },
     { en: "Thank you for inviting me.", te: "నన్ను పిలిచినందుకు థాంక్యూ.", extra: ["invite"] },
     { en: "Can my sister come too?", te: "మా చెల్లెలు కూడా రావచ్చా?", extra: ["comes"] },
-    { en: "Sorry, I have another function.", te: "క్షమించండి, నాకు ఇంకో ఫంక్షన్ ఉంది.", extra: ["one"] },
+    { en: "Sorry, I have another function.", te: "sorry అండీ, నాకు ఇంకో ఫంక్షన్ ఉంది.", extra: ["one"] },
   ],
   key: [0, 1, 2, 3],
   tryToday: {
@@ -35,7 +35,7 @@ export const day: Lesson = {
     te: "ఎవరినైనా టీకి లేదా భోజనానికి ఇంగ్లీష్‌లో పిలవండి: Would you like to come for …?",
   },
   words: [
-    { en: "invite", te: "ఆహ్వానించడం, పిలవడం" },
+    { en: "invite", te: "పిలవడం, ఆహ్వానించడం" },
     { en: "Sankranti", te: "సంక్రాంతి" },
     { en: "another", te: "ఇంకొక" },
     { en: "dinner", te: "రాత్రి భోజనం" },
@@ -49,7 +49,7 @@ export const day: Lesson = {
       heading: { en: "Invite, accept, say no kindly", te: "పిలవడం, ఒప్పుకోవడం, మర్యాదగా వద్దనడం" },
       body: {
         en: "Invite with Would you like to come …? Say yes with I'd love to. Say no kindly: Sorry, I can't, and give a short reason.",
-        te: "ఆహ్వానించడానికి Would you like to come …? ఒప్పుకోవడానికి I'd love to. మర్యాదగా వద్దనడానికి Sorry, I can't, తర్వాత చిన్న కారణం.",
+        te: "పిలవడానికి Would you like to come …? ఒప్పుకోవడానికి I'd love to. మర్యాదగా వద్దనడానికి Sorry, I can't, తర్వాత చిన్న కారణం.",
       },
       bridge: {
         te: ["మీరు", "భోజనానికి", "వస్తారా?"],
@@ -62,7 +62,7 @@ export const day: Lesson = {
       examples: [
         { en: "Would you like to come for lunch?", te: "మీరు భోజనానికి వస్తారా?" },
         { en: "I'd love to.", te: "తప్పకుండా వస్తాను." },
-        { en: "Sorry, I have another function.", te: "క్షమించండి, నాకు ఇంకో ఫంక్షన్ ఉంది." },
+        { en: "Sorry, I have another function.", te: "sorry అండీ, నాకు ఇంకో ఫంక్షన్ ఉంది." },
       ],
     },
     {
@@ -72,18 +72,18 @@ export const day: Lesson = {
       items: [
         {
           form: "Would you like to come …?",
-          useFor: { en: "To invite someone politely.", te: "మర్యాదగా ఆహ్వానించడానికి." },
-          example: { en: "Please come to my house on Sankranti.", te: "సంక్రాంతికి మా ఇంటికి రండి." },
+          useFor: { en: "To invite someone politely.", te: "మర్యాదగా పిలవడానికి." },
+          example: { en: "Would you like to come for lunch?", te: "మీరు భోజనానికి వస్తారా?" },
         },
         {
           form: "I'd love to",
           useFor: { en: "To say yes happily.", te: "సంతోషంగా ఒప్పుకోవడానికి." },
-          example: { en: "Thank you for inviting me.", te: "నన్ను పిలిచినందుకు థాంక్యూ." },
+          example: { en: "I'd love to.", te: "తప్పకుండా వస్తాను." },
         },
         {
           form: "Sorry, I can't + reason",
           useFor: { en: "To say no kindly.", te: "మర్యాదగా వద్దనడానికి." },
-          example: { en: "Sorry, I have another function.", te: "క్షమించండి, నాకు ఇంకో ఫంక్షన్ ఉంది." },
+          example: { en: "Sorry, I have another function.", te: "sorry అండీ, నాకు ఇంకో ఫంక్షన్ ఉంది." },
         },
       ],
     },
@@ -93,8 +93,8 @@ export const day: Lesson = {
       wrong: "Would you like to coming?",
       right: "Would you like to come?",
       why: {
-        en: "After like to, the plain action word: come.",
-        te: "like to తర్వాత మామూలు పని పదం: come.",
+        en: "After like to, the verb stays plain, with no -ing: Would you like to come?",
+        te: "like to తర్వాత verb మామూలుగా ఉంటుంది, -ing రాదు: Would you like to come?",
       },
     },
     {
@@ -103,8 +103,8 @@ export const day: Lesson = {
       wrong: "No, I won't come.",
       right: "Sorry, I can't.",
       why: {
-        en: "No, I won't come sounds rude. Say sorry and give a reason.",
-        te: "No, I won't come అంటే కటువుగా ఉంటుంది. Sorry అని, కారణం చెప్పండి.",
+        en: "No, I won't come sounds rude. Say sorry and give a reason: Sorry, I can't.",
+        te: "No, I won't come అంటే కటువుగా ఉంటుంది. Sorry అని, కారణం చెప్పండి: Sorry, I can't.",
       },
     },
   ],
@@ -116,8 +116,8 @@ export const day: Lesson = {
       options: ["Would you like to come for lunch?", "Would you like coming for lunch?", "You like come for lunch?"],
       answer: 0,
       why: {
-        en: "Would you like to come …?",
-        te: "Would you like to come …? అని పిలవాలి.",
+        en: "To invite politely, say Would you like to, then the plain verb: Would you like to come for lunch?",
+        te: "మర్యాదగా పిలవడానికి Would you like to, తర్వాత మామూలు verb: Would you like to come for lunch?",
       },
     },
     {
@@ -128,8 +128,8 @@ export const day: Lesson = {
       options: ["inviting", "invite", "invited"],
       answer: 0,
       why: {
-        en: "After for, use -ing: inviting.",
-        te: "for తర్వాత -ing: inviting.",
+        en: "After for, the verb takes -ing: Thank you for inviting me.",
+        te: "for తర్వాత verb కి -ing వస్తుంది: Thank you for inviting me.",
       },
     },
     {
@@ -139,8 +139,8 @@ export const day: Lesson = {
       options: ["Sorry, I can't. I have another function.", "No, I won't come.", "Not coming."],
       answer: 0,
       why: {
-        en: "Say sorry and give a reason.",
-        te: "Sorry అని, కారణం చెప్పాలి.",
+        en: "A plain no sounds rude, so say sorry and give a reason: Sorry, I can't. I have another function.",
+        te: "నేరుగా no అంటే కటువుగా ఉంటుంది; sorry చెప్పి కారణం చెప్పండి: Sorry, I can't. I have another function.",
       },
     },
     {
@@ -150,8 +150,8 @@ export const day: Lesson = {
       wrongIndex: 4,
       fix: "Would you like to come for lunch?",
       why: {
-        en: "Like to + come.",
-        te: "like to తర్వాత come.",
+        en: "After like to, the verb stays plain, so come, not coming: Would you like to come for lunch?",
+        te: "like to తర్వాత verb మామూలుగానే, coming కాదు come: Would you like to come for lunch?",
       },
     },
   ],
@@ -184,16 +184,16 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "Sankranti lunch", te: "సంక్రాంతి భోజనం" },
     scene: {
-      en: "Invite your friend Usha for lunch on Sankranti.",
-      te: "మీ స్నేహితురాలు ఉషను సంక్రాంతి భోజనానికి పిలవండి.",
+      en: "Invite your friend Salma for lunch on Sankranti.",
+      te: "మీ స్నేహితురాలు సల్మా గారిని సంక్రాంతి భోజనానికి పిలవండి.",
     },
-    partner: { en: "Usha (a friend)", te: "ఉష (స్నేహితురాలు)" },
-    skills: [{ id: "invite", label: { en: "Inviting", te: "ఆహ్వానించడం" } }],
+    partner: { en: "Salma (a friend)", te: "సల్మా (స్నేహితురాలు)" },
+    skills: [{ id: "invite", label: { en: "Inviting", te: "పిలవడం" } }],
     turns: [
       {
-        partner: "Hi! How are you?",
-        te: "హాయ్! ఎలా ఉన్నారు?",
-        hint: { en: "Invite her: Would you like to come for lunch?", te: "ఆహ్వానించండి: Would you like to come for lunch?" },
+        partner: "Hi! Nice to see you!",
+        te: "హాయ్! మిమ్మల్ని చూడటం సంతోషంగా ఉంది!",
+        hint: { en: "Invite her for a meal.", te: "ఆవిడని భోజనానికి పిలవండి." },
         replies: [
           { say: "Would you like to come for lunch?", good: true, skill: "invite" },
           { say: "Would you like coming for lunch?", good: false, skill: "invite" },
@@ -202,7 +202,7 @@ export const day: Lesson = {
       {
         partner: "Oh, when?",
         te: "ఓ, ఎప్పుడు?",
-        hint: { en: "Say: On Sankranti, at one o'clock.", te: "ఇలా చెప్పండి: On Sankranti, at one o'clock." },
+        hint: { en: "Say the festival day and the time.", te: "పండుగ రోజు, టైమ్ చెప్పండి." },
         replies: [
           { say: "On Sankranti, at one o'clock.", good: true, skill: "invite" },
           { say: "In Sankranti, at one o'clock.", good: false, skill: "invite" },
@@ -211,7 +211,7 @@ export const day: Lesson = {
       {
         partner: "I'd love to! Can my sister come?",
         te: "తప్పకుండా! మా చెల్లెలు కూడా రావచ్చా?",
-        hint: { en: "Say: Yes, of course. Please bring her.", te: "ఇలా చెప్పండి: Yes, of course. Please bring her." },
+        hint: { en: "Say yes warmly, and ask her to bring her sister.", te: "సంతోషంగా సరే అని, చెల్లెల్ని కూడా తీసుకురమ్మని చెప్పండి." },
         replies: [
           { say: "Yes, of course. Please bring her.", good: true, skill: "invite" },
           { say: "Yes, of course. Please bring she.", good: false, skill: "invite" },
@@ -220,10 +220,15 @@ export const day: Lesson = {
       {
         partner: "Thank you for inviting us!",
         te: "మమ్మల్ని పిలిచినందుకు థాంక్యూ!",
-        hint: { en: "Say: You are welcome. See you on Sankranti!", te: "ఇలా చెప్పండి: You are welcome. See you on Sankranti!" },
+        hint: { en: "Reply to her thanks, and say goodbye till the festival.", te: "ఆవిడ థాంక్స్‌కి జవాబు చెప్పి, పండుగ రోజు కలుద్దాం అని చెప్పండి." },
         replies: [
           { say: "You are welcome. See you on Sankranti!", good: true, skill: "invite" },
           { say: "You are welcome. See you in Sankranti!", good: false, skill: "invite" },
+          {
+            say: "Okay. Don't come late.",
+            good: false,
+            react: { en: "Ha! Don't worry, we'll be on time.", te: "హహ! కంగారు పడకండి, టైమ్‌కి వస్తాం." },
+          },
         ],
       },
     ],

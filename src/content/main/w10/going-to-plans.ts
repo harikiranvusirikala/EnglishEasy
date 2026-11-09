@@ -22,12 +22,12 @@ export const day: Lesson = {
   ],
   core: [
     { en: "I am going to visit my cousin.", te: "నేను మా కజిన్ ఇంటికి వెళ్ళబోతున్నాను.", extra: ["will"] },
-    { en: "We are going to paint the house.", te: "మేము ఇంటికి రంగులు వేయించబోతున్నాం.", extra: ["will"] },
-    { en: "She is going to cook biryani.", te: "ఆమె బిర్యానీ వండబోతోంది.", extra: ["are"] },
+    { en: "We are going to paint the house.", te: "మేము ఇంటికి రంగులు వేయబోతున్నాం.", extra: ["will"] },
+    { en: "She is going to cook biryani.", te: "ఆవిడ బిర్యానీ వండబోతున్నారు.", extra: ["are"] },
     { en: "Are you going to come?", te: "మీరు రాబోతున్నారా?", extra: ["Is"] },
     { en: "I am not going to go out.", te: "నేను బయటకు వెళ్ళబోవడం లేదు.", extra: ["don't"] },
     { en: "What are you going to do?", te: "మీరు ఏం చేయబోతున్నారు?", extra: ["will"] },
-    { en: "He is going to retire soon.", te: "అతను త్వరలో రిటైర్ అవబోతున్నాడు.", extra: ["are"] },
+    { en: "He is going to retire soon.", te: "ఆయన త్వరలో రిటైర్ అవబోతున్నారు.", extra: ["are"] },
   ],
   key: [0, 1, 3, 5],
   tryToday: {
@@ -50,7 +50,7 @@ export const day: Lesson = {
       heading: { en: "Going to for plans", te: "ప్లాన్‌కి going to" },
       body: {
         en: "For a plan you have already made, say am, is or are, then going to, then the action: I am going to visit my cousin. It is like వెళ్ళబోతున్నాను in Telugu.",
-        te: "ముందే చేసుకున్న ప్లాన్ చెప్పడానికి am, is, are, తర్వాత going to, తర్వాత పని పదం: I am going to visit my cousin. ఇది తెలుగులో 'వెళ్ళబోతున్నాను' లాంటిది.",
+        te: "ముందే చేసుకున్న ప్లాన్ చెప్పడానికి am, is, are, తర్వాత going to, తర్వాత verb: I am going to visit my cousin. ఇది తెలుగులో 'వెళ్ళబోతున్నాను' లాంటిది.",
       },
       bridge: {
         te: ["నేను", "మా కజిన్ ఇంటికి", "వెళ్ళబోతున్నాను"],
@@ -62,7 +62,7 @@ export const day: Lesson = {
       },
       examples: [
         { en: "I am going to visit my cousin.", te: "నేను మా కజిన్ ఇంటికి వెళ్ళబోతున్నాను." },
-        { en: "She is going to cook biryani.", te: "ఆమె బిర్యానీ వండబోతోంది." },
+        { en: "She is going to cook biryani.", te: "ఆవిడ బిర్యానీ వండబోతున్నారు." },
         { en: "What are you going to do?", te: "మీరు ఏం చేయబోతున్నారు?" },
       ],
     },
@@ -79,7 +79,7 @@ export const day: Lesson = {
         {
           form: "he / she is going to",
           useFor: { en: "One person's plan.", te: "ఒక్కరి ప్లాన్." },
-          example: { en: "He is going to retire soon.", te: "అతను త్వరలో రిటైర్ అవబోతున్నాడు." },
+          example: { en: "He is going to retire soon.", te: "ఆయన త్వరలో రిటైర్ అవబోతున్నారు." },
         },
         {
           form: "Are you going to …?",
@@ -94,8 +94,8 @@ export const day: Lesson = {
       wrong: "I going to visit my cousin.",
       right: "I am going to visit my cousin.",
       why: {
-        en: "Do not leave out am, is or are.",
-        te: "am, is, are ని వదిలేయకండి.",
+        en: "Telugu has no separate word for am here, but English needs it: I am going to visit my cousin.",
+        te: "తెలుగులో am లాంటి పదం విడిగా ఉండదు, కానీ English లో వదలకూడదు: I am going to visit my cousin.",
       },
     },
     {
@@ -104,8 +104,8 @@ export const day: Lesson = {
       wrong: "She is going to cooking biryani.",
       right: "She is going to cook biryani.",
       why: {
-        en: "After going to, the plain action word: cook.",
-        te: "going to తర్వాత మామూలు పని పదం: cook.",
+        en: "After going to, the verb stays plain, with no -ing: She is going to cook biryani.",
+        te: "going to తర్వాత verb మామూలుగా ఉంటుంది, -ing రాదు: She is going to cook biryani.",
       },
     },
   ],
@@ -117,31 +117,31 @@ export const day: Lesson = {
       options: ["I going to visit my cousin.", "I am going to visit my cousin.", "I am go to visit my cousin."],
       answer: 1,
       why: {
-        en: "I am going to + visit.",
-        te: "I am going to తర్వాత visit.",
+        en: "Put am before going to, and the plain verb after it: I am going to visit my cousin.",
+        te: "going to ముందు am, తర్వాత మామూలు verb: I am going to visit my cousin.",
       },
     },
     {
       id: "p2",
       type: "fillBlank",
       sentence: "She ___ going to cook biryani.",
-      te: "ఆమె బిర్యానీ వండబోతోంది.",
+      te: "ఆవిడ బిర్యానీ వండబోతున్నారు.",
       options: ["is", "are", "am"],
       answer: 0,
       why: {
-        en: "She + is.",
-        te: "she తో is.",
+        en: "For one person like she, use is: She is going to cook biryani.",
+        te: "she లాంటి ఒక్కరికి is వస్తుంది: She is going to cook biryani.",
       },
     },
     {
       id: "p3",
       type: "choose",
-      prompt: { en: "Ask a friend about her plans for Sunday.", te: "ఆదివారం ఏం చేయబోతుందో మీ స్నేహితురాలిని అడగండి." },
+      prompt: { en: "Ask a friend about her plans for Sunday.", te: "ఆదివారం ఏం చేయబోతున్నారో మీ స్నేహితురాలిని అడగండి." },
       options: ["What are you going to do on Sunday?", "What you going to do on Sunday?", "What are you go to do on Sunday?"],
       answer: 0,
       why: {
-        en: "What + are + you + going to + do.",
-        te: "వరుస: What + are + you + going to + do.",
+        en: "A plan question puts are before you: What are you going to do on Sunday?",
+        te: "ప్లాన్ అడిగేటప్పుడు you ముందు are వస్తుంది: What are you going to do on Sunday?",
       },
     },
     {
@@ -151,8 +151,8 @@ export const day: Lesson = {
       wrongIndex: 4,
       fix: "We are going to paint the house.",
       why: {
-        en: "After going to, paint.",
-        te: "going to తర్వాత paint.",
+        en: "After going to, the verb stays plain, with no -ing: We are going to paint the house.",
+        te: "going to తర్వాత verb మామూలుగా ఉంటుంది, -ing రాదు: We are going to paint the house.",
       },
     },
   ],
@@ -173,7 +173,7 @@ export const day: Lesson = {
       type: "situation",
       situation: {
         en: "Ask your neighbour if he is going to come to the function.",
-        te: "ఫంక్షన్‌కి వస్తున్నారా అని పొరుగాయనను అడగండి.",
+        te: "ఫంక్షన్‌కి వస్తున్నారా అని పొరుగింటాయన్ని అడగండి.",
       },
       expected: ["Are you going to come?", "Are you coming?"],
       options: ["Are you going to come?", "You going to come?", "Are you going to coming?"],
@@ -185,25 +185,31 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "Weekend plans", te: "వారాంతపు ప్లాన్స్" },
     scene: {
-      en: "Your friend Ravi asks about your plans for the weekend.",
-      te: "మీ స్నేహితుడు రవి మీ వారాంతపు ప్లాన్స్ గురించి అడుగుతున్నారు.",
+      en: "Your friend Rahim asks about your plans for the weekend.",
+      te: "మీ స్నేహితుడు రహీమ్ మీ వారాంతపు ప్లాన్స్ గురించి అడుగుతున్నారు.",
     },
-    partner: { en: "Ravi (a friend)", te: "రవి (స్నేహితుడు)" },
+    partner: { en: "Rahim (a friend)", te: "రహీమ్ (స్నేహితుడు)" },
+    voice: "b",
     skills: [{ id: "plan", label: { en: "going to", te: "going to వాడకం" } }],
     turns: [
       {
         partner: "Any plans for the weekend?",
         te: "వారాంతానికి ఏమైనా ప్లాన్స్ ఉన్నాయా?",
-        hint: { en: "Say: I am going to visit my cousin.", te: "ఇలా చెప్పండి: I am going to visit my cousin." },
+        hint: { en: "Say which relative you plan to visit.", te: "ఏ బంధువు ఇంటికి వెళ్ళబోతున్నారో చెప్పండి." },
         replies: [
           { say: "I am going to visit my cousin.", good: true, skill: "plan" },
           { say: "I going to visit my cousin.", good: false, skill: "plan" },
+          {
+            say: "Nothing. Why do you care?",
+            good: false,
+            react: { en: "Sorry! I only wanted to chat.", te: "sorry అండీ! ఊరికే మాట్లాడదామని అడిగాను." },
+          },
         ],
       },
       {
         partner: "Where does he live?",
-        te: "అతను ఎక్కడ ఉంటాడు?",
-        hint: { en: "Say: In Warangal. I am going by bus.", te: "ఇలా చెప్పండి: In Warangal. I am going by bus." },
+        te: "ఆయన ఎక్కడ ఉంటారు?",
+        hint: { en: "Name the town, and say how you are travelling.", te: "ఊరి పేరు, ఎలా వెళ్తున్నారో చెప్పండి." },
         replies: [
           { say: "In Warangal. I am going by bus.", good: true, skill: "plan" },
           { say: "In Warangal. I am going in bus.", good: false, skill: "plan" },
@@ -212,7 +218,7 @@ export const day: Lesson = {
       {
         partner: "What are you going to do there?",
         te: "అక్కడ ఏం చేయబోతున్నారు?",
-        hint: { en: "Say: We are going to see a film.", te: "ఇలా చెప్పండి: We are going to see a film." },
+        hint: { en: "Say one thing you plan to do together.", te: "కలిసి ఏం చేయబోతున్నారో ఒకటి చెప్పండి." },
         replies: [
           { say: "We are going to see a film.", good: true, skill: "plan" },
           { say: "We are going to saw a film.", good: false, skill: "plan" },
@@ -221,7 +227,7 @@ export const day: Lesson = {
       {
         partner: "Nice! When are you coming back?",
         te: "బాగుంది! ఎప్పుడు తిరిగి వస్తారు?",
-        hint: { en: "Say: I am coming back on Monday.", te: "ఇలా చెప్పండి: I am coming back on Monday." },
+        hint: { en: "Say which day you will be back.", te: "ఏ రోజు తిరిగి వస్తారో చెప్పండి." },
         replies: [
           { say: "I am coming back on Monday.", good: true, skill: "plan" },
           { say: "I am come back on Monday.", good: false, skill: "plan" },

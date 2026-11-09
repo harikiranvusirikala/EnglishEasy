@@ -13,23 +13,28 @@ export const day: ConversationDay = {
   dialogue: {
     id: "d1",
     type: "dialogue",
-    title: { en: "Ramana comes for lunch", te: "భోజనానికి రమణ" },
+    title: { en: "Jyothi comes for lunch", te: "భోజనానికి జ్యోతి గారు" },
     lines: [
-      { speaker: { en: "Sita", te: "సీత" }, voice: "a", en: "Welcome, Ramana! Please sit down.", te: "రండి రమణ! కూర్చోండి." },
-      { speaker: { en: "Ramana", te: "రమణ" }, voice: "b", en: "Thank you. The food looks very good!", te: "థాంక్యూ. భోజనం చాలా బాగుంది!" },
-      { speaker: { en: "Sita", te: "సీత" }, voice: "a", en: "I made pulihora and pesarattu.", te: "నేను పులిహోర, పెసరట్టు చేశాను." },
-      { speaker: { en: "Ramana", te: "రమణ" }, voice: "b", en: "I love pesarattu!", te: "నాకు పెసరట్టు అంటే చాలా ఇష్టం!" },
-      { speaker: { en: "Sita", te: "సీత" }, voice: "a", en: "Would you like some curd also?", te: "పెరుగు కూడా కావాలా?" },
-      { speaker: { en: "Ramana", te: "రమణ" }, voice: "b", en: "Yes, please. Just a little.", te: "అవును, కొంచెం చాలు." },
-      { speaker: { en: "Sita", te: "సీత" }, voice: "a", en: "Do you like spicy food?", te: "మీకు కారంగా ఉండేవి ఇష్టమా?" },
-      { speaker: { en: "Ramana", te: "రమణ" }, voice: "b", en: "No, not too spicy, please.", te: "లేదు, మరీ కారం వద్దు." },
-      { speaker: { en: "Sita", te: "సీత" }, voice: "a", en: "How many pesarattus would you like?", te: "ఎన్ని పెసరట్లు కావాలి?" },
-      { speaker: { en: "Ramana", te: "రమణ" }, voice: "b", en: "Two, please. Thank you, Sita!", te: "రెండు చాలు. థాంక్యూ సీత!" },
+      { speaker: { en: "John", te: "జాన్" }, voice: "b", en: "Welcome, Jyothi! Merry Christmas! Please sit.", te: "రండి జ్యోతి గారు! మెర్రీ క్రిస్మస్! కూర్చోండి." },
+      { speaker: { en: "Jyothi", te: "జ్యోతి" }, voice: "a", en: "Thank you. The food looks very good!", te: "థాంక్యూ. భోజనం చూస్తుంటేనే బాగుంది!" },
+      { speaker: { en: "John", te: "జాన్" }, voice: "b", en: "I made pulihora and pesarattu myself.", te: "పులిహోర, పెసరట్టు నేనే చేశాను." },
+      { speaker: { en: "Jyothi", te: "జ్యోతి" }, voice: "a", en: "I love pesarattu!", te: "నాకు పెసరట్టు అంటే చాలా ఇష్టం!" },
+      { speaker: { en: "John", te: "జాన్" }, voice: "b", en: "Would you like some curd too?", te: "పెరుగు కూడా కావాలా?" },
+      { speaker: { en: "Jyothi", te: "జ్యోతి" }, voice: "a", en: "Yes, please. Just a little.", te: "అవును, ఇవ్వండి. కొంచెం చాలు." },
+      { speaker: { en: "John", te: "జాన్" }, voice: "b", en: "Do you like spicy food?", te: "మీకు కారంగా ఉండేవి ఇష్టమా?" },
+      { speaker: { en: "Jyothi", te: "జ్యోతి" }, voice: "a", en: "A little. Not too spicy, please.", te: "కొంచెం. మరీ కారం వద్దు." },
+      { speaker: { en: "John", te: "జాన్" }, voice: "b", en: "How many pesarattus would you like?", te: "ఎన్ని పెసరట్లు కావాలి?" },
+      { speaker: { en: "Jyothi", te: "జ్యోతి" }, voice: "a", en: "Two, please. Thank you, John!", te: "రెండు చాలు. థాంక్యూ జాన్ గారు!" },
     ],
     questions: [
-      { prompt: { en: "What did Sita make?", te: "సీత ఏం చేసింది?" }, options: ["Idli and dosa", "Pulihora and pesarattu", "Rice and curd"], answer: 1 },
-      { prompt: { en: "Does Ramana like spicy food?", te: "రమణకి కారంగా ఉండేవి ఇష్టమా?" }, options: ["Yes, very much", "No, not too spicy", "He doesn't say"], answer: 1 },
-      { prompt: { en: "How many pesarattus does Ramana want?", te: "రమణకి ఎన్ని పెసరట్లు కావాలి?" }, options: ["One", "Two", "Three"], answer: 1 },
+      {
+        prompt: { en: "What is this talk about?", te: "ఈ మాటలు దేని గురించి?" },
+        options: ["Lunch at John's house", "Ordering food by phone", "Buying food at a shop"],
+        answer: 0,
+      },
+      { prompt: { en: "What did John make?", te: "జాన్ గారు ఏం చేశారు?" }, options: ["Idli and dosa", "Pulihora and pesarattu", "Rice and curd"], answer: 1 },
+      { prompt: { en: "Does Jyothi like spicy food?", te: "జ్యోతి గారికి కారంగా ఉండేవి ఇష్టమా?" }, options: ["Yes, very spicy", "A little, not too spicy", "She doesn't say"], answer: 1 },
+      { prompt: { en: "How many pesarattus does Jyothi want?", te: "జ్యోతి గారికి ఎన్ని పెసరట్లు కావాలి?" }, options: ["One", "Two", "Three"], answer: 1 },
     ],
   },
   situations: [
@@ -41,7 +46,7 @@ export const day: ConversationDay = {
         te: "ఇంటివారు ఇంకొంచెం అన్నం వడ్డిస్తామంటున్నారు. కొంచెం చాలని చెప్పండి.",
       },
       expected: ["Yes, please. Just a little.", "Just a little, please."],
-      options: ["Yes, please. Just a little.", "Yes, please. Little bit only.", "Yes, I would. Little."],
+      options: ["Yes, please. Just a little.", "Yes, please. Little bit only.", "Okay, give."],
       answer: 0,
     },
     {
@@ -52,7 +57,7 @@ export const day: ConversationDay = {
         te: "ఇంటివారు అడుగుతున్నారు: Would you like a sweet? మర్యాదగా వద్దని చెప్పండి.",
       },
       expected: ["No, thank you.", "No, thank you. I am full."],
-      options: ["No, I don't.", "No, thank you.", "Not want."],
+      options: ["No, I don't.", "No, thank you.", "No. Take it away."],
       answer: 1,
     },
     {
@@ -73,10 +78,10 @@ export const day: ConversationDay = {
       type: "roleplay",
       title: { en: "A guest at lunch", te: "భోజనానికి అతిథిగా" },
       scene: {
-        en: "Your friend Sita invites you for lunch. Be a polite guest.",
-        te: "మీ స్నేహితురాలు సీత మిమ్మల్ని భోజనానికి పిలిచింది. మర్యాదగల అతిథిగా ఉండండి.",
+        en: "Your friend Ayesha invites you for lunch on Ramzan. Be a polite guest.",
+        te: "మీ స్నేహితురాలు ఆయేషా రంజాన్ రోజు మిమ్మల్ని భోజనానికి పిలిచారు. మర్యాదగల అతిథిగా ఉండండి.",
       },
-      partner: { en: "Sita (your host)", te: "సీత (ఇంటావిడ)" },
+      partner: { en: "Ayesha (your host)", te: "ఆయేషా (ఇంటావిడ)" },
       skills: [
         { id: "polite", label: { en: "Polite answers", te: "మర్యాద జవాబులు" } },
         { id: "food", label: { en: "Food words", te: "ఆహారం మాటలు" } },
@@ -85,16 +90,22 @@ export const day: ConversationDay = {
         {
           partner: "Lunch is ready. Please come.",
           te: "భోజనం రెడీ. రండి.",
-          hint: { en: "Say: Thank you. The food looks very good.", te: "ఇలా చెప్పండి: Thank you. The food looks very good." },
+          hint: { en: "Thank her, and say something nice about the food.", te: "థాంక్స్ చెప్పి, భోజనం గురించి ఒక మంచి మాట చెప్పండి." },
           replies: [
             { say: "Thank you. The food looks very good.", good: true, skill: "food" },
             { say: "Thank you. The food look very good.", good: false, skill: "food" },
+            {
+              say: "Finally! I am very hungry.",
+              good: false,
+              skill: "polite",
+              react: { en: "Sorry! Festival cooking takes time.", te: "sorry అండీ! పండగ వంట కదా, టైం పడుతుంది." },
+            },
           ],
         },
         {
           partner: "Would you like some rice?",
           te: "కొంచెం అన్నం కావాలా?",
-          hint: { en: "Say: Yes, please.", te: "ఇలా చెప్పండి: Yes, please." },
+          hint: { en: "Accept it politely.", te: "మర్యాదగా సరే అనండి." },
           replies: [
             { say: "Yes, please.", good: true, skill: "polite" },
             { say: "Yes, I would like.", good: false, skill: "polite" },
@@ -103,7 +114,7 @@ export const day: ConversationDay = {
         {
           partner: "Do you like spicy food?",
           te: "మీకు కారంగా ఉండేవి ఇష్టమా?",
-          hint: { en: "Say: A little. Not too spicy, please.", te: "ఇలా చెప్పండి: A little. Not too spicy, please." },
+          hint: { en: "Say a little spice is fine, but not too much.", te: "కొంచెం కారం పర్లేదు, మరీ ఎక్కువ వద్దని చెప్పండి." },
           replies: [
             { say: "A little. Not too spicy, please.", good: true, skill: "food" },
             { say: "A little. Not too much spicy.", good: false, skill: "food" },
@@ -112,7 +123,7 @@ export const day: ConversationDay = {
         {
           partner: "Would you like some curd?",
           te: "పెరుగు కావాలా?",
-          hint: { en: "Say: Yes, please. Just a little.", te: "ఇలా చెప్పండి: Yes, please. Just a little." },
+          hint: { en: "Say yes, but only a small amount.", te: "సరే అని, కొంచెమే చాలని చెప్పండి." },
           replies: [
             { say: "Yes, please. Just a little.", good: true, skill: "polite" },
             { say: "Yes, please. Just little.", good: false, skill: "polite" },
@@ -121,7 +132,7 @@ export const day: ConversationDay = {
         {
           partner: "Some sweet now?",
           te: "ఇప్పుడు కొంచెం స్వీట్?",
-          hint: { en: "Say no politely: No, thank you. I am full.", te: "మర్యాదగా వద్దనండి: No, thank you. I am full." },
+          hint: { en: "Say no politely, and that you have eaten enough.", te: "మర్యాదగా వద్దనండి, కడుపు నిండిందని చెప్పండి." },
           replies: [
             { say: "No, thank you. I am full.", good: true, skill: "polite" },
             { say: "No, thanks you. I am full.", good: false, skill: "polite" },
@@ -138,6 +149,7 @@ export const day: ConversationDay = {
         te: "అతిథులు వస్తున్నారు. శ్రీ కృష్ణ హోటల్‌కి ఫోన్ చేసి భోజనం ఆర్డర్ చేయండి.",
       },
       partner: { en: "Mohan (at the hotel)", te: "మోహన్ (హోటల్‌లో)" },
+      voice: "b",
       skills: [
         { id: "order", label: { en: "Ordering", te: "ఆర్డర్ చేయడం" } },
         { id: "many", label: { en: "One and many", te: "ఒకటి, చాలా" } },
@@ -146,7 +158,7 @@ export const day: ConversationDay = {
         {
           partner: "Hello, Sri Krishna Hotel.",
           te: "హలో, శ్రీ కృష్ణ హోటల్.",
-          hint: { en: "Say: I would like to order some food.", te: "ఇలా చెప్పండి: I would like to order some food." },
+          hint: { en: "Say politely that you want to order food.", te: "భోజనం ఆర్డర్ చేయాలని మర్యాదగా చెప్పండి." },
           replies: [
             { say: "I would like to order some food.", good: true, skill: "order" },
             { say: "I would like order some food.", good: false, skill: "order" },
@@ -155,7 +167,7 @@ export const day: ConversationDay = {
         {
           partner: "Yes. What would you like?",
           te: "చెప్పండి. ఏం కావాలి?",
-          hint: { en: "Say: Four idlis and two dosas, please.", te: "ఇలా చెప్పండి: Four idlis and two dosas, please." },
+          hint: { en: "Order some idlis and dosas. Say how many.", te: "ఇడ్లీలు, దోసెలు ఆర్డర్ చేయండి. ఎన్నో చెప్పండి." },
           replies: [
             { say: "Four idlis and two dosas, please.", good: true, skill: "many" },
             { say: "Four idli and two dosa, please.", good: false, skill: "many" },
@@ -164,7 +176,7 @@ export const day: ConversationDay = {
         {
           partner: "Anything to drink?",
           te: "తాగడానికి ఏమైనా?",
-          hint: { en: "Say: Two coffees, please.", te: "ఇలా చెప్పండి: Two coffees, please." },
+          hint: { en: "Order coffee for two people.", te: "ఇద్దరికి కాఫీ ఆర్డర్ చేయండి." },
           replies: [
             { say: "Two coffees, please.", good: true, skill: "many" },
             { say: "Two coffee, please.", good: false, skill: "many" },
@@ -173,10 +185,15 @@ export const day: ConversationDay = {
         {
           partner: "Okay. It will come in thirty minutes.",
           te: "సరే. ముప్పై నిమిషాల్లో వస్తుంది.",
-          hint: { en: "Ask the price: How much is it?", te: "ధర అడగండి: How much is it?" },
+          hint: { en: "Say okay, and ask the price.", te: "సరే అని, ధర ఎంతో అడగండి." },
           replies: [
-            { say: "How much is it?", good: true, skill: "order" },
-            { say: "How many is it?", good: false, skill: "order" },
+            { say: "Okay. How much is it?", good: true, skill: "order" },
+            { say: "Okay. How many is it?", good: false, skill: "order" },
+            {
+              say: "Thirty? No! Send it in ten.",
+              good: false,
+              react: { en: "Sorry, we are very busy today.", te: "sorry అండీ, ఈ రోజు చాలా రద్దీగా ఉంది." },
+            },
           ],
         },
       ],

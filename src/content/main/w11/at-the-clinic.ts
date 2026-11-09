@@ -24,9 +24,9 @@ export const day: Lesson = {
     { en: "I had a fever yesterday.", te: "నిన్న నాకు జ్వరం వచ్చింది.", extra: ["have"] },
     { en: "The pain started on Monday.", te: "నొప్పి సోమవారం మొదలైంది.", extra: ["in"] },
     { en: "I can't sleep at night.", te: "నాకు రాత్రి నిద్ర పట్టడం లేదు.", extra: ["don't"] },
-    { en: "I feel dizzy in the morning.", te: "ఉదయం నాకు కళ్ళు తిరుగుతున్నాయి.", extra: ["feels"] },
+    { en: "I feel dizzy in the morning.", te: "ఉదయం పూట నాకు కళ్ళు తిరుగుతాయి.", extra: ["feels"] },
     { en: "I have an appointment at ten.", te: "నాకు పది గంటలకు అపాయింట్‌మెంట్ ఉంది.", extra: ["a"] },
-    { en: "Please check my BP.", te: "దయచేసి నా BP చెక్ చేయండి.", extra: ["checking"] },
+    { en: "Please check my BP.", te: "నా BP ఒకసారి చెక్ చేయండి.", extra: ["checking"] },
     { en: "How many times a day?", te: "రోజుకు ఎన్నిసార్లు?", extra: ["much"] },
   ],
   key: [0, 1, 2, 3],
@@ -50,7 +50,7 @@ export const day: Lesson = {
       heading: { en: "Now and before", te: "ఇప్పుడు, ముందు" },
       body: {
         en: "Tell the doctor what you feel now with the present: I feel dizzy. Tell what happened with the past: I had a fever yesterday. The pain started on Monday. Short, simple sentences are best.",
-        te: "ఇప్పుడు ఎలా ఉందో వర్తమానంలో చెప్పండి: I feel dizzy. ముందు ఏం జరిగిందో గతంలో: I had a fever yesterday. The pain started on Monday. చిన్న, సులభమైన వాక్యాలు చాలు.",
+        te: "ఇప్పుడు ఎలా ఉందో ఇలా: I feel dizzy. ముందు జరిగింది past లో: I had a fever yesterday. The pain started on Monday. చిన్న వాక్యాలు చాలు.",
       },
       bridge: {
         te: ["నిన్న", "నాకు", "జ్వరం వచ్చింది"],
@@ -63,7 +63,7 @@ export const day: Lesson = {
       examples: [
         { en: "I had a fever yesterday.", te: "నిన్న నాకు జ్వరం వచ్చింది." },
         { en: "The pain started on Monday.", te: "నొప్పి సోమవారం మొదలైంది." },
-        { en: "I feel dizzy in the morning.", te: "ఉదయం నాకు కళ్ళు తిరుగుతున్నాయి." },
+        { en: "I feel dizzy in the morning.", te: "ఉదయం పూట నాకు కళ్ళు తిరుగుతాయి." },
       ],
     },
     {
@@ -94,8 +94,8 @@ export const day: Lesson = {
       wrong: "Yesterday I have fever.",
       right: "I had a fever yesterday.",
       why: {
-        en: "Yesterday is the past: had a fever.",
-        te: "నిన్న అంటే గతం: had a fever.",
+        en: "Yesterday is past, so have becomes had, and fever needs a: I had a fever yesterday.",
+        te: "నిన్న అంటే past, have కాదు had; fever ముందు a: I had a fever yesterday.",
       },
     },
     {
@@ -104,8 +104,8 @@ export const day: Lesson = {
       wrong: "I am not getting sleep.",
       right: "I can't sleep at night.",
       why: {
-        en: "Say it simply: I can't sleep.",
-        te: "సులభంగా చెప్పండి: I can't sleep.",
+        en: "Not getting sleep copies the Telugu words; in English say I can't sleep at night.",
+        te: "'నిద్ర పట్టడం లేదు' ని మాటకి మాట మార్చకండి: I can't sleep at night అనండి.",
       },
     },
   ],
@@ -117,8 +117,8 @@ export const day: Lesson = {
       options: ["Yesterday I have a fever.", "I had a fever yesterday.", "I having fever yesterday."],
       answer: 1,
       why: {
-        en: "The past: had.",
-        te: "గతం: had.",
+        en: "Yesterday is past, so say had, not have: I had a fever yesterday.",
+        te: "నిన్న అంటే past, అందుకే have కాదు had: I had a fever yesterday.",
       },
     },
     {
@@ -129,8 +129,8 @@ export const day: Lesson = {
       options: ["started", "starts", "start"],
       answer: 0,
       why: {
-        en: "It happened before: started.",
-        te: "ముందు జరిగింది: started.",
+        en: "Monday is over, so the verb is past: The pain started on Monday.",
+        te: "సోమవారం అయిపోయింది, అందుకే verb past: The pain started on Monday.",
       },
     },
     {
@@ -140,8 +140,8 @@ export const day: Lesson = {
       options: ["How many times a day?", "How much times a day?", "How many time a day?"],
       answer: 0,
       why: {
-        en: "Times are counted: how many times.",
-        te: "సార్లు లెక్కపెడతాం: how many times.",
+        en: "We count times, so say many, not much: How many times a day?",
+        te: "సార్లు లెక్కపెడతాం, అందుకే much కాదు many: How many times a day?",
       },
     },
     {
@@ -151,8 +151,8 @@ export const day: Lesson = {
       wrongIndex: 1,
       fix: "I feel dizzy in the morning.",
       why: {
-        en: "With I, feel (no s).",
-        te: "I తో feel (s లేకుండా).",
+        en: "With I, the verb has no s: I feel dizzy in the morning.",
+        te: "I తో verb కి s రాదు: I feel dizzy in the morning.",
       },
     },
   ],
@@ -189,12 +189,13 @@ export const day: Lesson = {
       te: "మీరు డాక్టర్ ప్రసాద్‌ని కలుస్తున్నారు. మీకు ఎలా ఉందో, ఏం జరిగిందో చెప్పండి.",
     },
     partner: { en: "Dr Prasad (a doctor)", te: "డాక్టర్ ప్రసాద్" },
+    voice: "b",
     skills: [{ id: "tell", label: { en: "Telling the doctor", te: "డాక్టర్‌కి చెప్పడం" } }],
     turns: [
       {
         partner: "Good morning. What is the problem?",
-        te: "గుడ్ మార్నింగ్. ఏమిటి సమస్య?",
-        hint: { en: "Say: I had a fever yesterday.", te: "ఇలా చెప్పండి: I had a fever yesterday." },
+        te: "గుడ్ మార్నింగ్. సమస్య ఏంటి?",
+        hint: { en: "Tell him what happened yesterday.", te: "నిన్న ఏమైందో ఆయనకి చెప్పండి." },
         replies: [
           { say: "I had a fever yesterday.", good: true, skill: "tell" },
           { say: "I have fever yesterday.", good: false, skill: "tell" },
@@ -203,7 +204,7 @@ export const day: Lesson = {
       {
         partner: "Do you have a fever now?",
         te: "ఇప్పుడు జ్వరం ఉందా?",
-        hint: { en: "Say: No, but I feel weak.", te: "ఇలా చెప్పండి: No, but I feel weak." },
+        hint: { en: "Say no, but you feel weak.", te: "లేదని చెప్పి, నీరసంగా ఉందని చెప్పండి." },
         replies: [
           { say: "No, but I feel weak.", good: true, skill: "tell" },
           { say: "No, but I am feel weak.", good: false, skill: "tell" },
@@ -212,7 +213,7 @@ export const day: Lesson = {
       {
         partner: "Do you sleep well?",
         te: "బాగా నిద్రపోతారా?",
-        hint: { en: "Say: No, I can't sleep at night.", te: "ఇలా చెప్పండి: No, I can't sleep at night." },
+        hint: { en: "Say no, and when you can't sleep.", te: "లేదని, ఎప్పుడు నిద్ర పట్టడం లేదో చెప్పండి." },
         replies: [
           { say: "No, I can't sleep at night.", good: true, skill: "tell" },
           { say: "No, I am not getting sleep.", good: false, skill: "tell" },
@@ -221,10 +222,16 @@ export const day: Lesson = {
       {
         partner: "Take this tablet after food.",
         te: "భోజనం తర్వాత ఈ మాత్ర వేసుకోండి.",
-        hint: { en: "Ask: How many times a day?", te: "అడగండి: How many times a day?" },
+        hint: { en: "Ask how often to take it.", te: "రోజుకు ఎన్నిసార్లు వేసుకోవాలో అడగండి." },
         replies: [
           { say: "How many times a day?", good: true, skill: "tell" },
           { say: "How much times a day?", good: false, skill: "tell" },
+          {
+            say: "Just give me an injection.",
+            good: false,
+            skill: "tell",
+            react: { en: "No need. This tablet is enough.", te: "అవసరం లేదు. ఈ మాత్ర చాలు." },
+          },
         ],
       },
     ],

@@ -1,6 +1,7 @@
 import { releasedDayRefs } from "./course";
 import { expandDay } from "./generate";
 import { isWritten, loadDay } from "./load";
+import { soundOfWeek } from "./sounds";
 import { playableDaySchema } from "./schema";
 import type { ConversationDay, Day, Lesson, PlayableDay } from "./types";
 
@@ -22,7 +23,7 @@ export async function buildAll(): Promise<Built[]> {
     const weekKey = `${lane}:${week.n}`;
     const earlier = lessonsByLane.get(lane) ?? [];
     const weekLessons = lessonsByWeek.get(weekKey) ?? [];
-    const playable = playableDaySchema.parse(expandDay(day, earlier, weekLessons, conversationByWeek.get(weekKey)));
+    const playable = playableDaySchema.parse(expandDay(day, earlier, weekLessons, conversationByWeek.get(weekKey), lane === "main" ? soundOfWeek(week.n) : undefined));
     built.push({ day, playable, stage, week: week.n, lane });
     if (day.kind === "conversation") conversationByWeek.set(weekKey, day);
     if (day.kind === "lesson") {

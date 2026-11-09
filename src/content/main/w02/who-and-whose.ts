@@ -21,10 +21,10 @@ export const day: Lesson = {
     { text: "this?", role: "what" },
   ],
   core: [
-    { en: "Who is that man?", te: "ఆ మనిషి ఎవరు?", extra: ["Whose"] },
+    { en: "Who is that man?", te: "ఆ ఆయన ఎవరు?", extra: ["Whose"] },
     { en: "Whose bag is this?", te: "ఇది ఎవరి బ్యాగ్?", extra: ["Who"] },
     { en: "Who is your doctor?", te: "మీ డాక్టర్ ఎవరు?", extra: ["Whose"] },
-    { en: "He is my neighbour.", te: "ఆయన మా పొరుగింటాయన.", extra: ["am"] },
+    { en: "He is my neighbour.", te: "ఆయన మా పక్కింటాయన.", extra: ["am"] },
     { en: "Whose phone is ringing?", te: "ఎవరి ఫోన్ మోగుతోంది?", extra: ["Who"] },
     { en: "Who made this sweet?", te: "ఈ స్వీట్ ఎవరు చేశారు?", extra: ["did"] },
     { en: "It is Sita's bag.", te: "అది సీత బ్యాగ్.", extra: ["Sita"] },
@@ -61,7 +61,7 @@ export const day: Lesson = {
         ],
       },
       examples: [
-        { en: "Who is that man?", te: "ఆ మనిషి ఎవరు?" },
+        { en: "Who is that man?", te: "ఆ ఆయన ఎవరు?" },
         { en: "Whose bag is this?", te: "ఇది ఎవరి బ్యాగ్?" },
         { en: "Whose phone is ringing?", te: "ఎవరి ఫోన్ మోగుతోంది?" },
       ],
@@ -85,7 +85,7 @@ export const day: Lesson = {
           form: "who + action",
           useFor: {
             en: "When who did the action, put the action right after who. No do or did.",
-            te: "పని ఎవరు చేశారో అడిగితే who తర్వాత వెంటనే పని పదం వస్తుంది. do, did రావు.",
+            te: "పని ఎవరు చేశారో అడిగితే who తర్వాత వెంటనే verb వస్తుంది. do, did రావు.",
           },
           example: { en: "Who made this sweet?", te: "ఈ స్వీట్ ఎవరు చేశారు?" },
         },
@@ -97,8 +97,8 @@ export const day: Lesson = {
       wrong: "Who is this bag?",
       right: "Whose bag is this?",
       why: {
-        en: "To ask who owns a thing, use whose, then the thing.",
-        te: "వస్తువు ఎవరిదో అడగాలంటే whose, తర్వాత ఆ వస్తువు.",
+        en: "Who is for a person. For the owner, say whose, then the thing: Whose bag is this?",
+        te: "who మనిషి కోసం. వస్తువు ఎవరిదో అడగాలంటే whose, తర్వాత ఆ వస్తువు: Whose bag is this?",
       },
     },
     {
@@ -108,7 +108,7 @@ export const day: Lesson = {
       right: "Who made this sweet?",
       why: {
         en: "When who is the doer, do not add did. Say the past action: made.",
-        te: "పని చేసింది ఎవరో అడిగితే did పెట్టకండి. పని పదాన్ని past లో చెప్పండి: made.",
+        te: "పని చేసింది ఎవరో అడిగితే did పెట్టకండి. verb ని past లో చెప్పండి: made.",
       },
     },
   ],
@@ -117,7 +117,7 @@ export const day: Lesson = {
       id: "p1",
       type: "choose",
       prompt: { en: "You find a phone on a chair. What do you ask?", te: "కుర్చీ మీద ఒక ఫోన్ ఉంది. ఏమని అడుగుతారు?" },
-      options: ["Who phone is this?", "Whose phone is this?", "Whose is phone this?"],
+      options: ["Who phone is this?", "Whose phone is this?", "This phone is whose?"],
       answer: 1,
       why: {
         en: "Whose, then the thing: Whose phone is this?",
@@ -132,8 +132,8 @@ export const day: Lesson = {
       options: ["Who", "Whose", "What"],
       answer: 0,
       why: {
-        en: "To ask about a person, use who.",
-        te: "ఒక మనిషి గురించి అడగడానికి who.",
+        en: "To ask about a person, use who: Who is that woman?",
+        te: "ఒక మనిషి గురించి అడగడానికి who: Who is that woman?",
       },
     },
     {
@@ -154,8 +154,8 @@ export const day: Lesson = {
       wrongIndex: 0,
       fix: "Whose umbrella is this?",
       why: {
-        en: "To ask who owns the umbrella, say whose.",
-        te: "గొడుగు ఎవరిదో అడగాలంటే whose అనాలి.",
+        en: "To ask who owns the umbrella, say whose: Whose umbrella is this?",
+        te: "గొడుగు ఎవరిదో అడగాలంటే whose అనాలి: Whose umbrella is this?",
       },
     },
   ],
@@ -164,10 +164,10 @@ export const day: Lesson = {
       id: "s1",
       type: "situation",
       situation: {
-        en: "Someone asks about Ravi: Who is he? Ravi lives next door. Answer.",
-        te: "రవి గురించి ఒకరు అడుగుతున్నారు: Who is he? రవి మీ పక్కింట్లో ఉంటారు. జవాబు చెప్పండి.",
+        en: "Someone asks about Rahim: Who is he? Rahim lives next door. Answer.",
+        te: "రహీమ్ గారి గురించి ఒకరు అడుగుతున్నారు: Who is he? రహీమ్ గారు మీ పక్కింట్లో ఉంటారు. జవాబు చెప్పండి.",
       },
-      expected: ["He is my neighbour.", "He is Ravi.", "He is my neighbour Ravi."],
+      expected: ["He is my neighbour.", "He is Rahim.", "He is my neighbour Rahim."],
       options: ["He my neighbour.", "He is my neighbour.", "His is my neighbour."],
       answer: 1,
     },
@@ -200,17 +200,21 @@ export const day: Lesson = {
       {
         partner: "This function is very nice!",
         te: "ఈ ఫంక్షన్ చాలా బాగుంది!",
-        hint: { en: "Agree, then ask about a man: Who is that man?", te: "అవునని చెప్పి, ఒక మనిషి గురించి అడగండి: Who is that man?" },
+        hint: { en: "Agree, then ask about a man near you.", te: "అవునని చెప్పి, దగ్గర్లో ఉన్న ఒకాయన ఎవరని అడగండి." },
         replies: [
           { say: "Yes. Who is that man?", good: true, skill: "who" },
-          { say: "Yes. Whose is that man?", good: false, skill: "who" },
           { say: "Yes. That man is who?", good: false, skill: "who" },
+          {
+            say: "No, the food is bad.",
+            good: false,
+            react: { en: "Oh! Please don't say that so loudly.", te: "అయ్యో! అలా గట్టిగా అనకండి." },
+          },
         ],
       },
       {
         partner: "He is Prasad, my brother.",
         te: "ఆయన ప్రసాద్, మా అన్నయ్య.",
-        hint: { en: "Ask what he does: What does he do?", te: "ఆయన ఏం పని చేస్తారో అడగండి: What does he do?" },
+        hint: { en: "Ask about his work.", te: "ఆయన ఏం పని చేస్తారో అడగండి." },
         replies: [
           { say: "What does he do?", good: true, skill: "who" },
           { say: "What he does?", good: false, skill: "who" },
@@ -219,7 +223,7 @@ export const day: Lesson = {
       {
         partner: "He is a doctor in Vijayawada.",
         te: "ఆయన విజయవాడలో డాక్టర్.",
-        hint: { en: "You see a bag on a chair. Ask: Whose bag is this?", te: "కుర్చీ మీద ఒక బ్యాగ్ కనిపించింది. అడగండి: Whose bag is this?" },
+        hint: { en: "You see a bag on a chair. Ask who owns it.", te: "కుర్చీ మీద ఒక బ్యాగ్ కనిపించింది. అది ఎవరిదో అడగండి." },
         replies: [
           { say: "Whose bag is this?", good: true, skill: "whose" },
           { say: "Who bag is this?", good: false, skill: "whose" },
@@ -229,7 +233,7 @@ export const day: Lesson = {
       {
         partner: "Oh, it is my bag. Thank you!",
         te: "అయ్యో, అది నా బ్యాగే. థాంక్యూ!",
-        hint: { en: "Say: You are welcome.", te: "ఇలా చెప్పండి: You are welcome." },
+        hint: { en: "Answer her thanks politely.", te: "ఆవిడ thank you కి మర్యాదగా జవాబు చెప్పండి." },
         replies: [
           { say: "You are welcome.", good: true },
           { say: "You welcome.", good: false },

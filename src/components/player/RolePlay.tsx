@@ -5,10 +5,10 @@ import { useLearnIn } from "@/lib/settings-store";
 import { Bi } from "@/components/ui/Bi";
 import { BiText } from "@/components/ui/BiText";
 import { ContentText } from "@/components/ui/ContentText";
-import { hintPill, inlineListenButton } from "@/components/ui/button";
+import { hintPill, inlineListenButton, pillButton } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icons";
 import { cardSnug } from "@/components/ui/card";
-import type { Activity } from "@/content/types";
+import type { Activity, Bi as ContentBi } from "@/content/types";
 import { shuffle } from "@/learning/shuffle";
 import { scoreRolePlay, type TurnResult } from "@/learning/roleplay-score";
 import { judgeSpeech } from "@/learning/speech-match";
@@ -22,14 +22,29 @@ import { RolePlaySummary } from "./RolePlaySummary";
 import { ChooseNote, useChoosing } from "./SpeakFlow";
 
 type RolePlayActivity = Extract<Activity, { type: "roleplay" }>;
-type Reply = TurnResult & { text: string; better?: string };
+type Reply = TurnResult & { text: string; better?: string; react?: ContentBi };
 type Miss = { heard: string | null }; // a spoken reply that was not understood (null: nothing heard)
 
 /**
  * A partner line. Its text-sized Listen (and Slow) and, in Telugu mode, "అ" (the Telugu meaning, a toggle) sit on the
- * name row above the bubble (owner, 2026-11-09), so the bubble holds only the sentence. The newest line plays by itself.
+ * name row above the bubble (owner, 2026-11-09), so the bubble holds only the sentence. The newest line plays by itself,
+ * in the partner's voice (a man: "b"); `then` follows it (a reaction, then the better reply).
  */
-function PartnerBubble({ name, english, telugu, auto }: { name: RolePlayActivity["partner"]; english: string; telugu: string; auto: boolean }) {
+function PartnerBubble({
+  name,
+  english,
+  telugu,
+  auto,
+  voice,
+  then,
+}: {
+  name: RolePlayActivity["partner"];
+  english: string;
+  telugu: string;
+  auto: boolean;
+  voice?: RolePlayActivity["voice"];
+  then?: string;
+}) {
   const [meaning, setMeaning] = useState(false);
   const learnIn = useLearnIn(); // the Telugu meaning is offered only to learners who learn in Telugu
   return (
@@ -40,7 +55,7 @@ function PartnerBubble({ name, english, telugu, auto }: { name: RolePlayActivity
         <span className="flex items-center gap-2.5">
           {name.en}
           <span className="inline-flex items-center gap-2.5 text-lg font-normal">
-            <ListenInline read={[english]} auto={auto ? [english] : undefined} slow place="row" />
+            <ListenInline read={[english]} auto={auto ? [english] : undefined} then={auto && then ? { text: then } : undefined} voice={voice} slow place="row" />
             {learnIn === "te" && <MeaningToggle on={meaning} onToggle={() => setMeaning((m) => !m)} />}
           </span>
         </span>
@@ -73,7 +88,9 @@ export function MeaningToggle({ on, onToggle }: { on: boolean; onToggle: () => v
 /**
  * A scripted conversation (no AI): the partner's line plays, the learner speaks a reply or taps one. A good reply moves
  * straight on to the partner's next line (owner, 2026-11-08: no "Good" panel or Continue button, it flows like a real
- * talk); a not-good reply gets a gentle correction and Continue. After the last turn comes the summary.
+ * talk); a not-good reply gets the partner's reaction if it has one, then a gentle correction and Continue. After the
+ * last turn comes the summary. The replies are hidden until "Show replies" (content review, 2026-11-09), so speaking
+ * means remembering, not reading; they show at once when the learner can't speak.
  */
 /** How long a good reply's ✓ bubble shows before the partner's next line. */
 export const GOOD_REPLY_PAUSE_MS = 700;
@@ -85,6 +102,7 @@ export function RolePlay({ activity, onNext }: { activity: RolePlayActivity; onA
   const [log, setLog] = useState<Reply[]>([]);
   const [summary, setSummary] = useState(false);
   const [hint, setHint] = useState<number | null>(null);
+  const [shown, setShown] = useState<number | null>(null); // the turn whose replies are shown
   const [miss, setMiss] = useState<Miss | null>(null);
   const [listening, setListening] = useState(false);
   const gone = useRef(false);
@@ -120,7 +138,7 @@ export function RolePlay({ activity, onNext }: { activity: RolePlayActivity; onA
   const reply = (index: number, speech?: number) => {
     const chosen = current.replies[index];
     const better = chosen.good ? undefined : current.replies.find((r) => r.good)?.say;
-    setLog((l) => [...l, { text: chosen.say, good: chosen.good, skill: chosen.skill, speech, better }]);
+    setLog((l) => [...l, { text: chosen.say, good: chosen.good, skill: chosen.skill, speech, better, react: chosen.good ? undefined : chosen.react }]);
     setMiss(null);
     // A good reply stays on screen a moment (the ✓ bubble), then the partner answers.
     if (chosen.good) timer.current = window.setTimeout(() => !gone.current && forward(), GOOD_REPLY_PAUSE_MS);
@@ -144,6 +162,8 @@ export function RolePlay({ activity, onNext }: { activity: RolePlayActivity; onA
 
   const lastReply = log[turn];
   const corrected = replied && lastReply && !lastReply.good; // only a not-good reply waits for Continue
+  const repliesShown = choosing || shown === turn;
+  const voice = activity.voice;
   return (
     <>
       <div className="flex flex-col gap-4">
@@ -156,7 +176,7 @@ export function RolePlay({ activity, onNext }: { activity: RolePlayActivity; onA
           </h1>
           <p className="text-base text-ink-2">
             <ContentText text={activity.scene} />
-            <ListenInline read={[activity.scene]} auto={turn === 0 && log.length === 0 ? [activity.scene, turns[0].partner] : undefined} />
+            <ListenInline read={[activity.scene]} auto={turn === 0 && log.length === 0 ? [activity.scene] : undefined} then={{ text: turns[0].partner, voice }} />
           </p>
           <p className="text-base text-ink">
             {strings.rolePlayYouAre.en} <span className="font-semibold">{activity.partner.en}</span>
@@ -167,7 +187,7 @@ export function RolePlay({ activity, onNext }: { activity: RolePlayActivity; onA
 
         {turns.slice(0, turn + 1).map((t, i) => (
           <div key={i} className="flex flex-col gap-3">
-            <PartnerBubble name={activity.partner} english={t.partner} telugu={t.te} auto={i === turn && turn > 0} />
+            <PartnerBubble name={activity.partner} english={t.partner} telugu={t.te} auto={i === turn && turn > 0} voice={voice} />
             {log[i] && (
               <>
                 <Bubble side="right" name={strings.youReplied.en}>
@@ -176,6 +196,9 @@ export function RolePlay({ activity, onNext }: { activity: RolePlayActivity; onA
                     <span>{log[i].text}</span>
                   </p>
                 </Bubble>
+                {log[i].react && (
+                  <PartnerBubble name={activity.partner} english={log[i].react!.en} telugu={log[i].react!.te} auto={i === turn} voice={voice} then={log[i].better} />
+                )}
                 {i < turn && log[i].better && (
                   <p className="ml-auto max-w-[85%] rounded-2xl bg-almost-soft px-4 py-2 text-right text-base text-almost">
                     {strings.betterReply.en}: <span className="font-semibold">{log[i].better}</span>
@@ -195,10 +218,15 @@ export function RolePlay({ activity, onNext }: { activity: RolePlayActivity; onA
           </p>
         )}
 
-        {!replied && (
+        {!replied && !repliesShown && (
+          <Instruction>
+            <BiText text={strings.yourTurn} />
+          </Instruction>
+        )}
+        {!replied && repliesShown && (
           <div role="group" aria-label={strings.replyPrompt.en} className="flex flex-col gap-3 pt-2">
             <Instruction>
-              <BiText text={strings.replyPrompt} />
+              <BiText text={choosing ? strings.tapReply : strings.replyPrompt} />
             </Instruction>
             {order.map((i) => (
               <OptionButton key={i} text={current.replies[i].say} state="idle" onClick={() => reply(i)} />
@@ -215,7 +243,7 @@ export function RolePlay({ activity, onNext }: { activity: RolePlayActivity; onA
               <p className="text-lg">
                 <span>{strings.betterReply.en}: </span>
                 <Text className="font-semibold">{lastReply.better}</Text>
-                <ListenInline read={[lastReply.better]} auto={[lastReply.better]} />
+                <ListenInline read={[lastReply.better]} auto={lastReply.react ? undefined : [lastReply.better]} />
               </p>
             )}
           </FeedbackPanel>
@@ -236,13 +264,20 @@ export function RolePlay({ activity, onNext }: { activity: RolePlayActivity; onA
           </FeedbackPanel>
         )}
         {!replied && (
-          // One row (owner, 2026-11-09): Hint beside a 64 px microphone; the replies above matter more.
+          // One row (owner, 2026-11-09): Hint, a 64 px microphone, and "Show replies" until they are shown.
           <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3">
             <button type="button" onClick={() => setHint((h) => (h === turn ? null : turn))} aria-expanded={hint === turn} className={`${hintPill} justify-self-start`}>
               <Icon name="hint" className="size-5" />
               <Bi label={strings.hint} />
             </button>
             {!choosing ? <MicButton listening={listening} onStart={speak} size="sm" label={miss ? strings.speakAgain : strings.speak} /> : <span />}
+            {!repliesShown ? (
+              <button type="button" onClick={() => setShown(turn)} className={`${pillButton} justify-self-end`}>
+                <Bi label={strings.showReplies} />
+              </button>
+            ) : (
+              <span />
+            )}
           </div>
         )}
       </BottomBar>

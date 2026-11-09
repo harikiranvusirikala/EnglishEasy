@@ -1,6 +1,7 @@
 // Checks one week's day files before they are registered (CONTENT_PLAYBOOK §6): every content rule for each day,
 // plus the course rules (a new word introduced once, no core sentence twice in the week) against the written course.
 //   node --import tsx scripts/check-week.mts <week number> <day id> … (the seven ids in course order)
+//   node --import tsx scripts/check-week.mts <week number>   (a registered week: its days come from the course map)
 // Files are read from src/content/main/wNN/<id>.ts. Exits 1 when anything is wrong.
 import { existsSync } from "node:fs";
 import { join } from "node:path";
@@ -9,10 +10,13 @@ import { buildAll } from "../src/content/build";
 import { checkCourse, checkDay } from "../src/content/checks";
 import { course as courseMap } from "../src/content/course";
 import { activityCount, expandDay } from "../src/content/generate";
+import { soundOfWeek } from "../src/content/sounds";
 import type { ConversationDay, Day, Lesson } from "../src/content/types";
 
-const [weekArg, ...ids] = process.argv.slice(2);
+const [weekArg, ...given] = process.argv.slice(2);
 const week = Number(weekArg);
+const registered = courseMap.stages.flatMap((s) => s.weeks).find((w) => w.n === week)?.days.map((d) => d.id) ?? [];
+const ids = given.length > 0 ? given : registered;
 if (!Number.isInteger(week) || ids.length === 0) {
   console.error("usage: node --import tsx scripts/check-week.mts <week number> <day id> …");
   process.exit(2);
@@ -39,13 +43,17 @@ const conversation = days.find((d): d is ConversationDay => d.kind === "conversa
 
 let problems = 0;
 const before: Lesson[] = [...earlier];
+const weekBefore: Lesson[] = [];
 for (const day of days) {
-  const playable = expandDay(day, before, weekLessons, conversation);
+  const playable = expandDay(day, before, day.kind === "review" ? weekLessons : weekBefore, conversation, soundOfWeek(week));
   const found = checkDay(day, playable, { stage, mainPath: true });
   console.log(`${found.length === 0 ? "ok  " : "FAIL"} ${day.id} (${day.kind}, ${activityCount(playable)} activities)`);
   for (const p of found) console.log(`     ${p}`);
   problems += found.length;
-  if (day.kind === "lesson") before.push(day);
+  if (day.kind === "lesson") {
+    before.push(day);
+    weekBefore.push(day);
+  }
 }
 
 const course = checkCourse([

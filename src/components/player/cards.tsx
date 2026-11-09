@@ -164,6 +164,50 @@ export function DontSayCard({ activity, onNext }: CardProps<"dontSay">) {
   );
 }
 
+/**
+ * Sound of the week (CURRICULUM §2a): the two sides (v | w), how to make each, their example words with a text-sized
+ * Listen first, and "Hear the difference" playing the pair one after the other.
+ */
+export function SoundCard({ activity, onNext }: CardProps<"sound">) {
+  const { sound } = activity;
+  return (
+    <>
+      <div className={`${card} flex flex-col gap-4`}>
+        <div className="flex flex-col gap-1">
+          <p className="text-sm font-bold tracking-wide text-accent-ink uppercase">{strings.soundOfWeek.en}</p>
+          <Prompt as="h1">{sound.title}</Prompt>
+          <p className="text-lg text-ink-2">
+            <ContentText text={sound.tip} />
+          </p>
+        </div>
+        <div className="grid grid-cols-2 gap-3">
+          {sound.sides.map((side, i) => (
+            <div key={side.label} className={`flex flex-col gap-2 rounded-2xl p-3 ${i === 0 ? "bg-accent-soft" : "bg-brand-soft"}`}>
+              <p className={`font-display text-center text-4xl font-bold ${i === 0 ? "text-accent-ink" : "text-brand-ink"}`}>{side.label}</p>
+              <p className="text-center text-base text-ink-2">
+                <ContentText text={side.how} />
+              </p>
+              <ul className="flex flex-col gap-1.5">
+                {side.words.map((word) => (
+                  <li key={word} className="flex items-center gap-2 text-lg font-semibold text-ink">
+                    <ListenInline read={[word]} place="start" />
+                    {word}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <p className="text-lg text-ink">
+          {strings.hearDifference.en}: <span className="font-bold text-brand">{sound.pair.join(" — ")}</span>
+          <ListenInline read={[...sound.pair]} />
+        </p>
+      </div>
+      <Next onNext={onNext} />
+    </>
+  );
+}
+
 /** Stands in for an activity type that a later step builds, so a day can be played end to end. */
 export function ComingSoon({ onSkip }: { onSkip: () => void }) {
   return (

@@ -32,8 +32,8 @@ test("opening a role play reads its scene by itself, then the partner's first li
   await roleplayOnly(page);
   await expect.poll(async () => (await spoken(page)).map((s) => s.text).join(" | "), { timeout: 10_000 }).toContain("What do you drink in the morning?");
   const texts = (await spoken(page)).map((s) => s.text).join(" | ");
-  expect(texts).toContain("Padma, a friend, asks about your morning");
-  expect(texts.indexOf("Padma, a friend")).toBeLessThan(texts.indexOf("What do you drink in the morning?"));
+  expect(texts).toContain("Salma, a friend, asks about your morning");
+  expect(texts.indexOf("Salma, a friend")).toBeLessThan(texts.indexOf("What do you drink in the morning?"));
 });
 
 test("Day 1's role play by tapping, with a correction and the summary", async ({ page }) => {
@@ -45,16 +45,21 @@ test("Day 1's role play by tapping, with a correction and the summary", async ({
 
   await expect(page.getByRole("button", { name: /^Telugu meaning/ })).toHaveCount(0); // offered in Telugu mode only
   await page.getByRole("button", { name: /^Hint/ }).click();
-  await expect(page.getByText(/Say who, then the action/)).toBeVisible();
+  await expect(page.getByText(/Who first, then the action/)).toBeVisible();
 
+  await expect(page.getByRole("button", { name: "I tea drink.", exact: true })).toHaveCount(0); // replies hidden: speak first
+  await next(page, /^Show replies/);
   await page.getByRole("button", { name: "I tea drink.", exact: true }).click();
   await expect(page.getByText("Almost")).toBeVisible();
   await expect(page.getByText("A better reply:")).toBeVisible();
   await next(page);
   await expect(page.getByText("And what do you eat?")).toBeVisible();
+  await next(page, /^Show replies/);
   await page.getByRole("button", { name: "I eat rice.", exact: true }).click();
   await expect(page.getByRole("button", { name: /^Continue/ })).toHaveCount(0); // a good reply goes straight on
-  await page.getByRole("button", { name: "I read the newspaper.", exact: true }).click(); // waits for the next turn
+  await expect(page.getByText("Nice. And what do you read?")).toBeVisible();
+  await next(page, /^Show replies/);
+  await page.getByRole("button", { name: "I read the newspaper.", exact: true }).click();
 
   await expect(page.getByRole("heading", { name: "Role play complete" })).toBeVisible();
   await expect(page.getByTestId("score-conversation")).toContainText("7 / 10");
@@ -75,7 +80,7 @@ test("Day 1's role play by voice; night mode", async ({ page }) => {
   await page.screenshot({ path: `${SHOTS}/roleplay-night.png` });
   await transcript(page, "I eat idli");
   await page.getByRole("button", { name: "Speak" }).click();
-  await expect(page.getByText("What do you read?")).toBeVisible(); // the next line, before the next transcript is set
+  await expect(page.getByText("Nice. And what do you read?")).toBeVisible(); // the next line, before the next transcript is set
   await transcript(page, "I read the newspaper");
   await page.getByRole("button", { name: "Speak" }).click();
   await expect(page.getByTestId("score-speaking")).toContainText("10 / 10");
@@ -83,7 +88,7 @@ test("Day 1's role play by voice; night mode", async ({ page }) => {
   await page.screenshot({ path: `${SHOTS}/roleplay-summary-night.png` });
 });
 
-test("a fixture dialogue plays both voices, then asks its questions", async ({ page }) => {
+test("a fixture dialogue plays both voices with no words, asks question 1 by ear, then shows the words", async ({ page }) => {
   await setup(page);
   const day: PlayableDay = {
     id: "fixture-dialogue",
@@ -112,7 +117,8 @@ test("a fixture dialogue plays both voices, then asks its questions", async ({ p
   await page.goto("/learn/play?l=fixture-dialogue");
   await next(page, /^Start/);
 
-  await expect(page.getByText("Hello, Asha.", { exact: true }).first()).toBeVisible();
+  await expect(page.getByText(/^Line \d of 2$/)).toBeVisible();
+  await expect(page.getByText("Hello, Asha.", { exact: true })).toHaveCount(0); // heard, not read
   await expect.poll(async () => (await spoken(page)).filter((s) => s.text.startsWith("Hello")).length).toBe(2);
   const [first, second] = (await spoken(page)).filter((s) => s.text.startsWith("Hello"));
   expect(first.text).toBe("Hello, Ravi.");
@@ -124,4 +130,6 @@ test("a fixture dialogue plays both voices, then asks its questions", async ({ p
   await page.getByRole("button", { name: "Asha", exact: true }).click();
   await page.getByRole("button", { name: /^Check/ }).click();
   await expect(page.getByText("Correct!")).toBeVisible();
+  await next(page);
+  await expect(page.getByText("Hello, Asha.", { exact: true })).toBeVisible(); // now the words
 });

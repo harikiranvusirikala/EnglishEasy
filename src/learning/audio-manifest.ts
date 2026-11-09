@@ -6,9 +6,40 @@
 export type AudioManifest = Record<string, string>;
 export type AudioVoice = "a" | "b";
 
-/** What is actually read: quote marks dropped (a voice would say them or pause oddly), spaces collapsed. Apostrophes stay. */
+const ONES = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
+const TENS = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
+
+/** 0–99,999 in English words ("two hundred and forty"); larger numbers stay as digits. */
+export function numberWords(n: number): string {
+  if (n < 20) return ONES[n];
+  if (n < 100) return TENS[Math.floor(n / 10)] + (n % 10 ? `-${ONES[n % 10]}` : "");
+  if (n < 1000) return `${ONES[Math.floor(n / 100)]} hundred` + (n % 100 ? ` and ${numberWords(n % 100)}` : "");
+  if (n < 100000) {
+    const rest = n % 1000;
+    return `${numberWords(Math.floor(n / 1000))} thousand` + (rest === 0 ? "" : rest < 100 ? ` and ${numberWords(rest)}` : ` ${numberWords(rest)}`);
+  }
+  return String(n);
+}
+
+/** English with digits read as words: 7:30 → "seven thirty", 9:05 → "nine oh five", 1,500 → "one thousand five hundred". */
+function spokenEnglish(text: string): string {
+  return text
+    .replace(/(?<![\d:])(\d{1,2}):(\d{2})(?![\d:])/g, (_, h: string, m: string) => {
+      const min = Number(m);
+      return `${numberWords(Number(h))} ${min === 0 ? "o'clock" : min < 10 ? `oh ${numberWords(min)}` : numberWords(min)}`;
+    })
+    .replace(/(?<!\d|\d[.,])\d{1,3}(?:,\d{3})+(?!\d|[.,]\d)|(?<!\d|\d[.,])\d+(?!\d|[.,]\d)/g, (m) => numberWords(Number(m.replace(/,/g, ""))))
+    .replace(/\bDr\.? (?=[A-Z])/g, "Doctor ");
+}
+
+/**
+ * What is actually read: quote marks dropped (a voice would say them or pause oddly), spaces collapsed. Apostrophes stay.
+ * English-only text says its numbers and "Dr" as words (content review, 2026-11-09): the Telugu voice reads English
+ * aloud and could read "240" in Telugu. Text with Telugu letters keeps its digits, which the voice reads in Telugu.
+ */
 export function speechText(text: string): string {
-  return text.replace(/["“”„]/g, "").trim().replace(/\s+/g, " ");
+  const plain = text.replace(/["“”„]/g, "").trim().replace(/\s+/g, " ");
+  return /[ఀ-౿]/.test(plain) ? plain : spokenEnglish(plain);
 }
 
 /** FNV-1a, 32 bit, as 8 hex digits, of the text as read: small, stable, and the same in the browser and in a build script. */

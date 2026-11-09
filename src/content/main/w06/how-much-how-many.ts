@@ -96,8 +96,8 @@ export const day: Lesson = {
       wrong: "How much eggs do you want?",
       right: "How many eggs do you want?",
       why: {
-        en: "You can count eggs, so how many.",
-        te: "గుడ్లు లెక్కపెట్టొచ్చు, కాబట్టి how many.",
+        en: "In Telugu we ask ఎన్ని for eggs, and ఎన్ని is how many: How many eggs do you want?",
+        te: "గుడ్లు 'ఎన్ని?' అని అడుగుతాం; ఎన్ని = how many: How many eggs do you want?",
       },
     },
     {
@@ -106,8 +106,8 @@ export const day: Lesson = {
       wrong: "I want two kilo rice.",
       right: "I want two kilos of rice.",
       why: {
-        en: "Say kilos (more than one), then of.",
-        te: "kilos అనాలి (ఒకటి కంటే ఎక్కువ), తర్వాత of.",
+        en: "Telugu says రెండు కిలోల బియ్యం; English needs kilos, then of: two kilos of rice.",
+        te: "తెలుగులో 'రెండు కిలోల బియ్యం'; ఇంగ్లీష్‌లో kilos, తర్వాత of: two kilos of rice.",
       },
     },
   ],
@@ -119,8 +119,8 @@ export const day: Lesson = {
       options: ["How much eggs do you want?", "How many eggs do you want?", "How many egg do you want?"],
       answer: 1,
       why: {
-        en: "Eggs are counted: how many eggs.",
-        te: "గుడ్లు లెక్కపెడతాం: how many eggs.",
+        en: "Eggs are counted one by one, so how many and eggs with s: How many eggs do you want?",
+        te: "గుడ్లు లెక్కపెడతాం, అందుకే how many, eggs కి s: How many eggs do you want?",
       },
     },
     {
@@ -131,8 +131,8 @@ export const day: Lesson = {
       options: ["much", "many", "more"],
       answer: 0,
       why: {
-        en: "Rice is not counted: how much.",
-        te: "బియ్యం లెక్కపెట్టం: how much.",
+        en: "We ask ఎంత for rice, not ఎన్ని, so it is how much: How much rice do you want?",
+        te: "బియ్యం 'ఎంత?' అని అడుగుతాం, 'ఎన్ని?' కాదు; అందుకే how much: How much rice do you want?",
       },
     },
     {
@@ -153,8 +153,8 @@ export const day: Lesson = {
       wrongIndex: 1,
       fix: "How many people are eating?",
       why: {
-        en: "People are counted: how many.",
-        te: "మనుషులను లెక్కపెడతాం: how many.",
+        en: "Telugu says ఎంత మంది, but people are counted, so: How many people are eating?",
+        te: "తెలుగులో 'ఎంత మంది' అన్నా, మనుషులను లెక్కపెడతాం; అందుకే how many: How many people are eating?",
       },
     },
   ],
@@ -164,7 +164,7 @@ export const day: Lesson = {
       type: "situation",
       situation: {
         en: "The shopkeeper asks: How much rice? Say two kilos.",
-        te: "షాప్ అతను అడుగుతున్నారు: How much rice? రెండు కిలోలు అని చెప్పండి.",
+        te: "షాప్ ఆయన అడుగుతున్నారు: How much rice? రెండు కిలోలు అని చెప్పండి.",
       },
       expected: ["Two kilos, please.", "I want two kilos of rice.", "Two kilos of rice, please."],
       options: ["Two kilo, please.", "Two kilos, please.", "Two kilos rices, please."],
@@ -187,16 +187,16 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "At the kirana shop", te: "కిరాణా షాప్‌లో" },
     scene: {
-      en: "You are buying groceries at Srinivas's kirana shop. Ask for the right amounts.",
-      te: "మీరు శ్రీనివాస్ కిరాణా షాప్‌లో సామాన్లు కొంటున్నారు. సరైన పరిమాణాలతో అడగండి.",
+      en: "You are buying groceries at Fatima's kirana shop. Ask for the right amounts.",
+      te: "మీరు ఫాతిమా గారి కిరాణా షాప్‌లో సామాన్లు కొంటున్నారు. సరైన పరిమాణాలతో అడగండి.",
     },
-    partner: { en: "Srinivas (a shopkeeper)", te: "శ్రీనివాస్ (షాప్ యజమాని)" },
+    partner: { en: "Fatima (a shopkeeper)", te: "ఫాతిమా (షాప్ యజమాని)" },
     skills: [{ id: "amount", label: { en: "Amounts", te: "పరిమాణాలు" } }],
     turns: [
       {
         partner: "Yes? What do you need?",
         te: "చెప్పండి, ఏం కావాలి?",
-        hint: { en: "Say: I want two kilos of rice.", te: "ఇలా చెప్పండి: I want two kilos of rice." },
+        hint: { en: "Ask for rice, and say how many kilos.", te: "బియ్యం అడగండి, ఎన్ని కిలోలో చెప్పండి." },
         replies: [
           { say: "I want two kilos of rice.", good: true, skill: "amount" },
           { say: "I want two kilo rice.", good: false, skill: "amount" },
@@ -205,7 +205,7 @@ export const day: Lesson = {
       {
         partner: "Anything else?",
         te: "ఇంకా ఏమైనా?",
-        hint: { en: "Ask for eggs: One dozen eggs, please.", te: "గుడ్లు అడగండి: One dozen eggs, please." },
+        hint: { en: "Ask for a dozen eggs.", te: "ఒక డజను గుడ్లు అడగండి." },
         replies: [
           { say: "One dozen eggs, please.", good: true, skill: "amount" },
           { say: "One dozens eggs, please.", good: false, skill: "amount" },
@@ -214,7 +214,7 @@ export const day: Lesson = {
       {
         partner: "How many packets of milk?",
         te: "ఎన్ని పాల ప్యాకెట్లు?",
-        hint: { en: "Say: Two packets, please.", te: "ఇలా చెప్పండి: Two packets, please." },
+        hint: { en: "Say how many packets you want.", te: "ఎన్ని ప్యాకెట్లు కావాలో చెప్పండి." },
         replies: [
           { say: "Two packets, please.", good: true, skill: "amount" },
           { say: "Two packet, please.", good: false, skill: "amount" },
@@ -223,10 +223,15 @@ export const day: Lesson = {
       {
         partner: "Is that all?",
         te: "అంతేనా?",
-        hint: { en: "Say yes and ask: Yes. How much is it?", te: "అవునని చెప్పి అడగండి: Yes. How much is it?" },
+        hint: { en: "Say yes, and ask the total price politely.", te: "అవునని చెప్పి, మొత్తం ఎంతో మర్యాదగా అడగండి." },
         replies: [
           { say: "Yes. How much is it?", good: true, skill: "amount" },
           { say: "Yes. How many is it?", good: false, skill: "amount" },
+          {
+            say: "Yes. Give the bill fast.",
+            good: false,
+            react: { en: "One minute, please. I am counting.", te: "ఒక్క నిమిషం అండీ. లెక్క వేస్తున్నాను." },
+          },
         ],
       },
     ],

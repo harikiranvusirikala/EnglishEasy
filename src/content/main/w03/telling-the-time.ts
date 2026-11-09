@@ -117,8 +117,8 @@ export const day: Lesson = {
       options: ["It is seven and half.", "It is half past seven.", "It is half to seven."],
       answer: 1,
       why: {
-        en: "7:30 is half past seven.",
-        te: "7:30 అంటే half past seven.",
+        en: "Thirty minutes after seven is half past seven, not seven and half.",
+        te: "ఏడు దాటి అరగంట అంటే half past seven. 'ఏడున్నర' ని seven and half అనరు.",
       },
     },
     {
@@ -172,8 +172,8 @@ export const day: Lesson = {
       id: "s2",
       type: "situation",
       situation: {
-        en: "A friend asks: When do you sleep? You sleep at 10:30. Answer.",
-        te: "మీ స్నేహితులు అడుగుతున్నారు: When do you sleep? మీరు పదిన్నరకి పడుకుంటారు. జవాబు చెప్పండి.",
+        en: "A friend asks: What time do you sleep? You sleep at 10:30. Answer.",
+        te: "మీ స్నేహితులు అడుగుతున్నారు: What time do you sleep? మీరు పదిన్నరకి పడుకుంటారు. జవాబు చెప్పండి.",
       },
       expected: ["I sleep at half past ten.", "At half past ten."],
       options: ["I sleep at half past ten.", "I sleep on half past ten.", "I sleeping at half past ten."],
@@ -185,10 +185,10 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "What time is it?", te: "టైమ్ ఎంత?" },
     scene: {
-      en: "You are waiting at a bus stop. Rani is waiting too. Ask her the time and about the bus.",
-      te: "మీరు బస్ స్టాప్‌లో ఎదురుచూస్తున్నారు. రాణి కూడా అక్కడే ఉంది. ఆమెను టైమ్, బస్ గురించి అడగండి.",
+      en: "You are waiting at a bus stop. Salma is waiting too. Ask her the time and about the bus.",
+      te: "మీరు బస్ స్టాప్‌లో ఎదురుచూస్తున్నారు. సల్మా గారు కూడా అక్కడే ఉన్నారు. ఆవిడని టైమ్, బస్ గురించి అడగండి.",
     },
-    partner: { en: "Rani (at the bus stop)", te: "రాణి (బస్ స్టాప్‌లో)" },
+    partner: { en: "Salma (at the bus stop)", te: "సల్మా (బస్ స్టాప్‌లో)" },
     skills: [
       { id: "ask", label: { en: "Ask", te: "ప్రశ్న అడగడం" } },
       { id: "time", label: { en: "Time", te: "టైమ్ చెప్పడం" } },
@@ -197,17 +197,22 @@ export const day: Lesson = {
       {
         partner: "Are you waiting for the bus?",
         te: "బస్ కోసం ఎదురుచూస్తున్నారా?",
-        hint: { en: "Say yes, then ask the time: Yes. What time is it?", te: "అవునని చెప్పి, టైమ్ అడగండి: Yes. What time is it?" },
+        hint: { en: "Say yes, then ask her the time.", te: "అవునని చెప్పి, టైమ్ ఎంతో అడగండి." },
         replies: [
           { say: "Yes. What time is it?", good: true, skill: "ask" },
           { say: "Yes. What is time?", good: false, skill: "ask" },
-          { say: "Yes. How much time?", good: false, skill: "ask" },
+          {
+            say: "Why do you ask?",
+            good: false,
+            skill: "ask",
+            react: { en: "Oh, just asking. I am waiting too.", te: "ఊరికే అడిగాను. నేను కూడా వెయిట్ చేస్తున్నాను." },
+          },
         ],
       },
       {
         partner: "It is quarter to nine.",
         te: "తొమ్మిదికి పావుగంట తక్కువ.",
-        hint: { en: "Ask when the bus comes: When does the bus come?", te: "బస్ ఎప్పుడు వస్తుందో అడగండి: When does the bus come?" },
+        hint: { en: "Ask when the bus comes. Use does.", te: "బస్ ఎప్పుడు వస్తుందో అడగండి. does వాడండి." },
         replies: [
           { say: "When does the bus come?", good: true, skill: "ask" },
           { say: "When the bus comes?", good: false, skill: "ask" },
@@ -215,8 +220,8 @@ export const day: Lesson = {
       },
       {
         partner: "It comes at nine o'clock.",
-        te: "తొమ్మిది గంటలకు వస్తుంది.",
-        hint: { en: "Say: So, fifteen minutes. Thank you.", te: "ఇలా చెప్పండి: So, fifteen minutes. Thank you." },
+        te: "తొమ్మిది గంటలకి వస్తుంది.",
+        hint: { en: "Say how many minutes are left, and thank her.", te: "ఇంకా ఎన్ని నిమిషాలు ఉందో చెప్పి, ఆవిడకి థాంక్స్ చెప్పండి." },
         replies: [
           { say: "So, fifteen minutes. Thank you.", good: true, skill: "time" },
           { say: "So, fifteen minute. Thank you.", good: false, skill: "time" },

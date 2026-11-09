@@ -109,8 +109,8 @@ export const day: Lesson = {
       wrong: "The bank is next the temple.",
       right: "The bank is next to the temple.",
       why: {
-        en: "Say next to, with to.",
-        te: "next to అనాలి, to తో కలిపి.",
+        en: "Telugu పక్కన is one word, but English needs both: next to the temple.",
+        te: "తెలుగులో 'పక్కన' ఒక్క పదం, ఇంగ్లీష్‌లో next to రెండూ కావాలి: next to the temple.",
       },
     },
   ],
@@ -122,8 +122,8 @@ export const day: Lesson = {
       options: ["The milk is on the fridge.", "The milk is in the fridge.", "The milk is fridge in."],
       answer: 1,
       why: {
-        en: "Inside something: in.",
-        te: "లోపల అంటే in.",
+        en: "The milk is inside the fridge, so say in.",
+        te: "పాలు ఫ్రిజ్ లోపల ఉన్నాయి, కాబట్టి in.",
       },
     },
     {
@@ -134,8 +134,8 @@ export const day: Lesson = {
       options: ["under", "in", "next"],
       answer: 0,
       why: {
-        en: "Below something: under.",
-        te: "కింద అంటే under.",
+        en: "The glasses are below the newspaper, so say under.",
+        te: "కళ్ళజోడు న్యూస్‌పేపర్ కింద ఉంది, కాబట్టి under.",
       },
     },
     {
@@ -145,8 +145,8 @@ export const day: Lesson = {
       options: ["The bank is next to the temple.", "The bank is under the temple.", "The bank is in the temple."],
       answer: 0,
       why: {
-        en: "Beside: next to.",
-        te: "పక్కన అంటే next to.",
+        en: "పక్కన means beside, so say next to the temple.",
+        te: "పక్కన అంటే next to: next to the temple.",
       },
     },
     {
@@ -156,8 +156,8 @@ export const day: Lesson = {
       wrongIndex: 3,
       fix: "The remote is behind the TV.",
       why: {
-        en: "Put behind before the TV.",
-        te: "behind ని the TV కంటే ముందు పెట్టాలి.",
+        en: "Telugu says TV వెనకాల, but English puts behind first: behind the TV.",
+        te: "తెలుగులో 'TV వెనకాల' అంటాం, ఇంగ్లీష్‌లో behind ముందు: behind the TV.",
       },
     },
   ],
@@ -190,16 +190,16 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "Where are my glasses?", te: "నా కళ్ళజోడు ఎక్కడ?" },
     scene: {
-      en: "You cannot find your glasses. Your neighbour Lakshmi helps you look.",
-      te: "మీ కళ్ళజోడు కనిపించడం లేదు. పొరుగింటి లక్ష్మి వెతకడంలో సహాయం చేస్తోంది.",
+      en: "You cannot find your glasses. Your neighbour Sarala helps you look.",
+      te: "మీ కళ్ళజోడు కనిపించడం లేదు. పొరుగింటి సరళ గారు వెతకడంలో సాయం చేస్తున్నారు.",
     },
-    partner: { en: "Lakshmi (a neighbour)", te: "లక్ష్మి (పొరుగింటావిడ)" },
+    partner: { en: "Sarala (a neighbour)", te: "సరళ (పొరుగింటావిడ)" },
     skills: [{ id: "place", label: { en: "in / on / under", te: "in / on / under వాడకం" } }],
     turns: [
       {
         partner: "What are you looking for?",
         te: "మీరు ఏం వెతుకుతున్నారు?",
-        hint: { en: "Ask: Where are my glasses?", te: "అడగండి: Where are my glasses?" },
+        hint: { en: "Ask where your glasses are. Glasses take are.", te: "మీ కళ్ళజోడు ఎక్కడ ఉందో అడగండి. glasses కి are." },
         replies: [
           { say: "Where are my glasses?", good: true },
           { say: "Where is my glasses?", good: false },
@@ -208,16 +208,21 @@ export const day: Lesson = {
       {
         partner: "Are they on the table?",
         te: "టేబుల్ మీద ఉన్నాయా?",
-        hint: { en: "Say no: No, they are not on the table.", te: "లేవని చెప్పండి: No, they are not on the table." },
+        hint: { en: "Say no, they are not there.", te: "లేదు, అక్కడ లేవని చెప్పండి." },
         replies: [
           { say: "No, they are not on the table.", good: true, skill: "place" },
           { say: "No, they is not on the table.", good: false, skill: "place" },
+          {
+            say: "No! I looked there already!",
+            good: false,
+            react: { en: "Sorry, sorry! Let's look again.", te: "సారీ, సారీ! మళ్ళీ చూద్దాం." },
+          },
         ],
       },
       {
         partner: "Are they under the newspaper?",
         te: "న్యూస్‌పేపర్ కింద ఉన్నాయా?",
-        hint: { en: "Look and say: Yes! They are under the newspaper.", te: "చూసి చెప్పండి: Yes! They are under the newspaper." },
+        hint: { en: "Look, say yes, and say where they are.", te: "చూసి, అవునని చెప్పి, ఎక్కడ ఉన్నాయో చెప్పండి." },
         replies: [
           { say: "Yes! They are under the newspaper.", good: true, skill: "place" },
           { say: "Yes! They are the newspaper under.", good: false, skill: "place" },
@@ -226,7 +231,7 @@ export const day: Lesson = {
       {
         partner: "Good! Your phone is on the chair.",
         te: "మంచిది! మీ ఫోన్ కుర్చీ మీద ఉంది.",
-        hint: { en: "Say: Oh, thank you. You are very kind.", te: "ఇలా చెప్పండి: Oh, thank you. You are very kind." },
+        hint: { en: "Thank her, and say she is kind.", te: "ఆవిడకి థాంక్స్ చెప్పి, మీరు చాలా మంచివారు అని చెప్పండి." },
         replies: [
           { say: "Oh, thank you. You are very kind.", good: true },
           { say: "Oh, thank you. You very kind.", good: false },

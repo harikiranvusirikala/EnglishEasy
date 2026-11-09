@@ -35,7 +35,7 @@ export const day: Lesson = {
     te: "ఒంట్లో బాగాలేని ఎవరికైనా ఫోన్ లేదా మెసేజ్ చేసి చెప్పండి: Take care. Get well soon.",
   },
   words: [
-    { en: "sorry", te: "బాధగా, క్షమించండి" },
+    { en: "sorry", te: "బాధగా ఉంది, sorry అండీ" },
     { en: "hear", te: "వినడం" },
     { en: "take care", te: "జాగ్రత్తగా ఉండండి" },
     { en: "get well", te: "కోలుకోవడం" },
@@ -69,7 +69,7 @@ export const day: Lesson = {
     {
       id: "l2",
       type: "whenToUse",
-      heading: { en: "What to say, and when", te: "ఏమి, ఎప్పుడు చెప్పాలి" },
+      heading: { en: "What to say, and when", te: "ఏం చెప్పాలి, ఎప్పుడు" },
       items: [
         {
           form: "I'm sorry to hear that",
@@ -94,8 +94,8 @@ export const day: Lesson = {
       wrong: "Sorry for hearing that.",
       right: "I'm sorry to hear that.",
       why: {
-        en: "Say sorry to hear, not sorry for hearing.",
-        te: "sorry for hearing కాదు, sorry to hear అనాలి.",
+        en: "After sorry, use to and the plain verb: I'm sorry to hear that.",
+        te: "sorry తర్వాత to, ఆ తర్వాత verb మామూలుగా: I'm sorry to hear that.",
       },
     },
     {
@@ -104,8 +104,8 @@ export const day: Lesson = {
       wrong: "Take rest.",
       right: "Get some rest.",
       why: {
-        en: "In English, say get some rest, or rest well.",
-        te: "ఇంగ్లీష్‌లో get some rest లేదా rest well అంటారు.",
+        en: "Take rest is heard only in India; everywhere else, say get some rest, or rest well.",
+        te: "Take rest అని మన దగ్గరే అంటారు; అందరికీ అర్థమయ్యేలా get some rest లేదా rest well అనండి.",
       },
     },
   ],
@@ -113,12 +113,12 @@ export const day: Lesson = {
     {
       id: "p1",
       type: "choose",
-      prompt: { en: "Your friend says: I have a fever. What do you say?", te: "మీ స్నేహితురాలు 'నాకు జ్వరం' అంటోంది. మీరు ఏమంటారు?" },
+      prompt: { en: "Your friend says: I have a fever. What do you say?", te: "మీ స్నేహితురాలు 'నాకు జ్వరం' అంటున్నారు. మీరు ఏమంటారు?" },
       options: ["I'm sorry to hear that.", "Sorry for hearing that.", "Good to hear that."],
       answer: 0,
       why: {
-        en: "Kind words: I'm sorry to hear that.",
-        te: "మంచి మాట: I'm sorry to hear that.",
+        en: "A fever is sad news, so answer kindly: I'm sorry to hear that.",
+        te: "జ్వరం బాధ కలిగించే వార్త, అందుకే ఆప్యాయంగా: I'm sorry to hear that.",
       },
     },
     {
@@ -129,8 +129,8 @@ export const day: Lesson = {
       options: ["soon", "fast", "early"],
       answer: 0,
       why: {
-        en: "We always say get well soon.",
-        te: "ఎప్పుడూ get well soon అంటాం.",
+        en: "This is a fixed phrase, always with soon: Get well soon.",
+        te: "ఇది ఎప్పుడూ ఇలాగే ఉండే మాట, soon తోనే: Get well soon.",
       },
     },
     {
@@ -140,8 +140,8 @@ export const day: Lesson = {
       options: ["How are you feeling now?", "How you are feeling now?", "How are you feel now?"],
       answer: 0,
       why: {
-        en: "How are you feeling now?",
-        te: "How are you feeling now? అని అడగాలి.",
+        en: "In a question, are comes before you, then feeling: How are you feeling now?",
+        te: "ప్రశ్నలో are ముందు, you తర్వాత, ఆపై feeling: How are you feeling now?",
       },
     },
     {
@@ -151,8 +151,8 @@ export const day: Lesson = {
       wrongIndex: 2,
       fix: "I'm sorry to hear that.",
       why: {
-        en: "Sorry to hear, not for.",
-        te: "for కాదు, to hear.",
+        en: "After sorry, say to hear, not for hear: I'm sorry to hear that.",
+        te: "sorry తర్వాత for కాదు, to hear: I'm sorry to hear that.",
       },
     },
   ],
@@ -194,16 +194,22 @@ export const day: Lesson = {
       {
         partner: "Hello? I have a bad fever.",
         te: "హలో? నాకు బాగా జ్వరంగా ఉంది.",
-        hint: { en: "Say: Oh, I'm sorry to hear that.", te: "ఇలా చెప్పండి: Oh, I'm sorry to hear that." },
+        hint: { en: "Say kind words about her news.", te: "ఆవిడ చెప్పిన దానికి బాధగా ఉందని చెప్పండి." },
         replies: [
           { say: "Oh, I'm sorry to hear that.", good: true, skill: "kind" },
           { say: "Oh, sorry for hearing that.", good: false, skill: "kind" },
+          {
+            say: "Again? You are always sick.",
+            good: false,
+            skill: "kind",
+            react: { en: "Please don't say that. I feel bad.", te: "అలా అనకండి. నాకు బాధగా ఉంది." },
+          },
         ],
       },
       {
         partner: "I was in bed all week.",
         te: "వారం అంతా మంచం మీదే ఉన్నాను.",
-        hint: { en: "Ask: Did you see a doctor?", te: "అడగండి: Did you see a doctor?" },
+        hint: { en: "Ask if she saw a doctor (past).", te: "డాక్టర్‌కి చూపించుకున్నారా అని అడగండి (past)." },
         replies: [
           { say: "Did you see a doctor?", good: true },
           { say: "Did you saw a doctor?", good: false },
@@ -212,7 +218,7 @@ export const day: Lesson = {
       {
         partner: "Yes. He gave me some tablets.",
         te: "అవును. ఆయన కొన్ని మాత్రలు ఇచ్చారు.",
-        hint: { en: "Offer help: Do you need anything?", te: "సహాయం చెప్పండి: Do you need anything?" },
+        hint: { en: "Offer to help her.", te: "ఏమైనా సహాయం కావాలా అని అడగండి." },
         replies: [
           { say: "Do you need anything?", good: true, skill: "kind" },
           { say: "Are you need anything?", good: false, skill: "kind" },
@@ -220,11 +226,11 @@ export const day: Lesson = {
       },
       {
         partner: "No, thank you. My sister is here.",
-        te: "వద్దు, థాంక్యూ. మా చెల్లెలు ఇక్కడే ఉంది.",
-        hint: { en: "Say: Take care. Get well soon.", te: "ఇలా చెప్పండి: Take care. Get well soon." },
+        te: "వద్దు, థాంక్యూ. మా అక్కయ్య ఇక్కడే ఉన్నారు.",
+        hint: { en: "End the call with kind words.", te: "మంచి మాటలతో ఫోన్ ముగించండి." },
         replies: [
           { say: "Take care. Get well soon.", good: true, skill: "kind" },
-          { say: "Take care. Get good soon.", good: false, skill: "kind" },
+          { say: "Take rest. Get well soon.", good: false, skill: "kind" },
         ],
       },
     ],

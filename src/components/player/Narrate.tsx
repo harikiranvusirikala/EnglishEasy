@@ -84,9 +84,12 @@ export function ListenInline({
   slow = false,
   place = "end",
   voice,
+  then,
 }: {
   read: (string | BiLabel)[];
   auto?: (string | BiLabel)[];
+  /** After `auto` has played, this line follows in its own voice (a role play's scene, then the partner's first line). */
+  then?: { text: string; voice?: SpeakOptions["voice"] };
   slow?: boolean;
   /** "end": after the last word of the line; "start": at the start of a list row (its own column); "row": on a row of its own (a name row). */
   place?: "end" | "start" | "row";
@@ -103,9 +106,11 @@ export function ListenInline({
     void loadManifest();
   }, []);
 
+  const thenText = then?.text;
+  const thenVoice = then?.voice;
   useEffect(() => {
-    if (autoKey) narrateAll(autoKey.split("\n"), { voice });
-  }, [autoKey, voice]);
+    if (autoKey) narrateAll(autoKey.split("\n"), { voice, onEnd: thenText ? () => narrate(thenText, { voice: thenVoice }) : undefined });
+  }, [autoKey, voice, thenText, thenVoice]);
 
   const play = (slowly: boolean) => {
     if (slowly) narrate(texts[0], { slow: true, voice });

@@ -1,9 +1,12 @@
 import { activityCount } from "@/content/generate";
+import { enterReview } from "./review";
 import type { PlayableDay } from "@/content/types";
 
 /** The progress model (BUILD_PLAN A5, VISION §9). Pure functions: every one returns a new `Progress`. */
 
 export type ActivityRecord = { correct: boolean; attempts: number; at: string; skipped?: true };
+/** A key sentence in the daily review (`review.ts`): its Leitner box, the local day it is due, when it last changed. */
+export type ReviewRecord = { box: number; due: string; at: string };
 export type Progress = {
   version: 1;
   activities: Record<string, ActivityRecord>; // only for days not yet complete
@@ -13,6 +16,7 @@ export type Progress = {
   position?: { dayId: string; activityId: string; at: string };
   tracks: string[];
   tracksAsked: boolean;
+  review?: Record<string, ReviewRecord>; // daily review: `${dayId}.k${n}` → its schedule
   updatedAt: string;
 };
 
@@ -88,7 +92,8 @@ export function isDayComplete(p: Progress, dayId: string): boolean {
 
 /**
  * Finish a day: its activity records collapse into one summary (`correct` = activities right on the first try, `total` = all
- * activities) and are dropped. Mistakes stay. The resume position is cleared if it pointed into this day.
+ * activities) and are dropped. Mistakes stay. The resume position is cleared if it pointed into this day. Its key
+ * sentences enter the daily review.
  */
 export function completeDay(p: Progress, day: PlayableDay, now: string): Progress {
   const prefix = `${day.id}.`;
@@ -100,7 +105,7 @@ export function completeDay(p: Progress, day: PlayableDay, now: string): Progres
   }
   const next: Progress = { ...p, activities, completed: { ...p.completed, [day.id]: { at: now, correct, total: activityCount(day) } }, updatedAt: now };
   if (p.position?.dayId === day.id) delete next.position;
-  return next;
+  return enterReview(next, day, now); // its key sentences start the daily review
 }
 
 export const PROGRESS_KEY = "englisheasy.progress.v1";
@@ -147,6 +152,13 @@ export function parseProgress(raw: string | null): Progress {
   }
   if (Array.isArray(data.tracks)) out.tracks = data.tracks.filter((t): t is string => typeof t === "string");
   out.tracksAsked = data.tracksAsked === true;
+  if (isRecord(data.review)) {
+    const review: Record<string, ReviewRecord> = {};
+    for (const [key, r] of Object.entries(data.review)) {
+      if (isRecord(r) && typeof r.box === "number" && typeof r.due === "string" && typeof r.at === "string") review[key] = { box: r.box, due: r.due, at: r.at };
+    }
+    if (Object.keys(review).length > 0) out.review = review;
+  }
   return out;
 }
 

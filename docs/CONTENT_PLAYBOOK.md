@@ -20,7 +20,7 @@ Ids come from the CURRICULUM table and are **permanent** once released: never re
 
 ## 2. A lesson, slot by slot
 
-Fill every slot. These counts make exactly **19 activities**, the maximum the test allows (14–19). Keep them, and nothing needs counting.
+Fill every slot. These counts make exactly **19 activities** (20 on a week's first lesson, which also gets the Sound of the week card), the maximum the test allows. Keep them, and nothing needs counting.
 
 | Slot | What to write | Rule the test checks |
 |---|---|---|
@@ -35,34 +35,50 @@ Fill every slot. These counts make exactly **19 activities**, the maximum the te
 | `learn` (4) | `explain` (with `bridge`: Telugu order → English chips, and 3 examples) · `whenToUse` (3–4 forms) · `dontSay` · `dontSay` | — |
 | `practice` (4) | 3 recognise (`choose`, `fillBlank`, `choose`) + **exactly 1** `findMistake` (last) | answer index in range; options all different; one `___` |
 | `speak` (2) | 2 `situation`s | the right option is also in `expected` |
-| `roleplay` (1) | 3–4 turns, 2–3 replies each, one good | every turn has a good reply; every line within the stage's limit (7 / 10 words) |
+| `roleplay` (1) | 3–4 turns, 2–3 replies each, one good; hints say what to do; at least one manners slip with a `react`; `voice: "b"` for a man | every turn has a good reply; no reply in a hint; a reaction somewhere; voice by name; every line within the stage's limit (7 / 10 words) |
 
 **Core order matters.** The generator turns fixed positions into activities:
 
 | Core index | Becomes |
 |---|---|
 | 0 | arrange the tiles (and match) |
-| 1 | translate (and match, and repeat aloud) |
-| 2 | translate (and match) |
-| 3 | listen and choose the meaning (and match) |
-| 4–6 | used in Learn examples, role play and review only |
+| 1 | translate (and match, and repeat aloud: in steps when it has 5+ words) |
+| 2 | match |
+| 3 | match (and listen and choose the meaning, on weeks without a Sound of the week) |
+| 4 | build what you hear (tiles from the voice alone) |
+| 5–6 | Learn examples, role play, and the Review Day's build-what-you-hear and translate |
 
 Put the simplest, most useful sentences at 0–3. Each core sentence's `extra` is one **distractor tile**: a real mistake (wrong question word, `do` vs `are`, `in` vs `at`), never a word already in the sentence (punctuation counts: `"this?"` ≠ `"this"`).
 
-**Warm-up** is automatic: the key sentences of the two lessons before. Nothing to write.
+**Warm-up** is automatic: a key sentence of the lesson before (what does it mean?), and one by ear from about a week or a month back. Nothing to write. Authored options are shuffled by the generator, so the right answer may sit anywhere in `options`.
+
+**Sound of the week** (CURRICULUM §2a): add the week's entry to `src/content/sounds.ts` (the card and 5 word pairs with Telugu meanings) when writing a main-path week.
+
+**Before registering, check each lesson against this list** (the starred ones are automatic):
+- [ ] The pattern is explained in one or two sentences, grammar words limited to verb, past, question
+- [ ] Core 0–3 are the four most useful real-life sentences, each something a polite adult in Andhra or Telangana would really say
+- [ ] Every wrong option is a real Telugu-speaker error or manners slip, wrong in every context; exactly one right answer (CURRICULUM §1 "Distractors")
+- [ ] \* Each "why" gives the rule, the reason (linked to Telugu when Telugu causes it) and the right sentence
+- [ ] \* Role-play hints say what to do, never the reply; at least one manners slip has a `react`; men have `voice: "b"`
+- [ ] The first and last role-play turns sound like a real start and end
+- [ ] One persistent-error item outside the week's focus, and two recycled words or patterns from 2+ weeks back
+- [ ] \* Telugu: మీరు for the learner, respectful forms for every adult, spoken words (CURRICULUM §1 register table)
+- [ ] Cast: names rotated from the lists; no fixed roles by gender; \* the learner's own name is Kiran or Sai
+- [ ] "Try it today" is doable in five minutes, alone or with a shopkeeper or neighbour, with no family assumed
+- [ ] Read every English line aloud once: if it sounds like a textbook, rewrite it
 
 ## 3. Conversation Day (Day 6)
 
 No new grammar; it reuses the week. Write:
 
-- `dialogue`: 8–10 short lines between two speakers (`voice: "a"` female, `voice: "b"` male; names from CURRICULUM §1), each with its Telugu, and **3 questions** about it.
+- `dialogue`: 8–10 short lines between two speakers (`voice: "a"` female, `voice: "b"` male; names from CURRICULUM §1), each with its Telugu, and **4 questions** about it: the first a big-picture one answered by ear (where they are, who, what it is about), then 3 details.
 - `situations`: 3, by voice.
 - `roleplays`: 2, of 4–6 turns.
 - `summary`, `topics`. No `seo`: the lesson page uses the summary.
 
 ## 4. Review (Day 7)
 
-The review builds itself: two items from each lesson, plus the Conversation Day's first role play. Add `extras` only for something the week needs drilled. Week 2 adds a quick question-word round: 6 `fillBlank`s with 3 options each.
+The review builds itself: each lesson's own question plus one new item per lesson (build what you hear, build from Telugu, a situation, say it in steps), plus the Conversation Day's first role play. Add `extras` only for something the week needs drilled. Week 2 adds a quick question-word round: 6 `fillBlank`s with 3 options each.
 
 Give it a real title (Week 1 "My Day", Week 2 "Question Time"), the same in `course.ts`.
 

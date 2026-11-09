@@ -16,6 +16,7 @@ export const progressSchema = z.object({
   position: z.object({ dayId: id, activityId: id, at: time }).optional(),
   tracks: z.array(id).max(100),
   tracksAsked: z.boolean(),
+  review: z.record(id, z.object({ box: z.number().int().min(0).max(10), due: z.string().max(10), at: time })).optional(),
   updatedAt: time,
 }) satisfies z.ZodType<Progress>;
 

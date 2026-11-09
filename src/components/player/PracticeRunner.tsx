@@ -8,6 +8,7 @@ import { Icon } from "@/components/ui/icons";
 import { Illustration } from "@/components/illustrations/Illustration";
 import { addPracticeDay, dateKey, recordAnswer, type Progress } from "@/learning/progress";
 import type { PracticeItem } from "@/learning/practice";
+import { recordReview } from "@/learning/review";
 import { updateProgress } from "@/lib/progress-store";
 import { fill, strings } from "@/lib/strings";
 import { ActivityView, isQuestion } from "./Player";
@@ -15,12 +16,13 @@ import { BottomBar, MainButton } from "./parts";
 
 /**
  * Plays a list of activities outside a lesson with the player's own components, over the whole screen (it covers the
- * tab bar). In `mistakes` mode a correct answer removes the mistake (Practice again); otherwise only the practice day
- * is saved. `onExit` closes it.
+ * tab bar). In `mistakes` mode a correct answer removes the mistake (Practice again); in `review` mode an item's first
+ * answer moves its sentence in the daily review (`review.ts`); otherwise only the practice day is saved. `onExit` closes it.
  */
-export function PracticeRunner({ items, mode, onExit }: { items: PracticeItem[]; mode: "mistakes" | "plain"; onExit: () => void }) {
+export function PracticeRunner({ items, mode, onExit }: { items: PracticeItem[]; mode: "mistakes" | "review" | "plain"; onExit: () => void }) {
   const [index, setIndex] = useState(0);
   const [right, setRight] = useState<Set<string>>(() => new Set());
+  const answered = useRef<Set<string>>(new Set()); // review: only the first answer of an item counts
   const main = useRef<HTMLElement>(null);
   const finished = index >= items.length;
   const item = items[index];
@@ -54,8 +56,17 @@ export function PracticeRunner({ items, mode, onExit }: { items: PracticeItem[];
               activity={item.activity}
               onAnswer={(correct) => {
                 const id = item.activity.id;
-                if (correct) setRight((r) => new Set(r).add(id));
-                save((p) => (mode === "mistakes" ? recordAnswer(p, id, correct, new Date().toISOString(), { practice: true }) : p));
+                const first = !answered.current.has(id);
+                answered.current.add(id);
+                if (correct && first) setRight((r) => new Set(r).add(id));
+                const now = new Date();
+                save((p) =>
+                  mode === "mistakes"
+                    ? recordAnswer(p, id, correct, now.toISOString(), { practice: true })
+                    : mode === "review" && first
+                      ? recordReview(p, id, correct, dateKey(now), now.toISOString())
+                      : p,
+                );
               }}
               onNext={() => {
                 if (!isQuestion(item.activity)) save((p) => p);
@@ -69,7 +80,7 @@ export function PracticeRunner({ items, mode, onExit }: { items: PracticeItem[];
               <h1 className="font-display text-[2rem] leading-tight font-bold text-ink">
                 <Bi label={strings.practiceDone} />
               </h1>
-              {questions > 0 && mode === "mistakes" && (
+              {questions > 0 && mode !== "plain" && (
                 <p className="font-display text-3xl font-bold text-good tabular-nums">
                   {(fill(strings.practiceDoneCount, { n: right.size, total: questions })).en}
                 </p>

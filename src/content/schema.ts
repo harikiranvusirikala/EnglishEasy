@@ -10,12 +10,16 @@ const core = z.object({ en: text, te: text, extra: z.array(text).optional() }).s
 const index = z.number().int().min(0);
 const options = z.array(text).min(2).max(4);
 
+const word = z.object({ en: text, te: text }).strict();
+const soundSide = z.object({ label: text, how: biSchema, words: z.array(text).min(2).max(4) }).strict();
+export const soundCard = z.object({ title: text, tip: biSchema, sides: z.tuple([soundSide, soundSide]), pair: z.tuple([text, text]) }).strict();
+
 const turn = z
   .object({
     partner: text,
     te: text,
     hint: biSchema,
-    replies: z.array(z.object({ say: text, good: z.boolean(), skill: text.optional() }).strict()).min(2).max(3),
+    replies: z.array(z.object({ say: text, good: z.boolean(), skill: text.optional(), react: biSchema.optional() }).strict()).min(2).max(3),
   })
   .strict();
 
@@ -24,6 +28,7 @@ const rolePlayShape = {
   title: biSchema,
   scene: biSchema,
   partner: biSchema,
+  voice: z.enum(["a", "b"]).optional(),
   skills: z.array(z.object({ id: text, label: biSchema }).strict()),
   turns: z.array(turn).min(1),
 };
@@ -36,12 +41,14 @@ export const activitySchema = z.discriminatedUnion("type", [
   z.object({ id: text, type: z.literal("dontSay"), wrong: text, right: text, why: biSchema }).strict(),
   z.object({ id: text, type: z.literal("choose"), prompt: biSchema, say: text.optional(), options, answer: index, why: biSchema.optional() }).strict(),
   z.object({ id: text, type: z.literal("fillBlank"), sentence: text, te: text.optional(), options, answer: index, why: biSchema.optional() }).strict(),
-  z.object({ id: text, type: z.literal("arrange"), te: text.optional(), answer: text, extra: z.array(text).optional() }).strict(),
+  z.object({ id: text, type: z.literal("arrange"), te: text.optional(), answer: text, extra: z.array(text).optional(), listen: z.literal(true).optional() }).strict(),
   z.object({ id: text, type: z.literal("translate"), te: text, answer: text, accept: z.array(text).optional(), extra: z.array(text).optional() }).strict(),
   z.object({ id: text, type: z.literal("match"), pairs: z.array(z.object({ en: text, te: text }).strict()).min(3).max(4) }).strict(),
   z.object({ id: text, type: z.literal("findMistake"), sentence: text, wrongIndex: index, fix: text, why: biSchema }).strict(),
   z.object({ id: text, type: z.literal("listenChoose"), say: text, prompt: biSchema, options, answer: index }).strict(),
-  z.object({ id: text, type: z.literal("repeat"), say: text, te: text }).strict(),
+  z.object({ id: text, type: z.literal("repeat"), say: text, te: text, steps: z.array(text).min(2).optional() }).strict(),
+  z.object({ id: text, type: z.literal("sound"), sound: soundCard }).strict(),
+  z.object({ id: text, type: z.literal("soundPair"), words: z.tuple([word, word]), answer: z.union([z.literal(0), z.literal(1)]) }).strict(),
   z.object({ id: text, type: z.literal("situation"), situation: biSchema, expected: z.array(text).min(1), options, answer: index }).strict(),
   z
     .object({

@@ -21,13 +21,13 @@ export const day: Lesson = {
     { text: "hungry", role: "what" },
   ],
   core: [
-    { en: "I am Lakshmi.", te: "నేను లక్ష్మి.", extra: ["is"] },
+    { en: "I am Kiran.", te: "నేను కిరణ్.", extra: ["is"] },
     { en: "I am hungry.", te: "నాకు ఆకలిగా ఉంది.", extra: ["is"] },
-    { en: "He is my friend.", te: "అతను నా స్నేహితుడు.", extra: ["am"] },
-    { en: "She is a teacher.", te: "ఆమె టీచర్.", extra: ["are"] },
+    { en: "He is my friend.", te: "ఆయన నా స్నేహితుడు.", extra: ["am"] },
+    { en: "She is a teacher.", te: "ఆవిడ టీచర్.", extra: ["are"] },
     { en: "We are happy.", te: "మేము సంతోషంగా ఉన్నాం.", extra: ["is"] },
     { en: "Are you tired?", te: "మీకు అలసటగా ఉందా?", extra: ["is"] },
-    { en: "Yes, I am.", te: "అవును, అలాగే ఉంది.", extra: ["is"] },
+    { en: "Yes, I am.", te: "అవును, ఉంది.", extra: ["is"] },
   ],
   key: [0, 1, 3, 5],
   tryToday: {
@@ -61,7 +61,7 @@ export const day: Lesson = {
         ],
       },
       examples: [
-        { en: "I am Lakshmi.", te: "నేను లక్ష్మి." },
+        { en: "I am Kiran.", te: "నేను కిరణ్." },
         { en: "I am hungry.", te: "నాకు ఆకలిగా ఉంది." },
         { en: "We are happy.", te: "మేము సంతోషంగా ఉన్నాం." },
       ],
@@ -77,9 +77,12 @@ export const day: Lesson = {
           example: { en: "I am tired.", te: "నాకు అలసటగా ఉంది." },
         },
         {
-          form: "he, she → is",
-          useFor: { en: "Use is for one person: he, she.", te: "ఒక్క వ్యక్తికి is వాడాలి: he, she." },
-          example: { en: "She is a teacher.", te: "ఆమె టీచర్." },
+          form: "he, she, it → is",
+          useFor: {
+            en: "Use is for one person or thing: he, she, it. You always takes are, even for one person.",
+            te: "ఒక్క మనిషికి, ఒక్క వస్తువుకి is: he, she, it. you కి ఎప్పుడూ are, ఒక్కరే అయినా సరే.",
+          },
+          example: { en: "She is a teacher.", te: "ఆవిడ టీచర్." },
         },
         {
           form: "we, you, they → are",
@@ -94,8 +97,8 @@ export const day: Lesson = {
       wrong: "I hungry.",
       right: "I am hungry.",
       why: {
-        en: "Do not leave out am. English needs am, is or are.",
-        te: "am ని వదిలేయకండి. ఇంగ్లీష్‌లో am, is, are ఉండాలి.",
+        en: "Telugu can drop ఉన్నాను, but English always needs am: I am hungry.",
+        te: "తెలుగులో ఉన్నాను లేకున్నా అర్థమవుతుంది, కానీ ఇంగ్లీష్‌లో am తప్పనిసరి: I am hungry.",
       },
     },
     {
@@ -125,12 +128,12 @@ export const day: Lesson = {
       id: "p2",
       type: "fillBlank",
       sentence: "She ___ a teacher.",
-      te: "ఆమె టీచర్.",
+      te: "ఆవిడ టీచర్.",
       options: ["am", "is", "are"],
       answer: 1,
       why: {
-        en: "She is one person, so use is.",
-        te: "she ఒక్క వ్యక్తి, కాబట్టి is వాడాలి.",
+        en: "She is one person, so use is: She is a teacher.",
+        te: "she అంటే ఒక్కరు, కాబట్టి is: She is a teacher.",
       },
     },
     {
@@ -147,8 +150,8 @@ export const day: Lesson = {
       wrongIndex: 1,
       fix: "He is my friend.",
       why: {
-        en: "Am is only for I. For he, say is.",
-        te: "am ని I తో మాత్రమే వాడతాం. he తో is వాడాలి.",
+        en: "Am goes only with I. He is one person, so use is: He is my friend.",
+        te: "am ఒక్క I తోనే. he అంటే ఒక్కరు, కాబట్టి is: He is my friend.",
       },
     },
   ],
@@ -157,11 +160,11 @@ export const day: Lesson = {
       id: "s1",
       type: "situation",
       situation: {
-        en: "A new neighbour says: Hello! Who are you? Tell your name in English.",
-        te: "కొత్త పొరుగు వాళ్లు అడుగుతున్నారు: Hello! మీరు ఎవరు? మీ పేరు ఇంగ్లీష్‌లో చెప్పండి.",
+        en: "A new neighbour says: Hello! I am Usha. What is your name? Say your name in English.",
+        te: "కొత్తగా వచ్చిన పక్కింటావిడ అంటున్నారు: Hello! I am Usha. What is your name? మీ పేరు ఇంగ్లీష్‌లో చెప్పండి.",
       },
-      expected: ["I am Lakshmi.", "I am Ramana.", "I am Padma."],
-      options: ["I Lakshmi.", "I am Lakshmi.", "I is Lakshmi."],
+      expected: ["I am Kiran.", "I am Sai.", "My name is Kiran."],
+      options: ["Myself Kiran.", "I am Kiran.", "I Kiran."],
       answer: 1,
     },
     {
@@ -172,7 +175,7 @@ export const day: Lesson = {
         te: "మీ స్నేహితులు అడుగుతున్నారు: Are you tired? అవును అని ఇంగ్లీష్‌లో చెప్పండి.",
       },
       expected: ["Yes, I am.", "Yes, I am tired."],
-      options: ["Yes, I are.", "Yes, I am.", "Yes, I is."],
+      options: ["Yes, I do.", "Yes, I am.", "Yes, I tired."],
       answer: 1,
     },
   ],
@@ -181,26 +184,26 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "Meeting a new neighbour", te: "కొత్త పొరుగు వాళ్లతో పరిచయం" },
     scene: {
-      en: "Usha, a new neighbour, says hello. Answer with short sentences.",
-      te: "కొత్తగా వచ్చిన పొరుగింటి ఉష మీతో మాట్లాడుతోంది. చిన్న వాక్యాలతో జవాబు చెప్పండి.",
+      en: "Usha, a new neighbour, says hello in the evening. Your friend Imran is with you. Answer with short sentences.",
+      te: "సాయంత్రం కొత్తగా వచ్చిన పక్కింటి ఉష గారు పలకరిస్తున్నారు. మీతో మీ స్నేహితుడు ఇమ్రాన్ ఉన్నారు. చిన్న వాక్యాలతో జవాబు చెప్పండి.",
     },
     partner: { en: "Usha (a neighbour)", te: "ఉష (పొరుగింటావిడ)" },
     skills: [{ id: "be", label: { en: "am / is / are", te: "am / is / are వాడకం" } }],
     turns: [
       {
-        partner: "Hello! I am Usha. Who are you?",
-        te: "నమస్తే! నేను ఉషని. మీరు ఎవరు?",
-        hint: { en: "Say I am, then your name.", te: "ముందు I am, తర్వాత మీ పేరు చెప్పండి." },
+        partner: "Hello! I am Usha. And you?",
+        te: "నమస్తే! నేను ఉషని. మరి మీరు?",
+        hint: { en: "Say your name. Start with I am.", te: "మీ పేరు చెప్పండి. I am తో మొదలుపెట్టండి." },
         replies: [
-          { say: "I am Lakshmi.", good: true, skill: "be" },
-          { say: "I Lakshmi.", good: false, skill: "be" },
-          { say: "I is Lakshmi.", good: false, skill: "be" },
+          { say: "I am Kiran.", good: true, skill: "be" },
+          { say: "I Kiran.", good: false, skill: "be" },
+          { say: "Why do you want to know?", good: false, react: { en: "Oh, sorry! I am your new neighbour.", te: "అయ్యో, sorry అండీ! నేను మీ కొత్త పక్కింటావిడని." } },
         ],
       },
       {
-        partner: "Are you tired?",
-        te: "మీకు అలసటగా ఉందా?",
-        hint: { en: "Say yes: Yes, I am.", te: "అవును అని చెప్పండి: Yes, I am." },
+        partner: "Long day? Are you tired?",
+        te: "రోజంతా పనా? మీకు అలసటగా ఉందా?",
+        hint: { en: "Say yes, the short way.", te: "అవును అని చిన్నగా చెప్పండి." },
         replies: [
           { say: "Yes, I am.", good: true, skill: "be" },
           { say: "Yes, I are.", good: false, skill: "be" },
@@ -209,8 +212,8 @@ export const day: Lesson = {
       },
       {
         partner: "Is he your friend?",
-        te: "అతను మీ స్నేహితుడా?",
-        hint: { en: "Say yes: Yes, he is.", te: "అవును అని చెప్పండి: Yes, he is." },
+        te: "ఆయన మీ స్నేహితుడా?",
+        hint: { en: "Say yes, the short way, about him.", te: "ఆయన గురించి అవును అని చిన్నగా చెప్పండి." },
         replies: [
           { say: "Yes, he is.", good: true, skill: "be" },
           { say: "Yes, he are.", good: false, skill: "be" },

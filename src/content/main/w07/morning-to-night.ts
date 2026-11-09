@@ -26,7 +26,7 @@ export const day: Lesson = {
     { en: "We pray at night.", te: "మేము రాత్రి పూజ చేస్తాం.", extra: ["in"] },
     { en: "I read before bed.", te: "నేను పడుకునే ముందు చదువుతాను.", extra: ["after"] },
     { en: "Let's meet in the evening.", te: "సాయంత్రం కలుద్దాం.", extra: ["at"] },
-    { en: "She cooks in the afternoon.", te: "ఆమె మధ్యాహ్నం వండుతుంది.", extra: ["on"] },
+    { en: "She cooks in the afternoon.", te: "ఆవిడ మధ్యాహ్నం వండుతారు.", extra: ["on"] },
     { en: "Come after breakfast.", te: "టిఫిన్ తర్వాత రండి.", extra: ["since"] },
   ],
   key: [0, 1, 2, 3],
@@ -74,7 +74,7 @@ export const day: Lesson = {
         {
           form: "in the morning / afternoon / evening",
           useFor: { en: "Parts of the day, with in the.", te: "రోజులోని భాగాలు, in the తో." },
-          example: { en: "She cooks in the afternoon.", te: "ఆమె మధ్యాహ్నం వండుతుంది." },
+          example: { en: "Imran cooks in the afternoon.", te: "ఇమ్రాన్ గారు మధ్యాహ్నం వంట చేస్తారు." },
         },
         {
           form: "at night",
@@ -94,8 +94,8 @@ export const day: Lesson = {
       wrong: "I walk in morning.",
       right: "I walk in the morning.",
       why: {
-        en: "Say in the morning, with the.",
-        te: "in the morning అనాలి, the తో.",
+        en: "Telugu says just ఉదయం, but English needs in the: I walk in the morning.",
+        te: "తెలుగులో 'ఉదయం' ఒక్కటే చాలు; ఇంగ్లీష్‌లో in the కావాలి: I walk in the morning.",
       },
     },
     {
@@ -104,8 +104,8 @@ export const day: Lesson = {
       wrong: "We pray in the night.",
       right: "We pray at night.",
       why: {
-        en: "Night is different: at night.",
-        te: "రాత్రి వేరు: at night.",
+        en: "Morning, afternoon and evening take in the, but night takes at: We pray at night.",
+        te: "ఉదయం, మధ్యాహ్నం, సాయంత్రానికి in the; రాత్రికి మాత్రం at: We pray at night.",
       },
     },
   ],
@@ -117,8 +117,8 @@ export const day: Lesson = {
       options: ["I walk in morning.", "I walk in the morning.", "I walk at morning."],
       answer: 1,
       why: {
-        en: "In the morning.",
-        te: "in the morning అనాలి.",
+        en: "Parts of the day need in the, not at: I walk in the morning.",
+        te: "రోజులోని భాగాలకు in the కావాలి, at కాదు: I walk in the morning.",
       },
     },
     {
@@ -129,8 +129,8 @@ export const day: Lesson = {
       options: ["in", "at", "on"],
       answer: 1,
       why: {
-        en: "Night takes at.",
-        te: "రాత్రికి at.",
+        en: "Night is the odd one: at night, with no the. We pray at night.",
+        te: "రాత్రి ఒక్కటే వేరు: at night, the లేకుండా. We pray at night.",
       },
     },
     {
@@ -141,15 +141,15 @@ export const day: Lesson = {
       answer: 0,
       why: {
         en: "Before bed means just before you sleep.",
-        te: "ముందు = before.",
+        te: "పడుకునే ముందు = before bed; after అంటే తర్వాత.",
       },
     },
     {
       id: "p4",
       type: "findMistake",
-      sentence: "She cooks on the afternoon.",
+      sentence: "Mohan cooks on the afternoon.",
       wrongIndex: 2,
-      fix: "She cooks in the afternoon.",
+      fix: "Mohan cooks in the afternoon.",
       why: {
         en: "Parts of the day take in: in the afternoon.",
         te: "రోజులోని భాగాలకు in: in the afternoon.",
@@ -185,16 +185,17 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "A time to meet", te: "కలవడానికి సమయం" },
     scene: {
-      en: "Your friend Suresh wants to meet tomorrow. Find a time that works for both of you.",
-      te: "మీ స్నేహితుడు సురేష్ రేపు కలవాలనుకుంటున్నారు. ఇద్దరికీ కుదిరే సమయం చూడండి.",
+      en: "Your friend Rahim wants to meet tomorrow. Find a time that works for both of you.",
+      te: "మీ స్నేహితుడు రహీం గారు రేపు కలవాలనుకుంటున్నారు. ఇద్దరికీ కుదిరే సమయం చూడండి.",
     },
-    partner: { en: "Suresh (a friend)", te: "సురేష్ (స్నేహితుడు)" },
+    partner: { en: "Rahim (a friend)", te: "రహీం (స్నేహితుడు)" },
+    voice: "b",
     skills: [{ id: "time", label: { en: "Times of day", te: "రోజులో సమయాలు" } }],
     turns: [
       {
         partner: "Let's meet tomorrow!",
         te: "రేపు కలుద్దాం!",
-        hint: { en: "Say: Okay. In the morning?", te: "ఇలా చెప్పండి: Okay. In the morning?" },
+        hint: { en: "Say okay, and suggest the morning.", te: "సరే అని, ఉదయం కలుద్దామా అని అడగండి." },
         replies: [
           { say: "Okay. In the morning?", good: true, skill: "time" },
           { say: "Okay. In morning?", good: false, skill: "time" },
@@ -203,7 +204,7 @@ export const day: Lesson = {
       {
         partner: "Sorry, I walk in the morning.",
         te: "సారీ, ఉదయం నేను నడుస్తాను.",
-        hint: { en: "Say: Then after lunch?", te: "ఇలా చెప్పండి: Then after lunch?" },
+        hint: { en: "Suggest a time after lunch.", te: "భోజనం తర్వాత కలుద్దామా అని అడగండి." },
         replies: [
           { say: "Then after lunch?", good: true, skill: "time" },
           { say: "Then after the lunch?", good: false, skill: "time" },
@@ -212,16 +213,21 @@ export const day: Lesson = {
       {
         partner: "I rest after lunch.",
         te: "భోజనం తర్వాత నేను విశ్రాంతి తీసుకుంటాను.",
-        hint: { en: "Say: Okay, in the evening, at five.", te: "ఇలా చెప్పండి: Okay, in the evening, at five." },
+        hint: { en: "Suggest the evening, and give a time.", te: "సాయంత్రం కలుద్దామని చెప్పి, ఒక టైం చెప్పండి." },
         replies: [
           { say: "Okay, in the evening, at five.", good: true, skill: "time" },
           { say: "Okay, in evening, on five.", good: false, skill: "time" },
+          {
+            say: "You rest too much!",
+            good: false,
+            react: { en: "Ha! At my age, rest is good.", te: "హహ! ఈ వయసులో విశ్రాంతి మంచిదే." },
+          },
         ],
       },
       {
         partner: "Perfect. See you then!",
         te: "సరే. అప్పుడు కలుద్దాం!",
-        hint: { en: "Say: See you tomorrow evening!", te: "ఇలా చెప్పండి: See you tomorrow evening!" },
+        hint: { en: "Say goodbye until tomorrow evening.", te: "రేపు సాయంత్రం కలుద్దామని చెప్పి వీడ్కోలు చెప్పండి." },
         replies: [
           { say: "See you tomorrow evening!", good: true, skill: "time" },
           { say: "See you tomorrow in evening!", good: false, skill: "time" },

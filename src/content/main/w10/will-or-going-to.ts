@@ -22,11 +22,11 @@ export const day: Lesson = {
   ],
   core: [
     { en: "I'll help you.", te: "నేను మీకు సహాయం చేస్తాను.", extra: ["going"] },
-    { en: "I'm going to paint the house.", te: "నేను ఇంటికి రంగులు వేయించబోతున్నాను.", extra: ["will"] },
+    { en: "I'm going to paint the house.", te: "నేను ఇంటికి రంగులు వేయబోతున్నాను.", extra: ["will"] },
     { en: "The phone is ringing. I'll answer it.", te: "ఫోన్ మోగుతోంది. నేను ఎత్తుతాను.", extra: ["going"] },
     { en: "We're going to Tirupati in May.", te: "మేము మేలో తిరుపతికి వెళ్తున్నాం.", extra: ["will"] },
     { en: "It's hot. I'll open the window.", te: "వేడిగా ఉంది. నేను కిటికీ తెరుస్తాను.", extra: ["going"] },
-    { en: "He's going to start a shop.", te: "అతను ఒక షాప్ పెట్టబోతున్నాడు.", extra: ["will"] },
+    { en: "He's going to start a shop.", te: "ఆయన ఒక షాప్ పెట్టబోతున్నారు.", extra: ["will"] },
     { en: "Wait, I'll get some water.", te: "ఆగండి, నేను నీళ్ళు తెస్తాను.", extra: ["going"] },
   ],
   key: [0, 1, 2, 3],
@@ -49,8 +49,8 @@ export const day: Lesson = {
       type: "explain",
       heading: { en: "Decided now, or planned before?", te: "ఇప్పుడే నిర్ణయమా, ముందే ప్లానా?" },
       body: {
-        en: "Say will (I'll) for something you decide right now: The phone is ringing. I'll answer it. Say going to for a plan you made before: I'm going to paint the house.",
-        te: "ఇప్పుడే నిర్ణయించిన పనికి will (I'll): The phone is ringing. I'll answer it. ముందే చేసుకున్న ప్లాన్‌కి going to: I'm going to paint the house.",
+        en: "Say will (I'll) for something you decide right now: The phone is ringing. I'll answer it. Say going to for a plan you made before: I'm going to paint the house. In We're going to Tirupati, going is just go: a trip planned before.",
+        te: "ఇప్పుడే నిర్ణయించిన పనికి will (I'll): The phone is ringing. I'll answer it. ముందే చేసుకున్న ప్లాన్‌కి going to: I'm going to paint the house. We're going to Tirupati లో going అంటే వెళ్ళడమే: ముందే ప్లాన్ చేసుకున్న ప్రయాణం.",
       },
       bridge: {
         te: ["నేను", "మీకు సహాయం", "చేస్తాను"],
@@ -62,7 +62,7 @@ export const day: Lesson = {
       },
       examples: [
         { en: "The phone is ringing. I'll answer it.", te: "ఫోన్ మోగుతోంది. నేను ఎత్తుతాను." },
-        { en: "I'm going to paint the house.", te: "నేను ఇంటికి రంగులు వేయించబోతున్నాను." },
+        { en: "I'm going to paint the house.", te: "నేను ఇంటికి రంగులు వేయబోతున్నాను." },
         { en: "Wait, I'll get some water.", te: "ఆగండి, నేను నీళ్ళు తెస్తాను." },
       ],
     },
@@ -79,7 +79,7 @@ export const day: Lesson = {
         {
           form: "going to",
           useFor: { en: "A plan you made before.", te: "ముందే చేసుకున్న ప్లాన్." },
-          example: { en: "He's going to start a shop.", te: "అతను ఒక షాప్ పెట్టబోతున్నాడు." },
+          example: { en: "He's going to start a shop.", te: "ఆయన ఒక షాప్ పెట్టబోతున్నారు." },
         },
         {
           form: "will for offers",
@@ -91,11 +91,11 @@ export const day: Lesson = {
     {
       id: "l3",
       type: "dontSay",
-      wrong: "I will going to Tirupati.",
-      right: "I'm going to Tirupati.",
+      wrong: "I will going to visit Tirupati.",
+      right: "I'm going to visit Tirupati.",
       why: {
-        en: "Do not mix will and going. Use one of them.",
-        te: "will, going కలపకండి. ఏదో ఒకటి వాడండి.",
+        en: "Use will or going to, never both together: I'm going to visit Tirupati.",
+        te: "will, going to రెండూ కలిపి వాడకూడదు, ఏదో ఒకటే: I'm going to visit Tirupati.",
       },
     },
     {
@@ -104,8 +104,8 @@ export const day: Lesson = {
       wrong: "I'll to help you.",
       right: "I'll help you.",
       why: {
-        en: "No to after will.",
-        te: "will తర్వాత to రాదు.",
+        en: "Will is followed by the plain verb, with no to: I'll help you.",
+        te: "will తర్వాత to రాదు, నేరుగా verb వస్తుంది: I'll help you.",
       },
     },
   ],
@@ -114,45 +114,45 @@ export const day: Lesson = {
       id: "p1",
       type: "choose",
       prompt: { en: "The phone rings now. What do you say?", te: "ఇప్పుడే ఫోన్ మోగింది. ఏమంటారు?" },
-      options: ["I'll answer it.", "I answered it.", "I answer it yesterday."],
+      options: ["I'll answer it.", "I answered it.", "I answer it."],
       answer: 0,
       why: {
-        en: "A decision right now: I'll.",
-        te: "ఇప్పుడే నిర్ణయం: I'll.",
+        en: "The phone rings now, so you decide now and say I'll: I'll answer it.",
+        te: "ఫోన్ ఇప్పుడే మోగింది, ఇప్పుడే నిర్ణయం, అందుకే I'll: I'll answer it.",
       },
     },
     {
       id: "p2",
       type: "fillBlank",
-      sentence: "We made a plan. We're ___ to Tirupati in May.",
-      te: "మేము ప్లాన్ చేశాం. మేలో తిరుపతికి వెళ్తున్నాం.",
+      sentence: "We made a plan. We're ___ to visit Tirupati in May.",
+      te: "మేము ప్లాన్ చేశాం. మేలో తిరుపతి వెళ్ళబోతున్నాం.",
       options: ["going", "will", "go"],
       answer: 0,
       why: {
-        en: "A plan made before: going to.",
-        te: "ముందే చేసిన ప్లాన్: going to.",
+        en: "You made this plan before, so use going to: We're going to visit Tirupati in May.",
+        te: "ఈ ప్లాన్ ముందే చేసుకున్నారు, అందుకే going to: We're going to visit Tirupati in May.",
       },
     },
     {
       id: "p3",
       type: "choose",
       prompt: { en: "Your friend's bag is heavy. Offer to help.", te: "మీ స్నేహితురాలి బ్యాగ్ బరువుగా ఉంది. సహాయం చేస్తానని చెప్పండి." },
-      options: ["I'll carry it.", "I carry it yesterday.", "I will carrying it."],
+      options: ["I'll carry it.", "I will to carry it.", "I carrying it."],
       answer: 0,
       why: {
-        en: "An offer right now: I'll carry it.",
-        te: "అప్పటికప్పుడు సహాయం: I'll carry it.",
+        en: "An offer made right now takes I'll and the plain verb: I'll carry it.",
+        te: "అప్పటికప్పుడు సహాయం చేస్తానంటే I'll, తర్వాత మామూలు verb: I'll carry it.",
       },
     },
     {
       id: "p4",
       type: "findMistake",
-      sentence: "I will going to Tirupati.",
+      sentence: "I will going to visit Tirupati.",
       wrongIndex: 1,
-      fix: "I'm going to Tirupati.",
+      fix: "I'm going to visit Tirupati.",
       why: {
-        en: "Use am going, not will going.",
-        te: "will going కాదు, am going.",
+        en: "A plan takes am going to, not will going to: I'm going to visit Tirupati.",
+        te: "ప్లాన్‌కి will going to కాదు, am going to: I'm going to visit Tirupati.",
       },
     },
   ],
@@ -173,7 +173,7 @@ export const day: Lesson = {
       type: "situation",
       situation: {
         en: "Tell a friend your plan: you are going to paint the house.",
-        te: "మీ ప్లాన్ స్నేహితులకు చెప్పండి: ఇంటికి రంగులు వేయించబోతున్నారు.",
+        te: "మీ ప్లాన్ స్నేహితులకు చెప్పండి: ఇంటికి రంగులు వేయబోతున్నారని.",
       },
       expected: ["I'm going to paint the house.", "I am going to paint the house."],
       options: ["I'm going to paint the house.", "I will going to paint the house.", "I'm going to painting the house."],
@@ -197,7 +197,7 @@ export const day: Lesson = {
       {
         partner: "Tomorrow is a holiday!",
         te: "రేపు సెలవు!",
-        hint: { en: "Say your plan: I'm going to clean the house.", te: "మీ ప్లాన్ చెప్పండి: I'm going to clean the house." },
+        hint: { en: "Tell her one plan you made already.", te: "మీరు ముందే అనుకున్న ఒక ప్లాన్ చెప్పండి." },
         replies: [
           { say: "I'm going to clean the house.", good: true, skill: "plan" },
           { say: "I'm going to cleaning the house.", good: false, skill: "plan" },
@@ -206,28 +206,33 @@ export const day: Lesson = {
       {
         partner: "Oh. I have no plans.",
         te: "ఓహ్. నాకు ఏ ప్లాన్స్ లేవు.",
-        hint: { en: "Decide now: I'll call you in the evening.", te: "ఇప్పుడే నిర్ణయించండి: I'll call you in the evening." },
+        hint: { en: "Decide now to phone her later.", te: "తర్వాత ఆవిడకి ఫోన్ చేస్తానని ఇప్పుడే నిర్ణయించి చెప్పండి." },
         replies: [
           { say: "I'll call you in the evening.", good: true, skill: "now" },
-          { say: "I'll calling you in the evening.", good: false, skill: "now" },
+          { say: "I'll call to you in the evening.", good: false, skill: "now" },
         ],
       },
       {
         partner: "Good! Let's see a film.",
         te: "బాగుంది! సినిమా చూద్దాం.",
-        hint: { en: "Decide now: Okay, I'll book the tickets.", te: "ఇప్పుడే నిర్ణయించండి: Okay, I'll book the tickets." },
+        hint: { en: "Agree, and offer to get the tickets.", te: "సరే అని, టికెట్లు మీరే బుక్ చేస్తానని చెప్పండి." },
         replies: [
           { say: "Okay, I'll book the tickets.", good: true, skill: "now" },
-          { say: "Okay, I'll booking the tickets.", good: false, skill: "now" },
+          { say: "Okay, I book the tickets.", good: false, skill: "now" },
+          {
+            say: "Okay. You book the tickets.",
+            good: false,
+            react: { en: "Oh! Okay, I'll do it, then.", te: "ఓ! సరే, అయితే నేనే బుక్ చేస్తాను." },
+          },
         ],
       },
       {
         partner: "Great. I'll come at six.",
         te: "సరే. నేను ఆరు గంటలకు వస్తాను.",
-        hint: { en: "Say: Okay. See you tomorrow.", te: "ఇలా చెప్పండి: Okay. See you tomorrow." },
+        hint: { en: "Say okay, and goodbye till tomorrow.", te: "సరే అని, రేపు కలుద్దాం అని చెప్పండి." },
         replies: [
           { say: "Okay. See you tomorrow.", good: true },
-          { say: "Okay. Seeing you tomorrow.", good: false },
+          { say: "Okay. See you on tomorrow.", good: false },
         ],
       },
     ],

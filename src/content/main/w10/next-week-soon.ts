@@ -94,8 +94,8 @@ export const day: Lesson = {
       wrong: "The doctor will come after two days.",
       right: "The doctor will come in two days.",
       why: {
-        en: "From now into the future, say in: in two days.",
-        te: "ఇప్పటి నుండి ముందుకు చెప్పడానికి in: in two days.",
+        en: "Telugu says రెండు రోజుల తర్వాత, but counting from now English uses in: The doctor will come in two days.",
+        te: "తర్వాత అని after అనకండి; ఇప్పటి నుండి లెక్కపెడితే in: The doctor will come in two days.",
       },
     },
     {
@@ -104,8 +104,8 @@ export const day: Lesson = {
       wrong: "Can I come on next Monday?",
       right: "Can I come next Monday?",
       why: {
-        en: "No on before next.",
-        te: "next ముందు on రాదు.",
+        en: "Next already points to the day, so no on before it: Can I come next Monday?",
+        te: "next ఉంటే దాని ముందు on రాదు: Can I come next Monday?",
       },
     },
   ],
@@ -117,8 +117,8 @@ export const day: Lesson = {
       options: ["I'll see you last week.", "I'll see you next week.", "I'll see you after week."],
       answer: 1,
       why: {
-        en: "The future: next week.",
-        te: "భవిష్యత్తు: next week.",
+        en: "For the coming week, say next week; last week is the past: I'll see you next week.",
+        te: "వచ్చే వారం అంటే next week; last week అంటే గతం: I'll see you next week.",
       },
     },
     {
@@ -129,8 +129,8 @@ export const day: Lesson = {
       options: ["in", "after", "on"],
       answer: 0,
       why: {
-        en: "From now: in an hour.",
-        te: "ఇప్పటి నుండి: in an hour.",
+        en: "Counting from now, use in, not after: We'll meet in an hour.",
+        te: "ఇప్పటి నుండి లెక్కపెడితే in, after కాదు: We'll meet in an hour.",
       },
     },
     {
@@ -140,8 +140,8 @@ export const day: Lesson = {
       options: ["soon", "late", "fast"],
       answer: 0,
       why: {
-        en: "Soon means not long from now.",
-        te: "soon అంటే త్వరలో.",
+        en: "Soon means not long from now: The bus will come soon.",
+        te: "soon అంటే త్వరలో: The bus will come soon.",
       },
     },
     {
@@ -151,8 +151,8 @@ export const day: Lesson = {
       wrongIndex: 3,
       fix: "Can I come next Monday?",
       why: {
-        en: "Drop on before next.",
-        te: "next ముందు on తీసేయాలి.",
+        en: "Next already points to the day, so drop on: Can I come next Monday?",
+        te: "next ఉంటే on తీసేయాలి: Can I come next Monday?",
       },
     },
   ],
@@ -165,7 +165,7 @@ export const day: Lesson = {
         te: "మీరు ఇప్పుడు బిజీగా ఉన్నారు. తర్వాత ఫోన్ చేస్తానని చెప్పండి.",
       },
       expected: ["I'll call you later.", "I will call you later."],
-      options: ["I'll call you later.", "I'll calling you later.", "I call you after."],
+      options: ["I'll call you later.", "I'll call you after.", "I call you later."],
       answer: 0,
     },
     {
@@ -185,25 +185,30 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "An appointment at the clinic", te: "క్లినిక్‌లో అపాయింట్‌మెంట్" },
     scene: {
-      en: "You call Dr Mohan's clinic for an appointment. Rani at the desk finds you a day.",
-      te: "అపాయింట్‌మెంట్ కోసం డాక్టర్ మోహన్ క్లినిక్‌కి ఫోన్ చేశారు. రిసెప్షన్‌లో రాణి మీకు ఒక రోజు చూస్తోంది.",
+      en: "You call Dr Prasad's clinic for an appointment. Rani at the desk finds you a day.",
+      te: "అపాయింట్‌మెంట్ కోసం డాక్టర్ ప్రసాద్ క్లినిక్‌కి ఫోన్ చేశారు. రిసెప్షన్‌లో రాణి గారు మీకు ఒక రోజు చూస్తున్నారు.",
     },
     partner: { en: "Rani (clinic receptionist)", te: "రాణి (క్లినిక్ రిసెప్షనిస్ట్)" },
     skills: [{ id: "future", label: { en: "Future time words", te: "భవిష్యత్తు పదాలు" } }],
     turns: [
       {
-        partner: "Good morning. Dr Mohan's clinic.",
-        te: "గుడ్ మార్నింగ్. డాక్టర్ మోహన్ క్లినిక్.",
-        hint: { en: "Say: I'd like an appointment, please.", te: "ఇలా చెప్పండి: I'd like an appointment, please." },
+        partner: "Good morning. Dr Prasad's clinic.",
+        te: "గుడ్ మార్నింగ్. డాక్టర్ ప్రసాద్ క్లినిక్.",
+        hint: { en: "Ask politely for an appointment.", te: "మర్యాదగా అపాయింట్‌మెంట్ అడగండి." },
         replies: [
           { say: "I'd like an appointment, please.", good: true },
           { say: "I'd like appointment, please.", good: false },
+          {
+            say: "Hello. Give me an appointment.",
+            good: false,
+            react: { en: "Okay. Which day would suit you?", te: "సరే. మీకు ఏ రోజు కుదురుతుంది?" },
+          },
         ],
       },
       {
         partner: "Is next Monday okay?",
         te: "వచ్చే సోమవారం సరేనా?",
-        hint: { en: "Say: Sorry, I'm busy next Monday.", te: "ఇలా చెప్పండి: Sorry, I'm busy next Monday." },
+        hint: { en: "Say sorry, that day doesn't suit you.", te: "sorry అని, ఆ రోజు మీకు కుదరదని చెప్పండి." },
         replies: [
           { say: "Sorry, I'm busy next Monday.", good: true, skill: "future" },
           { say: "Sorry, I'm busy on next Monday.", good: false, skill: "future" },
@@ -212,7 +217,7 @@ export const day: Lesson = {
       {
         partner: "Then Wednesday, in three days?",
         te: "అయితే బుధవారం, మూడు రోజుల్లో?",
-        hint: { en: "Say: Yes, Wednesday is fine.", te: "ఇలా చెప్పండి: Yes, Wednesday is fine." },
+        hint: { en: "Say yes, that day works for you.", te: "సరే, ఆ రోజు కుదురుతుందని చెప్పండి." },
         replies: [
           { say: "Yes, Wednesday is fine.", good: true, skill: "future" },
           { say: "Yes, Wednesday are fine.", good: false, skill: "future" },
@@ -221,7 +226,7 @@ export const day: Lesson = {
       {
         partner: "Okay. Please come at ten.",
         te: "సరే. పది గంటలకు రండి.",
-        hint: { en: "Promise: I'll be there at ten.", te: "మాట ఇవ్వండి: I'll be there at ten." },
+        hint: { en: "Promise to come on time.", te: "టైమ్‌కి వస్తానని మాట ఇవ్వండి." },
         replies: [
           { say: "I'll be there at ten.", good: true, skill: "future" },
           { say: "I'll there at ten.", good: false, skill: "future" },

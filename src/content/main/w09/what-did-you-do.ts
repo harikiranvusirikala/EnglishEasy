@@ -51,7 +51,7 @@ export const day: Lesson = {
       heading: { en: "Question word + did", te: "ప్రశ్న పదం + did" },
       body: {
         en: "To ask about the past, say the question word, then did, then you, then the plain action word: Where did you go? The past is in did, so go stays go.",
-        te: "గతం గురించి అడగడానికి: ప్రశ్న పదం, తర్వాత did, తర్వాత you, తర్వాత మామూలు పని పదం: Where did you go? గతం did లోనే ఉంది, కాబట్టి go మారదు.",
+        te: "గతం గురించి అడగడానికి: ప్రశ్న పదం, తర్వాత did, తర్వాత you, తర్వాత మామూలు verb: Where did you go? గతం did లోనే ఉంది, కాబట్టి go మారదు.",
       },
       bridge: {
         te: ["మీరు", "ఎక్కడికి", "వెళ్ళారు?"],
@@ -85,7 +85,7 @@ export const day: Lesson = {
         },
         {
           form: "answer in the past",
-          useFor: { en: "In the answer, use the past word.", te: "జవాబులో గతం పదం వాడాలి." },
+          useFor: { en: "In the answer, use the past word.", te: "జవాబులో verb గతం రూపంలో ఉండాలి." },
           example: { en: "I went to Guntur.", te: "నేను గుంటూరు వెళ్ళాను." },
         },
       ],
@@ -96,8 +96,8 @@ export const day: Lesson = {
       wrong: "Where you went?",
       right: "Where did you go?",
       why: {
-        en: "A past question needs did, then go.",
-        te: "గతం ప్రశ్నలో did ఉండాలి, తర్వాత go.",
+        en: "Telugu shows the past in the verb, but an English question puts it in did: Where did you go?",
+        te: "తెలుగులో గతం verb లోనే ఉంటుంది; English ప్రశ్నలో గతం did లో ఉంటుంది: Where did you go?",
       },
     },
     {
@@ -106,8 +106,8 @@ export const day: Lesson = {
       wrong: "What did you ate?",
       right: "What did you eat?",
       why: {
-        en: "After did, the plain word: eat.",
-        te: "did తర్వాత మామూలు పదం: eat.",
+        en: "Did already shows the past, so the verb stays plain: What did you eat?",
+        te: "did లోనే గతం ఉంది, అందుకే verb మారదు: What did you eat?",
       },
     },
   ],
@@ -119,8 +119,8 @@ export const day: Lesson = {
       options: ["Where you went?", "Where did you go?", "Where did you went?"],
       answer: 1,
       why: {
-        en: "Where + did + you + go.",
-        te: "వరుస: Where + did + you + go.",
+        en: "A past question goes: question word, did, you, plain verb. Where did you go?",
+        te: "వరుస: ప్రశ్న పదం, did, you, మామూలు verb. Where did you go?",
       },
     },
     {
@@ -131,8 +131,8 @@ export const day: Lesson = {
       options: ["do", "did", "done"],
       answer: 0,
       why: {
-        en: "After did, the plain word: do.",
-        te: "did తర్వాత మామూలు పదం: do.",
+        en: "Did shows the past, so the verb after it stays plain: What did you do on Sunday?",
+        te: "did లోనే గతం ఉంది, అందుకే తర్వాత do మారదు: What did you do on Sunday?",
       },
     },
     {
@@ -142,8 +142,8 @@ export const day: Lesson = {
       options: ["I went to Tirupati.", "I go to Tirupati yesterday.", "I did go Tirupati."],
       answer: 0,
       why: {
-        en: "Answer in the past: I went.",
-        te: "గతంలో జవాబు: I went.",
+        en: "The question is about the past, so answer with went: I went to Tirupati.",
+        te: "ప్రశ్న గతం గురించి, అందుకే జవాబులో went: I went to Tirupati.",
       },
     },
     {
@@ -153,8 +153,8 @@ export const day: Lesson = {
       wrongIndex: 3,
       fix: "Who did you meet?",
       why: {
-        en: "After did, meet.",
-        te: "did తర్వాత meet.",
+        en: "Did already shows the past, so meet stays plain: Who did you meet?",
+        te: "did లోనే గతం ఉంది, అందుకే meet మారదు: Who did you meet?",
       },
     },
   ],
@@ -164,7 +164,7 @@ export const day: Lesson = {
       type: "situation",
       situation: {
         en: "Your friend went to a wedding. Ask what she ate.",
-        te: "మీ స్నేహితురాలు ఒక పెళ్లికి వెళ్ళింది. ఏం తిన్నదో అడగండి.",
+        te: "మీ స్నేహితురాలు ఒక పెళ్ళికి వెళ్ళారు. అక్కడ ఏం తిన్నారో అడగండి.",
       },
       expected: ["What did you eat?", "What did you eat at the wedding?"],
       options: ["What you ate?", "What did you eat?", "What did you ate?"],
@@ -187,10 +187,11 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "Your weekend", te: "మీ వారాంతం" },
     scene: {
-      en: "Your friend Suresh asks about your weekend. Answer, then ask about his.",
-      te: "మీ స్నేహితుడు సురేష్ మీ వారాంతం గురించి అడుగుతున్నారు. జవాబు చెప్పి, ఆయన వారాంతం గురించి అడగండి.",
+      en: "Your friend John asks about your weekend. Answer, then ask about his.",
+      te: "మీ స్నేహితుడు జాన్ మీ వారాంతం గురించి అడుగుతున్నారు. జవాబు చెప్పి, ఆయన వారాంతం గురించి అడగండి.",
     },
-    partner: { en: "Suresh (a friend)", te: "సురేష్ (స్నేహితుడు)" },
+    partner: { en: "John (a friend)", te: "జాన్ (స్నేహితుడు)" },
+    voice: "b",
     skills: [
       { id: "answer", label: { en: "Past answers", te: "గతంలో జవాబులు" } },
       { id: "ask", label: { en: "did questions", te: "did ప్రశ్నలు" } },
@@ -199,7 +200,7 @@ export const day: Lesson = {
       {
         partner: "What did you do on the weekend?",
         te: "వారాంతంలో ఏం చేశారు?",
-        hint: { en: "Say: I went to Guntur.", te: "ఇలా చెప్పండి: I went to Guntur." },
+        hint: { en: "Say which town you went to.", te: "ఏ ఊరికి వెళ్ళారో చెప్పండి." },
         replies: [
           { say: "I went to Guntur.", good: true, skill: "answer" },
           { say: "I go to Guntur.", good: false, skill: "answer" },
@@ -208,7 +209,7 @@ export const day: Lesson = {
       {
         partner: "Nice! Who did you meet there?",
         te: "బాగుంది! అక్కడ ఎవరిని కలిశారు?",
-        hint: { en: "Say: I met my cousin.", te: "ఇలా చెప్పండి: I met my cousin." },
+        hint: { en: "Say which relative you met.", te: "ఏ బంధువుని కలిశారో చెప్పండి." },
         replies: [
           { say: "I met my cousin.", good: true, skill: "answer" },
           { say: "I meet my cousin.", good: false, skill: "answer" },
@@ -217,16 +218,21 @@ export const day: Lesson = {
       {
         partner: "I stayed at home.",
         te: "నేను ఇంట్లోనే ఉన్నాను.",
-        hint: { en: "Ask: What did you do at home?", te: "అడగండి: What did you do at home?" },
+        hint: { en: "Ask him how he spent the time.", te: "ఇంట్లో ఏం చేశారో ఆయన్ని అడగండి." },
         replies: [
           { say: "What did you do at home?", good: true, skill: "ask" },
           { say: "What you did at home?", good: false, skill: "ask" },
+          {
+            say: "So you did nothing at all?",
+            good: false,
+            react: { en: "Ha! I rested. That is something too!", te: "హహ! విశ్రాంతి తీసుకున్నాను. అది కూడా పనే కదా!" },
+          },
         ],
       },
       {
         partner: "I watched two films!",
         te: "నేను రెండు సినిమాలు చూశాను!",
-        hint: { en: "Ask: Which films did you watch?", te: "అడగండి: Which films did you watch?" },
+        hint: { en: "Ask him the names of the films.", te: "ఏ సినిమాలు చూశారో ఆయన్ని అడగండి." },
         replies: [
           { say: "Which films did you watch?", good: true, skill: "ask" },
           { say: "Which films did you watched?", good: false, skill: "ask" },

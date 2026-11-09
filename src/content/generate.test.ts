@@ -46,7 +46,7 @@ describe("expandLesson", () => {
     expect(ids).toContain("second-lesson.p1");
     expect(ids).toContain("second-lesson.g-arrange-0");
     expect(ids).toContain("second-lesson.g-translate-1");
-    expect(ids).toContain("second-lesson.g-translate-2");
+    expect(ids).toContain("second-lesson.g-dictate-4");
     expect(ids).toContain("second-lesson.g-match-0");
     expect(ids).toContain("second-lesson.g-listen-3");
     expect(ids).toContain("second-lesson.g-repeat-1");
@@ -61,7 +61,7 @@ describe("expandLesson", () => {
     const byId = (id: string) => all.find((a) => a.id === `second-lesson.${id}`);
     expect(byId("g-arrange-0")).toMatchObject({ type: "arrange", answer: second.core[0].en });
     expect(byId("g-translate-1")).toMatchObject({ type: "translate", answer: second.core[1].en });
-    expect(byId("g-translate-2")).toMatchObject({ type: "translate", answer: second.core[2].en });
+    expect(byId("g-dictate-4")).toMatchObject({ type: "arrange", answer: second.core[Math.min(4, second.core.length - 1)].en, listen: true });
     expect(byId("g-repeat-1")).toMatchObject({ type: "repeat", say: second.core[1].en });
     expect(byId("g-listen-3")).toMatchObject({ type: "listenChoose", say: second.core[3].en });
     expect(byId("g-match-0")).toMatchObject({ type: "match" });
@@ -70,18 +70,47 @@ describe("expandLesson", () => {
   it("puts the right Telugu meaning at the answer index of listen and warm-up questions", () => {
     const day = expandLesson(second, [first]);
     const all = day.sections.flatMap((s) => s.activities);
-    const listen = all.find((a) => a.type === "listenChoose");
+    const listen = all.find((a) => a.id === "second-lesson.g-listen-3");
     expect(listen?.type === "listenChoose" && listen.options[listen.answer]).toBe(second.core[3].te);
     const warm = all.filter((a) => a.id.includes(".g-warm-"));
-    expect(warm).toHaveLength(2);
+    expect(warm.map((w) => w.type)).toEqual(["choose", "listenChoose"]);
     for (const w of warm) {
-      expect(w.type === "choose" && new Set(w.options).size).toBe(3);
+      expect((w.type === "choose" || w.type === "listenChoose") && new Set(w.options).size).toBe(3);
     }
   });
 
-  it("orders practice: authored, match, arrange, translate ×2, find the mistake last", () => {
+  it("orders practice: authored, match, arrange, translate, build what you hear, find the mistake last", () => {
     const practice = expandLesson(first, []).sections.find((s) => s.kind === "practice")!.activities.map((a) => a.type);
-    expect(practice).toEqual(["choose", "match", "arrange", "translate", "translate", "findMistake"]);
+    expect(practice).toEqual(["choose", "match", "arrange", "translate", "arrange", "findMistake"]);
+  });
+
+  it("shuffles authored options with a seed, the answer following its option", () => {
+    const authoredChoose = first.practice.find((a) => a.type === "choose")!;
+    const day = expandLesson(first, []);
+    const choose = day.sections.flatMap((s) => s.activities).find((a) => a.id === `first-lesson.${authoredChoose.id}`)!;
+    if (choose.type !== "choose" || authoredChoose.type !== "choose") throw new Error("not a choose");
+    expect([...choose.options].sort()).toEqual([...authoredChoose.options].sort());
+    expect(choose.options[choose.answer]).toBe(authoredChoose.options[authoredChoose.answer]);
+    expect(expandLesson(first, [])).toEqual(day);
+  });
+
+  it("adds the Sound of the week: the card on the week's first lesson, a pair question on every lesson", async () => {
+    const { soundOfWeek } = await import("./sounds");
+    const week = soundOfWeek(1)!;
+    const firstOfWeek = expandLesson(first, [], { week, index: 0 });
+    const later = expandLesson(second, [first], { week, index: 1 });
+    const types = (d: typeof firstOfWeek) => d.sections.flatMap((s) => s.activities.map((a) => a.type));
+    expect(types(firstOfWeek)).toContain("sound");
+    expect(types(later)).not.toContain("sound");
+    const pair = later.sections.find((s) => s.kind === "speak")!.activities[0];
+    expect(pair).toMatchObject({ id: "second-lesson.g-pair-0", type: "soundPair", words: week.pairs[1] });
+    expect(activityCount(firstOfWeek)).toBe(activityCount(expandLesson(first, [])) + 1);
+  });
+
+  it("says a long sentence in steps, built up from its end", async () => {
+    const { repeatSteps } = await import("./generate");
+    expect(repeatSteps("I eat rice.")).toBeUndefined();
+    expect(repeatSteps("I went to the market yesterday.")).toEqual(["market yesterday.", "to the market yesterday.", "I went to the market yesterday."]);
   });
 
   it("carries the key sentences and words to the wrap-up", () => {
@@ -89,18 +118,25 @@ describe("expandLesson", () => {
     expect(day.wrapup?.key).toEqual([first.core[0], first.core[1], first.core[2]]);
   });
 
-  it("warms up from the previous lessons' key sentences", () => {
+  it("warms up with the lesson before, then by ear from about a week or a month back", () => {
     const third = makeLesson("third-lesson");
     const day = expandLesson(third, [first, second]);
     const warm = day.sections[0].activities;
-    expect(warm[0]).toMatchObject({ say: second.core[0].en });
-    expect(warm[1]).toMatchObject({ say: first.core[0].en });
+    expect(warm[0]).toMatchObject({ type: "choose", say: second.core[second.key[0]].en });
+    expect(warm[1]).toMatchObject({ type: "listenChoose" });
+    // Course younger than the spacing: the earliest lesson there is.
+    expect(warm[1].type === "listenChoose" && first.core.map((c) => c.en)).toContain(warm[1].type === "listenChoose" ? warm[1].say : "");
+    const many = Array.from({ length: 25 }, (_, i) => makeLesson(`lesson-${i}`));
+    const monthBack = expandLesson(third, many).sections[0].activities[1]; // 25 earlier (odd): 20 back
+    expect(monthBack.type === "listenChoose" && many[5].core.map((c) => c.en)).toContain(monthBack.type === "listenChoose" ? monthBack.say : "");
+    const weekBack = expandLesson(third, many.slice(0, 24)).sections[0].activities[1]; // 24 earlier (even): 5 back
+    expect(weekBack.type === "listenChoose" && many[19].core.map((c) => c.en)).toContain(weekBack.type === "listenChoose" ? weekBack.say : "");
   });
 
-  it("expands the real Day 1 to 14–19 activities", () => {
+  it("expands the real Day 1 to 14–20 activities", () => {
     const count = activityCount(expandLesson(sentenceBasics, []));
     expect(count).toBeGreaterThanOrEqual(14);
-    expect(count).toBeLessThanOrEqual(19);
+    expect(count).toBeLessThanOrEqual(20);
   });
 });
 

@@ -25,7 +25,7 @@ export const day: Lesson = {
     { en: "Give me a bunch of coriander, please.", te: "ఒక కట్ట కొత్తిమీర ఇవ్వండి.", extra: ["bunches"] },
     { en: "A dozen bananas, please.", te: "ఒక డజను అరటిపండ్లు ఇవ్వండి.", extra: ["banana"] },
     { en: "I need a quarter kilo of ginger.", te: "నాకు పావు కిలో అల్లం కావాలి.", extra: ["kilos"] },
-    { en: "Can I have two packets of milk?", te: "రెండు పాల ప్యాకెట్లు ఇవ్వగలరా?", extra: ["packet"] },
+    { en: "Can I have two packets of milk?", te: "రెండు పాల ప్యాకెట్లు ఇస్తారా?", extra: ["packet"] },
     { en: "Give me two hundred grams of chillies.", te: "రెండు వందల గ్రాముల మిరపకాయలు ఇవ్వండి.", extra: ["gram"] },
     { en: "That's enough, thank you.", te: "చాలు, థాంక్యూ.", extra: ["much"] },
   ],
@@ -89,7 +89,7 @@ export const day: Lesson = {
         {
           form: "a packet of",
           useFor: { en: "Milk, biscuits, salt.", te: "పాలు, బిస్కెట్లు, ఉప్పు." },
-          example: { en: "Can I have two packets of milk?", te: "రెండు పాల ప్యాకెట్లు ఇవ్వగలరా?" },
+          example: { en: "Can I have two packets of milk?", te: "రెండు పాల ప్యాకెట్లు ఇస్తారా?" },
         },
       ],
     },
@@ -99,8 +99,8 @@ export const day: Lesson = {
       wrong: "Give half kg beans.",
       right: "Give me half a kilo of beans.",
       why: {
-        en: "Say half a kilo of, not half kg.",
-        te: "half kg కాదు, half a kilo of అనండి.",
+        en: "Half kg is how a bill is written; in speech say half a kilo of: Give me half a kilo of beans.",
+        te: "half kg అనేది బిల్లు మీద రాసే పొట్టి రూపం; మాట్లాడేటప్పుడు half a kilo of అనండి: Give me half a kilo of beans.",
       },
     },
     {
@@ -109,8 +109,8 @@ export const day: Lesson = {
       wrong: "Two bunch coriander.",
       right: "Two bunches of coriander.",
       why: {
-        en: "Two bunches, then of.",
-        te: "రెండు అంటే bunches, తర్వాత of.",
+        en: "After two, bunch takes es, and of joins it to the thing: Two bunches of coriander.",
+        te: "రెండు అంటే bunches, ఆ తర్వాత of కావాలి: Two bunches of coriander.",
       },
     },
   ],
@@ -122,8 +122,8 @@ export const day: Lesson = {
       options: ["I need half kilo beans.", "I need half a kilo of beans.", "I need a half kilos of beans."],
       answer: 1,
       why: {
-        en: "Half a kilo of: with a and of.",
-        te: "half a kilo of: a, of రెండూ కావాలి.",
+        en: "Half needs a after it, and of before the thing: I need half a kilo of beans.",
+        te: "half తర్వాత a, వస్తువు ముందు of: I need half a kilo of beans.",
       },
     },
     {
@@ -134,19 +134,19 @@ export const day: Lesson = {
       options: ["of", "in", "for"],
       answer: 0,
       why: {
-        en: "A bunch of coriander.",
-        te: "a bunch of అనాలి.",
+        en: "An amount joins its thing with of: Give me a bunch of coriander.",
+        te: "ఎంతో చెప్పే మాటకీ వస్తువుకీ మధ్య of వస్తుంది: Give me a bunch of coriander.",
       },
     },
     {
       id: "p3",
       type: "choose",
       prompt: { en: "You want twelve bananas. What do you say?", te: "మీకు పన్నెండు అరటిపండ్లు కావాలి. ఏమంటారు?" },
-      options: ["A dozen bananas, please.", "A dozen of banana, please.", "Twelve dozen bananas, please."],
+      options: ["A dozen bananas, please.", "A dozen of banana, please.", "Dozen bananas, please."],
       answer: 0,
       why: {
-        en: "Twelve is a dozen, with no of.",
-        te: "పన్నెండు అంటే a dozen; of అక్కర్లేదు.",
+        en: "Twelve is a dozen; dozen needs a, but no of: A dozen bananas, please.",
+        te: "పన్నెండు అంటే a dozen; a కావాలి, of అక్కర్లేదు: A dozen bananas, please.",
       },
     },
     {
@@ -156,8 +156,8 @@ export const day: Lesson = {
       wrongIndex: 4,
       fix: "Can I have two packets of milk?",
       why: {
-        en: "Two packets, with s.",
-        te: "రెండు అంటే packets, s తో.",
+        en: "After two, add s to the thing: Can I have two packets of milk?",
+        te: "రెండు అయితే s చేర్చాలి: Can I have two packets of milk?",
       },
     },
   ],
@@ -191,24 +191,30 @@ export const day: Lesson = {
     title: { en: "Greens and fruit", te: "ఆకుకూరలు, పండ్లు" },
     scene: {
       en: "At the market, Padma sells greens and fruit. Buy what you need.",
-      te: "మార్కెట్‌లో పద్మ ఆకుకూరలు, పండ్లు అమ్ముతోంది. మీకు కావలసినవి కొనండి.",
+      te: "మార్కెట్‌లో పద్మ ఆకుకూరలు, పండ్లు అమ్ముతున్నారు. మీకు కావలసినవి కొనండి.",
     },
-    partner: { en: "Padma (seller)", te: "పద్మ (అమ్మే ఆమె)" },
+    partner: { en: "Padma (seller)", te: "పద్మ (కూరగాయలు అమ్మే ఆవిడ)" },
     skills: [{ id: "amount", label: { en: "Amounts", te: "ఎంత కావాలో" } }],
     turns: [
       {
         partner: "Come, come! Fresh greens today!",
         te: "రండి, రండి! ఈ రోజు తాజా ఆకుకూరలు!",
-        hint: { en: "Say: Give me a bunch of coriander, please.", te: "ఇలా చెప్పండి: Give me a bunch of coriander, please." },
+        hint: { en: "Ask politely for one bunch of coriander.", te: "ఒక కట్ట కొత్తిమీర మర్యాదగా అడగండి." },
         replies: [
           { say: "Give me a bunch of coriander, please.", good: true, skill: "amount" },
           { say: "Give me a bunch for coriander.", good: false, skill: "amount" },
+          {
+            say: "Fresh? These look old to me.",
+            good: false,
+            skill: "amount",
+            react: { en: "They came this morning, I promise!", te: "ఈ రోజు ఉదయమే వచ్చాయి, నిజంగా!" },
+          },
         ],
       },
       {
         partner: "Here. What else?",
         te: "ఇదిగోండి. ఇంకా ఏం కావాలి?",
-        hint: { en: "Say: I need half a kilo of beans.", te: "ఇలా చెప్పండి: I need half a kilo of beans." },
+        hint: { en: "Say you need beans: half a kilo.", te: "అర కిలో బీన్స్ కావాలని చెప్పండి." },
         replies: [
           { say: "I need half a kilo of beans.", good: true, skill: "amount" },
           { say: "I need half kilo beans.", good: false, skill: "amount" },
@@ -217,7 +223,7 @@ export const day: Lesson = {
       {
         partner: "Okay. Do you want fruit too?",
         te: "సరే. పండ్లు కూడా కావాలా?",
-        hint: { en: "Say: Yes, a dozen bananas, please.", te: "ఇలా చెప్పండి: Yes, a dozen bananas, please." },
+        hint: { en: "Say yes, and ask for twelve bananas.", te: "అవునని, పన్నెండు అరటిపండ్లు అడగండి." },
         replies: [
           { say: "Yes, a dozen bananas, please.", good: true, skill: "amount" },
           { say: "Yes, a dozen of banana, please.", good: false, skill: "amount" },
@@ -226,7 +232,7 @@ export const day: Lesson = {
       {
         partner: "Here you are. Come again!",
         te: "ఇదిగోండి. మళ్ళీ రండి!",
-        hint: { en: "Say: Thank you. See you next week.", te: "ఇలా చెప్పండి: Thank you. See you next week." },
+        hint: { en: "Thank her, and say you'll come next week.", te: "థాంక్స్ చెప్పి, వచ్చే వారం వస్తానని చెప్పండి." },
         replies: [
           { say: "Thank you. See you next week.", good: true },
           { say: "Thanks you. See you next week.", good: false },

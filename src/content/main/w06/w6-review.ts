@@ -17,29 +17,29 @@ export const day: ReviewDay = {
   kind: "review",
   title: { en: "Food Talk", te: "భోజనం మాటలు" },
   extras: [
-    pick("q1", "She ___ sweets.", "ఆమెకు స్వీట్లు ఇష్టం.", ["like", "likes", "liking"], 1, {
-      en: "She is one person: likes.",
-      te: "she ఒక్కరు: likes.",
+    pick("q1", "She ___ sweets.", "ఆవిడకి స్వీట్లు ఇష్టం.", ["like", "likes", "liking"], 1, {
+      en: "She is one person, so the verb takes s: She likes sweets.",
+      te: "she ఒక్కరు, అందుకే verb కి s: She likes sweets.",
     }),
     pick("q2", "I would ___ some tea.", "నాకు కొంచెం టీ కావాలి.", ["like", "likes", "liking"], 0, {
-      en: "Polite asking: I would like.",
-      te: "మర్యాదగా అడగడం: I would like.",
+      en: "To ask politely, use would before like: I would like some tea.",
+      te: "మర్యాదగా అడగడానికి like ముందు would: I would like some tea.",
     }),
-    pick("q3", "Is there ___ milk?", "పాలు ఏమైనా ఉన్నాయా?", ["some", "any", "many"], 1, {
-      en: "In a question, any.",
-      te: "ప్రశ్నలో any.",
+    pick("q3", "Is there ___ milk?", "పాలు ఏమైనా ఉన్నాయా?", ["a", "any", "many"], 1, {
+      en: "Questions use any, like Telugu ఏమైనా: Is there any milk?",
+      te: "ప్రశ్నలో any, తెలుగు 'ఏమైనా' లాగా: Is there any milk?",
     }),
     pick("q4", "How ___ eggs do you want?", "మీకు ఎన్ని గుడ్లు కావాలి?", ["much", "many", "more"], 1, {
-      en: "Eggs are counted: how many.",
-      te: "గుడ్లు లెక్కపెడతాం: how many.",
+      en: "We ask ఎన్ని for eggs, and ఎన్ని is how many: How many eggs do you want?",
+      te: "గుడ్లు 'ఎన్ని?' అని అడుగుతాం; ఎన్ని = how many: How many eggs?",
     }),
     pick("q5", "How ___ rice do you want?", "మీకు ఎంత బియ్యం కావాలి?", ["much", "many", "more"], 0, {
-      en: "Rice is not counted: how much.",
-      te: "బియ్యం లెక్కపెట్టం: how much.",
+      en: "We ask ఎంత for rice, and ఎంత is how much: How much rice do you want?",
+      te: "బియ్యం 'ఎంత?' అని అడుగుతాం; ఎంత = how much: How much rice?",
     }),
-    pick("q6", "First wash the rice. ___ cook it.", "ముందు బియ్యం కడగండి. తర్వాత ఉడికించండి.", ["Then", "Than", "That"], 0, {
-      en: "The next step: then.",
-      te: "తర్వాతి పని: then.",
+    pick("q6", "___ wash the rice. Then cook it.", "ముందు బియ్యం కడగండి. తర్వాత ఉడికించండి.", ["First", "Before", "Start"], 0, {
+      en: "Telugu ముందు for the first step is First, not Before: First wash the rice.",
+      te: "మొదటి పనికి 'ముందు' అంటే First, Before కాదు: First wash the rice.",
     }),
   ],
 };

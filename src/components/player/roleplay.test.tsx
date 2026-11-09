@@ -3,7 +3,7 @@ import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vite
 import type { Activity } from "@/content/types";
 import { listen, type ListenResult } from "@/lib/listen";
 import { updateSettings } from "@/lib/settings-store";
-import { narrateAll, speak } from "@/lib/speak";
+import { narrate, narrateAll, speak } from "@/lib/speak";
 import { DEFAULT_SETTINGS } from "@/learning/settings";
 import { Dialogue, LINE_PAUSE_MS } from "./Dialogue";
 import { MIC_HELP_ID } from "./MicButton";
@@ -79,10 +79,13 @@ describe("RolePlay", () => {
     const onNext = vi.fn();
     render(<RolePlay activity={roleplay} onNext={onNext} />);
     expect(screen.getByText("What do you drink?")).toBeTruthy();
+    click(/^Show replies/);
     click("I drink tea.");
     expect(screen.queryByText("Good")).toBeNull(); // no panel and no Continue after a good reply
     expect(screen.queryByRole("button", { name: /^Continue/ })).toBeNull();
     expect(await screen.findByText("And what do you eat?")).toBeTruthy(); // the partner answers by itself
+    expect(screen.queryByRole("button", { name: "I idli eat." })).toBeNull(); // each turn's replies start hidden
+    click(/^Show replies/);
     click("I idli eat.");
     expect(screen.getByText("Almost")).toBeTruthy();
     expect(screen.getByText("I eat idli.")).toBeTruthy(); // the better reply
@@ -140,12 +143,38 @@ describe("RolePlay", () => {
     expect(meaning.getAttribute("aria-pressed")).toBe("true");
   });
 
-  it("the scene has its own Listen; at the start it plays the scene (in Learn in), then the partner's first line", () => {
+  it("the scene has its own Listen; at the start it plays the scene (in Learn in), then the partner's first line in the partner's voice", () => {
     updateSettings({ learnIn: "te", autoPlay: true });
     vi.mocked(narrateAll).mockClear();
-    render(<RolePlay activity={roleplay} onNext={vi.fn()} />);
-    expect(narrateAll).toHaveBeenCalledWith(["స్నేహితురాలు అడుగుతోంది.", "What do you drink?"], { voice: undefined });
+    vi.mocked(narrate).mockClear();
+    render(<RolePlay activity={{ ...roleplay, voice: "b" }} onNext={vi.fn()} />);
+    expect(narrateAll).toHaveBeenCalledWith(["స్నేహితురాలు అడుగుతోంది."], expect.objectContaining({ voice: undefined }));
+    act(() => vi.mocked(narrateAll).mock.calls[0][1]!.onEnd!());
+    expect(narrate).toHaveBeenCalledWith("What do you drink?", { voice: "b" });
     expect(screen.getAllByRole("button", { name: "Listen" }).length).toBeGreaterThanOrEqual(2); // the scene's and the line's
+  });
+
+  it("hides the replies until Show replies, so speaking means remembering", () => {
+    render(<RolePlay activity={roleplay} onNext={vi.fn()} />);
+    expect(screen.getByText("Your turn. Say your reply.")).toBeTruthy();
+    expect(screen.queryByRole("button", { name: "I drink tea." })).toBeNull();
+    expect(screen.getByRole("button", { name: /^Speak/ })).toBeTruthy();
+    click(/^Show replies/);
+    expect(screen.getByRole("button", { name: "I drink tea." })).toBeTruthy();
+    expect(screen.queryByRole("button", { name: /^Show replies/ })).toBeNull();
+  });
+
+  it("a not-good reply with a reaction gets the partner's answer first, then the better reply", () => {
+    updateSettings({ autoPlay: true });
+    vi.mocked(narrateAll).mockClear();
+    const turns = [{ ...roleplay.turns[0], replies: [roleplay.turns[0].replies[0], { ...roleplay.turns[0].replies[1], react: { en: "Sorry? Tea?", te: "సారీ? టీ నా?" } }] }, roleplay.turns[1]];
+    render(<RolePlay activity={{ ...roleplay, voice: "b", turns }} onNext={vi.fn()} />);
+    click(/^Show replies/);
+    click("I tea drink.");
+    expect(screen.getByText("Sorry? Tea?")).toBeTruthy();
+    expect(narrateAll).toHaveBeenLastCalledWith(["Sorry? Tea?"], expect.objectContaining({ voice: "b" }));
+    expect(screen.getByText("Almost")).toBeTruthy();
+    expect(screen.getAllByText("I drink tea.").length).toBeGreaterThan(0);
   });
 
   it("a refused microphone leaves tapping", async () => {
@@ -171,29 +200,32 @@ const dialogue: Extract<Activity, { type: "dialogue" }> = {
 };
 
 describe("Dialogue", () => {
-  it("plays the lines one after another with two voices, bubbles appearing as they play", () => {
+  it("plays the lines one after another in their voices, with no words yet, only who is speaking", () => {
     vi.useFakeTimers();
     render(<Dialogue activity={dialogue} onNext={vi.fn()} />);
     expect(speak).toHaveBeenLastCalledWith("Hello, Ravi.", expect.objectContaining({ voice: "a" }));
-    expect(screen.queryByText("Hello, Asha.")).toBeNull();
+    expect(screen.getByText("Line 1 of 2")).toBeTruthy();
     act(() => vi.mocked(speak).mock.lastCall![1]!.onEnd!());
     act(() => void vi.advanceTimersByTime(LINE_PAUSE_MS));
     expect(speak).toHaveBeenLastCalledWith("Hello, Asha.", expect.objectContaining({ voice: "b" }));
-    expect(screen.getByText("Hello, Asha.")).toBeTruthy();
+    expect(screen.queryByText("Hello, Asha.")).toBeNull(); // heard, not read
   });
 
-  it("with Auto-play off shows every line and plays on Replay, then asks its questions", () => {
+  it("asks question 1 by ear, then shows the words; with Auto-play off the talk starts on Listen", () => {
     updateSettings({ autoPlay: false });
     const onNext = vi.fn();
     render(<Dialogue activity={dialogue} onNext={onNext} />);
     expect(speak).not.toHaveBeenCalled();
-    expect(screen.getByText("Hello, Asha.")).toBeTruthy();
-    click(/^Replay/);
+    click(/^Listen/);
     expect(speak).toHaveBeenCalledWith("Hello, Ravi.", expect.objectContaining({ voice: "a" }));
     click(/^Continue/);
     expect(screen.getByText("Who says hello first?")).toBeTruthy();
+    expect(screen.queryByText("Hello, Ravi.")).toBeNull(); // still by ear
+    click(/^Listen again/);
     click("Asha");
     click(/^Check/);
+    click(/^Continue/);
+    expect(screen.getByText("Hello, Ravi.")).toBeTruthy(); // now the words
     click(/^Continue/);
     expect(onNext).toHaveBeenCalledTimes(1);
   });

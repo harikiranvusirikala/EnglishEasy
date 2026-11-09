@@ -22,12 +22,12 @@ export const day: Lesson = {
   ],
   core: [
     { en: "My neighbour walks every day.", te: "మా పొరుగాయన రోజూ నడుస్తారు.", extra: ["walk"] },
-    { en: "She watches TV at night.", te: "ఆమె రాత్రి TV చూస్తుంది.", extra: ["watch"] },
-    { en: "He goes to the temple.", te: "అతను గుడికి వెళ్తాడు.", extra: ["go"] },
-    { en: "Ravi gets up at five.", te: "రవి ఐదు గంటలకు లేస్తాడు.", extra: ["get"] },
-    { en: "She cooks lunch at noon.", te: "ఆమె మధ్యాహ్నం పన్నెండుకి భోజనం వండుతుంది.", extra: ["cook"] },
-    { en: "He doesn't work on Sundays.", te: "అతను ఆదివారాలు పని చేయడు.", extra: ["works"] },
-    { en: "Padma teaches music.", te: "పద్మ సంగీతం నేర్పిస్తుంది.", extra: ["teach"] },
+    { en: "She watches TV at night.", te: "ఆవిడ రాత్రి TV చూస్తారు.", extra: ["watch"] },
+    { en: "He goes to the temple.", te: "ఆయన గుడికి వెళ్తారు.", extra: ["go"] },
+    { en: "Ravi gets up at five.", te: "రవి గారు ఐదు గంటలకు లేస్తారు.", extra: ["get"] },
+    { en: "She cooks lunch at noon.", te: "ఆవిడ మధ్యాహ్నం పన్నెండుకి భోజనం వండుతారు.", extra: ["cook"] },
+    { en: "He doesn't work on Sundays.", te: "ఆయన ఆదివారాలు పని చేయరు.", extra: ["works"] },
+    { en: "Padma teaches music.", te: "పద్మ గారు సంగీతం నేర్పిస్తారు.", extra: ["teach"] },
   ],
   key: [0, 1, 2, 5],
   tryToday: {
@@ -50,10 +50,10 @@ export const day: Lesson = {
       heading: { en: "He or she: add s", te: "he, she: s చేర్చండి" },
       body: {
         en: "With he, she or one person, the action word gets s: he walks, she cooks. After s, x, ch, sh or o, add es: she watches, he goes.",
-        te: "he, she లేదా ఒక్కరి గురించి చెప్పేటప్పుడు పని పదానికి s చేరుతుంది: he walks, she cooks. s, x, ch, sh, o తో ముగిస్తే es: she watches, he goes.",
+        te: "he, she లేదా ఒక్కరి గురించి చెప్పేటప్పుడు verb కి s చేరుతుంది: he walks, she cooks. s, x, ch, sh, o తో ముగిస్తే es: she watches, he goes.",
       },
       bridge: {
-        te: ["అతను", "గుడికి", "వెళ్తాడు"],
+        te: ["ఆయన", "గుడికి", "వెళ్తారు"],
         en: [
           { text: "He", role: "who" },
           { text: "goes", role: "action" },
@@ -62,8 +62,8 @@ export const day: Lesson = {
       },
       examples: [
         { en: "My neighbour walks every day.", te: "మా పొరుగాయన రోజూ నడుస్తారు." },
-        { en: "She watches TV at night.", te: "ఆమె రాత్రి TV చూస్తుంది." },
-        { en: "He goes to the temple.", te: "అతను గుడికి వెళ్తాడు." },
+        { en: "She watches TV at night.", te: "ఆవిడ రాత్రి TV చూస్తారు." },
+        { en: "He goes to the temple.", te: "ఆయన గుడికి వెళ్తారు." },
       ],
     },
     {
@@ -73,18 +73,18 @@ export const day: Lesson = {
       items: [
         {
           form: "+ s",
-          useFor: { en: "Most action words add s.", te: "చాలా పని పదాలకు s." },
-          example: { en: "Ravi gets up at five.", te: "రవి ఐదు గంటలకు లేస్తాడు." },
+          useFor: { en: "Most action words add s.", te: "చాలా verbs కి s చేరుతుంది." },
+          example: { en: "Ravi gets up at five.", te: "రవి గారు ఐదు గంటలకు లేస్తారు." },
         },
         {
           form: "+ es (watch, go, teach)",
           useFor: { en: "Words ending in ch, sh, s, x or o add es.", te: "ch, sh, s, x, o తో ముగిసే పదాలకు es." },
-          example: { en: "Padma teaches music.", te: "పద్మ సంగీతం నేర్పిస్తుంది." },
+          example: { en: "Padma teaches music.", te: "పద్మ గారు సంగీతం నేర్పిస్తారు." },
         },
         {
           form: "doesn't + no s",
-          useFor: { en: "After doesn't, the action word has no s.", te: "doesn't తర్వాత పని పదానికి s ఉండదు." },
-          example: { en: "He doesn't work on Sundays.", te: "అతను ఆదివారాలు పని చేయడు." },
+          useFor: { en: "After doesn't, the action word has no s.", te: "doesn't తర్వాత verb కి s ఉండదు." },
+          example: { en: "He doesn't work on Sundays.", te: "ఆయన ఆదివారాలు పని చేయరు." },
         },
       ],
     },
@@ -94,8 +94,8 @@ export const day: Lesson = {
       wrong: "He go to the temple.",
       right: "He goes to the temple.",
       why: {
-        en: "With he, go becomes goes.",
-        te: "he తో go → goes.",
+        en: "Telugu changes the verb for he (వెళ్తారు), and English does too: He goes to the temple.",
+        te: "తెలుగులో ఆయన గురించి verb మారుతుంది (వెళ్తారు); ఇంగ్లీష్‌లో కూడా go → goes: He goes to the temple.",
       },
     },
     {
@@ -104,8 +104,8 @@ export const day: Lesson = {
       wrong: "She watchs TV.",
       right: "She watches TV.",
       why: {
-        en: "Watch ends in ch, so add es: watches.",
-        te: "watch చివర ch ఉంది, కాబట్టి es: watches.",
+        en: "Watch ends in ch, so it takes es, not s: She watches TV.",
+        te: "watch చివర ch ఉంది, అందుకే s కాదు, es: She watches TV.",
       },
     },
   ],
@@ -117,20 +117,20 @@ export const day: Lesson = {
       options: ["She watch TV at night.", "She watches TV at night.", "She watchs TV at night."],
       answer: 1,
       why: {
-        en: "She + watches.",
-        te: "she తో watches.",
+        en: "She is one person, and watch ends in ch, so add es: She watches TV at night.",
+        te: "she ఒక్కరు, watch చివర ch, అందుకే es: She watches TV at night.",
       },
     },
     {
       id: "p2",
       type: "fillBlank",
       sentence: "Ravi ___ up at five.",
-      te: "రవి ఐదు గంటలకు లేస్తాడు.",
+      te: "రవి గారు ఐదు గంటలకు లేస్తారు.",
       options: ["get", "gets", "getting"],
       answer: 1,
       why: {
-        en: "Ravi is one person: gets.",
-        te: "రవి ఒక్కరు: gets.",
+        en: "Ravi is one person, so the verb takes s: Ravi gets up at five.",
+        te: "రవి గారు ఒక్కరు, అందుకే verb కి s: Ravi gets up at five.",
       },
     },
     {
@@ -140,8 +140,8 @@ export const day: Lesson = {
       options: ["He doesn't works on Sundays.", "He doesn't work on Sundays.", "He don't work on Sundays."],
       answer: 1,
       why: {
-        en: "He doesn't + work (no s).",
-        te: "He doesn't + work (s లేకుండా).",
+        en: "Doesn't already carries the s, so work stays plain: He doesn't work on Sundays.",
+        te: "doesn't లోనే s ఉంది, అందుకే work కి s రాదు: He doesn't work on Sundays.",
       },
     },
     {
@@ -151,8 +151,8 @@ export const day: Lesson = {
       wrongIndex: 1,
       fix: "Padma teaches music.",
       why: {
-        en: "Padma is one person: teaches.",
-        te: "పద్మ ఒక్కరు: teaches.",
+        en: "Padma is one person, and teach ends in ch, so: Padma teaches music.",
+        te: "పద్మ గారు ఒక్కరు, teach చివర ch, అందుకే es: Padma teaches music.",
       },
     },
   ],
@@ -172,11 +172,11 @@ export const day: Lesson = {
       id: "s2",
       type: "situation",
       situation: {
-        en: "Say that your friend Sita watches TV at night.",
-        te: "మీ స్నేహితురాలు సీత రాత్రి TV చూస్తుందని చెప్పండి.",
+        en: "Say that your friend Mary watches TV at night.",
+        te: "మీ స్నేహితురాలు మేరీ రాత్రి TV చూస్తారని చెప్పండి.",
       },
-      expected: ["Sita watches TV at night.", "She watches TV at night."],
-      options: ["Sita watchs TV at night.", "Sita watches TV at night.", "Sita watch TV at night."],
+      expected: ["Mary watches TV at night.", "She watches TV at night."],
+      options: ["Mary watchs TV at night.", "Mary watches TV at night.", "Mary watch TV at night."],
       answer: 1,
     },
   ],
@@ -185,25 +185,30 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "Your neighbour's day", te: "మీ పొరుగాయన రోజు" },
     scene: {
-      en: "Your friend Lakshmi asks about your neighbour Ravi's routine.",
-      te: "మీ స్నేహితురాలు లక్ష్మి మీ పొరుగాయన రవి దినచర్య గురించి అడుగుతోంది.",
+      en: "Your friend Jyothi asks about your neighbour Ravi's routine.",
+      te: "మీ స్నేహితురాలు జ్యోతి మీ పొరుగాయన రవి గారి దినచర్య గురించి అడుగుతున్నారు.",
     },
-    partner: { en: "Lakshmi (a friend)", te: "లక్ష్మి (స్నేహితురాలు)" },
+    partner: { en: "Jyothi (a friend)", te: "జ్యోతి (స్నేహితురాలు)" },
     skills: [{ id: "s", label: { en: "he / she + -s", te: "he / she తో -s" } }],
     turns: [
       {
         partner: "Your neighbour Ravi is very fit!",
-        te: "మీ పొరుగాయన రవి చాలా ఆరోగ్యంగా ఉంటారు!",
-        hint: { en: "Say: Yes, he walks every morning.", te: "ఇలా చెప్పండి: Yes, he walks every morning." },
+        te: "మీ పొరుగాయన రవి గారు చాలా ఆరోగ్యంగా ఉంటారు!",
+        hint: { en: "Say yes, and tell her about his morning walk.", te: "అవునని చెప్పి, ఆయన ఉదయం నడక గురించి చెప్పండి." },
         replies: [
           { say: "Yes, he walks every morning.", good: true, skill: "s" },
           { say: "Yes, he walk every morning.", good: false, skill: "s" },
+          {
+            say: "Him? He is old and fat.",
+            good: false,
+            react: { en: "Oh, that is not nice to say!", te: "అయ్యో, అలా అనకూడదండీ!" },
+          },
         ],
       },
       {
         partner: "What time does he get up?",
         te: "ఆయన ఎన్ని గంటలకు లేస్తారు?",
-        hint: { en: "Say: He gets up at five.", te: "ఇలా చెప్పండి: He gets up at five." },
+        hint: { en: "Tell her the time he gets up. Remember the s.", te: "ఆయన ఎన్ని గంటలకు లేస్తారో చెప్పండి. s మర్చిపోకండి." },
         replies: [
           { say: "He gets up at five.", good: true, skill: "s" },
           { say: "He get up at five.", good: false, skill: "s" },
@@ -211,20 +216,20 @@ export const day: Lesson = {
       },
       {
         partner: "Does he work?",
-        te: "ఆయన పని చేస్తారా?",
-        hint: { en: "Say: Yes, he teaches music.", te: "ఇలా చెప్పండి: Yes, he teaches music." },
+        te: "ఆయన ఉద్యోగం చేస్తారా?",
+        hint: { en: "Say no, and what he does at home.", te: "లేదని, ఆయన ఇంట్లో ఏం చేస్తారో చెప్పండి." },
         replies: [
-          { say: "Yes, he teaches music.", good: true, skill: "s" },
-          { say: "Yes, he teach music.", good: false, skill: "s" },
+          { say: "No. He cooks and watches TV.", good: true, skill: "s" },
+          { say: "No. He cook and watch TV.", good: false, skill: "s" },
         ],
       },
       {
         partner: "And his sister Padma?",
-        te: "మరి ఆయన చెల్లెలు పద్మ?",
-        hint: { en: "Say: She cooks and watches TV.", te: "ఇలా చెప్పండి: She cooks and watches TV." },
+        te: "మరి ఆయన చెల్లెలు పద్మ గారు?",
+        hint: { en: "Tell her what work Padma does.", te: "పద్మ గారు ఏం పని చేస్తారో చెప్పండి." },
         replies: [
-          { say: "She cooks and watches TV.", good: true, skill: "s" },
-          { say: "She cook and watch TV.", good: false, skill: "s" },
+          { say: "She teaches music at a school.", good: true, skill: "s" },
+          { say: "She teach music at a school.", good: false, skill: "s" },
         ],
       },
     ],

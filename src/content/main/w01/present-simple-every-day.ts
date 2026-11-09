@@ -22,11 +22,11 @@ export const day: Lesson = {
   ],
   core: [
     { en: "I walk every morning.", te: "నేను ప్రతి ఉదయం నడుస్తాను.", extra: ["walks"] },
-    { en: "She goes to the temple on Fridays.", te: "ఆమె శుక్రవారాల్లో గుడికి వెళ్తుంది.", extra: ["go"] },
-    { en: "He doesn't drink coffee.", te: "అతను కాఫీ తాగడు.", extra: ["don't"] },
+    { en: "She goes to the temple on Fridays.", te: "ఆవిడ ప్రతి శుక్రవారం గుడికి వెళ్తారు.", extra: ["go"] },
+    { en: "He doesn't drink coffee.", te: "ఆయన కాఫీ తాగరు.", extra: ["don't"] },
     { en: "We don't eat late.", te: "మేము ఆలస్యంగా తినం.", extra: ["doesn't"] },
     { en: "Do you watch the news?", te: "మీరు వార్తలు చూస్తారా?", extra: ["Does"] },
-    { en: "Does she go to the temple?", te: "ఆమె గుడికి వెళ్తుందా?", extra: ["goes"] },
+    { en: "Does she go to the temple?", te: "ఆవిడ గుడికి వెళ్తారా?", extra: ["goes"] },
     { en: "Yes, I do.", te: "అవును, చూస్తాను.", extra: ["does"] },
   ],
   key: [0, 1, 2, 4],
@@ -62,8 +62,8 @@ export const day: Lesson = {
       },
       examples: [
         { en: "I walk every morning.", te: "నేను ప్రతి ఉదయం నడుస్తాను." },
-        { en: "She goes to the temple on Fridays.", te: "ఆమె శుక్రవారాల్లో గుడికి వెళ్తుంది." },
-        { en: "He works in an office.", te: "అతను ఆఫీసులో పని చేస్తాడు." },
+        { en: "She goes to the temple on Fridays.", te: "ఆవిడ ప్రతి శుక్రవారం గుడికి వెళ్తారు." },
+        { en: "He works in an office.", te: "ఆయన ఆఫీసులో పని చేస్తారు." },
       ],
     },
     {
@@ -82,18 +82,18 @@ export const day: Lesson = {
             en: "Use doesn't and Does with he and she. Then the action has no -s.",
             te: "he, she తో doesn't, Does వాడాలి. అప్పుడు verb కి -s రాదు.",
           },
-          example: { en: "He doesn't drink coffee.", te: "అతను కాఫీ తాగడు." },
+          example: { en: "He doesn't drink coffee.", te: "ఆయన కాఫీ తాగరు." },
         },
       ],
     },
     {
       id: "l3",
       type: "dontSay",
-      wrong: "He go to office.",
-      right: "He goes to the office.",
+      wrong: "He go to the temple.",
+      right: "He goes to the temple.",
       why: {
-        en: "With he and she, add -s to the action: goes. Also say the office.",
-        te: "he, she తో verb కి -s చేర్చాలి: goes. అలాగే the office అనాలి.",
+        en: "With he or she, the action gets -s: He goes to the temple.",
+        te: "he, she తో verb కి -s వస్తుంది: He goes to the temple.",
       },
     },
     {
@@ -102,8 +102,8 @@ export const day: Lesson = {
       wrong: "He don't drink coffee.",
       right: "He doesn't drink coffee.",
       why: {
-        en: "With he and she, use doesn't, not don't.",
-        te: "he, she తో don't కాదు, doesn't వాడాలి.",
+        en: "With he and she, use doesn't, not don't: He doesn't drink coffee.",
+        te: "he, she తో don't కాదు, doesn't వాడాలి: He doesn't drink coffee.",
       },
     },
   ],
@@ -123,19 +123,19 @@ export const day: Lesson = {
       id: "p2",
       type: "fillBlank",
       sentence: "He ___ drink coffee.",
-      te: "అతను కాఫీ తాగడు.",
+      te: "ఆయన కాఫీ తాగరు.",
       options: ["don't", "doesn't", "isn't"],
       answer: 1,
       why: {
-        en: "With he, use doesn't.",
-        te: "he తో doesn't వాడాలి.",
+        en: "He is one person, so use doesn't: He doesn't drink coffee.",
+        te: "he అంటే ఒక్కరు, కాబట్టి doesn't: He doesn't drink coffee.",
       },
     },
     {
       id: "p3",
       type: "choose",
       prompt: { en: "Which sentence means: మీరు వార్తలు చూస్తారా?", te: "మీరు వార్తలు చూస్తారా? — ఇంగ్లీష్‌లో ఏది సరైనది?" },
-      options: ["You watch the news?", "Does you watch the news?", "Do you watch the news?"],
+      options: ["Are you watch the news?", "Does you watch the news?", "Do you watch the news?"],
       answer: 2,
     },
     {
@@ -145,8 +145,8 @@ export const day: Lesson = {
       wrongIndex: 1,
       fix: "She walks every morning.",
       why: {
-        en: "With she, add -s: walks.",
-        te: "she తో -s చేర్చాలి: walks.",
+        en: "She is one person, so the action gets -s: She walks every morning.",
+        te: "she అంటే ఒక్కరు, కాబట్టి verb కి -s: She walks every morning.",
       },
     },
   ],
@@ -167,7 +167,7 @@ export const day: Lesson = {
       type: "situation",
       situation: {
         en: "A neighbour asks: Do you drink coffee? Say no, in English.",
-        te: "పొరుగు వాళ్లు అడుగుతున్నారు: Do you drink coffee? కాదు అని ఇంగ్లీష్‌లో చెప్పండి.",
+        te: "పక్కింటి వాళ్లు అడుగుతున్నారు: Do you drink coffee? లేదు అని ఇంగ్లీష్‌లో చెప్పండి.",
       },
       expected: ["No, I don't.", "No, I don't drink coffee."],
       options: ["No, I doesn't.", "No, I don't.", "No, I not."],
@@ -188,7 +188,7 @@ export const day: Lesson = {
       {
         partner: "Do you walk every day?",
         te: "మీరు రోజూ నడుస్తారా?",
-        hint: { en: "Say yes: Yes, I do.", te: "అవును అని చెప్పండి: Yes, I do." },
+        hint: { en: "Say yes, the short way.", te: "అవును అని చిన్నగా చెప్పండి." },
         replies: [
           { say: "Yes, I do.", good: true, skill: "habits" },
           { say: "Yes, I walks.", good: false, skill: "habits" },
@@ -198,7 +198,7 @@ export const day: Lesson = {
       {
         partner: "Do you drink coffee?",
         te: "మీరు కాఫీ తాగుతారా?",
-        hint: { en: "Say no: No, I don't.", te: "కాదు అని చెప్పండి: No, I don't." },
+        hint: { en: "Say no, the short way.", te: "లేదు అని చిన్నగా చెప్పండి." },
         replies: [
           { say: "No, I don't.", good: true, skill: "habits" },
           { say: "No, I doesn't.", good: false, skill: "habits" },
@@ -208,10 +208,15 @@ export const day: Lesson = {
       {
         partner: "Do you eat late?",
         te: "మీరు ఆలస్యంగా తింటారా?",
-        hint: { en: "Say: No, I don't eat late.", te: "ఇలా చెప్పండి: No, I don't eat late." },
+        hint: { en: "Say no, in a full sentence.", te: "లేదు అని పూర్తి వాక్యంలో చెప్పండి." },
         replies: [
           { say: "No, I don't eat late.", good: true, skill: "habits" },
           { say: "No, I doesn't eat late.", good: false, skill: "habits" },
+          {
+            say: "Just give me tablets, doctor.",
+            good: false,
+            react: { en: "Please, first tell me about your food.", te: "మాత్రలు తర్వాత. ముందు మీ భోజనం గురించి చెప్పండి." },
+          },
         ],
       },
     ],

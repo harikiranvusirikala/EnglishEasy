@@ -14,20 +14,70 @@ The map is a plan, not a contract: weeks can be refined, merged or added. Lesson
 - Natural, everyday English as spoken politely in India and understood anywhere. No slang until Stage 5; Indian-English habits ("do the needful", "prepone", "What is your good name?") appear only as "Don't say / Say".
 - Sentence length by stage: Stage 1 ≤ 7 words; Stage 2 ≤ 10; Stage 3 ≤ 14; Stages 4–5 natural.
 - Every lesson: 6–8 **core sentences** using the pattern, simplest first (the generator turns the first ones into arrange, translate and repeat activities); 3–4 of them are the key sentences.
-- Distractors are real mistakes Telugu speakers make (wrong tense, missing "am/is/are", Telugu word order, missing article), never silly options.
+- Distractors are real mistakes Telugu speakers make (wrong tense, missing "am/is/are", Telugu word order, missing article), never silly options. See "Distractors" below.
+- **Level targets** (CEFR): Stage 1 A0 → A1, Stage 2 A2, Stage 3 A2+/B1, Stage 4 B1, Stage 5 B1+ (listening up to B2). Anything above the stage's level appears only as a fixed phrase.
+- **Indian vs international English.** Keep Indian usage that is understood everywhere: rupees, auto, bus stand, function (a celebration), "I was not well", lakh and crore (with million). Teach the international form next to Indian usage that confuses outsiders: "still green / not ripe yet" (not "raw" for fruit, which means the cooking variety), "good for your health", "I have a question" (next to "I have a doubt"). Correct clear errors with "Don't say / Say": "Myself Lakshmi", "do the needful", "revert back", "prepone", "out of station", "today morning", "yesterday night", "What is your good name?", "kindly do", "I am having two brothers", "take rest", "cover" (for a bag).
 
 **Telugu (Telugu mode)**
 - Spoken, everyday Telugu (వ్యావహారిక భాష), as a kind relative would explain it. No heavy Sanskrit words.
 - Keep English words in English letters where Telugu speakers already use them: verb, tense, past, sentence, bus, phone, doctor, and the English words being taught. Example: "Yesterday, last week లాంటి పదాలు వస్తే verb ని past form లో వాడాలి — go కాదు, went."
-- Telugu meanings of core sentences are natural Telugu, not word-for-word.
+- Telugu meanings of core sentences are natural Telugu, not word-for-word. A meaning matches its English exactly: tense, number, politeness.
+- **Register: spoken words, not bookish ones** (`checks.ts` TELUGU_AVOID flags the first three):
+
+  | Write | Not |
+  |---|---|
+  | ఏంటి | ఏమిటి |
+  | verb (Telugu mode) / "action word" (English mode) | పని పదం, క్రియ |
+  | "no" for an action or a fact: లేదు (చేయను, రాలేదు) | కాదు (only for who or what something is: "అది నాది కాదు") |
+  | requests: ఇస్తారా? / ఇవ్వండి / చెప్తారా? / కొంచెం … చేస్తారా? | ఇవ్వగలరా / చెప్పగలరా (-గల- is only for ability: "వంట చేయగలరా?") |
+  | please, or కొంచెం … అండీ | దయచేసి (only in formal scenes: bank, hospital desk, office) |
+  | మామూలుగా, ఎక్కువగా, పిలవడం, ఎలా ఉంటారో చెప్పండి | సాధారణంగా, తరచుగా, ఆహ్వానించడం, వర్ణించండి |
+  | sorry అండీ | క్షమించండి (except formal scenes) |
+
+- **Respect, the same for everyone.** The learner is always మీరు. Every adult in the third person gets respectful forms, whoever they are: ఆయన / ఆవిడ with -ారు verbs ("సురేష్ ధరలు చెప్తున్నారు", "పద్మ కూరగాయలు అమ్ముతున్నారు", never అమ్ముతోంది / చెప్తున్నాడు for an adult). Partners speak to the learner with మీరు too, even friends and relatives.
+- **Telugu mode explanations**: at most two short sentences (about 25 words); grammar words limited to verb, past, question.
+
+**Explanations ("why", "useFor", hints)**
+- **The why formula**: the rule in plain words + the reason (link it to Telugu when Telugu is the cause) + the right sentence. At least 6 English words (`why-length`). Never only "Don't forget are." or "Like to + come."
+  - Good: "Telugu ఎంత? needs no verb, but English needs is or are: How much are these apples?"
+  - Good: "One person (he, she): add s to the verb. She watches TV."
+- Role-play **hints say what to do, not the sentence** (`roleplay-hint`): "Ask the price politely.", "Say yes, and how many kilos you want.", "Tell him politely the change is wrong. Start with Sorry, I think…". The reply itself is never in the hint.
+
+**Distractors**
+- Every wrong option is one real error a Telugu speaker makes, or a real manners slip (too blunt, rude, the wrong kind of reply), and is wrong in every context. Never nonsense, typos, or errors nobody makes ("me sister", "choose the tomatoes me").
+- In a set of three: one slip from this lesson's pattern, one transfer from Telugu (word order, missing be/do/article, preposition), one meaning or reply-type mix-up.
+- Exactly one right answer: read every wrong option asking "could this be right somewhere?" ("How old is this saree?" is a real question, so it can't be the wrong option to "How ___ is this saree?").
+- A template at most once a week ("Thanks you"; "I'll + -ing" at most once a lesson). Options are about the same length. Their order does not matter: the generator shuffles them.
+
+**Role plays**
+- Replies are hidden until the learner taps "Show replies", so write them as things to remember, not to read.
+- At least one turn per role play has a manners (not grammar) not-good reply, and that reply gets a `react`: the partner's natural answer to it ("Cheating? Please don't say that. Let me count again."). Grammar slips may have one too ("Sorry? One kilo or two?").
+- Two good replies are welcome when both are natural (Can I… / Could I…).
+- A man partner has `voice: "b"`; women and unnamed partners use the default voice (`voice`).
+- The first and last turns sound like a real start and end ("Nice to meet you" gets "Nice to meet you too").
+
+**Dialogues** (Conversation Days)
+- The learner hears the whole talk before seeing it. Question 1 is a big-picture question answered by ear (where are they, who is it, what is it about); the detail questions come after.
+- Each speaker keeps one voice: men "b", women "a" (`voice`).
+
+**Audio**
+- Nothing read aloud has brackets, slashes, "…" or "₹" (`audio-symbols`). Digits and "Dr" are read as words by the voice in English text (`speechText`), so "240 rupees" and "Dr Prasad" are fine; prefer words for small numbers in Stage 1.
+
+**Persistent errors and recycling**
+- Each week's lessons together have at least 3 items on persistent errors outside the week's focus, rotating: articles, he/she + s, missing am/is/are, do-questions, plurals after numbers ("two kilos"), in/on/at, question word order, "Myself…".
+- At least 2 of a lesson's core sentences or role-play lines reuse words or patterns from 2 or more weeks earlier.
 
 **English mode explanations**
 - Very simple English (short sentences, common words), saying the same thing as the Telugu version.
 
 **People and places**
 - Main path: people everyone meets — a friend, neighbour, relative, shopkeeper, doctor, nurse, pharmacist, bank clerk, auto driver, conductor, customer-care agent, priest, postman, delivery person. Never assume the learner has a spouse, children or grandchildren (those scenes belong to tracks, §8).
-- Names: Lakshmi, Ramana, Padma, Suresh, Sita, Ravi, Kamala, Prasad, Anitha, Venkat, Rani, Srinivas, Usha, Mohan.
-- Places and things: Vijayawada, Guntur, Hyderabad, Visakhapatnam, Tirupati, Warangal; idli, dosa, pesarattu, filter coffee, sarees, kirana shop, RTC bus, auto, temple, Sankranti, Ugadi, Diwali; money in rupees.
+- Names (`checks.ts` MEN / WOMEN; rotate them, Ravi and Lakshmi are already overused):
+  - Women: Lakshmi, Padma, Sita, Kamala, Anitha, Rani, Usha, Jyothi, Swapna, Salma, Fatima, Mary, Grace, Sarala, Radha, Geetha, Kavitha, Ayesha, Ruth.
+  - Men: Ramana, Suresh, Ravi, Prasad, Venkat, Srinivas, Mohan, Narayana, Imran, Rahim, John, David, Raju, Krishna, Gopal, Ramesh, Satish, Joseph, Kumar.
+- **No fixed roles by gender.** In a week, no gender has more than half the cooking, cleaning or serving; doctors, sellers, leaders, drivers and clerks alternate. Men cook and women run shops, teach, lead the colony meeting.
+- **The learner's own name** is one that suits anyone: Kiran or Sai (`learner-name`). Partners never call the learner by a gendered name. When the true answer depends on the learner (their town, job, age), the hint says "your own …", and work always allows "retired".
+- Places and things: Vijayawada, Guntur, Hyderabad, Visakhapatnam, Tirupati, Warangal, Nellore, Kurnool, Rajahmundry, Karimnagar, Khammam and villages; idli, dosa, pesarattu, biryani, filter coffee, sarees, kirana shop, RTC bus, auto, temple, mosque, church, Sankranti, Ugadi, Diwali, Ramzan, Christmas, Bathukamma, Bonalu; money in rupees.
 
 **Every lesson includes**
 - The pattern as colour chips (who / action / what / when) and, where useful, the Telugu → English bridge.
@@ -86,8 +136,22 @@ Where each point is introduced (**bold**) and revisited. Content for a week shou
 | Phrasal verbs | **68**, 69, 92, 125 |
 | Idioms and collocations | **89**, 90, 91, 126 |
 | Politeness and softening | **8**, 25, 49, 103, 123 |
-| Pronunciation and intonation (v/w, z, th, stress) | **114**, 115, 134 |
+| Pronunciation: Sound of the week (§2a), then intonation | **1–13** (§2a), 114, 115, 134 |
 | Big numbers (lakh, crore ↔ hundred thousand, million) | **3**, 58 |
+
+## 2a. Sound of the week
+
+One sound Telugu speakers find hard, per main-path week (`src/content/sounds.ts`): the week's first lesson ends its Learn with the sound card (how to make each side, example words, "hear the difference"), and every lesson of the week asks one "Which word did you hear?" pair (5 pairs per week, word + Telugu meaning). A new week adds its entry when it is written; aim for words the learner already knows or meets that week.
+
+| Week | Sound | Week | Sound |
+|---|---|---|---|
+| 1 | v / w (vest, west) | 8 | can / can't (stress) |
+| 2 | short i / long ee (ship, sheep) | 9 | -ed at the end (walk, walked) |
+| 3 | -teen / -ty (thirteen, thirty) | 10 | I go / I'll go |
+| 4 | z / s (prize, price) | 11 | th / t (three, tree) |
+| 5 | f / p (fan, pan) | 12 | sh / s (she, see) |
+| 6 | a / e (bad, bed) | 13 | a / u (cap, cup) |
+| 7 | s at the end (walk, walks) | 14–40 | o / aw, word stress (PHO-to, ho-TEL), school (no added i), final clusters (asked, months), j / z, r / l in clusters, h-dropping, sentence stress, linking (an apple), weak forms (to, for, of), w / v review, numbers and prices, question intonation |
 
 ---
 
@@ -104,7 +168,7 @@ Each tense lesson teaches positive, negative and yes/no question together, ancho
 | Day | Id | Title | Pattern | Core sentences (examples) | Don't say → Say | Role play | Try it today |
 |---|---|---|---|---|---|---|---|
 | 1 | `sentence-basics` | **Who Does What** · వాక్య నిర్మాణం *(sentence basics)* | Who + Action + What; Telugu verb-last vs English verb-second | I eat rice. I drink tea. I read the newspaper. We speak Telugu. They play cricket. | I rice eat. → I eat rice. | A friend asks what you drink in the morning | Say three things you do, in English |
-| 2 | `i-am-you-are` | **I Am, You Are** · నేను, మీరు *(am / is / are)* | Who + am/is/are + what/how | I am Lakshmi. I am hungry. He is my friend. She is a teacher. We are happy. Are you tired? Yes, I am. | I hungry. → I am hungry. | Meeting a new neighbour | Introduce yourself to someone |
+| 2 | `i-am-you-are` | **I Am, You Are** · నేను, మీరు *(am / is / are)* | Who + am/is/are + what/how | I am Kiran. I am hungry. He is my friend. She is a teacher. We are happy. Are you tired? Yes, I am. | I hungry. → I am hungry. | Meeting a new neighbour | Introduce yourself to someone |
 | 3 | `present-simple-every-day` | **Every Day** · రోజూ *(present simple)* | I walk / She walks; don't / doesn't; Do / Does …? | I walk every morning. She goes to the temple on Fridays. He doesn't drink coffee. Do you watch the news? Yes, I do. | He go to office. → He goes to the office. | Doctor asks about your daily routine | Tell someone your morning routine |
 | 4 | `present-continuous-right-now` | **Right Now** · ఇప్పుడు *(present continuous)* | am/is/are + verb-ing | I am cooking. She is sleeping. They are watching TV. I am not working now. Are you coming? Yes, I am. | Now I cook. → I am cooking now. I am knowing him. → I know him. | A friend calls: "What are you doing?" | Say what you are doing right now |
 | 5 | `past-simple-yesterday` | **Yesterday** · నిన్న *(past simple)* | went / ate / bought; didn't + verb; Did …? | I went to the market yesterday. I bought vegetables. We watched a film. I didn't go out. Did you eat? Yes, I did. | Yesterday I go. → Yesterday I went. I didn't went. → I didn't go. | A friend asks what you did yesterday | Tell someone what you did yesterday |
@@ -458,7 +522,7 @@ Each week below: five lessons, a Conversation Day (`w<N>-conversation`) and a re
 |---|---|---|---|---|---|
 | 1 | `my-address-is` | My Address Is … · నా చిరునామా | door number, street, pin code | My address is 12-4, Gandhi Street, Guntur. | Giving your address for a delivery |
 | 2 | `my-date-of-birth` | My Date of Birth · పుట్టిన తేదీ | dates in full; first, second, fifth | My date of birth is the fifth of June, 1958. | A pension form with a clerk |
-| 3 | `can-you-spell-it` | Can You Spell It? · స్పెల్లింగ్ చెప్పండి | the alphabet; spelling names | My name is Venkat: V, E, N, K, A, T. | Spelling your name at a counter |
+| 3 | `can-you-spell-it` | Can You Spell It? · స్పెల్లింగ్ చెప్పండి | the alphabet; spelling names | My name is Kiran: K, I, R, A, N. | Spelling your name at a counter |
 | 4 | `filling-a-form` | Filling a Form · ఫారం నింపడం | signature, photo, ID proof | Where do I sign? Do I need a photo? | Asking a clerk for help with a form |
 | 5 | `which-counter` | Which Counter? · ఏ కౌంటర్? | queues, tokens, counters at offices | Which counter is for pensions? Where do I get a token? | At the municipal office |
 | 6 | `w27-conversation` | Conversation Day: At the Post Office · పోస్టాఫీసులో | all of the week | — | Sending a parcel; opening a savings scheme |

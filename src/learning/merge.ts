@@ -57,6 +57,10 @@ export function mergeProgress(a: Progress, b: Progress): Progress {
   const candidates = [a.position, b.position].filter((p): p is NonNullable<Progress["position"]> => !!p);
   const position = candidates.reduce<Progress["position"]>((best, p) => (!best || p.at > best.at ? p : best), undefined);
 
+  // Daily review: per sentence, the record changed last.
+  const review: NonNullable<Progress["review"]> = { ...(a.review ?? {}) };
+  for (const [key, r] of Object.entries(b.review ?? {})) if (!review[key] || r.at > review[key].at) review[key] = r;
+
   const merged: Progress = {
     version: 1,
     activities,
@@ -68,6 +72,7 @@ export function mergeProgress(a: Progress, b: Progress): Progress {
     updatedAt: later(a.updatedAt, b.updatedAt),
   };
   // A resume point is dropped when its day was finished after it was set (completing a day clears it).
+  if (Object.keys(review).length > 0) merged.review = review;
   if (position && !(position.dayId in completed && completed[position.dayId].at >= position.at)) merged.position = position;
   return merged;
 }

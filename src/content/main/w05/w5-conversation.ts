@@ -13,23 +13,28 @@ export const day: ConversationDay = {
   dialogue: {
     id: "d1",
     type: "dialogue",
-    title: { en: "Ravi visits Padma's new house", te: "పద్మ కొత్త ఇంటికి రవి" },
+    title: { en: "Ramesh visits Ruth's new house", te: "రూత్ గారి కొత్త ఇంటికి రమేష్ గారు" },
     lines: [
-      { speaker: { en: "Ravi", te: "రవి" }, voice: "b", en: "Hello, Padma! Is this your new house?", te: "నమస్తే పద్మ! ఇది మీ కొత్త ఇల్లా?" },
-      { speaker: { en: "Padma", te: "పద్మ" }, voice: "a", en: "Yes! Please come in and sit down.", te: "అవును! లోపలికి వచ్చి కూర్చోండి." },
-      { speaker: { en: "Ravi", te: "రవి" }, voice: "b", en: "It is a nice house.", te: "ఇల్లు చాలా బాగుంది." },
-      { speaker: { en: "Padma", te: "పద్మ" }, voice: "a", en: "Thank you. There are three rooms.", te: "థాంక్యూ. మూడు గదులు ఉన్నాయి." },
-      { speaker: { en: "Ravi", te: "రవి" }, voice: "b", en: "Is there a temple near here?", te: "ఇక్కడ దగ్గర్లో గుడి ఉందా?" },
-      { speaker: { en: "Padma", te: "పద్మ" }, voice: "a", en: "Yes, it is next to the bank.", te: "అవును, బ్యాంక్ పక్కన ఉంది." },
-      { speaker: { en: "Ravi", te: "రవి" }, voice: "b", en: "It is very hot today.", te: "ఈ రోజు చాలా వేడిగా ఉంది." },
-      { speaker: { en: "Padma", te: "పద్మ" }, voice: "a", en: "I will switch on the fan.", te: "నేను ఫ్యాన్ వేస్తాను." },
-      { speaker: { en: "Ravi", te: "రవి" }, voice: "b", en: "Thank you. Where is the bathroom?", te: "థాంక్యూ. బాత్‌రూమ్ ఎక్కడ?" },
-      { speaker: { en: "Padma", te: "పద్మ" }, voice: "a", en: "It is next to the kitchen.", te: "వంటగది పక్కన ఉంది." },
+      { speaker: { en: "Ramesh", te: "రమేష్" }, voice: "b", en: "Hello, Ruth! Is this your new house?", te: "నమస్తే రూత్ గారూ! ఇది మీ కొత్త ఇల్లా?" },
+      { speaker: { en: "Ruth", te: "రూత్" }, voice: "a", en: "Yes! Please come in and sit down.", te: "అవును! లోపలికి వచ్చి కూర్చోండి." },
+      { speaker: { en: "Ramesh", te: "రమేష్" }, voice: "b", en: "It is a nice house.", te: "ఇల్లు చాలా బాగుంది." },
+      { speaker: { en: "Ruth", te: "రూత్" }, voice: "a", en: "Thank you. There are three rooms.", te: "థాంక్యూ. మూడు గదులు ఉన్నాయి." },
+      { speaker: { en: "Ramesh", te: "రమేష్" }, voice: "b", en: "Is there a temple near here?", te: "ఇక్కడ దగ్గర్లో గుడి ఉందా?" },
+      { speaker: { en: "Ruth", te: "రూత్" }, voice: "a", en: "Yes, it is next to the bank.", te: "అవును, బ్యాంక్ పక్కన ఉంది." },
+      { speaker: { en: "Ramesh", te: "రమేష్" }, voice: "b", en: "It is very hot today.", te: "ఈ రోజు చాలా వేడిగా ఉంది." },
+      { speaker: { en: "Ruth", te: "రూత్" }, voice: "a", en: "I will switch on the fan.", te: "నేను ఫ్యాన్ వేస్తాను." },
+      { speaker: { en: "Ramesh", te: "రమేష్" }, voice: "b", en: "Thank you. Where is the bathroom?", te: "థాంక్యూ. బాత్‌రూమ్ ఎక్కడ?" },
+      { speaker: { en: "Ruth", te: "రూత్" }, voice: "a", en: "It is next to the kitchen.", te: "వంటగది పక్కన ఉంది." },
     ],
     questions: [
+      {
+        prompt: { en: "What is happening?", te: "ఇక్కడ ఏం జరుగుతోంది?" },
+        options: ["A friend visits a new house", "Two people buy vegetables", "A man looks for his glasses"],
+        answer: 0,
+      },
       { prompt: { en: "How many rooms are there?", te: "ఎన్ని గదులు ఉన్నాయి?" }, options: ["Two", "Three", "Four"], answer: 1 },
       { prompt: { en: "Where is the temple?", te: "గుడి ఎక్కడ ఉంది?" }, options: ["Next to the bank", "Behind the house", "In the market"], answer: 0 },
-      { prompt: { en: "What does Padma switch on?", te: "పద్మ ఏం వేసింది?" }, options: ["The light", "The TV", "The fan"], answer: 2 },
+      { prompt: { en: "What does Ruth switch on?", te: "రూత్ గారు ఏం వేశారు?" }, options: ["The light", "The TV", "The fan"], answer: 2 },
     ],
   },
   situations: [
@@ -41,7 +46,7 @@ export const day: ConversationDay = {
         te: "ఒక అతిథి మీ తలుపు దగ్గర ఉన్నారు. లోపలికి రమ్మని చెప్పండి.",
       },
       expected: ["Please come in.", "Come in, please.", "Please come in and sit down."],
-      options: ["Please come in.", "Please coming in.", "Please come inside of."],
+      options: ["Please come in.", "Please coming in.", "Please enter in."],
       answer: 0,
     },
     {
@@ -73,10 +78,11 @@ export const day: ConversationDay = {
       type: "roleplay",
       title: { en: "Welcoming a guest", te: "అతిథికి స్వాగతం" },
       scene: {
-        en: "Your friend Ravi comes to your house for the first time. Welcome him.",
-        te: "మీ స్నేహితుడు రవి మొదటిసారి మీ ఇంటికి వచ్చారు. స్వాగతం చెప్పండి.",
+        en: "Your friend Satish comes to your house for the first time. Welcome him.",
+        te: "మీ స్నేహితులు సతీష్ గారు మొదటిసారి మీ ఇంటికి వచ్చారు. స్వాగతం చెప్పండి.",
       },
-      partner: { en: "Ravi (a friend)", te: "రవి (స్నేహితుడు)" },
+      partner: { en: "Satish (a friend)", te: "సతీష్ (స్నేహితులు)" },
+      voice: "b",
       skills: [
         { id: "home", label: { en: "Home words", te: "ఇంటి పదాలు" } },
         { id: "polite", label: { en: "Asking politely", te: "మర్యాదగా అడగడం" } },
@@ -85,26 +91,33 @@ export const day: ConversationDay = {
         {
           partner: "Hello! Am I early?",
           te: "నమస్తే! నేను తొందరగా వచ్చానా?",
-          hint: { en: "Say: No, no. Please come in.", te: "ఇలా చెప్పండి: No, no. Please come in." },
+          hint: { en: "Say he is not early, and invite him in.", te: "తొందరేం లేదని చెప్పి, లోపలికి రమ్మనండి." },
           replies: [
             { say: "No, no. Please come in.", good: true, skill: "polite" },
             { say: "No, no. Please coming in.", good: false, skill: "polite" },
+            {
+              say: "Yes, very early. I am not ready.",
+              good: false,
+              skill: "polite",
+              react: { en: "Oh, sorry! I can wait outside.", te: "అయ్యో, సారీ! బయట వెయిట్ చేస్తాను." },
+            },
           ],
         },
         {
           partner: "What a nice house!",
           te: "ఎంత బాగుంది ఇల్లు!",
-          hint: { en: "Say: Thank you. There are three rooms.", te: "ఇలా చెప్పండి: Thank you. There are three rooms." },
+          hint: { en: "Thank him, and say how many rooms there are.", te: "థాంక్స్ చెప్పి, ఎన్ని గదులు ఉన్నాయో చెప్పండి." },
           replies: [
             { say: "Thank you. There are three rooms.", good: true, skill: "home" },
             { say: "Thank you. There is three rooms.", good: false, skill: "home" },
           ],
         },
         {
-          partner: "Where do I keep my bag?",
+          partner: "Where can I put my bag?",
           te: "నా బ్యాగ్ ఎక్కడ పెట్టాలి?",
-          hint: { en: "Say: Keep it on the chair.", te: "ఇలా చెప్పండి: Keep it on the chair." },
+          hint: { en: "Tell him where to put it: the chair.", te: "ఎక్కడ పెట్టాలో చెప్పండి: కుర్చీ మీద." },
           replies: [
+            { say: "Put it on the chair.", good: true, skill: "home" },
             { say: "Keep it on the chair.", good: true, skill: "home" },
             { say: "Keep it the chair on.", good: false, skill: "home" },
           ],
@@ -112,7 +125,7 @@ export const day: ConversationDay = {
         {
           partner: "It is a bit dark here.",
           te: "ఇక్కడ కొంచెం చీకటిగా ఉంది.",
-          hint: { en: "Say: I will switch on the light.", te: "ఇలా చెప్పండి: I will switch on the light." },
+          hint: { en: "Offer to do something about the light.", te: "లైట్ వేస్తానని చెప్పండి." },
           replies: [
             { say: "I will switch on the light.", good: true, skill: "polite" },
             { say: "I will on the light.", good: false, skill: "polite" },
@@ -120,8 +133,8 @@ export const day: ConversationDay = {
         },
         {
           partner: "Is there a shop nearby?",
-          te: "దగ్గర్లో ఏదైనా షాప్ ఉందా?",
-          hint: { en: "Say: Yes, next to the temple.", te: "ఇలా చెప్పండి: Yes, next to the temple." },
+          te: "దగ్గర్లో ఏదైనా షాపు ఉందా?",
+          hint: { en: "Say yes, and say it is beside the temple.", te: "అవునని చెప్పి, గుడి పక్కన ఉందని చెప్పండి." },
           replies: [
             { say: "Yes, next to the temple.", good: true, skill: "home" },
             { say: "Yes, next the temple.", good: false, skill: "home" },
@@ -135,9 +148,10 @@ export const day: ConversationDay = {
       title: { en: "The electrician comes", te: "ఎలక్ట్రీషియన్ వచ్చారు" },
       scene: {
         en: "A light in your kitchen is not working. Prasad, an electrician, comes to fix it.",
-        te: "మీ వంటగదిలో ఒక లైట్ పని చేయడం లేదు. దాన్ని రిపేర్ చేయడానికి ఎలక్ట్రీషియన్ ప్రసాద్ వచ్చారు.",
+        te: "మీ వంటగదిలో ఒక లైట్ పని చేయడం లేదు. దాన్ని రిపేర్ చేయడానికి ఎలక్ట్రీషియన్ ప్రసాద్ గారు వచ్చారు.",
       },
       partner: { en: "Prasad (an electrician)", te: "ప్రసాద్ (ఎలక్ట్రీషియన్)" },
+      voice: "b",
       skills: [
         { id: "place", label: { en: "Where things are", te: "ఎక్కడ ఉందో చెప్పడం" } },
         { id: "switch", label: { en: "Switch on / off", te: "switch on / off వాడకం" } },
@@ -146,7 +160,7 @@ export const day: ConversationDay = {
         {
           partner: "Hello. Which light is not working?",
           te: "నమస్తే. ఏ లైట్ పని చేయడం లేదు?",
-          hint: { en: "Say: The light in the kitchen.", te: "ఇలా చెప్పండి: The light in the kitchen." },
+          hint: { en: "Say which room the light is in.", te: "లైట్ ఏ గదిలో ఉందో చెప్పండి." },
           replies: [
             { say: "The light in the kitchen.", good: true, skill: "place" },
             { say: "The light on the kitchen.", good: false, skill: "place" },
@@ -155,7 +169,7 @@ export const day: ConversationDay = {
         {
           partner: "Where is the main switch?",
           te: "మెయిన్ స్విచ్ ఎక్కడ ఉంది?",
-          hint: { en: "Say: It is behind the door.", te: "ఇలా చెప్పండి: It is behind the door." },
+          hint: { en: "Tell him where: at the back of the door.", te: "అది ఎక్కడ ఉందో చెప్పండి: తలుపు వెనకాల." },
           replies: [
             { say: "It is behind the door.", good: true, skill: "place" },
             { say: "It is the door behind.", good: false, skill: "place" },
@@ -163,8 +177,8 @@ export const day: ConversationDay = {
         },
         {
           partner: "Please switch off the main switch.",
-          te: "దయచేసి మెయిన్ స్విచ్ ఆపేయండి.",
-          hint: { en: "Say: Okay. It is off now.", te: "ఇలా చెప్పండి: Okay. It is off now." },
+          te: "కొంచెం మెయిన్ స్విచ్ ఆపేయండి.",
+          hint: { en: "Do it, and say it is off.", te: "ఆపేసి, ఆపేశానని చెప్పండి." },
           replies: [
             { say: "Okay. It is off now.", good: true, skill: "switch" },
             { say: "Okay. It off now.", good: false, skill: "switch" },
@@ -173,10 +187,15 @@ export const day: ConversationDay = {
         {
           partner: "Done! Switch on the light now.",
           te: "అయిపోయింది! ఇప్పుడు లైట్ వేయండి.",
-          hint: { en: "Say: It is working. Thank you!", te: "ఇలా చెప్పండి: It is working. Thank you!" },
+          hint: { en: "Check the light, and thank him.", te: "లైట్ వేసి చూసి, ఆయనకి థాంక్స్ చెప్పండి." },
           replies: [
             { say: "It is working. Thank you!", good: true, skill: "switch" },
             { say: "It is work. Thank you!", good: false, skill: "switch" },
+            {
+              say: "Finally! You took so long.",
+              good: false,
+              react: { en: "Sorry! The wire was very old.", te: "సారీ అండీ! వైరు బాగా పాతది." },
+            },
           ],
         },
       ],

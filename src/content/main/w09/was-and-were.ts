@@ -94,8 +94,8 @@ export const day: Lesson = {
       wrong: "They was at the temple.",
       right: "They were at the temple.",
       why: {
-        en: "With they, say were.",
-        te: "they తో were అనాలి.",
+        en: "They means many people, so use were, not was: They were at the temple.",
+        te: "they అంటే చాలా మంది, అందుకే was కాదు, were: They were at the temple.",
       },
     },
     {
@@ -104,8 +104,8 @@ export const day: Lesson = {
       wrong: "Yesterday I am at home.",
       right: "Yesterday I was at home.",
       why: {
-        en: "Yesterday is the past, so was.",
-        te: "yesterday అంటే గతం, కాబట్టి was.",
+        en: "Yesterday is the past, so am changes to was: Yesterday I was at home.",
+        te: "yesterday అంటే గతం, కాబట్టి am కాదు, was: Yesterday I was at home.",
       },
     },
   ],
@@ -117,8 +117,8 @@ export const day: Lesson = {
       options: ["They was at home.", "They were at home.", "They are at home yesterday."],
       answer: 1,
       why: {
-        en: "They + were.",
-        te: "they తో were.",
+        en: "In the past, they always takes were, never was: They were at home.",
+        te: "గతంలో they తో ఎప్పుడూ were వస్తుంది, was రాదు: They were at home.",
       },
     },
     {
@@ -129,8 +129,8 @@ export const day: Lesson = {
       options: ["Was", "Were", "Are"],
       answer: 1,
       why: {
-        en: "You + were, in the past.",
-        te: "గతంలో you తో were.",
+        en: "In the past, you takes were, even for one person: Were you tired yesterday?",
+        te: "ఒక్కరినే అడిగినా, గతంలో you తో were వస్తుంది: Were you tired yesterday?",
       },
     },
     {
@@ -140,8 +140,8 @@ export const day: Lesson = {
       options: ["The shop is closed.", "The shop was closed.", "The shop be closed."],
       answer: 1,
       why: {
-        en: "Was is the past of is.",
-        te: "is కి గతం was.",
+        en: "Was is the past of is: The shop was closed.",
+        te: "is కి గతం was: The shop was closed.",
       },
     },
     {
@@ -151,8 +151,8 @@ export const day: Lesson = {
       wrongIndex: 1,
       fix: "Where were you on Sunday?",
       why: {
-        en: "With you, say were.",
-        te: "you తో were.",
+        en: "With you, always say were, even for one person: Where were you on Sunday?",
+        te: "ఒక్కరినే అడిగినా you తో were అనాలి: Where were you on Sunday?",
       },
     },
   ],
@@ -173,10 +173,10 @@ export const day: Lesson = {
       type: "situation",
       situation: {
         en: "Your friend walked a lot yesterday. Ask if she was tired.",
-        te: "మీ స్నేహితురాలు నిన్న చాలా నడిచింది. అలసటగా అనిపించిందా అని అడగండి.",
+        te: "మీ స్నేహితురాలు నిన్న చాలా నడిచారు. అలసటగా అనిపించిందా అని అడగండి.",
       },
       expected: ["Were you tired?"],
-      options: ["Was you tired?", "Were you tired?", "You were tired?"],
+      options: ["Was you tired?", "Were you tired?", "Did you tired?"],
       answer: 1,
     },
   ],
@@ -185,25 +185,31 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "Where were you?", te: "ఎక్కడ ఉన్నారు?" },
     scene: {
-      en: "Your friend Ravi called you yesterday, but you did not answer. Tell him where you were.",
-      te: "నిన్న మీ స్నేహితుడు రవి ఫోన్ చేశాడు, మీరు ఎత్తలేదు. ఎక్కడ ఉన్నారో చెప్పండి.",
+      en: "Your friend Imran called you yesterday, but you did not answer. Tell him where you were.",
+      te: "నిన్న మీ స్నేహితుడు ఇమ్రాన్ ఫోన్ చేశారు, మీరు ఎత్తలేదు. ఎక్కడ ఉన్నారో ఆయనకి చెప్పండి.",
     },
-    partner: { en: "Ravi (a friend)", te: "రవి (స్నేహితుడు)" },
+    partner: { en: "Imran (a friend)", te: "ఇమ్రాన్ (స్నేహితుడు)" },
+    voice: "b",
     skills: [{ id: "was", label: { en: "was / were", te: "was / were వాడకం" } }],
     turns: [
       {
         partner: "I called you yesterday!",
         te: "నిన్న మీకు ఫోన్ చేశాను!",
-        hint: { en: "Say: Sorry, I was at the temple.", te: "ఇలా చెప్పండి: Sorry, I was at the temple." },
+        hint: { en: "Say sorry, and tell him where you were.", te: "Sorry చెప్పి, మీరు ఎక్కడ ఉన్నారో చెప్పండి." },
         replies: [
           { say: "Sorry, I was at the temple.", good: true, skill: "was" },
           { say: "Sorry, I were at the temple.", good: false, skill: "was" },
+          {
+            say: "I was busy. Don't call so much.",
+            good: false,
+            react: { en: "Oh. Sorry, I was only worried.", te: "అయ్యో, sorry. మీ గురించి కంగారు పడ్డాను, అంతే." },
+          },
         ],
       },
       {
         partner: "Were you there all day?",
         te: "రోజంతా అక్కడే ఉన్నారా?",
-        hint: { en: "Say: Yes. It was a festival.", te: "ఇలా చెప్పండి: Yes. It was a festival." },
+        hint: { en: "Say yes, and tell him there was a festival.", te: "అవును అని, అక్కడ పండుగ జరిగిందని చెప్పండి." },
         replies: [
           { say: "Yes. It was a festival.", good: true, skill: "was" },
           { say: "Yes. It is a festival yesterday.", good: false, skill: "was" },
@@ -212,7 +218,7 @@ export const day: Lesson = {
       {
         partner: "Was it crowded?",
         te: "రద్దీగా ఉండిందా?",
-        hint: { en: "Say: Yes, there were many people.", te: "ఇలా చెప్పండి: Yes, there were many people." },
+        hint: { en: "Say yes, and that it was full of people.", te: "అవును అని, చాలా మంది జనం ఉన్నారని చెప్పండి." },
         replies: [
           { say: "Yes, there were many people.", good: true, skill: "was" },
           { say: "Yes, there was many people.", good: false, skill: "was" },
@@ -221,7 +227,7 @@ export const day: Lesson = {
       {
         partner: "And on Sunday?",
         te: "మరి ఆదివారం?",
-        hint: { en: "Say: I was at home. I wasn't well.", te: "ఇలా చెప్పండి: I was at home. I wasn't well." },
+        hint: { en: "Say where you were, and that you were ill.", te: "ఎక్కడ ఉన్నారో, ఒంట్లో బాగాలేదని చెప్పండి." },
         replies: [
           { say: "I was at home. I wasn't well.", good: true, skill: "was" },
           { say: "I was at home. I weren't well.", good: false, skill: "was" },

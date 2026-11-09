@@ -6,11 +6,17 @@ export type CoreSentence = { en: string; te: string; extra?: string[] }; // extr
 
 type Base = { id: string }; // short id unique within the day ("p1", "s1"); the full id is `${dayId}.${id}`
 
+/**
+ * A reply option. `react`: what the partner says back to a not-good reply before the correction (optional, spoken in
+ * the partner's voice), e.g. "Cheating? Please don't say that. Let me count again."
+ */
+export type Reply = { say: string; good: boolean; skill?: string; react?: Bi };
+
 export type Turn = {
   partner: string;
   te: string;
-  hint: Bi;
-  replies: { say: string; good: boolean; skill?: string }[]; // 2–3 tap options; good ones are also accepted by voice
+  hint: Bi; // what to say, never the reply itself ("Ask the price politely.")
+  replies: Reply[]; // 2–3 options (hidden until "Show replies"); good ones are also accepted by voice
 };
 
 export type RolePlay = {
@@ -18,6 +24,7 @@ export type RolePlay = {
   title: Bi;
   scene: Bi;
   partner: Bi;
+  voice?: "a" | "b"; // the partner's recorded voice: "b" (male) for a man, else "a"
   skills: { id: string; label: Bi }[];
   turns: Turn[];
 };
@@ -29,13 +36,19 @@ export type Activity = Base &
     | { type: "dontSay"; wrong: string; right: string; why: Bi }
     | { type: "choose"; prompt: Bi; say?: string; options: string[]; answer: number; why?: Bi }
     | { type: "fillBlank"; sentence: string /* one ___ */; te?: string; options: string[]; answer: number; why?: Bi }
-    | { type: "arrange"; te?: string; answer: string; extra?: string[] }
+    /** `listen`: build what you hear (the sentence plays; no Telugu, no text). */
+    | { type: "arrange"; te?: string; answer: string; extra?: string[]; listen?: true }
     | { type: "translate"; te: string; answer: string; accept?: string[]; extra?: string[] }
     | { type: "match"; pairs: { en: string; te: string }[] } // 3–4 pairs
     /** `wrongIndex` = index of the wrong word in `sentence.split(" ")`; `fix` = the whole corrected sentence. */
     | { type: "findMistake"; sentence: string; wrongIndex: number; fix: string; why: Bi }
     | { type: "listenChoose"; say: string; prompt: Bi; options: string[]; answer: number }
-    | { type: "repeat"; say: string; te: string }
+    /** `steps`: a long sentence said in parts, built up from its end ("yesterday" → "the market yesterday" → all). */
+    | { type: "repeat"; say: string; te: string; steps?: string[] }
+    /** Sound of the week (a Learn card), from `sounds.ts`. */
+    | { type: "sound"; sound: SoundCard }
+    /** Which word did you hear? Two words one sound apart; `answer` is the one played. */
+    | { type: "soundPair"; words: [Word, Word]; answer: 0 | 1 }
     | { type: "situation"; situation: Bi; expected: string[]; options: string[]; answer: number }
     | {
         type: "dialogue";
@@ -45,6 +58,17 @@ export type Activity = Base &
       }
     | RolePlay
   );
+
+export type Word = { en: string; te: string };
+
+/** A sound Telugu speakers find hard (CURRICULUM §2a): two sides (v | w), how to make each, example words. */
+export type SoundCard = {
+  title: string; // "v and w"
+  tip: Bi; // why it is hard, in one line
+  sides: [SoundSide, SoundSide];
+  pair: [string, string]; // "Hear the difference": vest — west
+};
+export type SoundSide = { label: string; how: Bi; words: string[] };
 
 export type SectionKind = "warmup" | "learn" | "practice" | "speak" | "roleplay" | "wrapup";
 

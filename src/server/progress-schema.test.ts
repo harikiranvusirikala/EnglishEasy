@@ -16,3 +16,12 @@ describe("parseProgressBody", () => {
     expect(parseProgressBody({ ...emptyProgress(), practiceDays: Array(61).fill("2026-11-01") })).toBeNull();
   });
 });
+
+describe("parseProgressBody: daily review", () => {
+  it("keeps the review schedule (and rejects a bad record)", async () => {
+    const { emptyProgress } = await import("@/learning/progress");
+    const review = { "a.k0": { box: 2, due: "2026-11-12", at: "2026-11-09T10:00:00.000Z" } };
+    expect(parseProgressBody({ ...emptyProgress(), review })?.review).toEqual(review);
+    expect(parseProgressBody({ ...emptyProgress(), review: { "a.k0": { box: "x" } } })).toBeNull();
+  });
+});

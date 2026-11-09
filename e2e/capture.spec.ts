@@ -89,6 +89,7 @@ test("a role play", async ({ page }) => {
   await settings(page, { learnIn: "en" });
   await only(page, "roleplay", () => true);
   await expect(page.getByText("What do you drink in the morning?")).toBeVisible();
+  await page.getByRole("button", { name: /^Show replies/ }).click();
   await page.getByRole("button", { name: "I drink tea.", exact: true }).click();
   await expect(page.getByText("And what do you eat?")).toBeVisible();
   await shot(page, "roleplay");

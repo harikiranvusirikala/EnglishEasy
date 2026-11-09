@@ -5,7 +5,9 @@ import type { Activity, PlayableDay } from "@/content/types";
 import { updateSettings } from "@/lib/settings-store";
 import { narrate, narrateAll } from "@/lib/speak";
 import { Choose } from "./Choose";
-import { DontSayCard, ExplainCard, WhenToUseCard } from "./cards";
+import { Build } from "./Build";
+import { DontSayCard, ExplainCard, SoundCard, WhenToUseCard } from "./cards";
+import { SoundPair } from "./SoundPair";
 import { FillBlank } from "./FillBlank";
 import { ListenChoose } from "./ListenChoose";
 import { Player } from "./Player";
@@ -201,6 +203,57 @@ describe("ListenChoose", () => {
   });
 });
 
+describe("Sound of the week", () => {
+  it("the card shows both sides with their words, and plays the pair one after the other", () => {
+    updateSettings({ learnIn: "te", autoPlay: true });
+    vi.mocked(narrateAll).mockClear();
+    const sound: Extract<Activity, { type: "sound" }> = {
+      id: "d.g-sound-0",
+      type: "sound",
+      sound: {
+        title: "v and w",
+        tip: { en: "Telugu has one వ.", te: "తెలుగులో వ ఒక్కటే." },
+        sides: [
+          { label: "v", how: { en: "Teeth on lip.", te: "పై పళ్ళు కింది పెదవిని." }, words: ["very", "seven"] },
+          { label: "w", how: { en: "Round lips.", te: "పెదాలు గుండ్రంగా." }, words: ["water", "week"] },
+        ],
+        pair: ["vest", "west"],
+      },
+    };
+    render(<SoundCard activity={sound} onNext={vi.fn()} />);
+    expect(screen.getByText("తెలుగులో వ ఒక్కటే.")).toBeTruthy();
+    expect(screen.getByText("water")).toBeTruthy();
+    expect(screen.getByText("vest — west")).toBeTruthy();
+    fireEvent.click(screen.getAllByRole("button", { name: "Listen" }).at(-1)!);
+    expect(narrateAll).toHaveBeenLastCalledWith(["vest", "west"], expect.objectContaining({ voice: undefined }));
+  });
+
+  it("which word did you hear: one try, then both words play", () => {
+    updateSettings({ learnIn: "en", autoPlay: true });
+    vi.mocked(narrate).mockClear();
+    vi.mocked(narrateAll).mockClear();
+    const onAnswer = vi.fn();
+    const pair: Extract<Activity, { type: "soundPair" }> = { id: "d.g-pair-0", type: "soundPair", words: [{ en: "vest", te: "బనీను" }, { en: "west", te: "పడమర" }], answer: 1 };
+    render(<SoundPair activity={pair} onAnswer={onAnswer} onNext={vi.fn()} />);
+    expect(narrate).toHaveBeenCalledWith("west", { voice: undefined }); // heard from the big button
+    fireEvent.click(screen.getByRole("button", { name: /^vest/ }));
+    fireEvent.click(screen.getByRole("button", { name: /^Check/ }));
+    expect(onAnswer).toHaveBeenCalledWith(false);
+    expect(screen.getByText("The answer is")).toBeTruthy();
+    expect(screen.queryByRole("button", { name: /^Try again/ })).toBeNull();
+    expect(narrateAll).toHaveBeenLastCalledWith(["vest", "west"], expect.objectContaining({ voice: undefined }));
+  });
+
+  it("build what you hear: the sentence plays from the big button, with no Telugu", () => {
+    updateSettings({ learnIn: "te", autoPlay: true });
+    vi.mocked(narrate).mockClear();
+    render(<Build activity={{ id: "d.g-dictate-4", type: "arrange", answer: "I eat rice.", listen: true }} onAnswer={vi.fn()} onNext={vi.fn()} />);
+    expect(screen.getByText("విని, వాక్యాన్ని పేర్చండి.")).toBeTruthy();
+    expect(narrate).toHaveBeenCalledWith("I eat rice.", { voice: undefined });
+    expect(screen.getByRole("button", { name: "rice." })).toBeTruthy();
+  });
+});
+
 describe("Player", () => {
   const day = day1 as unknown as PlayableDay;
 
@@ -220,7 +273,7 @@ describe("Player", () => {
     expect(screen.getByRole("progressbar").getAttribute("aria-valuemax")).toBe(String(total));
     fireEvent.click(screen.getByRole("button", { name: /^Start/ })); // Learn intro
     for (const activity of day.sections[0].activities) {
-      expect(activity.type).toMatch(/explain|dontSay|whenToUse/);
+      expect(activity.type).toMatch(/explain|dontSay|whenToUse|sound/);
       fireEvent.click(screen.getByRole("button", { name: /^Continue/ }));
     }
     fireEvent.click(screen.getByRole("button", { name: /^Start/ })); // Practice intro

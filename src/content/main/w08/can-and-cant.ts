@@ -24,8 +24,8 @@ export const day: Lesson = {
     { en: "I can cook.", te: "నేను వంట చేయగలను.", extra: ["cooks"] },
     { en: "I can't drive.", te: "నాకు డ్రైవింగ్ రాదు.", extra: ["don't"] },
     { en: "Can you swim?", te: "మీకు ఈత వచ్చా?", extra: ["Do"] },
-    { en: "She can sing very well.", te: "ఆమె చాలా బాగా పాడగలదు.", extra: ["sings"] },
-    { en: "He can't read English.", te: "అతనికి ఇంగ్లీష్ చదవడం రాదు.", extra: ["reads"] },
+    { en: "She can sing very well.", te: "ఆవిడ చాలా బాగా పాడగలరు.", extra: ["sings"] },
+    { en: "He can't read English.", te: "ఆయనకి ఇంగ్లీష్ చదవడం రాదు.", extra: ["reads"] },
     { en: "Yes, I can.", te: "అవును, వచ్చు.", extra: ["do"] },
     { en: "I can help you on Sunday.", te: "ఆదివారం నేను మీకు సహాయం చేయగలను.", extra: ["to"] },
   ],
@@ -50,7 +50,7 @@ export const day: Lesson = {
       heading: { en: "Can means able to", te: "can అంటే చేయగలను" },
       body: {
         en: "Telugu says చేయగలను or వచ్చు. English says can, then the action: I can cook. After can, no to and no s: She can sing. Can't means cannot.",
-        te: "తెలుగులో 'చేయగలను' లేదా 'వచ్చు' అంటాం. ఇంగ్లీష్‌లో can, తర్వాత పని పదం: I can cook. can తర్వాత to రాదు, s రాదు: She can sing. can't అంటే చేయలేను.",
+        te: "తెలుగులో 'చేయగలను' లేదా 'వచ్చు' అంటాం. ఇంగ్లీష్‌లో can, తర్వాత verb: I can cook. can తర్వాత to రాదు, s రాదు: She can sing. can't అంటే చేయలేను.",
       },
       bridge: {
         te: ["నేను", "వంట", "చేయగలను"],
@@ -74,12 +74,12 @@ export const day: Lesson = {
         {
           form: "can + action",
           useFor: { en: "No to and no s after can.", te: "can తర్వాత to, s రావు." },
-          example: { en: "She can sing very well.", te: "ఆమె చాలా బాగా పాడగలదు." },
+          example: { en: "She can sing very well.", te: "ఆవిడ చాలా బాగా పాడగలరు." },
         },
         {
           form: "can't + action",
           useFor: { en: "To say you are not able.", te: "చేయలేమని చెప్పడానికి." },
-          example: { en: "He can't read English.", te: "అతనికి ఇంగ్లీష్ చదవడం రాదు." },
+          example: { en: "He can't read English.", te: "ఆయనకి ఇంగ్లీష్ చదవడం రాదు." },
         },
         {
           form: "Can you …? → Yes, I can",
@@ -94,8 +94,8 @@ export const day: Lesson = {
       wrong: "I can able to cook.",
       right: "I can cook.",
       why: {
-        en: "Can already means able. Just say I can cook.",
-        te: "can అంటేనే able. I can cook చాలు.",
+        en: "Can already means చేయగలను, so don't add able to: I can cook.",
+        te: "can అంటేనే 'చేయగలను'; able to చేర్చకండి: I can cook.",
       },
     },
     {
@@ -104,8 +104,8 @@ export const day: Lesson = {
       wrong: "She can sings.",
       right: "She can sing.",
       why: {
-        en: "After can, the action word has no s.",
-        te: "can తర్వాత పని పదానికి s ఉండదు.",
+        en: "After can, the verb stays plain, with no s: She can sing.",
+        te: "can తర్వాత verb కి s రాదు: She can sing.",
       },
     },
   ],
@@ -117,31 +117,31 @@ export const day: Lesson = {
       options: ["I can able to cook.", "I can cook.", "I can to cook."],
       answer: 1,
       why: {
-        en: "Can + action: I can cook.",
-        te: "can + పని పదం: I can cook.",
+        en: "Can already means able, so no able and no to: I can cook.",
+        te: "can అంటేనే 'చేయగలను'; able, to అక్కర్లేదు: I can cook.",
       },
     },
     {
       id: "p2",
       type: "fillBlank",
       sentence: "She can ___ very well.",
-      te: "ఆమె చాలా బాగా పాడగలదు.",
+      te: "ఆవిడ చాలా బాగా పాడగలరు.",
       options: ["sing", "sings", "singing"],
       answer: 0,
       why: {
-        en: "After can, sing (no s).",
-        te: "can తర్వాత sing (s లేకుండా).",
+        en: "After can, the verb has no s, even with she: She can sing very well.",
+        te: "she అయినా can తర్వాత verb కి s రాదు: She can sing very well.",
       },
     },
     {
       id: "p3",
       type: "choose",
       prompt: { en: "Ask a friend if he can swim.", te: "మీ స్నేహితుడికి ఈత వచ్చా అని అడగండి." },
-      options: ["Can you swim?", "Do you can swim?", "You can swimming?"],
+      options: ["Can you swim?", "Do you can swim?", "Can you swimming?"],
       answer: 0,
       why: {
-        en: "Put can first: Can you swim?",
-        te: "can ముందు: Can you swim?",
+        en: "Telugu ends with ఆ (వచ్చా?); English puts can first: Can you swim?",
+        te: "తెలుగులో చివర 'ఆ' (వచ్చా?); ఇంగ్లీష్‌లో can ముందు: Can you swim?",
       },
     },
     {
@@ -151,8 +151,8 @@ export const day: Lesson = {
       wrongIndex: 2,
       fix: "He can read English.",
       why: {
-        en: "After can, read has no s.",
-        te: "can తర్వాత read కి s ఉండదు.",
+        en: "After can, read stays plain, even with he: He can read English.",
+        te: "he అయినా can తర్వాత read కి s రాదు: He can read English.",
       },
     },
   ],
@@ -165,7 +165,7 @@ export const day: Lesson = {
         te: "పొరుగువారు అడుగుతున్నారు: Can you cook? అవునని చెప్పండి.",
       },
       expected: ["Yes, I can.", "Yes, I can cook."],
-      options: ["Yes, I can.", "Yes, I can able.", "Yes, I cans."],
+      options: ["Yes, I can.", "Yes, I can able.", "Yes, I do."],
       answer: 0,
     },
     {
@@ -186,7 +186,7 @@ export const day: Lesson = {
     title: { en: "Help with a function", te: "ఫంక్షన్‌లో సహాయం" },
     scene: {
       en: "Your neighbour Kamala has a function on Sunday. Offer to help and say what you can do.",
-      te: "పొరుగింటి కమలకు ఆదివారం ఫంక్షన్ ఉంది. సహాయం చేస్తానని చెప్పి, మీరు ఏం చేయగలరో చెప్పండి.",
+      te: "పొరుగింటి కమల గారికి ఆదివారం ఫంక్షన్ ఉంది. సహాయం చేస్తానని చెప్పి, మీరు ఏం చేయగలరో చెప్పండి.",
     },
     partner: { en: "Kamala (a neighbour)", te: "కమల (పొరుగింటావిడ)" },
     skills: [{ id: "can", label: { en: "can / can't", te: "can / can't వాడకం" } }],
@@ -194,7 +194,7 @@ export const day: Lesson = {
       {
         partner: "We have a function on Sunday.",
         te: "ఆదివారం మా ఇంట్లో ఫంక్షన్ ఉంది.",
-        hint: { en: "Say: Oh, nice! Can I help?", te: "ఇలా చెప్పండి: Oh, nice! Can I help?" },
+        hint: { en: "Say that is nice, and offer to help.", te: "బాగుందని చెప్పి, సహాయం చేయనా అని అడగండి." },
         replies: [
           { say: "Oh, nice! Can I help?", good: true, skill: "can" },
           { say: "Oh, nice! Can I helping?", good: false, skill: "can" },
@@ -203,25 +203,30 @@ export const day: Lesson = {
       {
         partner: "Yes! Can you cook?",
         te: "అవును! మీరు వంట చేయగలరా?",
-        hint: { en: "Say: Yes, I can cook pulihora.", te: "ఇలా చెప్పండి: Yes, I can cook pulihora." },
+        hint: { en: "Say yes, and one dish you can make.", te: "అవునని, మీరు చేయగలిగే ఒక వంటకం చెప్పండి." },
         replies: [
           { say: "Yes, I can cook pulihora.", good: true, skill: "can" },
           { say: "Yes, I can able to cook.", good: false, skill: "can" },
+          {
+            say: "Cook? Don't you have a cook?",
+            good: false,
+            react: { en: "Ha! No, we all cook together.", te: "హహ! లేదండీ, అందరం కలిసి వండుతాం." },
+          },
         ],
       },
       {
         partner: "Can you drive to the market?",
         te: "మార్కెట్‌కి కారు నడపగలరా?",
-        hint: { en: "Say no: Sorry, I can't drive.", te: "లేదని చెప్పండి: Sorry, I can't drive." },
+        hint: { en: "Say sorry, driving is not for you.", te: "sorry అని, మీకు డ్రైవింగ్ రాదని చెప్పండి." },
         replies: [
           { say: "Sorry, I can't drive.", good: true, skill: "can" },
           { say: "Sorry, I don't can drive.", good: false, skill: "can" },
         ],
       },
       {
-        partner: "No problem. Ravi can drive.",
-        te: "పర్వాలేదు. రవి నడపగలడు.",
-        hint: { en: "Say: Okay. I can come at nine.", te: "ఇలా చెప్పండి: Okay. I can come at nine." },
+        partner: "No problem. Salma can drive.",
+        te: "పర్వాలేదు. సల్మా గారు నడపగలరు.",
+        hint: { en: "Say okay, and what time you can come.", te: "సరే అని, ఎన్ని గంటలకు రాగలరో చెప్పండి." },
         replies: [
           { say: "Okay. I can come at nine.", good: true, skill: "can" },
           { say: "Okay. I can to come at nine.", good: false, skill: "can" },

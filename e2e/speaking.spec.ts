@@ -23,7 +23,7 @@ async function settings(page: Page, extra: object = {}) {
 async function toRepeat(page: Page) {
   await page.goto("/learn/play?l=sentence-basics");
   await next(page, /^Start/);
-  for (let i = 0; i < 4; i++) await next(page);
+  for (let i = 0; i < 5; i++) await next(page); // 4 Learn cards and the Sound of the week
   await next(page, /^Start/);
   for (const name of ["I eat rice.", "speak", "They play cricket."]) {
     await page.getByRole("button", { name, exact: true }).click();
@@ -34,14 +34,14 @@ async function toRepeat(page: Page) {
   for (const [t, e] of [
     ["నేను అన్నం తింటాను.", "I eat rice."],
     ["నేను టీ తాగుతాను.", "I drink tea."],
-    ["మనం తెలుగు మాట్లాడతాం.", "We speak Telugu."],
+    ["మేము తెలుగు మాట్లాడతాం.", "We speak Telugu."],
     ["వాళ్లు క్రికెట్ ఆడతారు.", "They play cricket."],
   ]) {
     await te.getByRole("button", { name: t }).click();
     await en.getByRole("button", { name: e }).click();
   }
   await next(page);
-  for (const words of [["I", "eat", "rice."], ["I", "drink", "tea."], ["We", "speak", "Telugu."]]) {
+  for (const words of [["I", "eat", "rice."], ["I", "drink", "tea."], ["I", "read", "the", "newspaper."]]) {
     for (const w of words) await page.getByRole("group", { name: "Words" }).getByRole("button", { name: w, exact: true }).click();
     await check(page);
   }
@@ -49,7 +49,7 @@ async function toRepeat(page: Page) {
   await check(page);
   await next(page); // section summary
   await next(page, /^Start/);
-  await page.getByRole("button", { name: "వాళ్లు క్రికెట్ ఆడతారు." }).click();
+  await page.getByRole("button", { name: /^vest/ }).click(); // which word did you hear (one try)
   await check(page);
 }
 

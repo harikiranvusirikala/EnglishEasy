@@ -23,10 +23,10 @@ export const day: Lesson = {
   core: [
     { en: "I like tea and coffee.", te: "నాకు టీ, కాఫీ ఇష్టం.", extra: ["but"] },
     { en: "I like tea, but not coffee.", te: "నాకు టీ ఇష్టం, కానీ కాఫీ ఇష్టం లేదు.", extra: ["and"] },
-    { en: "She is old but very active.", te: "ఆమెకు వయసైంది, కానీ చాలా చురుకుగా ఉంటుంది.", extra: ["and"] },
+    { en: "She is old but very active.", te: "ఆవిడకి వయసైంది, కానీ చాలా చురుకుగా ఉంటారు.", extra: ["and"] },
     { en: "We visited the temple and the park.", te: "మేము గుడికి, పార్క్‌కి వెళ్ళాం.", extra: ["but"] },
-    { en: "The food was good but expensive.", te: "భోజనం బాగుంది, కానీ ఖరీదు.", extra: ["and"] },
-    { en: "I called him, but he was busy.", te: "నేను ఫోన్ చేశాను, కానీ అతను బిజీగా ఉన్నాడు.", extra: ["and"] },
+    { en: "The food was good but expensive.", te: "భోజనం బాగుంది, కానీ ధర ఎక్కువ.", extra: ["and"] },
+    { en: "I called him, but he was busy.", te: "నేను ఆయనకి ఫోన్ చేశాను, కానీ ఆయన బిజీగా ఉన్నారు.", extra: ["and"] },
     { en: "I can read and write English.", te: "నాకు ఇంగ్లీష్ చదవడం, రాయడం వచ్చు.", extra: ["but"] },
   ],
   key: [0, 1, 2, 5],
@@ -63,7 +63,7 @@ export const day: Lesson = {
       examples: [
         { en: "I like tea and coffee.", te: "నాకు టీ, కాఫీ ఇష్టం." },
         { en: "I like tea, but not coffee.", te: "నాకు టీ ఇష్టం, కానీ కాఫీ ఇష్టం లేదు." },
-        { en: "I called him, but he was busy.", te: "నేను ఫోన్ చేశాను, కానీ అతను బిజీగా ఉన్నాడు." },
+        { en: "I called him, but he was busy.", te: "నేను ఆయనకి ఫోన్ చేశాను, కానీ ఆయన బిజీగా ఉన్నారు." },
       ],
     },
     {
@@ -79,12 +79,12 @@ export const day: Lesson = {
         {
           form: "but",
           useFor: { en: "Two things that are different.", te: "వేరు వేరుగా ఉండే రెండు విషయాలు." },
-          example: { en: "The food was good but expensive.", te: "భోజనం బాగుంది, కానీ ఖరీదు." },
+          example: { en: "The food was good but expensive.", te: "భోజనం బాగుంది, కానీ ధర ఎక్కువ." },
         },
         {
           form: ", but + a sentence",
           useFor: { en: "Join two sentences: comma, then but.", te: "రెండు వాక్యాలు కలపడం: కామా, తర్వాత but." },
-          example: { en: "I called him, but he was busy.", te: "నేను ఫోన్ చేశాను, కానీ అతను బిజీగా ఉన్నాడు." },
+          example: { en: "I called him, but he was busy.", te: "నేను ఆయనకి ఫోన్ చేశాను, కానీ ఆయన బిజీగా ఉన్నారు." },
         },
       ],
     },
@@ -94,8 +94,8 @@ export const day: Lesson = {
       wrong: "The food was good and expensive.",
       right: "The food was good but expensive.",
       why: {
-        en: "Good is happy, expensive is not. Different, so but.",
-        te: "good మంచి విషయం, expensive కాదు. తేడా ఉంది, కాబట్టి but.",
+        en: "Good is a plus and expensive is a minus, so use but: The food was good but expensive.",
+        te: "good మంచి విషయం, expensive కాదు; తేడా ఉంది కాబట్టి but: The food was good but expensive.",
       },
     },
     {
@@ -104,8 +104,8 @@ export const day: Lesson = {
       wrong: "I like tea but coffee.",
       right: "I like tea and coffee.",
       why: {
-        en: "You like both, so and.",
-        te: "రెండూ ఇష్టమే, కాబట్టి and.",
+        en: "But needs a difference; you like both, so use and: I like tea and coffee.",
+        te: "but కి తేడా ఉండాలి; రెండూ ఇష్టమే కాబట్టి and: I like tea and coffee.",
       },
     },
   ],
@@ -114,23 +114,23 @@ export const day: Lesson = {
       id: "p1",
       type: "choose",
       prompt: { en: "You like tea. You also like coffee. Which sentence?", te: "మీకు టీ ఇష్టం. కాఫీ కూడా ఇష్టం. ఏ వాక్యం?" },
-      options: ["I like tea and coffee.", "I like tea but coffee.", "I like tea, coffee also and."],
+      options: ["I like tea and coffee.", "I like tea but coffee.", "I like tea also coffee."],
       answer: 0,
       why: {
-        en: "Both: and.",
-        te: "రెండూ: and.",
+        en: "You like both, so join them with and: I like tea and coffee.",
+        te: "రెండూ ఇష్టమే, అందుకే and తో కలపాలి: I like tea and coffee.",
       },
     },
     {
       id: "p2",
       type: "fillBlank",
       sentence: "I called him, ___ he was busy.",
-      te: "నేను ఫోన్ చేశాను, కానీ అతను బిజీగా ఉన్నాడు.",
-      options: ["but", "and", "so"],
+      te: "నేను ఆయనకి ఫోన్ చేశాను, కానీ ఆయన బిజీగా ఉన్నారు.",
+      options: ["but", "or", "so"],
       answer: 0,
       why: {
-        en: "Something different happened: but.",
-        te: "అనుకున్నది జరగలేదు: but.",
+        en: "He didn't answer, which you didn't expect, so use but: I called him, but he was busy.",
+        te: "అనుకున్నది జరగలేదు, అందుకే but: I called him, but he was busy.",
       },
     },
     {
@@ -140,8 +140,8 @@ export const day: Lesson = {
       options: ["She is kind and helpful.", "She is old but very active.", "She is tall and thin."],
       answer: 1,
       why: {
-        en: "Old but active: a difference.",
-        te: "old but active: తేడా ఉంది.",
+        en: "Old and very active don't usually go together, so but: She is old but very active.",
+        te: "వయసైనా చాలా చురుకుగా ఉన్నారు, ఇది తేడా, అందుకే but: She is old but very active.",
       },
     },
     {
@@ -151,8 +151,8 @@ export const day: Lesson = {
       wrongIndex: 4,
       fix: "The food was good but expensive.",
       why: {
-        en: "Good and expensive are different: but.",
-        te: "good, expensive వేరు: but.",
+        en: "Good is a plus, expensive a minus, so join them with but: The food was good but expensive.",
+        te: "good మంచిది, expensive కాదు, అందుకే but: The food was good but expensive.",
       },
     },
   ],
@@ -173,7 +173,7 @@ export const day: Lesson = {
       type: "situation",
       situation: {
         en: "Say that you like tea, but not coffee.",
-        te: "మీకు టీ ఇష్టం, కానీ కాఫీ కాదని చెప్పండి.",
+        te: "మీకు టీ ఇష్టం, కానీ కాఫీ ఇష్టం లేదని చెప్పండి.",
       },
       expected: ["I like tea, but not coffee.", "I like tea but not coffee."],
       options: ["I like tea, but not coffee.", "I like tea and not coffee.", "I like tea, but coffee."],
@@ -185,16 +185,17 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "What do you like?", te: "మీకు ఏం ఇష్టం?" },
     scene: {
-      en: "Your friend Anitha asks about the drinks and sweets you like.",
-      te: "మీకు ఇష్టమైన పానీయాలు, స్వీట్ల గురించి మీ స్నేహితురాలు అనిత అడుగుతోంది.",
+      en: "Your friend David asks about the drinks and sweets you like.",
+      te: "మీకు ఇష్టమైన పానీయాలు, స్వీట్ల గురించి మీ స్నేహితుడు డేవిడ్ అడుగుతున్నారు.",
     },
-    partner: { en: "Anitha (a friend)", te: "అనిత (స్నేహితురాలు)" },
+    partner: { en: "David (a friend)", te: "డేవిడ్ (స్నేహితుడు)" },
+    voice: "b",
     skills: [{ id: "join", label: { en: "and / but", te: "and / but వాడకం" } }],
     turns: [
       {
         partner: "What do you like to drink?",
         te: "మీకు ఏం తాగడం ఇష్టం?",
-        hint: { en: "Say: I like tea and buttermilk.", te: "ఇలా చెప్పండి: I like tea and buttermilk." },
+        hint: { en: "Name two drinks you like.", te: "మీకు ఇష్టమైన రెండు డ్రింక్స్ చెప్పండి." },
         replies: [
           { say: "I like tea and buttermilk.", good: true, skill: "join" },
           { say: "I like tea but buttermilk.", good: false, skill: "join" },
@@ -203,7 +204,7 @@ export const day: Lesson = {
       {
         partner: "Do you like coffee?",
         te: "మీకు కాఫీ ఇష్టమా?",
-        hint: { en: "Say: Yes, but only in the morning.", te: "ఇలా చెప్పండి: Yes, but only in the morning." },
+        hint: { en: "Say yes, but only at one time of day.", te: "ఇష్టమే, కానీ ఒక్క పూట మాత్రమే అని చెప్పండి." },
         replies: [
           { say: "Yes, but only in the morning.", good: true, skill: "join" },
           { say: "Yes, and only in the morning.", good: false, skill: "join" },
@@ -212,16 +213,22 @@ export const day: Lesson = {
       {
         partner: "Do you like sweets?",
         te: "మీకు స్వీట్లు ఇష్టమా?",
-        hint: { en: "Say: Yes, but I eat only a little.", te: "ఇలా చెప్పండి: Yes, but I eat only a little." },
+        hint: { en: "Say yes, but you don't eat much.", te: "ఇష్టమే, కానీ కొంచెమే తింటారని చెప్పండి." },
         replies: [
           { say: "Yes, but I eat only a little.", good: true, skill: "join" },
           { say: "Yes, and I eat only a little.", good: false, skill: "join" },
+          {
+            say: "Sweets? At your age?",
+            good: false,
+            skill: "join",
+            react: { en: "Ha! Age is just a number.", te: "హా! వయసు ఒక నంబర్ మాత్రమే." },
+          },
         ],
       },
       {
         partner: "Me too! Let's make laddus on Sunday.",
         te: "నాకు కూడా! ఆదివారం లడ్డూలు చేద్దాం.",
-        hint: { en: "Say: Good idea! I'll bring sugar and ghee.", te: "ఇలా చెప్పండి: Good idea! I'll bring sugar and ghee." },
+        hint: { en: "Agree, and offer to bring two things.", te: "సరే అని, రెండు సామాన్లు తెస్తానని చెప్పండి." },
         replies: [
           { say: "Good idea! I'll bring sugar and ghee.", good: true, skill: "join" },
           { say: "Good idea! I'll bring sugar but ghee.", good: false, skill: "join" },

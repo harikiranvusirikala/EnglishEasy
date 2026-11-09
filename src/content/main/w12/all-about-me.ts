@@ -18,10 +18,10 @@ export const day: Lesson = {
   pattern: [
     { text: "My name", role: "who" },
     { text: "is", role: "action" },
-    { text: "Lakshmi", role: "what" },
+    { text: "Kiran", role: "what" },
   ],
   core: [
-    { en: "My name is Lakshmi.", te: "నా పేరు లక్ష్మి.", extra: ["am"] },
+    { en: "My name is Kiran.", te: "నా పేరు కిరణ్.", extra: ["am"] },
     { en: "I live in Vijayawada.", te: "నేను విజయవాడలో ఉంటాను.", extra: ["at"] },
     { en: "Every day I walk in the morning.", te: "నేను రోజూ ఉదయం నడుస్తాను.", extra: ["walking"] },
     { en: "I like cooking and music.", te: "నాకు వంట, సంగీతం ఇష్టం.", extra: ["but"] },
@@ -49,19 +49,19 @@ export const day: Lesson = {
       type: "explain",
       heading: { en: "Short sentences, one idea each", te: "చిన్న వాక్యాలు, ఒక్కోదానిలో ఒక విషయం" },
       body: {
-        en: "To talk about yourself, use short sentences, one idea each: My name is … I live in … Every day I … I like … I am learning English. Short sentences are easy to say and easy to follow.",
-        te: "మీ గురించి చెప్పడానికి చిన్న వాక్యాలు వాడండి, ఒక్కోదానిలో ఒక విషయం: My name is … I live in … Every day I … I like … I am learning English. చిన్న వాక్యాలు చెప్పడానికీ, వినడానికీ సులభం.",
+        en: "To talk about yourself, use short sentences, one idea each: My name is … I live in … Every day I … I like … I am learning English. Use your own name and town. Short sentences are easy to say and easy to follow.",
+        te: "మీ గురించి చెప్పడానికి చిన్న వాక్యాలు వాడండి, ఒక్కోదానిలో ఒక విషయం: My name is … I live in … Every day I … I like … I am learning English. మీ సొంత పేరు, ఊరు చెప్పండి. చిన్న వాక్యాలు చెప్పడానికీ, వినడానికీ సులభం.",
       },
       bridge: {
-        te: ["నా పేరు", "లక్ష్మి"],
+        te: ["నా పేరు", "కిరణ్"],
         en: [
           { text: "My name", role: "who" },
           { text: "is", role: "action" },
-          { text: "Lakshmi", role: "what" },
+          { text: "Kiran", role: "what" },
         ],
       },
       examples: [
-        { en: "My name is Lakshmi.", te: "నా పేరు లక్ష్మి." },
+        { en: "My name is Kiran.", te: "నా పేరు కిరణ్." },
         { en: "Every day I walk in the morning.", te: "నేను రోజూ ఉదయం నడుస్తాను." },
         { en: "I am learning English now.", te: "నేను ఇప్పుడు ఇంగ్లీష్ నేర్చుకుంటున్నాను." },
       ],
@@ -91,11 +91,11 @@ export const day: Lesson = {
     {
       id: "l3",
       type: "dontSay",
-      wrong: "Myself Lakshmi.",
-      right: "My name is Lakshmi.",
+      wrong: "Myself Kiran.",
+      right: "My name is Kiran.",
       why: {
-        en: "Say My name is …, or I am …",
-        te: "My name is … లేదా I am … అనాలి.",
+        en: "Myself is not used to give your name; say My name is Kiran, or I am Kiran.",
+        te: "పేరు చెప్పడానికి myself వాడరు; My name is Kiran లేదా I am Kiran అనండి.",
       },
     },
     {
@@ -104,8 +104,8 @@ export const day: Lesson = {
       wrong: "I am having two brothers.",
       right: "I have two brothers.",
       why: {
-        en: "For family and things you have, say I have.",
-        te: "కుటుంబం, మీకు ఉన్నవి చెప్పడానికి I have.",
+        en: "For family and things you own, say I have, not I am having: I have two brothers.",
+        te: "కుటుంబం, మీకు ఉన్నవి చెప్పడానికి am having కాదు, have: I have two brothers.",
       },
     },
   ],
@@ -114,11 +114,11 @@ export const day: Lesson = {
       id: "p1",
       type: "choose",
       prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
-      options: ["Myself Lakshmi.", "My name is Lakshmi.", "I am name Lakshmi."],
+      options: ["Myself Kiran.", "My name is Kiran.", "I am name Kiran."],
       answer: 1,
       why: {
-        en: "My name is Lakshmi.",
-        te: "My name is Lakshmi అనాలి.",
+        en: "Give your name with My name is, not Myself: My name is Kiran.",
+        te: "పేరు My name is తో చెప్పండి, Myself తో కాదు: My name is Kiran.",
       },
     },
     {
@@ -129,8 +129,8 @@ export const day: Lesson = {
       options: ["learning", "learn", "learned"],
       answer: 0,
       why: {
-        en: "Now: am learning.",
-        te: "ఇప్పుడు: am learning.",
+        en: "It is happening these days, so am with -ing: I am learning English now.",
+        te: "ఈ మధ్య జరుగుతోంది, అందుకే am తో -ing: I am learning English now.",
       },
     },
     {
@@ -140,8 +140,8 @@ export const day: Lesson = {
       options: ["I walk every morning.", "I am walking now.", "I walked yesterday."],
       answer: 0,
       why: {
-        en: "Every day: I walk.",
-        te: "రోజూ: I walk.",
+        en: "For every day, use the plain verb, with no am or -ing: I walk every morning.",
+        te: "రోజూ జరిగేదానికి verb మామూలుగా, am గానీ -ing గానీ లేకుండా: I walk every morning.",
       },
     },
     {
@@ -151,8 +151,8 @@ export const day: Lesson = {
       wrongIndex: 2,
       fix: "I have two brothers.",
       why: {
-        en: "Say I have, not I am having.",
-        te: "I am having కాదు, I have.",
+        en: "Have for family is not an action, so no -ing: I have two brothers.",
+        te: "కుటుంబం గురించి చెప్పే have కి -ing రాదు: I have two brothers.",
       },
     },
   ],
@@ -164,8 +164,8 @@ export const day: Lesson = {
         en: "At a community meeting, say your name.",
         te: "కాలనీ మీటింగ్‌లో మీ పేరు చెప్పండి.",
       },
-      expected: ["My name is Lakshmi.", "My name is Ramana.", "I am Lakshmi."],
-      options: ["Myself Lakshmi.", "My name is Lakshmi.", "Me Lakshmi."],
+      expected: ["My name is Kiran.", "My name is Sai.", "I am Kiran."],
+      options: ["Myself Kiran.", "My name is Kiran.", "Me Kiran."],
       answer: 1,
     },
     {
@@ -185,34 +185,40 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "Introduce yourself", te: "మిమ్మల్ని పరిచయం చేసుకోండి" },
     scene: {
-      en: "At a community meeting, Mohan asks you to introduce yourself to everyone.",
-      te: "కాలనీ మీటింగ్‌లో, అందరికీ మిమ్మల్ని పరిచయం చేసుకోమని మోహన్ అడుగుతున్నారు.",
+      en: "At a community meeting, Mary asks you to introduce yourself to everyone.",
+      te: "కాలనీ మీటింగ్‌లో, అందరికీ మిమ్మల్ని పరిచయం చేసుకోమని మేరీ అడుగుతున్నారు.",
     },
-    partner: { en: "Mohan (colony leader)", te: "మోహన్ (కాలనీ పెద్ద)" },
+    partner: { en: "Mary (colony leader)", te: "మేరీ (కాలనీ పెద్ద)" },
     skills: [{ id: "me", label: { en: "About me", te: "నా గురించి" } }],
     turns: [
       {
         partner: "Welcome! Please introduce yourself.",
         te: "స్వాగతం! మీ పరిచయం చెప్పండి.",
-        hint: { en: "Say: My name is Padma.", te: "ఇలా చెప్పండి: My name is Padma." },
+        hint: { en: "Say your name.", te: "మీ పేరు చెప్పండి." },
         replies: [
-          { say: "My name is Padma.", good: true, skill: "me" },
-          { say: "Myself Padma.", good: false, skill: "me" },
+          { say: "My name is Kiran.", good: true, skill: "me" },
+          { say: "Myself Kiran.", good: false, skill: "me" },
         ],
       },
       {
         partner: "Where do you live?",
         te: "మీరు ఎక్కడ ఉంటారు?",
-        hint: { en: "Say: I live in Gandhi Nagar.", te: "ఇలా చెప్పండి: I live in Gandhi Nagar." },
+        hint: { en: "Say your own area.", te: "మీరు ఉండే ఏరియా పేరు చెప్పండి." },
         replies: [
           { say: "I live in Gandhi Nagar.", good: true, skill: "me" },
           { say: "I lives in Gandhi Nagar.", good: false, skill: "me" },
+          {
+            say: "Why do you want to know?",
+            good: false,
+            skill: "me",
+            react: { en: "Just to know our neighbours!", te: "మన పొరుగువాళ్ళెవరో తెలుసుకోవడానికి అంతే!" },
+          },
         ],
       },
       {
         partner: "What do you like to do?",
         te: "మీకు ఏం చేయడం ఇష్టం?",
-        hint: { en: "Say: I like cooking and music.", te: "ఇలా చెప్పండి: I like cooking and music." },
+        hint: { en: "Say two things you like.", te: "మీకు ఇష్టమైన రెండు పనులు చెప్పండి." },
         replies: [
           { say: "I like cooking and music.", good: true, skill: "me" },
           { say: "I like cooking but music.", good: false, skill: "me" },
@@ -221,16 +227,16 @@ export const day: Lesson = {
       {
         partner: "What are you doing these days?",
         te: "ఈ మధ్య ఏం చేస్తున్నారు?",
-        hint: { en: "Say: I am learning English!", te: "ఇలా చెప్పండి: I am learning English!" },
+        hint: { en: "Say what you are learning now.", te: "ఇప్పుడు ఏం నేర్చుకుంటున్నారో చెప్పండి." },
         replies: [
           { say: "I am learning English!", good: true, skill: "me" },
           { say: "I am learn English!", good: false, skill: "me" },
         ],
       },
       {
-        partner: "Wonderful! Thank you, Padma.",
-        te: "చాలా బాగుంది! థాంక్యూ పద్మ.",
-        hint: { en: "Say: Thank you, everyone.", te: "ఇలా చెప్పండి: Thank you, everyone." },
+        partner: "Wonderful! Thank you, Kiran.",
+        te: "చాలా బాగుంది! థాంక్యూ కిరణ్.",
+        hint: { en: "Thank everyone.", te: "అందరికీ థాంక్స్ చెప్పండి." },
         replies: [
           { say: "Thank you, everyone.", good: true },
           { say: "Thanks you, everyone.", good: false },

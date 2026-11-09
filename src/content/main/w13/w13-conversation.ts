@@ -15,30 +15,35 @@ export const day: ConversationDay = {
     type: "dialogue",
     title: { en: "At the Sunday market", te: "ఆదివారం సంతలో" },
     lines: [
-      { speaker: { en: "Venkat", te: "వెంకట్" }, voice: "b", en: "Good morning! Fresh vegetables, come!", te: "నమస్కారం! తాజా కూరగాయలు, రండి!" },
-      { speaker: { en: "Lakshmi", te: "లక్ష్మి" }, voice: "a", en: "How much are the tomatoes today?", te: "ఈ రోజు టమాటాలు ఎంత?" },
-      { speaker: { en: "Venkat", te: "వెంకట్" }, voice: "b", en: "Forty rupees a kilo. Very fresh.", te: "కిలో నలభై రూపాయలు. చాలా తాజాగా ఉన్నాయి." },
-      { speaker: { en: "Lakshmi", te: "లక్ష్మి" }, voice: "a", en: "Can I have two kilos, please?", te: "రెండు కిలోలు ఇవ్వగలరా?" },
-      { speaker: { en: "Venkat", te: "వెంకట్" }, voice: "b", en: "Sure. Anything else?", te: "సరే. ఇంకేమైనా?" },
-      { speaker: { en: "Lakshmi", te: "లక్ష్మి" }, voice: "a", en: "Half a kilo of beans and some coriander.", te: "అర కిలో బీన్స్, కొంచెం కొత్తిమీర." },
-      { speaker: { en: "Venkat", te: "వెంకట్" }, voice: "b", en: "That comes to 130 rupees.", te: "మొత్తం 130 రూపాయలు అయింది." },
-      { speaker: { en: "Lakshmi", te: "లక్ష్మి" }, voice: "a", en: "That's a bit expensive. Can you make it 120?", te: "కొంచెం ఎక్కువ. 120 చేయగలరా?" },
-      { speaker: { en: "Venkat", te: "వెంకట్" }, voice: "b", en: "Okay, 120. Only for you!", te: "సరే, 120. మీ కోసమే!" },
-      { speaker: { en: "Lakshmi", te: "లక్ష్మి" }, voice: "a", en: "Thank you! See you next Sunday.", te: "థాంక్యూ! వచ్చే ఆదివారం కలుద్దాం." },
+      { speaker: { en: "Kavitha", te: "కవిత" }, voice: "a", en: "Good morning! Fresh vegetables, come!", te: "నమస్కారం! తాజా కూరగాయలు, రండి!" },
+      { speaker: { en: "Gopal", te: "గోపాల్" }, voice: "b", en: "How much are the tomatoes today?", te: "ఈ రోజు టమాటాలు ఎంత?" },
+      { speaker: { en: "Kavitha", te: "కవిత" }, voice: "a", en: "Forty rupees a kilo. Very fresh.", te: "కిలో నలభై రూపాయలు. చాలా తాజాగా ఉన్నాయి." },
+      { speaker: { en: "Gopal", te: "గోపాల్" }, voice: "b", en: "Can I have two kilos, please?", te: "రెండు కిలోలు ఇస్తారా?" },
+      { speaker: { en: "Kavitha", te: "కవిత" }, voice: "a", en: "Sure. Anything else?", te: "సరే. ఇంకేమైనా?" },
+      { speaker: { en: "Gopal", te: "గోపాల్" }, voice: "b", en: "Half a kilo of beans and some coriander.", te: "అర కిలో బీన్స్, కొంచెం కొత్తిమీర." },
+      { speaker: { en: "Kavitha", te: "కవిత" }, voice: "a", en: "That comes to 130 rupees.", te: "మొత్తం 130 రూపాయలు అవుతుంది." },
+      { speaker: { en: "Gopal", te: "గోపాల్" }, voice: "b", en: "That's a bit expensive. Can you make it 120?", te: "కొంచెం ఎక్కువే. 120 కి ఇస్తారా?" },
+      { speaker: { en: "Kavitha", te: "కవిత" }, voice: "a", en: "Okay, 120. Only for you!", te: "సరే, 120. మీ కోసమే!" },
+      { speaker: { en: "Gopal", te: "గోపాల్" }, voice: "b", en: "Thank you! See you next Sunday.", te: "థాంక్యూ! వచ్చే ఆదివారం కలుద్దాం." },
     ],
     questions: [
+      {
+        prompt: { en: "Where are they?", te: "వీళ్ళు ఎక్కడ ఉన్నారు?" },
+        options: ["At a market", "At a hospital", "At a bus stand"],
+        answer: 0,
+      },
       {
         prompt: { en: "How much are the tomatoes?", te: "టమాటాలు ఎంత?" },
         options: ["Forty rupees a kilo", "Thirty rupees a kilo", "Forty rupees each"],
         answer: 0,
       },
       {
-        prompt: { en: "How many kilos of tomatoes does Lakshmi buy?", te: "లక్ష్మి ఎన్ని కిలోల టమాటాలు కొంటుంది?" },
+        prompt: { en: "How many kilos of tomatoes does Gopal buy?", te: "గోపాల్ ఎన్ని కిలోల టమాటాలు కొంటున్నారు?" },
         options: ["One", "Two", "Half a kilo"],
         answer: 1,
       },
       {
-        prompt: { en: "How much does Lakshmi pay in the end?", te: "చివరికి లక్ష్మి ఎంత కడుతుంది?" },
+        prompt: { en: "How much does Gopal pay in the end?", te: "చివరికి గోపాల్ ఎంత ఇస్తారు?" },
         options: ["130 rupees", "120 rupees", "100 rupees"],
         answer: 1,
       },
@@ -85,10 +90,10 @@ export const day: ConversationDay = {
       type: "roleplay",
       title: { en: "A week's vegetables", te: "వారానికి కూరగాయలు" },
       scene: {
-        en: "It is Sunday. Buy vegetables for the week at Ramana's stall.",
-        te: "ఈ రోజు ఆదివారం. రమణ బండి దగ్గర వారానికి సరిపడా కూరగాయలు కొనండి.",
+        en: "It is Sunday. Buy vegetables for the week at Ayesha's stall.",
+        te: "ఈ రోజు ఆదివారం. ఆయేషా బండి దగ్గర వారానికి సరిపడా కూరగాయలు కొనండి.",
       },
-      partner: { en: "Ramana (vegetable seller)", te: "రమణ (కూరగాయలు అమ్మేవారు)" },
+      partner: { en: "Ayesha (vegetable seller)", te: "ఆయేషా (కూరగాయలు అమ్మే ఆవిడ)" },
       skills: [
         { id: "ask", label: { en: "Asking for things", te: "అడగడం" } },
         { id: "price", label: { en: "Prices", te: "ధరలు" } },
@@ -97,7 +102,7 @@ export const day: ConversationDay = {
         {
           partner: "Good morning! What do you need today?",
           te: "నమస్కారం! ఈ రోజు ఏం కావాలి?",
-          hint: { en: "Say: Can I have two kilos of onions, please?", te: "ఇలా చెప్పండి: Can I have two kilos of onions, please?" },
+          hint: { en: "Ask politely for two kilos of onions.", te: "రెండు కిలోల ఉల్లిపాయలు మర్యాదగా అడగండి." },
           replies: [
             { say: "Can I have two kilos of onions, please?", good: true, skill: "ask" },
             { say: "Can I have two kilo onion, please?", good: false, skill: "ask" },
@@ -106,10 +111,7 @@ export const day: ConversationDay = {
         {
           partner: "Here you are. What else?",
           te: "ఇదిగోండి. ఇంకా ఏం కావాలి?",
-          hint: {
-            en: "Say: Half a kilo of beans and a bunch of coriander.",
-            te: "ఇలా చెప్పండి: Half a kilo of beans and a bunch of coriander.",
-          },
+          hint: { en: "Ask for some beans and some coriander, with the amounts.", te: "అర కిలో బీన్స్, ఒక కట్ట కొత్తిమీర అడగండి." },
           replies: [
             { say: "Half a kilo of beans and a bunch of coriander.", good: true, skill: "ask" },
             { say: "Half kilo beans and one bunch coriander.", good: false, skill: "ask" },
@@ -118,7 +120,7 @@ export const day: ConversationDay = {
         {
           partner: "Okay. Do you want tomatoes too?",
           te: "సరే. టమాటాలు కూడా కావాలా?",
-          hint: { en: "Ask: How much are they?", te: "అడగండి: How much are they?" },
+          hint: { en: "Ask the price first.", te: "ముందు ధర అడగండి." },
           replies: [
             { say: "How much are they?", good: true, skill: "price" },
             { say: "How much is they?", good: false, skill: "price" },
@@ -127,19 +129,21 @@ export const day: ConversationDay = {
         {
           partner: "Fifty rupees a kilo.",
           te: "కిలో యాభై రూపాయలు.",
-          hint: {
-            en: "Say: That's a bit expensive. Can you give it for forty?",
-            te: "ఇలా చెప్పండి: That's a bit expensive. Can you give it for forty?",
-          },
+          hint: { en: "Say politely the price is high, and offer forty.", te: "ధర ఎక్కువ అని మర్యాదగా చెప్పి, నలభైకి అడగండి." },
           replies: [
             { say: "That's a bit expensive. Can you give it for forty?", good: true, skill: "price" },
-            { say: "Too costly. Give for forty.", good: false, skill: "price" },
+            {
+              say: "Too costly. Give for forty.",
+              good: false,
+              skill: "price",
+              react: { en: "Costly? These tomatoes are very fresh!", te: "ఖరీదా? ఇవి చాలా తాజా టమాటాలు!" },
+            },
           ],
         },
         {
           partner: "Okay, okay. Forty for you.",
           te: "సరే, సరే. మీకు నలభైకే.",
-          hint: { en: "Say: Thank you. One kilo, please.", te: "ఇలా చెప్పండి: Thank you. One kilo, please." },
+          hint: { en: "Thank her, and say how much you want.", te: "థాంక్స్ చెప్పి, ఎంత కావాలో చెప్పండి." },
           replies: [
             { say: "Thank you. One kilo, please.", good: true, skill: "ask" },
             { say: "Thank you. One kilos, please.", good: false, skill: "ask" },
@@ -156,6 +160,7 @@ export const day: ConversationDay = {
         te: "మీ పండ్లు 380 రూపాయలు. ప్రసాద్‌కి 500 ఇచ్చారు; ఆయన 100 మాత్రమే తిరిగి ఇచ్చారు.",
       },
       partner: { en: "Prasad (fruit seller)", te: "ప్రసాద్ (పండ్లు అమ్మేవారు)" },
+      voice: "b",
       skills: [
         { id: "polite", label: { en: "Speaking politely", te: "మర్యాదగా మాట్లాడటం" } },
         { id: "money", label: { en: "Money", te: "డబ్బు" } },
@@ -164,16 +169,21 @@ export const day: ConversationDay = {
         {
           partner: "Here is your change. Thank you!",
           te: "ఇదిగోండి మీ చిల్లర. థాంక్యూ!",
-          hint: { en: "Say: Sorry, I think the change is wrong.", te: "ఇలా చెప్పండి: Sorry, I think the change is wrong." },
+          hint: { en: "Tell him politely the change is wrong. Start with Sorry, I think…", te: "చిల్లర తప్పు అని మర్యాదగా చెప్పండి. Sorry, I think… తో మొదలుపెట్టండి." },
           replies: [
             { say: "Sorry, I think the change is wrong.", good: true, skill: "polite" },
-            { say: "You gave wrong change. Cheating!", good: false, skill: "polite" },
+            {
+              say: "You gave wrong change. Cheating!",
+              good: false,
+              skill: "polite",
+              react: { en: "Cheating? Please don't say that. Let me count again.", te: "మోసమా? అలా అనకండి. మళ్ళీ లెక్కపెడతాను." },
+            },
           ],
         },
         {
           partner: "Oh? How much did you give me?",
           te: "అవునా? మీరు నాకు ఎంత ఇచ్చారు?",
-          hint: { en: "Say: I gave you 500 rupees.", te: "ఇలా చెప్పండి: I gave you 500 rupees." },
+          hint: { en: "Say how much you gave him (past).", te: "మీరు ఎంత ఇచ్చారో చెప్పండి (past)." },
           replies: [
             { say: "I gave you 500 rupees.", good: true, skill: "money" },
             { say: "I am give you 500 rupees.", good: false, skill: "money" },
@@ -182,7 +192,7 @@ export const day: ConversationDay = {
         {
           partner: "And the fruit was 380 rupees.",
           te: "పండ్లు 380 రూపాయలు.",
-          hint: { en: "Say: So the change is 120 rupees, not 100.", te: "ఇలా చెప్పండి: So the change is 120 rupees, not 100." },
+          hint: { en: "Work out the right change, and say it.", te: "సరైన చిల్లర ఎంతో లెక్కేసి చెప్పండి." },
           replies: [
             { say: "So the change is 120 rupees, not 100.", good: true, skill: "money" },
             { say: "So the change are 120 rupees, not 100.", good: false, skill: "money" },
@@ -191,10 +201,10 @@ export const day: ConversationDay = {
         {
           partner: "You're right! Sorry. Here are twenty more.",
           te: "మీరు చెప్పింది నిజమే! సారీ. ఇదిగోండి ఇంకో ఇరవై.",
-          hint: { en: "Say: No problem. Thank you.", te: "ఇలా చెప్పండి: No problem. Thank you." },
+          hint: { en: "Say it is okay, and thank him.", te: "పర్లేదని చెప్పి, ఆయనకి థాంక్స్ చెప్పండి." },
           replies: [
             { say: "No problem. Thank you.", good: true, skill: "polite" },
-            { say: "No problem. Thanks you.", good: false, skill: "polite" },
+            { say: "No problem. Next time be careful!", good: false, skill: "polite" },
           ],
         },
       ],

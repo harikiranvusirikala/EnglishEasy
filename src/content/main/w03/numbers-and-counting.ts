@@ -172,8 +172,8 @@ export const day: Lesson = {
       id: "s2",
       type: "situation",
       situation: {
-        en: "A delivery man asks your house number. It is twenty-five. Tell him.",
-        te: "డెలివరీ అతను మీ ఇంటి నంబర్ అడుగుతున్నాడు. అది ఇరవై ఐదు. చెప్పండి.",
+        en: "A delivery man asks for your house number. It is twenty-five. Tell him.",
+        te: "డెలివరీ చేసే ఆయన మీ ఇంటి నంబర్ అడుగుతున్నారు. అది ఇరవై ఐదు. ఆయనకి చెప్పండి.",
       },
       expected: ["My house number is twenty-five.", "It is twenty-five."],
       options: ["My house number is twenty-five.", "My house number twenty-five.", "My house number are twenty-five."],
@@ -185,16 +185,17 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "A home delivery", te: "ఇంటికి డెలివరీ" },
     scene: {
-      en: "Mohan is bringing your parcel. He calls to ask your house number and phone number.",
-      te: "మోహన్ మీ పార్సిల్ తీసుకొస్తున్నాడు. మీ ఇంటి నంబర్, ఫోన్ నంబర్ అడగడానికి ఫోన్ చేశాడు.",
+      en: "Imran is bringing your parcel. He calls to ask for your address and phone number.",
+      te: "ఇమ్రాన్ మీ పార్సిల్ తీసుకొస్తున్నారు. మీ అడ్రస్, ఫోన్ నంబర్ అడగడానికి ఫోన్ చేశారు.",
     },
-    partner: { en: "Mohan (a delivery man)", te: "మోహన్ (డెలివరీ అతను)" },
+    partner: { en: "Imran (a delivery man)", te: "ఇమ్రాన్ (డెలివరీ చేసే ఆయన)" },
+    voice: "b",
     skills: [{ id: "numbers", label: { en: "Numbers", te: "సంఖ్యలు" } }],
     turns: [
       {
-        partner: "Hello, I have your parcel.",
-        te: "హలో, మీ పార్సిల్ నా దగ్గర ఉంది.",
-        hint: { en: "Say: My house number is twenty-five.", te: "ఇలా చెప్పండి: My house number is twenty-five." },
+        partner: "Hello, I have your parcel. Address, please?",
+        te: "హలో, మీ పార్సిల్ నా దగ్గర ఉంది. అడ్రస్ చెప్తారా?",
+        hint: { en: "Tell him your house number, 25. Don't forget is.", te: "మీ ఇంటి నంబర్ 25 అని చెప్పండి. is మర్చిపోకండి." },
         replies: [
           { say: "My house number is twenty-five.", good: true, skill: "numbers" },
           { say: "My house number twenty-five.", good: false, skill: "numbers" },
@@ -202,17 +203,22 @@ export const day: Lesson = {
       },
       {
         partner: "And your phone number, please?",
-        te: "మీ ఫోన్ నంబర్ కూడా చెప్పండి.",
-        hint: { en: "Say the first five digits one by one: nine eight four eight zero.", te: "మొదటి ఐదు అంకెలు ఒక్కొక్కటిగా చెప్పండి: nine eight four eight zero." },
+        te: "మీ ఫోన్ నంబర్ కూడా చెప్తారా?",
+        hint: { en: "Say the first five digits one at a time: 98480.", te: "మొదటి ఐదు అంకెలు ఒక్కొక్కటిగా చెప్పండి: 98480." },
         replies: [
           { say: "Nine eight four eight zero.", good: true, skill: "numbers" },
-          { say: "Ninety-eight thousand four hundred eighty.", good: false, skill: "numbers" },
+          {
+            say: "Ninety-eight thousand four hundred eighty.",
+            good: false,
+            skill: "numbers",
+            react: { en: "Sorry? One digit at a time, please.", te: "సారీ? ఒక్కో అంకె విడిగా చెప్తారా?" },
+          },
         ],
       },
       {
         partner: "Yes, and then?",
         te: "ఆ, తర్వాత?",
-        hint: { en: "Say the last five digits: one two three four five.", te: "చివరి ఐదు అంకెలు చెప్పండి: one two three four five." },
+        hint: { en: "Say the last five digits the same way: 12345.", te: "చివరి ఐదు అంకెలు కూడా అలాగే చెప్పండి: 12345." },
         replies: [
           { say: "One two three four five.", good: true, skill: "numbers" },
           { say: "Twelve thousand three hundred forty-five.", good: false, skill: "numbers" },
@@ -220,11 +226,15 @@ export const day: Lesson = {
       },
       {
         partner: "Thank you. I will come at four.",
-        te: "థాంక్యూ. నేను నాలుగు గంటలకు వస్తాను.",
-        hint: { en: "Say: Okay. Thank you very much.", te: "ఇలా చెప్పండి: Okay. Thank you very much." },
+        te: "థాంక్యూ. నేను నాలుగు గంటలకి వస్తాను.",
+        hint: { en: "Agree, and thank him politely.", te: "సరే అని, ఆయనకి మర్యాదగా థాంక్స్ చెప్పండి." },
         replies: [
           { say: "Okay. Thank you very much.", good: true },
-          { say: "Okay. Thanks you very much.", good: false },
+          {
+            say: "Okay, come fast.",
+            good: false,
+            react: { en: "I will try. I have many parcels.", te: "ప్రయత్నిస్తాను. నా దగ్గర చాలా పార్సిళ్ళు ఉన్నాయి." },
+          },
         ],
       },
     ],

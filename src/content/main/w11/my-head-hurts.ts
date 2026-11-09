@@ -94,8 +94,8 @@ export const day: Lesson = {
       wrong: "My head is paining.",
       right: "I have a headache.",
       why: {
-        en: "Say I have a headache, or My head hurts.",
-        te: "I have a headache లేదా My head hurts అనాలి.",
+        en: "Is paining comes from Telugu; in English say I have a headache, or My head hurts.",
+        te: "'నొప్పిగా ఉంది' ని is paining అని మార్చకండి: I have a headache లేదా My head hurts అనండి.",
       },
     },
     {
@@ -104,8 +104,8 @@ export const day: Lesson = {
       wrong: "I am having fever.",
       right: "I have a fever.",
       why: {
-        en: "Say I have a fever, with a.",
-        te: "I have a fever అనాలి, a తో.",
+        en: "For an illness, use have a, not am having: I have a fever.",
+        te: "జబ్బు గురించి am having కాదు, have a వాడాలి: I have a fever.",
       },
     },
   ],
@@ -117,8 +117,8 @@ export const day: Lesson = {
       options: ["My knee is paining.", "My knee hurts.", "My knee hurting."],
       answer: 1,
       why: {
-        en: "Say My knee hurts.",
-        te: "My knee hurts అనాలి.",
+        en: "Hurts already means it is in pain, so no is paining: My knee hurts.",
+        te: "hurts అంటేనే నొప్పిగా ఉంది; is paining అనకూడదు: My knee hurts.",
       },
     },
     {
@@ -129,8 +129,8 @@ export const day: Lesson = {
       options: ["cough", "cold", "fever"],
       answer: 0,
       why: {
-        en: "దగ్గు is a cough.",
-        te: "దగ్గు = cough.",
+        en: "A cough is దగ్గు; a cold is జలుబు. So: I have a cough.",
+        te: "దగ్గు అంటే cough; జలుబు అంటే cold. అందుకే: I have a cough.",
       },
     },
     {
@@ -140,8 +140,8 @@ export const day: Lesson = {
       options: ["I have a headache.", "I am headache.", "My head is paining."],
       answer: 0,
       why: {
-        en: "I have a headache.",
-        te: "I have a headache అనాలి.",
+        en: "Telugu says నాకు తలనొప్పి, but English needs have: I have a headache.",
+        te: "తెలుగులో 'నాకు తలనొప్పి' అంటాం; ఇంగ్లీష్‌లో have కావాలి: I have a headache.",
       },
     },
     {
@@ -151,8 +151,8 @@ export const day: Lesson = {
       wrongIndex: 3,
       fix: "My back hurts a lot.",
       why: {
-        en: "Say hurts, not is paining.",
-        te: "is paining కాదు, hurts అనాలి.",
+        en: "Use hurts, not is paining: My back hurts a lot.",
+        te: "is paining కాదు, hurts అనాలి: My back hurts a lot.",
       },
     },
   ],
@@ -165,7 +165,7 @@ export const day: Lesson = {
         te: "మందుల షాపులో మీకు జలుబు చేసిందని చెప్పండి.",
       },
       expected: ["I have a cold."],
-      options: ["I am cold.", "I have a cold.", "I having cold."],
+      options: ["I am having cold.", "I have a cold.", "I have cold."],
       answer: 1,
     },
     {
@@ -176,7 +176,7 @@ export const day: Lesson = {
         te: "మీ వీపు నొప్పిగా ఉందని డాక్టర్‌కి చెప్పండి.",
       },
       expected: ["My back hurts.", "My back hurts a lot."],
-      options: ["My back is paining.", "My back hurts.", "My back hurt me."],
+      options: ["My back is paining.", "My back hurts.", "My back hurting."],
       answer: 1,
     },
   ],
@@ -185,25 +185,31 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "At the pharmacy", te: "మందుల షాపులో" },
     scene: {
-      en: "You are not well. Tell Venkat, the pharmacist, what is wrong.",
-      te: "మీకు ఒంట్లో బాగాలేదు. ఫార్మసిస్ట్ వెంకట్‌కి ఏమైందో చెప్పండి.",
+      en: "You are not well. Tell Fatima, the pharmacist, what is wrong.",
+      te: "మీకు ఒంట్లో బాగాలేదు. ఫార్మసిస్ట్ ఫాతిమా గారికి ఏమైందో చెప్పండి.",
     },
-    partner: { en: "Venkat (a pharmacist)", te: "వెంకట్ (ఫార్మసిస్ట్)" },
+    partner: { en: "Fatima (a pharmacist)", te: "ఫాతిమా (ఫార్మసిస్ట్)" },
     skills: [{ id: "pain", label: { en: "Saying what is wrong", te: "ఏమైందో చెప్పడం" } }],
     turns: [
       {
         partner: "Good evening. How can I help?",
         te: "గుడ్ ఈవెనింగ్. మీకు ఏం కావాలి?",
-        hint: { en: "Say: I have a cold and a cough.", te: "ఇలా చెప్పండి: I have a cold and a cough." },
+        hint: { en: "Tell her what is wrong: a cold and a cough.", te: "ఏమైందో చెప్పండి: జలుబు, దగ్గు." },
         replies: [
           { say: "I have a cold and a cough.", good: true, skill: "pain" },
           { say: "I am cold and cough.", good: false, skill: "pain" },
+          {
+            say: "Give me cold tablets.",
+            good: false,
+            skill: "pain",
+            react: { en: "Sure. But first, what is wrong?", te: "సరే. కానీ ముందు చెప్పండి, ఏమైంది?" },
+          },
         ],
       },
       {
         partner: "Do you have a fever?",
         te: "మీకు జ్వరం ఉందా?",
-        hint: { en: "Say: No, but my head hurts.", te: "ఇలా చెప్పండి: No, but my head hurts." },
+        hint: { en: "Say no, but your head hurts.", te: "లేదని చెప్పి, తల నొప్పిగా ఉందని చెప్పండి." },
         replies: [
           { say: "No, but my head hurts.", good: true, skill: "pain" },
           { say: "No, but my head is paining.", good: false, skill: "pain" },
@@ -212,7 +218,7 @@ export const day: Lesson = {
       {
         partner: "When did it start?",
         te: "ఎప్పుడు మొదలైంది?",
-        hint: { en: "Say: It started yesterday.", te: "ఇలా చెప్పండి: It started yesterday." },
+        hint: { en: "Tell her the day it started (past).", te: "ఏ రోజు మొదలైందో చెప్పండి (past)." },
         replies: [
           { say: "It started yesterday.", good: true },
           { say: "It is started yesterday.", good: false },
@@ -221,7 +227,7 @@ export const day: Lesson = {
       {
         partner: "Take this syrup and rest well.",
         te: "ఈ సిరప్ తీసుకుని, బాగా విశ్రాంతి తీసుకోండి.",
-        hint: { en: "Ask: How much is it?", te: "అడగండి: How much is it?" },
+        hint: { en: "Ask the price.", te: "ధర ఎంతో అడగండి." },
         replies: [
           { say: "How much is it?", good: true },
           { say: "How much it is?", good: false },

@@ -8,7 +8,7 @@ export const day: Lesson = {
   subtitle: "four tenses together",
   summary: {
     en: "Learn to use the four tenses together: what you usually do, are doing now, did yesterday and will do tomorrow.",
-    te: "నాలుగు కాలాలు కలిపి వాడటం నేర్చుకుందాం: సాధారణంగా ఏం చేస్తారు, ఇప్పుడు ఏం చేస్తున్నారు, నిన్న ఏం చేశారు, రేపు ఏం చేస్తారు.",
+    te: "నాలుగు tenses కలిపి వాడటం నేర్చుకుందాం: మామూలుగా ఏం చేస్తారు, ఇప్పుడు ఏం చేస్తున్నారు, నిన్న ఏం చేశారు, రేపు ఏం చేస్తారు.",
   },
   seo: {
     title: "Every Day, Now, Yesterday, Tomorrow: Four Tenses for Telugu Speakers",
@@ -21,12 +21,12 @@ export const day: Lesson = {
     { text: "went out", role: "action" },
   ],
   core: [
-    { en: "I usually walk.", te: "నేను సాధారణంగా నడుస్తాను.", extra: ["walked"] },
+    { en: "I usually walk.", te: "నేను మామూలుగా నడుస్తాను.", extra: ["walked"] },
     { en: "Today I am resting.", te: "ఈ రోజు నేను విశ్రాంతి తీసుకుంటున్నాను.", extra: ["rest"] },
     { en: "Yesterday I went out.", te: "నిన్న నేను బయటకు వెళ్ళాను.", extra: ["go"] },
     { en: "Tomorrow I will visit Ravi.", te: "రేపు నేను రవి ఇంటికి వెళ్తాను.", extra: ["visited"] },
-    { en: "She usually cooks lunch.", te: "ఆమె సాధారణంగా మధ్యాహ్న భోజనం వండుతుంది.", extra: ["cooked"] },
-    { en: "Right now she is sleeping.", te: "ఇప్పుడు ఆమె నిద్రపోతోంది.", extra: ["sleeps"] },
+    { en: "She usually cooks lunch.", te: "ఆవిడ మామూలుగా మధ్యాహ్నం వంట చేస్తారు.", extra: ["cooked"] },
+    { en: "Right now she is sleeping.", te: "ఇప్పుడు ఆవిడ నిద్రపోతున్నారు.", extra: ["sleeps"] },
     { en: "Last week we went to Tirupati.", te: "పోయిన వారం మేము తిరుపతి వెళ్ళాం.", extra: ["go"] },
   ],
   key: [0, 1, 2, 3],
@@ -46,10 +46,10 @@ export const day: Lesson = {
     {
       id: "l1",
       type: "explain",
-      heading: { en: "Listen for the time word", te: "సమయం పదం గమనించండి" },
+      heading: { en: "Listen for the time word", te: "ఎప్పుడో చెప్పే మాట వినండి" },
       body: {
         en: "The time word tells you the form. Every day: I walk. Right now: I am walking. Yesterday: I walked. Tomorrow: I will walk. Hear the time word first, then choose the form.",
-        te: "సమయం పదం బట్టి రూపం మారుతుంది. రోజూ: I walk. ఇప్పుడు: I am walking. నిన్న: I walked. రేపు: I will walk. ముందు సమయం పదం గమనించి, తర్వాత రూపం ఎంచుకోండి.",
+        te: "ఎప్పుడో చెప్పే మాటని బట్టి verb మారుతుంది. రోజూ: I walk. ఇప్పుడు: I am walking. నిన్న: I walked. రేపు: I will walk. ముందు ఆ మాట విని, తర్వాత verb ఎంచుకోండి.",
       },
       bridge: {
         te: ["నిన్న", "నేను", "బయటకు వెళ్ళాను"],
@@ -60,7 +60,7 @@ export const day: Lesson = {
         ],
       },
       examples: [
-        { en: "I usually walk.", te: "నేను సాధారణంగా నడుస్తాను." },
+        { en: "I usually walk.", te: "నేను మామూలుగా నడుస్తాను." },
         { en: "Today I am resting.", te: "ఈ రోజు నేను విశ్రాంతి తీసుకుంటున్నాను." },
         { en: "Tomorrow I will visit Ravi.", te: "రేపు నేను రవి ఇంటికి వెళ్తాను." },
       ],
@@ -68,26 +68,26 @@ export const day: Lesson = {
     {
       id: "l2",
       type: "whenToUse",
-      heading: { en: "Which time, which form", te: "ఏ సమయానికి ఏ రూపం" },
+      heading: { en: "Which time, which form", te: "ఎప్పుడు, ఏ verb" },
       items: [
         {
           form: "every day, usually → walk",
           useFor: { en: "Habits.", te: "అలవాట్లు." },
-          example: { en: "She usually cooks lunch.", te: "ఆమె సాధారణంగా మధ్యాహ్న భోజనం వండుతుంది." },
+          example: { en: "She usually cooks lunch.", te: "ఆవిడ మామూలుగా మధ్యాహ్నం వంట చేస్తారు." },
         },
         {
           form: "now, today → am walking",
           useFor: { en: "Happening now.", te: "ఇప్పుడు జరుగుతున్నది." },
-          example: { en: "Right now she is sleeping.", te: "ఇప్పుడు ఆమె నిద్రపోతోంది." },
+          example: { en: "Right now she is sleeping.", te: "ఇప్పుడు ఆవిడ నిద్రపోతున్నారు." },
         },
         {
           form: "yesterday, last week → walked",
-          useFor: { en: "Finished in the past.", te: "గతంలో అయిపోయినది." },
+          useFor: { en: "Finished in the past.", te: "అయిపోయినది (past)." },
           example: { en: "Last week we went to Tirupati.", te: "పోయిన వారం మేము తిరుపతి వెళ్ళాం." },
         },
         {
           form: "tomorrow, next week → will walk",
-          useFor: { en: "In the future.", te: "భవిష్యత్తులో." },
+          useFor: { en: "In the future.", te: "రాబోయేది." },
           example: { en: "Tomorrow I will visit Ravi.", te: "రేపు నేను రవి ఇంటికి వెళ్తాను." },
         },
       ],
@@ -98,8 +98,8 @@ export const day: Lesson = {
       wrong: "Yesterday I go out.",
       right: "Yesterday I went out.",
       why: {
-        en: "Yesterday is the past: went.",
-        te: "నిన్న అంటే గతం: went.",
+        en: "Yesterday is past, so go becomes went: Yesterday I went out.",
+        te: "నిన్న అంటే past, అందుకే go కాదు went: Yesterday I went out.",
       },
     },
     {
@@ -108,8 +108,8 @@ export const day: Lesson = {
       wrong: "Tomorrow I visited Ravi.",
       right: "Tomorrow I will visit Ravi.",
       why: {
-        en: "Tomorrow is the future: will visit.",
-        te: "రేపు అంటే భవిష్యత్తు: will visit.",
+        en: "Tomorrow is still to come, so use will with the plain verb: Tomorrow I will visit Ravi.",
+        te: "రేపు ఇంకా రాలేదు, అందుకే will, verb మామూలుగా: Tomorrow I will visit Ravi.",
       },
     },
   ],
@@ -121,20 +121,20 @@ export const day: Lesson = {
       options: ["Yesterday I go out.", "Yesterday I went out.", "Yesterday I will go out."],
       answer: 1,
       why: {
-        en: "Past: went.",
-        te: "గతం: went.",
+        en: "Yesterday is over, so use the past form went: Yesterday I went out.",
+        te: "నిన్న అయిపోయింది, అందుకే past form went: Yesterday I went out.",
       },
     },
     {
       id: "p2",
       type: "fillBlank",
       sentence: "Right now she ___ sleeping.",
-      te: "ఇప్పుడు ఆమె నిద్రపోతోంది.",
+      te: "ఇప్పుడు ఆవిడ నిద్రపోతున్నారు.",
       options: ["is", "was", "will"],
       answer: 0,
       why: {
-        en: "Now: is … -ing.",
-        te: "ఇప్పుడు: is … -ing.",
+        en: "Right now means it is happening, so is with -ing: Right now she is sleeping.",
+        te: "ఇప్పుడు జరుగుతోంది, అందుకే is తో -ing: Right now she is sleeping.",
       },
     },
     {
@@ -144,8 +144,8 @@ export const day: Lesson = {
       options: ["Tomorrow I will visit Ravi.", "Tomorrow I visited Ravi.", "Tomorrow I am visit Ravi."],
       answer: 0,
       why: {
-        en: "Future: will visit.",
-        te: "భవిష్యత్తు: will visit.",
+        en: "Tomorrow is still to come, so say will visit: Tomorrow I will visit Ravi.",
+        te: "రేపు ఇంకా రాలేదు, అందుకే will visit: Tomorrow I will visit Ravi.",
       },
     },
     {
@@ -155,8 +155,8 @@ export const day: Lesson = {
       wrongIndex: 3,
       fix: "Last week we went to Tirupati.",
       why: {
-        en: "Last week is the past: went.",
-        te: "పోయిన వారం అంటే గతం: went.",
+        en: "Last week is past, so go becomes went: Last week we went to Tirupati.",
+        te: "పోయిన వారం అంటే past, go కాదు went: Last week we went to Tirupati.",
       },
     },
   ],
@@ -166,7 +166,7 @@ export const day: Lesson = {
       type: "situation",
       situation: {
         en: "Say what you usually do in the morning: you walk.",
-        te: "ఉదయం సాధారణంగా ఏం చేస్తారో చెప్పండి: నడుస్తారు.",
+        te: "ఉదయం మామూలుగా ఏం చేస్తారో చెప్పండి: నడుస్తారు.",
       },
       expected: ["I usually walk in the morning.", "I usually walk."],
       options: ["I usually walk in the morning.", "I usually walked in the morning.", "I am usually walk in the morning."],
@@ -190,7 +190,7 @@ export const day: Lesson = {
     title: { en: "Your week", te: "మీ వారం" },
     scene: {
       en: "Your friend Usha asks about your week: usually, now, yesterday and tomorrow.",
-      te: "మీ స్నేహితురాలు ఉష మీ వారం గురించి అడుగుతోంది: సాధారణంగా, ఇప్పుడు, నిన్న, రేపు.",
+      te: "మీ స్నేహితురాలు ఉష మీ వారం గురించి అడుగుతున్నారు: మామూలుగా, ఇప్పుడు, నిన్న, రేపు.",
     },
     partner: { en: "Usha (a friend)", te: "ఉష (స్నేహితురాలు)" },
     skills: [
@@ -202,8 +202,8 @@ export const day: Lesson = {
     turns: [
       {
         partner: "What do you usually do on Sundays?",
-        te: "ఆదివారాలు మీరు సాధారణంగా ఏం చేస్తారు?",
-        hint: { en: "Say: I usually go to the temple.", te: "ఇలా చెప్పండి: I usually go to the temple." },
+        te: "ఆదివారాలు మీరు మామూలుగా ఏం చేస్తారు?",
+        hint: { en: "Say where you usually go on Sundays.", te: "ఆదివారం మామూలుగా ఎక్కడికి వెళ్తారో చెప్పండి." },
         replies: [
           { say: "I usually go to the temple.", good: true, skill: "every" },
           { say: "I usually went to the temple.", good: false, skill: "every" },
@@ -212,16 +212,22 @@ export const day: Lesson = {
       {
         partner: "What are you doing now?",
         te: "ఇప్పుడు ఏం చేస్తున్నారు?",
-        hint: { en: "Say: I am cooking lunch.", te: "ఇలా చెప్పండి: I am cooking lunch." },
+        hint: { en: "Say what you are cooking right now.", te: "ఇప్పుడు ఏం వండుతున్నారో చెప్పండి." },
         replies: [
           { say: "I am cooking lunch.", good: true, skill: "now" },
           { say: "I cooking lunch.", good: false, skill: "now" },
+          {
+            say: "Why do you ask so many questions?",
+            good: false,
+            skill: "now",
+            react: { en: "Sorry! I just like talking with you.", te: "Sorry అండీ! మీతో మాట్లాడటం ఇష్టం, అంతే." },
+          },
         ],
       },
       {
         partner: "What did you do yesterday?",
         te: "నిన్న ఏం చేశారు?",
-        hint: { en: "Say: I went to the market.", te: "ఇలా చెప్పండి: I went to the market." },
+        hint: { en: "Say where you went yesterday (past).", te: "నిన్న ఎక్కడికి వెళ్ళారో చెప్పండి (past)." },
         replies: [
           { say: "I went to the market.", good: true, skill: "past" },
           { say: "I go to the market.", good: false, skill: "past" },
@@ -230,7 +236,7 @@ export const day: Lesson = {
       {
         partner: "And tomorrow?",
         te: "మరి రేపు?",
-        hint: { en: "Say: I will visit my cousin.", te: "ఇలా చెప్పండి: I will visit my cousin." },
+        hint: { en: "Say who you will visit tomorrow.", te: "రేపు ఎవరింటికి వెళ్తారో చెప్పండి." },
         replies: [
           { say: "I will visit my cousin.", good: true, skill: "will" },
           { say: "I visited my cousin.", good: false, skill: "will" },

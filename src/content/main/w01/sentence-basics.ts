@@ -8,7 +8,7 @@ export const day: Lesson = {
   subtitle: "Sentence basics",
   summary: {
     en: "See how an English sentence is built: first who, then the action, then what.",
-    te: "ఇంగ్లీష్ వాక్యం ఎలా ఉంటుందో చూద్దాం: ముందు ఎవరు, తర్వాత ఏం చేస్తారు, తర్వాత ఏమిటి.",
+    te: "ఇంగ్లీష్ వాక్యం ఎలా ఉంటుందో చూద్దాం: ముందు ఎవరు, తర్వాత ఏం చేస్తారు, తర్వాత ఏంటి.",
   },
   seo: {
     title: "English Sentence Basics for Telugu Speakers: Who Does What",
@@ -23,7 +23,7 @@ export const day: Lesson = {
   core: [
     { en: "I eat rice.", te: "నేను అన్నం తింటాను.", extra: ["am"] },
     { en: "I drink tea.", te: "నేను టీ తాగుతాను.", extra: ["am"] },
-    { en: "We speak Telugu.", te: "మనం తెలుగు మాట్లాడతాం.", extra: ["are"] },
+    { en: "We speak Telugu.", te: "మేము తెలుగు మాట్లాడతాం.", extra: ["are"] },
     { en: "They play cricket.", te: "వాళ్లు క్రికెట్ ఆడతారు.", extra: ["are"] },
     { en: "I read the newspaper.", te: "నేను పేపర్ చదువుతాను.", extra: ["am"] },
     { en: "We watch the news.", te: "మేము వార్తలు చూస్తాం.", extra: ["are"] },
@@ -47,10 +47,10 @@ export const day: Lesson = {
     {
       id: "l1",
       type: "explain",
-      heading: { en: "Who + Action + What", te: "ఎవరు + ఏం చేస్తారు + ఏమిటి" },
+      heading: { en: "Who + Action + What", te: "ఎవరు + ఏం చేస్తారు + ఏంటి" },
       body: {
         en: "In Telugu, the action word (verb) comes last. In English, the action comes second. First say who, then the action, then what.",
-        te: "తెలుగులో verb చివర వస్తుంది: నేను అన్నం తింటాను. ఇంగ్లీష్‌లో verb రెండో స్థానంలో వస్తుంది: I eat rice. ముందు ఎవరు, తర్వాత ఏం చేస్తారు, చివర ఏమిటి — ఇదే వరుస.",
+        te: "తెలుగులో verb చివర వస్తుంది: నేను అన్నం తింటాను. ఇంగ్లీష్‌లో verb రెండో స్థానంలో వస్తుంది: I eat rice. ముందు ఎవరు, తర్వాత ఏం చేస్తారు, చివర ఏంటి — ఇదే వరుస.",
       },
       bridge: {
         te: ["నేను", "అన్నం", "తింటాను"],
@@ -75,7 +75,7 @@ export const day: Lesson = {
         te: "I, we, they తో verb మారదు: I eat, we eat, they eat. (He, she గురించి 3వ రోజు నేర్చుకుంటాం.)",
       },
       examples: [
-        { en: "We speak Telugu.", te: "మనం తెలుగు మాట్లాడతాం." },
+        { en: "We speak Telugu.", te: "మేము తెలుగు మాట్లాడతాం." },
         { en: "They play cricket.", te: "వాళ్లు క్రికెట్ ఆడతారు." },
         { en: "We watch the news.", te: "మేము వార్తలు చూస్తాం." },
       ],
@@ -106,18 +106,18 @@ export const day: Lesson = {
       id: "p1",
       type: "choose",
       prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
-      options: ["I rice eat.", "I eat rice.", "Eat I rice."],
+      options: ["I rice eat.", "I eat rice.", "I am eat rice."],
       answer: 1,
       why: {
         en: "Who first (I), then the action (eat), then what (rice).",
-        te: "ముందు ఎవరు (I), తర్వాత ఏం చేస్తారు (eat), తర్వాత ఏమిటి (rice).",
+        te: "ముందు ఎవరు (I), తర్వాత ఏం చేస్తారు (eat), తర్వాత ఏంటి (rice).",
       },
     },
     {
       id: "p2",
       type: "fillBlank",
       sentence: "We ___ Telugu.",
-      te: "మనం తెలుగు మాట్లాడతాం.",
+      te: "మేము తెలుగు మాట్లాడతాం.",
       options: ["speak", "speaks", "speaking"],
       answer: 0,
       why: {
@@ -129,7 +129,7 @@ export const day: Lesson = {
       id: "p3",
       type: "choose",
       prompt: { en: "Which sentence means: వాళ్లు క్రికెట్ ఆడతారు?", te: "వాళ్లు క్రికెట్ ఆడతారు — ఇంగ్లీష్‌లో ఏది సరైనది?" },
-      options: ["Cricket they play.", "They play cricket.", "They cricket play."],
+      options: ["They are play cricket.", "They play cricket.", "They cricket play."],
       answer: 1,
     },
     {
@@ -164,7 +164,7 @@ export const day: Lesson = {
         te: "పక్కింటి వాళ్లు అడుగుతున్నారు: ఇంట్లో మీరు ఏ భాష మాట్లాడతారు? ఇంగ్లీష్‌లో చెప్పండి.",
       },
       expected: ["We speak Telugu.", "I speak Telugu."],
-      options: ["We Telugu speak.", "Telugu we are speak.", "We speak Telugu."],
+      options: ["We Telugu speak.", "We speaking Telugu.", "We speak Telugu."],
       answer: 2,
     },
   ],
@@ -173,20 +173,20 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "What do you drink?", te: "మీరు ఏం తాగుతారు?" },
     scene: {
-      en: "Padma, a friend, asks about your morning. Answer with short sentences.",
-      te: "మీ స్నేహితురాలు పద్మ మీ ఉదయం గురించి అడుగుతోంది. చిన్న వాక్యాలతో జవాబు చెప్పండి.",
+      en: "Salma, a friend, asks about your morning. Answer with short sentences.",
+      te: "మీ స్నేహితురాలు సల్మా మీ ఉదయం గురించి అడుగుతున్నారు. చిన్న వాక్యాలతో జవాబు చెప్పండి.",
     },
-    partner: { en: "Padma (a friend)", te: "పద్మ (స్నేహితురాలు)" },
+    partner: { en: "Salma (a friend)", te: "సల్మా (స్నేహితురాలు)" },
     skills: [{ id: "order", label: { en: "Word order", te: "పదాల వరుస" } }],
     turns: [
       {
         partner: "What do you drink in the morning?",
         te: "ఉదయం మీరు ఏం తాగుతారు?",
-        hint: { en: "Say who, then the action, then what: I drink …", te: "ముందు ఎవరు, తర్వాత ఏం చేస్తారు, తర్వాత ఏమిటి: I drink …" },
+        hint: { en: "Say what you drink. Who first, then the action.", te: "మీరు ఏం తాగుతారో చెప్పండి. ముందు ఎవరు, తర్వాత ఏం చేస్తారు." },
         replies: [
           { say: "I drink tea.", good: true, skill: "order" },
           { say: "I tea drink.", good: false, skill: "order" },
-          { say: "I am drink tea.", good: false },
+          { say: "Why do you ask?", good: false, react: { en: "Oh, just asking! I like tea.", te: "ఊరికే అడిగానండీ! నాకు టీ అంటే ఇష్టం." } },
         ],
       },
       {
@@ -200,8 +200,8 @@ export const day: Lesson = {
         ],
       },
       {
-        partner: "What do you read?",
-        te: "మీరు ఏం చదువుతారు?",
+        partner: "Nice. And what do you read?",
+        te: "బాగుంది. మరి మీరు ఏం చదువుతారు?",
         hint: { en: "Start with I read, then say what.", te: "ముందు I read, తర్వాత ఏం చదువుతారో చెప్పండి." },
         replies: [
           { say: "I read the newspaper.", good: true, skill: "order" },

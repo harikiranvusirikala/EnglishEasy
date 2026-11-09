@@ -28,7 +28,7 @@ export const day: Lesson = {
     { en: "What do you do on Sundays?", te: "ఆదివారాలు మీరు ఏం చేస్తారు?", extra: ["does"] },
     { en: "I work from Monday to Friday.", te: "నేను సోమవారం నుండి శుక్రవారం వరకు పని చేస్తాను.", extra: ["since"] },
     { en: "We visit our relatives on weekends.", te: "వారాంతాల్లో మేము బంధువుల ఇంటికి వెళ్తాం.", extra: ["in"] },
-    { en: "Every Tuesday, she goes to the bank.", te: "ప్రతి మంగళవారం ఆమె బ్యాంక్‌కి వెళ్తుంది.", extra: ["On"] },
+    { en: "Every Tuesday, she goes to the bank.", te: "ప్రతి మంగళవారం ఆవిడ బ్యాంక్‌కి వెళ్తారు.", extra: ["On"] },
   ],
   key: [0, 1, 3, 4],
   tryToday: {
@@ -51,7 +51,7 @@ export const day: Lesson = {
       heading: { en: "On Sundays, every weekend", te: "ఆదివారాలు, ప్రతి వారాంతం" },
       body: {
         en: "Days take on: on Sunday, on Sundays (every Sunday). With every, there is no on: every Sunday, every weekend. Weekdays are Monday to Friday; the weekend is Saturday and Sunday.",
-        te: "వారాలకు on: on Sunday, on Sundays (ప్రతి ఆదివారం). every ఉంటే on ఉండదు: every Sunday, every weekend. weekdays అంటే సోమ నుండి శుక్ర; weekend అంటే శని, ఆదివారాలు.",
+        te: "రోజులకు on: on Sunday, on Sundays (ప్రతి ఆదివారం). every ఉంటే on ఉండదు: every Sunday, every weekend. weekdays అంటే సోమ నుండి శుక్ర; weekend అంటే శని, ఆదివారాలు.",
       },
       bridge: {
         te: ["ఆదివారాలు", "నేను", "గుడికి వెళ్తాను"],
@@ -81,7 +81,7 @@ export const day: Lesson = {
         {
           form: "every + day (no on)",
           useFor: { en: "With every, do not say on.", te: "every ఉంటే on అనకండి." },
-          example: { en: "Every Tuesday, she goes to the bank.", te: "ప్రతి మంగళవారం ఆమె బ్యాంక్‌కి వెళ్తుంది." },
+          example: { en: "Every Tuesday, she goes to the bank.", te: "ప్రతి మంగళవారం ఆవిడ బ్యాంక్‌కి వెళ్తారు." },
         },
         {
           form: "from … to …",
@@ -96,8 +96,8 @@ export const day: Lesson = {
       wrong: "I go to the temple in Sundays.",
       right: "I go to the temple on Sundays.",
       why: {
-        en: "Days take on, not in.",
-        te: "వారాలకు in కాదు, on.",
+        en: "Telugu needs no word before ఆదివారం, but English days take on: on Sundays.",
+        te: "తెలుగులో 'ఆదివారం' ముందు ఏ పదం అక్కర్లేదు; ఇంగ్లీష్‌లో రోజులకు on: on Sundays.",
       },
     },
     {
@@ -106,8 +106,8 @@ export const day: Lesson = {
       wrong: "I rest on every weekend.",
       right: "I rest every weekend.",
       why: {
-        en: "With every, there is no on.",
-        te: "every ఉంటే on ఉండదు.",
+        en: "Every already says when, so there is no on: I rest every weekend.",
+        te: "every ఉంటే on రాదు: I rest every weekend.",
       },
     },
   ],
@@ -119,8 +119,8 @@ export const day: Lesson = {
       options: ["The market is busy in Saturdays.", "The market is busy on Saturdays.", "The market is busy at Saturdays."],
       answer: 1,
       why: {
-        en: "Days take on.",
-        te: "వారాలకు on.",
+        en: "Days of the week take on, not in or at: busy on Saturdays.",
+        te: "వారంలోని రోజులకు on, in లేదా at కాదు: busy on Saturdays.",
       },
     },
     {
@@ -131,8 +131,8 @@ export const day: Lesson = {
       options: ["to", "on", "in"],
       answer: 0,
       why: {
-        en: "From … to …",
-        te: "from … to … (నుండి … వరకు).",
+        en: "Telugu నుండి and వరకు become from and to: from Monday to Friday.",
+        te: "నుండి = from, వరకు = to: from Monday to Friday.",
       },
     },
     {
@@ -153,8 +153,8 @@ export const day: Lesson = {
       wrongIndex: 5,
       fix: "She goes to the bank every Tuesday.",
       why: {
-        en: "With every, drop on.",
-        te: "every ఉంటే on తీసేయాలి.",
+        en: "With every, drop on: She goes to the bank every Tuesday.",
+        te: "every ఉంటే on తీసేయాలి: She goes to the bank every Tuesday.",
       },
     },
   ],
@@ -187,16 +187,16 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "What do you do on Sundays?", te: "ఆదివారాలు ఏం చేస్తారు?" },
     scene: {
-      en: "Your friend Padma asks about your week and your weekends.",
-      te: "మీ స్నేహితురాలు పద్మ మీ వారం, వారాంతాల గురించి అడుగుతోంది.",
+      en: "Your friend Mary asks about your week and your weekends.",
+      te: "మీ స్నేహితురాలు మేరీ మీ వారం, వారాంతాల గురించి అడుగుతున్నారు.",
     },
-    partner: { en: "Padma (a friend)", te: "పద్మ (స్నేహితురాలు)" },
+    partner: { en: "Mary (a friend)", te: "మేరీ (స్నేహితురాలు)" },
     skills: [{ id: "days", label: { en: "Days of the week", te: "వారంలోని రోజులు" } }],
     turns: [
       {
         partner: "What do you do on Sundays?",
         te: "ఆదివారాలు మీరు ఏం చేస్తారు?",
-        hint: { en: "Say: On Sundays I go to the temple.", te: "ఇలా చెప్పండి: On Sundays I go to the temple." },
+        hint: { en: "Tell her what you do on Sundays. Start with On Sundays.", te: "ఆదివారాలు ఏం చేస్తారో చెప్పండి. On Sundays తో మొదలుపెట్టండి." },
         replies: [
           { say: "On Sundays I go to the temple.", good: true, skill: "days" },
           { say: "In Sundays I go to the temple.", good: false, skill: "days" },
@@ -205,7 +205,7 @@ export const day: Lesson = {
       {
         partner: "And on Saturdays?",
         te: "మరి శనివారాలు?",
-        hint: { en: "Say: I visit my relatives.", te: "ఇలా చెప్పండి: I visit my relatives." },
+        hint: { en: "Tell her one thing you do on Saturdays.", te: "శనివారాలు చేసే ఒక పని చెప్పండి." },
         replies: [
           { say: "I visit my relatives.", good: true },
           { say: "I visits my relatives.", good: false },
@@ -214,19 +214,25 @@ export const day: Lesson = {
       {
         partner: "Do you work on weekdays?",
         te: "వారం రోజుల్లో పని చేస్తారా?",
-        hint: { en: "Say: Yes, from Monday to Friday.", te: "ఇలా చెప్పండి: Yes, from Monday to Friday." },
+        hint: { en: "Answer for yourself: your work days, or that you are retired.", te: "మీ గురించి చెప్పండి: పని రోజులు, లేదా రిటైర్ అయ్యారని." },
         replies: [
           { say: "Yes, from Monday to Friday.", good: true, skill: "days" },
+          { say: "No, I am retired.", good: true },
           { say: "Yes, since Monday to Friday.", good: false, skill: "days" },
         ],
       },
       {
         partner: "Let's go to the market on Saturday.",
         te: "శనివారం మార్కెట్‌కి వెళ్దాం.",
-        hint: { en: "Say: Okay, but it is busy on Saturdays.", te: "ఇలా చెప్పండి: Okay, but it is busy on Saturdays." },
+        hint: { en: "Agree, but warn her about the Saturday crowd.", te: "సరే అని, శనివారం రద్దీ గురించి చెప్పండి." },
         replies: [
           { say: "Okay, but it is busy on Saturdays.", good: true, skill: "days" },
           { say: "Okay, but it is busy in Saturdays.", good: false, skill: "days" },
+          {
+            say: "No. I don't like going with you.",
+            good: false,
+            react: { en: "Oh! Okay, I will go alone.", te: "అయ్యో! సరే, నేను ఒక్కదాన్నే వెళ్తాను." },
+          },
         ],
       },
     ],

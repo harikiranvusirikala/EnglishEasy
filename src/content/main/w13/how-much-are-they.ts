@@ -8,7 +8,7 @@ export const day: Lesson = {
   subtitle: "How much is / are …?",
   summary: {
     en: "Learn to ask prices, How much is this? How much are these apples?, and to understand That comes to 240 rupees.",
-    te: "ధరలు అడగడం నేర్చుకుందాం: How much is this? How much are these apples? That comes to 240 rupees అంటే ఏమిటో కూడా.",
+    te: "ధరలు అడగడం నేర్చుకుందాం: How much is this? How much are these apples? That comes to 240 rupees అంటే ఏంటో కూడా.",
   },
   seo: {
     title: "Asking Prices in English for Telugu Speakers",
@@ -24,9 +24,9 @@ export const day: Lesson = {
     { en: "How much are these apples?", te: "ఈ ఆపిల్స్ ఎంత?", extra: ["is"] },
     { en: "How much is this pumpkin?", te: "ఈ గుమ్మడికాయ ఎంత?", extra: ["are"] },
     { en: "They are 200 rupees a kilo.", te: "కిలో 200 రూపాయలు.", extra: ["is"] },
-    { en: "That comes to 240 rupees.", te: "మొత్తం 240 రూపాయలు అయింది.", extra: ["come"] },
+    { en: "That comes to 240 rupees.", te: "మొత్తం 240 రూపాయలు అవుతుంది.", extra: ["come"] },
     { en: "Coconuts are 30 rupees each.", te: "కొబ్బరికాయలు ఒక్కొక్కటి 30 రూపాయలు.", extra: ["rupee"] },
-    { en: "How much is it altogether?", te: "మొత్తం ఎంత అయింది?", extra: ["are"] },
+    { en: "How much is it altogether?", te: "మొత్తం ఎంత అవుతుంది?", extra: ["are"] },
     { en: "Onions are 40 rupees per kilo.", te: "ఉల్లిపాయలు కిలో 40 రూపాయలు.", extra: ["kilos"] },
   ],
   key: [0, 1, 3, 5],
@@ -63,7 +63,7 @@ export const day: Lesson = {
       examples: [
         { en: "How much are these apples?", te: "ఈ ఆపిల్స్ ఎంత?" },
         { en: "How much is this pumpkin?", te: "ఈ గుమ్మడికాయ ఎంత?" },
-        { en: "That comes to 240 rupees.", te: "మొత్తం 240 రూపాయలు అయింది." },
+        { en: "That comes to 240 rupees.", te: "మొత్తం 240 రూపాయలు అవుతుంది." },
       ],
     },
     {
@@ -84,7 +84,7 @@ export const day: Lesson = {
         {
           form: "That comes to …",
           useFor: { en: "The total you pay.", te: "మొత్తం కట్టాల్సింది." },
-          example: { en: "That comes to 240 rupees.", te: "మొత్తం 240 రూపాయలు అయింది." },
+          example: { en: "That comes to 240 rupees.", te: "మొత్తం 240 రూపాయలు అవుతుంది." },
         },
       ],
     },
@@ -94,8 +94,8 @@ export const day: Lesson = {
       wrong: "How much these apples?",
       right: "How much are these apples?",
       why: {
-        en: "Don't forget are.",
-        te: "are మర్చిపోకండి.",
+        en: "Telugu ఎంత? needs no verb, but English needs is or are: How much are these apples?",
+        te: "తెలుగులో 'ఎంత?' కి verb అక్కర్లేదు; ఇంగ్లీష్‌లో is లేదా are కావాలి: How much are these apples?",
       },
     },
     {
@@ -117,8 +117,8 @@ export const day: Lesson = {
       options: ["How much is these apples?", "How much are these apples?", "How much these apples?"],
       answer: 1,
       why: {
-        en: "Many things: are.",
-        te: "చాలా వస్తువులు: are.",
+        en: "Apples are more than one, so use are: How much are these apples?",
+        te: "ఆపిల్స్ ఒకటి కంటే ఎక్కువ, అందుకే are: How much are these apples?",
       },
     },
     {
@@ -129,8 +129,8 @@ export const day: Lesson = {
       options: ["is", "are", "do"],
       answer: 0,
       why: {
-        en: "One thing: is.",
-        te: "ఒక్క వస్తువు: is.",
+        en: "One pumpkin is one thing, so use is: How much is this pumpkin?",
+        te: "గుమ్మడికాయ ఒక్కటే, అందుకే is: How much is this pumpkin?",
       },
     },
     {
@@ -143,8 +143,8 @@ export const day: Lesson = {
       options: ["The total is 240 rupees.", "One kilo is 240 rupees.", "You get 240 rupees back."],
       answer: 0,
       why: {
-        en: "Comes to means the total.",
-        te: "comes to అంటే మొత్తం.",
+        en: "Comes to tells you the total to pay: The total is 240 rupees.",
+        te: "comes to అంటే మొత్తం కట్టాల్సింది: The total is 240 rupees.",
       },
     },
     {
@@ -154,8 +154,8 @@ export const day: Lesson = {
       wrongIndex: 1,
       fix: "Coconuts are 30 rupees each.",
       why: {
-        en: "Coconuts are many: are.",
-        te: "coconuts చాలా: are.",
+        en: "Coconuts means more than one, so use are: Coconuts are 30 rupees each.",
+        te: "coconuts అంటే ఒకటి కంటే ఎక్కువ, అందుకే are: Coconuts are 30 rupees each.",
       },
     },
   ],
@@ -192,12 +192,13 @@ export const day: Lesson = {
       te: "మీరు పండ్లు కొంటున్నారు. పండ్లు అమ్మే సురేష్ ధరలు చెప్తున్నారు.",
     },
     partner: { en: "Suresh (fruit seller)", te: "సురేష్ (పండ్లు అమ్మేవారు)" },
+    voice: "b",
     skills: [{ id: "price", label: { en: "Asking prices", te: "ధరలు అడగడం" } }],
     turns: [
       {
         partner: "Good apples today! Very sweet.",
         te: "ఈ రోజు మంచి ఆపిల్స్! చాలా తియ్యగా ఉన్నాయి.",
-        hint: { en: "Ask: How much are these apples?", te: "అడగండి: How much are these apples?" },
+        hint: { en: "Ask the price of the apples.", te: "ఆపిల్స్ ధర ఎంతో అడగండి." },
         replies: [
           { say: "How much are these apples?", good: true, skill: "price" },
           { say: "How much is these apples?", good: false, skill: "price" },
@@ -206,16 +207,21 @@ export const day: Lesson = {
       {
         partner: "They are 200 rupees a kilo.",
         te: "కిలో 200 రూపాయలు.",
-        hint: { en: "Say: Okay, give me one kilo.", te: "ఇలా చెప్పండి: Okay, give me one kilo." },
+        hint: { en: "Say okay, and how much you want.", te: "సరే అని, ఎంత కావాలో చెప్పండి." },
         replies: [
           { say: "Okay, give me one kilo.", good: true },
           { say: "Okay, give me one kilos.", good: false },
+          {
+            say: "200? Are you cheating me?",
+            good: false,
+            react: { en: "Cheating? No! That is the market price.", te: "మోసమా? లేదండీ! మార్కెట్ ధరే అది." },
+          },
         ],
       },
       {
         partner: "Anything else? Coconuts are 30 each.",
         te: "ఇంకేమైనా? కొబ్బరికాయలు ఒక్కొక్కటి 30.",
-        hint: { en: "Say: Two coconuts, please. How much altogether?", te: "ఇలా చెప్పండి: Two coconuts, please. How much altogether?" },
+        hint: { en: "Ask for two coconuts, and the total.", te: "రెండు కొబ్బరికాయలు అడిగి, మొత్తం ఎంతో అడగండి." },
         replies: [
           { say: "Two coconuts, please. How much altogether?", good: true, skill: "price" },
           { say: "Two coconut, please. How many altogether?", good: false, skill: "price" },
@@ -224,7 +230,7 @@ export const day: Lesson = {
       {
         partner: "That comes to 260 rupees.",
         te: "మొత్తం 260 రూపాయలు అయింది.",
-        hint: { en: "Say: Here you are. Thank you.", te: "ఇలా చెప్పండి: Here you are. Thank you." },
+        hint: { en: "Hand over the money, and thank him.", te: "డబ్బు ఇచ్చి, ఆయనకి థాంక్స్ చెప్పండి." },
         replies: [
           { say: "Here you are. Thank you.", good: true },
           { say: "Here are you. Thank you.", good: false },

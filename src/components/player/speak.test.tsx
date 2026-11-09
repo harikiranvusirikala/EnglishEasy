@@ -170,3 +170,33 @@ describe("Situation", () => {
     expect(screen.getByRole("button", { name: "I tea drink." })).toBeTruthy();
   });
 });
+
+describe("Repeat in steps (back-chaining)", () => {
+  const long: Extract<Activity, { type: "repeat" }> = {
+    id: "d.r2",
+    type: "repeat",
+    say: "I went to the market yesterday.",
+    te: "నేను నిన్న మార్కెట్‌కి వెళ్ళాను.",
+    steps: ["market yesterday.", "to the market yesterday.", "I went to the market yesterday."],
+  };
+
+  it("says each part, built up from the end; only the whole sentence is scored", async () => {
+    const onAnswer = vi.fn();
+    const onNext = vi.fn();
+    render(<Repeat activity={long} onAnswer={onAnswer} onNext={onNext} />);
+    expect(screen.getByText("market yesterday.")).toBeTruthy();
+    says(hear("market yesterday"));
+    await speakNow();
+    fireEvent.click(screen.getByRole("button", { name: /^Continue/ }));
+    expect(screen.getByText("to the market yesterday.")).toBeTruthy();
+    says(hear("to the market yesterday"));
+    await speakNow();
+    fireEvent.click(screen.getByRole("button", { name: /^Continue/ }));
+    expect(onAnswer).not.toHaveBeenCalled();
+    says(hear("I went to the market yesterday"));
+    await speakNow();
+    expect(onAnswer).toHaveBeenCalledWith(true);
+    fireEvent.click(screen.getByRole("button", { name: /^Continue/ }));
+    expect(onNext).toHaveBeenCalledOnce();
+  });
+});

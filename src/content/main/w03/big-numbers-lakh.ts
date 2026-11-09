@@ -104,8 +104,8 @@ export const day: Lesson = {
       wrong: "It costs two thousands rupees.",
       right: "It costs two thousand rupees.",
       why: {
-        en: "Say two thousand, not two thousands.",
-        te: "two thousands కాదు, two thousand అనాలి.",
+        en: "After a number, thousand has no s: two thousand rupees.",
+        te: "తెలుగులో 'రెండు వేలు' అన్నా, ఇంగ్లీష్‌లో thousand కి s ఉండదు: two thousand rupees.",
       },
     },
   ],
@@ -140,8 +140,8 @@ export const day: Lesson = {
       options: ["one thousand", "one million", "one crore"],
       answer: 1,
       why: {
-        en: "Ten lakh is one million.",
-        te: "పది లక్షలు = one million.",
+        en: "Ten lakh and one million both have six zeros: ten lakh is one million.",
+        te: "పది లక్షలకి, million కి ఆరు సున్నాలు: పది లక్షలు = one million.",
       },
     },
     {
@@ -185,16 +185,17 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "The price of a flat", te: "ఫ్లాట్ ధర" },
     scene: {
-      en: "You bought a new flat. Your friend Ramana asks you about it.",
-      te: "మీరు కొత్త ఫ్లాట్ కొన్నారు. మీ స్నేహితుడు రమణ దాని గురించి అడుగుతున్నాడు.",
+      en: "You bought a new flat. Your friend John lives in Dubai. He calls and asks about it.",
+      te: "మీరు కొత్త ఫ్లాట్ కొన్నారు. మీ స్నేహితులు జాన్ గారు దుబాయ్‌లో ఉంటారు. ఫోన్ చేసి దాని గురించి అడుగుతున్నారు.",
     },
-    partner: { en: "Ramana (a friend)", te: "రమణ (స్నేహితుడు)" },
+    partner: { en: "John (a friend in Dubai)", te: "జాన్ (దుబాయ్‌లో ఉండే స్నేహితులు)" },
+    voice: "b",
     skills: [{ id: "numbers", label: { en: "Big numbers", te: "పెద్ద సంఖ్యలు" } }],
     turns: [
       {
         partner: "Is your new flat ready?",
         te: "మీ కొత్త ఫ్లాట్ రెడీ అయిందా?",
-        hint: { en: "Say: Yes, it is ready.", te: "ఇలా చెప్పండి: Yes, it is ready." },
+        hint: { en: "Say yes. Don't forget is.", te: "అవునని చెప్పండి. is మర్చిపోకండి." },
         replies: [
           { say: "Yes, it is ready.", good: true },
           { say: "Yes, it ready.", good: false },
@@ -203,7 +204,7 @@ export const day: Lesson = {
       {
         partner: "How much does it cost?",
         te: "దాని ధర ఎంత?",
-        hint: { en: "Say: It costs forty lakh rupees.", te: "ఇలా చెప్పండి: It costs forty lakh rupees." },
+        hint: { en: "Say the price: 40 lakh rupees.", te: "ధర చెప్పండి: 40 లక్షల రూపాయలు." },
         replies: [
           { say: "It costs forty lakh rupees.", good: true, skill: "numbers" },
           { say: "It costs forty lakhs rupees.", good: false, skill: "numbers" },
@@ -212,20 +213,29 @@ export const day: Lesson = {
       {
         partner: "What is that in millions?",
         te: "మిలియన్లలో అది ఎంత?",
-        hint: { en: "Ten lakh is one million. Say: It is four million.", te: "పది లక్షలు ఒక మిలియన్. చెప్పండి: It is four million." },
+        hint: { en: "Ten lakh is one million. Work it out and say it.", te: "పది లక్షలు ఒక మిలియన్. లెక్క వేసి చెప్పండి." },
         replies: [
           { say: "It is four million.", good: true, skill: "numbers" },
           { say: "It is four millions.", good: false, skill: "numbers" },
-          { say: "It is forty million.", good: false, skill: "numbers" },
+          {
+            say: "It is forty million.",
+            good: false,
+            skill: "numbers",
+            react: { en: "Forty million? That is four crore!", te: "నలభై మిలియన్లా? అంటే నాలుగు కోట్లు!" },
+          },
         ],
       },
       {
         partner: "Wow! Congratulations!",
-        te: "వావ్! అభినందనలు!",
-        hint: { en: "Say: Thank you. Please come and see it.", te: "ఇలా చెప్పండి: Thank you. Please come and see it." },
+        te: "వావ్! కంగ్రాట్స్!",
+        hint: { en: "Thank him, and invite him to see it.", te: "ఆయనకి థాంక్స్ చెప్పి, ఫ్లాట్ చూడటానికి రమ్మనండి." },
         replies: [
           { say: "Thank you. Please come and see it.", good: true },
-          { say: "Thank you. Please come and see.", good: false },
+          {
+            say: "Yes, I know.",
+            good: false,
+            react: { en: "Ha ha! Okay. When can I visit?", te: "హహ! సరే. నేను ఎప్పుడు రావచ్చు?" },
+          },
         ],
       },
     ],

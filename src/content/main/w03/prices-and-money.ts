@@ -26,7 +26,7 @@ export const day: Lesson = {
     { en: "How much are these mangoes?", te: "ఈ మామిడిపళ్ళు ఎంత?", extra: ["is"] },
     { en: "It is 1,500 rupees.", te: "అది 1,500 రూపాయలు.", extra: ["rupee"] },
     { en: "Do you have change?", te: "మీ దగ్గర చిల్లర ఉందా?", extra: ["chance"] },
-    { en: "Please give me the change.", te: "దయచేసి చిల్లర ఇవ్వండి.", extra: ["a"] },
+    { en: "Please give me the change.", te: "నా చిల్లర ఇవ్వండి అండీ.", extra: ["a"] },
     { en: "That is too expensive.", te: "అది చాలా ఖరీదు.", extra: ["much"] },
   ],
   key: [0, 1, 2, 4],
@@ -104,8 +104,8 @@ export const day: Lesson = {
       wrong: "Give change.",
       right: "Please give me the change.",
       why: {
-        en: "Add please and me. It sounds polite, not rude.",
-        te: "please, me చేర్చండి. అప్పుడు మర్యాదగా ఉంటుంది.",
+        en: "Give change sounds like an order. Add please and me: Please give me the change.",
+        te: "'Give change' ఆజ్ఞలా వినిపిస్తుంది. please, me చేర్చండి: Please give me the change.",
       },
     },
   ],
@@ -162,7 +162,7 @@ export const day: Lesson = {
       type: "situation",
       situation: {
         en: "The shopkeeper asks too much for a bag. Say it is too expensive.",
-        te: "షాప్ అతను ఒక సంచికి చాలా ఎక్కువ అడుగుతున్నాడు. ఖరీదు ఎక్కువని చెప్పండి.",
+        te: "షాపు ఆయన ఒక సంచికి చాలా ఎక్కువ అడుగుతున్నారు. ఖరీదు ఎక్కువని చెప్పండి.",
       },
       expected: ["That is too expensive.", "It is too expensive."],
       options: ["That is too expensive.", "That is very much expensive.", "That too expensive."],
@@ -185,10 +185,10 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "Paying at a shop", te: "షాప్‌లో డబ్బు కట్టడం" },
     scene: {
-      en: "You are buying things at Suresh's shop. Pay, check your change and buy a bag.",
-      te: "మీరు సురేష్ షాప్‌లో సామాన్లు కొంటున్నారు. డబ్బు కట్టి, చిల్లర చూసుకుని, ఒక సంచి కొనండి.",
+      en: "You are buying things at Fatima's shop. Pay, check your change and buy a bag.",
+      te: "మీరు ఫాతిమా గారి షాపులో సామాన్లు కొంటున్నారు. డబ్బు కట్టి, చిల్లర చూసుకుని, ఒక సంచి కొనండి.",
     },
-    partner: { en: "Suresh (a shopkeeper)", te: "సురేష్ (షాప్ యజమాని)" },
+    partner: { en: "Fatima (a shopkeeper)", te: "ఫాతిమా (షాపు యజమాని)" },
     skills: [
       { id: "money", label: { en: "Money", te: "డబ్బు మాటలు" } },
       { id: "ask", label: { en: "Ask the price", te: "ధర అడగడం" } },
@@ -197,7 +197,7 @@ export const day: Lesson = {
       {
         partner: "That is three hundred rupees.",
         te: "మొత్తం మూడు వందల రూపాయలు.",
-        hint: { en: "Give 500 and say: Here is five hundred rupees.", te: "500 ఇచ్చి చెప్పండి: Here is five hundred rupees." },
+        hint: { en: "Give her a 500 note, and say how much it is.", te: "500 నోటు ఇచ్చి, ఎంత ఇస్తున్నారో చెప్పండి." },
         replies: [
           { say: "Here is five hundred rupees.", good: true, skill: "money" },
           { say: "Here five hundred rupees.", good: false, skill: "money" },
@@ -206,16 +206,22 @@ export const day: Lesson = {
       {
         partner: "Here is your change. Two hundred.",
         te: "ఇదిగోండి మీ చిల్లర. రెండు వందలు.",
-        hint: { en: "Count it and say: Yes, two hundred. Thank you.", te: "లెక్కపెట్టి చెప్పండి: Yes, two hundred. Thank you." },
+        hint: { en: "Count it, say it is right, and thank her.", te: "లెక్కపెట్టి, సరిపోయిందని చెప్పి, ఆవిడకి థాంక్స్ చెప్పండి." },
         replies: [
           { say: "Yes, two hundred. Thank you.", good: true, skill: "money" },
           { say: "Yes, two hundreds. Thank you.", good: false, skill: "money" },
+          {
+            say: "Are you cheating me?",
+            good: false,
+            skill: "money",
+            react: { en: "No, no! Please count. Two hundred.", te: "లేదండీ! లెక్కపెట్టి చూడండి. రెండు వందలు." },
+          },
         ],
       },
       {
         partner: "Do you want a bag?",
         te: "సంచి కావాలా?",
-        hint: { en: "Ask the price: How much is the bag?", te: "ధర అడగండి: How much is the bag?" },
+        hint: { en: "Ask the price of the bag first.", te: "ముందు సంచి ధర ఎంతో అడగండి." },
         replies: [
           { say: "How much is the bag?", good: true, skill: "ask" },
           { say: "How much the bag is?", good: false, skill: "ask" },
@@ -224,7 +230,7 @@ export const day: Lesson = {
       {
         partner: "It is five rupees.",
         te: "ఐదు రూపాయలు.",
-        hint: { en: "Say: Okay, one bag, please.", te: "ఇలా చెప్పండి: Okay, one bag, please." },
+        hint: { en: "Say you want one bag, politely.", te: "ఒక సంచి కావాలని మర్యాదగా చెప్పండి." },
         replies: [
           { say: "Okay, one bag, please.", good: true, skill: "money" },
           { say: "Okay, one bags, please.", good: false, skill: "money" },

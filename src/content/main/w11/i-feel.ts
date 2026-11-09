@@ -24,9 +24,9 @@ export const day: Lesson = {
     { en: "I feel tired.", te: "నాకు అలసటగా ఉంది.", extra: ["am"] },
     { en: "Are you okay?", te: "మీరు బాగానే ఉన్నారా?", extra: ["Is"] },
     { en: "I feel much better today.", te: "ఈ రోజు నాకు చాలా బాగుంది.", extra: ["more"] },
-    { en: "She feels sad.", te: "ఆమెకు బాధగా ఉంది.", extra: ["feel"] },
+    { en: "She feels sad.", te: "ఆవిడకి బాధగా ఉంది.", extra: ["feel"] },
     { en: "You look worried.", te: "మీరు దిగులుగా కనిపిస్తున్నారు.", extra: ["looking"] },
-    { en: "I'm a little nervous.", te: "నాకు కొంచెం భయంగా ఉంది.", extra: ["feel"] },
+    { en: "I'm a little nervous.", te: "నాకు కొంచెం కంగారుగా ఉంది.", extra: ["feel"] },
     { en: "I feel lonely sometimes.", te: "నాకు అప్పుడప్పుడు ఒంటరిగా అనిపిస్తుంది.", extra: ["feels"] },
   ],
   key: [0, 1, 2, 4],
@@ -79,7 +79,7 @@ export const day: Lesson = {
         {
           form: "he / she feels",
           useFor: { en: "How one other person feels.", te: "ఇంకొకరికి ఎలా అనిపిస్తోందో." },
-          example: { en: "She feels sad.", te: "ఆమెకు బాధగా ఉంది." },
+          example: { en: "She feels sad.", te: "ఆవిడకి బాధగా ఉంది." },
         },
         {
           form: "you look + word",
@@ -94,8 +94,8 @@ export const day: Lesson = {
       wrong: "I am feel tired.",
       right: "I feel tired.",
       why: {
-        en: "Say I feel, or I am. Not both.",
-        te: "I feel లేదా I am. రెండూ కలిపి కాదు.",
+        en: "Feel is already the verb, so drop am: I feel tired. Or say I am tired.",
+        te: "feel అనేదే verb, దానితో am అక్కర్లేదు: I feel tired. లేదా I am tired అనండి.",
       },
     },
     {
@@ -104,8 +104,8 @@ export const day: Lesson = {
       wrong: "I feel very better.",
       right: "I feel much better.",
       why: {
-        en: "With better, say much, not very.",
-        te: "better తో very కాదు, much అనాలి.",
+        en: "Before better, say much, not very: I feel much better.",
+        te: "better ముందు very రాదు, much వస్తుంది: I feel much better.",
       },
     },
   ],
@@ -117,31 +117,31 @@ export const day: Lesson = {
       options: ["I am feel tired.", "I feel tired.", "I feeling tired."],
       answer: 1,
       why: {
-        en: "I feel tired.",
-        te: "I feel tired అనాలి.",
+        en: "Feel is the verb here, so it needs no am: I feel tired.",
+        te: "ఇక్కడ feel అనేదే verb, am అక్కర్లేదు: I feel tired.",
       },
     },
     {
       id: "p2",
       type: "fillBlank",
       sentence: "She ___ sad today.",
-      te: "ఈ రోజు ఆమెకు బాధగా ఉంది.",
+      te: "ఈ రోజు ఆవిడకి బాధగా ఉంది.",
       options: ["feel", "feels", "feeling"],
       answer: 1,
       why: {
-        en: "She + feels.",
-        te: "she తో feels.",
+        en: "One person (he, she): add s to the verb. She feels sad today.",
+        te: "ఒక్కరి గురించి (he, she) అయితే verb కి s చేర్చాలి: She feels sad today.",
       },
     },
     {
       id: "p3",
       type: "choose",
-      prompt: { en: "Your friend looks unwell. Ask kindly.", te: "మీ స్నేహితురాలు బాగాలేనట్టు కనిపిస్తోంది. ప్రేమగా అడగండి." },
-      options: ["Are you okay?", "Is you okay?", "You okay are?"],
+      prompt: { en: "Your friend looks unwell. Ask kindly.", te: "మీ స్నేహితురాలు బాగాలేనట్టు కనిపిస్తున్నారు. ప్రేమగా అడగండి." },
+      options: ["Are you okay?", "Is you okay?", "Do you okay?"],
       answer: 0,
       why: {
-        en: "Ask: Are you okay?",
-        te: "ఇలా అడగాలి: Are you okay?",
+        en: "With you, the question starts with are: Are you okay?",
+        te: "you తో ప్రశ్న are తో మొదలవుతుంది: Are you okay?",
       },
     },
     {
@@ -151,8 +151,8 @@ export const day: Lesson = {
       wrongIndex: 2,
       fix: "I feel much better today.",
       why: {
-        en: "Much better, not very better.",
-        te: "very better కాదు, much better.",
+        en: "Very goes with good; with better, use much: I feel much better today.",
+        te: "very అనేది good తో వస్తుంది; better తో much వాడాలి: I feel much better today.",
       },
     },
   ],
@@ -173,7 +173,7 @@ export const day: Lesson = {
       type: "situation",
       situation: {
         en: "Your friend looks worried. Tell her so, kindly.",
-        te: "మీ స్నేహితురాలు దిగులుగా కనిపిస్తోంది. ప్రేమగా ఆ మాట చెప్పండి.",
+        te: "మీ స్నేహితురాలు దిగులుగా కనిపిస్తున్నారు. ప్రేమగా ఆ మాట చెప్పండి.",
       },
       expected: ["You look worried.", "You look worried. Are you okay?"],
       options: ["You look worried.", "You looking worried.", "You look worry."],
@@ -185,16 +185,16 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "You look tired", te: "మీరు అలసిపోయినట్టున్నారు" },
     scene: {
-      en: "Your friend Sita says you look tired. Tell her how you feel.",
-      te: "మీరు అలసిపోయినట్టు కనిపిస్తున్నారని మీ స్నేహితురాలు సీత అంటోంది. మీకు ఎలా ఉందో చెప్పండి.",
+      en: "Your friend Salma says you look tired. Tell her how you feel.",
+      te: "మీరు అలసిపోయినట్టు కనిపిస్తున్నారని మీ స్నేహితురాలు సల్మా అంటున్నారు. మీకు ఎలా ఉందో చెప్పండి.",
     },
-    partner: { en: "Sita (a friend)", te: "సీత (స్నేహితురాలు)" },
+    partner: { en: "Salma (a friend)", te: "సల్మా (స్నేహితురాలు)" },
     skills: [{ id: "feel", label: { en: "Feelings", te: "భావాలు" } }],
     turns: [
       {
         partner: "You look tired today.",
         te: "ఈ రోజు మీరు అలసిపోయినట్టు కనిపిస్తున్నారు.",
-        hint: { en: "Say: Yes, I feel very tired.", te: "ఇలా చెప్పండి: Yes, I feel very tired." },
+        hint: { en: "Agree, and say how you feel.", te: "అవునని ఒప్పుకుని, మీకు ఎలా ఉందో చెప్పండి." },
         replies: [
           { say: "Yes, I feel very tired.", good: true, skill: "feel" },
           { say: "Yes, I am feel very tired.", good: false, skill: "feel" },
@@ -203,7 +203,7 @@ export const day: Lesson = {
       {
         partner: "Did you sleep well?",
         te: "బాగా నిద్రపోయారా?",
-        hint: { en: "Say: No, I didn't sleep well.", te: "ఇలా చెప్పండి: No, I didn't sleep well." },
+        hint: { en: "Say no, about last night (past).", te: "లేదని చెప్పండి, నిన్న రాత్రి గురించి (past)." },
         replies: [
           { say: "No, I didn't sleep well.", good: true },
           { say: "No, I didn't slept well.", good: false },
@@ -212,16 +212,22 @@ export const day: Lesson = {
       {
         partner: "Are you worried about something?",
         te: "దేని గురించైనా దిగులుగా ఉన్నారా?",
-        hint: { en: "Say: A little. My sister is unwell.", te: "ఇలా చెప్పండి: A little. My sister is unwell." },
+        hint: { en: "Say a little, and tell her why.", te: "కొంచెం అని, ఎందుకో ఆవిడకి చెప్పండి." },
         replies: [
-          { say: "A little. My sister is unwell.", good: true, skill: "feel" },
-          { say: "A little. My sister unwell.", good: false, skill: "feel" },
+          { say: "A little. My friend is unwell.", good: true, skill: "feel" },
+          { say: "A little. My friend unwell.", good: false, skill: "feel" },
+          {
+            say: "That is not your business.",
+            good: false,
+            skill: "feel",
+            react: { en: "Sorry. I only asked because I care.", te: "Sorry అండీ. మీ మీద శ్రద్ధతోనే అడిగాను." },
+          },
         ],
       },
       {
         partner: "Oh! I hope she feels better soon.",
-        te: "అయ్యో! ఆమె త్వరగా కోలుకోవాలి.",
-        hint: { en: "Say: Thank you. You are very kind.", te: "ఇలా చెప్పండి: Thank you. You are very kind." },
+        te: "అయ్యో! ఆవిడ త్వరగా కోలుకోవాలి.",
+        hint: { en: "Thank her for her kind words.", te: "ఆవిడ మంచి మాటకి థాంక్స్ చెప్పండి." },
         replies: [
           { say: "Thank you. You are very kind.", good: true },
           { say: "Thank you. You very kind.", good: false },

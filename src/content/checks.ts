@@ -15,7 +15,30 @@ export type DayContext = { stage: number | null; mainPath: boolean };
 const TELUGU = /[ఀ-౿]/;
 const MAX_WORDS_BY_STAGE: Record<number, number> = { 1: 7, 2: 10, 3: 14 };
 const MIN_EXPANDED = 14;
-const MAX_EXPANDED = 19;
+const MAX_EXPANDED = 20; // 19, plus the Sound of the week card on a week's first lesson
+
+/** Explanations give the reason, not a restated answer (CURRICULUM §1 "why formula"; content review 2026-11-09). */
+export const MIN_WHY_WORDS = 6;
+
+/** The cast (CURRICULUM §1): a man's lines are recorded in voice "b", a woman's in voice "a". */
+export const MEN = ["Ramana", "Venkat", "Prasad", "Ravi", "Mohan", "Srinivas", "Suresh", "Narayana", "Imran", "Rahim", "John", "David", "Raju", "Krishna", "Gopal", "Ramesh", "Satish", "Joseph", "Kumar"];
+export const WOMEN = ["Lakshmi", "Kamala", "Usha", "Padma", "Sita", "Anitha", "Rani", "Jyothi", "Swapna", "Salma", "Fatima", "Mary", "Grace", "Sarala", "Radha", "Geetha", "Kavitha", "Ayesha", "Ruth"];
+/** The names a learner may give as their own: they suit anyone (CURRICULUM §1). */
+export const LEARNER_NAMES = ["Kiran", "Sai"];
+
+/** Bookish or wrong Telugu the style guide replaces (CURRICULUM §1 "Telugu register"). */
+export const TELUGU_AVOID: { text: string; use: string }[] = [
+  { text: "ఏమిటి", use: "ఏంటి" },
+  { text: "పని పదం", use: "verb" },
+  { text: "కాదు అని చెప్పండి", use: "లేదు అని చెప్పండి (కాదు is only for who or what something is)" },
+  { text: "కాదని చెప్పండి", use: "లేదని చెప్పండి" },
+];
+
+/** Characters a voice would read out or stumble on, in anything read aloud (CURRICULUM §1 "audio"). */
+const AUDIO_SYMBOLS = /[()/…₹]|\.\.\./;
+
+const nameIn = (text: string, names: string[]) => names.find((n) => new RegExp(`\\b${n}\\b`).test(text));
+const plainWords = (s: string) => s.toLowerCase().replace(/[^a-z' ]+/g, " ").replace(/\s+/g, " ").trim();
 
 /** Phrases that assume the learner has a family; only optional tracks may use them (CURRICULUM §1). */
 export const FAMILY_ASSUMPTIONS = [
@@ -107,12 +130,33 @@ function sentencesOf(a: Activity): string[] {
     case "situation":
       return a.expected;
     case "roleplay":
-      return a.turns.flatMap((t) => [t.partner, ...t.replies.map((r) => r.say)]);
+      return a.turns.flatMap((t) => [t.partner, ...t.replies.flatMap((r) => [r.say, ...(r.react ? [r.react.en] : [])])]);
     case "findMistake":
       return [a.fix];
     default:
       return [];
   }
+}
+
+/** Lines a voice reads in a role play, dialogue or situation (partner lines, replies, reactions). */
+function spokenOf(a: Activity): string[] {
+  switch (a.type) {
+    case "roleplay":
+      return a.turns.flatMap((t) => [t.partner, ...t.replies.flatMap((r) => [r.say, ...(r.react ? [r.react.en] : [])])]);
+    case "dialogue":
+      return a.lines.map((l) => l.en);
+    case "situation":
+      return [...a.options, ...a.expected];
+    default:
+      return [];
+  }
+}
+
+/** What the learner says as themselves: good role-play replies and a situation's answers. */
+function learnerSays(a: Activity): string[] {
+  if (a.type === "roleplay") return a.turns.flatMap((t) => t.replies.filter((r) => r.good).map((r) => r.say));
+  if (a.type === "situation") return a.expected;
+  return [];
 }
 
 function activityProblems(a: Activity, where: string, stage: number | null): string[] {
@@ -146,12 +190,30 @@ function activityProblems(a: Activity, where: string, stage: number | null): str
     }
     case "dialogue":
       a.questions.forEach((q, i) => out.push(...optionProblems(`${where} question ${i + 1}`, q.options, q.answer)));
-      break;
-    case "roleplay":
-      a.turns.forEach((t, i) => {
-        if (!t.replies.some((r) => r.good)) out.push(`roleplay-good-reply: ${where} turn ${i + 1} has no good reply`);
+      a.lines.forEach((l) => {
+        if (nameIn(l.speaker.en, MEN) && l.voice !== "b") out.push(`voice: ${where} ${l.speaker.en} is a man; his lines need voice "b"`);
+        if (nameIn(l.speaker.en, WOMEN) && l.voice !== "a") out.push(`voice: ${where} ${l.speaker.en} is a woman; her lines need voice "a"`);
       });
       break;
+    case "roleplay": {
+      const man = nameIn(a.partner.en, MEN);
+      if (man && a.voice !== "b") out.push(`voice: ${where} the partner ${man} is a man; set voice: "b"`);
+      if (nameIn(a.partner.en, WOMEN) && a.voice === "b") out.push(`voice: ${where} the partner is a woman; remove voice: "b"`);
+      if (!a.turns.some((t) => t.replies.some((r) => r.react))) {
+        out.push(`roleplay-react: ${where} no not-good reply has a reaction (give at least one, ideally to a manners slip)`);
+      }
+      a.turns.forEach((t, i) => {
+        if (!t.replies.some((r) => r.good)) out.push(`roleplay-good-reply: ${where} turn ${i + 1} has no good reply`);
+        const hint = plainWords(t.hint.en);
+        for (const r of t.replies) {
+          if (r.good && plainWords(r.say).split(" ").length >= 3 && hint.includes(plainWords(r.say))) {
+            out.push(`roleplay-hint: ${where} turn ${i + 1} hint gives the reply "${r.say}" (say what to do, not the sentence)`);
+          }
+          if (r.react && r.good) out.push(`roleplay-react: ${where} turn ${i + 1} a good reply has a reaction (only not-good replies do)`);
+        }
+      });
+      break;
+    }
     case "match": {
       const en = a.pairs.map((p) => norm(p.en));
       const te = a.pairs.map((p) => norm(p.te));
@@ -173,6 +235,20 @@ function activityProblems(a: Activity, where: string, stage: number | null): str
     }
     default:
       break;
+  }
+
+  const why = "why" in a ? a.why : undefined;
+  if (why && wordCount(why.en) < MIN_WHY_WORDS) {
+    out.push(`why-length: ${where} why "${why.en}" is under ${MIN_WHY_WORDS} words (give the reason: rule + Telugu link + the right sentence)`);
+  }
+  for (const text of spokenOf(a)) {
+    if (AUDIO_SYMBOLS.test(text)) out.push(`audio-symbols: ${where} "${text}" has a symbol a voice would read out or trip on (( ) / … ₹)`);
+  }
+  for (const text of learnerSays(a)) {
+    const named = /\b(?:[Mm]y name is|I am|I'm) ([A-Z][a-z]+)/.exec(text)?.[1];
+    if (named && [...MEN, ...WOMEN].includes(named)) {
+      out.push(`learner-name: ${where} the learner says "${text}"; a learner's own name is one that suits anyone (${LEARNER_NAMES.join(", ")})`);
+    }
   }
 
   const limit = stage === null ? undefined : MAX_WORDS_BY_STAGE[stage];
@@ -203,6 +279,12 @@ function lessonProblems(lesson: Lesson, stage: number | null): string[] {
       if (wordCount(c.en) > limit) out.push(`sentence-length: core sentence "${c.en}" has ${wordCount(c.en)} words (stage ${stage} limit is ${limit})`);
     }
   }
+  for (const c of lesson.core) {
+    const named = /\b(?:[Mm]y name is|I am|I'm) ([A-Z][a-z]+)/.exec(c.en)?.[1];
+    if (named && [...MEN, ...WOMEN].includes(named)) {
+      out.push(`learner-name: core sentence "${c.en}" gives the learner a cast name; a learner's own name is one that suits anyone (${LEARNER_NAMES.join(", ")})`);
+    }
+  }
   const core = lesson.core.map((c) => norm(c.en));
   if (new Set(core).size !== core.length) out.push("core-duplicate: the lesson repeats a core sentence");
   return out;
@@ -228,6 +310,13 @@ export function checkDay(day: Day, playable: PlayableDay, ctx: DayContext): stri
   }
 
   if (day.kind === "lesson") out.push(...lessonProblems(day, ctx.stage));
+
+  for (const text of allText(day)) {
+    if (text.includes("\uFFFD")) out.push(`broken-text: "${text}" has a broken character (U+FFFD); retype the word`);
+    for (const avoid of TELUGU_AVOID) {
+      if (text.includes(avoid.text)) out.push(`telugu-register: "${avoid.text}" in "${text}" (use ${avoid.use})`);
+    }
+  }
 
   // Telugu text that is not inside a Bi must contain Telugu script too.
   const teluguFields: string[] = [];

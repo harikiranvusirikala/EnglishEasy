@@ -23,11 +23,11 @@ export const day: Lesson = {
   core: [
     { en: "I went to Tirupati last month.", te: "నేను పోయిన నెల తిరుపతి వెళ్ళాను.", extra: ["before"] },
     { en: "It started two days ago.", te: "అది రెండు రోజుల క్రితం మొదలైంది.", extra: ["before"] },
-    { en: "I saw him last week.", te: "నేను అతన్ని పోయిన వారం చూశాను.", extra: ["ago"] },
-    { en: "We moved here five years ago.", te: "మేము ఐదేళ్ల క్రితం ఇక్కడికి వచ్చాం.", extra: ["before"] },
+    { en: "I saw him last week.", te: "నేను ఆయన్ని పోయిన వారం చూశాను.", extra: ["ago"] },
+    { en: "We moved here five years ago.", te: "మేము ఐదేళ్ళ క్రితం ఇక్కడికి మారాం.", extra: ["before"] },
     { en: "When did the pain start?", te: "నొప్పి ఎప్పుడు మొదలైంది?", extra: ["started"] },
     { en: "I had a fever last night.", te: "నిన్న రాత్రి నాకు జ్వరం వచ్చింది.", extra: ["yesterday"] },
-    { en: "I met her an hour ago.", te: "నేను గంట క్రితం ఆమెను కలిశాను.", extra: ["before"] },
+    { en: "I met her an hour ago.", te: "నేను గంట క్రితం ఆవిడని కలిశాను.", extra: ["before"] },
   ],
   key: [0, 1, 2, 4],
   tryToday: {
@@ -62,7 +62,7 @@ export const day: Lesson = {
       },
       examples: [
         { en: "It started two days ago.", te: "అది రెండు రోజుల క్రితం మొదలైంది." },
-        { en: "I saw him last week.", te: "నేను అతన్ని పోయిన వారం చూశాను." },
+        { en: "I saw him last week.", te: "నేను ఆయన్ని పోయిన వారం చూశాను." },
         { en: "I had a fever last night.", te: "నిన్న రాత్రి నాకు జ్వరం వచ్చింది." },
       ],
     },
@@ -79,7 +79,7 @@ export const day: Lesson = {
         {
           form: "time + ago",
           useFor: { en: "How long before now.", te: "ఇప్పటికి ఎంత ముందు." },
-          example: { en: "We moved here five years ago.", te: "మేము ఐదేళ్ల క్రితం ఇక్కడికి వచ్చాం." },
+          example: { en: "We moved here five years ago.", te: "మేము ఐదేళ్ళ క్రితం ఇక్కడికి మారాం." },
         },
         {
           form: "last night",
@@ -94,8 +94,8 @@ export const day: Lesson = {
       wrong: "It started before two days.",
       right: "It started two days ago.",
       why: {
-        en: "Say the time, then ago: two days ago.",
-        te: "ముందు సమయం, తర్వాత ago: two days ago.",
+        en: "Like క్రితం in Telugu, ago comes after the time, never before: It started two days ago.",
+        te: "క్రితం లాగే ago కూడా సమయం తర్వాత వస్తుంది; before వాడకూడదు: It started two days ago.",
       },
     },
     {
@@ -104,8 +104,8 @@ export const day: Lesson = {
       wrong: "I had a fever yesterday night.",
       right: "I had a fever last night.",
       why: {
-        en: "In English, say last night.",
-        te: "ఇంగ్లీష్‌లో last night అనాలి.",
+        en: "Yesterday night comes from నిన్న రాత్రి; English says last night: I had a fever last night.",
+        te: "నిన్న రాత్రి ని yesterday night అనకూడదు; English లో last night: I had a fever last night.",
       },
     },
   ],
@@ -117,20 +117,20 @@ export const day: Lesson = {
       options: ["It started before two days.", "It started two days ago.", "It started ago two days."],
       answer: 1,
       why: {
-        en: "Two days ago.",
-        te: "two days ago అనాలి.",
+        en: "Ago comes after the time, just like క్రితం: It started two days ago.",
+        te: "క్రితం లాగే ago సమయం తర్వాత వస్తుంది: It started two days ago.",
       },
     },
     {
       id: "p2",
       type: "fillBlank",
       sentence: "I saw him ___ week.",
-      te: "నేను అతన్ని పోయిన వారం చూశాను.",
+      te: "నేను ఆయన్ని పోయిన వారం చూశాను.",
       options: ["last", "ago", "before"],
       answer: 0,
       why: {
-        en: "Last week.",
-        te: "last week అనాలి.",
+        en: "For the week before this one, say last week: I saw him last week.",
+        te: "ఈ వారానికి ముందు వారం అంటే last week: I saw him last week.",
       },
     },
     {
@@ -140,8 +140,8 @@ export const day: Lesson = {
       options: ["I had a fever yesterday night.", "I had a fever last night.", "I had a fever night last."],
       answer: 1,
       why: {
-        en: "Last night.",
-        te: "last night అనాలి.",
+        en: "For the night before today, English says last night: I had a fever last night.",
+        te: "నిన్న రాత్రికి English లో last night అనాలి: I had a fever last night.",
       },
     },
     {
@@ -151,8 +151,8 @@ export const day: Lesson = {
       wrongIndex: 3,
       fix: "We moved here five years ago.",
       why: {
-        en: "Five years ago, not before five years.",
-        te: "before five years కాదు, five years ago.",
+        en: "Ago comes after the time, like క్రితం, so not before: We moved here five years ago.",
+        te: "క్రితం లాగే ago సమయం తర్వాత వస్తుంది, before రాదు: We moved here five years ago.",
       },
     },
   ],
@@ -193,17 +193,22 @@ export const day: Lesson = {
     turns: [
       {
         partner: "What is the problem?",
-        te: "ఏమిటి సమస్య?",
-        hint: { en: "Say: I have a pain in my leg.", te: "ఇలా చెప్పండి: I have a pain in my leg." },
+        te: "సమస్య ఏంటి?",
+        hint: { en: "Tell her where it hurts.", te: "ఎక్కడ నొప్పిగా ఉందో చెప్పండి." },
         replies: [
           { say: "I have a pain in my leg.", good: true },
           { say: "I am having pain in my leg.", good: false },
+          {
+            say: "You're the doctor. You tell me.",
+            good: false,
+            react: { en: "Yes, but first, please tell me where.", te: "సరే, కానీ ముందు ఎక్కడ నొప్పిగా ఉందో చెప్పండి." },
+          },
         ],
       },
       {
         partner: "When did it start?",
         te: "అది ఎప్పుడు మొదలైంది?",
-        hint: { en: "Say: It started two days ago.", te: "ఇలా చెప్పండి: It started two days ago." },
+        hint: { en: "Tell her when the pain began.", te: "నొప్పి ఎప్పుడు మొదలైందో చెప్పండి." },
         replies: [
           { say: "It started two days ago.", good: true, skill: "when" },
           { say: "It started before two days.", good: false, skill: "when" },
@@ -212,7 +217,7 @@ export const day: Lesson = {
       {
         partner: "Did you fall?",
         te: "మీరు కింద పడ్డారా?",
-        hint: { en: "Say: No. I walked a lot last week.", te: "ఇలా చెప్పండి: No. I walked a lot last week." },
+        hint: { en: "Say no, and that you walked a lot the week before.", te: "లేదు అని, పోయిన వారం చాలా నడిచారని చెప్పండి." },
         replies: [
           { say: "No. I walked a lot last week.", good: true, skill: "when" },
           { say: "No. I walked a lot before week.", good: false, skill: "when" },
@@ -221,7 +226,7 @@ export const day: Lesson = {
       {
         partner: "Did you take any tablets?",
         te: "ఏమైనా మాత్రలు వేసుకున్నారా?",
-        hint: { en: "Say: Yes, I took one last night.", te: "ఇలా చెప్పండి: Yes, I took one last night." },
+        hint: { en: "Say yes, and when you took it.", te: "అవును అని, ఎప్పుడు వేసుకున్నారో చెప్పండి." },
         replies: [
           { say: "Yes, I took one last night.", good: true, skill: "when" },
           { say: "Yes, I took one yesterday night.", good: false, skill: "when" },

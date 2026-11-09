@@ -99,18 +99,18 @@ export const day: Lesson = {
       wrong: "This mangoes are sweet.",
       right: "These mangoes are sweet.",
       why: {
-        en: "Mangoes are many, so say these.",
-        te: "మామిడిపళ్ళు చాలా ఉన్నాయి, కాబట్టి these.",
+        en: "Mangoes are many, so say these, not this.",
+        te: "మామిడిపళ్ళు చాలా ఉన్నాయి, కాబట్టి this కాదు, these.",
       },
     },
     {
       id: "l4",
       type: "dontSay",
-      wrong: "Those is my shoes.",
+      wrong: "That is my shoes.",
       right: "Those are my shoes.",
       why: {
-        en: "Those and these take are.",
-        te: "those, these తో are వాడాలి.",
+        en: "Shoes are two, so say those are, not that is: Those are my shoes.",
+        te: "షూస్ రెండు, కాబట్టి that is కాదు, those are: Those are my shoes.",
       },
     },
   ],
@@ -122,8 +122,8 @@ export const day: Lesson = {
       options: ["These are my shoes.", "Those are my shoes.", "That are my shoes."],
       answer: 1,
       why: {
-        en: "Many things far away: those.",
-        te: "దూరంగా ఉన్న చాలా వస్తువులు: those.",
+        en: "Many things far away take those. These is for things near you.",
+        te: "దూరంగా ఉన్న చాలా వస్తువులకి those. దగ్గర ఉంటే these.",
       },
     },
     {
@@ -134,8 +134,8 @@ export const day: Lesson = {
       options: ["This", "These", "That"],
       answer: 1,
       why: {
-        en: "Many things near you: these.",
-        te: "దగ్గర ఉన్న చాలా వస్తువులు: these.",
+        en: "Many mangoes near you, so say these, with are.",
+        te: "దగ్గర ఉన్న చాలా మామిడిపళ్ళు, కాబట్టి these, are తో.",
       },
     },
     {
@@ -145,11 +145,11 @@ export const day: Lesson = {
         en: "You are holding one umbrella. Ask if it is your friend's.",
         te: "మీ చేతిలో ఒక గొడుగు ఉంది. అది మీ స్నేహితుడిదా అని అడగండి.",
       },
-      options: ["Is this your umbrella?", "Are these your umbrella?", "Is those your umbrella?"],
+      options: ["Is this your umbrella?", "Are these your umbrella?", "Is that your umbrella?"],
       answer: 0,
       why: {
-        en: "One thing in your hand: this.",
-        te: "చేతిలో ఉన్న ఒక వస్తువు: this.",
+        en: "One thing in your hand is near, so say this.",
+        te: "చేతిలో ఉన్న ఒక్క వస్తువు దగ్గర ఉంది, కాబట్టి this.",
       },
     },
     {
@@ -159,8 +159,8 @@ export const day: Lesson = {
       wrongIndex: 2,
       fix: "I want these two sarees.",
       why: {
-        en: "Two sarees are many: these.",
-        te: "రెండు చీరలు అంటే చాలా: these.",
+        en: "Telugu ఈ is the same for one or many. English says these for many: these two sarees.",
+        te: "తెలుగులో 'ఈ' ఒకటికీ, చాలాకీ ఒకటే. ఇంగ్లీష్‌లో చాలా అయితే these: these two sarees.",
       },
     },
   ],
@@ -184,7 +184,7 @@ export const day: Lesson = {
         te: "తలుపు దగ్గర, మీకు దూరంగా కొన్ని చెప్పులు ఉన్నాయి. అవి మీ స్నేహితురాలివా అని అడగండి.",
       },
       expected: ["Are those your sandals?"],
-      options: ["Is those your sandals?", "Are those your sandals?", "Are that your sandals?"],
+      options: ["Are these your sandals?", "Are those your sandals?", "Those are your sandals?"],
       answer: 1,
     },
   ],
@@ -194,15 +194,16 @@ export const day: Lesson = {
     title: { en: "Pointing at a shop", te: "షాప్‌లో చూపించి అడగడం" },
     scene: {
       en: "You are at Srinivas's shop. Point to things near you and far away, and buy one.",
-      te: "మీరు శ్రీనివాస్ షాప్‌లో ఉన్నారు. దగ్గర, దూరంగా ఉన్న వస్తువులు చూపించి, ఒకటి కొనండి.",
+      te: "మీరు శ్రీనివాస్ గారి షాపులో ఉన్నారు. దగ్గర, దూరంగా ఉన్న వస్తువులు చూపించి, ఒకటి కొనండి.",
     },
-    partner: { en: "Srinivas (a shopkeeper)", te: "శ్రీనివాస్ (షాప్ యజమాని)" },
+    partner: { en: "Srinivas (a shopkeeper)", te: "శ్రీనివాస్ (షాపు యజమాని)" },
+    voice: "b",
     skills: [{ id: "point", label: { en: "this / that / these / those", te: "ఇది, అది, ఇవి, అవి" } }],
     turns: [
       {
         partner: "Welcome! What do you need?",
         te: "రండి! మీకు ఏం కావాలి?",
-        hint: { en: "Point to one near you: How much is this umbrella?", te: "దగ్గర ఉన్నది చూపించండి: How much is this umbrella?" },
+        hint: { en: "Point to the umbrella near you and ask its price.", te: "దగ్గర ఉన్న గొడుగు చూపించి, ధర అడగండి." },
         replies: [
           { say: "How much is this umbrella?", good: true, skill: "point" },
           { say: "How much is these umbrella?", good: false, skill: "point" },
@@ -211,7 +212,7 @@ export const day: Lesson = {
       {
         partner: "Two hundred rupees.",
         te: "రెండు వందల రూపాయలు.",
-        hint: { en: "Point far away: How much are those sandals?", te: "దూరంగా ఉన్నవి చూపించండి: How much are those sandals?" },
+        hint: { en: "Now ask the price of the sandals far away.", te: "ఇప్పుడు దూరంగా ఉన్న చెప్పుల ధర అడగండి." },
         replies: [
           { say: "How much are those sandals?", good: true, skill: "point" },
           { say: "How much is that sandals?", good: false, skill: "point" },
@@ -220,7 +221,7 @@ export const day: Lesson = {
       {
         partner: "Those are three hundred rupees.",
         te: "అవి మూడు వందల రూపాయలు.",
-        hint: { en: "Say: I will take this umbrella.", te: "ఇలా చెప్పండి: I will take this umbrella." },
+        hint: { en: "Say you will buy the umbrella near you.", te: "దగ్గర ఉన్న గొడుగు తీసుకుంటానని చెప్పండి." },
         replies: [
           { say: "I will take this umbrella.", good: true, skill: "point" },
           { say: "I will take these umbrella.", good: false, skill: "point" },
@@ -229,10 +230,14 @@ export const day: Lesson = {
       {
         partner: "Anything else?",
         te: "ఇంకా ఏమైనా కావాలా?",
-        hint: { en: "Say: No, that is all. Thank you.", te: "ఇలా చెప్పండి: No, that is all. Thank you." },
+        hint: { en: "Say you need nothing more, and thank him.", te: "ఇంకేమీ వద్దని చెప్పి, ఆయనకి థాంక్స్ చెప్పండి." },
         replies: [
           { say: "No, that is all. Thank you.", good: true, skill: "point" },
-          { say: "No, those is all. Thank you.", good: false, skill: "point" },
+          {
+            say: "No. Give the umbrella fast.",
+            good: false,
+            react: { en: "Sure, sure! Here it is.", te: "సరే, సరే! ఇదిగోండి." },
+          },
         ],
       },
     ],

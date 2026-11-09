@@ -50,7 +50,7 @@ export const day: Lesson = {
       heading: { en: "Offers and promises", te: "సహాయం, మాట" },
       body: {
         en: "To offer help or make a promise, say I'll (I will), then the action: I'll carry that. To promise not to do something, say I won't (will not): I won't be late.",
-        te: "సహాయం చేస్తానని చెప్పడానికి, మాట ఇవ్వడానికి I'll (I will), తర్వాత పని పదం: I'll carry that. ఏదైనా చేయనని మాట ఇవ్వడానికి I won't (will not): I won't be late.",
+        te: "సహాయం చేస్తానని చెప్పడానికి, మాట ఇవ్వడానికి I'll (I will), తర్వాత verb: I'll carry that. ఏదైనా చేయనని మాట ఇవ్వడానికి I won't (will not): I won't be late.",
       },
       bridge: {
         te: ["నేను", "అది", "మోస్తాను"],
@@ -94,8 +94,8 @@ export const day: Lesson = {
       wrong: "I'll carrying that.",
       right: "I'll carry that.",
       why: {
-        en: "After will, the plain action word.",
-        te: "will తర్వాత మామూలు పని పదం.",
+        en: "After will, the verb stays plain, with no -ing: I'll carry that.",
+        te: "will తర్వాత verb మామూలుగానే ఉంటుంది, -ing రాదు: I'll carry that.",
       },
     },
     {
@@ -104,8 +104,8 @@ export const day: Lesson = {
       wrong: "I will not late.",
       right: "I won't be late.",
       why: {
-        en: "Late needs be: won't be late.",
-        te: "late ముందు be ఉండాలి: won't be late.",
+        en: "Late is not a verb, so it needs be: I won't be late.",
+        te: "తెలుగులో ఆలస్యం చేయను అంటాం, కానీ late verb కాదు, ముందు be కావాలి: I won't be late.",
       },
     },
   ],
@@ -114,11 +114,11 @@ export const day: Lesson = {
       id: "p1",
       type: "choose",
       prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
-      options: ["I'll carrying that.", "I'll carry that.", "I'll to carry that."],
+      options: ["I carry that.", "I'll carry that.", "I'll to carry that."],
       answer: 1,
       why: {
-        en: "I'll + carry.",
-        te: "I'll తర్వాత carry.",
+        en: "An offer is I'll plus the plain verb, with no to: I'll carry that.",
+        te: "సహాయం చేస్తానంటే I'll, తర్వాత నేరుగా verb, to రాదు: I'll carry that.",
       },
     },
     {
@@ -129,19 +129,19 @@ export const day: Lesson = {
       options: ["won't", "don't", "not"],
       answer: 0,
       why: {
-        en: "A promise for later: won't.",
-        te: "రాబోయే దానికి మాట: won't.",
+        en: "To promise not to do something, say won't: I promise I won't be late.",
+        te: "ఏదైనా చేయనని మాట ఇవ్వడానికి won't: I promise I won't be late.",
       },
     },
     {
       id: "p3",
       type: "choose",
       prompt: { en: "Your neighbour has heavy bags. Offer help.", te: "పొరుగువారి దగ్గర బరువైన సంచులు ఉన్నాయి. సహాయం చేస్తానని చెప్పండి." },
-      options: ["I'll help you.", "I helped you tomorrow.", "I'm help you."],
+      options: ["I'll help you.", "I'll help to you.", "I'm help you."],
       answer: 0,
       why: {
-        en: "Offer with I'll.",
-        te: "I'll తో సహాయం చెప్పాలి.",
+        en: "Offer help with I'll and the plain verb: I'll help you.",
+        te: "తెలుగులో మీకు అన్నా English లో to రాదు; I'll తో చెప్పండి: I'll help you.",
       },
     },
     {
@@ -151,8 +151,8 @@ export const day: Lesson = {
       wrongIndex: 1,
       fix: "I'll bring it tomorrow.",
       why: {
-        en: "After will, bring (no s).",
-        te: "will తర్వాత bring (s లేకుండా).",
+        en: "After will, the verb never takes s: I'll bring it tomorrow.",
+        te: "will తర్వాత verb కి s రాదు: I'll bring it tomorrow.",
       },
     },
   ],
@@ -162,10 +162,10 @@ export const day: Lesson = {
       type: "situation",
       situation: {
         en: "Your friend left her umbrella at your house. Promise to bring it tomorrow.",
-        te: "మీ స్నేహితురాలు గొడుగు మీ ఇంట్లో మర్చిపోయింది. రేపు తెస్తానని మాట ఇవ్వండి.",
+        te: "మీ స్నేహితురాలు గొడుగు మీ ఇంట్లో మర్చిపోయారు. రేపు తెస్తానని మాట ఇవ్వండి.",
       },
       expected: ["I'll bring it tomorrow.", "I will bring it tomorrow."],
-      options: ["I'll bring it tomorrow.", "I'll bringing it tomorrow.", "I brought it tomorrow."],
+      options: ["I'll bring it tomorrow.", "I bring it tomorrow.", "I'll bring tomorrow."],
       answer: 0,
     },
     {
@@ -176,7 +176,7 @@ export const day: Lesson = {
         te: "ఈ రాత్రి ఫోన్ చేస్తానని మీ స్నేహితులకు మాట ఇవ్వండి.",
       },
       expected: ["I will call you tonight.", "I'll call you tonight."],
-      options: ["I will call you tonight.", "I will calling you tonight.", "I calling you tonight."],
+      options: ["I will call you tonight.", "I call you tonight.", "I will call you today night."],
       answer: 0,
     },
   ],
@@ -185,43 +185,49 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "Heavy bags", te: "బరువైన సంచులు" },
     scene: {
-      en: "Your neighbour Kamala is coming home with heavy bags. Offer to help.",
-      te: "పొరుగింటి కమల బరువైన సంచులతో ఇంటికి వస్తోంది. సహాయం చేస్తానని చెప్పండి.",
+      en: "Your neighbour Joseph is coming home with heavy bags. Offer to help.",
+      te: "పొరుగింటి జోసెఫ్ గారు బరువైన సంచులతో ఇంటికి వస్తున్నారు. సహాయం చేస్తానని చెప్పండి.",
     },
-    partner: { en: "Kamala (a neighbour)", te: "కమల (పొరుగింటావిడ)" },
+    partner: { en: "Joseph (a neighbour)", te: "జోసెఫ్ (పొరుగింటాయన)" },
+    voice: "b",
     skills: [{ id: "will", label: { en: "I'll / I won't", te: "I'll / I won't వాడకం" } }],
     turns: [
       {
         partner: "Oh, these bags are so heavy!",
         te: "అయ్యో, ఈ సంచులు చాలా బరువుగా ఉన్నాయి!",
-        hint: { en: "Offer: Don't worry. I'll carry them.", te: "సహాయం చెప్పండి: Don't worry. I'll carry them." },
+        hint: { en: "Tell him not to worry, and offer to carry them.", te: "కంగారు పడొద్దని చెప్పి, మీరు మోస్తానని చెప్పండి." },
         replies: [
           { say: "Don't worry. I'll carry them.", good: true, skill: "will" },
-          { say: "Don't worry. I'll carrying them.", good: false, skill: "will" },
+          { say: "Don't worry. I carry them.", good: false, skill: "will" },
+          {
+            say: "Why did you buy so much?",
+            good: false,
+            react: { en: "Ha! It's all for the festival.", te: "హహ! అంతా పండుగ కోసమే అండీ." },
+          },
         ],
       },
       {
         partner: "Thank you! That's very kind.",
         te: "థాంక్యూ! మీరు చాలా మంచివారు.",
-        hint: { en: "Say: No problem. I'll open the gate.", te: "ఇలా చెప్పండి: No problem. I'll open the gate." },
+        hint: { en: "Say it's nothing, and offer to open the gate.", te: "పర్వాలేదు అని, గేట్ తెరుస్తానని చెప్పండి." },
         replies: [
           { say: "No problem. I'll open the gate.", good: true, skill: "will" },
-          { say: "No problem. I'll opening the gate.", good: false, skill: "will" },
+          { say: "No problem. I'll gate open.", good: false, skill: "will" },
         ],
       },
       {
         partner: "Can you help me tomorrow too?",
         te: "రేపు కూడా సహాయం చేస్తారా?",
-        hint: { en: "Promise: Yes, I will come at ten.", te: "మాట ఇవ్వండి: Yes, I will come at ten." },
+        hint: { en: "Say yes, and promise a time.", te: "సరే అని, ఏ టైమ్‌కి వస్తారో మాట ఇవ్వండి." },
         replies: [
           { say: "Yes, I will come at ten.", good: true, skill: "will" },
-          { say: "Yes, I will coming at ten.", good: false, skill: "will" },
+          { say: "Yes, I'll come ten o'clock.", good: false, skill: "will" },
         ],
       },
       {
         partner: "Please don't be late!",
         te: "ఆలస్యం చేయకండి!",
-        hint: { en: "Promise: I won't be late.", te: "మాట ఇవ్వండి: I won't be late." },
+        hint: { en: "Promise you will be on time.", te: "టైమ్‌కి వస్తానని మాట ఇవ్వండి." },
         replies: [
           { say: "I won't be late.", good: true, skill: "will" },
           { say: "I won't late.", good: false, skill: "will" },

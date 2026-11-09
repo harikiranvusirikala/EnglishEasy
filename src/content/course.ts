@@ -26,7 +26,7 @@ const week1Days: DayRef[] = [
 
 // Week 2 (CURRICULUM §3): the question words, a Conversation Day and the review.
 const week2Days: DayRef[] = [
-  { id: "what-and-where", kind: "lesson", title: { en: "What & Where", te: "ఏమిటి, ఎక్కడ" } },
+  { id: "what-and-where", kind: "lesson", title: { en: "What & Where", te: "ఏంటి, ఎక్కడ" } },
   { id: "when-and-what-time", kind: "lesson", title: { en: "When & What Time", te: "ఎప్పుడు, ఎన్ని గంటలకు" } },
   { id: "who-and-whose", kind: "lesson", title: { en: "Who & Whose", te: "ఎవరు, ఎవరిది" } },
   { id: "how-questions", kind: "lesson", title: { en: "How Questions", te: "ఎలా, ఎంత" } },
@@ -48,10 +48,10 @@ const week3Days: DayRef[] = [
 
 // Week 4 (CURRICULUM §3).
 const week4Days: DayRef[] = [
-  { id: "have-and-has", kind: "lesson", title: { en: "Have & Has", te: "నాకు ఉంది, అతనికి ఉంది" } },
-  { id: "my-your-his-her", kind: "lesson", title: { en: "My, Your, His, Her", te: "నా, మీ, అతని, ఆమె" } },
+  { id: "have-and-has", kind: "lesson", title: { en: "Have & Has", te: "నాకు ఉంది, ఆయనకి ఉంది" } },
+  { id: "my-your-his-her", kind: "lesson", title: { en: "My, Your, His, Her", te: "నా, మీ, ఆయన, ఆవిడ" } },
   { id: "possessive-s", kind: "lesson", title: { en: "Ravi's House", te: "ఒకరి వస్తువు ('s)" } },
-  { id: "describing-people", kind: "lesson", title: { en: "Describing People", te: "మనుషుల వర్ణన" } },
+  { id: "describing-people", kind: "lesson", title: { en: "Describing People", te: "మనుషులు ఎలా ఉంటారు" } },
   { id: "this-that-these-those", kind: "lesson", title: { en: "This, That, These, Those", te: "ఇది, అది, ఇవి, అవి" } },
   { id: "w4-conversation", kind: "conversation", title: { en: "A New Friend at the Park", te: "పార్క్‌లో కొత్త స్నేహితులు" } },
   { id: "w4-review", kind: "review", title: { en: "People Around Me", te: "నా చుట్టూ మనుషులు" } },
@@ -81,7 +81,7 @@ const week6Days: DayRef[] = [
 
 // Week 7 (CURRICULUM §3).
 const week7Days: DayRef[] = [
-  { id: "always-usually-never", kind: "lesson", title: { en: "Always, Usually, Never", te: "ఎప్పుడూ, సాధారణంగా, ఎప్పుడూ కాదు" } },
+  { id: "always-usually-never", kind: "lesson", title: { en: "Always, Usually, Never", te: "ఎప్పుడూ, మామూలుగా, ఎన్నడూ" } },
   { id: "he-goes-she-watches", kind: "lesson", title: { en: "He Goes, She Watches", te: "he/she తో verb" } },
   { id: "routine-questions", kind: "lesson", title: { en: "Do You …? Does She …?", te: "రోజువారీ ప్రశ్నలు" } },
   { id: "morning-to-night", kind: "lesson", title: { en: "Morning to Night", te: "ఉదయం నుండి రాత్రి వరకు" } },
@@ -161,10 +161,10 @@ const stage1Weeks: Week[] = [
 
 // Week 13 (CURRICULUM §4): the first week of Stage 2.
 const week13Days: DayRef[] = [
-  { id: "can-i-have-please", kind: "lesson", title: { en: "Can I Have …, Please?", te: "… ఇవ్వగలరా?" } },
+  { id: "can-i-have-please", kind: "lesson", title: { en: "Can I Have …, Please?", te: "… ఇస్తారా?" } },
   { id: "a-kilo-of", kind: "lesson", title: { en: "A Kilo Of, A Bunch Of", te: "కిలో, కట్ట, డజను" } },
   { id: "how-much-are-they", kind: "lesson", title: { en: "How Much Are They?", te: "ఎంత అవుతుంది?" } },
-  { id: "bargaining-politely", kind: "lesson", title: { en: "Can You Reduce It?", te: "ధర తగ్గించగలరా?" } },
+  { id: "bargaining-politely", kind: "lesson", title: { en: "Can You Reduce It?", te: "ధర కొంచెం తగ్గిస్తారా?" } },
   { id: "fresh-and-ripe", kind: "lesson", title: { en: "Fresh and Ripe", te: "తాజాగా, పండినవి" } },
   { id: "w13-conversation", kind: "conversation", title: { en: "The Sunday Market", te: "ఆదివారం సంత" } },
   { id: "w13-review", kind: "review", title: { en: "Market Day", te: "సంత రోజు" } },

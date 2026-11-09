@@ -10,14 +10,14 @@ const next = (page: Page, name: RegExp = /^Continue/) => page.getByRole("button"
 async function toPractice(page: Page) {
   await page.goto("/learn/play?l=sentence-basics");
   await next(page, /^Start/);
-  for (let i = 0; i < 4; i++) await next(page); // 2 explain cards, 2 don't-say cards
+  for (let i = 0; i < 5; i++) await next(page); // 2 explain cards, 2 don't-say cards, the Sound of the week
   await next(page, /^Start/);
 }
 
 const PAIRS = [
   ["నేను అన్నం తింటాను.", "I eat rice."],
   ["నేను టీ తాగుతాను.", "I drink tea."],
-  ["మనం తెలుగు మాట్లాడతాం.", "We speak Telugu."],
+  ["మేము తెలుగు మాట్లాడతాం.", "We speak Telugu."],
   ["వాళ్లు క్రికెట్ ఆడతారు.", "They play cricket."],
 ];
 
@@ -56,7 +56,7 @@ test("Day 1: Learn cards, first practice questions and the section summary", asy
   await expect(page.getByRole("heading", { name: /^ఎవరు/ })).toBeVisible(); // Telugu mode by default
   await expect(page.getByText("Who", { exact: true }).first()).toBeVisible();
   await page.screenshot({ path: `${SHOTS}/player-explain.png` });
-  for (let i = 0; i < 4; i++) await next(page);
+  for (let i = 0; i < 5; i++) await next(page);
   await next(page, /^Start/);
 
   await page.getByRole("button", { name: "I eat rice." }).click();
@@ -75,7 +75,7 @@ test("Day 1: Learn cards, first practice questions and the section summary", asy
   await matchAll(page, true);
   await buildSentence(page, ["I", "eat", "rice."], "player-arrange");
   await buildSentence(page, ["I", "drink", "tea."]);
-  await buildSentence(page, ["We", "speak", "Telugu."]);
+  await buildSentence(page, ["I", "read", "the", "newspaper."]); // build what you hear
   await page.getByRole("button", { name: "are", exact: true }).click();
   await page.getByRole("button", { name: /^Check/ }).click();
   await expect(page.getByText("We speak Telugu.")).toBeVisible();
@@ -88,11 +88,11 @@ test("wrong twice shows the answer, in English mode too", async ({ page }) => {
   await page.addInitScript(([key]) => localStorage.setItem(key, JSON.stringify({ learnIn: "en" })), [SETTINGS_KEY]);
   await toPractice(page);
   await expect(page.locator('[lang="te"]')).toHaveCount(0);
-  await page.getByRole("button", { name: "Eat I rice." }).click();
+  await page.getByRole("button", { name: "I rice eat." }).click();
   await page.getByRole("button", { name: /^Check/ }).click();
   await expect(page.getByText("Almost")).toBeVisible();
   await next(page, /^Try again/);
-  await page.getByRole("button", { name: "Eat I rice." }).click();
+  await page.getByRole("button", { name: "I rice eat." }).click();
   await page.getByRole("button", { name: /^Check/ }).click();
   await expect(page.getByText(/The answer is/)).toBeVisible();
   await page.screenshot({ path: `${SHOTS}/player-feedback-wrong.png` });

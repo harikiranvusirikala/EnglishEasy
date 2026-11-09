@@ -9,7 +9,7 @@ import { makeTiles, sameSentence, wordsOf } from "@/learning/tiles";
 import { strings } from "@/lib/strings";
 import { ListenInline } from "./Narrate";
 import { BottomBar, FeedbackPanel, Instruction, MainButton, toneOf } from "./parts";
-import { HintLine, useRevealAbove } from "./Question";
+import { HintLine, ListenHero, useRevealAbove } from "./Question";
 
 type Props = {
   activity: Extract<Activity, { type: "arrange" | "translate" }>;
@@ -26,7 +26,11 @@ const TILE_TONE = {
   almost: "border-almost bg-almost-soft text-almost shadow-[0_3px_0_var(--almost-line)]",
 };
 
-/** Arrange the English words, or build the English for a Telugu sentence (Translate): tap a tile to place it, tap it again to take it back. */
+/**
+ * Arrange the English words, or build the English for a Telugu sentence (Translate): tap a tile to place it, tap it
+ * again to take it back. An arrange with `listen` is "build what you hear": the sentence plays from the big button,
+ * with no Telugu and no text (content review, 2026-11-09).
+ */
 export function Build({ activity, onAnswer, onNext }: Props) {
   const tiles = useMemo(() => makeTiles(activity.answer, activity.extra, activity.id), [activity]);
   const [placed, setPlaced] = useState<number[]>([]);
@@ -51,7 +55,8 @@ export function Build({ activity, onAnswer, onNext }: Props) {
     setResult(correct ? "correct" : tries === 0 ? "almost" : "failed");
   };
 
-  const prompt = activity.type === "translate" ? strings.translatePrompt : strings.arrangePrompt;
+  const byEar = activity.type === "arrange" && activity.listen === true;
+  const prompt = activity.type === "translate" ? strings.translatePrompt : byEar ? strings.dictatePrompt : strings.arrangePrompt;
   const placedTone = result === "correct" ? TILE_TONE.right : result === "almost" || result === "failed" ? TILE_TONE.almost : TILE_TONE.placed;
 
   return (
@@ -66,7 +71,8 @@ export function Build({ activity, onAnswer, onNext }: Props) {
             {activity.te}
           </p>
         )}
-        {activity.te && activity.type === "arrange" && <Meaning className="text-lg text-ink-2">{activity.te}</Meaning>}
+        {activity.te && activity.type === "arrange" && !byEar && <Meaning className="text-lg text-ink-2">{activity.te}</Meaning>}
+        {byEar && <ListenHero say={activity.answer} />}
 
         <div
           ref={tray}

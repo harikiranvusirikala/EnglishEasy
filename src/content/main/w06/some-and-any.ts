@@ -26,7 +26,7 @@ export const day: Lesson = {
     { en: "There isn't any sugar.", te: "చక్కెర అస్సలు లేదు.", extra: ["some"] },
     { en: "We have some eggs.", te: "మన దగ్గర కొన్ని గుడ్లు ఉన్నాయి.", extra: ["any"] },
     { en: "Do we need any oil?", te: "మనకు నూనె ఏమైనా కావాలా?", extra: ["some"] },
-    { en: "Buy some onions, please.", te: "దయచేసి కొన్ని ఉల్లిపాయలు కొనండి.", extra: ["any"] },
+    { en: "Buy some onions, please.", te: "ప్లీజ్, కొన్ని ఉల్లిపాయలు కొనండి.", extra: ["any"] },
     { en: "There is no salt.", te: "ఉప్పు లేదు.", extra: ["any"] },
   ],
   key: [0, 1, 2, 3],
@@ -94,8 +94,8 @@ export const day: Lesson = {
       wrong: "There isn't some sugar.",
       right: "There isn't any sugar.",
       why: {
-        en: "With not, use any.",
-        te: "not ఉంటే any వాడాలి.",
+        en: "Telugu says అస్సలు లేదు; English says not … any: There isn't any sugar.",
+        te: "తెలుగులో 'అస్సలు లేదు' అంటాం; ఇంగ్లీష్‌లో not … any: There isn't any sugar.",
       },
     },
     {
@@ -117,8 +117,8 @@ export const day: Lesson = {
       options: ["There isn't some sugar.", "There isn't any sugar.", "There isn't sugars."],
       answer: 1,
       why: {
-        en: "With not, any.",
-        te: "not తో any.",
+        en: "With not, use any, not some: There isn't any sugar.",
+        te: "not ఉంటే some కాదు, any: There isn't any sugar.",
       },
     },
     {
@@ -126,11 +126,11 @@ export const day: Lesson = {
       type: "fillBlank",
       sentence: "Is there ___ milk?",
       te: "పాలు ఏమైనా ఉన్నాయా?",
-      options: ["some", "any", "a"],
+      options: ["many", "any", "a"],
       answer: 1,
       why: {
-        en: "In a question, any.",
-        te: "ప్రశ్నలో any.",
+        en: "Questions use any, like Telugu ఏమైనా, and milk takes no a: Is there any milk?",
+        te: "ప్రశ్నలో any, తెలుగు 'ఏమైనా' లాగా; milk కి a రాదు: Is there any milk?",
       },
     },
     {
@@ -140,8 +140,8 @@ export const day: Lesson = {
       options: ["We need some oils.", "We need some oil.", "We need a oil."],
       answer: 1,
       why: {
-        en: "Oil is not counted: some oil.",
-        te: "నూనె లెక్కపెట్టం: some oil.",
+        en: "Oil is not counted, so no s and no a: We need some oil.",
+        te: "నూనె లెక్కపెట్టం, అందుకే s రాదు, a రాదు: We need some oil.",
       },
     },
     {
@@ -151,8 +151,8 @@ export const day: Lesson = {
       wrongIndex: 3,
       fix: "Please buy some rice.",
       why: {
-        en: "Rice has no s.",
-        te: "rice కి s ఉండదు.",
+        en: "Rice is not counted one by one, so it has no s: Please buy some rice.",
+        te: "బియ్యం ఒక్కొక్కటిగా లెక్కపెట్టం, అందుకే s రాదు: Please buy some rice.",
       },
     },
   ],
@@ -185,16 +185,17 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "A shopping list", te: "సామాన్ల జాబితా" },
     scene: {
-      en: "Your aunt Kamala is going to the shop. Help her make a list.",
-      te: "మీ అత్త కమల షాప్‌కి వెళ్తోంది. ఆమెకు సామాన్ల జాబితా చెప్పండి.",
+      en: "Your uncle Gopal is going to the shop. Help him make a list.",
+      te: "మీ బాబాయి గోపాల్ గారు షాప్‌కి వెళ్తున్నారు. ఆయనకి సామాన్ల జాబితా చెప్పండి.",
     },
-    partner: { en: "Kamala (your aunt)", te: "కమల (మీ అత్త)" },
+    partner: { en: "Gopal (your uncle)", te: "గోపాల్ గారు (మీ బాబాయి)" },
+    voice: "b",
     skills: [{ id: "some", label: { en: "some / any", te: "some / any వాడకం" } }],
     turns: [
       {
         partner: "I am going to the shop.",
         te: "నేను షాప్‌కి వెళ్తున్నాను.",
-        hint: { en: "Say: We need some rice.", te: "ఇలా చెప్పండి: We need some rice." },
+        hint: { en: "Tell him one thing you need, like rice.", te: "కావాల్సిన ఒక వస్తువు చెప్పండి, ఉదాహరణకు బియ్యం." },
         replies: [
           { say: "We need some rice.", good: true, skill: "some" },
           { say: "We need some rices.", good: false, skill: "some" },
@@ -203,7 +204,7 @@ export const day: Lesson = {
       {
         partner: "Is there any oil?",
         te: "నూనె ఏమైనా ఉందా?",
-        hint: { en: "Say no: No, there isn't any oil.", te: "లేదని చెప్పండి: No, there isn't any oil." },
+        hint: { en: "Say there is no oil. Use any.", te: "నూనె లేదని చెప్పండి. any వాడండి." },
         replies: [
           { say: "No, there isn't any oil.", good: true, skill: "some" },
           { say: "No, there isn't some oil.", good: false, skill: "some" },
@@ -212,16 +213,21 @@ export const day: Lesson = {
       {
         partner: "Okay, rice and oil. Anything else?",
         te: "సరే, బియ్యం, నూనె. ఇంకా ఏమైనా?",
-        hint: { en: "Say: Please buy some eggs.", te: "ఇలా చెప్పండి: Please buy some eggs." },
+        hint: { en: "Ask him kindly to buy some eggs too.", te: "గుడ్లు కూడా కొనమని మర్యాదగా అడగండి." },
         replies: [
           { say: "Please buy some eggs.", good: true, skill: "some" },
           { say: "Please buy some egg.", good: false, skill: "some" },
+          {
+            say: "Eggs. Go quickly.",
+            good: false,
+            react: { en: "Okay, okay. No need to rush me.", te: "సరే, సరే. తొందర పెట్టకండి." },
+          },
         ],
       },
       {
         partner: "Do we need any sugar?",
         te: "మనకు చక్కెర ఏమైనా కావాలా?",
-        hint: { en: "Say: No, we have some sugar.", te: "ఇలా చెప్పండి: No, we have some sugar." },
+        hint: { en: "Say no, there is still sugar at home.", te: "వద్దని, ఇంట్లో ఇంకా చక్కెర ఉందని చెప్పండి." },
         replies: [
           { say: "No, we have some sugar.", good: true, skill: "some" },
           { say: "No, we have any sugar.", good: false, skill: "some" },

@@ -21,10 +21,10 @@ export const day: Lesson = {
     { text: "the fan", role: "what" },
   ],
   core: [
-    { en: "Please switch on the fan.", te: "దయచేసి ఫ్యాన్ వేయండి.", extra: ["off"] },
-    { en: "Close the door, please.", te: "దయచేసి తలుపు వేయండి.", extra: ["Open"] },
+    { en: "Please switch on the fan.", te: "కొంచెం ఫ్యాన్ వేయండి.", extra: ["off"] },
+    { en: "Close the door, please.", te: "కొంచెం తలుపు వేయండి.", extra: ["Open"] },
     { en: "Switch off the light.", te: "లైట్ ఆపేయండి.", extra: ["on"] },
-    { en: "Please open the window.", te: "దయచేసి కిటికీ తెరవండి.", extra: ["close"] },
+    { en: "Please open the window.", te: "కొంచెం కిటికీ తెరవండి.", extra: ["close"] },
     { en: "Come in and sit down.", te: "లోపలికి వచ్చి కూర్చోండి.", extra: ["sits"] },
     { en: "Don't touch the switch.", te: "స్విచ్ ముట్టుకోకండి.", extra: ["Not"] },
     { en: "This is the bedroom.", te: "ఇది పడకగది.", extra: ["an"] },
@@ -47,13 +47,13 @@ export const day: Lesson = {
     {
       id: "l1",
       type: "explain",
-      heading: { en: "Start with the action", te: "పని పదంతో మొదలుపెట్టండి" },
+      heading: { en: "Start with the action", te: "verb తో మొదలుపెట్టండి" },
       body: {
         en: "To ask someone to do something, start with the action word: Close the door. Add please at the start or the end to be polite: Please close the door.",
-        te: "ఎవరినైనా ఒక పని చేయమని అడగాలంటే పని పదంతో మొదలుపెట్టండి: Close the door. మర్యాదగా ఉండటానికి మొదట్లో లేదా చివర please చేర్చండి: Please close the door.",
+        te: "ఎవరినైనా ఒక పని చేయమని అడగాలంటే verb తో మొదలుపెట్టండి: Close the door. మర్యాదగా ఉండటానికి మొదట్లో లేదా చివర please చేర్చండి: Please close the door.",
       },
       bridge: {
-        te: ["దయచేసి", "ఫ్యాన్", "వేయండి"],
+        te: ["కొంచెం", "ఫ్యాన్", "వేయండి"],
         en: [
           { text: "Please", role: "when" },
           { text: "switch on", role: "action" },
@@ -61,8 +61,8 @@ export const day: Lesson = {
         ],
       },
       examples: [
-        { en: "Please switch on the fan.", te: "దయచేసి ఫ్యాన్ వేయండి." },
-        { en: "Close the door, please.", te: "దయచేసి తలుపు వేయండి." },
+        { en: "Please switch on the fan.", te: "కొంచెం ఫ్యాన్ వేయండి." },
+        { en: "Close the door, please.", te: "కొంచెం తలుపు వేయండి." },
         { en: "Come in and sit down.", te: "లోపలికి వచ్చి కూర్చోండి." },
       ],
     },
@@ -79,7 +79,7 @@ export const day: Lesson = {
         {
           form: "open / close",
           useFor: { en: "For a door, a window or a box.", te: "తలుపు, కిటికీ, డబ్బాకి." },
-          example: { en: "Please open the window.", te: "దయచేసి కిటికీ తెరవండి." },
+          example: { en: "Please open the window.", te: "కొంచెం కిటికీ తెరవండి." },
         },
         {
           form: "don't + action",
@@ -94,8 +94,8 @@ export const day: Lesson = {
       wrong: "Please on the fan.",
       right: "Please switch on the fan.",
       why: {
-        en: "On is not an action word. Say switch on.",
-        te: "on పని పదం కాదు. switch on అనాలి.",
+        en: "Telugu says ఫ్యాన్ on చేయండి, but on alone is not an action word. Say switch on.",
+        te: "తెలుగులో 'ఫ్యాన్ on చేయండి' అంటాం, కానీ on ఒక్కటే verb కాదు. switch on అనాలి.",
       },
     },
     {
@@ -117,20 +117,20 @@ export const day: Lesson = {
       options: ["Please on the fan.", "Please switch on the fan.", "Please open the fan."],
       answer: 1,
       why: {
-        en: "For a fan, say switch on.",
-        te: "ఫ్యాన్‌కి switch on.",
+        en: "For a fan, a light or a TV, say switch on, not open.",
+        te: "ఫ్యాన్, లైట్, TV కి switch on. open కాదు.",
       },
     },
     {
       id: "p2",
       type: "fillBlank",
       sentence: "It is hot. Please ___ the window.",
-      te: "వేడిగా ఉంది. దయచేసి కిటికీ తెరవండి.",
+      te: "వేడిగా ఉంది. కొంచెం కిటికీ తెరవండి.",
       options: ["open", "close", "switch off"],
       answer: 0,
       why: {
-        en: "A window is opened.",
-        te: "కిటికీని open చేస్తాం.",
+        en: "It is hot, so let air in: open the window. Switch off is for lights and fans.",
+        te: "వేడిగా ఉంది, గాలి రావాలి: open the window. switch off లైట్, ఫ్యాన్‌కి మాత్రమే.",
       },
     },
     {
@@ -140,8 +140,8 @@ export const day: Lesson = {
       options: ["Close the light.", "Switch off the light.", "Off the light."],
       answer: 1,
       why: {
-        en: "Lights are switched off.",
-        te: "లైట్‌ని switch off చేస్తాం.",
+        en: "Lights are switched off, never closed: Switch off the light.",
+        te: "లైట్‌కి close కాదు, switch off: Switch off the light.",
       },
     },
     {
@@ -186,15 +186,16 @@ export const day: Lesson = {
     title: { en: "A guest at the door", te: "తలుపు దగ్గర అతిథి" },
     scene: {
       en: "Mohan comes to visit. Welcome him and make him comfortable.",
-      te: "మోహన్ మిమ్మల్ని చూడటానికి వచ్చారు. ఆయనకు స్వాగతం చెప్పి, సౌకర్యంగా ఉండేలా చూడండి.",
+      te: "మోహన్ గారు మిమ్మల్ని చూడటానికి వచ్చారు. ఆయనకి స్వాగతం చెప్పి, సౌకర్యంగా ఉండేలా చూడండి.",
     },
     partner: { en: "Mohan (a guest)", te: "మోహన్ (అతిథి)" },
+    voice: "b",
     skills: [{ id: "ask", label: { en: "Asking politely", te: "మర్యాదగా అడగడం" } }],
     turns: [
       {
         partner: "Hello! Nice house!",
         te: "నమస్తే! ఇల్లు బాగుంది!",
-        hint: { en: "Say: Thank you. Please come in.", te: "ఇలా చెప్పండి: Thank you. Please come in." },
+        hint: { en: "Thank him, and invite him in.", te: "ఆయనకి థాంక్స్ చెప్పి, లోపలికి రమ్మనండి." },
         replies: [
           { say: "Thank you. Please come in.", good: true, skill: "ask" },
           { say: "Thank you. Please coming in.", good: false, skill: "ask" },
@@ -203,7 +204,7 @@ export const day: Lesson = {
       {
         partner: "It is very hot today.",
         te: "ఈ రోజు చాలా వేడిగా ఉంది.",
-        hint: { en: "Say: I will switch on the fan.", te: "ఇలా చెప్పండి: I will switch on the fan." },
+        hint: { en: "Offer to do something with the fan.", te: "ఫ్యాన్ వేస్తానని చెప్పండి." },
         replies: [
           { say: "I will switch on the fan.", good: true, skill: "ask" },
           { say: "I will on the fan.", good: false, skill: "ask" },
@@ -212,7 +213,7 @@ export const day: Lesson = {
       {
         partner: "Is this the kitchen?",
         te: "ఇది వంటగదా?",
-        hint: { en: "Say: No, this is the bedroom.", te: "ఇలా చెప్పండి: No, this is the bedroom." },
+        hint: { en: "Say no, and say which room it is.", te: "కాదని చెప్పి, ఇది ఏ గదో చెప్పండి." },
         replies: [
           { say: "No, this is the bedroom.", good: true },
           { say: "No, this is bedroom.", good: false },
@@ -221,10 +222,16 @@ export const day: Lesson = {
       {
         partner: "Oh, it is raining now!",
         te: "అయ్యో, ఇప్పుడు వర్షం పడుతోంది!",
-        hint: { en: "Ask him: Please close the window.", te: "ఆయనను అడగండి: Please close the window." },
+        hint: { en: "Ask him politely to shut the window.", te: "కిటికీ వేయమని ఆయన్ని మర్యాదగా అడగండి." },
         replies: [
           { say: "Please close the window.", good: true, skill: "ask" },
           { say: "Please off the window.", good: false, skill: "ask" },
+          {
+            say: "Close the window. Quick!",
+            good: false,
+            skill: "ask",
+            react: { en: "Okay, okay! I am closing it.", te: "సరే, సరే! వేస్తున్నాను." },
+          },
         ],
       },
     ],

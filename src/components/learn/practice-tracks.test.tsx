@@ -143,13 +143,13 @@ describe("Practice", () => {
     expect(await screen.findByText("Finish a lesson first, and it will appear here.")).toBeTruthy();
   });
 
-  it("the hub shows the four pages with counts", async () => {
+  it("the hub shows the five pages with counts", async () => {
     finish("a1");
     updateProgress((p) => ({ ...p, mistakes: { "a1.practice1": NOW } }));
     render(<PracticeHub />);
     const links = await screen.findAllByRole("link");
-    expect(links.map((l) => l.getAttribute("href"))).toEqual(["/learn/practice/again", "/learn/practice/roleplays", "/learn/practice/sentences", "/learn/practice/speaking"]);
-    expect(within(links[0]).getByText("1")).toBeTruthy(); // the count badge
+    expect(links.map((l) => l.getAttribute("href"))).toEqual(["/learn/practice/review", "/learn/practice/again", "/learn/practice/roleplays", "/learn/practice/sentences", "/learn/practice/speaking"]);
+    expect(within(links[1]).getByText("1")).toBeTruthy(); // the count badge
   });
 
   it("Role plays shows the empty state when no finished day has one", async () => {

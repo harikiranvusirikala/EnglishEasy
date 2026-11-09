@@ -25,9 +25,9 @@ export const day: Lesson = {
     { en: "It is an old house.", te: "అది ఒక పాత ఇల్లు.", extra: ["a"] },
     { en: "The kitchen is small.", te: "వంటగది చిన్నది.", extra: ["A"] },
     { en: "I have an umbrella.", te: "నా దగ్గర ఒక గొడుగు ఉంది.", extra: ["a"] },
-    { en: "Please give me a notebook.", te: "దయచేసి ఒక నోట్‌బుక్ ఇవ్వండి.", extra: ["an"] },
+    { en: "Please give me a notebook.", te: "ఒక నోట్‌బుక్ ఇవ్వండి అండీ.", extra: ["an"] },
     { en: "The shop near the bank is closed.", te: "బ్యాంక్ దగ్గర ఉన్న షాప్ మూసి ఉంది.", extra: ["A"] },
-    { en: "He is an honest man.", te: "అతను నిజాయితీ గల మనిషి.", extra: ["a"] },
+    { en: "He is an honest man.", te: "ఆయన నిజాయితీ గల మనిషి.", extra: ["a"] },
   ],
   key: [0, 1, 2, 3],
   tryToday: {
@@ -74,7 +74,7 @@ export const day: Lesson = {
         {
           form: "a + one thing",
           useFor: { en: "Any one thing, before most words.", te: "ఏదైనా ఒక వస్తువు, చాలా పదాల ముందు." },
-          example: { en: "Please give me a notebook.", te: "దయచేసి ఒక నోట్‌బుక్ ఇవ్వండి." },
+          example: { en: "Please give me a notebook.", te: "ఒక నోట్‌బుక్ ఇవ్వండి అండీ." },
         },
         {
           form: "an + vowel sound",
@@ -94,8 +94,8 @@ export const day: Lesson = {
       wrong: "I want pen.",
       right: "I want a pen.",
       why: {
-        en: "One thing needs a before it.",
-        te: "ఒక్క వస్తువు ముందు a ఉండాలి.",
+        en: "Telugu needs no word before పెన్, but English needs a for one thing: I want a pen.",
+        te: "తెలుగులో 'పెన్' ముందు ఏమీ అక్కర్లేదు, కానీ ఇంగ్లీష్‌లో ఒక్క వస్తువు ముందు a: I want a pen.",
       },
     },
     {
@@ -129,8 +129,8 @@ export const day: Lesson = {
       options: ["a", "an", "the"],
       answer: 1,
       why: {
-        en: "Before old, say an.",
-        te: "old ముందు an.",
+        en: "Old starts with a vowel sound, so say an: an old house.",
+        te: "old అచ్చు శబ్దంతో మొదలవుతుంది, కాబట్టి an: an old house.",
       },
     },
     {
@@ -140,11 +140,11 @@ export const day: Lesson = {
         en: "You and a guest are in your house. Which sentence is right?",
         te: "మీరు, ఒక అతిథి మీ ఇంట్లో ఉన్నారు. ఏ వాక్యం సరైనది?",
       },
-      options: ["Kitchen is small.", "The kitchen is small.", "An kitchen is small."],
+      options: ["Kitchen is small.", "The kitchen is small.", "A kitchen is small."],
       answer: 1,
       why: {
-        en: "You both know which kitchen: the kitchen.",
-        te: "ఏ వంటగదో ఇద్దరికీ తెలుసు: the kitchen.",
+        en: "You both know which kitchen, so say the: The kitchen is small.",
+        te: "ఏ వంటగదో ఇద్దరికీ తెలుసు, కాబట్టి the: The kitchen is small.",
       },
     },
     {
@@ -176,7 +176,7 @@ export const day: Lesson = {
       type: "situation",
       situation: {
         en: "It is raining. Tell your friend you have an umbrella.",
-        te: "వర్షం పడుతోంది. మీ దగ్గర గొడుగు ఉందని మీ స్నేహితులకు చెప్పండి.",
+        te: "వర్షం పడుతోంది. మీ దగ్గర గొడుగు ఉందని మీ స్నేహితులకి చెప్పండి.",
       },
       expected: ["I have an umbrella."],
       options: ["I have a umbrella.", "I have an umbrella.", "I have umbrella."],
@@ -188,16 +188,17 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "At the stationery shop", te: "స్టేషనరీ షాప్‌లో" },
     scene: {
-      en: "You need a few things from Ravi's stationery shop. Ask for them with a, an and the.",
-      te: "రవి స్టేషనరీ షాప్ నుండి మీకు కొన్ని వస్తువులు కావాలి. a, an, the వాడుతూ అడగండి.",
+      en: "You need a few things from Rahim's stationery shop. Ask for them with a, an and the.",
+      te: "రహీమ్ గారి స్టేషనరీ షాపు నుండి మీకు కొన్ని వస్తువులు కావాలి. a, an, the వాడుతూ అడగండి.",
     },
-    partner: { en: "Ravi (a shopkeeper)", te: "రవి (షాప్ యజమాని)" },
+    partner: { en: "Rahim (a shopkeeper)", te: "రహీమ్ (షాపు యజమాని)" },
+    voice: "b",
     skills: [{ id: "articles", label: { en: "a / an / the", te: "a / an / the వాడకం" } }],
     turns: [
       {
         partner: "Good morning! What do you need?",
         te: "గుడ్ మార్నింగ్! మీకు ఏం కావాలి?",
-        hint: { en: "Ask for a notebook: A notebook, please.", te: "నోట్‌బుక్ అడగండి: A notebook, please." },
+        hint: { en: "Ask for one notebook politely.", te: "ఒక నోట్‌బుక్ మర్యాదగా అడగండి." },
         replies: [
           { say: "A notebook, please.", good: true, skill: "articles" },
           { say: "An notebook, please.", good: false, skill: "articles" },
@@ -206,7 +207,7 @@ export const day: Lesson = {
       {
         partner: "Anything else?",
         te: "ఇంకా ఏమైనా?",
-        hint: { en: "Ask for an eraser: And an eraser, please.", te: "ఎరేజర్ అడగండి: And an eraser, please." },
+        hint: { en: "Ask for one eraser too. Think: a or an?", te: "ఒక ఎరేజర్ కూడా అడగండి. a నా, an నా? ఆలోచించండి." },
         replies: [
           { say: "And an eraser, please.", good: true, skill: "articles" },
           { say: "And a eraser, please.", good: false, skill: "articles" },
@@ -215,7 +216,7 @@ export const day: Lesson = {
       {
         partner: "Here you are.",
         te: "ఇదిగోండి.",
-        hint: { en: "Ask the price: How much is the notebook?", te: "ధర అడగండి: How much is the notebook?" },
+        hint: { en: "Ask the price of the notebook he gave you.", te: "ఆయన ఇచ్చిన నోట్‌బుక్ ధర అడగండి." },
         replies: [
           { say: "How much is the notebook?", good: true, skill: "articles" },
           { say: "How much is notebook?", good: false, skill: "articles" },
@@ -224,10 +225,15 @@ export const day: Lesson = {
       {
         partner: "Thirty rupees.",
         te: "ముప్పై రూపాయలు.",
-        hint: { en: "Ask for a bag: Please give me a bag.", te: "సంచి అడగండి: Please give me a bag." },
+        hint: { en: "Now ask for something to carry them in.", te: "ఇప్పుడు వాటిని తీసుకెళ్ళడానికి ఒక సంచి అడగండి." },
         replies: [
           { say: "Please give me a bag.", good: true, skill: "articles" },
           { say: "Please give me an bag.", good: false, skill: "articles" },
+          {
+            say: "Thirty? Give it for twenty.",
+            good: false,
+            react: { en: "Sorry, prices are fixed here.", te: "సారీ అండీ, ఇక్కడ ధరలు ఫిక్స్‌డ్." },
+          },
         ],
       },
     ],

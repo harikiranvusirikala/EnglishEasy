@@ -15,20 +15,21 @@ export const day: ConversationDay = {
     type: "dialogue",
     title: { en: "A trip to Bhadrachalam", te: "భద్రాచలం ప్రయాణం" },
     lines: [
-      { speaker: { en: "Ramana", te: "రమణ" }, voice: "b", en: "Let's go to Bhadrachalam next week!", te: "వచ్చే వారం భద్రాచలం వెళ్దాం!" },
-      { speaker: { en: "Padma", te: "పద్మ" }, voice: "a", en: "Good idea! How will we go?", te: "మంచి ఆలోచన! ఎలా వెళ్దాం?" },
-      { speaker: { en: "Ramana", te: "రమణ" }, voice: "b", en: "I'll book a cab.", te: "నేను క్యాబ్ బుక్ చేస్తాను." },
-      { speaker: { en: "Padma", te: "పద్మ" }, voice: "a", en: "Can we leave early?", te: "తొందరగా బయలుదేరదామా?" },
-      { speaker: { en: "Ramana", te: "రమణ" }, voice: "b", en: "Yes, at six in the morning.", te: "అవును, ఉదయం ఆరు గంటలకు." },
-      { speaker: { en: "Padma", te: "పద్మ" }, voice: "a", en: "I'll bring food for the trip.", te: "ప్రయాణానికి నేను భోజనం తెస్తాను." },
-      { speaker: { en: "Ramana", te: "రమణ" }, voice: "b", en: "Thank you! Are you going to invite Usha?", te: "థాంక్యూ! ఉషని కూడా పిలుస్తున్నారా?" },
-      { speaker: { en: "Padma", te: "పద్మ" }, voice: "a", en: "Yes, I'll call her tonight.", te: "అవును, ఈ రాత్రి ఆమెకు ఫోన్ చేస్తాను." },
-      { speaker: { en: "Ramana", te: "రమణ" }, voice: "b", en: "Perfect. See you next Saturday!", te: "సరే. వచ్చే శనివారం కలుద్దాం!" },
+      { speaker: { en: "Padma", te: "పద్మ" }, voice: "a", en: "Let's go to Bhadrachalam next week!", te: "వచ్చే వారం భద్రాచలం వెళ్దాం!" },
+      { speaker: { en: "Ramana", te: "రమణ" }, voice: "b", en: "Good idea! How will we go?", te: "మంచి ఆలోచన! ఎలా వెళ్దాం?" },
+      { speaker: { en: "Padma", te: "పద్మ" }, voice: "a", en: "I'll book a cab.", te: "నేను క్యాబ్ బుక్ చేస్తాను." },
+      { speaker: { en: "Ramana", te: "రమణ" }, voice: "b", en: "Can we leave early?", te: "తొందరగా బయలుదేరదామా?" },
+      { speaker: { en: "Padma", te: "పద్మ" }, voice: "a", en: "Yes, at six in the morning.", te: "అవును, ఉదయం ఆరు గంటలకు." },
+      { speaker: { en: "Ramana", te: "రమణ" }, voice: "b", en: "I'll bring food for the trip.", te: "ప్రయాణానికి నేను భోజనం తెస్తాను." },
+      { speaker: { en: "Padma", te: "పద్మ" }, voice: "a", en: "Thank you! Are you going to invite Kavitha?", te: "థాంక్యూ! కవితని కూడా పిలుస్తున్నారా?" },
+      { speaker: { en: "Ramana", te: "రమణ" }, voice: "b", en: "Yes, I'll call her tonight.", te: "అవును, ఈ రాత్రి ఆవిడకి ఫోన్ చేస్తాను." },
+      { speaker: { en: "Padma", te: "పద్మ" }, voice: "a", en: "Perfect. See you next Saturday!", te: "సరే. వచ్చే శనివారం కలుద్దాం!" },
     ],
     questions: [
+      { prompt: { en: "What are they planning?", te: "వాళ్ళు దేనికి ప్లాన్ చేస్తున్నారు?" }, options: ["A temple trip", "A wedding", "A lunch at home"], answer: 0 },
       { prompt: { en: "Where are they going?", te: "వాళ్ళు ఎక్కడికి వెళ్తున్నారు?" }, options: ["To Bhadrachalam", "To Tirupati", "To Srisailam"], answer: 0 },
-      { prompt: { en: "Who will book the cab?", te: "క్యాబ్ ఎవరు బుక్ చేస్తారు?" }, options: ["Padma", "Ramana", "Usha"], answer: 1 },
-      { prompt: { en: "What will Padma bring?", te: "పద్మ ఏం తెస్తుంది?" }, options: ["Water", "Food", "Flowers"], answer: 1 },
+      { prompt: { en: "Who will book the cab?", te: "క్యాబ్ ఎవరు బుక్ చేస్తారు?" }, options: ["Padma", "Ramana", "Kavitha"], answer: 0 },
+      { prompt: { en: "What will Ramana bring?", te: "రమణ ఏం తెస్తారు?" }, options: ["Water", "Food", "Flowers"], answer: 1 },
     ],
   },
   situations: [
@@ -72,10 +73,11 @@ export const day: ConversationDay = {
       type: "roleplay",
       title: { en: "Planning a trip with a friend", te: "స్నేహితుడితో ప్రయాణం ప్లాన్" },
       scene: {
-        en: "Your friend Ramana wants to plan a trip next month. Plan it together.",
-        te: "మీ స్నేహితుడు రమణ వచ్చే నెల ఒక ప్రయాణం ప్లాన్ చేయాలనుకుంటున్నారు. కలిసి ప్లాన్ చేయండి.",
+        en: "Your friend Imran wants to plan a trip next month. Plan it together.",
+        te: "మీ స్నేహితుడు ఇమ్రాన్ వచ్చే నెల ఒక ప్రయాణం ప్లాన్ చేయాలనుకుంటున్నారు. కలిసి ప్లాన్ చేయండి.",
       },
-      partner: { en: "Ramana (a friend)", te: "రమణ (స్నేహితుడు)" },
+      partner: { en: "Imran (a friend)", te: "ఇమ్రాన్ (స్నేహితుడు)" },
+      voice: "b",
       skills: [
         { id: "will", label: { en: "I'll (offers)", te: "I'll (సహాయం)" } },
         { id: "plan", label: { en: "Plans", te: "ప్లాన్స్" } },
@@ -84,7 +86,7 @@ export const day: ConversationDay = {
         {
           partner: "Let's plan a trip next month!",
           te: "వచ్చే నెల ఒక ప్రయాణం ప్లాన్ చేద్దాం!",
-          hint: { en: "Say: Good idea! Where are we going?", te: "ఇలా చెప్పండి: Good idea! Where are we going?" },
+          hint: { en: "Agree, and ask where you will go.", te: "సరే అని, ఎక్కడికి వెళ్దామో అడగండి." },
           replies: [
             { say: "Good idea! Where are we going?", good: true, skill: "plan" },
             { say: "Good idea! Where we are going?", good: false, skill: "plan" },
@@ -93,7 +95,7 @@ export const day: ConversationDay = {
         {
           partner: "I want to go to Araku.",
           te: "నాకు అరకు వెళ్ళాలని ఉంది.",
-          hint: { en: "Say: I'd love to go there.", te: "ఇలా చెప్పండి: I'd love to go there." },
+          hint: { en: "Say you would really like that.", te: "అక్కడికి వెళ్ళడం మీకు చాలా ఇష్టమని చెప్పండి." },
           replies: [
             { say: "I'd love to go there.", good: true, skill: "plan" },
             { say: "I'd love to going there.", good: false, skill: "plan" },
@@ -102,28 +104,33 @@ export const day: ConversationDay = {
         {
           partner: "How are we going to go?",
           te: "ఎలా వెళ్దాం?",
-          hint: { en: "Offer: I'll book the train tickets.", te: "సహాయం చెప్పండి: I'll book the train tickets." },
+          hint: { en: "Offer to get the train tickets.", te: "రైలు టికెట్లు మీరు బుక్ చేస్తానని చెప్పండి." },
           replies: [
             { say: "I'll book the train tickets.", good: true, skill: "will" },
-            { say: "I'll booking the train tickets.", good: false, skill: "will" },
+            { say: "I book the train tickets.", good: false, skill: "will" },
           ],
         },
         {
           partner: "What about food?",
           te: "మరి భోజనం సంగతి?",
-          hint: { en: "Promise: I'll bring snacks.", te: "మాట ఇవ్వండి: I'll bring snacks." },
+          hint: { en: "Offer to bring something to eat.", te: "తినడానికి ఏదైనా తెస్తానని చెప్పండి." },
           replies: [
             { say: "I'll bring snacks.", good: true, skill: "will" },
             { say: "I'll brings snacks.", good: false, skill: "will" },
+            {
+              say: "Food is your job, not mine.",
+              good: false,
+              react: { en: "Ha! Okay, let's share the work.", te: "హహ! సరే, ఇద్దరం కలిసి చూసుకుందాం." },
+            },
           ],
         },
         {
-          partner: "Let's invite Sita too.",
-          te: "సీతని కూడా పిలుద్దాం.",
-          hint: { en: "Say: Yes. I'll call her tonight.", te: "ఇలా చెప్పండి: Yes. I'll call her tonight." },
+          partner: "Let's invite Mary too.",
+          te: "మేరీని కూడా పిలుద్దాం.",
+          hint: { en: "Agree, and say when you will phone her.", te: "సరే అని, ఆవిడకి ఎప్పుడు ఫోన్ చేస్తారో చెప్పండి." },
           replies: [
             { say: "Yes. I'll call her tonight.", good: true, skill: "will" },
-            { say: "Yes. I'll calling her tonight.", good: false, skill: "will" },
+            { say: "Yes. I'll phone to her tonight.", good: false, skill: "will" },
           ],
         },
       ],
@@ -136,7 +143,7 @@ export const day: ConversationDay = {
         en: "Call City Cabs and book a cab for your trip next Saturday.",
         te: "సిటీ క్యాబ్స్‌కి ఫోన్ చేసి, వచ్చే శనివారం ప్రయాణానికి క్యాబ్ బుక్ చేయండి.",
       },
-      partner: { en: "Mohan (City Cabs)", te: "మోహన్ (సిటీ క్యాబ్స్)" },
+      partner: { en: "Fatima (City Cabs)", te: "ఫాతిమా (సిటీ క్యాబ్స్)" },
       skills: [
         { id: "book", label: { en: "Booking", te: "బుక్ చేయడం" } },
         { id: "time", label: { en: "Future time words", te: "భవిష్యత్తు పదాలు" } },
@@ -145,16 +152,21 @@ export const day: ConversationDay = {
         {
           partner: "Hello, City Cabs.",
           te: "హలో, సిటీ క్యాబ్స్.",
-          hint: { en: "Say: I'd like to book a cab, please.", te: "ఇలా చెప్పండి: I'd like to book a cab, please." },
+          hint: { en: "Say politely that you need a cab.", te: "మీకు క్యాబ్ కావాలని మర్యాదగా చెప్పండి." },
           replies: [
             { say: "I'd like to book a cab, please.", good: true, skill: "book" },
             { say: "I'd like book a cab, please.", good: false, skill: "book" },
+            {
+              say: "Hello. Send a cab quickly.",
+              good: false,
+              react: { en: "Okay. Please tell me the details.", te: "సరే. వివరాలు చెప్పండి." },
+            },
           ],
         },
         {
           partner: "When do you need it?",
           te: "మీకు ఎప్పుడు కావాలి?",
-          hint: { en: "Say: Next Saturday, at six.", te: "ఇలా చెప్పండి: Next Saturday, at six." },
+          hint: { en: "Say the day and the time.", te: "రోజు, టైమ్ చెప్పండి." },
           replies: [
             { say: "Next Saturday, at six.", good: true, skill: "time" },
             { say: "On next Saturday, at six.", good: false, skill: "time" },
@@ -163,7 +175,7 @@ export const day: ConversationDay = {
         {
           partner: "Where are you going?",
           te: "మీరు ఎక్కడికి వెళ్తున్నారు?",
-          hint: { en: "Say: We're going to Bhadrachalam.", te: "ఇలా చెప్పండి: We're going to Bhadrachalam." },
+          hint: { en: "Say where you are travelling to.", te: "ఎక్కడికి వెళ్తున్నారో చెప్పండి." },
           replies: [
             { say: "We're going to Bhadrachalam.", good: true, skill: "book" },
             { say: "We're going in Bhadrachalam.", good: false, skill: "book" },
@@ -172,7 +184,7 @@ export const day: ConversationDay = {
         {
           partner: "Okay. The driver will call you.",
           te: "సరే. డ్రైవర్ మీకు ఫోన్ చేస్తారు.",
-          hint: { en: "Ask: Will he come on time?", te: "అడగండి: Will he come on time?" },
+          hint: { en: "Ask if the driver will be punctual.", te: "డ్రైవర్ టైమ్‌కి వస్తారా అని అడగండి." },
           replies: [
             { say: "Will he come on time?", good: true, skill: "time" },
             { say: "Will he comes on time?", good: false, skill: "time" },

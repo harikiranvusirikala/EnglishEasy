@@ -24,10 +24,10 @@ export const day: Lesson = {
     { en: "I need ten cups.", te: "నాకు పది కప్పులు కావాలి.", extra: ["cup"] },
     { en: "There are fifty people.", te: "యాభై మంది ఉన్నారు.", extra: ["peoples"] },
     { en: "We need twenty plates.", te: "మాకు ఇరవై ప్లేట్లు కావాలి.", extra: ["plate"] },
-    { en: "One man and two women came.", te: "ఒక మగాయన, ఇద్దరు ఆడవాళ్ళు వచ్చారు.", extra: ["womans"] },
+    { en: "One man and two women came.", te: "ఒక మగాయన, ఇద్దరు ఆడవారు వచ్చారు.", extra: ["womans"] },
     { en: "These spoons are clean.", te: "ఈ స్పూన్లు శుభ్రంగా ఉన్నాయి.", extra: ["spoon"] },
     { en: "Two children are playing.", te: "ఇద్దరు పిల్లలు ఆడుకుంటున్నారు.", extra: ["childs"] },
-    { en: "Please bring five boxes.", te: "దయచేసి ఐదు డబ్బాలు తీసుకురండి.", extra: ["boxs"] },
+    { en: "Please bring five boxes.", te: "ఐదు డబ్బాలు తీసుకురండి అండీ.", extra: ["boxs"] },
   ],
   key: [0, 1, 2, 5],
   tryToday: {
@@ -79,12 +79,12 @@ export const day: Lesson = {
         {
           form: "+ es",
           useFor: { en: "Words ending in s, x, ch or sh add es.", te: "s, x, ch, sh తో ముగిసే పదాలకు es." },
-          example: { en: "Please bring five boxes.", te: "దయచేసి ఐదు డబ్బాలు తీసుకురండి." },
+          example: { en: "Please bring five boxes.", te: "ఐదు డబ్బాలు తీసుకురండి అండీ." },
         },
         {
           form: "men, women, people, children",
           useFor: { en: "These words change. Never add s to them.", te: "ఈ పదాలు మారిపోతాయి. వీటికి s చేర్చకూడదు." },
-          example: { en: "One man and two women came.", te: "ఒక మగాయన, ఇద్దరు ఆడవాళ్ళు వచ్చారు." },
+          example: { en: "One man and two women came.", te: "ఒక మగాయన, ఇద్దరు ఆడవారు వచ్చారు." },
         },
       ],
     },
@@ -104,8 +104,8 @@ export const day: Lesson = {
       wrong: "I need ten cup.",
       right: "I need ten cups.",
       why: {
-        en: "Ten is more than one, so cups.",
-        te: "పది అంటే ఒకటి కంటే ఎక్కువ, కాబట్టి cups.",
+        en: "Telugu adds లు, and English adds s: ten cups.",
+        te: "తెలుగులో 'కప్పులు' అన్నట్టే, ఇంగ్లీష్‌లో s చేర్చాలి: ten cups.",
       },
     },
   ],
@@ -117,15 +117,15 @@ export const day: Lesson = {
       options: ["Two childs are playing.", "Two children are playing.", "Two childrens are playing."],
       answer: 1,
       why: {
-        en: "Child changes to children.",
-        te: "child → children గా మారుతుంది.",
+        en: "Child does not take s. It changes to children.",
+        te: "child కి s రాదు. children గా మారుతుంది.",
       },
     },
     {
       id: "p2",
       type: "fillBlank",
       sentence: "Please bring five ___.",
-      te: "దయచేసి ఐదు డబ్బాలు తీసుకురండి.",
+      te: "ఐదు డబ్బాలు తీసుకురండి అండీ.",
       options: ["box", "boxs", "boxes"],
       answer: 2,
       why: {
@@ -140,8 +140,8 @@ export const day: Lesson = {
       options: ["person", "people", "peoples"],
       answer: 1,
       why: {
-        en: "Many persons are people.",
-        te: "చాలా మంది అంటే people.",
+        en: "For more than one person, say people, with no s.",
+        te: "ఒకరి కంటే ఎక్కువ మంది అయితే people. దానికి s రాదు.",
       },
     },
     {
@@ -151,8 +151,8 @@ export const day: Lesson = {
       wrongIndex: 4,
       fix: "One man and two women came.",
       why: {
-        en: "Woman changes to women.",
-        te: "woman → women గా మారుతుంది.",
+        en: "Woman does not take s. Say two women, not womans.",
+        te: "woman కి s రాదు. two women అనాలి.",
       },
     },
   ],
@@ -165,7 +165,7 @@ export const day: Lesson = {
         te: "మీరు ఫంక్షన్ కోసం ఆర్డర్ చేస్తున్నారు. ఇరవై ప్లేట్లు కావాలని చెప్పండి.",
       },
       expected: ["We need twenty plates.", "I need twenty plates.", "Twenty plates, please."],
-      options: ["We need twenty plate.", "We need twenty plates.", "We need twenty plateses."],
+      options: ["We need twenty plate.", "We need twenty plates.", "Twenty plates we need."],
       answer: 1,
     },
     {
@@ -185,16 +185,16 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "Plates and cups for a function", te: "ఫంక్షన్‌కి ప్లేట్లు, కప్పులు" },
     scene: {
-      en: "You are calling Venkat's tent house to order plates, cups and chairs for a function.",
-      te: "ఫంక్షన్ కోసం ప్లేట్లు, కప్పులు, కుర్చీలు ఆర్డర్ చేయడానికి వెంకట్ టెంట్ హౌస్‌కి ఫోన్ చేస్తున్నారు.",
+      en: "You are calling Swapna's tent house to order plates, cups and chairs for a function.",
+      te: "ఫంక్షన్ కోసం ప్లేట్లు, కప్పులు, కుర్చీలు ఆర్డర్ చేయడానికి స్వప్న గారి టెంట్ హౌస్‌కి ఫోన్ చేస్తున్నారు.",
     },
-    partner: { en: "Venkat (tent house owner)", te: "వెంకట్ (టెంట్ హౌస్ యజమాని)" },
+    partner: { en: "Swapna (tent house owner)", te: "స్వప్న (టెంట్ హౌస్ యజమాని)" },
     skills: [{ id: "many", label: { en: "One and many", te: "ఒకటి, చాలా" } }],
     turns: [
       {
-        partner: "Hello, Venkat Tent House.",
-        te: "హలో, వెంకట్ టెంట్ హౌస్.",
-        hint: { en: "Say: I need plates for a function.", te: "ఇలా చెప్పండి: I need plates for a function." },
+        partner: "Hello, Swapna Tent House.",
+        te: "హలో, స్వప్న టెంట్ హౌస్.",
+        hint: { en: "Say why you are calling: plates, for a function.", te: "ఎందుకు ఫోన్ చేశారో చెప్పండి: ఫంక్షన్‌కి ప్లేట్లు కావాలి." },
         replies: [
           { say: "I need plates for a function.", good: true, skill: "many" },
           { say: "I need plate for a function.", good: false, skill: "many" },
@@ -203,16 +203,16 @@ export const day: Lesson = {
       {
         partner: "How many people are coming?",
         te: "ఎంత మంది వస్తున్నారు?",
-        hint: { en: "Say: Fifty people are coming.", te: "ఇలా చెప్పండి: Fifty people are coming." },
+        hint: { en: "Say how many guests are coming: fifty.", te: "ఎంతమంది వస్తున్నారో చెప్పండి: యాభై మంది." },
         replies: [
           { say: "Fifty people are coming.", good: true, skill: "many" },
           { say: "Fifty peoples are coming.", good: false, skill: "many" },
         ],
       },
       {
-        partner: "So, fifty plates. Cups also?",
+        partner: "So, fifty plates. Cups too?",
         te: "అయితే యాభై ప్లేట్లు. కప్పులు కూడానా?",
-        hint: { en: "Say: Yes, sixty cups, please.", te: "ఇలా చెప్పండి: Yes, sixty cups, please." },
+        hint: { en: "Say yes, and ask for sixty.", te: "అవునని చెప్పి, అరవై కప్పులు అడగండి." },
         replies: [
           { say: "Yes, sixty cups, please.", good: true, skill: "many" },
           { say: "Yes, sixty cup, please.", good: false, skill: "many" },
@@ -221,10 +221,15 @@ export const day: Lesson = {
       {
         partner: "And chairs?",
         te: "మరి కుర్చీలు?",
-        hint: { en: "Say: Yes, fifty chairs, please.", te: "ఇలా చెప్పండి: Yes, fifty chairs, please." },
+        hint: { en: "Say yes, fifty of them.", te: "అవును, యాభై కావాలని చెప్పండి." },
         replies: [
           { say: "Yes, fifty chairs, please.", good: true, skill: "many" },
           { say: "Yes, fifty chair, please.", good: false, skill: "many" },
+          {
+            say: "Of course! Don't ask silly questions.",
+            good: false,
+            react: { en: "Okay, okay! Fifty chairs, then.", te: "సరే, సరే! అయితే యాభై కుర్చీలు." },
+          },
         ],
       },
     ],

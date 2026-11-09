@@ -21,13 +21,13 @@ export const day: Lesson = {
     { text: "say that again?", role: "action" },
   ],
   core: [
-    { en: "Sorry, I don't understand.", te: "క్షమించండి, నాకు అర్థం కాలేదు.", extra: ["not"] },
-    { en: "Could you say that again?", te: "మళ్ళీ ఒకసారి చెప్పగలరా?", extra: ["tell"] },
-    { en: "Can you speak slowly, please?", te: "దయచేసి నెమ్మదిగా మాట్లాడగలరా?", extra: ["slow"] },
+    { en: "Sorry, I don't understand.", te: "sorry అండీ, నాకు అర్థం కావడం లేదు.", extra: ["not"] },
+    { en: "Could you say that again?", te: "మళ్ళీ ఒకసారి చెప్తారా?", extra: ["tell"] },
+    { en: "Can you speak slowly, please?", te: "కొంచెం నెమ్మదిగా మాట్లాడతారా, ప్లీజ్?", extra: ["slow"] },
     { en: "What does this word mean?", te: "ఈ పదానికి అర్థం ఏంటి?", extra: ["means"] },
-    { en: "Please repeat the number.", te: "దయచేసి ఆ నంబర్ మళ్ళీ చెప్పండి.", extra: ["repeating"] },
-    { en: "Can you spell that, please?", te: "దయచేసి దాని స్పెల్లింగ్ చెప్పగలరా?", extra: ["spelling"] },
-    { en: "Sorry, the line is not clear.", te: "క్షమించండి, లైన్ సరిగ్గా వినిపించడం లేదు.", extra: ["clean"] },
+    { en: "Please repeat the number.", te: "ప్లీజ్, ఆ నంబర్ మళ్ళీ చెప్పండి.", extra: ["repeating"] },
+    { en: "Can you spell that, please?", te: "దాని స్పెల్లింగ్ కొంచెం చెప్తారా?", extra: ["spelling"] },
+    { en: "Sorry, the line is not clear.", te: "sorry అండీ, లైన్ సరిగ్గా వినిపించడం లేదు.", extra: ["clean"] },
   ],
   key: [0, 1, 2, 3],
   tryToday: {
@@ -53,7 +53,7 @@ export const day: Lesson = {
         te: "అర్థం కాకపోవడం తప్పు కాదు. Sorry, I don't understand అని చెప్పి, అడగండి: Could you say that again? Can you speak slowly, please? అందరూ సంతోషంగా సహాయం చేస్తారు.",
       },
       bridge: {
-        te: ["మళ్ళీ ఒకసారి", "చెప్పగలరా?"],
+        te: ["మళ్ళీ ఒకసారి", "చెప్తారా?"],
         en: [
           { text: "Could", role: "action" },
           { text: "you", role: "who" },
@@ -61,9 +61,9 @@ export const day: Lesson = {
         ],
       },
       examples: [
-        { en: "Sorry, I don't understand.", te: "క్షమించండి, నాకు అర్థం కాలేదు." },
-        { en: "Could you say that again?", te: "మళ్ళీ ఒకసారి చెప్పగలరా?" },
-        { en: "Can you speak slowly, please?", te: "దయచేసి నెమ్మదిగా మాట్లాడగలరా?" },
+        { en: "Sorry, I don't understand.", te: "sorry అండీ, నాకు అర్థం కావడం లేదు." },
+        { en: "Could you say that again?", te: "మళ్ళీ ఒకసారి చెప్తారా?" },
+        { en: "Can you speak slowly, please?", te: "కొంచెం నెమ్మదిగా మాట్లాడతారా, ప్లీజ్?" },
       ],
     },
     {
@@ -74,12 +74,12 @@ export const day: Lesson = {
         {
           form: "say that again / repeat",
           useFor: { en: "When you did not hear well.", te: "సరిగ్గా వినిపించనప్పుడు." },
-          example: { en: "Please repeat the number.", te: "దయచేసి ఆ నంబర్ మళ్ళీ చెప్పండి." },
+          example: { en: "Please repeat the number.", te: "ప్లీజ్, ఆ నంబర్ మళ్ళీ చెప్పండి." },
         },
         {
           form: "speak slowly / spell",
           useFor: { en: "When it is too fast, or a name is hard.", te: "చాలా వేగంగా ఉన్నప్పుడు, లేదా పేరు కష్టంగా ఉన్నప్పుడు." },
-          example: { en: "Can you spell that, please?", te: "దయచేసి దాని స్పెల్లింగ్ చెప్పగలరా?" },
+          example: { en: "Can you spell that, please?", te: "దాని స్పెల్లింగ్ కొంచెం చెప్తారా?" },
         },
         {
           form: "What does … mean?",
@@ -104,8 +104,8 @@ export const day: Lesson = {
       wrong: "What this word means?",
       right: "What does this word mean?",
       why: {
-        en: "The question needs does, and mean has no s.",
-        te: "ప్రశ్నలో does ఉండాలి, mean కి s ఉండదు.",
+        en: "The question needs does, and then mean has no s: What does this word mean?",
+        te: "ప్రశ్నలో does ఉండాలి, అప్పుడు mean కి s రాదు: What does this word mean?",
       },
     },
   ],
@@ -117,20 +117,20 @@ export const day: Lesson = {
       options: ["I am not understanding.", "Sorry, I don't understand.", "Sorry, I not understand."],
       answer: 1,
       why: {
-        en: "Say: Sorry, I don't understand.",
-        te: "ఇలా అనాలి: Sorry, I don't understand.",
+        en: "Understand takes no am with -ing, and not needs don't: Sorry, I don't understand.",
+        te: "understand కి am, -ing రావు; not కి don't కావాలి: Sorry, I don't understand.",
       },
     },
     {
       id: "p2",
       type: "fillBlank",
       sentence: "Could you say that ___?",
-      te: "మళ్ళీ ఒకసారి చెప్పగలరా?",
-      options: ["again", "back", "more"],
+      te: "మళ్ళీ ఒకసారి చెప్తారా?",
+      options: ["again", "repeat", "more"],
       answer: 0,
       why: {
-        en: "Say that again.",
-        te: "say that again (మళ్ళీ చెప్పండి).",
+        en: "Telugu మళ్ళీ is again, and it goes at the end: Could you say that again?",
+        te: "'మళ్ళీ' = again, అది చివర వస్తుంది: Could you say that again?",
       },
     },
     {
@@ -140,8 +140,8 @@ export const day: Lesson = {
       options: ["Can you speak slowly, please?", "Speak slow.", "You are too fast."],
       answer: 0,
       why: {
-        en: "Ask politely: Can you speak slowly, please?",
-        te: "మర్యాదగా అడగండి: Can you speak slowly, please?",
+        en: "Ask with can and please; Speak slow sounds like an order: Can you speak slowly, please?",
+        te: "can, please తో అడగండి; Speak slow ఆజ్ఞలా వినిపిస్తుంది: Can you speak slowly, please?",
       },
     },
     {
@@ -151,8 +151,8 @@ export const day: Lesson = {
       wrongIndex: 4,
       fix: "What does this word mean?",
       why: {
-        en: "After does, mean has no s.",
-        te: "does తర్వాత mean కి s ఉండదు.",
+        en: "Does already has the s, so mean stays plain: What does this word mean?",
+        te: "does లోనే s ఉంది, అందుకే mean కి s రాదు: What does this word mean?",
       },
     },
   ],
@@ -173,7 +173,7 @@ export const day: Lesson = {
       type: "situation",
       situation: {
         en: "Someone uses a word you don't know. Ask what it means.",
-        te: "ఒకరు మీకు తెలియని పదం వాడారు. దాని అర్థం ఏమిటని అడగండి.",
+        te: "ఒకరు మీకు తెలియని పదం వాడారు. దాని అర్థం ఏంటని అడగండి.",
       },
       expected: ["What does this word mean?", "What does that mean?"],
       options: ["What this word means?", "What does this word mean?", "What is mean this word?"],
@@ -186,7 +186,7 @@ export const day: Lesson = {
     title: { en: "A fast customer-care agent", te: "వేగంగా మాట్లాడే కస్టమర్ కేర్" },
     scene: {
       en: "You call customer care about a wrong bill. Rani, the agent, speaks very fast.",
-      te: "తప్పు బిల్ గురించి మీరు కస్టమర్ కేర్‌కి ఫోన్ చేశారు. ఏజెంట్ రాణి చాలా వేగంగా మాట్లాడుతోంది.",
+      te: "తప్పు బిల్ గురించి మీరు కస్టమర్ కేర్‌కి ఫోన్ చేశారు. ఏజెంట్ రాణి గారు చాలా వేగంగా మాట్లాడుతున్నారు.",
     },
     partner: { en: "Rani (customer care)", te: "రాణి (కస్టమర్ కేర్)" },
     skills: [{ id: "clarify", label: { en: "Asking again", te: "మళ్ళీ అడగడం" } }],
@@ -194,7 +194,7 @@ export const day: Lesson = {
       {
         partner: "Hello, how can I help you?",
         te: "హలో, మీకు ఎలా సహాయం చేయగలను?",
-        hint: { en: "Say: I have a problem with my bill.", te: "ఇలా చెప్పండి: I have a problem with my bill." },
+        hint: { en: "Tell her why you are calling.", te: "ఎందుకు ఫోన్ చేశారో చెప్పండి." },
         replies: [
           { say: "I have a problem with my bill.", good: true },
           { say: "I have problem with my bill.", good: false },
@@ -203,16 +203,22 @@ export const day: Lesson = {
       {
         partner: "Tell me your account number, please.",
         te: "దయచేసి మీ అకౌంట్ నంబర్ చెప్పండి.",
-        hint: { en: "She was too fast. Say: Sorry, can you speak slowly?", te: "ఆమె చాలా వేగంగా చెప్పింది. అనండి: Sorry, can you speak slowly?" },
+        hint: { en: "She was too fast. Ask her politely to slow down.", te: "ఆవిడ చాలా వేగంగా చెప్పారు. నెమ్మదిగా మాట్లాడమని మర్యాదగా అడగండి." },
         replies: [
           { say: "Sorry, can you speak slowly?", good: true, skill: "clarify" },
           { say: "Sorry, can you speak slow?", good: false, skill: "clarify" },
+          {
+            say: "You talk too fast! Stop.",
+            good: false,
+            skill: "clarify",
+            react: { en: "Sorry! I will speak slowly.", te: "sorry అండీ! నెమ్మదిగా మాట్లాడతాను." },
+          },
         ],
       },
       {
         partner: "Your account number, please.",
         te: "మీ అకౌంట్ నంబర్ చెప్పండి.",
-        hint: { en: "Say the digits one by one: It is four five six seven.", te: "అంకెలు ఒక్కొక్కటిగా చెప్పండి: It is four five six seven." },
+        hint: { en: "Say the digits one by one.", te: "అంకెలు ఒక్కొక్కటిగా చెప్పండి." },
         replies: [
           { say: "It is four five six seven.", good: true },
           { say: "It is four thousand five hundred sixty-seven.", good: false },
@@ -221,7 +227,7 @@ export const day: Lesson = {
       {
         partner: "We will fix it in two days.",
         te: "రెండు రోజుల్లో సరిచేస్తాం.",
-        hint: { en: "Check it: Sorry, could you say that again?", te: "నిర్ధారించుకోండి: Sorry, could you say that again?" },
+        hint: { en: "You are not sure you heard it. Ask her to repeat.", te: "సరిగ్గా విన్నారో లేదో తెలియదు. మళ్ళీ చెప్పమని అడగండి." },
         replies: [
           { say: "Sorry, could you say that again?", good: true, skill: "clarify" },
           { say: "Sorry, could you tell again?", good: false, skill: "clarify" },

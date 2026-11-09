@@ -75,7 +75,7 @@ export const day: Lesson = {
       items: [
         {
           form: "why + am / is / are",
-          useFor: { en: "Use with how someone or something is.", te: "ఎవరైనా, ఏదైనా ఎలా ఉందో అడగడానికి." },
+          useFor: { en: "Use with is or are, for how something is now.", te: "ఏదైనా ఇప్పుడు ఎలా ఉందో అడగడానికి, is లేదా are తో." },
           example: { en: "Why is the shop closed?", te: "షాప్ ఎందుకు మూసి ఉంది?" },
         },
         {
@@ -131,8 +131,8 @@ export const day: Lesson = {
       options: ["why", "because", "what"],
       answer: 1,
       why: {
-        en: "Because gives the reason.",
-        te: "కారణం చెప్పడానికి because.",
+        en: "Use because to give a reason, like ఎందుకంటే in Telugu.",
+        te: "కారణం చెప్పడానికి because వాడాలి, తెలుగులో ఎందుకంటే లాగా.",
       },
     },
     {
@@ -146,7 +146,7 @@ export const day: Lesson = {
       answer: 0,
       why: {
         en: "Give the reason with because, in the past: I was not well.",
-        te: "because తో కారణం చెప్పాలి, గతం కాబట్టి was: I was not well.",
+        te: "because తో కారణం చెప్పాలి. నిన్నటి సంగతి కాబట్టి was: I was not well.",
       },
     },
     {
@@ -156,8 +156,8 @@ export const day: Lesson = {
       wrongIndex: 1,
       fix: "Why didn't you come?",
       why: {
-        en: "Didn't comes before you in a question.",
-        te: "ప్రశ్నలో didn't, you కంటే ముందు వస్తుంది.",
+        en: "In a question, didn't comes before you: Why didn't you come?",
+        te: "ప్రశ్నలో didn't, you కంటే ముందు వస్తుంది: Why didn't you come?",
       },
     },
   ],
@@ -191,7 +191,7 @@ export const day: Lesson = {
     title: { en: "Why didn't you come?", te: "ఎందుకు రాలేదు?" },
     scene: {
       en: "You missed yesterday's meeting at the temple. Your friend Anitha asks why.",
-      te: "నిన్న గుడిలో జరిగిన మీటింగ్‌కి మీరు వెళ్లలేదు. మీ స్నేహితురాలు అనిత ఎందుకని అడుగుతోంది.",
+      te: "నిన్న గుడిలో జరిగిన మీటింగ్‌కి మీరు వెళ్లలేదు. మీ స్నేహితురాలు అనిత ఎందుకని అడుగుతున్నారు.",
     },
     partner: { en: "Anitha (a friend)", te: "అనిత (స్నేహితురాలు)" },
     skills: [
@@ -202,17 +202,21 @@ export const day: Lesson = {
       {
         partner: "Hi! Why didn't you come yesterday?",
         te: "హాయ్! నిన్న ఎందుకు రాలేదు?",
-        hint: { en: "Say you were not well: Because I was not well.", te: "ఒంట్లో బాగాలేదని చెప్పండి: Because I was not well." },
+        hint: { en: "Give the reason: you were not well.", te: "కారణం చెప్పండి: ఒంట్లో బాగాలేదు." },
         replies: [
           { say: "Because I was not well.", good: true, skill: "because" },
           { say: "Because I am not well yesterday.", good: false, skill: "because" },
-          { say: "Why I was not well.", good: false, skill: "because" },
+          {
+            say: "Why should I tell you?",
+            good: false,
+            react: { en: "Oh, sorry! I was only worried.", te: "అయ్యో, sorry! మీ గురించి కంగారుపడ్డాను, అంతే." },
+          },
         ],
       },
       {
         partner: "Oh! Are you fine now?",
         te: "అయ్యో! ఇప్పుడు బాగున్నారా?",
-        hint: { en: "Say: Yes, I am fine now.", te: "ఇలా చెప్పండి: Yes, I am fine now." },
+        hint: { en: "Say yes, you are fine now.", te: "అవును, ఇప్పుడు బాగున్నానని చెప్పండి." },
         replies: [
           { say: "Yes, I am fine now.", good: true },
           { say: "Yes, I fine now.", good: false },
@@ -221,7 +225,7 @@ export const day: Lesson = {
       {
         partner: "The meeting was very long.",
         te: "మీటింగ్ చాలా సేపు జరిగింది.",
-        hint: { en: "Ask why: Why was it long?", te: "ఎందుకని అడగండి: Why was it long?" },
+        hint: { en: "Ask her the reason.", te: "ఎందుకని అడగండి." },
         replies: [
           { say: "Why was it long?", good: true, skill: "why" },
           { say: "Why it was long?", good: false, skill: "why" },
@@ -230,7 +234,7 @@ export const day: Lesson = {
       {
         partner: "Because many people asked questions.",
         te: "ఎందుకంటే చాలామంది ప్రశ్నలు అడిగారు.",
-        hint: { en: "Say: Oh, I see. Thank you.", te: "ఇలా చెప్పండి: Oh, I see. Thank you." },
+        hint: { en: "Say you understand, and thank her.", te: "అర్థమైందని చెప్పి, thank you చెప్పండి." },
         replies: [
           { say: "Oh, I see. Thank you.", good: true },
           { say: "Oh, I seeing. Thank you.", good: false },

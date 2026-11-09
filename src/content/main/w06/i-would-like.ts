@@ -23,7 +23,7 @@ export const day: Lesson = {
   core: [
     { en: "I would like some tea.", te: "నాకు కొంచెం టీ కావాలి.", extra: ["will"] },
     { en: "Would you like some water?", te: "మీకు కొంచెం నీళ్ళు కావాలా?", extra: ["Do"] },
-    { en: "I'd like two dosas, please.", te: "నాకు రెండు దోసెలు కావాలి.", extra: ["want"] },
+    { en: "I'd like two dosas, please.", te: "నాకు రెండు దోసెలు కావాలండీ.", extra: ["want"] },
     { en: "Would you like some snacks?", te: "మీకు ఏమైనా స్నాక్స్ కావాలా?", extra: ["Will"] },
     { en: "Yes, please.", te: "అవును, ఇవ్వండి.", extra: ["thanks"] },
     { en: "No, thank you.", te: "వద్దు, థాంక్యూ.", extra: ["thanks"] },
@@ -94,8 +94,8 @@ export const day: Lesson = {
       wrong: "Will you like some water?",
       right: "Would you like some water?",
       why: {
-        en: "For offers, say would, not will.",
-        te: "ఇవ్వజూపేటప్పుడు will కాదు, would అనాలి.",
+        en: "An offer always uses would, not will: Would you like some water?",
+        te: "ఇవ్వజూపేటప్పుడు will కాదు, would అనాలి: Would you like some water?",
       },
     },
     {
@@ -114,11 +114,11 @@ export const day: Lesson = {
       id: "p1",
       type: "choose",
       prompt: { en: "Offer a guest some water politely.", te: "అతిథికి మర్యాదగా నీళ్ళు ఇవ్వజూపండి." },
-      options: ["Will you like some water?", "Would you like some water?", "You like some water is?"],
+      options: ["Will you like some water?", "Would you like some water?", "Do you like some water?"],
       answer: 1,
       why: {
-        en: "Offer with Would you like …?",
-        te: "Would you like …? తో ఇవ్వజూపాలి.",
+        en: "Telugu says కావాలా?, but an English offer starts with Would you like: Would you like some water?",
+        te: "తెలుగులో 'కావాలా?' అంటాం; ఇంగ్లీష్‌లో ఇవ్వజూపడానికి Would you like: Would you like some water?",
       },
     },
     {
@@ -129,8 +129,8 @@ export const day: Lesson = {
       options: ["would", "will", "am"],
       answer: 0,
       why: {
-        en: "Polite asking: I would like.",
-        te: "మర్యాదగా అడగడం: I would like.",
+        en: "To ask politely, use would, not will or am: I would like some tea.",
+        te: "మర్యాదగా అడగడానికి would వాడాలి, will లేదా am కాదు: I would like some tea.",
       },
     },
     {
@@ -140,11 +140,11 @@ export const day: Lesson = {
         en: "Your host asks: Would you like some coffee? You don't want it.",
         te: "ఇంటివారు అడుగుతున్నారు: Would you like some coffee? మీకు వద్దు.",
       },
-      options: ["No, thank you.", "No, I don't.", "Not like."],
+      options: ["No, thank you.", "No, I don't.", "No, I don't want."],
       answer: 0,
       why: {
-        en: "Say no politely: No, thank you.",
-        te: "మర్యాదగా వద్దనడం: No, thank you.",
+        en: "Refuse an offer kindly by adding thank you: No, thank you.",
+        te: "ఇచ్చేది వద్దనేటప్పుడు thank you కలిపి మర్యాదగా చెప్పాలి: No, thank you.",
       },
     },
     {
@@ -154,8 +154,8 @@ export const day: Lesson = {
       wrongIndex: 0,
       fix: "Would you like some snacks?",
       why: {
-        en: "For an offer, would, not will.",
-        te: "ఇవ్వజూపడానికి will కాదు, would.",
+        en: "An offer uses would, never will: Would you like some snacks?",
+        te: "ఇవ్వజూపడానికి will కాదు, would: Would you like some snacks?",
       },
     },
   ],
@@ -179,7 +179,7 @@ export const day: Lesson = {
         te: "ఇంటికి అతిథి వచ్చారు. కొంచెం టీ ఇవ్వజూపండి.",
       },
       expected: ["Would you like some tea?", "Would you like tea?"],
-      options: ["Will you like some tea?", "Would you like some tea?", "You like some tea?"],
+      options: ["Will you like some tea?", "Would you like some tea?", "Would you like to tea?"],
       answer: 1,
     },
   ],
@@ -188,25 +188,31 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "Offering snacks to a guest", te: "అతిథికి స్నాక్స్ ఇవ్వడం" },
     scene: {
-      en: "Suresh visits your home. Offer him something to drink and eat.",
-      te: "సురేష్ మీ ఇంటికి వచ్చారు. ఆయనకు తాగడానికి, తినడానికి ఏదైనా ఇవ్వజూపండి.",
+      en: "Narayana visits your home. Offer him something to drink and eat.",
+      te: "నారాయణ గారు మీ ఇంటికి వచ్చారు. ఆయనకు తాగడానికి, తినడానికి ఏదైనా ఇవ్వజూపండి.",
     },
-    partner: { en: "Suresh (a guest)", te: "సురేష్ (అతిథి)" },
+    partner: { en: "Narayana (a guest)", te: "నారాయణ గారు (అతిథి)" },
+    voice: "b",
     skills: [{ id: "offer", label: { en: "Would you like …?", te: "Would you like …? వాడకం" } }],
     turns: [
       {
         partner: "Hello! Sorry, I am a little late.",
-        te: "నమస్తే! క్షమించండి, కొంచెం ఆలస్యం అయింది.",
-        hint: { en: "Say: No problem. Would you like some water?", te: "ఇలా చెప్పండి: No problem. Would you like some water?" },
+        te: "నమస్తే! sorry అండీ, కొంచెం ఆలస్యం అయింది.",
+        hint: { en: "Tell him it is fine, and offer some water.", te: "పర్వాలేదని చెప్పి, నీళ్ళు ఇవ్వజూపండి." },
         replies: [
           { say: "No problem. Would you like some water?", good: true, skill: "offer" },
           { say: "No problem. Will you like some water?", good: false, skill: "offer" },
+          {
+            say: "Yes, you are very late.",
+            good: false,
+            react: { en: "Sorry, sorry. The bus was late.", te: "sorry అండీ. బస్సు ఆలస్యంగా వచ్చింది." },
+          },
         ],
       },
       {
         partner: "Yes, please. It is very hot.",
         te: "అవును, ఇవ్వండి. చాలా వేడిగా ఉంది.",
-        hint: { en: "Offer a drink: Would you like tea or juice?", te: "తాగడానికి అడగండి: Would you like tea or juice?" },
+        hint: { en: "Ask if he wants tea or juice.", te: "టీ కావాలా, జ్యూస్ కావాలా అని అడగండి." },
         replies: [
           { say: "Would you like tea or juice?", good: true, skill: "offer" },
           { say: "You would like tea or juice?", good: false, skill: "offer" },
@@ -215,7 +221,7 @@ export const day: Lesson = {
       {
         partner: "I would like some juice, please.",
         te: "నాకు కొంచెం జ్యూస్ కావాలి.",
-        hint: { en: "Offer snacks: Would you like some snacks?", te: "స్నాక్స్ ఇవ్వజూపండి: Would you like some snacks?" },
+        hint: { en: "Offer him something to eat too.", te: "తినడానికి కూడా ఏదైనా ఇవ్వజూపండి." },
         replies: [
           { say: "Would you like some snacks?", good: true, skill: "offer" },
           { say: "Would you like to snacks?", good: false, skill: "offer" },
@@ -224,7 +230,7 @@ export const day: Lesson = {
       {
         partner: "No, thank you. Just juice.",
         te: "వద్దు, థాంక్యూ. జ్యూస్ చాలు.",
-        hint: { en: "Say: Okay, one minute.", te: "ఇలా చెప్పండి: Okay, one minute." },
+        hint: { en: "Say okay, and that you will bring it soon.", te: "సరే అని, వెంటనే తెస్తానని చెప్పండి." },
         replies: [
           { say: "Okay, one minute.", good: true },
           { say: "Okay, one minutes.", good: false },

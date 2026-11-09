@@ -49,7 +49,7 @@ export const day: Lesson = {
       type: "explain",
       heading: { en: "How, and how + one word", te: "how, how + ఒక పదం" },
       body: {
-        en: "How alone asks how someone is, or the way you do something. Add one word to ask more: how much is the price, how old is the age, how far is the distance.",
+        en: "How alone asks how someone is, or the way you do something. Add one word to ask more: how much for a price, how old for age, how far for distance.",
         te: "how ఒక్కటే అంటే ఎలా: ఒకరు ఎలా ఉన్నారో, లేదా ఏదైనా ఎలా చేస్తారో. దాని తర్వాత ఒక పదం చేర్చితే: how much = ధర ఎంత, how old = వయసు ఎంత, how far = ఎంత దూరం.",
       },
       bridge: {
@@ -99,8 +99,8 @@ export const day: Lesson = {
       wrong: "How much is these bananas?",
       right: "How much are these bananas?",
       why: {
-        en: "For more than one thing, use these and are.",
-        te: "ఒకటి కంటే ఎక్కువ వస్తువులకు these, are వాడాలి.",
+        en: "Telugu ఎంత? needs no verb, but English does. Bananas are many, so say are: How much are these bananas?",
+        te: "తెలుగులో ఎంత? అంటే చాలు. ఇంగ్లీష్‌లో చాలా వస్తువులకి are కావాలి: How much are these bananas?",
       },
     },
     {
@@ -109,8 +109,8 @@ export const day: Lesson = {
       wrong: "How much far is the bus stand?",
       right: "How far is the bus stand?",
       why: {
-        en: "For distance, say how far. Do not add much.",
-        te: "దూరం అడగడానికి how far చాలు. much చేర్చకండి.",
+        en: "For distance, how far is enough. Do not add much: How far is the bus stand?",
+        te: "దూరం అడగడానికి how far చాలు, much చేర్చకండి: How far is the bus stand?",
       },
     },
   ],
@@ -119,11 +119,11 @@ export const day: Lesson = {
       id: "p1",
       type: "choose",
       prompt: { en: "You want to know the price of a saree. What do you ask?", te: "ఒక చీర ధర తెలుసుకోవాలి. ఏమని అడుగుతారు?" },
-      options: ["How much is this saree?", "How old is this saree?", "How far is this saree?"],
+      options: ["How much is this saree?", "How old is this saree?", "How many is this saree?"],
       answer: 0,
       why: {
-        en: "For a price, ask how much.",
-        te: "ధర కోసం how much అడగాలి.",
+        en: "For a price, ask how much: How much is this saree?",
+        te: "ధర కోసం how much అడగాలి: How much is this saree?",
       },
     },
     {
@@ -131,22 +131,22 @@ export const day: Lesson = {
       type: "fillBlank",
       sentence: "How ___ is the temple?",
       te: "గుడి ఎంత దూరం?",
-      options: ["much", "far", "old"],
+      options: ["much", "far", "many"],
       answer: 1,
       why: {
-        en: "For distance, use how far.",
-        te: "దూరం అడగడానికి how far.",
+        en: "For distance, use how far: How far is the temple?",
+        te: "దూరం అడగడానికి how far: How far is the temple?",
       },
     },
     {
       id: "p3",
       type: "choose",
       prompt: { en: "Which question asks a person's age?", te: "ఒకరి వయసు అడిగే ప్రశ్న ఏది?" },
-      options: ["How are you?", "How old are you?", "How much are you?"],
+      options: ["How are you?", "How old are you?", "How many years you are?"],
       answer: 1,
       why: {
-        en: "For age, ask how old.",
-        te: "వయసు కోసం how old అడగాలి.",
+        en: "Telugu counts the years, but English asks how old: How old are you?",
+        te: "తెలుగులో ఎన్నేళ్లు అంటాం, ఇంగ్లీష్‌లో how old అడగాలి: How old are you?",
       },
     },
     {
@@ -156,8 +156,8 @@ export const day: Lesson = {
       wrongIndex: 2,
       fix: "How much are these bananas?",
       why: {
-        en: "Bananas are more than one, so use are.",
-        te: "అరటిపళ్ళు ఒకటి కంటే ఎక్కువ, కాబట్టి are వాడాలి.",
+        en: "Bananas are more than one, so use are: How much are these bananas?",
+        te: "అరటిపళ్ళు ఒకటి కంటే ఎక్కువ, కాబట్టి are: How much are these bananas?",
       },
     },
   ],
@@ -170,7 +170,7 @@ export const day: Lesson = {
         te: "మీ స్నేహితులు అడుగుతున్నారు: How are you? ఇంగ్లీష్‌లో జవాబు చెప్పండి.",
       },
       expected: ["I am fine, thank you.", "I am fine.", "Fine, thank you."],
-      options: ["I fine, thank you.", "I am fine, thank you.", "I am fine, thanks you."],
+      options: ["I fine, thank you.", "I am fine, thank you.", "Yes, I am fine."],
       answer: 1,
     },
     {
@@ -190,10 +190,10 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "Buying fruit from a cart", te: "పళ్ల బండి దగ్గర కొనడం" },
     scene: {
-      en: "Venkat sells fruit from a cart near your house. Ask the prices and buy some bananas.",
-      te: "మీ ఇంటి దగ్గర వెంకట్ బండి మీద పళ్ళు అమ్ముతున్నారు. ధరలు అడిగి, అరటిపళ్ళు కొనండి.",
+      en: "Fatima sells fruit from a cart near your house. Ask the prices and buy some bananas.",
+      te: "మీ ఇంటి దగ్గర ఫాతిమా గారు బండి మీద పళ్ళు అమ్ముతున్నారు. ధరలు అడిగి, అరటిపళ్ళు కొనండి.",
     },
-    partner: { en: "Venkat (a fruit seller)", te: "వెంకట్ (పళ్ళు అమ్మేవారు)" },
+    partner: { en: "Fatima (a fruit seller)", te: "ఫాతిమా (పళ్ళు అమ్మే ఆవిడ)" },
     skills: [
       { id: "how", label: { en: "how much", te: "how much వాడకం" } },
       { id: "polite", label: { en: "Polite words", te: "మర్యాద పదాలు" } },
@@ -212,7 +212,7 @@ export const day: Lesson = {
       {
         partner: "Sixty rupees a dozen.",
         te: "డజను అరవై రూపాయలు.",
-        hint: { en: "Ask about the mangoes: How much are the mangoes?", te: "మామిడిపళ్ళ గురించి అడగండి: How much are the mangoes?" },
+        hint: { en: "Now ask the price of the mangoes.", te: "ఇప్పుడు మామిడిపళ్ళ ధర అడగండి." },
         replies: [
           { say: "How much are the mangoes?", good: true, skill: "how" },
           { say: "How much mangoes?", good: false, skill: "how" },
@@ -221,19 +221,25 @@ export const day: Lesson = {
       {
         partner: "One hundred rupees a kilo.",
         te: "కిలో వంద రూపాయలు.",
-        hint: { en: "Ask for bananas: One dozen bananas, please.", te: "అరటిపళ్ళు అడగండి: One dozen bananas, please." },
+        hint: { en: "Ask for a dozen bananas. Be polite.", te: "ఒక డజను అరటిపళ్ళు మర్యాదగా అడగండి." },
         replies: [
           { say: "One dozen bananas, please.", good: true, skill: "polite" },
-          { say: "Give one dozen banana.", good: false, skill: "polite" },
+          { say: "One dozen banana, please.", good: false, skill: "how" },
+          {
+            say: "Give me one dozen. Quick!",
+            good: false,
+            skill: "polite",
+            react: { en: "Okay, okay! One minute, please.", te: "సరే సరే! ఒక్క నిమిషం ఆగండి." },
+          },
         ],
       },
       {
         partner: "Here you are. Anything else?",
         te: "ఇదిగోండి. ఇంకా ఏమైనా కావాలా?",
-        hint: { en: "Say no, politely: No, thank you.", te: "మర్యాదగా వద్దని చెప్పండి: No, thank you." },
+        hint: { en: "Say you need nothing more, politely.", te: "ఇంకేమీ వద్దని మర్యాదగా చెప్పండి." },
         replies: [
           { say: "No, thank you.", good: true, skill: "polite" },
-          { say: "No, thanks you.", good: false, skill: "polite" },
+          { say: "No, I don't want.", good: false, skill: "polite" },
         ],
       },
     ],

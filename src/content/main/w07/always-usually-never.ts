@@ -4,11 +4,11 @@ import type { Lesson } from "../../types";
 export const day: Lesson = {
   id: "always-usually-never",
   kind: "lesson",
-  title: { en: "Always, Usually, Never", te: "ఎప్పుడూ, సాధారణంగా, ఎప్పుడూ కాదు" },
+  title: { en: "Always, Usually, Never", te: "ఎప్పుడూ, మామూలుగా, ఎన్నడూ" },
   subtitle: "how often",
   summary: {
     en: "Learn to say how often you do things with always, usually, sometimes and never.",
-    te: "always, usually, sometimes, never తో ఏదైనా ఎంత తరచుగా చేస్తారో చెప్పడం నేర్చుకుందాం.",
+    te: "always, usually, sometimes, never తో ఏదైనా ఎన్నిసార్లు చేస్తారో చెప్పడం నేర్చుకుందాం.",
   },
   seo: {
     title: "Always, Usually, Sometimes, Never in English for Telugu Speakers",
@@ -22,13 +22,13 @@ export const day: Lesson = {
     { text: "tea", role: "what" },
   ],
   core: [
-    { en: "I always drink tea in the morning.", te: "నేను ఎప్పుడూ ఉదయం టీ తాగుతాను.", extra: ["drinks"] },
+    { en: "I always drink tea in the morning.", te: "నేను రోజూ ఉదయం తప్పకుండా టీ తాగుతాను.", extra: ["drinks"] },
     { en: "I never eat late.", te: "నేను ఎప్పుడూ ఆలస్యంగా తినను.", extra: ["not"] },
-    { en: "She usually walks after dinner.", te: "ఆమె సాధారణంగా రాత్రి భోజనం తర్వాత నడుస్తుంది.", extra: ["walk"] },
+    { en: "She usually walks after dinner.", te: "ఆవిడ మామూలుగా రాత్రి భోజనం తర్వాత నడుస్తారు.", extra: ["walk"] },
     { en: "I sometimes watch TV.", te: "నేను అప్పుడప్పుడు TV చూస్తాను.", extra: ["watching"] },
-    { en: "He is always on time.", te: "అతను ఎప్పుడూ సమయానికి వస్తాడు.", extra: ["does"] },
-    { en: "Do you often go out?", te: "మీరు తరచుగా బయటకు వెళ్తారా?", extra: ["Are"] },
-    { en: "I usually sleep at ten.", te: "నేను సాధారణంగా పది గంటలకు పడుకుంటాను.", extra: ["sleeping"] },
+    { en: "He is always on time.", te: "ఆయన ఎప్పుడూ టైంకే వస్తారు.", extra: ["does"] },
+    { en: "Do you often go out?", te: "మీరు ఎక్కువగా బయటకు వెళ్తుంటారా?", extra: ["Are"] },
+    { en: "I usually sleep at ten.", te: "నేను మామూలుగా పది గంటలకు పడుకుంటాను.", extra: ["sleeping"] },
   ],
   key: [0, 1, 2, 3],
   tryToday: {
@@ -36,11 +36,11 @@ export const day: Lesson = {
     te: "మీ మూడు అలవాట్లు ఇంగ్లీష్‌లో చెప్పండి: ఒకటి always తో, ఒకటి sometimes తో, ఒకటి never తో.",
   },
   words: [
-    { en: "always", te: "ఎప్పుడూ" },
-    { en: "usually", te: "సాధారణంగా" },
+    { en: "always", te: "ఎప్పుడూ, ప్రతిసారీ" },
+    { en: "usually", te: "మామూలుగా" },
     { en: "sometimes", te: "అప్పుడప్పుడు" },
-    { en: "never", te: "ఎప్పుడూ కాదు" },
-    { en: "often", te: "తరచుగా" },
+    { en: "never", te: "ఎప్పుడూ … చేయను" },
+    { en: "often", te: "ఎక్కువసార్లు, ఎక్కువగా" },
   ],
   grammar: ["adverbs-frequency", "present-simple"],
   topics: ["health", "time"],
@@ -48,10 +48,10 @@ export const day: Lesson = {
     {
       id: "l1",
       type: "explain",
-      heading: { en: "How often", te: "ఎంత తరచుగా" },
+      heading: { en: "How often", te: "ఎన్నిసార్లు?" },
       body: {
         en: "Always is every time, usually is most days, sometimes is some days, and never is no day. Put the word before the action: I always drink tea. With am, is or are, put it after: He is always on time.",
-        te: "always = ప్రతిసారీ, usually = చాలా రోజులు, sometimes = కొన్ని రోజులు, never = ఎప్పుడూ కాదు. ఈ పదం పని పదం ముందు వస్తుంది: I always drink tea. am, is, are ఉంటే దాని తర్వాత: He is always on time.",
+        te: "always = ప్రతిసారీ, usually = చాలా రోజులు, sometimes = కొన్ని రోజులు, never = ఎప్పుడూ … చేయను (never లోనే 'లేదు' ఉంది). ఈ పదం verb ముందు వస్తుంది: I always drink tea. am, is, are ఉంటే వాటి తర్వాత: He is always on time.",
       },
       bridge: {
         te: ["నేను", "ఎప్పుడూ", "టీ తాగుతాను"],
@@ -63,7 +63,7 @@ export const day: Lesson = {
         ],
       },
       examples: [
-        { en: "I always drink tea in the morning.", te: "నేను ఎప్పుడూ ఉదయం టీ తాగుతాను." },
+        { en: "I always drink tea in the morning.", te: "నేను రోజూ ఉదయం తప్పకుండా టీ తాగుతాను." },
         { en: "I sometimes watch TV.", te: "నేను అప్పుడప్పుడు TV చూస్తాను." },
         { en: "I never eat late.", te: "నేను ఎప్పుడూ ఆలస్యంగా తినను." },
       ],
@@ -75,17 +75,17 @@ export const day: Lesson = {
       items: [
         {
           form: "before the action",
-          useFor: { en: "Put always, usually, never before the action word.", te: "always, usually, never ని పని పదం ముందు పెట్టాలి." },
-          example: { en: "She usually walks after dinner.", te: "ఆమె సాధారణంగా రాత్రి భోజనం తర్వాత నడుస్తుంది." },
+          useFor: { en: "Put always, usually, never before the action word.", te: "always, usually, never ని verb ముందు పెట్టాలి." },
+          example: { en: "She usually walks after dinner.", te: "ఆవిడ మామూలుగా రాత్రి భోజనం తర్వాత నడుస్తారు." },
         },
         {
           form: "after am / is / are",
           useFor: { en: "With am, is or are, put it after them.", te: "am, is, are ఉంటే వాటి తర్వాత." },
-          example: { en: "He is always on time.", te: "అతను ఎప్పుడూ సమయానికి వస్తాడు." },
+          example: { en: "He is always on time.", te: "ఆయన ఎప్పుడూ టైంకే వస్తారు." },
         },
         {
           form: "never = not ever",
-          useFor: { en: "Never already means no. Do not add not.", te: "never అంటేనే 'కాదు'. not చేర్చకండి." },
+          useFor: { en: "Never already has the no inside. Don't add not.", te: "never లోనే 'లేదు' ఉంది. not చేర్చకండి." },
           example: { en: "I never eat late.", te: "నేను ఎప్పుడూ ఆలస్యంగా తినను." },
         },
       ],
@@ -96,8 +96,8 @@ export const day: Lesson = {
       wrong: "I drink always tea.",
       right: "I always drink tea.",
       why: {
-        en: "Always comes before the action word.",
-        te: "always పని పదం ముందు వస్తుంది.",
+        en: "Always goes before the action word, not after it: I always drink tea.",
+        te: "always verb ముందు వస్తుంది, తర్వాత కాదు: I always drink tea.",
       },
     },
     {
@@ -106,8 +106,8 @@ export const day: Lesson = {
       wrong: "I don't never eat late.",
       right: "I never eat late.",
       why: {
-        en: "Never already means no. Use only never.",
-        te: "never అంటేనే 'కాదు'. never ఒక్కటే చాలు.",
+        en: "Never already has the no inside, so don't add don't: I never eat late.",
+        te: "never లోనే 'లేదు' ఉంది, అందుకే don't అక్కర్లేదు: I never eat late.",
       },
     },
   ],
@@ -116,23 +116,23 @@ export const day: Lesson = {
       id: "p1",
       type: "choose",
       prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
-      options: ["I drink always tea.", "I always drink tea.", "Always I drinking tea."],
+      options: ["I drink always tea.", "I always drink tea.", "I am always drink tea."],
       answer: 1,
       why: {
-        en: "Always before the action: I always drink tea.",
-        te: "always పని పదం ముందు: I always drink tea.",
+        en: "Always goes just before the verb, with no am: I always drink tea.",
+        te: "always నేరుగా verb ముందు వస్తుంది, am రాదు: I always drink tea.",
       },
     },
     {
       id: "p2",
       type: "fillBlank",
       sentence: "He is ___ on time.",
-      te: "అతను ఎప్పుడూ సమయానికి వస్తాడు.",
+      te: "ఆయన ఎప్పుడూ టైంకే వస్తారు.",
       options: ["always", "sometimes", "never"],
       answer: 0,
       why: {
-        en: "Every time is always.",
-        te: "ఎప్పుడూ (ప్రతిసారీ) = always.",
+        en: "The Telugu verb is yes (వస్తారు), so ఎప్పుడూ means every time: He is always on time.",
+        te: "'వస్తారు' అని ఉంది, 'రారు' కాదు; అందుకే ఇక్కడ ఎప్పుడూ = always: He is always on time.",
       },
     },
     {
@@ -153,8 +153,8 @@ export const day: Lesson = {
       wrongIndex: 1,
       fix: "I never eat late.",
       why: {
-        en: "Do not use don't with never.",
-        te: "never తో don't వాడకండి.",
+        en: "Telugu puts the no in the verb (తినను); English puts it in never: I never eat late.",
+        te: "తెలుగులో 'లేదు' verb లో ఉంటుంది (తినను); ఇంగ్లీష్‌లో never లోనే ఉంది: I never eat late.",
       },
     },
   ],
@@ -175,10 +175,10 @@ export const day: Lesson = {
       type: "situation",
       situation: {
         en: "Tell a friend you usually walk in the morning.",
-        te: "మీరు సాధారణంగా ఉదయం నడుస్తారని మీ స్నేహితులకు చెప్పండి.",
+        te: "మీరు మామూలుగా ఉదయం నడుస్తారని మీ స్నేహితులకు చెప్పండి.",
       },
       expected: ["I usually walk in the morning."],
-      options: ["I walk usually in the morning.", "I usually walk in the morning.", "Usually I walking in the morning."],
+      options: ["I walk usually in the morning.", "I usually walk in the morning.", "I am usually walk in the morning."],
       answer: 1,
     },
   ],
@@ -187,16 +187,16 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "The doctor asks about your habits", te: "డాక్టర్ మీ అలవాట్లు అడుగుతున్నారు" },
     scene: {
-      en: "At a check-up, Dr Anitha asks about your daily habits.",
-      te: "చెకప్‌లో డాక్టర్ అనిత మీ రోజువారీ అలవాట్ల గురించి అడుగుతున్నారు.",
+      en: "At a check-up, Dr Salma asks about your daily habits.",
+      te: "చెకప్‌లో డాక్టర్ సల్మా మీ రోజువారీ అలవాట్ల గురించి అడుగుతున్నారు.",
     },
-    partner: { en: "Dr Anitha (a doctor)", te: "డాక్టర్ అనిత" },
-    skills: [{ id: "often", label: { en: "How often", te: "ఎంత తరచుగా" } }],
+    partner: { en: "Dr Salma (a doctor)", te: "డాక్టర్ సల్మా" },
+    skills: [{ id: "often", label: { en: "How often", te: "ఎన్నిసార్లు" } }],
     turns: [
       {
         partner: "Do you walk every day?",
         te: "మీరు రోజూ నడుస్తారా?",
-        hint: { en: "Say: Yes, I usually walk in the morning.", te: "ఇలా చెప్పండి: Yes, I usually walk in the morning." },
+        hint: { en: "Say yes, on most days, and when you walk.", te: "అవును, మామూలుగా అని చెప్పి, ఎప్పుడు నడుస్తారో చెప్పండి." },
         replies: [
           { say: "Yes, I usually walk in the morning.", good: true, skill: "often" },
           { say: "Yes, I walk usually in the morning.", good: false, skill: "often" },
@@ -205,16 +205,21 @@ export const day: Lesson = {
       {
         partner: "Do you drink coffee?",
         te: "మీరు కాఫీ తాగుతారా?",
-        hint: { en: "Say: I sometimes drink coffee.", te: "ఇలా చెప్పండి: I sometimes drink coffee." },
+        hint: { en: "Say you drink it on some days only.", te: "కొన్ని రోజులు మాత్రమే తాగుతానని చెప్పండి." },
         replies: [
           { say: "I sometimes drink coffee.", good: true, skill: "often" },
           { say: "I drink sometimes coffee.", good: false, skill: "often" },
+          {
+            say: "Why do you ask so many questions?",
+            good: false,
+            react: { en: "It helps me check your health.", te: "మీ ఆరోగ్యం చూడడానికే అడుగుతున్నానండీ." },
+          },
         ],
       },
       {
         partner: "Do you eat late at night?",
         te: "రాత్రి ఆలస్యంగా తింటారా?",
-        hint: { en: "Say: No, I never eat late.", te: "ఇలా చెప్పండి: No, I never eat late." },
+        hint: { en: "Say no, not even once. Use never.", te: "ఒక్కసారి కూడా తిననని చెప్పండి. never వాడండి." },
         replies: [
           { say: "No, I never eat late.", good: true, skill: "often" },
           { say: "No, I don't never eat late.", good: false, skill: "often" },
@@ -223,7 +228,7 @@ export const day: Lesson = {
       {
         partner: "Good. Do you sleep well?",
         te: "మంచిది. బాగా నిద్రపోతారా?",
-        hint: { en: "Say: Yes, I usually sleep at ten.", te: "ఇలా చెప్పండి: Yes, I usually sleep at ten." },
+        hint: { en: "Say yes, and what time you usually sleep.", te: "అవునని, మామూలుగా ఎన్ని గంటలకు పడుకుంటారో చెప్పండి." },
         replies: [
           { say: "Yes, I usually sleep at ten.", good: true, skill: "often" },
           { say: "Yes, I usually sleeping at ten.", good: false, skill: "often" },

@@ -119,8 +119,8 @@ export const day: Lesson = {
       options: ["What time the shop opens?", "What time does the shop open?", "What time does the shop opens?"],
       answer: 1,
       why: {
-        en: "With does, the action word has no s: does … open.",
-        te: "does ఉంటే పని పదానికి s ఉండదు: does … open.",
+        en: "With does, the action has no s: What time does the shop open?",
+        te: "does ఉంటే verb కి s రాదు: What time does the shop open?",
       },
     },
     {
@@ -131,8 +131,8 @@ export const day: Lesson = {
       options: ["in", "on", "at"],
       answer: 2,
       why: {
-        en: "Before a clock time, use at.",
-        te: "గడియారం టైమ్ ముందు at వాడాలి.",
+        en: "Before a clock time, use at: The bus comes at seven.",
+        te: "గడియారం టైమ్ ముందు at వాడాలి: The bus comes at seven.",
       },
     },
     {
@@ -175,7 +175,7 @@ export const day: Lesson = {
       type: "situation",
       situation: {
         en: "You want to know the day of the function. Ask your neighbour.",
-        te: "ఫంక్షన్ ఎప్పుడో తెలుసుకోవాలి. పొరుగువారిని అడగండి.",
+        te: "ఫంక్షన్ ఎప్పుడో తెలుసుకోవాలి. పక్కింటి వాళ్లని అడగండి.",
       },
       expected: ["When is the function?"],
       options: ["When the function is?", "When is the function?", "What is the function?"],
@@ -191,6 +191,7 @@ export const day: Lesson = {
       te: "మీరు కిరాణా షాప్‌కి వెళ్లారు, కానీ శ్రీనివాస్ షాప్ మూసేస్తున్నారు. షాప్ టైమింగ్స్ గురించి అడగండి.",
     },
     partner: { en: "Srinivas (a shopkeeper)", te: "శ్రీనివాస్ (షాప్ యజమాని)" },
+    voice: "b",
     skills: [
       { id: "ask", label: { en: "Ask when", te: "ఎప్పుడు అని అడగడం" } },
       { id: "time", label: { en: "at + time", te: "at + టైమ్" } },
@@ -198,20 +199,25 @@ export const day: Lesson = {
     turns: [
       {
         partner: "Sorry, we are closing now.",
-        te: "క్షమించండి, ఇప్పుడు షాప్ మూసేస్తున్నాం.",
+        te: "sorry అండీ, ఇప్పుడు షాప్ మూసేస్తున్నాం.",
         hint: { en: "Ask what time the shop opens tomorrow.", te: "రేపు షాప్ ఎన్ని గంటలకు తెరుస్తారో అడగండి." },
         replies: [
           { say: "What time do you open tomorrow?", good: true, skill: "ask" },
           { say: "What time you open tomorrow?", good: false, skill: "ask" },
-          { say: "Where do you open tomorrow?", good: false, skill: "ask" },
+          {
+            say: "Open now. I need sugar.",
+            good: false,
+            react: { en: "Sorry, it is late. Please come tomorrow.", te: "sorry అండీ, ఆలస్యమైంది. రేపు రండి." },
+          },
         ],
       },
       {
         partner: "We open at eight.",
         te: "మేము ఎనిమిది గంటలకు తెరుస్తాం.",
-        hint: { en: "Ask when he closes: When do you close?", te: "ఎప్పుడు మూసేస్తారో అడగండి: When do you close?" },
+        hint: { en: "Now ask about closing time.", te: "ఇప్పుడు ఎప్పుడు మూసేస్తారో అడగండి." },
         replies: [
           { say: "When do you close?", good: true, skill: "ask" },
+          { say: "What time do you close?", good: true, skill: "ask" },
           { say: "When you close?", good: false, skill: "ask" },
         ],
       },

@@ -36,14 +36,29 @@ function ofActivity(activity: Activity): (string | Bi | Spoken | undefined)[] {
     case "findMistake":
       return [activity.fix, activity.why];
     case "listenChoose":
-    case "repeat":
       return [activity.say];
+    case "repeat":
+      return [activity.say, ...(activity.steps ?? [])];
+    case "sound":
+      return [...activity.sound.sides.flatMap((side) => side.words), ...activity.sound.pair];
+    case "soundPair":
+      return activity.words.map((w) => w.en);
     case "situation":
       return [activity.options[activity.answer], ...activity.expected];
     case "dialogue":
       return [...activity.lines.map((line) => ({ text: line.en, voice: line.voice })), ...activity.questions.map((q) => q.options[q.answer])];
-    case "roleplay":
-      return [activity.scene, ...activity.turns.flatMap((turn) => [turn.partner, ...turn.replies.filter((r) => r.good).map((r) => r.say)])];
+    case "roleplay": {
+      // The partner speaks in their own voice (a man: "b"); the scene and the learner's good replies in voice "a".
+      const voice = activity.voice ?? "a";
+      return [
+        activity.scene,
+        ...activity.turns.flatMap((turn) => [
+          { text: turn.partner, voice },
+          ...turn.replies.filter((r) => r.good).map((r) => r.say),
+          ...turn.replies.flatMap((r) => (r.react ? [{ text: r.react.en, voice }] : [])),
+        ]),
+      ];
+    }
     case "match":
       return [];
   }

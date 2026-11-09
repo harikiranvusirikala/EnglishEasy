@@ -26,6 +26,8 @@ import {
   type PracticeItem,
 } from "@/learning/practice";
 import type { Progress } from "@/learning/progress";
+import { dueKeys, reviewDayIds, reviewItems } from "@/learning/review";
+import { useClock } from "@/lib/clock";
 import { useProgress } from "@/lib/progress-store";
 import { fill, strings, type Bi as BiLabel } from "@/lib/strings";
 import { useDays } from "@/lib/use-days";
@@ -95,9 +97,12 @@ const HUB_TONE = {
 /** Practice hub (VISION §10.8): four rows with an icon, a hint and the count. */
 export function PracticeHub() {
   const progress = useProgress();
+  const clock = useClock();
   const finished = progress ? Object.keys(progress.completed).length : 0;
+  const due = progress && clock ? dueKeys(progress, clock.today).length : 0;
   const rows: { href: string; label: BiLabel; hint: BiLabel; count: number; icon: IconName; tone: keyof typeof HUB_TONE }[] = progress
     ? [
+        { href: "/learn/practice/review", label: strings.dailyReview, hint: strings.dailyReviewHint, count: due, icon: "calendar", tone: "accent" },
         { href: "/learn/practice/again", label: strings.homePracticeAgain, hint: strings.practiceAgainHint, count: Object.keys(progress.mistakes).length, icon: "retry", tone: "accent" },
         { href: "/learn/practice/roleplays", label: strings.homeRolePlays, hint: strings.practiceRolePlaysHint, count: finished, icon: "chat", tone: "brand" },
         { href: "/learn/practice/sentences", label: strings.homeMySentences, hint: strings.practiceSentencesHint, count: finished, icon: "book", tone: "who" },
@@ -132,6 +137,40 @@ export function PracticeHub() {
         <Loading />
       )}
     </Page>
+  );
+}
+
+/**
+ * Daily review: today's due key sentences (at most 5), asked by their box. The list is fixed when the page opens.
+ * Nothing due: "All done for today" (or, before any lesson is finished, what the review is).
+ */
+export function PracticeReview() {
+  const progress = useProgress();
+  const clock = useClock();
+  return (
+    <Page title={strings.dailyReview} hint={strings.dailyReviewHint} back>
+      {progress && clock ? <ReviewLoaded initial={progress} today={clock.today} /> : <Loading />}
+      <p className="rounded-2xl bg-sunken px-4 py-3 text-base text-ink-2">
+        <BiText text={strings.dailyReviewHow} />
+      </p>
+    </Page>
+  );
+}
+
+function ReviewLoaded({ initial, today }: { initial: Progress; today: string }) {
+  const [opened] = useState(initial);
+  const [keys] = useState(() => dueKeys(opened, today));
+  const loaded = useDays(reviewDayIds(keys));
+  const [running, setRunning] = useState(false);
+  if (keys.length === 0) return <Empty text={Object.keys(opened.review ?? {}).length > 0 ? strings.dailyReviewDone : strings.dailyReviewEmpty} illustration="complete" />;
+  if (!loaded) return <Loading />;
+  const items = reviewItems(loaded.days, keys, opened);
+  return (
+    <>
+      {loaded.failed && <Failed />}
+      <StartCard illustration="practice" text={fill(strings.dailyReviewStart, { n: items.length })} onStart={() => setRunning(true)} />
+      {running && <PracticeRunner items={items} mode="review" onExit={() => setRunning(false)} />}
+    </>
   );
 }
 

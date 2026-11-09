@@ -24,8 +24,8 @@ export const day: Lesson = {
   core: [
     { en: "I will call you tomorrow.", te: "నేను రేపు మీకు ఫోన్ చేస్తాను.", extra: ["called"] },
     { en: "We will go to the temple.", te: "మేము గుడికి వెళ్తాం.", extra: ["going"] },
-    { en: "She will come on Sunday.", te: "ఆమె ఆదివారం వస్తుంది.", extra: ["comes"] },
-    { en: "I will visit my uncle.", te: "నేను మా మామయ్యని కలుస్తాను.", extra: ["visited"] },
+    { en: "She will come on Sunday.", te: "ఆవిడ ఆదివారం వస్తారు.", extra: ["comes"] },
+    { en: "I will visit my uncle.", te: "నేను మా మామయ్య వాళ్ళింటికి వెళ్తాను.", extra: ["visited"] },
     { en: "I won't be late.", te: "నేను ఆలస్యం చేయను.", extra: ["don't"] },
     { en: "Will you help me?", te: "మీరు నాకు సహాయం చేస్తారా?", extra: ["Do"] },
     { en: "Yes, I will.", te: "అవును, చేస్తాను.", extra: ["do"] },
@@ -38,7 +38,7 @@ export const day: Lesson = {
   words: [
     { en: "tomorrow", te: "రేపు" },
     { en: "call", te: "ఫోన్ చేయడం" },
-    { en: "visit", te: "కలవడం" },
+    { en: "visit", te: "చూడటానికి వెళ్ళడం" },
     { en: "Sunday", te: "ఆదివారం" },
     { en: "late", te: "ఆలస్యం" },
   ],
@@ -51,31 +51,31 @@ export const day: Lesson = {
       heading: { en: "What you will do", te: "మీరు చేయబోయేది" },
       body: {
         en: "To talk about tomorrow or a plan, put will before the action. The action stays simple: I will go, she will come.",
-        te: "tomorrow, next week లాంటి పదాలు వస్తే verb ముందు will పెట్టాలి. verb మారదు: I will go, she will come. అన్ని Who లకి will ఒకటే.",
+        te: "tomorrow, next week లాంటి పదాలు వస్తే verb ముందు will పెట్టాలి. verb మారదు: I will go, she will come.",
       },
       bridge: {
         te: ["నేను", "రేపు", "మీకు", "ఫోన్ చేస్తాను"],
         en: [
           { text: "I", role: "who" },
-          { text: "tomorrow", role: "when" },
-          { text: "you", role: "what" },
           { text: "will call", role: "action" },
+          { text: "you", role: "what" },
+          { text: "tomorrow", role: "when" },
         ],
       },
       examples: [
         { en: "I will call you tomorrow.", te: "నేను రేపు మీకు ఫోన్ చేస్తాను." },
         { en: "We will go to the temple.", te: "మేము గుడికి వెళ్తాం." },
-        { en: "She will come on Sunday.", te: "ఆమె ఆదివారం వస్తుంది." },
+        { en: "She will come on Sunday.", te: "ఆవిడ ఆదివారం వస్తారు." },
       ],
     },
     {
       id: "l2",
       type: "whenToUse",
-      heading: { en: "Yes, no and question", te: "అవును, కాదు, ప్రశ్న" },
+      heading: { en: "Yes, no and question", te: "అవును, లేదు, ప్రశ్న" },
       items: [
         {
           form: "won't",
-          useFor: { en: "Say no. Won't means will not.", te: "కాదు అని చెప్పడానికి. won't అంటే will not." },
+          useFor: { en: "Say no about the future. Won't means will not.", te: "చేయను అని చెప్పడానికి. won't అంటే will not." },
           example: { en: "I won't be late.", te: "నేను ఆలస్యం చేయను." },
         },
         {
@@ -101,8 +101,8 @@ export const day: Lesson = {
       wrong: "She will comes.",
       right: "She will come.",
       why: {
-        en: "Will already shows the future. The action stays simple: come.",
-        te: "will లోనే భవిష్యత్తు ఉంది. verb మామూలుగానే ఉండాలి: come.",
+        en: "Will already shows the future, so the action stays simple: She will come.",
+        te: "will లోనే రేపు అనే అర్థం ఉంది, కాబట్టి verb మారదు: She will come.",
       },
     },
   ],
@@ -114,8 +114,8 @@ export const day: Lesson = {
       options: ["I will going.", "I will go.", "I will goes."],
       answer: 1,
       why: {
-        en: "After will, use go.",
-        te: "will తర్వాత go వాడాలి.",
+        en: "After will, the action stays simple: I will go.",
+        te: "will తర్వాత verb మారదు: I will go.",
       },
     },
     {
@@ -126,19 +126,19 @@ export const day: Lesson = {
       options: ["will", "am", "did"],
       answer: 0,
       why: {
-        en: "Tomorrow is the future. Use will.",
-        te: "tomorrow అంటే భవిష్యత్తు. will వాడాలి.",
+        en: "For tomorrow, put will before the action: I will call you tomorrow.",
+        te: "రేపు చేసే పనికి verb ముందు will: I will call you tomorrow.",
       },
     },
     {
       id: "p3",
       type: "choose",
-      prompt: { en: "How do you say no? I ___ be late.", te: "కాదు అని ఎలా చెప్తారు? I ___ be late." },
+      prompt: { en: "Fill the gap: నేను ఆలస్యం చేయను. I ___ be late.", te: "ఖాళీ నింపండి: నేను ఆలస్యం చేయను. I ___ be late." },
       options: ["won't", "don't", "didn't"],
       answer: 0,
       why: {
-        en: "Won't means will not. It is for the future.",
-        te: "won't అంటే will not. ఇది భవిష్యత్తు కోసం.",
+        en: "Won't means will not, for something later: I won't be late.",
+        te: "won't అంటే will not, తర్వాత జరిగే దానికి: I won't be late.",
       },
     },
     {
@@ -148,8 +148,8 @@ export const day: Lesson = {
       wrongIndex: 2,
       fix: "She will come on Sunday.",
       why: {
-        en: "After will, use come, not comes.",
-        te: "will తర్వాత come వాడాలి, comes కాదు.",
+        en: "After will, the action has no -s: She will come on Sunday.",
+        te: "will తర్వాత verb కి -s రాదు: She will come on Sunday.",
       },
     },
   ],
@@ -159,10 +159,10 @@ export const day: Lesson = {
       type: "situation",
       situation: {
         en: "A neighbour asks: Will you help me? Say yes, in English.",
-        te: "పొరుగు వాళ్లు అడుగుతున్నారు: Will you help me? అవును అని ఇంగ్లీష్‌లో చెప్పండి.",
+        te: "పక్కింటి వాళ్లు అడుగుతున్నారు: Will you help me? అవును అని ఇంగ్లీష్‌లో చెప్పండి.",
       },
       expected: ["Yes, I will.", "Yes, I will help you."],
-      options: ["Yes, I do.", "Yes, I will.", "Yes, I am will."],
+      options: ["Yes, I do.", "Yes, I will.", "Yes, I am."],
       answer: 1,
     },
     {
@@ -170,10 +170,10 @@ export const day: Lesson = {
       type: "situation",
       situation: {
         en: "A friend asks: Will you be late? Say no, in English.",
-        te: "స్నేహితులు అడుగుతున్నారు: Will you be late? కాదు అని ఇంగ్లీష్‌లో చెప్పండి.",
+        te: "స్నేహితులు అడుగుతున్నారు: Will you be late? లేదు అని ఇంగ్లీష్‌లో చెప్పండి.",
       },
       expected: ["No, I won't.", "No, I won't be late."],
-      options: ["No, I won't.", "No, I don't will.", "No, I not will."],
+      options: ["No, I won't.", "No, I don't.", "No, I am not."],
       answer: 0,
     },
   ],
@@ -182,16 +182,17 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "Visiting a relative", te: "బంధువుల ఇంటికి వెళ్లడం" },
     scene: {
-      en: "You plan to visit a relative's house. Say what you will do, using will.",
-      te: "మీరు బంధువుల ఇంటికి వెళ్లాలని అనుకుంటున్నారు. will వాడి ఏం చేస్తారో చెప్పండి.",
+      en: "Your uncle Narayana calls and asks you to visit. Say what you will do, using will.",
+      te: "మీ మామయ్య నారాయణ గారు ఫోన్ చేసి ఇంటికి రమ్మంటున్నారు. will వాడి ఏం చేస్తారో చెప్పండి.",
     },
-    partner: { en: "Relative", te: "బంధువు" },
+    partner: { en: "Narayana (your uncle)", te: "నారాయణ (మామయ్య)" },
+    voice: "b",
     skills: [{ id: "will", label: { en: "Saying your plans", te: "ప్లాన్‌లు చెప్పడం" } }],
     turns: [
       {
         partner: "Will you visit us on Sunday?",
-        te: "ఆదివారం మా ఇంటికి వస్తావా?",
-        hint: { en: "Say yes: Yes, I will.", te: "అవును అని చెప్పండి: Yes, I will." },
+        te: "ఆదివారం మా ఇంటికి వస్తారా?",
+        hint: { en: "Say yes, the short way.", te: "అవును అని చిన్నగా చెప్పండి." },
         replies: [
           { say: "Yes, I will.", good: true, skill: "will" },
           { say: "Yes, I will visit you.", good: true, skill: "will" },
@@ -200,18 +201,22 @@ export const day: Lesson = {
       },
       {
         partner: "Great! When will you come?",
-        te: "బాగుంది! ఎప్పుడు వస్తావు?",
-        hint: { en: "Say: I will come in the morning.", te: "ఇలా చెప్పండి: I will come in the morning." },
+        te: "బాగుంది! ఎప్పుడు వస్తారు?",
+        hint: { en: "Say what time of day you will come.", te: "ఏ పూట వస్తారో చెప్పండి." },
         replies: [
           { say: "I will come in the morning.", good: true, skill: "will" },
-          { say: "I will coming in the morning.", good: false, skill: "will" },
           { say: "I come in the morning.", good: false, skill: "will" },
+          {
+            say: "Whenever I like.",
+            good: false,
+            react: { en: "Ha! Okay, but please come before lunch.", te: "హహ! సరే, కానీ భోజనానికి ముందే రండి." },
+          },
         ],
       },
       {
         partner: "Will you be late?",
-        te: "నువ్వు ఆలస్యం అవుతావా?",
-        hint: { en: "Say: No, I won't be late.", te: "ఇలా చెప్పండి: No, I won't be late." },
+        te: "ఆలస్యంగా వస్తారా?",
+        hint: { en: "Say no, in a full sentence.", te: "చేయను అని పూర్తి వాక్యంలో చెప్పండి." },
         replies: [
           { say: "No, I won't be late.", good: true, skill: "will" },
           { say: "No, I don't be late.", good: false, skill: "will" },

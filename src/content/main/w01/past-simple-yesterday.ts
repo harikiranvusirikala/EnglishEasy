@@ -25,7 +25,7 @@ export const day: Lesson = {
     { en: "I went to the market.", te: "నేను మార్కెట్‌కి వెళ్లాను.", extra: ["go"] },
     { en: "I bought vegetables.", te: "నేను కూరగాయలు కొన్నాను.", extra: ["buy"] },
     { en: "I ate idli.", te: "నేను ఇడ్లీ తిన్నాను.", extra: ["eat"] },
-    { en: "She came by bus.", te: "ఆమె బస్సులో వచ్చింది.", extra: ["come"] },
+    { en: "She came by bus.", te: "ఆవిడ బస్సులో వచ్చారు.", extra: ["come"] },
     { en: "We watched a film.", te: "మేము సినిమా చూశాం.", extra: ["watch"] },
     { en: "I didn't go out.", te: "నేను బయటికి వెళ్లలేదు.", extra: ["went"] },
     { en: "Did you eat?", te: "మీరు తిన్నారా?", extra: ["Do"] },
@@ -57,9 +57,9 @@ export const day: Lesson = {
         te: ["నేను", "నిన్న", "మార్కెట్‌కి", "వెళ్లాను"],
         en: [
           { text: "I", role: "who" },
-          { text: "yesterday", role: "when" },
-          { text: "to the market", role: "what" },
           { text: "went", role: "action" },
+          { text: "to the market", role: "what" },
+          { text: "yesterday", role: "when" },
         ],
       },
       examples: [
@@ -137,8 +137,8 @@ export const day: Lesson = {
       options: ["I didn't went out.", "I didn't go out.", "I not go out."],
       answer: 1,
       why: {
-        en: "After didn't, use go.",
-        te: "didn't తర్వాత go వాడాలి.",
+        en: "Didn't already shows the past, so use go: I didn't go out.",
+        te: "didn't లోనే past ఉంది, కాబట్టి go: I didn't go out.",
       },
     },
     {
@@ -148,8 +148,8 @@ export const day: Lesson = {
       wrongIndex: 2,
       fix: "Yesterday I went to the market.",
       why: {
-        en: "Yesterday needs the past: went.",
-        te: "Yesterday తో past form వాడాలి: went.",
+        en: "Yesterday is finished time, so use the past: Yesterday I went to the market.",
+        te: "Yesterday అంటే అయిపోయిన సమయం, కాబట్టి past: Yesterday I went to the market.",
       },
     },
   ],
@@ -170,7 +170,7 @@ export const day: Lesson = {
       type: "situation",
       situation: {
         en: "A neighbour asks: Did you go out? Say no, in English.",
-        te: "పొరుగు వాళ్లు అడుగుతున్నారు: Did you go out? కాదు అని ఇంగ్లీష్‌లో చెప్పండి.",
+        te: "పక్కింటి వాళ్లు అడుగుతున్నారు: Did you go out? లేదు అని ఇంగ్లీష్‌లో చెప్పండి.",
       },
       expected: ["No, I didn't.", "No, I didn't go out."],
       options: ["No, I didn't.", "No, I didn't went.", "No, I not go."],
@@ -180,18 +180,18 @@ export const day: Lesson = {
   roleplay: {
     id: "r1",
     type: "roleplay",
-    title: { en: "What did you do yesterday?", te: "నిన్న ఏం చేశావు?" },
+    title: { en: "What did you do yesterday?", te: "నిన్న ఏం చేశారు?" },
     scene: {
-      en: "A friend asks what you did yesterday. Answer with short sentences in the past.",
-      te: "స్నేహితులు నిన్న మీరు ఏం చేశారని అడుగుతున్నారు. past form తో చిన్న వాక్యాలలో జవాబు చెప్పండి.",
+      en: "Your friend Mary asks what you did yesterday. Answer with short sentences in the past.",
+      te: "మీ స్నేహితురాలు మేరీ నిన్న మీరు ఏం చేశారని అడుగుతున్నారు. past form తో చిన్న వాక్యాలలో జవాబు చెప్పండి.",
     },
-    partner: { en: "Friend", te: "స్నేహితుడు" },
+    partner: { en: "Mary (a friend)", te: "మేరీ (స్నేహితురాలు)" },
     skills: [{ id: "past", label: { en: "Saying what you did", te: "చేసిన పని చెప్పడం" } }],
     turns: [
       {
         partner: "What did you do yesterday?",
-        te: "నిన్న నువ్వు ఏం చేశావు?",
-        hint: { en: "Say: I went to the market.", te: "ఇలా చెప్పండి: I went to the market." },
+        te: "నిన్న మీరు ఏం చేశారు?",
+        hint: { en: "Say where you went. Use the past.", te: "మీరు ఎక్కడికి వెళ్లారో past form లో చెప్పండి." },
         replies: [
           { say: "I went to the market.", good: true, skill: "past" },
           { say: "I go to the market.", good: false, skill: "past" },
@@ -200,8 +200,8 @@ export const day: Lesson = {
       },
       {
         partner: "Did you buy vegetables?",
-        te: "నువ్వు కూరగాయలు కొన్నావా?",
-        hint: { en: "Say yes: Yes, I did.", te: "అవును అని చెప్పండి: Yes, I did." },
+        te: "మీరు కూరగాయలు కొన్నారా?",
+        hint: { en: "Say yes, the short way or the full way.", te: "అవును అని చిన్నగా గానీ, పూర్తి వాక్యంగా గానీ చెప్పండి." },
         replies: [
           { say: "Yes, I did.", good: true, skill: "past" },
           { say: "Yes, I bought vegetables.", good: true, skill: "past" },
@@ -210,12 +210,16 @@ export const day: Lesson = {
       },
       {
         partner: "Did you go out in the evening?",
-        te: "సాయంత్రం బయటికి వెళ్లావా?",
-        hint: { en: "Say: No, I didn't go out.", te: "ఇలా చెప్పండి: No, I didn't go out." },
+        te: "సాయంత్రం బయటికి వెళ్లారా?",
+        hint: { en: "Say no, in a full sentence.", te: "లేదు అని పూర్తి వాక్యంలో చెప్పండి." },
         replies: [
           { say: "No, I didn't go out.", good: true, skill: "past" },
           { say: "No, I didn't went out.", good: false, skill: "past" },
-          { say: "No, I not go out.", good: false, skill: "past" },
+          {
+            say: "Why are you asking so much?",
+            good: false,
+            react: { en: "Oh, sorry! I was only asking.", te: "అయ్యో, sorry అండీ! ఊరికే అడిగాను." },
+          },
         ],
       },
     ],

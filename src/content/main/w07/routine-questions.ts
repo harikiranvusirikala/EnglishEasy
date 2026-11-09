@@ -22,11 +22,11 @@ export const day: Lesson = {
   ],
   core: [
     { en: "Do you get up early?", te: "మీరు తొందరగా లేస్తారా?", extra: ["Does"] },
-    { en: "What time does she sleep?", te: "ఆమె ఎన్ని గంటలకు పడుకుంటుంది?", extra: ["sleeps"] },
-    { en: "Does he drink coffee?", te: "అతను కాఫీ తాగుతాడా?", extra: ["drinks"] },
-    { en: "Yes, he does.", te: "అవును, తాగుతాడు.", extra: ["do"] },
+    { en: "What time does she sleep?", te: "ఆవిడ ఎన్ని గంటలకు పడుకుంటారు?", extra: ["sleeps"] },
+    { en: "Does he drink coffee?", te: "ఆయన కాఫీ తాగుతారా?", extra: ["drinks"] },
+    { en: "Yes, he does.", te: "అవును, తాగుతారు.", extra: ["do"] },
     { en: "Where do you go every evening?", te: "మీరు ప్రతి సాయంత్రం ఎక్కడికి వెళ్తారు?", extra: ["does"] },
-    { en: "When does the milkman come?", te: "పాలవాడు ఎప్పుడు వస్తాడు?", extra: ["comes"] },
+    { en: "When does the milkman come?", te: "పాలు పోసే ఆయన ఎప్పుడు వస్తారు?", extra: ["comes"] },
     { en: "No, I don't.", te: "లేదు, అలా చేయను.", extra: ["doesn't"] },
   ],
   key: [0, 1, 2, 3],
@@ -37,7 +37,7 @@ export const day: Lesson = {
   words: [
     { en: "early", te: "తొందరగా, పొద్దున్నే" },
     { en: "evening", te: "సాయంత్రం" },
-    { en: "milkman", te: "పాలవాడు" },
+    { en: "milkman", te: "పాలు పోసే ఆయన" },
     { en: "routine", te: "దినచర్య" },
   ],
   grammar: ["present-simple", "yes-no-questions", "question-words"],
@@ -49,7 +49,7 @@ export const day: Lesson = {
       heading: { en: "Do or does?", te: "do ఆ, does ఆ?" },
       body: {
         en: "For I, you, we and they, ask with do: Do you get up early? For he, she or one person, ask with does, and the action word has no s: Does he drink coffee? Short answers: Yes, he does. No, I don't.",
-        te: "I, you, we, they కి do తో అడగాలి: Do you get up early? he, she లేదా ఒక్కరికి does తో, అప్పుడు పని పదానికి s ఉండదు: Does he drink coffee? చిన్న జవాబులు: Yes, he does. No, I don't.",
+        te: "I, you, we, they కి do తో అడగాలి: Do you get up early? he, she లేదా ఒక్కరికి does తో, అప్పుడు verb కి s ఉండదు: Does he drink coffee? చిన్న జవాబులు: Yes, he does. No, I don't.",
       },
       bridge: {
         te: ["మీరు", "తొందరగా", "లేస్తారా?"],
@@ -61,8 +61,8 @@ export const day: Lesson = {
       },
       examples: [
         { en: "Do you get up early?", te: "మీరు తొందరగా లేస్తారా?" },
-        { en: "Does he drink coffee?", te: "అతను కాఫీ తాగుతాడా?" },
-        { en: "Yes, he does.", te: "అవును, తాగుతాడు." },
+        { en: "Does he drink coffee?", te: "ఆయన కాఫీ తాగుతారా?" },
+        { en: "Yes, he does.", te: "అవును, తాగుతారు." },
       ],
     },
     {
@@ -77,8 +77,8 @@ export const day: Lesson = {
         },
         {
           form: "Does + he, she (no s)",
-          useFor: { en: "Ask about one person. The action word has no s.", te: "ఒక్కరి గురించి అడగడానికి. పని పదానికి s ఉండదు." },
-          example: { en: "When does the milkman come?", te: "పాలవాడు ఎప్పుడు వస్తాడు?" },
+          useFor: { en: "Ask about one person. The action word has no s.", te: "ఒక్కరి గురించి అడగడానికి. verb కి s ఉండదు." },
+          example: { en: "When does the milkman come?", te: "పాలు పోసే ఆయన ఎప్పుడు వస్తారు?" },
         },
         {
           form: "Yes, I do / No, he doesn't",
@@ -93,8 +93,8 @@ export const day: Lesson = {
       wrong: "Does he drinks coffee?",
       right: "Does he drink coffee?",
       why: {
-        en: "After does, the action word has no s.",
-        te: "does తర్వాత పని పదానికి s ఉండదు.",
+        en: "Does already carries the s, so drink stays plain: Does he drink coffee?",
+        te: "does లోనే s ఉంది, అందుకే drink కి s రాదు: Does he drink coffee?",
       },
     },
     {
@@ -116,8 +116,8 @@ export const day: Lesson = {
       options: ["Does she sleeps early?", "Does she sleep early?", "Do she sleep early?"],
       answer: 1,
       why: {
-        en: "Does she + sleep (no s).",
-        te: "Does she + sleep (s లేకుండా).",
+        en: "For she, ask with does; does has the s, so sleep has none: Does she sleep early?",
+        te: "she కి does తో అడగాలి; does లోనే s ఉంది, sleep కి రాదు: Does she sleep early?",
       },
     },
     {
@@ -128,19 +128,19 @@ export const day: Lesson = {
       options: ["Do", "Does", "Are"],
       answer: 0,
       why: {
-        en: "With you, ask with do.",
-        te: "you తో do.",
+        en: "Telugu adds ఆ at the end (లేస్తారా?); English starts with Do for you: Do you get up early?",
+        te: "తెలుగులో చివర 'ఆ' (లేస్తారా?); ఇంగ్లీష్‌లో you కి ముందు Do: Do you get up early?",
       },
     },
     {
       id: "p3",
       type: "choose",
-      prompt: { en: "Does he drink coffee? He does. Choose the short answer.", te: "Does he drink coffee? తాగుతాడు. సరైన చిన్న జవాబు ఏది?" },
+      prompt: { en: "Does he drink coffee? He does. Choose the short answer.", te: "Does he drink coffee? తాగుతారు. సరైన చిన్న జవాబు ఏది?" },
       options: ["Yes, he does.", "Yes, he is.", "Yes, he do."],
       answer: 0,
       why: {
-        en: "Answer a does question with does.",
-        te: "does ప్రశ్నకి does తో జవాబు.",
+        en: "A does question gets a does answer, not is: Yes, he does.",
+        te: "does ప్రశ్నకి does తోనే జవాబు, is కాదు: Yes, he does.",
       },
     },
     {
@@ -150,8 +150,8 @@ export const day: Lesson = {
       wrongIndex: 4,
       fix: "When does the milkman come?",
       why: {
-        en: "After does, come has no s.",
-        te: "does తర్వాత come కి s ఉండదు.",
+        en: "Does already has the s, so come stays plain: When does the milkman come?",
+        te: "does లోనే s ఉంది, అందుకే come కి s రాదు: When does the milkman come?",
       },
     },
   ],
@@ -172,7 +172,7 @@ export const day: Lesson = {
       type: "situation",
       situation: {
         en: "Ask your friend what time her sister sleeps.",
-        te: "మీ స్నేహితురాలి చెల్లెలు ఎన్ని గంటలకు పడుకుంటుందో అడగండి.",
+        te: "మీ స్నేహితురాలి చెల్లెలు ఎన్ని గంటలకు పడుకుంటారో అడగండి.",
       },
       expected: ["What time does she sleep?", "What time does your sister sleep?"],
       options: ["What time she sleeps?", "What time does she sleep?", "What time does she sleeps?"],
@@ -184,10 +184,11 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "Questions about your day", te: "మీ రోజు గురించి ప్రశ్నలు" },
     scene: {
-      en: "Venkat, a new friend, asks about your day. Answer, then ask about his brother.",
-      te: "కొత్త స్నేహితుడు వెంకట్ మీ రోజు గురించి అడుగుతున్నారు. జవాబు చెప్పి, ఆయన అన్నయ్య గురించి అడగండి.",
+      en: "John, a new friend, asks about your day. Answer, then ask about his brother.",
+      te: "కొత్త స్నేహితుడు జాన్ మీ రోజు గురించి అడుగుతున్నారు. జవాబు చెప్పి, ఆయన అన్నయ్య గురించి అడగండి.",
     },
-    partner: { en: "Venkat (a new friend)", te: "వెంకట్ (కొత్త స్నేహితుడు)" },
+    partner: { en: "John (a new friend)", te: "జాన్ (కొత్త స్నేహితుడు)" },
+    voice: "b",
     skills: [
       { id: "answer", label: { en: "Short answers", te: "చిన్న జవాబులు" } },
       { id: "ask", label: { en: "do / does questions", te: "do / does ప్రశ్నలు" } },
@@ -196,7 +197,7 @@ export const day: Lesson = {
       {
         partner: "Do you get up early?",
         te: "మీరు తొందరగా లేస్తారా?",
-        hint: { en: "Say: Yes, I do. At five.", te: "ఇలా చెప్పండి: Yes, I do. At five." },
+        hint: { en: "Say yes with a short answer, and add the time.", te: "చిన్న జవాబుతో అవునని చెప్పి, టైం కూడా చెప్పండి." },
         replies: [
           { say: "Yes, I do. At five.", good: true, skill: "answer" },
           { say: "Yes, I does. At five.", good: false, skill: "answer" },
@@ -205,16 +206,21 @@ export const day: Lesson = {
       {
         partner: "What do you do in the evening?",
         te: "సాయంత్రం ఏం చేస్తారు?",
-        hint: { en: "Say: I go to the temple.", te: "ఇలా చెప్పండి: I go to the temple." },
+        hint: { en: "Tell him where you go in the evening.", te: "సాయంత్రం ఎక్కడికి వెళ్తారో చెప్పండి." },
         replies: [
           { say: "I go to the temple.", good: true, skill: "answer" },
           { say: "I goes to the temple.", good: false, skill: "answer" },
+          {
+            say: "Why? That is my business.",
+            good: false,
+            react: { en: "Sorry! I was only asking.", te: "sorry అండీ! ఊరికే అడిగాను." },
+          },
         ],
       },
       {
         partner: "I walk with my brother.",
         te: "నేను మా అన్నయ్యతో కలిసి నడుస్తాను.",
-        hint: { en: "Ask: Does he walk every day?", te: "అడగండి: Does he walk every day?" },
+        hint: { en: "Ask if his brother walks daily. Start with Does.", te: "ఆయన అన్నయ్య రోజూ నడుస్తారా అని అడగండి. Does తో మొదలుపెట్టండి." },
         replies: [
           { say: "Does he walk every day?", good: true, skill: "ask" },
           { say: "Does he walks every day?", good: false, skill: "ask" },
@@ -222,8 +228,8 @@ export const day: Lesson = {
       },
       {
         partner: "No, he doesn't. He works.",
-        te: "లేదు, రాడు. ఆయన పని చేస్తారు.",
-        hint: { en: "Ask: What time does he come home?", te: "అడగండి: What time does he come home?" },
+        te: "లేదు, నడవరు. ఆయన ఉద్యోగానికి వెళ్తారు.",
+        hint: { en: "Ask about the time his brother gets home.", te: "ఆయన అన్నయ్య ఇంటికి ఎన్ని గంటలకు వస్తారో అడగండి." },
         replies: [
           { say: "What time does he come home?", good: true, skill: "ask" },
           { say: "What time he comes home?", good: false, skill: "ask" },

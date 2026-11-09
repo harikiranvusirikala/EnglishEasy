@@ -41,3 +41,20 @@ describe("audio manifest", () => {
     expect(parseManifest("x")).toEqual({});
   });
 });
+
+describe("speechText numbers (content review 2026-11-09)", () => {
+  it("reads numbers and times in English text as words", async () => {
+    const { speechText, numberWords } = await import("./audio-manifest");
+    expect(speechText("That comes to 240 rupees.")).toBe("That comes to two hundred and forty rupees.");
+    expect(speechText("It is 7:30. The bus is at 9:05, not 10:00.")).toBe("It is seven thirty. The bus is at nine oh five, not ten o'clock.");
+    expect(speechText("It costs 1,500 rupees, or 30 each.")).toBe("It costs one thousand five hundred rupees, or thirty each.");
+    expect(speechText("I am going to Dr Prasad's clinic.")).toBe("I am going to Doctor Prasad's clinic.");
+    expect(numberWords(21)).toBe("twenty-one");
+    expect(numberWords(1005)).toBe("one thousand and five");
+  });
+  it("keeps digits in Telugu text and in decimals", async () => {
+    const { speechText } = await import("./audio-manifest");
+    expect(speechText("మొత్తం 130 రూపాయలు అయింది.")).toBe("మొత్తం 130 రూపాయలు అయింది.");
+    expect(speechText("It is 2.5 kilos.")).toBe("It is 2.5 kilos.");
+  });
+});

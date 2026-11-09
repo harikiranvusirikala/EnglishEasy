@@ -9,6 +9,7 @@ import { firstName, greetWithName } from "@/learning/account";
 import { useAccount } from "@/lib/account";
 import { isFirstVisit, locateDay, practisedThisWeek, timeOfDay, weekStrip, type DayPlace } from "@/learning/home";
 import type { Progress } from "@/learning/progress";
+import { dueKeys } from "@/learning/review";
 import { Bi } from "@/components/ui/Bi";
 import { BiText } from "@/components/ui/BiText";
 import { Logo } from "@/components/ui/Logo";
@@ -217,6 +218,32 @@ function PracticeList({ progress }: { progress: Progress }) {
   );
 }
 
+/**
+ * Daily review (content review, 2026-11-09), under the lesson card once a lesson is finished: how many key sentences
+ * are due today, or "All done for today".
+ */
+function ReviewCard({ progress, today }: { progress: Progress; today: string }) {
+  if (Object.keys(progress.review ?? {}).length === 0) return null;
+  const due = dueKeys(progress, today).length;
+  return (
+    <Link href="/learn/practice/review" className={`${card} flex items-center gap-4 transition-colors hover:bg-sunken ${focusRing}`}>
+      <span aria-hidden="true" className={`flex size-13 shrink-0 items-center justify-center rounded-2xl ${due > 0 ? TILE_TONE.accent : "bg-good-soft text-good"}`}>
+        <Icon name={due > 0 ? "retry" : "check"} className="size-7" />
+      </span>
+      <span className="flex min-w-0 flex-1 flex-col gap-0.5">
+        <span className="flex items-center gap-2 text-lg font-semibold text-ink">
+          <Bi label={strings.dailyReview} className="items-start" />
+          {due > 0 && <span className={badge("accent")}>{fill(strings.dailyReviewDue, { n: due }).en}</span>}
+        </span>
+        <span className="text-base text-ink-2">
+          <BiText text={due > 0 ? strings.dailyReviewHint : strings.dailyReviewDone} />
+        </span>
+      </span>
+      <Icon name="chevron" className="size-5 text-ink-3" />
+    </Link>
+  );
+}
+
 function HomeSkeleton() {
   return (
     <div aria-busy="true" className="grid gap-5 lg:grid-cols-[1.35fr_1fr]">
@@ -254,6 +281,7 @@ export function Home({ course, written }: { course: Course; written: string[] })
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-[1.35fr_1fr] lg:items-start">
           <div className="flex flex-col gap-5">
             <TodayCard course={course} progress={progress} written={written} />
+            {clock && <ReviewCard progress={progress} today={clock.today} />}
             <TrackSuggestionCard course={course} progress={progress} written={written} />
             <SaveProgressCard />
             <ReminderCard finishedLessons={Object.keys(progress.completed).length} />

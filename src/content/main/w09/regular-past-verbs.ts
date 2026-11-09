@@ -23,9 +23,9 @@ export const day: Lesson = {
   core: [
     { en: "I called my friend.", te: "నేను నా స్నేహితుడికి ఫోన్ చేశాను.", extra: ["call"] },
     { en: "We watched the news.", te: "మేము వార్తలు చూశాం.", extra: ["watch"] },
-    { en: "She cooked pulihora.", te: "ఆమె పులిహోర చేసింది.", extra: ["cook"] },
+    { en: "She cooked pulihora.", te: "ఆవిడ పులిహోర చేశారు.", extra: ["cook"] },
     { en: "I walked to the market.", te: "నేను మార్కెట్‌కి నడిచి వెళ్ళాను.", extra: ["walk"] },
-    { en: "He visited his cousin.", te: "అతను తన కజిన్ ఇంటికి వెళ్ళాడు.", extra: ["visit"] },
+    { en: "He visited his cousin.", te: "ఆయన వాళ్ళ కజిన్ ఇంటికి వెళ్ళారు.", extra: ["visit"] },
     { en: "I didn't watch TV.", te: "నేను TV చూడలేదు.", extra: ["watched"] },
     { en: "We talked for an hour.", te: "మేము గంటసేపు మాట్లాడుకున్నాం.", extra: ["talk"] },
   ],
@@ -50,7 +50,7 @@ export const day: Lesson = {
       heading: { en: "Add -ed for the past", te: "గతానికి -ed చేర్చండి" },
       body: {
         en: "Most action words add -ed for the past: walk becomes walked, call becomes called. The -ed has three sounds: walked ends like t, called ends like d, and visited ends like id.",
-        te: "చాలా పని పదాలకు గతంలో -ed చేరుతుంది: walk → walked, call → called. -ed మూడు రకాలుగా పలుకుతారు: walked చివర 't', called చివర 'd', visited చివర 'id'.",
+        te: "చాలా verbs కి గతంలో -ed చేరుతుంది: walk → walked, call → called. -ed మూడు రకాలుగా పలుకుతారు: walked చివర 't', called చివర 'd', visited చివర 'id'.",
       },
       bridge: {
         te: ["నేను", "నా స్నేహితుడికి", "ఫోన్ చేశాను"],
@@ -63,7 +63,7 @@ export const day: Lesson = {
       examples: [
         { en: "I walked to the market.", te: "నేను మార్కెట్‌కి నడిచి వెళ్ళాను." },
         { en: "I called my friend.", te: "నేను నా స్నేహితుడికి ఫోన్ చేశాను." },
-        { en: "He visited his cousin.", te: "అతను తన కజిన్ ఇంటికి వెళ్ళాడు." },
+        { en: "He visited his cousin.", te: "ఆయన వాళ్ళ కజిన్ ఇంటికి వెళ్ళారు." },
       ],
     },
     {
@@ -74,17 +74,17 @@ export const day: Lesson = {
         {
           form: "-ed = t (walked, cooked, watched)",
           useFor: { en: "After sounds like k, p, s, ch, sh.", te: "k, p, s, ch, sh శబ్దాల తర్వాత." },
-          example: { en: "She cooked pulihora.", te: "ఆమె పులిహోర చేసింది." },
+          example: { en: "She cooked pulihora.", te: "ఆవిడ పులిహోర చేశారు." },
         },
         {
           form: "-ed = d (called, cleaned, played)",
           useFor: { en: "After most other sounds.", te: "మిగతా చాలా శబ్దాల తర్వాత." },
-          example: { en: "We talked for an hour.", te: "మేము గంటసేపు మాట్లాడుకున్నాం." },
+          example: { en: "I called my friend.", te: "నేను నా స్నేహితుడికి ఫోన్ చేశాను." },
         },
         {
           form: "-ed = id (visited, wanted)",
           useFor: { en: "After t or d: an extra small sound.", te: "t లేదా d తర్వాత: ఒక చిన్న అదనపు శబ్దం." },
-          example: { en: "He visited his cousin.", te: "అతను తన కజిన్ ఇంటికి వెళ్ళాడు." },
+          example: { en: "He visited his cousin.", te: "ఆయన వాళ్ళ కజిన్ ఇంటికి వెళ్ళారు." },
         },
       ],
     },
@@ -94,8 +94,8 @@ export const day: Lesson = {
       wrong: "Yesterday I call my friend.",
       right: "Yesterday I called my friend.",
       why: {
-        en: "Yesterday is the past: add -ed.",
-        te: "yesterday అంటే గతం: -ed చేర్చాలి.",
+        en: "Yesterday shows the past, so add -ed to the verb: Yesterday I called my friend.",
+        te: "yesterday అంటే గతం, అందుకే verb కి -ed చేర్చాలి: Yesterday I called my friend.",
       },
     },
     {
@@ -104,8 +104,8 @@ export const day: Lesson = {
       wrong: "I didn't watched TV.",
       right: "I didn't watch TV.",
       why: {
-        en: "After didn't, no -ed: watch.",
-        te: "didn't తర్వాత -ed ఉండదు: watch.",
+        en: "Didn't already shows the past, so the verb stays plain: I didn't watch TV.",
+        te: "didn't లోనే గతం ఉంది, అందుకే verb కి -ed రాదు: I didn't watch TV.",
       },
     },
   ],
@@ -117,8 +117,8 @@ export const day: Lesson = {
       options: ["Yesterday she cook pulihora.", "Yesterday she cooked pulihora.", "Yesterday she cooking pulihora."],
       answer: 1,
       why: {
-        en: "Past: cooked.",
-        te: "గతం: cooked.",
+        en: "Yesterday means the past, so cook becomes cooked: Yesterday she cooked pulihora.",
+        te: "yesterday అంటే గతం, అందుకే cook కాదు cooked: Yesterday she cooked pulihora.",
       },
     },
     {
@@ -129,8 +129,8 @@ export const day: Lesson = {
       options: ["talk", "talked", "talking"],
       answer: 1,
       why: {
-        en: "It is the past: talked.",
-        te: "ఇది గతం: talked.",
+        en: "The talk is over, so add -ed for the past: We talked for an hour.",
+        te: "మాట్లాడటం అయిపోయింది, అందుకే -ed చేర్చాలి: We talked for an hour.",
       },
     },
     {
@@ -151,8 +151,8 @@ export const day: Lesson = {
       wrongIndex: 2,
       fix: "I didn't watch TV.",
       why: {
-        en: "After didn't, watch.",
-        te: "didn't తర్వాత watch.",
+        en: "Didn't already shows the past, so watch takes no -ed: I didn't watch TV.",
+        te: "didn't లోనే గతం ఉంది, అందుకే watch కి -ed రాదు: I didn't watch TV.",
       },
     },
   ],
@@ -186,7 +186,7 @@ export const day: Lesson = {
     title: { en: "Your evening", te: "మీ సాయంత్రం" },
     scene: {
       en: "Your neighbour Usha asks what you did last evening.",
-      te: "పొరుగింటి ఉష నిన్న సాయంత్రం మీరు ఏం చేశారో అడుగుతోంది.",
+      te: "పొరుగింటి ఉష గారు నిన్న సాయంత్రం మీరు ఏం చేశారో అడుగుతున్నారు.",
     },
     partner: { en: "Usha (a neighbour)", te: "ఉష (పొరుగింటావిడ)" },
     skills: [{ id: "ed", label: { en: "-ed past", te: "-ed గతం" } }],
@@ -194,7 +194,7 @@ export const day: Lesson = {
       {
         partner: "What did you do last evening?",
         te: "నిన్న సాయంత్రం ఏం చేశారు?",
-        hint: { en: "Say: I cleaned the house.", te: "ఇలా చెప్పండి: I cleaned the house." },
+        hint: { en: "Tell her one job you did at home.", te: "ఇంట్లో మీరు చేసిన ఒక పని చెప్పండి." },
         replies: [
           { say: "I cleaned the house.", good: true, skill: "ed" },
           { say: "I clean the house.", good: false, skill: "ed" },
@@ -203,7 +203,7 @@ export const day: Lesson = {
       {
         partner: "And then?",
         te: "తర్వాత?",
-        hint: { en: "Say: I called my sister.", te: "ఇలా చెప్పండి: I called my sister." },
+        hint: { en: "Say who you phoned after that.", te: "తర్వాత ఎవరికి ఫోన్ చేశారో చెప్పండి." },
         replies: [
           { say: "I called my sister.", good: true, skill: "ed" },
           { say: "I calling my sister.", good: false, skill: "ed" },
@@ -212,16 +212,21 @@ export const day: Lesson = {
       {
         partner: "Did you watch the cricket match?",
         te: "క్రికెట్ మ్యాచ్ చూశారా?",
-        hint: { en: "Say: No, I didn't watch it.", te: "ఇలా చెప్పండి: No, I didn't watch it." },
+        hint: { en: "Say no, you missed it.", te: "లేదు, చూడలేదు అని చెప్పండి." },
         replies: [
           { say: "No, I didn't watch it.", good: true, skill: "ed" },
           { say: "No, I didn't watched it.", good: false, skill: "ed" },
+          {
+            say: "Cricket? Who watches that boring game?",
+            good: false,
+            react: { en: "Ha! Okay. Not everyone likes cricket.", te: "హహ! సరే. అందరికీ cricket నచ్చదు లెండి." },
+          },
         ],
       },
       {
         partner: "India played very well!",
         te: "ఇండియా చాలా బాగా ఆడింది!",
-        hint: { en: "Say: Oh! I wanted to watch it.", te: "ఇలా చెప్పండి: Oh! I wanted to watch it." },
+        hint: { en: "Say you were hoping to see it.", te: "మీరు చూడాలనుకున్నారని చెప్పండి." },
         replies: [
           { say: "Oh! I wanted to watch it.", good: true, skill: "ed" },
           { say: "Oh! I want to watched it.", good: false, skill: "ed" },

@@ -22,11 +22,11 @@ export const day: Lesson = {
   ],
   core: [
     { en: "Can you help me?", te: "మీరు నాకు సహాయం చేస్తారా?", extra: ["to"] },
-    { en: "Could you help me, please?", te: "దయచేసి నాకు కొంచెం సహాయం చేయగలరా?", extra: ["helping"] },
-    { en: "Would you read this for me?", te: "దయచేసి ఇది నాకు చదివి వినిపిస్తారా?", extra: ["reading"] },
-    { en: "Could you speak slowly, please?", te: "దయచేసి నెమ్మదిగా మాట్లాడగలరా?", extra: ["slow"] },
+    { en: "Could you help me, please?", te: "నాకు కొంచెం సహాయం చేస్తారా అండీ?", extra: ["helping"] },
+    { en: "Would you read this for me?", te: "ఇది నాకు కొంచెం చదివి వినిపిస్తారా?", extra: ["reading"] },
+    { en: "Could you speak slowly, please?", te: "కొంచెం నెమ్మదిగా మాట్లాడతారా అండీ?", extra: ["slow"] },
     { en: "Can you open this bottle?", te: "ఈ సీసా తెరుస్తారా?", extra: ["opening"] },
-    { en: "Would you close the door, please?", te: "దయచేసి తలుపు వేస్తారా?", extra: ["will"] },
+    { en: "Would you close the door, please?", te: "కొంచెం తలుపు వేస్తారా అండీ?", extra: ["will"] },
     { en: "Sure, no problem.", te: "తప్పకుండా, పర్వాలేదు.", extra: ["problems"] },
   ],
   key: [0, 1, 2, 3],
@@ -36,7 +36,7 @@ export const day: Lesson = {
   },
   words: [
     { en: "help", te: "సహాయం" },
-    { en: "could", te: "చేయగలరా (మర్యాదగా)" },
+    { en: "could", te: "చేస్తారా? (మర్యాదగా అడగడం)" },
     { en: "slowly", te: "నెమ్మదిగా" },
     { en: "bottle", te: "సీసా" },
     { en: "sure", te: "తప్పకుండా, సరే" },
@@ -53,7 +53,7 @@ export const day: Lesson = {
         te: "Can you …? స్నేహంగా ఉంటుంది. Could you …?, Would you …? ఇంకా మర్యాదగా ఉంటాయి: తెలియనివాళ్ళతో, పెద్దవాళ్ళతో వాడండి. please చేర్చితే ఇంకా బాగుంటుంది.",
       },
       bridge: {
-        te: ["దయచేసి", "నాకు సహాయం", "చేయగలరా?"],
+        te: ["నాకు", "కొంచెం సహాయం", "చేస్తారా అండీ?"],
         en: [
           { text: "Could", role: "action" },
           { text: "you", role: "who" },
@@ -62,8 +62,8 @@ export const day: Lesson = {
       },
       examples: [
         { en: "Can you help me?", te: "మీరు నాకు సహాయం చేస్తారా?" },
-        { en: "Could you help me, please?", te: "దయచేసి నాకు కొంచెం సహాయం చేయగలరా?" },
-        { en: "Would you read this for me?", te: "దయచేసి ఇది నాకు చదివి వినిపిస్తారా?" },
+        { en: "Could you help me, please?", te: "నాకు కొంచెం సహాయం చేస్తారా అండీ?" },
+        { en: "Would you read this for me?", te: "ఇది నాకు కొంచెం చదివి వినిపిస్తారా?" },
       ],
     },
     {
@@ -79,12 +79,12 @@ export const day: Lesson = {
         {
           form: "could",
           useFor: { en: "With strangers and elders: more polite.", te: "తెలియనివాళ్ళు, పెద్దవాళ్ళతో: ఇంకా మర్యాదగా." },
-          example: { en: "Could you speak slowly, please?", te: "దయచేసి నెమ్మదిగా మాట్లాడగలరా?" },
+          example: { en: "Could you speak slowly, please?", te: "కొంచెం నెమ్మదిగా మాట్లాడతారా అండీ?" },
         },
         {
           form: "would",
           useFor: { en: "Polite, when you ask a favour.", te: "మర్యాదగా, ఏదైనా సాయం కోరేటప్పుడు." },
-          example: { en: "Would you close the door, please?", te: "దయచేసి తలుపు వేస్తారా?" },
+          example: { en: "Would you close the door, please?", te: "కొంచెం తలుపు వేస్తారా అండీ?" },
         },
       ],
     },
@@ -104,8 +104,8 @@ export const day: Lesson = {
       wrong: "Could you helping me?",
       right: "Could you help me?",
       why: {
-        en: "After could, use the plain action word: help.",
-        te: "could తర్వాత మామూలు పని పదం: help.",
+        en: "After could, use the plain verb, not -ing: Could you help me?",
+        te: "could తర్వాత మామూలు verb, -ing కాదు: Could you help me?",
       },
     },
   ],
@@ -117,31 +117,31 @@ export const day: Lesson = {
       options: ["Help me.", "Could you help me, please?", "You help me."],
       answer: 1,
       why: {
-        en: "Could you …, please? is polite.",
-        te: "Could you …, please? మర్యాదగా ఉంటుంది.",
+        en: "With a stranger, ask with Could you and please: Could you help me, please?",
+        te: "తెలియనివాళ్ళను Could you, please తో అడగాలి: Could you help me, please?",
       },
     },
     {
       id: "p2",
       type: "fillBlank",
       sentence: "Could you ___ slowly, please?",
-      te: "దయచేసి నెమ్మదిగా మాట్లాడగలరా?",
+      te: "కొంచెం నెమ్మదిగా మాట్లాడతారా అండీ?",
       options: ["speak", "speaking", "speaks"],
       answer: 0,
       why: {
-        en: "After could, speak.",
-        te: "could తర్వాత speak.",
+        en: "After could, the verb stays plain, with no s or -ing: Could you speak slowly, please?",
+        te: "could తర్వాత verb కి s, -ing రావు: Could you speak slowly, please?",
       },
     },
     {
       id: "p3",
       type: "choose",
-      prompt: { en: "Choose the correct request.", te: "సరైన అభ్యర్థనను ఎంచుకోండి." },
+      prompt: { en: "Choose the correct request.", te: "సరిగ్గా అడిగే వాక్యం ఎంచుకోండి." },
       options: ["Would you to read this?", "Would you read this for me?", "Would you reading this?"],
       answer: 1,
       why: {
-        en: "Would you + read.",
-        te: "Would you తర్వాత read (మామూలు పని పదం).",
+        en: "Would you takes the plain verb, with no to: Would you read this for me?",
+        te: "Would you తర్వాత to లేకుండా మామూలు verb: Would you read this for me?",
       },
     },
     {
@@ -151,8 +151,8 @@ export const day: Lesson = {
       wrongIndex: 2,
       fix: "Could you help me, please?",
       why: {
-        en: "After could, help (no -ing).",
-        te: "could తర్వాత help (-ing లేకుండా).",
+        en: "After could, the verb has no -ing: Could you help me, please?",
+        te: "could తర్వాత verb కి -ing రాదు: Could you help me, please?",
       },
     },
   ],
@@ -173,7 +173,7 @@ export const day: Lesson = {
       type: "situation",
       situation: {
         en: "A shopkeeper speaks very fast. Ask him to speak slowly.",
-        te: "షాప్ అతను చాలా వేగంగా మాట్లాడుతున్నాడు. నెమ్మదిగా మాట్లాడమని అడగండి.",
+        te: "షాప్ ఆయన చాలా వేగంగా మాట్లాడుతున్నారు. నెమ్మదిగా మాట్లాడమని అడగండి.",
       },
       expected: ["Could you speak slowly, please?", "Can you speak slowly, please?"],
       options: ["Could you speak slowly, please?", "Could you speaking slowly?", "Speak slowly."],
@@ -183,27 +183,33 @@ export const day: Lesson = {
   roleplay: {
     id: "r1",
     type: "roleplay",
-    title: { en: "Please read this sign", te: "దయచేసి ఈ బోర్డు చదవండి" },
+    title: { en: "Please read this sign", te: "ఈ బోర్డు కొంచెం చదువుతారా?" },
     scene: {
-      en: "You cannot read a sign at the bank. Ask Mohan, a stranger, to help you politely.",
-      te: "బ్యాంక్ దగ్గర ఒక బోర్డు మీకు చదవడం రావడం లేదు. మోహన్ అనే తెలియని వ్యక్తిని మర్యాదగా సహాయం అడగండి.",
+      en: "You cannot read a sign at the bank. Ask Joseph, a stranger, to help you politely.",
+      te: "బ్యాంక్ దగ్గర ఒక బోర్డు మీకు చదవడం రావడం లేదు. జోసెఫ్ అనే తెలియని వ్యక్తిని మర్యాదగా సహాయం అడగండి.",
     },
-    partner: { en: "Mohan (a stranger)", te: "మోహన్ (తెలియని వ్యక్తి)" },
+    partner: { en: "Joseph (a stranger)", te: "జోసెఫ్ (తెలియని వ్యక్తి)" },
+    voice: "b",
     skills: [{ id: "polite", label: { en: "Polite requests", te: "మర్యాదగా అడగడం" } }],
     turns: [
       {
         partner: "Yes? Do you need something?",
         te: "చెప్పండి? ఏమైనా కావాలా?",
-        hint: { en: "Say: Could you help me, please?", te: "ఇలా చెప్పండి: Could you help me, please?" },
+        hint: { en: "Ask him politely for help.", te: "మర్యాదగా సహాయం అడగండి." },
         replies: [
           { say: "Could you help me, please?", good: true, skill: "polite" },
-          { say: "You help me.", good: false, skill: "polite" },
+          {
+            say: "You help me.",
+            good: false,
+            skill: "polite",
+            react: { en: "Oh! Okay. What is the problem?", te: "ఓ! సరే. ఏంటి సమస్య?" },
+          },
         ],
       },
       {
         partner: "Sure. What is it?",
         te: "తప్పకుండా. ఏంటి?",
-        hint: { en: "Ask: Could you read this sign for me?", te: "అడగండి: Could you read this sign for me?" },
+        hint: { en: "Ask him to read the sign for you.", te: "బోర్డు చదివి చెప్పమని అడగండి." },
         replies: [
           { say: "Could you read this sign for me?", good: true, skill: "polite" },
           { say: "Could you reading this sign for me?", good: false, skill: "polite" },
@@ -212,16 +218,16 @@ export const day: Lesson = {
       {
         partner: "It says the bank is closed.",
         te: "బ్యాంక్ మూసి ఉందని రాసి ఉంది.",
-        hint: { en: "Ask: Would you say that again, please?", te: "అడగండి: Would you say that again, please?" },
+        hint: { en: "You didn't catch it. Ask him to repeat, politely.", te: "సరిగ్గా వినపడలేదు. మళ్ళీ చెప్పమని మర్యాదగా అడగండి." },
         replies: [
-          { say: "Would you say that again, please?", good: true, skill: "polite" },
-          { say: "Would you saying that again, please?", good: false, skill: "polite" },
+          { say: "Sorry, could you say that again?", good: true, skill: "polite" },
+          { say: "Sorry, could you saying that again?", good: false, skill: "polite" },
         ],
       },
       {
         partner: "The bank is closed today.",
         te: "ఈ రోజు బ్యాంక్ మూసి ఉంది.",
-        hint: { en: "Say: Thank you very much for your help.", te: "ఇలా చెప్పండి: Thank you very much for your help." },
+        hint: { en: "Thank him warmly for helping.", te: "సహాయం చేసినందుకు మనసారా థాంక్స్ చెప్పండి." },
         replies: [
           { say: "Thank you very much for your help.", good: true, skill: "polite" },
           { say: "Thank you very much for your helping.", good: false, skill: "polite" },

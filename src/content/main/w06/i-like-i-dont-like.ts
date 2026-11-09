@@ -24,8 +24,8 @@ export const day: Lesson = {
     { en: "I like idli.", te: "నాకు ఇడ్లీ ఇష్టం.", extra: ["likes"] },
     { en: "I don't like spicy food.", te: "నాకు కారంగా ఉండే ఆహారం ఇష్టం లేదు.", extra: ["doesn't"] },
     { en: "Do you like dosa?", te: "మీకు దోసె ఇష్టమా?", extra: ["Does"] },
-    { en: "She likes sweets.", te: "ఆమెకు స్వీట్లు ఇష్టం.", extra: ["like"] },
-    { en: "He doesn't like coffee.", te: "అతనికి కాఫీ ఇష్టం లేదు.", extra: ["likes"] },
+    { en: "She likes sweets.", te: "ఆవిడకి స్వీట్లు ఇష్టం.", extra: ["like"] },
+    { en: "He doesn't like coffee.", te: "ఆయనకి కాఫీ ఇష్టం లేదు.", extra: ["likes"] },
     { en: "I love pesarattu.", te: "నాకు పెసరట్టు అంటే చాలా ఇష్టం.", extra: ["loves"] },
     { en: "What is your favourite food?", te: "మీకు ఇష్టమైన ఆహారం ఏది?", extra: ["like"] },
   ],
@@ -62,7 +62,7 @@ export const day: Lesson = {
       },
       examples: [
         { en: "I like idli.", te: "నాకు ఇడ్లీ ఇష్టం." },
-        { en: "She likes sweets.", te: "ఆమెకు స్వీట్లు ఇష్టం." },
+        { en: "She likes sweets.", te: "ఆవిడకి స్వీట్లు ఇష్టం." },
         { en: "I don't like spicy food.", te: "నాకు కారంగా ఉండే ఆహారం ఇష్టం లేదు." },
       ],
     },
@@ -78,8 +78,11 @@ export const day: Lesson = {
         },
         {
           form: "he, she → likes / doesn't like",
-          useFor: { en: "For one person, likes; to say no, doesn't like.", te: "ఒక్కరికి likes; లేదంటే doesn't like." },
-          example: { en: "He doesn't like coffee.", te: "అతనికి కాఫీ ఇష్టం లేదు." },
+          useFor: {
+            en: "For one person, likes; when they don't like it, doesn't like.",
+            te: "ఒక్కరి గురించి likes; ఇష్టం లేకపోతే doesn't like.",
+          },
+          example: { en: "He doesn't like coffee.", te: "ఆయనకి కాఫీ ఇష్టం లేదు." },
         },
         {
           form: "love",
@@ -94,8 +97,8 @@ export const day: Lesson = {
       wrong: "I am liking idli.",
       right: "I like idli.",
       why: {
-        en: "Like is not used with am … -ing. Say I like.",
-        te: "like ని am … -ing తో వాడరు. I like అనాలి.",
+        en: "Like is a feeling, so it takes no am … -ing: I like idli.",
+        te: "like ఒక భావన, దానికి am … -ing రాదు: I like idli.",
       },
     },
     {
@@ -104,8 +107,8 @@ export const day: Lesson = {
       wrong: "She like sweets.",
       right: "She likes sweets.",
       why: {
-        en: "With she or he, add s: likes.",
-        te: "she, he తో s చేర్చాలి: likes.",
+        en: "For one person (he, she), add s to the verb: She likes sweets.",
+        te: "ఒక్కరి గురించి (he, she) అయితే verb కి s చేర్చాలి: She likes sweets.",
       },
     },
   ],
@@ -114,34 +117,34 @@ export const day: Lesson = {
       id: "p1",
       type: "choose",
       prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
-      options: ["I am liking idli.", "I like idli.", "Me like idli."],
+      options: ["I am liking idli.", "I like idli.", "I likes idli."],
       answer: 1,
       why: {
-        en: "Say I like, not I am liking.",
-        te: "I am liking కాదు, I like.",
+        en: "With I, like has no s and no am … -ing: I like idli.",
+        te: "I తో like కి s రాదు, am … -ing రాదు: I like idli.",
       },
     },
     {
       id: "p2",
       type: "fillBlank",
       sentence: "He doesn't ___ coffee.",
-      te: "అతనికి కాఫీ ఇష్టం లేదు.",
+      te: "ఆయనకి కాఫీ ఇష్టం లేదు.",
       options: ["like", "likes", "liking"],
       answer: 0,
       why: {
-        en: "After doesn't, say like.",
-        te: "doesn't తర్వాత like.",
+        en: "Doesn't already has the s, so the verb stays plain: He doesn't like coffee.",
+        te: "doesn't లోనే s ఉంది, అందుకే like కి s రాదు: He doesn't like coffee.",
       },
     },
     {
       id: "p3",
       type: "choose",
       prompt: { en: "Ask a friend if she likes dosa.", te: "మీ స్నేహితురాలికి దోసె ఇష్టమా అని అడగండి." },
-      options: ["Do you like dosa?", "Are you like dosa?", "You like dosa is?"],
+      options: ["Do you like dosa?", "Are you like dosa?", "Do you likes dosa?"],
       answer: 0,
       why: {
-        en: "Ask with do: Do you like …?",
-        te: "do తో అడగాలి: Do you like …?",
+        en: "Telugu just ends with ఆ (ఇష్టమా?), but English starts with Do: Do you like dosa?",
+        te: "తెలుగులో చివర 'ఆ' (ఇష్టమా?) చేరుస్తాం; ఇంగ్లీష్‌లో ముందు Do: Do you like dosa?",
       },
     },
     {
@@ -151,8 +154,8 @@ export const day: Lesson = {
       wrongIndex: 1,
       fix: "She likes sweets.",
       why: {
-        en: "She is one person: likes.",
-        te: "she ఒక్కరు: likes.",
+        en: "She is one person, so the verb takes s: She likes sweets.",
+        te: "she ఒక్కరు, అందుకే verb కి s: She likes sweets.",
       },
     },
   ],
@@ -176,7 +179,7 @@ export const day: Lesson = {
         te: "ఒకరు అడుగుతున్నారు: What is your favourite food? ఇడ్లీ అని చెప్పండి.",
       },
       expected: ["My favourite food is idli.", "I like idli."],
-      options: ["My favourite food is idli.", "My favourite food idli is.", "I favourite idli."],
+      options: ["My favourite food is idli.", "My favourite food idli is.", "My favourite food idli."],
       answer: 0,
     },
   ],
@@ -185,16 +188,19 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "Your favourite food", te: "మీకు ఇష్టమైన ఆహారం" },
     scene: {
-      en: "Your friend Usha asks what food you like.",
-      te: "మీ స్నేహితురాలు ఉష మీకు ఏ ఆహారం ఇష్టమో అడుగుతోంది.",
+      en: "Your friend Salma asks what food you like.",
+      te: "మీ స్నేహితురాలు సల్మా మీకు ఏ ఆహారం ఇష్టమో అడుగుతున్నారు.",
     },
-    partner: { en: "Usha (a friend)", te: "ఉష (స్నేహితురాలు)" },
+    partner: { en: "Salma (a friend)", te: "సల్మా (స్నేహితురాలు)" },
     skills: [{ id: "like", label: { en: "like / likes", te: "like / likes వాడకం" } }],
     turns: [
       {
         partner: "What is your favourite food?",
         te: "మీకు ఇష్టమైన ఆహారం ఏది?",
-        hint: { en: "Say: My favourite food is pesarattu.", te: "ఇలా చెప్పండి: My favourite food is pesarattu." },
+        hint: {
+          en: "Tell her your favourite food. Start with My favourite food is.",
+          te: "మీకు ఇష్టమైన ఆహారం చెప్పండి. My favourite food is తో మొదలుపెట్టండి.",
+        },
         replies: [
           { say: "My favourite food is pesarattu.", good: true, skill: "like" },
           { say: "My favourite food pesarattu.", good: false, skill: "like" },
@@ -203,16 +209,27 @@ export const day: Lesson = {
       {
         partner: "Do you like spicy food?",
         te: "మీకు కారంగా ఉండేవి ఇష్టమా?",
-        hint: { en: "Say no: No, I don't like spicy food.", te: "లేదని చెప్పండి: No, I don't like spicy food." },
+        hint: {
+          en: "Say kindly that spicy food is not for you.",
+          te: "కారం మీకు ఇష్టం లేదని మర్యాదగా చెప్పండి.",
+        },
         replies: [
           { say: "No, I don't like spicy food.", good: true, skill: "like" },
           { say: "No, I not like spicy food.", good: false, skill: "like" },
+          {
+            say: "Spicy food? Yuck!",
+            good: false,
+            react: { en: "Oh! I cook spicy food every day.", te: "అయ్యో! నేను రోజూ కారంగానే వండుతాను." },
+          },
         ],
       },
       {
-        partner: "Does your brother like sweets?",
-        te: "మీ అన్నయ్యకి స్వీట్లు ఇష్టమా?",
-        hint: { en: "Say yes: Yes, he likes sweets.", te: "అవునని చెప్పండి: Yes, he likes sweets." },
+        partner: "Does our neighbour Imran like sweets?",
+        te: "మన పక్కింటి ఇమ్రాన్ గారికి స్వీట్లు ఇష్టమా?",
+        hint: {
+          en: "Say yes. Remember: one person takes likes.",
+          te: "అవునని చెప్పండి. ఒక్కరి గురించి likes అనాలి.",
+        },
         replies: [
           { say: "Yes, he likes sweets.", good: true, skill: "like" },
           { say: "Yes, he like sweets.", good: false, skill: "like" },
@@ -221,7 +238,7 @@ export const day: Lesson = {
       {
         partner: "I love sweets too!",
         te: "నాకు కూడా స్వీట్లు అంటే చాలా ఇష్టం!",
-        hint: { en: "Invite her: Then come for lunch on Sunday.", te: "ఆహ్వానించండి: Then come for lunch on Sunday." },
+        hint: { en: "Invite her for lunch on Sunday.", te: "ఆదివారం భోజనానికి రమ్మని పిలవండి." },
         replies: [
           { say: "Then come for lunch on Sunday.", good: true },
           { say: "Then come for lunch in Sunday.", good: false },

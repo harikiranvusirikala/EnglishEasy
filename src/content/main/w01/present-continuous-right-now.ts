@@ -22,9 +22,9 @@ export const day: Lesson = {
   ],
   core: [
     { en: "I am cooking.", te: "నేను వంట చేస్తున్నాను.", extra: ["cook"] },
-    { en: "She is sleeping.", te: "ఆమె నిద్రపోతోంది.", extra: ["sleep"] },
+    { en: "She is sleeping.", te: "ఆవిడ నిద్రపోతున్నారు.", extra: ["sleep"] },
     { en: "They are watching TV.", te: "వాళ్లు TV చూస్తున్నారు.", extra: ["watch"] },
-    { en: "He is talking on the phone.", te: "అతను ఫోన్‌లో మాట్లాడుతున్నాడు.", extra: ["talk"] },
+    { en: "He is talking on the phone.", te: "ఆయన ఫోన్‌లో మాట్లాడుతున్నారు.", extra: ["talk"] },
     { en: "I am not working now.", te: "నేను ఇప్పుడు పని చేయడం లేదు.", extra: ["no"] },
     { en: "Are you coming?", te: "మీరు వస్తున్నారా?", extra: ["Is"] },
     { en: "Yes, I am coming.", te: "అవును, వస్తున్నాను.", extra: ["do"] },
@@ -62,7 +62,7 @@ export const day: Lesson = {
       },
       examples: [
         { en: "I am cooking.", te: "నేను వంట చేస్తున్నాను." },
-        { en: "She is sleeping.", te: "ఆమె నిద్రపోతోంది." },
+        { en: "She is sleeping.", te: "ఆవిడ నిద్రపోతున్నారు." },
         { en: "They are watching TV.", te: "వాళ్లు TV చూస్తున్నారు." },
       ],
     },
@@ -109,11 +109,11 @@ export const day: Lesson = {
       id: "p1",
       type: "choose",
       prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
-      options: ["She sleeping.", "She is sleeping.", "She sleeps now."],
+      options: ["She sleeping.", "She is sleeping.", "She is sleep."],
       answer: 1,
       why: {
-        en: "Right now: is + sleeping.",
-        te: "ఇప్పుడు జరుగుతున్న పని: is + sleeping.",
+        en: "For right now, use is with -ing: She is sleeping.",
+        te: "ఇప్పుడు జరుగుతున్న పనికి is తో -ing: She is sleeping.",
       },
     },
     {
@@ -124,8 +124,8 @@ export const day: Lesson = {
       options: ["is", "are", "am"],
       answer: 1,
       why: {
-        en: "With they, use are.",
-        te: "they తో are వాడాలి.",
+        en: "They means many people, so use are: They are watching TV.",
+        te: "they అంటే చాలా మంది, కాబట్టి are: They are watching TV.",
       },
     },
     {
@@ -142,12 +142,12 @@ export const day: Lesson = {
     {
       id: "p4",
       type: "findMistake",
-      sentence: "She is cook now.",
+      sentence: "He is cook now.",
       wrongIndex: 2,
-      fix: "She is cooking now.",
+      fix: "He is cooking now.",
       why: {
-        en: "After is, the action needs -ing: cooking.",
-        te: "is తర్వాత verb కి -ing రావాలి: cooking.",
+        en: "After is, the action needs -ing: He is cooking now.",
+        te: "is తర్వాత verb కి -ing రావాలి: He is cooking now.",
       },
     },
   ],
@@ -168,7 +168,7 @@ export const day: Lesson = {
       type: "situation",
       situation: {
         en: "A neighbour asks: Are you coming? Say yes, in English.",
-        te: "పొరుగు వాళ్లు అడుగుతున్నారు: Are you coming? అవును అని ఇంగ్లీష్‌లో చెప్పండి.",
+        te: "పక్కింటి వాళ్లు అడుగుతున్నారు: Are you coming? అవును అని ఇంగ్లీష్‌లో చెప్పండి.",
       },
       expected: ["Yes, I am.", "Yes, I am coming."],
       options: ["Yes, I do.", "Yes, I am.", "Yes, I coming."],
@@ -180,26 +180,27 @@ export const day: Lesson = {
     type: "roleplay",
     title: { en: "A call from a friend", te: "స్నేహితుల ఫోన్" },
     scene: {
-      en: "A friend calls and asks what you are doing. Say what is happening now.",
-      te: "స్నేహితులు ఫోన్ చేసి మీరు ఏం చేస్తున్నారని అడుగుతున్నారు. ఇప్పుడు జరుగుతున్న పని చెప్పండి.",
+      en: "Your friend John calls and asks what you are doing. Say what is happening now.",
+      te: "మీ స్నేహితుడు జాన్ ఫోన్ చేసి మీరు ఏం చేస్తున్నారని అడుగుతున్నారు. ఇప్పుడు జరుగుతున్న పని చెప్పండి.",
     },
-    partner: { en: "Friend", te: "స్నేహితుడు" },
+    partner: { en: "John (a friend)", te: "జాన్ (స్నేహితుడు)" },
+    voice: "b",
     skills: [{ id: "now", label: { en: "Saying what is happening now", te: "ఇప్పుడు జరుగుతున్న పని చెప్పడం" } }],
     turns: [
       {
         partner: "What are you doing?",
-        te: "నువ్వు ఏం చేస్తున్నావు?",
-        hint: { en: "Say: I am cooking.", te: "ఇలా చెప్పండి: I am cooking." },
+        te: "మీరు ఏం చేస్తున్నారు?",
+        hint: { en: "Say that you are cooking right now.", te: "మీరు ఇప్పుడు వంట చేస్తున్నారని చెప్పండి." },
         replies: [
           { say: "I am cooking.", good: true, skill: "now" },
-          { say: "I cooking.", good: false, skill: "now" },
           { say: "I cook now.", good: false, skill: "now" },
+          { say: "I am busy. Bye.", good: false, react: { en: "Oh! Sorry. Call me later, then.", te: "అయ్యో, sorry! సరే, తర్వాత ఫోన్ చేయండి." } },
         ],
       },
       {
         partner: "Are you watching TV?",
-        te: "నువ్వు TV చూస్తున్నావా?",
-        hint: { en: "Say no: No, I am not.", te: "కాదు అని చెప్పండి: No, I am not." },
+        te: "మీరు TV చూస్తున్నారా?",
+        hint: { en: "Say no, the short way.", te: "లేదు అని చిన్నగా చెప్పండి." },
         replies: [
           { say: "No, I am not.", good: true, skill: "now" },
           { say: "No, I don't.", good: false, skill: "now" },
@@ -208,8 +209,8 @@ export const day: Lesson = {
       },
       {
         partner: "Are you coming to the temple?",
-        te: "నువ్వు గుడికి వస్తున్నావా?",
-        hint: { en: "Say: Yes, I am coming.", te: "ఇలా చెప్పండి: Yes, I am coming." },
+        te: "మీరు గుడికి వస్తున్నారా?",
+        hint: { en: "Say yes, and that you are on the way.", te: "అవును, వస్తున్నానని చెప్పండి." },
         replies: [
           { say: "Yes, I am coming.", good: true, skill: "now" },
           { say: "Yes, I coming.", good: false, skill: "now" },

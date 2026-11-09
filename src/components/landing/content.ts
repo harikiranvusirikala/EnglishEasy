@@ -54,6 +54,11 @@ export const FAQ: Question[] = [
       "No. Every lesson and every recording is made ahead of time, so nothing is made up while you learn. Speech recognition is the one already built into your phone, so there is nothing to pay for and no surprises.",
   },
   {
+    question: "How will I remember what I learn?",
+    answer:
+      "Every finished lesson's key sentences come back in a short daily review, after one day, three days, a week, three weeks and two months, just before you would forget them. Mistakes wait for you in Practice again until you get them right.",
+  },
+  {
     question: "Is it only for young people?",
     answer: "No. The text is large, the buttons are big, and the lessons go slowly. EnglishEasy is made for adults and elders who want to speak English in everyday life.",
   },
@@ -65,6 +70,8 @@ const TEACHES = [
   "Simple present, past, future and continuous tenses",
   "Speaking and listening practice",
   "Role plays for everyday situations",
+  "Pronunciation of the English sounds Telugu speakers find hard",
+  "Daily spaced review of key sentences",
 ];
 
 export interface LessonSummary {

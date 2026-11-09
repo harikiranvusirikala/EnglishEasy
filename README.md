@@ -10,14 +10,18 @@ Plan and vision are in `docs/` (start with `docs/BUILD_PLAN.md`).
 
 ## Features
 
-- Seven-day Week 1 of Stage 1, lesson by lesson: explain, practice, speak, role play, review.
-- Learn in Telugu or English. One recorded Indian female voice on every phone (made ahead of time with `npm run audio`) reads the sentences, questions and role-play lines, and longer sentences can also be played slowly.
+- Thirteen weeks released (91 days): Stage 1 (Weeks 1–12) and the start of Stage 2. Each lesson: explain, practice, speak, role play; each week ends with a Conversation Day and a review.
+- Learn in Telugu or English. Two recorded voices on every phone, a woman's and a man's (made ahead of time with `npm run audio`), read the sentences, questions and conversations; longer sentences can also be played slowly. The phone's own voice is only a backup.
+- Hear first: Conversation Days are heard before they are read, "build what you hear" tiles come from the voice alone, and a Sound of the week trains the sounds Telugu speakers find hard (v/w, ship/sheep, thirteen/thirty, th…) with a "which word did you hear?" question in every lesson. Long sentences are repeated in steps.
+- Role plays: speak first (the replies are one tap away), hints say what to do, and the other person answers back to what you say.
+- Daily review: the key sentences of finished lessons come back after 1, 3, 7, 21 and 60 days, five a day.
 - No typing: answers are buttons, word tiles or voice; speaking never blocks progress ("Choose instead").
-- Home, Journey, Practice hub (sentences, speaking, role plays, tracks), weekly review.
+- Home, Journey, Practice hub (daily review, mistakes, role plays, sentences, speaking, tracks).
 - Guest first; optional Google sign-in syncs progress.
 - Installable, works offline for lessons in use; optional daily reminders.
-- Report a problem from any screen; Day / Night / Device themes; text sizes A-, A, A+, A++.
+- Report a problem or send feedback from the app; Day / Night / Device themes; text sizes A-, A, A+, A++.
 - No AI or paid speech API at runtime.
+- Content standards (`docs/CURRICULUM.md` §1, `docs/CONTENT_PLAYBOOK.md`) with automatic checks: `node --import tsx scripts/check-week.mts <week>`.
 
 ## Screenshots
 
@@ -30,7 +34,7 @@ Plan and vision are in `docs/` (start with `docs/BUILD_PLAN.md`).
   </tr>
   <tr>
     <td align="center" width="25%"><img src="docs/screenshots/speak.png" width="200" alt="Speak: say it aloud"><br><sub>Speak: say it aloud</sub></td>
-    <td align="center" width="25%"><img src="docs/screenshots/roleplay.png" width="200" alt="Role play: a short conversation"><br><sub>Role play: a short conversation</sub></td>
+    <td align="center" width="25%"><img src="docs/screenshots/roleplay.png" width="200" alt="Role play: speak first, replies one tap away"><br><sub>Role play: speak first, replies one tap away</sub></td>
     <td align="center" width="25%"><img src="docs/screenshots/complete.png" width="200" alt="Lesson complete"><br><sub>Lesson complete</sub></td>
     <td align="center" width="25%"><img src="docs/screenshots/journey.png" width="200" alt="Journey: five stages, week by week"><br><sub>Journey: five stages, week by week</sub></td>
   </tr>

@@ -17,12 +17,12 @@ async function settings(page: Page, value: object) {
 }
 
 /** Day 1 cut down to the activities `keep` picks, in one section of `kind` (so the picture is one step away). */
-async function only(page: Page, kind: string, keep: (a: Activity) => boolean) {
+async function only(page: Page, kind: string, keep: (a: Activity) => boolean, adjust: (a: Activity) => Activity = (a) => a) {
   await page.route("**/content/sentence-basics.json", async (route) => {
     const day = (await (await route.fetch()).json()) as PlayableDay;
     day.sections = day.sections
       .filter((s) => s.kind === kind || s.kind === "wrapup")
-      .map((s) => (s.kind === kind ? { ...s, activities: s.activities.filter(keep).slice(0, 1) } : s));
+      .map((s) => (s.kind === kind ? { ...s, activities: s.activities.filter(keep).slice(0, 1).map(adjust) } : s));
     await route.fulfill({ json: day });
   });
   await page.goto("/learn/play?l=sentence-basics");
@@ -60,7 +60,14 @@ test("the Telugu explanation and the pattern", async ({ page }) => {
 
 test("a question answered right", async ({ page }) => {
   await settings(page, { learnIn: "en" });
-  await only(page, "practice", (a) => a.type === "choose");
+  // The right answer in the middle for the picture (the generator shuffles options), so the answer bar never covers it.
+  const middle = (a: Activity): Activity => {
+    if (a.type !== "choose") return a;
+    const right = a.options[a.answer];
+    const others = a.options.filter((_, i) => i !== a.answer);
+    return { ...a, options: [others[0], right, ...others.slice(1)], answer: 1 };
+  };
+  await only(page, "practice", (a) => a.type === "choose", middle);
   await page.getByRole("button", { name: "I eat rice." }).click();
   await page.getByRole("button", { name: /^Check/ }).click();
   await expect(page.getByText("Correct!")).toBeVisible();
@@ -89,9 +96,8 @@ test("a role play", async ({ page }) => {
   await settings(page, { learnIn: "en" });
   await only(page, "roleplay", () => true);
   await expect(page.getByText("What do you drink in the morning?")).toBeVisible();
-  await page.getByRole("button", { name: /^Show replies/ }).click();
-  await page.getByRole("button", { name: "I drink tea.", exact: true }).click();
-  await expect(page.getByText("And what do you eat?")).toBeVisible();
+  // The role play's new moment: speak first, the replies one tap away.
+  await expect(page.getByText("Your turn. Say your reply.")).toBeVisible();
   await shot(page, "roleplay");
 });
 

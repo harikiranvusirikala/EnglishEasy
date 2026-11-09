@@ -41,7 +41,7 @@ export function Hero() {
         <div className="relative mx-auto flex w-full max-w-md items-end justify-center lg:max-w-none">
           {/* Sized from the screen, not fixed: two fixed phones were wider than a phone and pushed the text off it. */}
           <PhoneFrame src={home} alt={strings.landingShotHome.en} priority className="w-[52%] max-w-64 -rotate-3" />
-          <PhoneFrame src={question} alt={strings.landingShotQuestion.en} className="-ml-[10%] mb-[-2rem] w-[52%] max-w-64 rotate-3" />
+          <PhoneFrame src={question} alt={strings.landingShotQuestion.en} priority className="-ml-[10%] mb-[-2rem] w-[52%] max-w-64 rotate-3" />
         </div>
       </div>
     </section>

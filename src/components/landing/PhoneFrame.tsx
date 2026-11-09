@@ -2,7 +2,8 @@ import Image, { type StaticImageData } from "next/image";
 
 /**
  * A real app screen in a phone's frame. The pictures are ready-made WebP files (npm run images) shown as they are
- * (`unoptimized`: no image service needed); sizes are known, so nothing shifts. The first one loads early.
+ * (`unoptimized`: no image service needed); sizes are known, so nothing shifts. Both hero phones load early (either
+ * can be the largest thing on screen, which the browser times as the page's first paint); the rest wait until seen.
  * Like a real phone, a status bar (time, the camera, signal and battery) sits above the app, so the camera never
  * covers the screen's top row. It is sized from the frame's width (container units), so it fits small and large
  * phones alike. Its colour is the screenshots' own background (they are Day screens), on purpose not a token.

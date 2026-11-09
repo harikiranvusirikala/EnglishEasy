@@ -27,7 +27,7 @@ Fill every slot. These counts make exactly **19 activities**, the maximum the te
 | `title`, `subtitle`, `summary` | From the CURRICULUM row; summary is one sentence in each language | — |
 | `seo` | Title: "<Topic> in English for Telugu Speakers". Description: one or two plain sentences | description ≤ 160 characters |
 | `pattern` | 3–4 colour chips of the main sentence | roles: `who` · `action` · `what` (labelled "What / Where") · `when` |
-| `core` | **7 sentences, ordered for the generator** (below) | 6–8; no repeat within the week; ≤ 7 words in Stage 1 |
+| `core` | **7 sentences, ordered for the generator** (below) | 6–8; no repeat within the week; ≤ 7 words in Stage 1, ≤ 10 in Stage 2 |
 | `key` | 4 indexes into `core` (the sentences for My Sentences) | 3–4 |
 | `tryToday` | One real-life task for today | — |
 | `words` | 5 new words | 4–6; **never a word an earlier lesson introduced** (see §6) |
@@ -35,7 +35,7 @@ Fill every slot. These counts make exactly **19 activities**, the maximum the te
 | `learn` (4) | `explain` (with `bridge`: Telugu order → English chips, and 3 examples) · `whenToUse` (3–4 forms) · `dontSay` · `dontSay` | — |
 | `practice` (4) | 3 recognise (`choose`, `fillBlank`, `choose`) + **exactly 1** `findMistake` (last) | answer index in range; options all different; one `___` |
 | `speak` (2) | 2 `situation`s | the right option is also in `expected` |
-| `roleplay` (1) | 3–4 turns, 2–3 replies each, one good | every turn has a good reply; every line ≤ 7 words in Stage 1 |
+| `roleplay` (1) | 3–4 turns, 2–3 replies each, one good | every turn has a good reply; every line within the stage's limit (7 / 10 words) |
 
 **Core order matters.** The generator turns fixed positions into activities:
 
@@ -79,7 +79,7 @@ Give it a real title (Week 1 "My Day", Week 2 "Question Time"), the same in `cou
 # Words already introduced (a new lesson's words must not be in this list):
 grep -h -A8 "words: \[" src/content/main/w*/*.ts | grep -o 'en: "[^"]*"'
 
-# Check a week before registering it (every content rule, plus new words against the written course):
+# Check a week before registering it (every content rule at the week's stage limit, plus new words against the written course):
 node --import tsx scripts/check-week.mts <week> <the seven day ids in order>
 
 npx vitest run src/content/content.test.ts src/content/course.test.ts   # content rules, after registering
@@ -98,7 +98,7 @@ The messages say what to fix:
 | `bi-identical` / `telugu-script` | Every `te` needs Telugu letters: a heading, skill label or "why" like "on / at" or "buy → bought" gets a Telugu word ("on / at వాడకం", "buy గతం bought") |
 | `word-once` | Pick another new word; the old one can still be used, just not listed |
 | `tiles` | The distractor is also a word of the answer; pick another |
-| `sentence-length` on an expected answer | Long "expected" alternatives count too; keep each ≤ 7 words |
+| `sentence-length` on an expected answer | Long "expected" alternatives count too; keep each within the limit |
 | `activity-count` | A slot count changed; go back to the table in §2 |
 | audio coverage | Run `npm run audio` and commit `public/audio/` |
 
@@ -110,7 +110,7 @@ The messages say what to fix:
 
 ## Writing reminders (CURRICULUM §1, short)
 
-- Stage 1 sentences: ≤ 7 words. Natural, polite Indian English; no slang.
+- Sentences: ≤ 7 words in Stage 1, ≤ 10 in Stage 2 (Week 13 on). Natural, polite Indian English; no slang. Model for Stage 2: `src/content/main/w13/`.
 - Telugu: spoken, everyday (వ్యావహారిక); keep English words people already use (bus, phone, function, shop).
 - English-mode explanations: short sentences, common words, saying the same as the Telugu.
 - Distractors are real Telugu-speaker mistakes: missing `am/is/are/do`, Telugu word order, `in/on` for `at`, `is` for plurals.

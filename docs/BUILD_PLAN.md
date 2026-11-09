@@ -816,6 +816,7 @@ As Step 13, for `present-continuous-right-now` and `past-simple-yesterday` (CURR
 | 1 | 1–7 | ✅ 2026-11-07 (all seven days written; owner to review on `/dev/lesson/<id>`) | Steps 3, 13–15 |
 | 2 | 8–14 | ✅ 2026-11-08 (five lessons, the first Conversation Day, the review; 128 clips) | Question words: what/where, when/what time, who/whose, how, why/because; Conversation Day at a wedding; review "Question Time" with a question-word round. Written with `docs/CONTENT_PLAYBOOK.md`. |
 | 3–12 | 15–84 | ✅ 2026-11-09 (all of Stage 1: fifty lessons, ten Conversation Days, ten reviews) | Numbers, time and money; people; home; food; daily routine; can and asking for help; the past; plans and the future; feelings and health; putting it together, ending with the Stage 1 review and a celebration role play. Written with `docs/CONTENT_PLAYBOOK.md`; each week checked with `scripts/check-week.mts` before registering; no new word repeats across the course. |
+| 13 | 85–91 | ✅ 2026-11-09 (the first Stage 2 week: five lessons, a Conversation Day, the review; 126 clips) | Shopping at the market: Can I have …, please?; a kilo of / a bunch of / a dozen; How much is / are …? and That comes to …; polite bargaining (final price, not last price); fresh, ripe, raw and too vs very. Conversation Day at the Sunday market (a week's vegetables; the wrong change); review "Market Day" with a market round. Stage 2 limit of 10 words: `scripts/check-week.mts` now takes the stage from the course map. Tracks stay unoffered until a track has released days. |
 
 ---
 

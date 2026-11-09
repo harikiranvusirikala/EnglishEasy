@@ -7,6 +7,7 @@ import { join } from "node:path";
 import { pathToFileURL } from "node:url";
 import { buildAll } from "../src/content/build";
 import { checkCourse, checkDay } from "../src/content/checks";
+import { course as courseMap } from "../src/content/course";
 import { activityCount, expandDay } from "../src/content/generate";
 import type { ConversationDay, Day, Lesson } from "../src/content/types";
 
@@ -31,6 +32,7 @@ for (const id of ids) {
 }
 
 const written = await buildAll();
+const stage = courseMap.stages.find((s) => week >= s.firstWeek && week <= s.lastWeek)?.n ?? null; // for the sentence length limit
 const earlier: Lesson[] = written.filter((b) => b.lane === "main" && b.week < week && b.day.kind === "lesson").map((b) => b.day as Lesson);
 const weekLessons = days.filter((d): d is Lesson => d.kind === "lesson");
 const conversation = days.find((d): d is ConversationDay => d.kind === "conversation");
@@ -39,7 +41,7 @@ let problems = 0;
 const before: Lesson[] = [...earlier];
 for (const day of days) {
   const playable = expandDay(day, before, weekLessons, conversation);
-  const found = checkDay(day, playable, { stage: 1, mainPath: true });
+  const found = checkDay(day, playable, { stage, mainPath: true });
   console.log(`${found.length === 0 ? "ok  " : "FAIL"} ${day.id} (${day.kind}, ${activityCount(playable)} activities)`);
   for (const p of found) console.log(`     ${p}`);
   problems += found.length;

@@ -45,8 +45,8 @@ test("Week 2's Conversation Day opens on its dialogue, and its review day opens"
   await expect(page.getByRole("button", { name: /^(Continue|Check)/ }).first()).toBeVisible();
 });
 
-// Weeks 3–12: every day opens in the player and on its lesson page (English mode; Weeks 1–2 above cover Telugu mode too).
-for (const week of course.stages[0].weeks.filter((w) => w.n >= 3)) {
+// Weeks 3 on: every released day opens in the player and on its lesson page (English mode; Weeks 1–2 above cover Telugu mode too).
+for (const week of course.stages.flatMap((s) => s.weeks).filter((w) => w.released && w.n >= 3)) {
   test(`Week ${week.n}: every day opens in the player and on its lesson page`, async ({ page }) => {
     test.setTimeout(90_000);
     await page.addInitScript(([key]) => !localStorage.getItem(key) && localStorage.setItem(key, JSON.stringify({ learnIn: "en" })), [SETTINGS_KEY]);

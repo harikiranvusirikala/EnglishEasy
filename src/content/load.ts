@@ -89,6 +89,13 @@ const dayFiles: Record<string, () => Promise<{ day: Day }>> = {
   "all-question-types": () => import("./main/w12/all-question-types"),
   "w12-conversation": () => import("./main/w12/w12-conversation"),
   "w12-review": () => import("./main/w12/w12-review"),
+  "can-i-have-please": () => import("./main/w13/can-i-have-please"),
+  "a-kilo-of": () => import("./main/w13/a-kilo-of"),
+  "how-much-are-they": () => import("./main/w13/how-much-are-they"),
+  "bargaining-politely": () => import("./main/w13/bargaining-politely"),
+  "fresh-and-ripe": () => import("./main/w13/fresh-and-ripe"),
+  "w13-conversation": () => import("./main/w13/w13-conversation"),
+  "w13-review": () => import("./main/w13/w13-review"),
 };
 
 /** Ids of every written day, in registry order (which is course order). */

@@ -24,18 +24,20 @@ describe("course map", () => {
     }
   });
 
-  it("releases all of Stage 1 (Weeks 1–12), with seven day refs each and unique ids", () => {
-    expect(mainWeeks().filter((w) => w.released).map((w) => w.n)).toEqual(Array.from({ length: 12 }, (_, i) => i + 1));
+  it("releases Stage 1 (Weeks 1–12) and Week 13, with seven day refs each and unique ids", () => {
+    expect(mainWeeks().filter((w) => w.released).map((w) => w.n)).toEqual(Array.from({ length: 13 }, (_, i) => i + 1));
     for (const w of [...mainWeeks(), ...course.tracks.flatMap((t) => t.weeks)]) {
       if (!w.released) expect(w.days).toEqual([]);
     }
     const refs = releasedDayRefs();
-    expect(refs).toHaveLength(84);
+    expect(refs).toHaveLength(91);
     expect(refs[0].ref.id).toBe("sentence-basics");
     expect(refs[6]).toMatchObject({ ref: { id: "w1-review", kind: "review" } });
     expect(refs[12]).toMatchObject({ ref: { id: "w2-conversation", kind: "conversation" } });
     expect(refs[13]).toMatchObject({ ref: { id: "w2-review", kind: "review" } });
     expect(refs[83]).toMatchObject({ ref: { id: "w12-review", kind: "review" } });
+    expect(refs[84]).toMatchObject({ ref: { id: "can-i-have-please", kind: "lesson" } });
+    expect(refs[90]).toMatchObject({ ref: { id: "w13-review", kind: "review" } });
     const ids = refs.map((r) => r.ref.id);
     expect(new Set(ids).size).toBe(ids.length);
     for (const id of ids) expect(id.length).toBeLessThanOrEqual(40);
@@ -73,7 +75,8 @@ describe("dayAfter", () => {
     expect(dayAfter("sentence-basics")?.number).toBe(2);
     expect(dayAfter("w1-review")).toMatchObject({ ref: { id: "what-and-where" }, number: 8 });
     expect(dayAfter("w2-review")).toMatchObject({ ref: { id: "numbers-and-counting" }, number: 15 });
-    expect(dayAfter("w12-review")).toBeNull();
+    expect(dayAfter("w12-review")).toMatchObject({ ref: { id: "can-i-have-please" }, number: 85 });
+    expect(dayAfter("w13-review")).toBeNull();
     expect(dayAfter("nope")).toBeNull();
   });
 });

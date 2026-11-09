@@ -57,21 +57,43 @@ const maskable = `<svg xmlns="http://www.w3.org/2000/svg" width="512" height="51
 </svg>`;
 await writeFile("public/icons/icon-maskable-512.png", await sharp(Buffer.from(maskable)).png().toBuffer());
 
+/** A phone with a real screen: a frame, a drawn status bar (so the camera never covers the app), the screenshot; tilted `angle` degrees. */
+function phone(id: string, x: number, y: number, w: number, h: number, shot: string, angle: number): string {
+  const text = (tx: number, ty: number, content: string) => `<text x="${tx}" y="${ty}" font-family="${FONT}" font-size="12" font-weight="700" fill="#1c1917">${content}</text>`;
+  return `<g transform="rotate(${angle} ${x + w / 2} ${y + h / 2})">
+  <g filter="url(#shadow)">
+    <rect x="${x}" y="${y}" width="${w}" height="${h}" rx="36" fill="#1c1917"/>
+    <rect x="${x + 9}" y="${y + 9}" width="${w - 18}" height="${h - 18}" rx="28" fill="#fbf8f3"/>
+  </g>
+  <clipPath id="${id}"><rect x="${x + 9}" y="${y + 9}" width="${w - 18}" height="${h - 18}" rx="28"/></clipPath>
+  ${text(x + 30, y + 32, "9:41")}
+  <rect x="${x + w / 2 - 30}" y="${y + 17}" width="60" height="18" rx="9" fill="#1c1917"/>
+  <g fill="#1c1917" transform="translate(${x + w - 70} ${y + 21})">
+    <rect x="0" y="8" width="3" height="4" rx="1"/><rect x="4.5" y="5.5" width="3" height="6.5" rx="1"/><rect x="9" y="3" width="3" height="9" rx="1"/><rect x="13.5" y="0.5" width="3" height="11.5" rx="1"/>
+    <rect x="21" y="1" width="18" height="10" rx="2.5" fill="none" stroke="#1c1917" stroke-width="1.2"/><rect x="23" y="3" width="13" height="6" rx="1.2"/>
+  </g>
+  <image x="${x + 9}" y="${y + 42}" width="${w - 18}" height="${h - 51}" preserveAspectRatio="xMidYMin slice" clip-path="url(#${id})" href="${shot}"/>
+</g>`;
+}
+
 /**
- * The brand card: the icon and name, the headline in English and Telugu, what it is, and a phone showing a
- * lesson question. Everything that matters stays `margin` px in from every edge (GitHub's social preview
- * template asks for 80 px; chat apps may crop the link preview's sides).
+ * The brand card: the icon and name, the headline in English and Telugu, what it is, and two tilted phones like the
+ * landing page's hero (Home behind, a lesson question answered right in front). Everything that matters stays
+ * `margin` px in from every edge (GitHub's social preview template asks for 80 px; chat apps may crop the sides).
  */
-function brandCard(width: number, height: number, margin: number, shot: string, shotAspect: number): string {
+function brandCard(width: number, height: number, margin: number, back: string, front: string, shotAspect: number): string {
   const text = (x: number, y: number, size: number, weight: number, fill: string, content: string, font = FONT, anchor = "start") =>
     `<text x="${x}" y="${y}" font-family="${font}" font-size="${size}" font-weight="${weight}" fill="${fill}" text-anchor="${anchor}">${content}</text>`;
   const top = margin;
-  // The phone is as wide as the whole screenshot needs at this height (status bar 46 px, 10 px frame), so nothing
-  // is cut off at the bottom (the Continue button).
-  const phoneH = height - 2 * margin;
-  const phoneW = Math.round((phoneH - 56) * shotAspect) + 20;
-  const phoneX = width - margin - phoneW;
-  const phoneY = margin;
+  // The two phones share the space right of the text (it ends about 700 px in): the front one overlaps the back one
+  // by a third and sits lower. Each is as wide as its whole screenshot needs (status bar 42 px, 9 px frame).
+  const room = width - margin - (margin + 700);
+  const drop = Math.round(height * 0.08);
+  const phoneH = Math.min(height - 2 * margin - drop, Math.round(((room / 1.62 - 18) / shotAspect) + 51));
+  const phoneW = Math.round((phoneH - 51) * shotAspect) + 18;
+  const frontX = width - margin - phoneW;
+  const backX = frontX - Math.round(phoneW * 0.62);
+  const backY = Math.round((height - phoneH - drop) / 2);
   const pill = (x: number, label: string, w: number) => `
     <rect x="${x}" y="${height - margin - 46}" width="${w}" height="46" rx="23" fill="#e3f3f0"/>
     ${text(x + w / 2, height - margin - 16, 20, 600, "#0b4f49", label, FONT, "middle")}`;
@@ -82,7 +104,7 @@ function brandCard(width: number, height: number, margin: number, shot: string, 
     <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#0f766e" flood-opacity="0.22"/></filter>
   </defs>
   <rect width="${width}" height="${height}" fill="#fbf8f3"/>
-  <circle cx="${phoneX + phoneW / 2}" cy="${height / 2}" r="${height * 0.62}" fill="url(#glow)"/>
+  <circle cx="${(backX + frontX + phoneW) / 2}" cy="${height / 2}" r="${height * 0.62}" fill="url(#glow)"/>
   <circle cx="${margin + 40}" cy="${height - 40}" r="220" fill="url(#sun)"/>
 
   <image x="${margin}" y="${top}" width="72" height="72" href="${dataUrl("image/svg+xml", icon)}"/>
@@ -92,32 +114,24 @@ function brandCard(width: number, height: number, margin: number, shot: string, 
   ${text(margin, top + 330, 38, 600, "#57534e", "ఆత్మవిశ్వాసంతో ఇంగ్లీష్ మాట్లాడండి", TELUGU_FONT)}
   ${pill(margin, "100% free", 150)}${pill(margin + 164, "Telugu help", 170)}${pill(margin + 348, "No typing", 150)}${pill(margin + 512, "Open source", 176)}
 
-  <g filter="url(#shadow)">
-    <rect x="${phoneX}" y="${phoneY}" width="${phoneW}" height="${phoneH}" rx="40" fill="#1c1917"/>
-    <rect x="${phoneX + 10}" y="${phoneY + 10}" width="${phoneW - 20}" height="${phoneH - 20}" rx="32" fill="#fbf8f3"/>
-  </g>
-  <clipPath id="screen"><rect x="${phoneX + 10}" y="${phoneY + 10}" width="${phoneW - 20}" height="${phoneH - 20}" rx="32"/></clipPath>
-  <!-- A status bar above the app (time, the camera, signal and battery), so the camera never covers the screen's top row. -->
-  ${text(phoneX + 34, phoneY + 34, 13, 700, "#1c1917", "9:41")}
-  <rect x="${phoneX + phoneW / 2 - 34}" y="${phoneY + 18}" width="68" height="20" rx="10" fill="#1c1917"/>
-  <g fill="#1c1917" transform="translate(${phoneX + phoneW - 76} ${phoneY + 23})">
-    <rect x="0" y="8" width="3" height="4" rx="1"/><rect x="4.5" y="5.5" width="3" height="6.5" rx="1"/><rect x="9" y="3" width="3" height="9" rx="1"/><rect x="13.5" y="0.5" width="3" height="11.5" rx="1"/>
-    <rect x="21" y="1" width="18" height="10" rx="2.5" fill="none" stroke="#1c1917" stroke-width="1.2"/><rect x="23" y="3" width="13" height="6" rx="1.2"/>
-  </g>
-  <image x="${phoneX + 10}" y="${phoneY + 46}" width="${phoneW - 20}" height="${phoneH - 56}" preserveAspectRatio="xMidYMin slice" clip-path="url(#screen)" href="${shot}"/>
+  ${phone("back", backX, backY, phoneW, phoneH, back, -3)}
+  ${phone("front", frontX, backY + drop, phoneW, phoneH, front, 3)}
 </svg>`;
 }
 
 /** As small a PNG as looks the same: chat apps skip big link previews (WhatsApp's limit is about 300 KB). */
 const smallPng = (svg: string) => sharp(Buffer.from(svg)).png({ palette: true, quality: 90, effort: 10 }).toBuffer();
-// The phone in the pictures shows a real screen: a question answered right (docs/screenshots/, from e2e/capture.spec.ts).
-const questionPng = await sharp("docs/screenshots/question.png").resize({ width: 560 }).png().toBuffer();
+// The phones show real screens, as on the landing page: Home behind, a question answered right in front
+// (docs/screenshots/, from e2e/capture.spec.ts).
+const screen = async (name: string) => sharp(`docs/screenshots/${name}.png`).resize({ width: 460 }).png().toBuffer();
+const questionPng = await screen("question");
 const questionSize = await sharp(questionPng).metadata();
-const questionAspect = (questionSize.width ?? 1) / (questionSize.height ?? 1);
+const shotAspect = (questionSize.width ?? 1) / (questionSize.height ?? 1);
 const question = dataUrl("image/png", questionPng);
-await writeFile("src/app/opengraph-image.png", await smallPng(brandCard(1200, 630, 64, question, questionAspect)));
+const home = dataUrl("image/png", await screen("home"));
+await writeFile("src/app/opengraph-image.png", await smallPng(brandCard(1200, 630, 64, home, question, shotAspect)));
 // GitHub's social preview (Settings → General → Social preview): 1280 x 640, 80 px safe area (GitHub's template).
-await writeFile("docs/social-preview.png", await smallPng(brandCard(1280, 640, 80, question, questionAspect)));
+await writeFile("docs/social-preview.png", await smallPng(brandCard(1280, 640, 80, home, question, shotAspect)));
 
 // The landing page's pictures: phone screens from docs/screenshots/ as WebP, 640 px wide (shown at up to 320 CSS px).
 await mkdir("src/components/landing/images", { recursive: true });

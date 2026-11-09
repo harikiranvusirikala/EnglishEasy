@@ -278,9 +278,9 @@ function Summary({ section, progress, onNext }: { section: PlayableDay["sections
   const correct = scored.filter((a) => progress.activities[a.id].correct && progress.activities[a.id].attempts === 1).length;
   const added = section.activities.filter((a) => a.id in progress.mistakes).length;
   return (
-    <div className="flex flex-col items-center gap-4 pt-8 text-center">
+    <div className="flex flex-col items-center gap-3 pt-6 text-center">
       {scored.length > 0 ? (
-        <ProgressRing label={strings.correctCount.en} value={correct} max={scored.length} size={132} stroke={10} tone="good" className="animate-pop-in motion-reduce:animate-none">
+        <ProgressRing label={strings.correctCount.en} value={correct} max={scored.length} size={112} stroke={9} tone="good" className="animate-pop-in motion-reduce:animate-none">
           <span className="flex flex-col items-center leading-tight">
             <span className="font-display text-3xl font-bold text-ink tabular-nums">
               {correct} / {scored.length}
@@ -295,12 +295,10 @@ function Summary({ section, progress, onNext }: { section: PlayableDay["sections
           <Icon name="check" className="size-12" strokeWidth={2.6} />
         </span>
       )}
-      <h1 className="font-display text-[2rem] leading-tight font-bold text-ink">
-        <Bi label={SECTION_NAME[section.kind]} />
+      {/* "Practice complete" on one line (owner, 2026-11-09). */}
+      <h1 className="font-display text-[1.75rem] leading-tight font-bold text-ink">
+        {SECTION_NAME[section.kind].en} {strings.sectionComplete.en}
       </h1>
-      <p className="text-lg text-ink-2">
-        {strings.sectionComplete.en}
-      </p>
       {added > 0 && (
         <p className="flex items-center gap-2 rounded-2xl bg-accent-soft px-4 py-3 text-base text-accent-ink">
           <Icon name="retry" className="size-5" />

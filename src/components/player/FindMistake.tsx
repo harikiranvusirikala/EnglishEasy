@@ -61,7 +61,7 @@ export function FindMistake({ activity, onAnswer, onNext }: Props) {
                 {result === "correct" && <p className="text-lg font-semibold">{activity.fix}</p>}
                 <p className="text-lg">
                   <ContentText text={activity.why} />
-                  <ListenInline read={[activity.fix, activity.why]} auto={result === "failed" ? [activity.fix, activity.why] : [activity.fix]} />
+                  <ListenInline read={[activity.fix, activity.why]} auto={[activity.fix, activity.why]} />
                 </p>
               </>
             )}

@@ -27,6 +27,15 @@ async function roleplayOnly(page: Page) {
   await next(page, /^Start/);
 }
 
+test("opening a role play reads its scene by itself, then the partner's first line", async ({ page }) => {
+  await setup(page);
+  await roleplayOnly(page);
+  await expect.poll(async () => (await spoken(page)).map((s) => s.text).join(" | "), { timeout: 10_000 }).toContain("What do you drink in the morning?");
+  const texts = (await spoken(page)).map((s) => s.text).join(" | ");
+  expect(texts).toContain("Padma, a friend, asks about your morning");
+  expect(texts.indexOf("Padma, a friend")).toBeLessThan(texts.indexOf("What do you drink in the morning?"));
+});
+
 test("Day 1's role play by tapping, with a correction and the summary", async ({ page }) => {
   await setup(page);
   await roleplayOnly(page);

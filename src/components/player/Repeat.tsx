@@ -6,7 +6,7 @@ import { BiText } from "@/components/ui/BiText";
 import type { Activity } from "@/content/types";
 import { strings } from "@/lib/strings";
 import { Build } from "./Build";
-import { Narrate } from "./Narrate";
+import { ListenInline } from "./Narrate";
 import { SpeakBar, useChoosing, ChooseNote } from "./SpeakFlow";
 import { card } from "@/components/ui/card";
 import { Instruction } from "./parts";
@@ -42,9 +42,13 @@ export function Repeat({
           <BiText text={strings.repeatPrompt} />
         </Instruction>
         <div className={`${card} flex flex-col gap-2`}>
-          <p className="font-display text-[1.9rem] leading-snug font-semibold text-ink">{activity.say}</p>
+          <p className="font-display text-[1.9rem] leading-snug font-semibold text-ink">
+            {activity.say}
+            <span className="text-2xl">
+              <ListenInline read={[activity.say]} auto={[activity.say]} slow />
+            </span>
+          </p>
           <Meaning className="text-lg text-ink-2">{activity.te}</Meaning>
-          <Narrate text={activity.say} auto slow />
         </div>
       </div>
       <SpeakBar expected={[activity.say]} onAnswer={onAnswer} onNext={onNext} onChoose={choose} />

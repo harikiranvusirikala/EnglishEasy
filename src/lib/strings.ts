@@ -270,7 +270,6 @@ export const strings = {
   },
   // Role play and dialogue
   teluguMeaning: { en: "Telugu meaning", te: "తెలుగు అర్థం" },
-  hideTeluguMeaning: { en: "Hide Telugu meaning", te: "తెలుగు అర్థం దాచు" },
   rolePlayYouAre: { en: "You are talking with", te: "మీరు మాట్లాడుతున్నది" },
   replyPrompt: { en: "Speak your reply, or tap one.", te: "మీ జవాబు చెప్పండి, లేదా ఒకటి నొక్కండి." },
   betterReply: { en: "A better reply", te: "ఇంకా మంచి జవాబు" },
@@ -332,7 +331,6 @@ export const strings = {
   linkCopied: { en: "Link copied", te: "లింక్ కాపీ అయింది" },
   dayComplete: { en: "Day {n} Complete!", te: "{n}వ రోజు పూర్తయింది!" },
   lessonCompleteLabel: { en: "Lesson complete", te: "పాఠం పూర్తయింది" },
-  practiceQuestions: { en: "{n} practice questions", te: "{n} సాధన ప్రశ్నలు" },
   yourSentencesToday: { en: "Your sentences today", te: "ఈ రోజు మీ వాక్యాలు" },
   nextDay: { en: "Next: Day {n} — {title}", te: "తర్వాత: {n}వ రోజు — {title}" },
   continueToDay: { en: "Continue to Day {n}", te: "{n}వ రోజుకు కొనసాగండి" },

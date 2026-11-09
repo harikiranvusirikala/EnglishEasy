@@ -5,7 +5,7 @@ import { ContentText } from "@/components/ui/ContentText";
 import { Bi } from "@/components/ui/Bi";
 import { Icon } from "@/components/ui/icons";
 import { narrate, useVoices } from "@/lib/speak";
-import { listenButton } from "@/components/ui/button";
+import { hintPill, listenButton } from "@/components/ui/button";
 import { needsSlow } from "@/learning/complexity";
 import { strings, type Bi as BiLabel } from "@/lib/strings";
 import { BottomBar, FeedbackPanel, MainButton, OptionButton, Prompt, Text, toneOf, type OptionState } from "./parts";
@@ -46,8 +46,8 @@ export function ListenHero({ say }: { say: string }) {
  * the selected option, for a live preview (the blank filled in).
  *
  * After Check (owner, 2026-11-09) the bar's one Listen ends the line under the title: right → the reason (or the
- * sentence) is shown, the sentence plays, and a tap plays the sentence then the reason; "Almost" → only the reason,
- * which plays as a hint (never the answer); wrong twice → "The answer is …", and the sentence then the reason play.
+ * sentence) is shown, and the sentence then the reason play by themselves (and again on a tap); "Almost" → only the
+ * reason, which plays as a hint (never the answer); wrong twice → "The answer is …", and the sentence then the reason play.
  */
 export function Question({
   options,
@@ -85,7 +85,7 @@ export function Question({
   // title already shows it ("The answer is …" with no separate sentence), where the Listen joins the title instead.
   const line = why ? true : result === "correct" || (result === "failed" && say !== undefined);
   const reads = result === "almost" && why ? [why] : why ? [sentence, why] : [sentence]; // a tap
-  const autoReads = result === "failed" ? reads : result === "almost" ? reads : [sentence]; // by itself: never the reason after a right answer
+  const autoReads = reads; // by itself too: the sentence, then the reason (owner, 2026-11-09); "Almost": only the reason
   const group = useRef<HTMLDivElement>(null);
   useRevealAbove(group, result);
 
@@ -168,7 +168,7 @@ export function HintLine({ hinted, onHint, children }: { hinted: boolean; onHint
       <span>{children}</span>
     </p>
   ) : (
-    <button type="button" onClick={onHint} className="inline-flex min-h-12 items-center gap-2 self-start rounded-full bg-accent-soft px-4 text-base font-semibold text-accent-ink transition-colors hover:brightness-95">
+    <button type="button" onClick={onHint} className={`${hintPill} self-start`}>
       <Icon name="hint" className="size-5" />
       <Bi label={strings.hint} />
     </button>

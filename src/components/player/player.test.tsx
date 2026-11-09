@@ -40,7 +40,9 @@ describe.each([
   ["Choose", choose, (p: object) => <Choose activity={choose} {...(p as { onAnswer: () => void; onNext: () => void })} />, "I eat rice.", "I rice eat.", "I eat rice."],
   ["FillBlank", fill, (p: object) => <FillBlank activity={fill} {...(p as { onAnswer: () => void; onNext: () => void })} />, "speak", "speaks", "We speak Telugu."],
 ] as const)("%s", (_name, activity, view, right, wrong, sentence) => {
-  it("right answer: Check shows Correct! and Continue moves on", () => {
+  it("right answer: Check shows Correct!, reads the sentence then the reason by itself, and Continue moves on", () => {
+    updateSettings({ autoPlay: true, learnIn: "en" });
+    vi.mocked(narrateAll).mockClear();
     const onAnswer = vi.fn();
     const onNext = vi.fn();
     render(view({ onAnswer, onNext }));
@@ -48,6 +50,7 @@ describe.each([
     fireEvent.click(screen.getByRole("button", { name: right }));
     fireEvent.click(screen.getByRole("button", { name: /^Check/ }));
     expect(screen.getByText("Correct!")).toBeTruthy();
+    expect(narrateAll).toHaveBeenLastCalledWith([sentence, activity.why!.en], { voice: undefined });
     expect(onAnswer).toHaveBeenCalledWith(true);
     fireEvent.click(screen.getByRole("button", { name: /^Continue/ }));
     expect(onNext).toHaveBeenCalledOnce();
@@ -65,12 +68,12 @@ describe.each([
     expect(screen.queryByText(/The answer is/)).toBeNull();
     expect(narrate).not.toHaveBeenCalled();
     expect(narrateAll).toHaveBeenCalledOnce();
-    expect(narrateAll).toHaveBeenLastCalledWith([activity.why!.en]); // a spoken hint
+    expect(narrateAll).toHaveBeenLastCalledWith([activity.why!.en], { voice: undefined }); // a spoken hint
     fireEvent.click(screen.getByRole("button", { name: /^Try again/ }));
     fireEvent.click(screen.getByRole("button", { name: wrong }));
     fireEvent.click(screen.getByRole("button", { name: /^Check/ }));
     expect(screen.getByText(/The answer is/)).toBeTruthy();
-    expect(narrateAll).toHaveBeenLastCalledWith([sentence, activity.why!.en]); // the sentence, then the reason
+    expect(narrateAll).toHaveBeenLastCalledWith([sentence, activity.why!.en], { voice: undefined }); // the sentence, then the reason
     expect(onAnswer.mock.calls).toEqual([[false], [false]]);
     expect(screen.getByRole("button", { name: /^Continue/ })).toBeTruthy();
   });
@@ -112,8 +115,10 @@ describe("cards", () => {
     expect(screen.getByText(explain.body.te)).toBeTruthy();
     expect(narrate).not.toHaveBeenCalled(); // explanations are not read aloud (owner's decision 2026-11-08)
     expect(screen.queryByRole("button", { name: "Listen slowly" })).toBeNull();
+    vi.mocked(narrateAll).mockClear();
     fireEvent.click(screen.getAllByRole("button", { name: "Listen" })[0]);
-    expect(narrate).toHaveBeenCalledOnce();
+    expect(narrateAll).toHaveBeenCalledOnce(); // the example's text-sized Listen
+    expect(narrate).not.toHaveBeenCalled();
   });
 
   it("WhenToUseCard lists each form with its example", () => {
@@ -159,7 +164,7 @@ describe("a question with a sentence to hear", () => {
     render(<Choose activity={meaning} onAnswer={vi.fn()} onNext={vi.fn()} />);
     const heading = screen.getByRole("heading", { level: 2 });
     expect(within(heading).getByRole("button", { name: "Listen" })).toBeTruthy(); // inside the question, not on its own row
-    expect(narrateAll).toHaveBeenCalledWith(['"I eat rice." అంటే ఏంటి?']);
+    expect(narrateAll).toHaveBeenCalledWith(['"I eat rice." అంటే ఏంటి?'], { voice: undefined });
   });
 });
 
@@ -185,7 +190,7 @@ describe("ListenChoose", () => {
     fireEvent.click(screen.getByRole("button", { name: /^Check/ }));
     expect(screen.getByText("Correct!")).toBeTruthy();
     expect(narrate).toHaveBeenCalledTimes(1);
-    expect(narrateAll).toHaveBeenLastCalledWith(["I eat rice."]); // the correct sentence plays after Check
+    expect(narrateAll).toHaveBeenLastCalledWith(["I eat rice."], { voice: undefined }); // the correct sentence plays after Check
   });
 
   it("stays silent with Auto-play off", () => {

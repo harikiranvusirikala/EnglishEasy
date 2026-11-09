@@ -10,11 +10,11 @@ import { Illustration, type IllustrationName } from "@/components/illustrations/
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Skeleton } from "@/components/ui/Skeleton";
 import { badge } from "@/components/ui/badge";
-import { button, focusRing, listenButton } from "@/components/ui/button";
+import { button, focusRing, inlineListenButton } from "@/components/ui/button";
 import { card, cardFlush } from "@/components/ui/card";
 import { Icon, type IconName } from "@/components/ui/icons";
 import { PracticeRunner } from "@/components/player/PracticeRunner";
-import { Narrate } from "@/components/player/Narrate";
+import { ListenInline } from "@/components/player/Narrate";
 import type { PlayableDay } from "@/content/types";
 import {
   finishedDays,
@@ -250,23 +250,22 @@ export function PracticeSentences() {
                     </h2>
                     <ul className={`${cardFlush} divide-y divide-line`}>
                       {g.sentences.map((s, i) => (
-                        <li key={i} className="flex flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
-                          <div className="min-w-0">
-                            <p className="text-xl font-semibold text-ink">{s.en}</p>
+                        // The Listen first, then the sentence; "Say it" at the row's end (owner, 2026-11-09).
+                        <li key={i} className="flex items-start gap-3 px-4 py-3.5 text-xl">
+                          <ListenInline read={[s.en]} place="start" />
+                          <div className="min-w-0 flex-1">
+                            <p className="font-semibold text-ink">{s.en}</p>
                             <Meaning>{s.te}</Meaning>
                           </div>
-                          <div className="flex shrink-0 items-center gap-2">
-                            <Narrate text={s.en} variant="compact" />
-                            <button
-                              type="button"
-                              aria-label={`${strings.practiceSayIt.en}: ${s.en}`}
-                              title={strings.practiceSayIt.en}
-                              onClick={() => setSaying({ dayId: g.dayId, activity: { id: `${g.dayId}.my-${i}`, type: "repeat", say: s.en, te: s.te } })}
-                              className={listenButton("md")}
-                            >
-                              <Icon name="mic" />
-                            </button>
-                          </div>
+                          <button
+                            type="button"
+                            aria-label={`${strings.practiceSayIt.en}: ${s.en}`}
+                            title={strings.practiceSayIt.en}
+                            onClick={() => setSaying({ dayId: g.dayId, activity: { id: `${g.dayId}.my-${i}`, type: "repeat", say: s.en, te: s.te } })}
+                            className={`${inlineListenButton} shrink-0 self-center`}
+                          >
+                            <Icon name="mic" className="size-[1.15em]" />
+                          </button>
                         </li>
                       ))}
                     </ul>

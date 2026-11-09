@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Bi } from "@/components/ui/Bi";
 import { BiText } from "@/components/ui/BiText";
-import { button } from "@/components/ui/button";
+import { button, pillButton } from "@/components/ui/button";
 import { judgeSpeech, type SpeechJudgement } from "@/learning/speech-match";
 import { listen, stopListening, useListenSupport } from "@/lib/listen";
 import { useSettings } from "@/lib/settings-store";
@@ -125,12 +125,16 @@ export function SpeakBar({
         </button>
       )}
       {!accepted && (
-        <MicButton listening={listening} onStart={start} variant={spent ? "secondary" : "primary"} label={tries > 0 || outcome === "none" ? strings.speakAgain : strings.speak} />
-      )}
-      {!accepted && !spent && (
-        <button type="button" onClick={() => onChoose()} className={`${button("ghost")} w-full`}>
-          <Bi label={strings.chooseInstead} />
-        </button>
+        // One row (owner, 2026-11-09): "Choose instead" beside a 76 px microphone, so the bar stays short.
+        // Wraps to two rows only when the text is too big for one (A++ on a small phone).
+        <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+          {!spent && (
+            <button type="button" onClick={() => onChoose()} className={pillButton}>
+              <Bi label={strings.chooseInstead} />
+            </button>
+          )}
+          <MicButton listening={listening} onStart={start} size="md" variant={spent ? "secondary" : "primary"} label={tries > 0 || outcome === "none" ? strings.speakAgain : strings.speak} />
+        </div>
       )}
     </BottomBar>
   );

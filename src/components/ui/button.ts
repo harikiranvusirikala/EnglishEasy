@@ -31,6 +31,8 @@ const SIZES = {
   pill: "min-h-12 rounded-full px-4 text-base",
   /** A square holding only an icon (its name comes from aria-label), e.g. the phone header's My lessons. */
   icon: "size-13 rounded-2xl",
+  /** A text link under a main button ("Review today's lesson"): 44 px tall. */
+  link: "min-h-11 rounded-xl px-3 text-base",
 };
 
 export type ButtonVariant = keyof typeof VARIANTS;
@@ -61,6 +63,12 @@ export function listenButton(size: "md" | "lg" = "md"): string {
  * invisible tap area of about 44 px around it (`before:`), so it is still easy to hit.
  */
 export const inlineListenButton = `relative inline-flex translate-y-[0.15em] items-center justify-center rounded-md text-brand transition-colors duration-150 before:absolute before:-inset-3 before:content-[''] hover:text-brand-ink disabled:opacity-55 motion-reduce:transition-none ${FOCUS}`;
+
+/** A small rounded secondary action beside a microphone ("Choose instead"), 48 px tall. */
+export const pillButton = `inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-full border border-line-strong bg-surface px-4 text-base font-semibold text-brand shadow-card transition-colors duration-150 hover:bg-sunken motion-reduce:transition-none ${FOCUS}`;
+
+/** The amber Hint pill (word tiles, role play). */
+export const hintPill = `inline-flex min-h-12 items-center gap-2 rounded-full bg-accent-soft px-4 text-base font-semibold text-accent-ink transition-colors duration-150 hover:brightness-95 motion-reduce:transition-none ${FOCUS}`;
 
 /** A button that stays chosen (reminder times, feedback faces and topics): teal when selected, set aria-pressed. */
 export function choiceButton(selected: boolean): string {

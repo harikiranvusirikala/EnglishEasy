@@ -5,7 +5,8 @@ import type { AudioVoice } from "./audio-manifest";
  * Everything the player reads aloud for a day, in both Learn-in languages, so `npm run audio` can record it all ahead
  * of time and the player can fetch a lesson's clips for offline (BUILD_PLAN "one recorded voice"). It mirrors what the
  * screens pass to `speak` / `narrate`; anything missed still plays, in the phone's own voice. After Check, the feedback's
- * speaker also reads the question's reason (`why`) in the Learn-in language (owner, 2026-11-09), so both are listed.
+ * speaker also reads the question's reason (`why`), and a role play reads its scene, in the Learn-in language (owner,
+ * 2026-11-09), so both languages are listed.
  */
 export type Spoken = { text: string; voice: AudioVoice };
 
@@ -42,7 +43,7 @@ function ofActivity(activity: Activity): (string | Bi | Spoken | undefined)[] {
     case "dialogue":
       return [...activity.lines.map((line) => ({ text: line.en, voice: line.voice })), ...activity.questions.map((q) => q.options[q.answer])];
     case "roleplay":
-      return activity.turns.flatMap((turn) => [turn.partner, ...turn.replies.filter((r) => r.good).map((r) => r.say)]);
+      return [activity.scene, ...activity.turns.flatMap((turn) => [turn.partner, ...turn.replies.filter((r) => r.good).map((r) => r.say)])];
     case "match":
       return [];
   }

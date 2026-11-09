@@ -8,10 +8,8 @@ import { SaveProgressCard } from "@/components/learn/SaveProgressCard";
 import { ShareLesson } from "@/components/learn/ShareLesson";
 import { Bi } from "@/components/ui/Bi";
 import { ContentText } from "@/components/ui/ContentText";
-import { ProgressBar } from "@/components/ui/ProgressBar";
 import { button } from "@/components/ui/button";
-import { accentCard, card, cardFlush, sectionTitle } from "@/components/ui/card";
-import { badge } from "@/components/ui/badge";
+import { accentCard, card, cardFlush, cardSnug, sectionTitle } from "@/components/ui/card";
 import { Illustration } from "@/components/illustrations/Illustration";
 import { activityCount } from "@/content/generate";
 import { Icon, type IconName } from "@/components/ui/icons";
@@ -19,10 +17,9 @@ import { dayAfter, findDay } from "@/content/course";
 import type { PlayableDay } from "@/content/types";
 import { loadLesson } from "@/lib/lesson-data";
 import { fill, strings, type Bi as BiLabel } from "@/lib/strings";
-import { Narrate } from "./Narrate";
+import { ListenInline } from "./Narrate";
 import { RateLesson } from "./RateLesson";
 import { BottomBar, MainButton } from "./parts";
-import { SECTION_NAME } from "./sections";
 
 const PIECES = ["bg-brand", "bg-accent", "bg-who-ink", "bg-what-ink", "bg-good"];
 
@@ -64,7 +61,6 @@ export function LessonComplete({ day, onReview }: { day: PlayableDay; onReview: 
   const here = findDay(day.id);
   const after = dayAfter(day.id);
   const nextReady = useNextReady(after?.ref.id);
-  const done = day.sections.filter((s) => s.kind !== "wrapup" && s.activities.length > 0);
 
   const words = day.wrapup?.words.length ?? 0;
   const sentences = day.wrapup?.key.length ?? 0;
@@ -73,31 +69,23 @@ export function LessonComplete({ day, onReview }: { day: PlayableDay; onReview: 
     <>
       <Confetti />
       <div className="flex flex-col gap-5">
-        <header className="flex flex-col items-center gap-1 text-center">
-          <Illustration name="complete" className="w-52 animate-pop-in motion-reduce:animate-none" />
-          <h1 className="font-display mt-2 text-[2.3rem] leading-tight font-bold text-ink">
-            <Bi label={here ? fill(strings.dayComplete, { n: here.number }) : strings.lessonCompleteLabel} />
-          </h1>
-          <p className="text-xl text-ink-2">
-            {day.title.en}
-          </p>
+        {/* Compact (owner, 2026-11-09): the medal beside the title and one row of numbers, so today's sentences show on the first screen. */}
+        <header className="flex items-center gap-4">
+          <Illustration name="complete" className="w-20 shrink-0 animate-pop-in motion-reduce:animate-none" />
+          <div className="flex min-w-0 flex-col gap-0.5">
+            <h1 className="font-display text-2xl leading-tight font-bold text-ink">
+              <Bi label={here ? fill(strings.dayComplete, { n: here.number }) : strings.lessonCompleteLabel} className="items-start" />
+            </h1>
+            <p className="text-lg text-ink-2">{day.title.en}</p>
+          </div>
         </header>
 
-        <div className="grid grid-cols-3 gap-3">
-          <Stat value={activityCount(day)} label={strings.statActivities} icon="tiles" />
-          <Stat value={sentences} label={strings.statSentences} icon="book" />
-          <Stat value={words} label={strings.statWords} icon="sparkle" />
+        <div className={`${cardSnug} flex flex-wrap items-baseline justify-around gap-x-2 gap-y-1`}>
+          <StatInline value={activityCount(day)} label={strings.statActivities} />
+          <StatInline value={sentences} label={strings.statSentences} />
+          <StatInline value={words} label={strings.statWords} />
         </div>
 
-        <ul className="flex flex-wrap justify-center gap-2">
-          {done.map((s) => (
-            <li key={s.kind} className={badge("good")}>
-              <Icon name="check" className="size-4" strokeWidth={3} />
-              {s.kind === "practice" ? <Bi label={fill(strings.practiceQuestions, { n: s.activities.length })} /> : <Bi label={SECTION_NAME[s.kind]} />}
-            </li>
-          ))}
-        </ul>
-        <ProgressBar label={strings.progressLabel.en} value={1} max={1} />
 
         {day.wrapup && (
           <>
@@ -107,12 +95,12 @@ export function LessonComplete({ day, onReview }: { day: PlayableDay; onReview: 
               </h2>
               <ul className={`${cardFlush} divide-y divide-line`}>
                 {day.wrapup.key.map((sentence, i) => (
-                  <li key={i} className="flex items-center justify-between gap-3 px-4 py-3.5">
+                  <li key={i} className="flex items-start gap-3 px-4 py-3.5 text-xl">
+                    <ListenInline read={[sentence.en]} place="start" />
                     <div className="min-w-0">
-                      <p className="text-xl font-semibold text-ink">{sentence.en}</p>
+                      <p className="font-semibold text-ink">{sentence.en}</p>
                       <Meaning>{sentence.te}</Meaning>
                     </div>
-                    <Narrate text={sentence.en} variant="compact" />
                   </li>
                 ))}
               </ul>
@@ -169,12 +157,24 @@ export function LessonComplete({ day, onReview }: { day: PlayableDay; onReview: 
         ) : (
           <MainButton label={strings.finish} onClick={() => router.push("/learn")} />
         )}
-        <button type="button" onClick={onReview} className={`${button("secondary")} w-full`}>
+        <button type="button" onClick={onReview} className={`${button("ghost", "link")} self-center`}>
           <Icon name="retry" className="size-5" />
           <Bi label={strings.reviewToday} />
         </button>
       </BottomBar>
     </>
+  );
+}
+
+/** A number and its label on one line, in the Lesson complete row. */
+function StatInline({ value, label }: { value: number; label: BiLabel }) {
+  return (
+    <div className="flex items-baseline gap-x-1 whitespace-nowrap">
+      <span className="font-display text-lg font-bold text-ink tabular-nums">{value}</span>
+      <span className="text-sm leading-tight text-ink-2">
+        <Bi label={label} />
+      </span>
+    </div>
   );
 }
 

@@ -5,9 +5,9 @@ import { useLearnIn } from "@/lib/settings-store";
 import { Bi } from "@/components/ui/Bi";
 import { BiText } from "@/components/ui/BiText";
 import { ContentText } from "@/components/ui/ContentText";
-import { button } from "@/components/ui/button";
+import { hintPill, inlineListenButton } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icons";
-import { card } from "@/components/ui/card";
+import { cardSnug } from "@/components/ui/card";
 import type { Activity } from "@/content/types";
 import { shuffle } from "@/learning/shuffle";
 import { scoreRolePlay, type TurnResult } from "@/learning/roleplay-score";
@@ -16,7 +16,7 @@ import { listen, stopListening } from "@/lib/listen";
 import { strings } from "@/lib/strings";
 import { Bubble } from "./Bubble";
 import { MicButton } from "./MicButton";
-import { ListenInline, Narrate } from "./Narrate";
+import { ListenInline } from "./Narrate";
 import { BottomBar, FeedbackPanel, Instruction, MainButton, OptionButton, Text } from "./parts";
 import { RolePlaySummary } from "./RolePlaySummary";
 import { ChooseNote, useChoosing } from "./SpeakFlow";
@@ -25,25 +25,48 @@ type RolePlayActivity = Extract<Activity, { type: "roleplay" }>;
 type Reply = TurnResult & { text: string; better?: string };
 type Miss = { heard: string | null }; // a spoken reply that was not understood (null: nothing heard)
 
-/** A partner line with its Telugu meaning one tap away. The newest line plays by itself. */
+/**
+ * A partner line. Its text-sized Listen (and Slow) and, in Telugu mode, "అ" (the Telugu meaning, a toggle) sit on the
+ * name row above the bubble (owner, 2026-11-09), so the bubble holds only the sentence. The newest line plays by itself.
+ */
 function PartnerBubble({ name, english, telugu, auto }: { name: RolePlayActivity["partner"]; english: string; telugu: string; auto: boolean }) {
   const [meaning, setMeaning] = useState(false);
   const learnIn = useLearnIn(); // the Telugu meaning is offered only to learners who learn in Telugu
   return (
-    <Bubble side="left" name={name.en} initial={name.en.trim().charAt(0).toUpperCase()}>
+    <Bubble
+      side="left"
+      initial={name.en.trim().charAt(0).toUpperCase()}
+      name={
+        <span className="flex items-center gap-2.5">
+          {name.en}
+          <span className="inline-flex items-center gap-2.5 text-lg font-normal">
+            <ListenInline read={[english]} auto={auto ? [english] : undefined} slow place="row" />
+            {learnIn === "te" && <MeaningToggle on={meaning} onToggle={() => setMeaning((m) => !m)} />}
+          </span>
+        </span>
+      }
+    >
       <p>{english}</p>
       {meaning && learnIn === "te" && (
         <p lang="te" className="mt-1 text-base text-ink-2">
           {telugu}
         </p>
       )}
-      <div className="mt-2 flex flex-wrap items-center gap-2">
-        <Narrate text={english} auto={auto} variant="compact" slow />
-        {learnIn === "te" && <button type="button" onClick={() => setMeaning((m) => !m)} aria-pressed={meaning} className="min-h-12 rounded-full px-3 text-base font-semibold text-brand transition-colors hover:bg-brand-soft">
-          <Bi label={meaning ? strings.hideTeluguMeaning : strings.teluguMeaning} />
-        </button>}
-      </div>
     </Bubble>
+  );
+}
+
+/** "అ": shows or hides a line's Telugu meaning; tinted while shown. From tablets up it also says "Telugu meaning". */
+export function MeaningToggle({ on, onToggle }: { on: boolean; onToggle: () => void }) {
+  return (
+    <button type="button" onClick={onToggle} aria-pressed={on} aria-label={strings.teluguMeaning.en} title={strings.teluguMeaning.en} className={`${inlineListenButton} gap-1 px-1 ${on ? "bg-brand-soft" : ""}`}>
+      <span lang="te" aria-hidden="true" className="font-bold leading-none">
+        అ
+      </span>
+      <span aria-hidden="true" className="hidden text-sm font-semibold sm:inline">
+        {strings.teluguMeaning.en}
+      </span>
+    </button>
   );
 }
 
@@ -124,28 +147,27 @@ export function RolePlay({ activity, onNext }: { activity: RolePlayActivity; onA
   return (
     <>
       <div className="flex flex-col gap-4">
-        <div className={`${card} flex items-start gap-4`}>
-          <span aria-hidden="true" className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-brand-soft text-brand">
-            <Icon name="chat" className="size-7" />
-          </span>
-          <div className="flex min-w-0 flex-col gap-1">
-            <h1 className="font-display text-2xl leading-tight font-semibold text-ink">
-              {activity.title.en}
-            </h1>
-            <p className="text-base text-ink-2">
-              <ContentText text={activity.scene} />
-            </p>
-            <p className="text-base text-ink">
-              {strings.rolePlayYouAre.en} <span className="font-semibold">{activity.partner.en}</span>
-            </p>
-          </div>
+        {/* The scene (owner, 2026-11-09): a title-sized icon before the title, the text at full width ending in its Listen.
+            At the start it plays by itself, then the partner's first line. */}
+        <div className={`${cardSnug} flex flex-col gap-1.5`}>
+          <h1 className="font-display flex items-center gap-2 text-xl leading-tight font-semibold text-ink">
+            <Icon name="chat" className="size-[1.1em] shrink-0 text-brand" />
+            {activity.title.en}
+          </h1>
+          <p className="text-base text-ink-2">
+            <ContentText text={activity.scene} />
+            <ListenInline read={[activity.scene]} auto={turn === 0 && log.length === 0 ? [activity.scene, turns[0].partner] : undefined} />
+          </p>
+          <p className="text-base text-ink">
+            {strings.rolePlayYouAre.en} <span className="font-semibold">{activity.partner.en}</span>
+          </p>
         </div>
 
         <ChooseNote note={note} />
 
         {turns.slice(0, turn + 1).map((t, i) => (
           <div key={i} className="flex flex-col gap-3">
-            <PartnerBubble name={activity.partner} english={t.partner} telugu={t.te} auto={i === turn} />
+            <PartnerBubble name={activity.partner} english={t.partner} telugu={t.te} auto={i === turn && turn > 0} />
             {log[i] && (
               <>
                 <Bubble side="right" name={strings.youReplied.en}>
@@ -213,12 +235,15 @@ export function RolePlay({ activity, onNext }: { activity: RolePlayActivity; onA
             </p>
           </FeedbackPanel>
         )}
-        {!replied && !choosing && <MicButton listening={listening} onStart={speak} label={miss ? strings.speakAgain : strings.speak} />}
         {!replied && (
-          <button type="button" onClick={() => setHint((h) => (h === turn ? null : turn))} aria-expanded={hint === turn} className={`${button("ghost")} self-center`}>
-            <Icon name="hint" />
-            <Bi label={strings.hint} />
-          </button>
+          // One row (owner, 2026-11-09): Hint beside a 64 px microphone; the replies above matter more.
+          <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3">
+            <button type="button" onClick={() => setHint((h) => (h === turn ? null : turn))} aria-expanded={hint === turn} className={`${hintPill} justify-self-start`}>
+              <Icon name="hint" className="size-5" />
+              <Bi label={strings.hint} />
+            </button>
+            {!choosing ? <MicButton listening={listening} onStart={speak} size="sm" label={miss ? strings.speakAgain : strings.speak} /> : <span />}
+          </div>
         )}
       </BottomBar>
     </>

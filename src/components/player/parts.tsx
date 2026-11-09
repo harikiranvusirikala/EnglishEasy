@@ -10,9 +10,14 @@ import { strings, type Bi as BiLabel } from "@/lib/strings";
 import { SECTION_ICON, SECTION_NAME } from "./sections";
 
 /** Text that may be Telugu (a meaning shown as an option): marked `lang="te"` when it is. */
-export function Text({ children, className = "" }: { children: string; className?: string }) {
+/**
+ * Text that is Telugu gets lang="te" (Noto Sans Telugu). `centered`: beside a badge or icon in a box (options, match
+ * tiles), Telugu sits 0.12em lower, because the font's line box keeps extra room below the letters for the stacked
+ * consonants, which makes the letters look high (owner, 2026-11-09).
+ */
+export function Text({ children, className = "", centered = false }: { children: string; className?: string; centered?: boolean }) {
   return /[ఀ-౿]/.test(children) ? (
-    <span lang="te" className={className}>
+    <span lang="te" className={`${className} ${centered ? "relative top-[0.12em]" : ""}`}>
       {children}
     </span>
   ) : (
@@ -132,7 +137,9 @@ export function OptionButton({ text, state, disabled, onClick, index }: { text: 
           {state === "right" ? <Icon name="check" className="size-5" strokeWidth={3} /> : state === "wrong" ? <Icon name="retry" className="size-5" strokeWidth={2.6} /> : String.fromCharCode(65 + index)}
         </span>
       )}
-      <Text className="flex-1">{text}</Text>
+      <Text className="flex-1" centered>
+        {text}
+      </Text>
       {index === undefined && state === "right" && <Icon name="check" />}
       {index === undefined && state === "wrong" && <Icon name="retry" />}
     </button>

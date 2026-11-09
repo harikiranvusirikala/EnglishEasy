@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PatternChips } from "@/components/learn/PatternChips";
 import { OverviewProgress } from "@/components/learn/OverviewProgress";
-import { Narrate } from "@/components/player/Narrate";
+import { ListenInline } from "@/components/player/Narrate";
 import { badge } from "@/components/ui/badge";
 import { cardFlush } from "@/components/ui/card";
 import { LandingFooter } from "@/components/landing/LandingFooter";
@@ -63,14 +63,14 @@ function Both({ text }: { text: ContentBi }) {
 
 function Sentence({ sentence }: { sentence: CoreSentence }) {
   return (
-    <li className="flex items-center justify-between gap-3 px-4 py-3.5">
+    <li className="flex items-start gap-3 px-4 py-3.5 text-xl">
+      <ListenInline read={[sentence.en]} place="start" />
       <div className="min-w-0">
-        <p className="text-xl font-semibold text-ink">{sentence.en}</p>
+        <p className="font-semibold text-ink">{sentence.en}</p>
         <p lang="te" data-lang="te" className="text-base text-ink-2">
           {sentence.te}
         </p>
       </div>
-      <Narrate text={sentence.en} variant="compact" />
     </li>
   );
 }

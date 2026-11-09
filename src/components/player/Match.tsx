@@ -58,7 +58,7 @@ export function Match({ activity, onAnswer, onNext }: Props) {
           <div role="group" aria-label={strings.matchTelugu.en} className="flex flex-col gap-3">
             {pairs.map((p, i) => (
               <button key={i} type="button" disabled={done || matched.includes(i)} aria-pressed={te === i} onClick={() => pickTe(i)} className={card(i, "te")}>
-                <Text>{p.te}</Text>
+                <Text centered>{p.te}</Text>
                 {matched.includes(i) && <Icon name="check" className="size-5 shrink-0" strokeWidth={2.6} />}
                 {wrong?.te === i && <Icon name="retry" className="size-5 shrink-0" />}
               </button>

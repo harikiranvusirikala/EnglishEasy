@@ -11,7 +11,7 @@ import { useLearnIn, useSettings } from "@/lib/settings-store";
 import { speak, stopSpeaking } from "@/lib/speak";
 import { strings } from "@/lib/strings";
 import { Bubble } from "./Bubble";
-import { Narrate } from "./Narrate";
+import { ListenInline } from "./Narrate";
 import { BottomBar, MainButton } from "./parts";
 import { Question } from "./Question";
 
@@ -80,16 +80,21 @@ export function Dialogue({ activity, onNext }: { activity: DialogueActivity; onA
             <Bubble
               key={i}
               side={line.voice === "b" ? "right" : "left"}
-              name={line.speaker.en}
+              name={
+                // The line's Listen and Slow sit on its name row (owner, 2026-11-09), like the role play.
+                <span className="flex items-center gap-2.5">
+                  {line.speaker.en}
+                  {!listening && (
+                    <span className="inline-flex text-lg font-normal">
+                      <ListenInline read={[line.en]} voice={line.voice} slow place="row" />
+                    </span>
+                  )}
+                </span>
+              }
               initial={line.voice === "b" ? undefined : line.speaker.en.trim().charAt(0).toUpperCase()}
               active={playing === i}
             >
               <p>{line.en}</p>
-              {!listening && (
-                <div className="mt-2">
-                  <Narrate text={line.en} voice={line.voice} variant="compact" slow />
-                </div>
-              )}
               {learnIn === "te" && (
                 <p lang="te" className="mt-1 text-base opacity-80">
                   {line.te}

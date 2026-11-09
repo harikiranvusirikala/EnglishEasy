@@ -3,7 +3,7 @@ import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vite
 import type { Activity } from "@/content/types";
 import { listen, type ListenResult } from "@/lib/listen";
 import { updateSettings } from "@/lib/settings-store";
-import { speak } from "@/lib/speak";
+import { narrateAll, speak } from "@/lib/speak";
 import { DEFAULT_SETTINGS } from "@/learning/settings";
 import { Dialogue, LINE_PAUSE_MS } from "./Dialogue";
 import { MIC_HELP_ID } from "./MicButton";
@@ -12,6 +12,7 @@ import { RolePlay } from "./RolePlay";
 vi.mock("@/lib/speak", async (importOriginal) => ({
   ...(await importOriginal<typeof import("@/lib/speak")>()),
   narrate: vi.fn(),
+  narrateAll: vi.fn(),
   speak: vi.fn(),
   stopSpeaking: vi.fn(),
 }));
@@ -128,12 +129,23 @@ describe("RolePlay", () => {
     expect(screen.queryByRole("button", { name: /^Telugu meaning/ })).toBeNull();
   });
 
-  it("in Telugu mode the partner's line has its Telugu meaning one tap away", () => {
+  it("in Telugu mode the partner's line has its Telugu meaning one tap away (అ, pressed while shown)", () => {
     updateSettings({ learnIn: "te" });
     render(<RolePlay activity={roleplay} onNext={vi.fn()} />);
     expect(screen.queryByText("మీరు ఏం తాగుతారు?", { selector: "p" })).toBeNull();
-    click(/^Telugu meaning/);
+    const meaning = screen.getByRole("button", { name: "Telugu meaning" });
+    expect(meaning.textContent).toContain("అ");
+    fireEvent.click(meaning);
     expect(screen.getByText("మీరు ఏం తాగుతారు?", { selector: "p" })).toBeTruthy();
+    expect(meaning.getAttribute("aria-pressed")).toBe("true");
+  });
+
+  it("the scene has its own Listen; at the start it plays the scene (in Learn in), then the partner's first line", () => {
+    updateSettings({ learnIn: "te", autoPlay: true });
+    vi.mocked(narrateAll).mockClear();
+    render(<RolePlay activity={roleplay} onNext={vi.fn()} />);
+    expect(narrateAll).toHaveBeenCalledWith(["స్నేహితురాలు అడుగుతోంది.", "What do you drink?"], { voice: undefined });
+    expect(screen.getAllByRole("button", { name: "Listen" }).length).toBeGreaterThanOrEqual(2); // the scene's and the line's
   });
 
   it("a refused microphone leaves tapping", async () => {

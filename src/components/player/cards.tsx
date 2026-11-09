@@ -11,7 +11,7 @@ import { Icon } from "@/components/ui/icons";
 import type { Activity, CoreSentence } from "@/content/types";
 import { strings } from "@/lib/strings";
 import { BottomBar, MainButton, Prompt } from "./parts";
-import { Narrate } from "./Narrate";
+import { ListenInline } from "./Narrate";
 
 type CardProps<T extends Activity["type"]> = { activity: Extract<Activity, { type: T }>; onNext: () => void };
 
@@ -23,15 +23,15 @@ function Next({ onNext }: { onNext: () => void }) {
   );
 }
 
-/** An English sentence with its Telugu meaning and Listen / Slow (a row in a list of examples). */
+/** An English sentence with its Telugu meaning (a row in a list of examples), its text-sized Listen first. */
 function Example({ sentence }: { sentence: CoreSentence }) {
   return (
-    <li className="flex items-center justify-between gap-3 px-4 py-3.5">
+    <li className="flex items-start gap-3 px-4 py-3.5 text-xl">
+      <ListenInline read={[sentence.en]} place="start" />
       <div className="min-w-0">
-        <p className="text-xl font-semibold text-ink">{sentence.en}</p>
+        <p className="font-semibold text-ink">{sentence.en}</p>
         <Meaning>{sentence.te}</Meaning>
       </div>
-      <Narrate text={sentence.en} variant="compact" />
     </li>
   );
 }
@@ -146,7 +146,9 @@ export function DontSayCard({ activity, onNext }: CardProps<"dontSay">) {
             <span className="sr-only">{strings.say.en}: </span>
             {activity.right}
           </p>
-          <Narrate text={activity.right} auto variant="compact" />
+          <span className="text-2xl">
+            <ListenInline read={[activity.right]} auto={[activity.right]} place="row" />
+          </span>
         </div>
         <div className={`${card} flex items-start gap-3`}>
           <span aria-hidden="true" className="flex size-10 shrink-0 items-center justify-center rounded-2xl bg-accent-soft text-accent-ink">

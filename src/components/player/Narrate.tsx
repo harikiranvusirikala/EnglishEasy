@@ -70,13 +70,28 @@ export function Narrate({
   );
 }
 
+const PLACE = { end: "ml-1.5", start: "shrink-0", row: "" } as const;
+
 /**
  * A text-sized Listen at the end of the line it reads (owner, 2026-11-09): the question's prompt, or the feedback's
  * line after Check. `read` plays in order on a tap (the sentence, then the reason); `auto` (if given) plays by itself
  * when it appears, with Auto-play on. `slow` adds a text-sized Slow when the first text needs it (`needsSlow`).
  * Bi texts follow Learn in. The icons look small, but each keeps a finger-sized tap area.
  */
-export function ListenInline({ read, auto, slow = false }: { read: (string | BiLabel)[]; auto?: (string | BiLabel)[]; slow?: boolean }) {
+export function ListenInline({
+  read,
+  auto,
+  slow = false,
+  place = "end",
+  voice,
+}: {
+  read: (string | BiLabel)[];
+  auto?: (string | BiLabel)[];
+  slow?: boolean;
+  /** "end": after the last word of the line; "start": at the start of a list row (its own column); "row": on a row of its own (a name row). */
+  place?: "end" | "start" | "row";
+  voice?: SpeakOptions["voice"];
+}) {
   const learnIn = useLearnIn();
   const settings = useSettings();
   const voices = useVoices();
@@ -89,18 +104,18 @@ export function ListenInline({ read, auto, slow = false }: { read: (string | BiL
   }, []);
 
   useEffect(() => {
-    if (autoKey) narrateAll(autoKey.split("\n"));
-  }, [autoKey]);
+    if (autoKey) narrateAll(autoKey.split("\n"), { voice });
+  }, [autoKey, voice]);
 
   const play = (slowly: boolean) => {
-    if (slowly) narrate(texts[0], { slow: true });
-    else narrateAll(texts);
+    if (slowly) narrate(texts[0], { slow: true, voice });
+    else narrateAll(texts, { voice });
     const telugu = texts.find((t) => HAS_TELUGU.test(t) && !hasRecording(t));
     if (telugu && isAndroid() && !hasTeluguVoice() && !getSettings().dismissed.includes(TELUGU_HELP_ID)) showTeluguHelp();
   };
 
   return (
-    <span className="ml-1.5 inline-flex items-baseline gap-2 whitespace-nowrap" data-say={texts.join(" | ")}>
+    <span className={`inline-flex items-baseline gap-2 whitespace-nowrap ${PLACE[place]}`} data-say={texts.join(" | ")}>
       <button type="button" disabled={voices === null} onClick={() => play(false)} aria-label={strings.listen.en} title={strings.listen.en} className={inlineListenButton}>
         <Icon name="speaker" className="size-[1.15em]" />
       </button>

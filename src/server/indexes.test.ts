@@ -14,6 +14,11 @@ describe("indexes", () => {
     expect(INDEXES).toContainEqual({ collection: "pushSubscriptions", key: { hour: 1 } });
   });
 
+  it("finds waiting feedback newest first and counts lesson ratings by day", () => {
+    expect(INDEXES).toContainEqual({ collection: "feedback", key: { done: 1, at: -1 } });
+    expect(INDEXES).toContainEqual({ collection: "lessonRatings", key: { dayId: 1 } });
+  });
+
   it("covers Better Auth's collections, with TTL on sessions and verifications", () => {
     const ttl = INDEXES.filter((i) => i.expireAfterSeconds === 0).map((i) => i.collection);
     expect(ttl.sort()).toEqual(["sessions", "verifications"]);

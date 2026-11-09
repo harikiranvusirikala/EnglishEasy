@@ -16,7 +16,7 @@ export function siteUrl(env: SiteEnv): string {
 export const isLiveSite = (env: SiteEnv) => env.VERCEL_ENV === "production";
 
 /** Pages that are the app, not for search engines. */
-const PRIVATE_PATHS = ["/learn", "/dev/", "/api/"];
+const PRIVATE_PATHS = ["/learn", "/dev/", "/api/", "/admin"];
 
 export function robotsFor(env: SiteEnv): MetadataRoute.Robots {
   if (!isLiveSite(env)) return { rules: { userAgent: "*", disallow: "/" } };

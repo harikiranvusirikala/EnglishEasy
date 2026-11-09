@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Bi } from "@/components/ui/Bi";
 import { BiText } from "@/components/ui/BiText";
-import { focusRing } from "@/components/ui/button";
+import { choiceButton } from "@/components/ui/button";
 import { Nudge } from "@/components/ui/Nudge";
 import { card, cardText, cardTitle } from "@/components/ui/card";
 import { REMINDER_TIMES, type ReminderMode, type ReminderTimeId } from "@/learning/reminder-due";
@@ -22,10 +22,7 @@ const TIME_LABEL: Record<ReminderTimeId, BiLabel> = {
   night: strings.reminderNight,
 };
 
-const choice = (selected: boolean) =>
-  `min-h-13 rounded-2xl border px-2 text-base font-medium transition-colors duration-150 ${focusRing} ${
-    selected ? "border-brand bg-brand-fill text-on-brand shadow-card" : "border-line-strong bg-surface text-ink hover:border-brand/50 hover:bg-sunken"
-  }`;
+const choice = choiceButton;
 
 /** The last day practised on this phone ("YYYY-MM-DD"), if any. */
 function usePracticed(): string | null {

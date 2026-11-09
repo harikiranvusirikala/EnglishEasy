@@ -27,6 +27,8 @@ export const INDEXES: IndexSpec[] = [
   { collection: "clientErrors", key: { at: -1 } },
   { collection: "pushSubscriptions", key: { endpoint: 1 }, unique: true },
   { collection: "pushSubscriptions", key: { hour: 1 } },
+  { collection: "feedback", key: { done: 1, at: -1 } },
+  { collection: "lessonRatings", key: { dayId: 1 } },
 ];
 
 /** Creates the indexes in `db`. Safe to run repeatedly. */

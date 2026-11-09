@@ -20,6 +20,7 @@ import type { PlayableDay } from "@/content/types";
 import { loadLesson } from "@/lib/lesson-data";
 import { fill, strings, type Bi as BiLabel } from "@/lib/strings";
 import { Narrate } from "./Narrate";
+import { RateLesson } from "./RateLesson";
 import { BottomBar, MainButton } from "./parts";
 import { SECTION_NAME } from "./sections";
 
@@ -146,6 +147,8 @@ export function LessonComplete({ day, onReview }: { day: PlayableDay; onReview: 
             </section>
           </>
         )}
+
+        <RateLesson dayId={day.id} />
 
         {after && nextReady && (
           <p className={`${card} flex items-center gap-3 text-lg font-semibold text-ink`}>

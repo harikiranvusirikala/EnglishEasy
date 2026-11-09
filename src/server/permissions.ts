@@ -1,8 +1,10 @@
 import "server-only";
 import { cache } from "react";
 import { headers } from "next/headers";
+import { notFound } from "next/navigation";
 import { getAuth } from "./auth";
 import { getDatabase } from "./db";
+import { isSiteAdmin } from "./site-admin";
 
 export interface SessionUser {
   id: string;
@@ -24,3 +26,10 @@ export const getUser = cache(async (): Promise<SessionUser | null> => {
   const { id, name, email, image } = session.user;
   return { id, name, email, image: image ?? null };
 });
+
+/** The owner, for /admin and its Server Actions; anyone else (signed out included) gets "page not found". */
+export async function requireSiteAdmin(): Promise<SessionUser> {
+  const user = await getUser();
+  if (!user || !isSiteAdmin(user.email)) notFound();
+  return user;
+}

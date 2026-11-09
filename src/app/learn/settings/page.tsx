@@ -11,6 +11,7 @@ import { Icon } from "@/components/ui/icons";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { SettingsCard } from "@/components/learn/SettingsCard";
 import { Account } from "@/components/learn/Account";
+import { FeedbackCard } from "@/components/learn/FeedbackCard";
 import { ReminderSettings } from "@/components/learn/Reminder";
 import { MyTracks } from "@/components/learn/Tracks";
 import { SUPPORT_URL } from "@/components/support";
@@ -108,6 +109,7 @@ export default function SettingsPage() {
       <ReminderSettings />
       {progress && <MyTracks course={course} progress={progress} />}
       <Account />
+      <FeedbackCard />
 
       <SettingsCard
         icon="coffee"

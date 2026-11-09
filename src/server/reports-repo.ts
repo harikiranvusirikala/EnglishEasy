@@ -5,6 +5,8 @@ import type { ClientErrorInput, ReportInput } from "./report-schema";
 
 interface ReportDoc extends Omit<ReportInput, "at"> {
   at: Date;
+  /** Set by the owner on /admin/feedback once the activity is fixed. */
+  done?: true;
 }
 interface ClientErrorDoc extends ClientErrorInput {
   at: Date;
@@ -23,6 +25,26 @@ export async function addClientError(db: Db, error: ClientErrorInput, now: Date 
 
 export async function latestReports(db: Db, limit = 200): Promise<ReportDoc[]> {
   return reports(db).find({}, { projection: { _id: 0 } }).sort({ at: -1 }).limit(limit).toArray();
+}
+
+/** Reports not marked done, newest first (the owner's to-do list on /admin/feedback). */
+export async function openReports(db: Db, limit = 500): Promise<ReportDoc[]> {
+  return reports(db).find({ done: { $ne: true } }, { projection: { _id: 0 } }).sort({ at: -1 }).limit(limit).toArray();
+}
+
+/** Marks every open report about one activity done. */
+export async function markReportsDone(db: Db, activityId: string): Promise<void> {
+  await reports(db).updateMany({ activityId, done: { $ne: true } }, { $set: { done: true } });
+}
+
+export async function countOpenReports(db: Db): Promise<number> {
+  return reports(db).countDocuments({ done: { $ne: true } });
+}
+
+/** App errors in the last `days` days, newest first. */
+export async function recentClientErrors(db: Db, days: number, now: Date = new Date(), limit = 500): Promise<ClientErrorDoc[]> {
+  const since = new Date(now.getTime() - days * 86_400_000);
+  return clientErrors(db).find({ at: { $gte: since } }, { projection: { _id: 0 } }).sort({ at: -1 }).limit(limit).toArray();
 }
 
 export async function latestClientErrors(db: Db, limit = 100): Promise<ClientErrorDoc[]> {

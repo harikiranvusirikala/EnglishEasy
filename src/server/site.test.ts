@@ -17,7 +17,7 @@ describe("robots and sitemap", () => {
   test("production lets search engines in, except the app, and names the sitemap", () => {
     expect(isLiveSite(production)).toBe(true);
     expect(robotsFor(production)).toEqual({
-      rules: { userAgent: "*", allow: "/", disallow: ["/learn", "/dev/", "/api/"] },
+      rules: { userAgent: "*", allow: "/", disallow: ["/learn", "/dev/", "/api/", "/admin"] },
       sitemap: "https://englisheasy.vercel.app/sitemap.xml",
     });
   });

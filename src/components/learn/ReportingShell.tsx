@@ -1,14 +1,18 @@
 "use client";
 
 import { useEffect } from "react";
+import { flushFeedback } from "@/lib/feedback";
 import { startErrorReporting } from "@/lib/report-error";
 import { flushReports } from "@/lib/reports";
 
-/** Behind every learning screen: reports uncaught errors, and sends problem reports that were queued offline. Shows nothing. */
+/** Behind every learning screen: reports uncaught errors, and sends problem reports and feedback that were queued offline. Shows nothing. */
 export function ReportingShell() {
   useEffect(() => {
     const stop = startErrorReporting();
-    const flush = () => void flushReports();
+    const flush = () => {
+      void flushReports();
+      void flushFeedback();
+    };
     flush();
     window.addEventListener("online", flush);
     return () => {

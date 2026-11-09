@@ -49,6 +49,15 @@ describe("listen", () => {
     expect(last()).toMatchObject({ lang: "en-IN", maxAlternatives: 3, continuous: false, interimResults: false });
   });
 
+  it("for a spoken message: the given language, across pauses, everything said as one transcript", async () => {
+    script = (r) => {
+      r.onresult?.({ results: [[{ transcript: "లెసన్స్ బాగున్నాయి" }], [{ transcript: " ఇంకా కావాలి " }]] });
+      r.onend?.();
+    };
+    expect(await listen({ lang: "te-IN", continuous: true, timeoutMs: 30_000 })).toEqual({ kind: "heard", transcripts: ["లెసన్స్ బాగున్నాయి ఇంకా కావాలి"] });
+    expect(last()).toMatchObject({ lang: "te-IN", maxAlternatives: 1, continuous: true });
+  });
+
   it("works with the webkit-prefixed class", async () => {
     vi.stubGlobal("SpeechRecognition", undefined);
     vi.stubGlobal("webkitSpeechRecognition", FakeRecognition);

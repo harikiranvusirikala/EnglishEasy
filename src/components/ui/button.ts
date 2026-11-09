@@ -56,5 +56,12 @@ export function listenButton(size: "md" | "lg" = "md"): string {
   return `inline-flex shrink-0 items-center justify-center rounded-full bg-brand-soft text-brand-ink ring-1 ring-inset ring-brand/15 transition-[background-color,transform] duration-150 hover:bg-brand-soft-hover active:scale-95 motion-reduce:active:scale-100 disabled:opacity-55 ${FOCUS} ${size === "lg" ? "size-14" : "size-13"}`;
 }
 
+/** A button that stays chosen (reminder times, feedback faces and topics): teal when selected, set aria-pressed. */
+export function choiceButton(selected: boolean): string {
+  return `min-h-13 rounded-2xl border px-3 text-base font-medium transition-colors duration-150 motion-reduce:transition-none disabled:opacity-55 ${FOCUS} ${
+    selected ? "border-brand bg-brand-fill text-on-brand shadow-card" : "border-line-strong bg-surface text-ink hover:border-brand/50 hover:bg-sunken"
+  }`;
+}
+
 /** The focus ring every custom control uses, so they all look the same. */
 export const focusRing = FOCUS;

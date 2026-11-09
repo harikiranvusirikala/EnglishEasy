@@ -59,3 +59,26 @@ test("component gallery in Day and Night", async ({ page }) => {
   await expect(page.locator("html")).toHaveClass(/dark/);
   await page.screenshot({ path: `${SHOTS}/ui-night.png`, fullPage: true });
 });
+
+test("Send feedback: a face and a topic, sent anonymously, then thanks until tomorrow", async ({ page }) => {
+  await page.addInitScript(([key]) => localStorage.setItem(key, JSON.stringify({ learnIn: "en" })), [SETTINGS_KEY]);
+  const sent: unknown[] = [];
+  await page.route("**/api/feedback", async (route) => {
+    sent.push(route.request().postDataJSON());
+    await route.fulfill({ json: { ok: true } });
+  });
+  await page.goto("/learn/settings");
+  const card = page.getByRole("region", { name: "Send feedback" });
+  await card.scrollIntoViewIfNeeded();
+  await expect(card.getByRole("button", { name: /^Send/ })).toBeDisabled();
+  await card.getByRole("button", { name: /Good/ }).first().click();
+  await card.getByRole("button", { name: "More lessons" }).click();
+  await card.screenshot({ path: `${SHOTS}/feedback-card.png` });
+  await card.getByRole("button", { name: /^Send/ }).click();
+  await expect(card.getByText("Thank you! We read every message.")).toBeVisible();
+  await expect.poll(() => sent.length).toBe(1);
+  expect(sent[0]).toMatchObject({ kind: "app", rating: "good", topics: ["more-lessons"], learnIn: "en" });
+  expect(sent[0]).not.toHaveProperty("userId");
+  await page.reload();
+  await expect(page.getByText("You can send another message tomorrow.")).toBeVisible();
+});

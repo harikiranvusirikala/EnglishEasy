@@ -59,8 +59,16 @@ export function stopListening() {
   current?.stop();
 }
 
+export type ListenOptions = {
+  /** Recognition language; Indian English unless given (feedback in Telugu mode uses te-IN). */
+  lang?: string;
+  timeoutMs?: number;
+  /** Keep listening across pauses (a spoken feedback message): the result is one transcript of everything said. */
+  continuous?: boolean;
+};
+
 /** Listens once. Any speech being read aloud is stopped first, so the phone does not hear itself. */
-export function listen(): Promise<ListenResult> {
+export function listen({ lang = LISTEN_LANG, timeoutMs = LISTEN_TIMEOUT_MS, continuous = false }: ListenOptions = {}): Promise<ListenResult> {
   const Recognition = recognitionClass();
   if (!Recognition) return Promise.resolve({ kind: "unsupported" });
   stopListening();
@@ -70,14 +78,19 @@ export function listen(): Promise<ListenResult> {
     const recognition = new Recognition();
     const transcripts: string[] = [];
     let failure: ListenResult | null = null;
-    const timer = setTimeout(() => recognition.stop(), LISTEN_TIMEOUT_MS);
+    const timer = setTimeout(() => recognition.stop(), timeoutMs);
 
-    recognition.lang = LISTEN_LANG;
-    recognition.maxAlternatives = 3;
-    recognition.continuous = false;
+    recognition.lang = lang;
+    recognition.maxAlternatives = continuous ? 1 : 3;
+    recognition.continuous = continuous;
     recognition.interimResults = false;
 
     recognition.onresult = (event) => {
+      if (continuous) {
+        const said = Array.from(event.results, (r) => r[0]?.transcript.trim() ?? "").filter(Boolean).join(" ");
+        transcripts.splice(0, transcripts.length, ...(said ? [said] : []));
+        return;
+      }
       for (let i = 0; i < event.results.length; i++) {
         for (let j = 0; j < event.results[i].length; j++) {
           const text = event.results[i][j].transcript.trim();

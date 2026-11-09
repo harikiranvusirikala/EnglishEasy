@@ -66,6 +66,13 @@ for (const theme of ["light", "dark"] as const) {
     await expect(page.getByText("Try it today")).toBeVisible();
     await page.screenshot({ path: `${SHOTS}/lesson-complete${suffix}.png` });
 
+    // How was this lesson? One tap, sent anonymously.
+    const rated = page.waitForRequest((r) => r.url().endsWith("/api/feedback") && r.method() === "POST");
+    await page.route("**/api/feedback", (route) => route.fulfill({ json: { ok: true } }));
+    await page.getByRole("button", { name: "Just right" }).click();
+    expect((await rated).postDataJSON()).toMatchObject({ kind: "lesson", dayId: "sentence-basics", level: "right", learnIn: "en" });
+    await expect(page.getByText("Thanks! This helps us make the lessons better.")).toBeVisible();
+
     await page.getByRole("button", { name: /^Share this lesson/ }).click();
     const shared = await page.evaluate(() => (window as unknown as { __shared: { url: string; text: string }[] }).__shared);
     expect(shared[0].url).toMatch(/\/lessons\/sentence-basics$/);

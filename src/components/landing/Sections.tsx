@@ -115,10 +115,11 @@ export function Spotlights() {
   );
 }
 
-/** The five stages as a path; Week 1's written lessons link to their overview pages. */
+/** The five stages as a path; Week 1's lessons link to their overview pages, with a count of every released lesson (all are in the sitemap). */
 export function Journey() {
   const written = new Set(writtenDayIds());
   const released = releasedDayRefs().filter(({ lane, ref }) => lane === "main" && written.has(ref.id));
+  const weekOne = released.filter(({ week }) => week.n === 1);
   return (
     <Section id="journey" eyebrow={strings.landingJourneyTitle.en} title={strings.landingJourneyHeading.en} hint={strings.landingJourneyHint.en} tone="band">
       <ol className="relative grid gap-4 lg:grid-cols-5">
@@ -141,7 +142,7 @@ export function Journey() {
       <div className={`${card} mt-6 flex flex-col gap-4`}>
         <p className="font-display text-xl font-semibold text-ink">{strings.landingWeekOne.en}</p>
         <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-          {released.map(({ ref, week }) => (
+          {weekOne.map(({ ref, week }) => (
             <li key={ref.id}>
               <Link href={`/lessons/${encodeURIComponent(ref.id)}`} className={`flex min-h-13 items-center gap-3 rounded-2xl border border-line px-4 text-base font-semibold text-ink transition-colors hover:border-brand/50 hover:bg-sunken ${focusRing}`}>
                 <span className="text-brand">
@@ -152,7 +153,7 @@ export function Journey() {
             </li>
           ))}
         </ul>
-        <p className="text-base text-ink-2">{strings.landingComingSoon.en}</p>
+        <p className="text-base text-ink-2">{fill(strings.landingLessonsReady, { n: released.length }).en}</p>
       </div>
     </Section>
   );

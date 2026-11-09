@@ -38,6 +38,8 @@ test("the landing page tells what it is and starts Day 1", async ({ page, isMobi
   await expect(page.getByRole("heading", { name: "Every idea explained in Telugu" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "From your first sentence to natural English" })).toBeVisible();
   await expect(page.getByRole("link", { name: /Day 1: / })).toHaveAttribute("href", "/lessons/sentence-basics");
+  await expect(page.locator("#journey").getByRole("link", { name: /^Day \d+: / })).toHaveCount(7); // Week 1 only; the rest are counted
+  await expect(page.getByText(/^\d+ lessons are ready now/)).toBeVisible();
   await expect(page.getByRole("heading", { name: "Easy on the eyes, easy on the mind" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Your learning stays yours" })).toBeVisible();
   await page.getByRole("heading", { name: "Do I have to type?" }).click();

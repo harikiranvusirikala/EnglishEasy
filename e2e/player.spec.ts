@@ -106,7 +106,7 @@ test("night mode, and leaving asks first", async ({ page }) => {
   await page.getByRole("button", { name: "Close" }).click();
   await expect(page.getByRole("heading", { name: "Leave this lesson?" })).toBeVisible();
   await page.getByRole("button", { name: /^Leave/ }).click();
-  await expect(page).toHaveURL(/\/learn$/);
+  await expect(page).toHaveURL(/\/learn\/journey\?day=sentence-basics$/); // Journey, at the lesson just left
 });
 
 test("night mode: arrange and match", async ({ page }) => {

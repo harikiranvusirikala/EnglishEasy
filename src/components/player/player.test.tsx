@@ -14,7 +14,8 @@ import { FillBlank } from "./FillBlank";
 import { ListenChoose } from "./ListenChoose";
 import { Player } from "./Player";
 
-vi.mock("next/navigation", () => ({ useRouter: () => ({ push: vi.fn() }) }));
+const push = vi.hoisted(() => vi.fn());
+vi.mock("next/navigation", () => ({ useRouter: () => ({ push }) }));
 vi.mock("@/lib/speak", async (importOriginal) => ({ ...(await importOriginal<typeof import("@/lib/speak")>()), narrate: vi.fn(), narrateAll: vi.fn() }));
 
 const choose: Extract<Activity, { type: "choose" }> = {
@@ -355,9 +356,11 @@ describe("Player", () => {
     expect(screen.getByText("Correct!")).toBeTruthy();
   });
 
-  it("asks before leaving", () => {
+  it("asks before leaving; Leave opens Journey at this lesson", () => {
     render(<Player day={day} />);
     fireEvent.click(screen.getByRole("button", { name: "Close" }));
     expect(screen.getByRole("heading", { name: "Leave this lesson?" })).toBeTruthy();
+    fireEvent.click(screen.getByRole("button", { name: /^Leave/ }));
+    expect(push).toHaveBeenCalledWith(`/learn/journey?day=${day.id}`);
   });
 });

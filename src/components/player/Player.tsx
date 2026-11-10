@@ -197,7 +197,7 @@ function PlayerInner({ day, initial, onReview }: { day: PlayableDay; initial: Pr
           <button type="button" onClick={() => setLeaving(false)} className={button("primary")}>
             <Bi label={strings.keepGoing} />
           </button>
-          <button type="button" onClick={() => router.push("/learn")} className={button("secondary")}>
+          <button type="button" onClick={() => router.push(`/learn/journey?day=${encodeURIComponent(day.id)}`)} className={button("secondary")}>
             <Bi label={strings.leave} />
           </button>
         </div>

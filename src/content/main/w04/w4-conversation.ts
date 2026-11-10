@@ -1,6 +1,6 @@
 import type { ConversationDay } from "../../types";
 
-/** Week 4, Day 6 (CURRICULUM §3): Conversation Day at the park. People and family words; no new grammar. */
+/** Week 4, Day 6 (CURRICULUM §3): Conversation Day at the park. People and family words, and whose; no new grammar. */
 export const day: ConversationDay = {
   id: "w4-conversation",
   kind: "conversation",
@@ -63,11 +63,11 @@ export const day: ConversationDay = {
       id: "s3",
       type: "situation",
       situation: {
-        en: "A man is standing far away. Ask your friend who he is.",
-        te: "దూరంగా ఒక ఆయన నిలబడి ఉన్నారు. ఆయన ఎవరని మీ స్నేహితుడిని అడగండి.",
+        en: "You find a water bottle on the park bench. Ask your new friend whose it is.",
+        te: "పార్క్ బెంచీ మీద ఒక నీళ్ళ సీసా కనిపించింది. అది ఎవరిదో మీ కొత్త స్నేహితులను అడగండి.",
       },
-      expected: ["Who is that man?"],
-      options: ["Who is this man?", "Who is that man?", "That man is who?"],
+      expected: ["Whose bottle is this?", "Whose water bottle is this?"],
+      options: ["Who bottle is this?", "Whose bottle is this?", "Whose this bottle is?"],
       answer: 1,
     },
   ],

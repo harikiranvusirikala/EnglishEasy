@@ -11,9 +11,9 @@ const DAYS = [
   { id: "present-continuous-right-now", title: "Right Now", first: "I am cooking." },
   { id: "past-simple-yesterday", title: "Yesterday", first: "I went to the market." },
   { id: "future-will-tomorrow", title: "Tomorrow", first: "I will call you tomorrow." },
-  { id: "what-and-where", title: "What & Where", first: "What is this?" },
+  { id: "what-and-where", title: "What, Where & Who", first: "What is this?" },
   { id: "when-and-what-time", title: "When & What Time", first: "When is the function?" },
-  { id: "who-and-whose", title: "Who & Whose", first: "Who is that man?" },
+  { id: "sorry-can-you-repeat", title: "Sorry? Say It Again", first: "Sorry? Please say it again." },
   { id: "how-questions", title: "How Questions", first: "How are you?" },
   { id: "why-and-because", title: "Why & Because", first: "Why are you late?" },
 ];

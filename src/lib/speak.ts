@@ -224,12 +224,12 @@ function say(runs: Run[], options: SpeakOptions, afterCancel: boolean) {
   const lowered = options.voice === "b" && !partner; // no second voice: a lower pitch tells the speakers apart
   const telugu = pickTeluguVoice(voices, settings.teluguVoiceURI);
   const utterances: SpeechSynthesisUtterance[] = [];
-  for (const run of runs) {
-    if (run.script === "te") {
-      if (telugu) utterances.push(utterance(run.text, telugu, "te-IN", options));
-    } else {
-      utterances.push(utterance(run.text, english, "en-IN", options, lowered ? 0.8 : 1));
-    }
+  // One speaker per line (owner, 2026-11-10): a line with Telugu in it is read whole by the Telugu voice, which reads
+  // the English words too, never by two voices taking turns. Without a Telugu voice, only the English runs are read.
+  if (telugu && runs.some((run) => run.script === "te")) {
+    utterances.push(utterance(runs.map((run) => run.text).join(" "), telugu, "te-IN", options));
+  } else {
+    for (const run of runs) if (run.script !== "te") utterances.push(utterance(run.text, english, "en-IN", options, lowered ? 0.8 : 1));
   }
   enqueue(utterances, afterCancel, options.onEnd);
 }
@@ -257,7 +257,7 @@ export function speak(text: string, options: SpeakOptions = {}) {
   start(text, [{ text: speechText(text), script: "en" }], options);
 }
 
-/** Reads mixed Telugu–English text (its recording if there is one; else one utterance per script run, each with its own voice). */
+/** Reads mixed Telugu–English text (its recording if there is one; else the phone's Telugu voice reads the whole line). */
 export function narrate(text: string, options: SpeakOptions = {}) {
   start(text, splitScripts(speechText(text)), options);
 }

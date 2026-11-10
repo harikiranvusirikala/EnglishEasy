@@ -1,13 +1,13 @@
 import type { ConversationDay } from "../../types";
 
-/** Week 3, Day 6 (CURRICULUM §3): Conversation Day at the vegetable market. Numbers, prices and time; no new grammar. */
+/** Week 3, Day 6 (CURRICULUM §3): Conversation Day at the vegetable market. Numbers, prices, time and the address; no new grammar. */
 export const day: ConversationDay = {
   id: "w3-conversation",
   kind: "conversation",
   title: { en: "At the Vegetable Market", te: "కూరగాయల మార్కెట్‌లో" },
   summary: {
-    en: "Use this week's numbers, prices and times at the market: buy vegetables, get your change and ask when it closes.",
-    te: "ఈ వారం నేర్చుకున్న సంఖ్యలు, ధరలు, టైమ్ మార్కెట్‌లో వాడండి: కూరగాయలు కొనండి, చిల్లర తీసుకోండి, ఎప్పుడు మూసేస్తారో అడగండి.",
+    en: "Use this week's numbers, prices, times and your address at the market: buy vegetables, get your change, ask when it closes and give your address for a home delivery.",
+    te: "ఈ వారం నేర్చుకున్న సంఖ్యలు, ధరలు, టైమ్, అడ్రస్ మార్కెట్‌లో వాడండి: కూరగాయలు కొనండి, చిల్లర తీసుకోండి, ఎప్పుడు మూసేస్తారో అడగండి, ఇంటికి డెలివరీ కోసం అడ్రస్ చెప్పండి.",
   },
   topics: ["market", "money", "time"],
   dialogue: {
@@ -145,15 +145,16 @@ export const day: ConversationDay = {
     {
       id: "r2",
       type: "roleplay",
-      title: { en: "When does the market close?", te: "మార్కెట్ ఎప్పుడు మూసేస్తారు?" },
+      title: { en: "Closing time and a home delivery", te: "మూసే టైమ్, ఇంటికి డెలివరీ" },
       scene: {
-        en: "Usha sells fruit at the market. Ask her when she closes and about Sunday.",
-        te: "ఉష గారు మార్కెట్‌లో పళ్ళు అమ్ముతారు. ఎప్పుడు మూసేస్తారో, ఆదివారం గురించి ఆవిడని అడగండి.",
+        en: "Usha sells fruit at the market. Ask her when she closes. She offers to bring the fruit to your home.",
+        te: "ఉష గారు మార్కెట్‌లో పళ్ళు అమ్ముతారు. ఎప్పుడు మూసేస్తారో అడగండి. పళ్ళు ఇంటికి తెస్తామని ఆవిడ అంటున్నారు.",
       },
       partner: { en: "Usha (a fruit seller)", te: "ఉష (పళ్ళు అమ్మేవారు)" },
       skills: [
         { id: "ask", label: { en: "Ask the time", te: "టైమ్ అడగడం" } },
         { id: "time", label: { en: "on / at", te: "on / at వాడకం" } },
+        { id: "address", label: { en: "Address", te: "అడ్రస్" } },
       ],
       turns: [
         {
@@ -181,21 +182,30 @@ export const day: ConversationDay = {
           ],
         },
         {
-          partner: "Okay. I am here on Sundays too.",
-          te: "సరే. ఆదివారాలు కూడా నేను ఇక్కడే ఉంటాను.",
-          hint: { en: "Ask about the time on Sunday.", te: "ఆదివారం ఎన్ని గంటలకో అడగండి." },
+          partner: "Or we bring it home. Your address?",
+          te: "లేదా మేమే ఇంటికి తెస్తాం. మీ అడ్రస్?",
+          hint: { en: "Give your door number and road: 12, Gandhi Road.", te: "మీ డోర్ నంబర్, రోడ్ చెప్పండి: 12, గాంధీ రోడ్." },
           replies: [
-            { say: "What time on Sunday?", good: true, skill: "ask" },
-            { say: "What time in Sunday?", good: false, skill: "ask" },
+            { say: "My address is twelve, Gandhi Road.", good: true, skill: "address" },
+            { say: "My address twelve, Gandhi Road.", good: false, skill: "address" },
           ],
         },
         {
-          partner: "From seven to one.",
-          te: "ఏడు నుండి ఒంటి గంట వరకు.",
-          hint: { en: "Thank her, and say goodbye till Sunday.", te: "ఆవిడకి థాంక్స్ చెప్పి, ఆదివారం కలుద్దామని చెప్పండి." },
+          partner: "Okay. How do you spell it?",
+          te: "సరే. దాని స్పెల్లింగ్ ఏంటి?",
+          hint: { en: "Spell Gandhi for her, letter by letter.", te: "Gandhi స్పెల్లింగ్ ఒక్కో అక్షరంగా చెప్పండి." },
           replies: [
-            { say: "Thank you. See you on Sunday.", good: true, skill: "time" },
-            { say: "Thank you. See you in Sunday.", good: false, skill: "time" },
+            { say: "G, A, N, D, H, I.", good: true, skill: "address" },
+            { say: "G, A, N, D, I.", good: false, skill: "address" },
+          ],
+        },
+        {
+          partner: "Good. We will come at eight.",
+          te: "సరే. మేము ఎనిమిదికి వస్తాం.",
+          hint: { en: "Thank her, and say goodbye.", te: "ఆవిడకి థాంక్స్ చెప్పి, వెళ్తానని చెప్పండి." },
+          replies: [
+            { say: "Thank you. Goodbye!", good: true, skill: "time" },
+            { say: "Okay. Come on time.", good: false, skill: "time" },
           ],
         },
       ],

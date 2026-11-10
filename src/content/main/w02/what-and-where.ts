@@ -1,19 +1,19 @@
 import type { Lesson } from "../../types";
 
-/** Week 2, Day 1 (CURRICULUM §3): what / where, with be and do. The question word comes first. */
+/** Week 2, Day 1 (CURRICULUM §3): what / where / who, with be and do. The question word comes first. Who folded in from the retired who-and-whose (2026-11-10). */
 export const day: Lesson = {
   id: "what-and-where",
   kind: "lesson",
-  title: { en: "What & Where", te: "ఏంటి, ఎక్కడ" },
-  subtitle: "what / where",
+  title: { en: "What, Where & Who", te: "ఏంటి, ఎక్కడ, ఎవరు" },
+  subtitle: "what / where / who",
   summary: {
-    en: "Learn to ask what something is and where something is, with the question word first.",
-    te: "ఏదైనా ఏంటో, ఎక్కడ ఉందో అడగడం నేర్చుకుందాం. ఇంగ్లీష్‌లో ప్రశ్న పదం ముందు వస్తుంది.",
+    en: "Learn to ask what something is, where something is and who someone is, with the question word first.",
+    te: "ఏదైనా ఏంటో, ఎక్కడ ఉందో, ఒకరు ఎవరో అడగడం నేర్చుకుందాం. ఇంగ్లీష్‌లో ప్రశ్న పదం ముందు వస్తుంది.",
   },
   seo: {
-    title: "What and Where Questions in English for Telugu Speakers",
+    title: "What, Where and Who Questions in English for Telugu Speakers",
     description:
-      "Ask What is this? and Where do you live? in English. Simple lessons for Telugu speakers on what and where questions, with Telugu explanations.",
+      "Ask What is this? Where do you live? Who is that man? Simple English lessons for Telugu speakers on what, where and who, with Telugu explanations.",
   },
   pattern: [
     { text: "Where", role: "what" },
@@ -29,8 +29,9 @@ export const day: Lesson = {
     { en: "What do you do?", te: "మీరు ఏం పని చేస్తారు?", extra: ["are"] },
     { en: "I live in Guntur.", te: "నేను గుంటూరులో ఉంటాను.", extra: ["at"] },
     { en: "Where are you going?", te: "మీరు ఎక్కడికి వెళ్తున్నారు?", extra: ["do"] },
+    { en: "Who is that man?", te: "ఆయన ఎవరు?", extra: ["What"] },
   ],
-  key: [0, 2, 3, 6],
+  key: [0, 2, 3, 7],
   tryToday: {
     en: "Ask someone two questions in English: What is your name? Where do you live?",
     te: "ఎవరినైనా ఇంగ్లీష్‌లో రెండు ప్రశ్నలు అడగండి: What is your name? Where do you live?",
@@ -41,6 +42,7 @@ export const day: Lesson = {
     { en: "live", te: "ఉండటం, నివసించడం" },
     { en: "name", te: "పేరు" },
     { en: "bus stand", te: "బస్ స్టాండ్" },
+    { en: "who", te: "ఎవరు" },
   ],
   grammar: ["question-words", "am-is-are", "present-simple"],
   topics: ["people", "directions"],
@@ -71,7 +73,7 @@ export const day: Lesson = {
     {
       id: "l2",
       type: "whenToUse",
-      heading: { en: "What or where?", te: "what ఆ, where ఆ?" },
+      heading: { en: "What, where or who?", te: "what ఆ, where ఆ, who ఆ?" },
       items: [
         {
           form: "what",
@@ -90,6 +92,11 @@ export const day: Lesson = {
             te: "live, work లాంటి verbs ఉంటే where తర్వాత do పెట్టాలి.",
           },
           example: { en: "Where do you live?", te: "మీరు ఎక్కడ ఉంటారు?" },
+        },
+        {
+          form: "who",
+          useFor: { en: "Use who to ask about a person.", te: "ఒక మనిషి ఎవరో అడగడానికి who." },
+          example: { en: "Who is that man?", te: "ఆయన ఎవరు?" },
         },
       ],
     },
@@ -142,14 +149,14 @@ export const day: Lesson = {
       id: "p3",
       type: "choose",
       prompt: {
-        en: "You want to find the bus stand. What do you ask?",
-        te: "బస్ స్టాండ్ ఎక్కడ ఉందో తెలుసుకోవాలి. ఏమని అడుగుతారు?",
+        en: "A man waves at you. You do not know him. What do you ask your friend?",
+        te: "ఒకాయన మీకు చేయి ఊపుతున్నారు. ఆయన మీకు తెలియదు. మీ స్నేహితులను ఏమని అడుగుతారు?",
       },
-      options: ["What is the bus stand?", "Where is the bus stand?", "Where the bus stand?"],
+      options: ["Who that man is?", "Who is that man?", "That man is who?"],
       answer: 1,
       why: {
-        en: "For a place, ask with where, and keep is: Where is the bus stand?",
-        te: "చోటు కోసం where వాడాలి, is కూడా ఉండాలి: Where is the bus stand?",
+        en: "For a person, ask with who, and put is before that man: Who is that man?",
+        te: "మనిషి గురించి who తో అడగాలి, is ని that man ముందు పెట్టాలి: Who is that man?",
       },
     },
     {

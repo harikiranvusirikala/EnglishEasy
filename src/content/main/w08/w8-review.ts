@@ -1,6 +1,6 @@
 import type { Activity, Bi, ReviewDay } from "../../types";
 
-/** Week 8, Day 7 (CURRICULUM §3): the automatic review (with a role play from the Conversation Day), plus a can / could round. */
+/** Week 8, Day 7 (CURRICULUM §3): the automatic review (with a role play from the Conversation Day), plus a can / could and calling-for-help round. The clarifying phrases come back from Week 2 as warm-ups. */
 
 const pick = (id: string, sentence: string, te: string, options: string[], answer: number, why: Bi): Activity => ({
   id,
@@ -33,13 +33,13 @@ export const day: ReviewDay = {
       en: "When I was young is the past, so can becomes could: I could swim.",
       te: "When I was young అంటే గతం, అందుకే can కాదు, could: I could swim.",
     }),
-    pick("q5", "Sorry, I don't ___.", "sorry అండీ, నాకు అర్థం కావడం లేదు.", ["understand", "understanding", "understands"], 0, {
-      en: "After don't, the verb stays plain: Sorry, I don't understand.",
-      te: "don't తర్వాత verb మారదు: Sorry, I don't understand.",
+    pick("q5", "Please ___ one zero eight.", "ప్లీజ్, 108 కి ఫోన్ చేయండి.", ["call", "calling", "to call"], 0, {
+      en: "After please, use the plain action word, with no to: Please call one zero eight.",
+      te: "please తర్వాత మామూలు verb, to వద్దు: Please call one zero eight.",
     }),
-    pick("q6", "Could you say that ___?", "మళ్ళీ ఒకసారి చెప్తారా?", ["again", "repeat", "more"], 0, {
-      en: "Telugu మళ్ళీ is again, and it goes at the end: Could you say that again?",
-      te: "'మళ్ళీ' = again, అది చివర వస్తుంది: Could you say that again?",
+    pick("q6", "I ___ down on the road.", "నేను రోడ్డు మీద పడిపోయాను.", ["fell", "fall", "falled"], 0, {
+      en: "It already happened, so use the past of fall, which is fell: I fell down on the road.",
+      te: "ఇది జరిగిపోయింది, కాబట్టి fall కి past అయిన fell వాడాలి: I fell down on the road.",
     }),
   ],
 };

@@ -1,13 +1,13 @@
 import type { ConversationDay } from "../../types";
 
-/** Week 8, Day 6 (CURRICULUM §3): Conversation Day at the railway station. Requests and clarifying; no new grammar. */
+/** Week 8, Day 6 (CURRICULUM §3): Conversation Day at the railway station. Requests, clarifying (from Week 2) and calling for help; no new grammar. */
 export const day: ConversationDay = {
   id: "w8-conversation",
   kind: "conversation",
   title: { en: "Help at the Railway Station", te: "రైల్వే స్టేషన్‌లో సహాయం" },
   summary: {
-    en: "Use this week's polite requests at the station: find your platform, ask again when you don't hear, and get a porter's help.",
-    te: "ఈ వారం నేర్చుకున్న మర్యాదగా అడిగే మాటలు స్టేషన్‌లో వాడండి: మీ ప్లాట్‌ఫామ్ కనుక్కోండి, వినిపించకపోతే మళ్ళీ అడగండి, కూలీ సహాయం తీసుకోండి.",
+    en: "Use this week's polite requests at the station: find your platform, ask again when you don't hear, and call for help when a passenger falls.",
+    te: "ఈ వారం నేర్చుకున్న మర్యాదగా అడిగే మాటలు స్టేషన్‌లో వాడండి: మీ ప్లాట్‌ఫామ్ కనుక్కోండి, వినిపించకపోతే మళ్ళీ అడగండి, ఒక ప్రయాణికుడు పడిపోతే సహాయం పిలవండి.",
   },
   topics: ["transport", "travel", "directions"],
   dialogue: {
@@ -134,58 +134,58 @@ export const day: ConversationDay = {
     {
       id: "r2",
       type: "roleplay",
-      title: { en: "Asking a porter for help", te: "కూలీ సహాయం" },
+      title: { en: "A passenger falls", te: "ఒక ప్రయాణికుడు పడిపోయారు" },
       scene: {
-        en: "Your bag is heavy. Venkat, a porter, offers to carry it. Agree on a price politely.",
-        te: "మీ బ్యాగ్ బరువుగా ఉంది. కూలీ వెంకట్ మోస్తానంటున్నారు. మర్యాదగా ధర మాట్లాడుకోండి.",
+        en: "On the platform, the man next to you feels faint and falls down. You shout for help. Kumar, from the railway staff, comes running.",
+        te: "ప్లాట్‌ఫామ్ మీద మీ పక్కన ఉన్న ఆయనకి కళ్ళు తిరిగి పడిపోయారు. మీరు గట్టిగా సహాయం పిలిచారు. రైల్వే సిబ్బంది కుమార్ గారు పరిగెత్తుకుంటూ వచ్చారు.",
       },
-      partner: { en: "Venkat (a porter)", te: "వెంకట్ (కూలీ)" },
+      partner: { en: "Kumar (railway staff)", te: "కుమార్ (రైల్వే సిబ్బంది)" },
       voice: "b",
       skills: [
-        { id: "can", label: { en: "can / can't", te: "can / can't వాడకం" } },
+        { id: "help", label: { en: "Calling for help", te: "సహాయం పిలవడం" } },
         { id: "polite", label: { en: "Polite requests", te: "మర్యాదగా అడగడం" } },
       ],
       turns: [
         {
-          partner: "Porter? Can I carry your bag?",
-          te: "కూలీ కావాలా అండీ? మీ బ్యాగ్ మోయనా?",
-          hint: { en: "Say yes, and that the bag is too heavy for you.", te: "సరే అని, బ్యాగ్ మీరు మోయలేరని చెప్పండి." },
+          partner: "What happened? Is everything okay?",
+          te: "ఏమైంది? అంతా బాగానే ఉందా?",
+          hint: { en: "Tell him the man fell, and ask him to help.", te: "ఆయన పడిపోయారని చెప్పి, సహాయం చేయమని అడగండి." },
           replies: [
-            { say: "Yes, please. I can't carry it.", good: true, skill: "can" },
-            { say: "Yes, please. I can't carrying it.", good: false, skill: "can" },
+            { say: "This man fell down. Please help.", good: true, skill: "help" },
+            { say: "This man fall down. Please help.", good: false, skill: "help" },
           ],
         },
         {
-          partner: "Which platform?",
-          te: "ఏ ప్లాట్‌ఫామ్?",
-          hint: { en: "Tell him the platform number.", te: "ప్లాట్‌ఫామ్ నంబర్ చెప్పండి." },
+          partner: "Can he talk?",
+          te: "ఆయన మాట్లాడగలుగుతున్నారా?",
+          hint: { en: "Say yes, he can talk, but he is very weak.", te: "అవును, మాట్లాడగలరు, కానీ చాలా నీరసంగా ఉన్నారని చెప్పండి." },
           replies: [
-            { say: "Platform four, please.", good: true, skill: "polite" },
-            { say: "Platform fourth, please.", good: false, skill: "polite" },
+            { say: "Yes, he can. He is very weak.", good: true, skill: "help" },
+            { say: "Yes, he can talking. He is weak.", good: false, skill: "help" },
           ],
         },
         {
-          partner: "Okay. That is one hundred rupees.",
-          te: "సరే. వంద రూపాయలు.",
-          hint: { en: "Ask politely for a lower price.", te: "కొంచెం తగ్గించమని మర్యాదగా అడగండి." },
+          partner: "I'll get water. Please call an ambulance.",
+          te: "నేను నీళ్ళు తెస్తాను. మీరు అంబులెన్స్‌కి ఫోన్ చేయండి.",
+          hint: { en: "Agree, and say the number you will call, one digit at a time.", te: "సరే అని, ఏ నంబర్‌కి ఫోన్ చేస్తారో ఒక్కో అంకె విడిగా చెప్పండి." },
           replies: [
-            { say: "Could you take eighty rupees?", good: true, skill: "polite" },
-            { say: "Could you taking eighty rupees?", good: false, skill: "polite" },
+            { say: "Okay. I will call one zero eight.", good: true, skill: "help" },
+            { say: "Okay. I will call one hundred eight.", good: false, skill: "help" },
             {
-              say: "Hundred? You are cheating me!",
+              say: "Why me? You call.",
               good: false,
               skill: "polite",
-              react: { en: "No, no! That is the fixed rate.", te: "లేదండీ! అది ఫిక్స్‌డ్ రేటు." },
+              react: { en: "Please, there is no time. Call now!", te: "ప్లీజ్, టైమ్ లేదు. ఇప్పుడే ఫోన్ చేయండి!" },
             },
           ],
         },
         {
-          partner: "Okay, eighty. Come with me.",
-          te: "సరే, ఎనభై. నాతో రండి.",
-          hint: { en: "Thank him, and ask him not to walk too fast.", te: "థాంక్స్ చెప్పి, మరీ వేగంగా నడవద్దని అడగండి." },
+          partner: "The ambulance is coming. Thank you!",
+          te: "అంబులెన్స్ వస్తోంది. థాంక్యూ!",
+          hint: { en: "Answer his thanks, and ask if the man will be okay.", te: "ఆయన thank you కి జవాబు చెప్పి, ఆ పెద్దాయన బాగుంటారా అని అడగండి." },
           replies: [
-            { say: "Thank you. Please walk slowly.", good: true, skill: "polite" },
-            { say: "Thank you. Please walk slow.", good: false, skill: "polite" },
+            { say: "You're welcome. Will he be okay?", good: true, skill: "polite" },
+            { say: "Welcome. He will okay?", good: false, skill: "polite" },
           ],
         },
       ],

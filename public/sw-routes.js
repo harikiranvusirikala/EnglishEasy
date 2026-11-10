@@ -10,7 +10,8 @@
   /**
    * What to do with a request: "ignore" (the browser handles it), "network-first" (pages),
    * "stale-while-revalidate" (lesson files: answer from the cache now, refresh it in the background),
-   * "cache-first" (files whose address changes when they do), or "clip" (cache-first, in the clip cache, which is trimmed).
+   * "cache-first" (files whose address changes when they do), "clip" (cache-first, in the clip cache, which is trimmed),
+   * or "fresh" (the network when online, the cached copy offline: the audio manifest).
    */
   function strategyFor(request, origin) {
     var url = new URL(request.url);
@@ -18,7 +19,8 @@
     var path = url.pathname;
     if (path === "/sw.js" || path === "/sw-routes.js" || path.indexOf("/api/") === 0 || path.indexOf("/dev/") === 0) return "ignore";
     if (path.indexOf("/content/") === 0 && /\.json$/.test(path)) return "stale-while-revalidate";
-    if (path === "/audio/manifest.json") return "stale-while-revalidate";
+    // The list of recordings changes with every new lesson: a stale copy would send new lines to the phone's voices.
+    if (path === "/audio/manifest.json") return "fresh";
     if (path.indexOf("/_next/static/") === 0 || path.indexOf("/icons/") === 0) return "cache-first";
     if (path.indexOf("/audio/") === 0 && /\.mp3$/.test(path)) return "clip"; // a clip's name changes with its text
     if (request.mode === "navigate") return "network-first";

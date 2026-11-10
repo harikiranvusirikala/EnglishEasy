@@ -1,19 +1,19 @@
 import type { Lesson } from "../../types";
 
-/** Week 1, Day 6 (CURRICULUM §3): future with will; won't; Will ...? */
+/** Week 1, Day 6 (CURRICULUM §3, lightened 2026-11-09): future with will; Will you …? Yes, I will. won't is recognition only (built in Week 10). */
 export const day: Lesson = {
   id: "future-will-tomorrow",
   kind: "lesson",
   title: { en: "Tomorrow", te: "రేపు" },
   subtitle: "Future with will",
   summary: {
-    en: "Talk about tomorrow and plans. Use will, won't, and ask Will you ...?",
-    te: "రేపు గురించి, ప్లాన్‌ల గురించి మాట్లాడటం నేర్చుకుందాం. will, won't, Will you ...?",
+    en: "Talk about tomorrow and plans with will, and ask with Will you.",
+    te: "రేపు గురించి, ప్లాన్‌ల గురించి will తో మాట్లాడటం, Will you తో అడగడం నేర్చుకుందాం.",
   },
   seo: {
     title: "Future with Will in English for Telugu Speakers: Tomorrow",
     description:
-      "Learn the future with will: I will call you tomorrow, I won't be late, Will you help me? Say your plans, with Telugu explanations.",
+      "Learn the future with will: I will call you tomorrow, Will you help me? Yes, I will. Say your plans, with Telugu explanations.",
   },
   pattern: [
     { text: "I", role: "who" },
@@ -26,14 +26,14 @@ export const day: Lesson = {
     { en: "We will go to the temple.", te: "మేము గుడికి వెళ్తాం.", extra: ["going"] },
     { en: "She will come on Sunday.", te: "ఆవిడ ఆదివారం వస్తారు.", extra: ["comes"] },
     { en: "I will visit my uncle.", te: "నేను మా మామయ్య వాళ్ళింటికి వెళ్తాను.", extra: ["visited"] },
-    { en: "I won't be late.", te: "నేను ఆలస్యం చేయను.", extra: ["don't"] },
+    { en: "I will come in the morning.", te: "నేను ఉదయం వస్తాను.", extra: ["coming"] },
     { en: "Will you help me?", te: "మీరు నాకు సహాయం చేస్తారా?", extra: ["Do"] },
     { en: "Yes, I will.", te: "అవును, చేస్తాను.", extra: ["do"] },
   ],
   key: [0, 1, 4, 5],
   tryToday: {
-    en: "Tell someone one plan for tomorrow. For example: I will call you tomorrow. I won't be late.",
-    te: "రేపటి కోసం మీ ఒక ప్లాన్ ఎవరికైనా చెప్పండి. ఉదాహరణ: I will call you tomorrow. I won't be late.",
+    en: "Tell someone one plan for tomorrow. For example: I will call you tomorrow. I will go to the temple.",
+    te: "రేపటి కోసం మీ ఒక ప్లాన్ ఎవరికైనా చెప్పండి. ఉదాహరణ: I will call you tomorrow. I will go to the temple.",
   },
   words: [
     { en: "tomorrow", te: "రేపు" },
@@ -71,17 +71,25 @@ export const day: Lesson = {
     {
       id: "l2",
       type: "whenToUse",
-      heading: { en: "Yes, no and question", te: "అవును, లేదు, ప్రశ్న" },
+      heading: { en: "Question, yes and no", te: "ప్రశ్న, అవును, లేదు" },
       items: [
         {
-          form: "won't",
-          useFor: { en: "Say no about the future. Won't means will not.", te: "చేయను అని చెప్పడానికి. won't అంటే will not." },
-          example: { en: "I won't be late.", te: "నేను ఆలస్యం చేయను." },
+          form: "Will you + action?",
+          useFor: { en: "To ask about tomorrow, put Will first.", te: "రేపటి గురించి అడగాలంటే Will ని మొదట పెట్టండి." },
+          example: { en: "Will you help me?", te: "మీరు నాకు సహాయం చేస్తారా?" },
         },
         {
-          form: "Will ...?",
-          useFor: { en: "Ask a question. Put Will first.", te: "ప్రశ్న అడగడానికి. Will ని మొదట పెట్టండి." },
-          example: { en: "Will you help me?", te: "మీరు నాకు సహాయం చేస్తారా?" },
+          form: "Yes, I will.",
+          useFor: { en: "The short way to say yes to a Will you question.", te: "Will you ప్రశ్నకి అవును అని చిన్నగా చెప్పే పద్ధతి." },
+          example: { en: "Will you come? Yes, I will.", te: "మీరు వస్తారా? అవును, వస్తాను." },
+        },
+        {
+          form: "won't",
+          useFor: {
+            en: "You will also hear won't, which means will not. Just understand it for now; you will practice it in Week 10.",
+            te: "won't అంటే will not, అది కూడా వినిపిస్తుంది. ఇప్పటికి అర్థం చేసుకుంటే చాలు; 10వ వారంలో practice చేస్తాం.",
+          },
+          example: { en: "I won't be late.", te: "నేను ఆలస్యం చేయను." },
         },
       ],
     },
@@ -133,12 +141,12 @@ export const day: Lesson = {
     {
       id: "p3",
       type: "choose",
-      prompt: { en: "Fill the gap: నేను ఆలస్యం చేయను. I ___ be late.", te: "ఖాళీ నింపండి: నేను ఆలస్యం చేయను. I ___ be late." },
-      options: ["won't", "don't", "didn't"],
-      answer: 0,
+      prompt: { en: "Which sentence means: మీరు రేపు వస్తారా?", te: "మీరు రేపు వస్తారా? — ఇంగ్లీష్‌లో ఏది సరైనది?" },
+      options: ["You come tomorrow?", "Will you come tomorrow?", "Will you coming tomorrow?"],
+      answer: 1,
       why: {
-        en: "Won't means will not, for something later: I won't be late.",
-        te: "won't అంటే will not, తర్వాత జరిగే దానికి: I won't be late.",
+        en: "To ask about tomorrow, put Will first, then you and the plain action word: Will you come tomorrow?",
+        te: "రేపటి గురించి అడగాలంటే మొదట Will, తర్వాత you, మామూలు verb: Will you come tomorrow?",
       },
     },
     {
@@ -169,12 +177,12 @@ export const day: Lesson = {
       id: "s2",
       type: "situation",
       situation: {
-        en: "A friend asks: Will you be late? Say no, in English.",
-        te: "స్నేహితులు అడుగుతున్నారు: Will you be late? లేదు అని ఇంగ్లీష్‌లో చెప్పండి.",
+        en: "Ask your neighbour Kamala if she will come on Sunday. Ask in English.",
+        te: "పక్కింటి కమల గారు ఆదివారం వస్తారా అని ఇంగ్లీష్‌లో అడగండి.",
       },
-      expected: ["No, I won't.", "No, I won't be late."],
-      options: ["No, I won't.", "No, I don't.", "No, I am not."],
-      answer: 0,
+      expected: ["Will you come on Sunday?"],
+      options: ["Are you come on Sunday?", "Will you come on Sunday?", "Will you coming on Sunday?"],
+      answer: 1,
     },
   ],
   roleplay: {
@@ -214,13 +222,13 @@ export const day: Lesson = {
         ],
       },
       {
-        partner: "Will you be late?",
-        te: "ఆలస్యంగా వస్తారా?",
-        hint: { en: "Say no, in a full sentence.", te: "చేయను అని పూర్తి వాక్యంలో చెప్పండి." },
+        partner: "Good. Will you call me on Saturday?",
+        te: "మంచిది. శనివారం నాకు ఫోన్ చేస్తారా?",
+        hint: { en: "Say yes in a full sentence, and that you will phone him.", te: "అవునని, ఫోన్ చేస్తానని పూర్తి వాక్యంలో చెప్పండి." },
         replies: [
-          { say: "No, I won't be late.", good: true, skill: "will" },
-          { say: "No, I don't be late.", good: false, skill: "will" },
-          { say: "No, I will not late.", good: false, skill: "will" },
+          { say: "Yes, I will call you.", good: true, skill: "will" },
+          { say: "Yes, I will calling you.", good: false, skill: "will" },
+          { say: "Yes, I called you.", good: false, skill: "will" },
         ],
       },
     ],

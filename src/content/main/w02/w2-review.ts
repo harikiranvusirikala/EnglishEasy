@@ -1,6 +1,6 @@
 import type { Activity, ReviewDay } from "../../types";
 
-/** Week 2, Day 7 (CURRICULUM §3): the automatic review (with a role play from the Conversation Day), plus a question-word round. */
+/** Week 2, Day 7 (CURRICULUM §3): the automatic review (with a role play from the Conversation Day), plus a question-word round that also covers the clarifying phrases. */
 
 const pick = (id: string, sentence: string, te: string, options: string[], answer: number, why: { en: string; te: string }): Activity => ({
   id,
@@ -25,13 +25,13 @@ export const day: ReviewDay = {
       en: "What time asks for the clock time: What time does the bus come?",
       te: "గడియారంలో టైమ్ అడగడానికి what time: What time does the bus come?",
     }),
-    pick("q3", "___ is that man?", "ఆ ఆయన ఎవరు?", ["Who", "Whose", "Whom"], 0, {
+    pick("q3", "___ is that man?", "ఆయన ఎవరు?", ["Who", "Whose", "Whom"], 0, {
       en: "Who asks about a person: Who is that man?",
       te: "ఒక మనిషి ఎవరో అడగడానికి who: Who is that man?",
     }),
-    pick("q4", "___ bag is this?", "ఇది ఎవరి బ్యాగ్?", ["Who", "Whose", "Where"], 1, {
-      en: "Whose asks who owns a thing: Whose bag is this?",
-      te: "వస్తువు ఎవరిదో అడగడానికి whose: Whose bag is this?",
+    pick("q4", "___ do you say this in English?", "దీన్ని ఇంగ్లీష్‌లో ఎలా అంటారు?", ["How", "What", "Where"], 0, {
+      en: "To ask for an English word, say How do you say, not What: How do you say this in English?",
+      te: "ఇంగ్లీష్ పదం అడగడానికి How do you say అనాలి, What కాదు: How do you say this in English?",
     }),
     pick("q5", "How ___ is this saree?", "ఈ చీర ఎంత?", ["much", "far", "many"], 0, {
       en: "How much asks the price: How much is this saree?",

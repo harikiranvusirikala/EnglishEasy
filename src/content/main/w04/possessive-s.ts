@@ -1,19 +1,19 @@
 import type { Lesson } from "../../types";
 
-/** Week 4, Day 3 (CURRICULUM §3): name + 's for owning (Ravi's house). */
+/** Week 4, Day 3 (CURRICULUM §3): Whose …? and name + 's for owning (Ravi's house). Whose folded in from the retired who-and-whose (2026-11-10). */
 export const day: Lesson = {
   id: "possessive-s",
   kind: "lesson",
-  title: { en: "Ravi's House", te: "ఒకరి వస్తువు ('s)" },
-  subtitle: "name + 's",
+  title: { en: "Whose Is It? Ravi's", te: "ఎవరిది? రవి గారిది" },
+  subtitle: "Whose …? + name + 's",
   summary: {
-    en: "Learn to say whose something is with a name and 's: Ravi's house, Sita's bag.",
-    te: "పేరు తర్వాత 's చేర్చి ఏదైనా ఎవరిదో చెప్పడం నేర్చుకుందాం: Ravi's house, Sita's bag.",
+    en: "Learn to ask whose something is with whose, and to answer with a name and 's: Ravi's house, Sita's bag.",
+    te: "ఏదైనా ఎవరిదో whose తో అడగడం, పేరు తర్వాత 's చేర్చి జవాబు చెప్పడం నేర్చుకుందాం: Ravi's house, Sita's bag.",
   },
   seo: {
-    title: "Possessive 's in English for Telugu Speakers: Ravi's House",
+    title: "Whose and Possessive 's in English for Telugu Speakers",
     description:
-      "Say This is Ravi's house and My friend's son is a doctor in English. Simple lessons for Telugu speakers on 's, with Telugu explanations.",
+      "Ask Whose bag is this? and say This is Ravi's house in English. Simple lessons for Telugu speakers on whose and 's, with Telugu explanations.",
   },
   pattern: [
     { text: "This", role: "who" },
@@ -28,6 +28,7 @@ export const day: Lesson = {
     { en: "The doctor's clinic is closed.", te: "డాక్టర్ గారి క్లినిక్ మూసి ఉంది.", extra: ["doctor"] },
     { en: "It is Suresh's car.", te: "అది సురేష్ కారు.", extra: ["Suresh"] },
     { en: "My brother's name is Venkat.", te: "మా అన్నయ్య పేరు వెంకట్.", extra: ["brother"] },
+    { en: "Whose bag is this?", te: "ఇది ఎవరి బ్యాగ్?", extra: ["Who"] },
   ],
   key: [0, 1, 2, 5],
   tryToday: {
@@ -40,6 +41,7 @@ export const day: Lesson = {
     { en: "clinic", te: "క్లినిక్, ఆసుపత్రి" },
     { en: "red", te: "ఎరుపు" },
     { en: "wedding", te: "పెళ్లి" },
+    { en: "whose", te: "ఎవరి, ఎవరిది" },
   ],
   grammar: ["have-has-possessives", "am-is-are"],
   topics: ["people", "family"],
@@ -82,9 +84,17 @@ export const day: Lesson = {
           example: { en: "My brother's name is Venkat.", te: "మా అన్నయ్య పేరు వెంకట్." },
         },
         {
-          form: "Whose …? → …'s",
-          useFor: { en: "To answer a whose question.", te: "whose ప్రశ్నకి జవాబుగా." },
-          example: { en: "It is Suresh's car.", te: "అది సురేష్ కారు." },
+          form: "Whose + thing?",
+          useFor: {
+            en: "Whose asks who owns a thing, and the thing comes right after it.",
+            te: "వస్తువు ఎవరిదో అడగడానికి whose; whose తర్వాత వెంటనే ఆ వస్తువు వస్తుంది.",
+          },
+          example: { en: "Whose bag is this?", te: "ఇది ఎవరి బ్యాగ్?" },
+        },
+        {
+          form: "…'s, alone",
+          useFor: { en: "In a short answer, you can leave out the thing.", te: "చిన్న జవాబులో వస్తువు పేరు వదిలేయొచ్చు." },
+          example: { en: "Whose car is that? It's Suresh's.", te: "ఆ కారు ఎవరిది? సురేష్ గారిది." },
         },
       ],
     },
@@ -101,11 +111,11 @@ export const day: Lesson = {
     {
       id: "l4",
       type: "dontSay",
-      wrong: "This is the house of Ravi.",
-      right: "This is Ravi's house.",
+      wrong: "Who is this bag?",
+      right: "Whose bag is this?",
       why: {
-        en: "For a person, English uses 's, not of: Ravi's house.",
-        te: "మనుషులకి of కాదు, 's వాడతారు: Ravi's house.",
+        en: "Who asks about a person. To ask about the owner, say whose, then the thing: Whose bag is this?",
+        te: "who మనిషి గురించి. వస్తువు ఎవరిదో అడగాలంటే whose, తర్వాత ఆ వస్తువు: Whose bag is this?",
       },
     },
   ],
@@ -113,12 +123,12 @@ export const day: Lesson = {
     {
       id: "p1",
       type: "choose",
-      prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
-      options: ["This is Sita bag.", "This is Sita's bag.", "This bag is Sita."],
+      prompt: { en: "You find a bag on a chair. What do you ask?", te: "కుర్చీ మీద ఒక బ్యాగ్ కనిపించింది. ఏమని అడుగుతారు?" },
+      options: ["Who bag is this?", "Whose bag is this?", "Whose this bag is?"],
       answer: 1,
       why: {
-        en: "The bag belongs to Sita, so add 's: Sita's bag.",
-        te: "బ్యాగ్ సీతది, కాబట్టి పేరుకి 's: Sita's bag.",
+        en: "Whose asks about the owner, the thing comes right after it, then is: Whose bag is this?",
+        te: "యజమాని గురించి whose; దాని తర్వాత వెంటనే వస్తువు, తర్వాత is: Whose bag is this?",
       },
     },
     {

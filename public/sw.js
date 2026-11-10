@@ -57,6 +57,7 @@ self.addEventListener("fetch", function (event) {
   if (strategy === "cache-first") event.respondWith(cacheFirst(request));
   else if (strategy === "clip") event.respondWith(clip(request));
   else if (strategy === "stale-while-revalidate") event.respondWith(staleWhileRevalidate(request));
+  else if (strategy === "fresh") event.respondWith(fresh(request));
   else event.respondWith(networkFirst(request));
 });
 
@@ -170,6 +171,20 @@ function staleWhileRevalidate(request) {
       if (found) return found; // the latest copy arrives in the background, for the next visit
       return refresh.then(function (response) { return response || Response.error(); });
     });
+  });
+}
+
+/** The latest copy when online (kept for offline), the kept copy when not. */
+function fresh(request) {
+  return caches.open(CONTENT).then(function (cache) {
+    return fetch(request)
+      .then(function (response) {
+        if (response.ok) cache.put(request, response.clone());
+        return response;
+      })
+      .catch(function () {
+        return cache.match(request).then(function (found) { return found || Response.error(); });
+      });
   });
 }
 

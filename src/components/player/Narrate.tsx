@@ -13,7 +13,7 @@ const HAS_TELUGU = /[ఀ-౿]/;
 
 /**
  * Listen (normal) and Slow for a text. `text` is read aloud: a plain string, or a Bi whose half follows Learn in.
- * Mixed Telugu–English text is read with two voices. With `auto`, it plays by itself when it appears (if Auto-play is on).
+ * Each text is one recorded clip in one voice (the phone's backup reads a mixed line with its Telugu voice alone). With `auto`, it plays by itself when it appears (if Auto-play is on).
  * Round icon buttons: Listen (a speaker), and with `slow` also Slow (a turtle) — owner's choice: icons only, Listen
  * only where it helps (the sentence to learn, the question, role play), Slow only where listening is the task. `variant="pill"` (the default) puts
  * them on their own line in a bigger size; `"compact"` keeps them inline for rows of sentences and chat bubbles.

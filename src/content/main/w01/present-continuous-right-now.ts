@@ -1,14 +1,14 @@
 import type { Lesson } from "../../types";
 
-/** Week 1, Day 4 (CURRICULUM §3): am / is / are + verb-ing for what is happening now. */
+/** Week 1, Day 4 (CURRICULUM §3, lightened 2026-11-09): am / is / are + verb-ing for now, and Are you …ing? I am not … is recognition only. */
 export const day: Lesson = {
   id: "present-continuous-right-now",
   kind: "lesson",
   title: { en: "Right Now", te: "ఇప్పుడు" },
   subtitle: "Present continuous",
   summary: {
-    en: "Say what is happening right now. Use am, is or are with a verb ending in -ing.",
-    te: "ఇప్పుడు జరుగుతున్న పని గురించి చెప్పడం నేర్చుకుందాం. am, is, are తో -ing verb వాడతాం.",
+    en: "Say what is happening right now with am, is or are and a verb ending in -ing, and ask Are you coming?",
+    te: "ఇప్పుడు జరుగుతున్న పని గురించి చెప్పడం నేర్చుకుందాం: am, is, are తో -ing verb. Are you coming? అని అడగడం కూడా.",
   },
   seo: {
     title: "Present Continuous in English for Telugu Speakers: Right Now",
@@ -25,7 +25,7 @@ export const day: Lesson = {
     { en: "She is sleeping.", te: "ఆవిడ నిద్రపోతున్నారు.", extra: ["sleep"] },
     { en: "They are watching TV.", te: "వాళ్లు TV చూస్తున్నారు.", extra: ["watch"] },
     { en: "He is talking on the phone.", te: "ఆయన ఫోన్‌లో మాట్లాడుతున్నారు.", extra: ["talk"] },
-    { en: "I am not working now.", te: "నేను ఇప్పుడు పని చేయడం లేదు.", extra: ["no"] },
+    { en: "I am reading the newspaper.", te: "నేను పేపర్ చదువుతున్నాను.", extra: ["read"] },
     { en: "Are you coming?", te: "మీరు వస్తున్నారా?", extra: ["Is"] },
     { en: "Yes, I am coming.", te: "అవును, వస్తున్నాను.", extra: ["do"] },
   ],
@@ -80,6 +80,14 @@ export const day: Lesson = {
           form: "right now → I am walking",
           useFor: { en: "For this moment, use am, is or are with -ing.", te: "ఇప్పుడు జరుగుతున్న పనికి am, is, are తో -ing వాడాలి." },
           example: { en: "I am cooking.", te: "నేను వంట చేస్తున్నాను." },
+        },
+        {
+          form: "I am not + -ing",
+          useFor: {
+            en: "You will also hear the no form. Just understand it for now; you will practice it later.",
+            te: "లేదు అనే రూపం కూడా వినిపిస్తుంది. ఇప్పటికి అర్థం చేసుకుంటే చాలు; తర్వాత practice చేస్తాం.",
+          },
+          example: { en: "I am not working now.", te: "నేను ఇప్పుడు పని చేయడం లేదు." },
         },
       ],
     },
@@ -198,13 +206,13 @@ export const day: Lesson = {
         ],
       },
       {
-        partner: "Are you watching TV?",
-        te: "మీరు TV చూస్తున్నారా?",
-        hint: { en: "Say no, the short way.", te: "లేదు అని చిన్నగా చెప్పండి." },
+        partner: "Oh, nice! What are you cooking?",
+        te: "అరె, బాగుంది! ఏం వండుతున్నారు?",
+        hint: { en: "Tell him what is on the stove: rice.", te: "పొయ్యి మీద ఏం ఉందో చెప్పండి: అన్నం." },
         replies: [
-          { say: "No, I am not.", good: true, skill: "now" },
-          { say: "No, I don't.", good: false, skill: "now" },
-          { say: "No, I not watching.", good: false, skill: "now" },
+          { say: "I am cooking rice.", good: true, skill: "now" },
+          { say: "I cooking rice.", good: false, skill: "now" },
+          { say: "I am cook rice.", good: false, skill: "now" },
         ],
       },
       {

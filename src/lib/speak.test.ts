@@ -79,18 +79,16 @@ describe("speak", () => {
 });
 
 describe("narrate", () => {
-  it("reads Telugu and English runs one after another, each with its own voice", async () => {
+  it("reads a mixed line with one voice: the Telugu voice reads it whole, English words too", async () => {
     install([veena, telugu]);
     narrate("verb ని past form లో వాడాలి.");
-    // The runs play one after another; under load they can take more than one tick, so wait for all four.
-    await vi.waitFor(() =>
-      expect(spoken.map((s) => [s.text, s.voice?.voiceURI, s.lang])).toEqual([
-        ["verb", "veena", "en-IN"],
-        ["ని", "te", "te-IN"],
-        ["past form", "veena", "en-IN"],
-        ["లో వాడాలి.", "te", "te-IN"],
-      ]),
-    );
+    await vi.waitFor(() => expect(spoken.map((s) => [s.text, s.voice?.voiceURI, s.lang])).toEqual([["verb ని past form లో వాడాలి.", "te", "te-IN"]]));
+  });
+
+  it("reads an English-only line with the English voice", async () => {
+    install([veena, telugu]);
+    narrate("She is a teacher.");
+    await vi.waitFor(() => expect(spoken.map((s) => [s.text, s.voice?.voiceURI])).toEqual([["She is a teacher.", "veena"]]));
   });
 
   it("skips the Telugu runs when the phone has no Telugu voice", async () => {
@@ -105,13 +103,13 @@ describe("a stalled voice", () => {
   it("is skipped by the watchdog so the rest still plays, and a new request replaces a pending one", async () => {
     vi.useFakeTimers();
     try {
-      install([veena, telugu]);
+      install([veena]); // no Telugu voice: the English runs play one after another
       // This voice never finishes the first run.
       (speechSynthesis as unknown as { speak: (u: Spoken) => void }).speak = (u) => void spoken.push({ text: u.text, voice: u.voice, lang: u.lang, rate: u.rate, pitch: u.pitch });
       narrate("verb ని past");
       expect(spoken.map((s) => s.text)).toEqual(["verb"]); // one at a time
       await vi.advanceTimersByTimeAsync(10_000);
-      expect(spoken.map((s) => s.text)).toEqual(["verb", "ని", "past"]);
+      expect(spoken.map((s) => s.text)).toEqual(["verb", "past"]);
     } finally {
       vi.useRealTimers();
     }

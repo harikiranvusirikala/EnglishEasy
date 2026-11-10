@@ -1,19 +1,19 @@
 import type { Lesson } from "../../types";
 
-/** Week 1, Day 5 (CURRICULUM §3): past simple, with irregular verbs first; didn't + verb; Did ...? */
+/** Week 1, Day 5 (CURRICULUM §3, lightened 2026-11-09): past simple, irregular verbs first; Did you …? Yes, I did. didn't is recognition only (built in Week 9). */
 export const day: Lesson = {
   id: "past-simple-yesterday",
   kind: "lesson",
   title: { en: "Yesterday", te: "నిన్న" },
   subtitle: "Past simple",
   summary: {
-    en: "Talk about things you did yesterday. Learn went, bought and ate, and how to say didn't and Did.",
-    te: "నిన్న మీరు చేసిన పనుల గురించి చెప్పడం నేర్చుకుందాం. went, bought, ate, అలాగే didn't, Did.",
+    en: "Talk about things you did yesterday. Learn went, bought and ate, and how to ask with Did.",
+    te: "నిన్న మీరు చేసిన పనుల గురించి చెప్పడం నేర్చుకుందాం. went, bought, ate, అలాగే Did తో ప్రశ్న.",
   },
   seo: {
     title: "Past Simple in English for Telugu Speakers: Yesterday",
     description:
-      "Learn the past simple: went, bought, ate, didn't go, Did you eat? Say what you did yesterday, with Telugu explanations.",
+      "Learn the past simple: went, bought, ate, and Did you eat? Say what you did yesterday, with Telugu explanations.",
   },
   pattern: [
     { text: "I", role: "who" },
@@ -27,13 +27,13 @@ export const day: Lesson = {
     { en: "I ate idli.", te: "నేను ఇడ్లీ తిన్నాను.", extra: ["eat"] },
     { en: "She came by bus.", te: "ఆవిడ బస్సులో వచ్చారు.", extra: ["come"] },
     { en: "We watched a film.", te: "మేము సినిమా చూశాం.", extra: ["watch"] },
-    { en: "I didn't go out.", te: "నేను బయటికి వెళ్లలేదు.", extra: ["went"] },
+    { en: "I went out in the evening.", te: "సాయంత్రం నేను బయటికి వెళ్లాను.", extra: ["go"] },
     { en: "Did you eat?", te: "మీరు తిన్నారా?", extra: ["Do"] },
   ],
   key: [0, 1, 5, 6],
   tryToday: {
-    en: "Tell someone what you did yesterday. For example: I went to the market. I ate idli. I didn't go out.",
-    te: "నిన్న మీరు ఏం చేశారో ఎవరికైనా చెప్పండి. ఉదాహరణ: I went to the market. I ate idli. I didn't go out.",
+    en: "Tell someone what you did yesterday. For example: I went to the market. I ate idli. I watched TV.",
+    te: "నిన్న మీరు ఏం చేశారో ఎవరికైనా చెప్పండి. ఉదాహరణ: I went to the market. I ate idli. I watched TV.",
   },
   words: [
     { en: "market", te: "మార్కెట్" },
@@ -71,7 +71,7 @@ export const day: Lesson = {
     {
       id: "l2",
       type: "whenToUse",
-      heading: { en: "Two kinds of past verbs", te: "రెండు రకాల past verbs" },
+      heading: { en: "Past verbs, a question, and no", te: "past verbs, ప్రశ్న, లేదు" },
       items: [
         {
           form: "watch → watched",
@@ -82,6 +82,22 @@ export const day: Lesson = {
           form: "go → went",
           useFor: { en: "Some verbs change. Learn them one by one.", te: "కొన్ని verbs మారిపోతాయి. వాటిని ఒక్కొక్కటిగా నేర్చుకోవాలి." },
           example: { en: "I went to the market.", te: "నేను మార్కెట్‌కి వెళ్లాను." },
+        },
+        {
+          form: "Did you + eat?",
+          useFor: {
+            en: "To ask, put Did first and keep the plain action word. Answer: Yes, I did.",
+            te: "అడగాలంటే Did ముందు పెట్టి, మామూలు verb వాడాలి. జవాబు: Yes, I did.",
+          },
+          example: { en: "Did you eat? Yes, I did.", te: "మీరు తిన్నారా? అవును, తిన్నాను." },
+        },
+        {
+          form: "didn't + go",
+          useFor: {
+            en: "You will also hear didn't for no. Just understand it for now; you will practice it in Week 9.",
+            te: "లేదు అనడానికి didn't వినిపిస్తుంది. ఇప్పటికి అర్థం చేసుకుంటే చాలు; 9వ వారంలో practice చేస్తాం.",
+          },
+          example: { en: "I didn't go out.", te: "నేను బయటికి వెళ్లలేదు." },
         },
       ],
     },
@@ -98,11 +114,11 @@ export const day: Lesson = {
     {
       id: "l4",
       type: "dontSay",
-      wrong: "I didn't went.",
-      right: "I didn't go.",
+      wrong: "Did you ate?",
+      right: "Did you eat?",
       why: {
-        en: "After didn't, use the simple action: go. Didn't already shows the past.",
-        te: "didn't తర్వాత మామూలు verb వాడాలి: go. didn't లోనే past ఉంది.",
+        en: "After Did, use the plain action word, because Did already shows the past: Did you eat?",
+        te: "Did తర్వాత మామూలు verb వాడాలి, ఎందుకంటే Did లోనే past ఉంది: Did you eat?",
       },
     },
   ],
@@ -133,12 +149,12 @@ export const day: Lesson = {
     {
       id: "p3",
       type: "choose",
-      prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
-      options: ["I didn't went out.", "I didn't go out.", "I not go out."],
+      prompt: { en: "Choose the correct question.", te: "సరైన ప్రశ్నను ఎంచుకోండి." },
+      options: ["Did you ate?", "Did you eat?", "Did you eating?"],
       answer: 1,
       why: {
-        en: "Didn't already shows the past, so use go: I didn't go out.",
-        te: "didn't లోనే past ఉంది, కాబట్టి go: I didn't go out.",
+        en: "Did already shows the past, so the action word stays plain: Did you eat?",
+        te: "Did లోనే past ఉంది, కాబట్టి verb మారదు: Did you eat?",
       },
     },
     {
@@ -169,11 +185,11 @@ export const day: Lesson = {
       id: "s2",
       type: "situation",
       situation: {
-        en: "A neighbour asks: Did you go out? Say no, in English.",
-        te: "పక్కింటి వాళ్లు అడుగుతున్నారు: Did you go out? లేదు అని ఇంగ్లీష్‌లో చెప్పండి.",
+        en: "A friend visits you at lunch time. Ask her if she ate, in English.",
+        te: "భోజనం సమయానికి మీ స్నేహితురాలు ఇంటికి వచ్చారు. ఆవిడ తిన్నారా అని ఇంగ్లీష్‌లో అడగండి.",
       },
-      expected: ["No, I didn't.", "No, I didn't go out."],
-      options: ["No, I didn't.", "No, I didn't went.", "No, I not go."],
+      expected: ["Did you eat?"],
+      options: ["Did you eat?", "Did you ate?", "Do you ate?"],
       answer: 0,
     },
   ],
@@ -211,10 +227,10 @@ export const day: Lesson = {
       {
         partner: "Did you go out in the evening?",
         te: "సాయంత్రం బయటికి వెళ్లారా?",
-        hint: { en: "Say no, in a full sentence.", te: "లేదు అని పూర్తి వాక్యంలో చెప్పండి." },
+        hint: { en: "Say yes, and where you went: the temple.", te: "అవునని, ఎక్కడికి వెళ్లారో చెప్పండి: గుడికి." },
         replies: [
-          { say: "No, I didn't go out.", good: true, skill: "past" },
-          { say: "No, I didn't went out.", good: false, skill: "past" },
+          { say: "Yes, I went to the temple.", good: true, skill: "past" },
+          { say: "Yes, I go to the temple.", good: false, skill: "past" },
           {
             say: "Why are you asking so much?",
             good: false,

@@ -1,19 +1,22 @@
 import type { Lesson } from "../../types";
 
-/** Week 1, Day 3 (CURRICULUM §3): present simple with I / we / you / they and he / she; don't / doesn't; Do / Does. */
+/**
+ * Week 1, Day 3 (CURRICULUM §3, lightened 2026-11-09): present simple with I / we / you / they, and Do you …? Yes, I do.
+ * he / she + s and don't / doesn't are recognition only here (a Learn card); they are built in Week 7.
+ */
 export const day: Lesson = {
   id: "present-simple-every-day",
   kind: "lesson",
   title: { en: "Every Day", te: "రోజూ" },
   subtitle: "Present simple",
   summary: {
-    en: "Talk about things you do every day. Learn the -s with he and she, and don't, doesn't, do and does.",
-    te: "మీరు రోజూ చేసే పనుల గురించి చెప్పడం నేర్చుకుందాం. he, she తో -s, అలాగే don't, doesn't, do, does.",
+    en: "Talk about things you do every day, and ask a friend about their day with Do you.",
+    te: "మీరు రోజూ చేసే పనుల గురించి చెప్పడం, Do you తో ఇతరుల అలవాట్ల గురించి అడగడం నేర్చుకుందాం.",
   },
   seo: {
     title: "Present Simple in English for Telugu Speakers: Every Day",
     description:
-      "Learn the present simple for daily habits: walk and walks, don't and doesn't, Do and Does questions. Simple examples with Telugu explanations.",
+      "Learn the present simple for daily habits: I walk, we go, and questions with Do you. Simple examples with Telugu explanations.",
   },
   pattern: [
     { text: "I", role: "who" },
@@ -22,12 +25,12 @@ export const day: Lesson = {
   ],
   core: [
     { en: "I walk every morning.", te: "నేను ప్రతి ఉదయం నడుస్తాను.", extra: ["walks"] },
-    { en: "She goes to the temple on Fridays.", te: "ఆవిడ ప్రతి శుక్రవారం గుడికి వెళ్తారు.", extra: ["go"] },
-    { en: "He doesn't drink coffee.", te: "ఆయన కాఫీ తాగరు.", extra: ["don't"] },
-    { en: "We don't eat late.", te: "మేము ఆలస్యంగా తినం.", extra: ["doesn't"] },
-    { en: "Do you watch the news?", te: "మీరు వార్తలు చూస్తారా?", extra: ["Does"] },
-    { en: "Does she go to the temple?", te: "ఆవిడ గుడికి వెళ్తారా?", extra: ["goes"] },
-    { en: "Yes, I do.", te: "అవును, చూస్తాను.", extra: ["does"] },
+    { en: "We go to the temple on Fridays.", te: "మేము ప్రతి శుక్రవారం గుడికి వెళ్తాం.", extra: ["goes"] },
+    { en: "They watch the news.", te: "వాళ్లు వార్తలు చూస్తారు.", extra: ["watches"] },
+    { en: "We eat early.", te: "మేము తొందరగా తింటాం.", extra: ["are"] },
+    { en: "Do you watch the news?", te: "మీరు వార్తలు చూస్తారా?", extra: ["Are"] },
+    { en: "Do you drink coffee?", te: "మీరు కాఫీ తాగుతారా?", extra: ["Are"] },
+    { en: "Yes, I do.", te: "అవును, తాగుతాను.", extra: ["am"] },
   ],
   key: [0, 1, 2, 4],
   tryToday: {
@@ -49,8 +52,8 @@ export const day: Lesson = {
       type: "explain",
       heading: { en: "Things you do every day", te: "రోజూ చేసే పనులు" },
       body: {
-        en: "Use the present simple for habits. With I, we, you and they, the action stays the same: I walk. With he and she, add -s: she walks, he goes.",
-        te: "రోజూ చేసే అలవాట్లకు present simple వాడతాం. I, we, you, they తో verb మారదు: I walk. he, she తో verb చివర -s వస్తుంది: she walks, he goes.",
+        en: "Use the present simple for habits, things you do again and again. With I, we, you and they, the action word stays the same: I walk, we go.",
+        te: "రోజూ చేసే అలవాట్లకు present simple వాడతాం. I, we, you, they తో verb మారదు: I walk, we go.",
       },
       bridge: {
         te: ["నేను", "ప్రతి ఉదయం", "నడుస్తాను"],
@@ -62,48 +65,64 @@ export const day: Lesson = {
       },
       examples: [
         { en: "I walk every morning.", te: "నేను ప్రతి ఉదయం నడుస్తాను." },
-        { en: "She goes to the temple on Fridays.", te: "ఆవిడ ప్రతి శుక్రవారం గుడికి వెళ్తారు." },
-        { en: "He works in an office.", te: "ఆయన ఆఫీసులో పని చేస్తారు." },
+        { en: "We go to the temple on Fridays.", te: "మేము ప్రతి శుక్రవారం గుడికి వెళ్తాం." },
+        { en: "They watch the news.", te: "వాళ్లు వార్తలు చూస్తారు." },
       ],
     },
     {
       id: "l2",
       type: "whenToUse",
-      heading: { en: "don't or doesn't? Do or Does?", te: "don't లేదా doesn't? Do లేదా Does?" },
+      heading: { en: "Asking and answering", te: "అడగడం, జవాబు చెప్పడం" },
       items: [
         {
-          form: "I, we, you, they → don't, Do",
-          useFor: { en: "Use don't and Do with I, we, you and they.", te: "I, we, you, they తో don't, Do వాడాలి." },
-          example: { en: "We don't eat late.", te: "మేము ఆలస్యంగా తినం." },
+          form: "Do you + action?",
+          useFor: {
+            en: "To ask about a habit, put Do first. Telugu adds ఆ at the end, English adds Do at the start.",
+            te: "అలవాటు గురించి అడగాలంటే Do ముందు పెట్టాలి. తెలుగులో చివర 'ఆ' వస్తుంది, ఇంగ్లీష్‌లో మొదట Do.",
+          },
+          example: { en: "Do you drink coffee?", te: "మీరు కాఫీ తాగుతారా?" },
         },
         {
-          form: "he, she → doesn't, Does",
+          form: "Yes, I do.",
+          useFor: { en: "The short way to say yes to a Do you question.", te: "Do you ప్రశ్నకి అవును అని చిన్నగా చెప్పే పద్ధతి." },
+          example: { en: "Do you walk? Yes, I do.", te: "మీరు నడుస్తారా? అవును, నడుస్తాను." },
+        },
+        {
+          form: "No, I don't.",
           useFor: {
-            en: "Use doesn't and Does with he and she. Then the action has no -s.",
-            te: "he, she తో doesn't, Does వాడాలి. అప్పుడు verb కి -s రాదు.",
+            en: "You will also hear the short no. Just understand it for now; you will practice it in Week 7.",
+            te: "లేదు అనే చిన్న జవాబు కూడా వినిపిస్తుంది. ఇప్పటికి అర్థం చేసుకుంటే చాలు; 7వ వారంలో practice చేస్తాం.",
           },
-          example: { en: "He doesn't drink coffee.", te: "ఆయన కాఫీ తాగరు." },
+          example: { en: "Do you eat late? No, I don't.", te: "మీరు ఆలస్యంగా తింటారా? లేదు, తినను." },
+        },
+        {
+          form: "he, she → walks",
+          useFor: {
+            en: "With he and she, you will hear an s on the action word. Just notice it now; you will practice it in Week 7.",
+            te: "he, she తో verb చివర s వినిపిస్తుంది. ఇప్పటికి గమనిస్తే చాలు; 7వ వారంలో practice చేస్తాం.",
+          },
+          example: { en: "He works in an office.", te: "ఆయన ఆఫీసులో పని చేస్తారు." },
         },
       ],
     },
     {
       id: "l3",
       type: "dontSay",
-      wrong: "He go to the temple.",
-      right: "He goes to the temple.",
+      wrong: "I am walking every day.",
+      right: "I walk every day.",
       why: {
-        en: "With he or she, the action gets -s: He goes to the temple.",
-        te: "he, she తో verb కి -s వస్తుంది: He goes to the temple.",
+        en: "For a habit, use the plain action word, not am with -ing. Every day means a habit: I walk every day.",
+        te: "అలవాటుకి am, -ing వద్దు, మామూలు verb చాలు. every day అంటే అలవాటు: I walk every day.",
       },
     },
     {
       id: "l4",
       type: "dontSay",
-      wrong: "He don't drink coffee.",
-      right: "He doesn't drink coffee.",
+      wrong: "You drink coffee?",
+      right: "Do you drink coffee?",
       why: {
-        en: "With he and she, use doesn't, not don't: He doesn't drink coffee.",
-        te: "he, she తో don't కాదు, doesn't వాడాలి: He doesn't drink coffee.",
+        en: "In Telugu the voice alone makes a question, but English needs Do at the start: Do you drink coffee?",
+        te: "తెలుగులో స్వరంతోనే ప్రశ్న అవుతుంది, కానీ ఇంగ్లీష్‌లో మొదట Do కావాలి: Do you drink coffee?",
       },
     },
   ],
@@ -112,41 +131,45 @@ export const day: Lesson = {
       id: "p1",
       type: "choose",
       prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
-      options: ["She go to the temple.", "She goes to the temple.", "She going to the temple."],
+      options: ["I am walk every morning.", "I walk every morning.", "I walking every morning."],
       answer: 1,
       why: {
-        en: "With she, add -s to the action: goes.",
-        te: "she తో verb కి -s చేర్చాలి: goes.",
+        en: "For a habit, say who and then the plain action word, with no am: I walk every morning.",
+        te: "అలవాటుకి ముందు ఎవరు, తర్వాత మామూలు verb; am వద్దు: I walk every morning.",
       },
     },
     {
       id: "p2",
       type: "fillBlank",
-      sentence: "He ___ drink coffee.",
-      te: "ఆయన కాఫీ తాగరు.",
-      options: ["don't", "doesn't", "isn't"],
-      answer: 1,
+      sentence: "___ you drink coffee?",
+      te: "మీరు కాఫీ తాగుతారా?",
+      options: ["Do", "Are", "Is"],
+      answer: 0,
       why: {
-        en: "He is one person, so use doesn't: He doesn't drink coffee.",
-        te: "he అంటే ఒక్కరు, కాబట్టి doesn't: He doesn't drink coffee.",
+        en: "To ask about a habit, start with Do. Telugu just adds ఆ, but English needs Do: Do you drink coffee?",
+        te: "అలవాటు గురించి అడగాలంటే Do తో మొదలుపెట్టాలి. తెలుగులో 'ఆ' చాలు, ఇంగ్లీష్‌లో Do కావాలి: Do you drink coffee?",
       },
     },
     {
       id: "p3",
       type: "choose",
-      prompt: { en: "Which sentence means: మీరు వార్తలు చూస్తారా?", te: "మీరు వార్తలు చూస్తారా? — ఇంగ్లీష్‌లో ఏది సరైనది?" },
-      options: ["Are you watch the news?", "Does you watch the news?", "Do you watch the news?"],
-      answer: 2,
+      prompt: { en: "Which sentence means: మేము ప్రతి శుక్రవారం గుడికి వెళ్తాం?", te: "మేము ప్రతి శుక్రవారం గుడికి వెళ్తాం — ఇంగ్లీష్‌లో ఏది సరైనది?" },
+      options: ["We going to the temple on Fridays.", "We go to the temple on Fridays.", "We went to the temple on Friday."],
+      answer: 1,
+      why: {
+        en: "Every Friday is a habit, so use the plain action word with we: We go to the temple on Fridays.",
+        te: "ప్రతి శుక్రవారం అంటే అలవాటు, కాబట్టి we తో మామూలు verb: We go to the temple on Fridays.",
+      },
     },
     {
       id: "p4",
       type: "findMistake",
-      sentence: "She walk every morning.",
-      wrongIndex: 1,
-      fix: "She walks every morning.",
+      sentence: "Do you watching the news?",
+      wrongIndex: 2,
+      fix: "Do you watch the news?",
       why: {
-        en: "She is one person, so the action gets -s: She walks every morning.",
-        te: "she అంటే ఒక్కరు, కాబట్టి verb కి -s: She walks every morning.",
+        en: "After Do you, use the plain action word, not -ing: Do you watch the news?",
+        te: "Do you తర్వాత మామూలు verb వాడాలి, -ing వద్దు: Do you watch the news?",
       },
     },
   ],
@@ -159,19 +182,19 @@ export const day: Lesson = {
         te: "మీ స్నేహితులు అడుగుతున్నారు: Do you walk in the morning? అవును అని ఇంగ్లీష్‌లో చెప్పండి.",
       },
       expected: ["Yes, I do.", "Yes, I walk every morning."],
-      options: ["Yes, I does.", "Yes, I do.", "Yes, I am."],
+      options: ["Yes, I am.", "Yes, I do.", "Yes, I walking."],
       answer: 1,
     },
     {
       id: "s2",
       type: "situation",
       situation: {
-        en: "A neighbour asks: Do you drink coffee? Say no, in English.",
-        te: "పక్కింటి వాళ్లు అడుగుతున్నారు: Do you drink coffee? లేదు అని ఇంగ్లీష్‌లో చెప్పండి.",
+        en: "Ask a new friend if they drink coffee. Ask in English.",
+        te: "కొత్త స్నేహితులు కాఫీ తాగుతారా అని ఇంగ్లీష్‌లో అడగండి.",
       },
-      expected: ["No, I don't.", "No, I don't drink coffee."],
-      options: ["No, I doesn't.", "No, I don't.", "No, I not."],
-      answer: 1,
+      expected: ["Do you drink coffee?"],
+      options: ["You drink coffee?", "Are you drink coffee?", "Do you drink coffee?"],
+      answer: 2,
     },
   ],
   roleplay: {
@@ -183,7 +206,10 @@ export const day: Lesson = {
       te: "డాక్టర్ మీ దినచర్య గురించి అడుగుతున్నారు. చిన్న వాక్యాలతో జవాబు చెప్పండి.",
     },
     partner: { en: "Doctor", te: "డాక్టర్" },
-    skills: [{ id: "habits", label: { en: "Daily habits", te: "రోజువారీ అలవాట్లు" } }],
+    skills: [
+      { id: "habits", label: { en: "Daily habits", te: "రోజువారీ అలవాట్లు" } },
+      { id: "polite", label: { en: "Polite phrases", te: "మర్యాద మాటలు" } },
+    ],
     turns: [
       {
         partner: "Do you walk every day?",
@@ -191,32 +217,41 @@ export const day: Lesson = {
         hint: { en: "Say yes, the short way.", te: "అవును అని చిన్నగా చెప్పండి." },
         replies: [
           { say: "Yes, I do.", good: true, skill: "habits" },
-          { say: "Yes, I walks.", good: false, skill: "habits" },
-          { say: "Yes, I does.", good: false, skill: "habits" },
+          { say: "Yes, I am.", good: false, skill: "habits" },
+          { say: "Yes, I walking.", good: false, skill: "habits" },
         ],
       },
       {
-        partner: "Do you drink coffee?",
-        te: "మీరు కాఫీ తాగుతారా?",
-        hint: { en: "Say no, the short way.", te: "లేదు అని చిన్నగా చెప్పండి." },
+        partner: "Good. Do you drink coffee?",
+        te: "మంచిది. మీరు కాఫీ తాగుతారా?",
+        hint: { en: "Say yes in a full sentence, and add every morning.", te: "అవును అని పూర్తి వాక్యంలో చెప్పి, every morning చేర్చండి." },
         replies: [
-          { say: "No, I don't.", good: true, skill: "habits" },
-          { say: "No, I doesn't.", good: false, skill: "habits" },
-          { say: "No, I not drink.", good: false, skill: "habits" },
+          { say: "Yes, I drink coffee every morning.", good: true, skill: "habits" },
+          { say: "Yes, I am drink coffee every morning.", good: false, skill: "habits" },
         ],
       },
       {
-        partner: "Do you eat late?",
-        te: "మీరు ఆలస్యంగా తింటారా?",
-        hint: { en: "Say no, in a full sentence.", te: "లేదు అని పూర్తి వాక్యంలో చెప్పండి." },
+        partner: "Do you eat early or late?",
+        te: "మీరు తొందరగా తింటారా, ఆలస్యంగానా?",
+        hint: { en: "Say that you eat early. Start with I.", te: "మీరు తొందరగా తింటారని చెప్పండి. I తో మొదలుపెట్టండి." },
         replies: [
-          { say: "No, I don't eat late.", good: true, skill: "habits" },
-          { say: "No, I doesn't eat late.", good: false, skill: "habits" },
+          { say: "I eat early.", good: true, skill: "habits" },
+          { say: "I am eat early.", good: false, skill: "habits" },
           {
             say: "Just give me tablets, doctor.",
             good: false,
+            skill: "polite",
             react: { en: "Please, first tell me about your food.", te: "మాత్రలు తర్వాత. ముందు మీ భోజనం గురించి చెప్పండి." },
           },
+        ],
+      },
+      {
+        partner: "Good. Walk every day, and eat early.",
+        te: "మంచిది. రోజూ నడవండి, తొందరగా తినండి.",
+        hint: { en: "Thank the doctor politely.", te: "డాక్టర్ గారికి మర్యాదగా థాంక్స్ చెప్పండి." },
+        replies: [
+          { say: "Thank you, doctor.", good: true, skill: "polite" },
+          { say: "Okay, okay. Bye.", good: false, skill: "polite" },
         ],
       },
     ],

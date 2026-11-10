@@ -1,6 +1,9 @@
 import type { Activity, ReviewDay } from "../../types";
 
-/** Week 1, Day 7 (CURRICULUM §3): the automatic review, plus a timeline (one verb on four days) and a 6-turn video call. */
+/**
+ * Week 1, Day 7 (CURRICULUM §3): the automatic review, plus a timeline (one verb on four days), two recognition items
+ * (a negative and he / she + s, heard and understood, never built: they are built in Weeks 7 and 9) and a 6-turn video call.
+ */
 
 const timeline = (id: string, sentence: string, te: string, answer: number): Activity => ({
   id,
@@ -24,6 +27,30 @@ export const day: ReviewDay = {
     timeline("t2", "I ___ to the market right now.", "నేను ఇప్పుడు మార్కెట్‌కి వెళ్తున్నాను.", 1),
     timeline("t3", "I ___ to the market yesterday.", "నేను నిన్న మార్కెట్‌కి వెళ్లాను.", 2),
     timeline("t4", "I ___ to the market tomorrow.", "నేను రేపు మార్కెట్‌కి వెళ్తాను.", 3),
+    {
+      id: "n1",
+      type: "choose",
+      prompt: { en: 'What does "I didn\'t go out." mean?', te: '"I didn\'t go out." అంటే ఏంటి?' },
+      say: "I didn't go out.",
+      options: ["నేను బయటికి వెళ్లలేదు.", "నేను బయటికి వెళ్లాను.", "నేను బయటికి వెళ్తాను."],
+      answer: 0,
+      why: {
+        en: "Didn't means no about the past. I didn't go out means you stayed at home.",
+        te: "didn't అంటే గతంలో చేయలేదు అని. I didn't go out అంటే బయటికి వెళ్లలేదు, ఇంట్లోనే ఉన్నారు.",
+      },
+    },
+    {
+      id: "n2",
+      type: "choose",
+      prompt: { en: 'What does "He works in an office." mean?', te: '"He works in an office." అంటే ఏంటి?' },
+      say: "He works in an office.",
+      options: ["ఆయన ఆఫీసులో పని చేస్తారు.", "నేను ఆఫీసులో పని చేస్తాను.", "వాళ్లు ఆఫీసులో పని చేస్తారు."],
+      answer: 0,
+      why: {
+        en: "He is one man, and the action word gets an s with he: works. You will practice this in Week 7.",
+        te: "He అంటే ఒక ఆయన; he తో verb కి s వస్తుంది: works. ఇది 7వ వారంలో practice చేస్తాం.",
+      },
+    },
     {
       id: "r1",
       type: "roleplay",

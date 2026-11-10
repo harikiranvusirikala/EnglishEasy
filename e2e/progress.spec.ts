@@ -22,7 +22,7 @@ test("half of Day 1, reload, Continue resumes at the same activity", async ({ pa
   await expect(page.getByRole("link", { name: /^Start/ })).toBeVisible();
   await page.getByRole("link", { name: /^Start/ }).click();
   await next(page, /^Start/);
-  for (let i = 0; i < 5; i++) await next(page); // the Learn cards (4, and the Sound of the week)
+  for (let i = 0; i < 6; i++) await next(page); // the Learn cards (5, and the Sound of the week)
   await next(page, /^Start/);
   await page.getByRole("button", { name: "I eat rice." }).click();
   await page.getByRole("button", { name: /^Check/ }).click();
@@ -59,7 +59,7 @@ for (const theme of ["light", "dark"] as const) {
     await page.screenshot({ path: `${SHOTS}/overview-start${suffix}.png` });
     await page.getByRole("link", { name: /^Start/ }).click();
     await next(page, /^Start/);
-    for (let i = 0; i < 5; i++) await next(page);
+    for (let i = 0; i < 6; i++) await next(page);
 
     await expect(page.getByRole("heading", { name: "Day 1 Complete!" })).toBeVisible();
     await expect(page.getByText("Your sentences today")).toBeVisible();

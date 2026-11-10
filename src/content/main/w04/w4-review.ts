@@ -41,5 +41,9 @@ export const day: ReviewDay = {
       en: "After doesn't, the verb is always have.",
       te: "doesn't తర్వాత ఎప్పుడూ have.",
     }),
+    pick("q7", "___ umbrella is this? It's Padma's.", "ఈ గొడుగు ఎవరిది? పద్మ గారిది.", ["Who", "Whose", "Whom"], 1, {
+      en: "Whose asks who owns a thing, and the answer is a name with 's: Whose umbrella is this?",
+      te: "వస్తువు ఎవరిదో అడగడానికి whose; జవాబు పేరు + 's: Whose umbrella is this?",
+    }),
   ],
 };

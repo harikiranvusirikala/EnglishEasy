@@ -23,7 +23,7 @@ async function settings(page: Page, extra: object = {}) {
 async function toRepeat(page: Page) {
   await page.goto("/learn/play?l=sentence-basics");
   await next(page, /^Start/);
-  for (let i = 0; i < 5; i++) await next(page); // 4 Learn cards and the Sound of the week
+  for (let i = 0; i < 6; i++) await next(page); // 5 Learn cards and the Sound of the week
   await next(page, /^Start/);
   for (const name of ["I eat rice.", "speak", "They play cricket."]) {
     await page.getByRole("button", { name, exact: true }).click();

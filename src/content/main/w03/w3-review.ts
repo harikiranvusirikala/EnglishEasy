@@ -1,6 +1,6 @@
 import type { Activity, Bi, ReviewDay } from "../../types";
 
-/** Week 3, Day 7 (CURRICULUM §3): the automatic review (with a role play from the Conversation Day), plus a numbers-and-time round. */
+/** Week 3, Day 7 (CURRICULUM §3): the automatic review (with a role play from the Conversation Day), plus a numbers, time and address round (lakh and crore moved to Week 21). */
 
 const pick = (id: string, sentence: string, te: string, options: string[], answer: number, why: Bi): Activity => ({
   id,
@@ -33,13 +33,13 @@ export const day: ReviewDay = {
       en: "Use in with a month alone: in November.",
       te: "నెల ఒక్కటే అయితే in వాడాలి: in November.",
     }),
-    pick("q5", "It costs two ___ rupees.", "దాని ధర రెండు వేల రూపాయలు.", ["thousand", "thousands", "lakhs"], 0, {
-      en: "Before rupees, thousand has no s.",
-      te: "rupees ముందు thousand కి s ఉండదు.",
+    pick("q5", "What ___ your address?", "మీ అడ్రస్ ఏంటి?", ["is", "are", "do"], 0, {
+      en: "Telugu మీ అడ్రస్ ఏంటి? has no is, but English needs it: What is your address?",
+      te: "'మీ అడ్రస్ ఏంటి?' లో is లాంటి పదం ఉండదు, కానీ ఇంగ్లీష్‌లో కావాలి: What is your address?",
     }),
-    pick("q6", "Ten lakh is one ___.", "పది లక్షలు అంటే ఒక మిలియన్.", ["thousand", "million", "crore"], 1, {
-      en: "Ten lakh and one million both have six zeros.",
-      te: "పది లక్షలకి, million కి ఆరు సున్నాలు ఉంటాయి.",
+    pick("q6", "How do you ___ your name?", "మీ పేరు స్పెల్లింగ్ ఏంటి?", ["spell", "spelling", "tell spelling"], 0, {
+      en: "In English, spell is the action word, so no tell: How do you spell your name?",
+      te: "ఇంగ్లీష్‌లో spell నే verb గా వాడతాం, tell అక్కర్లేదు: How do you spell your name?",
     }),
   ],
 };

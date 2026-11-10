@@ -18,7 +18,7 @@ const decide = (path: string, extra: { method?: string; mode?: string } = {}) =>
 describe("service worker routing", () => {
   it("answers lesson files from the cache and refreshes them in the background", () => {
     expect(decide("/content/sentence-basics.json")).toBe("stale-while-revalidate");
-    expect(decide("/audio/manifest.json")).toBe("stale-while-revalidate");
+    expect(decide("/audio/manifest.json")).toBe("fresh"); // a stale list would send new lines to the phone's voices
   });
 
   it("keeps hashed files, icons and recorded clips cache-first", () => {

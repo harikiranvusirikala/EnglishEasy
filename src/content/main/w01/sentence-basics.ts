@@ -1,6 +1,6 @@
 import type { Lesson } from "../../types";
 
-/** Week 1, Day 1 (CURRICULUM §3): Who + Action + What. Only I / we / they here; he / she come on Day 3. */
+/** Week 1, Day 1 (CURRICULUM §3): Who + Action + What, with I / we / they; and the chunks Hello, Thank you, Sorry? Again, please. */
 export const day: Lesson = {
   id: "sentence-basics",
   kind: "lesson",
@@ -71,8 +71,8 @@ export const day: Lesson = {
       type: "explain",
       heading: { en: "I, we, they: the action stays the same", te: "I, we, they: verb మారదు" },
       body: {
-        en: "With I, we and they, the action word does not change. I eat. We eat. They eat. (He and she come on Day 3.)",
-        te: "I, we, they తో verb మారదు: I eat, we eat, they eat. (He, she గురించి 3వ రోజు నేర్చుకుంటాం.)",
+        en: "With I, we and they, the action word does not change. I eat. We eat. They eat. (He and she come later.)",
+        te: "I, we, they తో verb మారదు: I eat, we eat, they eat. (He, she గురించి తర్వాత నేర్చుకుంటాం.)",
       },
       examples: [
         { en: "We speak Telugu.", te: "మేము తెలుగు మాట్లాడతాం." },
@@ -99,6 +99,20 @@ export const day: Lesson = {
         en: "Do not add am. For something you do, just say I eat.",
         te: "ఇక్కడ am వద్దు. మీరు చేసే పనికి I eat అంటే చాలు.",
       },
+    },
+    {
+      id: "l5",
+      type: "explain",
+      heading: { en: "Three phrases for every day", te: "రోజూ వాడే మూడు మాటలు" },
+      body: {
+        en: "Say Hello to start, and Thank you when someone helps. If you did not hear, say: Sorry? Again, please.",
+        te: "మొదట్లో Hello, సహాయం చేస్తే Thank you అనండి. వినిపించకపోతే: Sorry? Again, please.",
+      },
+      examples: [
+        { en: "Hello.", te: "నమస్తే." },
+        { en: "Thank you.", te: "థాంక్యూ." },
+        { en: "Sorry? Again, please.", te: "sorry అండీ? మళ్ళీ ఒకసారి చెప్తారా?" },
+      ],
     },
   ],
   practice: [

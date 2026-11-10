@@ -26,9 +26,9 @@ const week1Days: DayRef[] = [
 
 // Week 2 (CURRICULUM §3): the question words, a Conversation Day and the review.
 const week2Days: DayRef[] = [
-  { id: "what-and-where", kind: "lesson", title: { en: "What & Where", te: "ఏంటి, ఎక్కడ" } },
+  { id: "what-and-where", kind: "lesson", title: { en: "What, Where & Who", te: "ఏంటి, ఎక్కడ, ఎవరు" } },
   { id: "when-and-what-time", kind: "lesson", title: { en: "When & What Time", te: "ఎప్పుడు, ఎన్ని గంటలకు" } },
-  { id: "who-and-whose", kind: "lesson", title: { en: "Who & Whose", te: "ఎవరు, ఎవరిది" } },
+  { id: "sorry-can-you-repeat", kind: "lesson", title: { en: "Sorry? Say It Again", te: "అర్థం కాకపోతే" } },
   { id: "how-questions", kind: "lesson", title: { en: "How Questions", te: "ఎలా, ఎంత" } },
   { id: "why-and-because", kind: "lesson", title: { en: "Why & Because", te: "ఎందుకు, ఎందుకంటే" } },
   { id: "w2-conversation", kind: "conversation", title: { en: "Meeting Someone at a Wedding", te: "పెళ్లిలో పరిచయం" } },
@@ -41,7 +41,7 @@ const week3Days: DayRef[] = [
   { id: "telling-the-time", kind: "lesson", title: { en: "Telling the Time", te: "సమయం చెప్పడం" } },
   { id: "days-and-dates", kind: "lesson", title: { en: "Days, Months & Dates", te: "రోజులు, నెలలు, తేదీలు" } },
   { id: "prices-and-money", kind: "lesson", title: { en: "Prices & Money", te: "ధరలు, డబ్బు" } },
-  { id: "big-numbers-lakh", kind: "lesson", title: { en: "Big Numbers", te: "పెద్ద సంఖ్యలు" } },
+  { id: "my-address", kind: "lesson", title: { en: "My Address", te: "నా అడ్రస్" } },
   { id: "w3-conversation", kind: "conversation", title: { en: "At the Vegetable Market", te: "కూరగాయల మార్కెట్‌లో" } },
   { id: "w3-review", kind: "review", title: { en: "Numbers Everywhere", te: "అంతటా సంఖ్యలు" } },
 ];
@@ -50,7 +50,7 @@ const week3Days: DayRef[] = [
 const week4Days: DayRef[] = [
   { id: "have-and-has", kind: "lesson", title: { en: "Have & Has", te: "నాకు ఉంది, ఆయనకి ఉంది" } },
   { id: "my-your-his-her", kind: "lesson", title: { en: "My, Your, His, Her", te: "నా, మీ, ఆయన, ఆవిడ" } },
-  { id: "possessive-s", kind: "lesson", title: { en: "Ravi's House", te: "ఒకరి వస్తువు ('s)" } },
+  { id: "possessive-s", kind: "lesson", title: { en: "Whose Is It? Ravi's", te: "ఎవరిది? రవి గారిది" } },
   { id: "describing-people", kind: "lesson", title: { en: "Describing People", te: "మనుషులు ఎలా ఉంటారు" } },
   { id: "this-that-these-those", kind: "lesson", title: { en: "This, That, These, Those", te: "ఇది, అది, ఇవి, అవి" } },
   { id: "w4-conversation", kind: "conversation", title: { en: "A New Friend at the Park", te: "పార్క్‌లో కొత్త స్నేహితులు" } },
@@ -96,7 +96,7 @@ const week8Days: DayRef[] = [
   { id: "can-i", kind: "lesson", title: { en: "Can I …?", te: "అనుమతి" } },
   { id: "can-could-would", kind: "lesson", title: { en: "Can, Could, Would", te: "మర్యాదగా అడగడం" } },
   { id: "could-in-the-past", kind: "lesson", title: { en: "I Could … (before)", te: "ఒకప్పుడు చేయగలిగేవాళ్ళం" } },
-  { id: "sorry-can-you-repeat", kind: "lesson", title: { en: "Sorry, Can You Repeat?", te: "అర్థం కాకపోతే" } },
+  { id: "please-help-me", kind: "lesson", title: { en: "Please Help Me!", te: "సహాయం చేయండి!" } },
   { id: "w8-conversation", kind: "conversation", title: { en: "Help at the Railway Station", te: "రైల్వే స్టేషన్‌లో సహాయం" } },
   { id: "w8-review", kind: "review", title: { en: "Asking for Help", te: "సహాయం అడగడం" } },
 ];

@@ -1,6 +1,6 @@
 import type { Lesson } from "../../types";
 
-/** Week 1, Day 2 (CURRICULUM §3): Who + am / is / are + what / how. */
+/** Week 1, Day 2 (CURRICULUM §3): Who + am / is / are + what / how; chunks Hello, I'm Kiran. Nice to meet you. Sorry? Again, please. */
 export const day: Lesson = {
   id: "i-am-you-are",
   kind: "lesson",
@@ -31,8 +31,8 @@ export const day: Lesson = {
   ],
   key: [0, 1, 3, 5],
   tryToday: {
-    en: "Introduce yourself to someone. Say: Hello, I am (your name).",
-    te: "ఎవరికైనా మిమ్మల్ని పరిచయం చేసుకోండి. ఇలా చెప్పండి: Hello, I am (మీ పేరు).",
+    en: "Introduce yourself to someone. Say: Hello, I'm (your name). Nice to meet you.",
+    te: "ఎవరికైనా మిమ్మల్ని పరిచయం చేసుకోండి. ఇలా చెప్పండి: Hello, I'm (మీ పేరు). Nice to meet you.",
   },
   words: [
     { en: "hungry", te: "ఆకలిగా" },
@@ -188,21 +188,38 @@ export const day: Lesson = {
       te: "సాయంత్రం కొత్తగా వచ్చిన పక్కింటి ఉష గారు పలకరిస్తున్నారు. మీతో మీ స్నేహితుడు ఇమ్రాన్ ఉన్నారు. చిన్న వాక్యాలతో జవాబు చెప్పండి.",
     },
     partner: { en: "Usha (a neighbour)", te: "ఉష (పొరుగింటావిడ)" },
-    skills: [{ id: "be", label: { en: "am / is / are", te: "am / is / are వాడకం" } }],
+    skills: [
+      { id: "be", label: { en: "am / is / are", te: "am / is / are వాడకం" } },
+      { id: "polite", label: { en: "Polite phrases", te: "మర్యాద మాటలు" } },
+    ],
     turns: [
       {
-        partner: "Hello! I am Usha. And you?",
-        te: "నమస్తే! నేను ఉషని. మరి మీరు?",
-        hint: { en: "Say your name. Start with I am.", te: "మీ పేరు చెప్పండి. I am తో మొదలుపెట్టండి." },
+        partner: "Hello! I'm Usha, your new neighbour.",
+        te: "నమస్తే! నేను ఉష, మీ కొత్త పక్కింటావిడని.",
+        hint: { en: "You did not catch her name. Ask her politely to say it again.", te: "ఆవిడ పేరు సరిగ్గా వినిపించలేదు. మళ్ళీ చెప్పమని మర్యాదగా అడగండి." },
         replies: [
-          { say: "I am Kiran.", good: true, skill: "be" },
-          { say: "I Kiran.", good: false, skill: "be" },
-          { say: "Why do you want to know?", good: false, react: { en: "Oh, sorry! I am your new neighbour.", te: "అయ్యో, sorry అండీ! నేను మీ కొత్త పక్కింటావిడని." } },
+          { say: "Sorry? Again, please.", good: true, skill: "polite" },
+          {
+            say: "What? Say it again.",
+            good: false,
+            skill: "polite",
+            react: { en: "Oh! Usha. My name is Usha.", te: "ఓ! ఉష. నా పేరు ఉష." },
+          },
         ],
       },
       {
-        partner: "Long day? Are you tired?",
-        te: "రోజంతా పనా? మీకు అలసటగా ఉందా?",
+        partner: "Usha. I'm Usha. And you?",
+        te: "ఉష. నేను ఉషని. మరి మీరు?",
+        hint: { en: "Greet her, give your name, and say you are glad to meet her.", te: "పలకరించి, మీ పేరు చెప్పి, కలిసినందుకు సంతోషం అని చెప్పండి." },
+        replies: [
+          { say: "Hello, I'm Kiran. Nice to meet you.", good: true, skill: "be" },
+          { say: "Hello, I Kiran. Nice to meet you.", good: false, skill: "be" },
+          { say: "Myself Kiran.", good: false, skill: "polite" },
+        ],
+      },
+      {
+        partner: "You too! Long day? Are you tired?",
+        te: "మిమ్మల్ని కలవడం నాకూ సంతోషం! రోజంతా పనా? మీకు అలసటగా ఉందా?",
         hint: { en: "Say yes, the short way.", te: "అవును అని చిన్నగా చెప్పండి." },
         replies: [
           { say: "Yes, I am.", good: true, skill: "be" },

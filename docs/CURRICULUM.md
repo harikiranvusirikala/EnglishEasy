@@ -304,7 +304,7 @@ The sound fits the week's words where it can.
 
 **The learner can:** greet and introduce themselves, make simple sentences in the main tenses, ask and answer questions, ask someone to repeat, give their phone number and address, handle numbers, time, money, people, home, food, routines, plans and simple health talk, and call for help. *(Checkpoint 1 at Week 12, §2b.)*
 
-*Revised 2026-11-09 (curriculum review): week positions and the `w<N>-*` ids stay. Days marked **NEW**, **MOVED**, **LIGHTENED** or **CHUNKS ADDED** changed in the map; their written lessons still have to be rewritten to match.*
+*Revised 2026-11-09 (curriculum review): week positions and the `w<N>-*` ids stay. Days marked **NEW**, **MOVED**, **LIGHTENED** or **CHUNKS ADDED** changed in the map; their written lessons were rewritten to match on 2026-11-10 (BUILD_PLAN "Curriculum reordered", part B).*
 
 Each row: lesson id (stable, used in the address) · title (English · Telugu) · pattern / focus · sample sentences · role-play scene · Try it today. Lesson ids for Conversation and Review days are `w<N>-conversation` and `w<N>-review`.
 
@@ -330,7 +330,7 @@ Day 7 = the automatic review plus two extras: a **timeline** activity (the same 
 |---|---|---|---|---|---|
 | 1 | `what-and-where` | What, Where & Who · ఏంటి, ఎక్కడ, ఎవరు *(Who folded in from Day 3)* | what / where / who + be and do | What is this? Where do you live? Who is that man? | A new neighbour asks where you live |
 | 2 | `when-and-what-time` | When & What Time · ఎప్పుడు, ఎన్ని గంటలకు | when / what time | When is the function? What time does the shop open? | Asking a shopkeeper when the shop opens |
-| 3 | `sorry-can-you-repeat` | Sorry? Say It Again · అర్థం కాకపోతే **(MOVED from Week 8, simplified; replaces `who-and-whose`)** | clarifying: Sorry? Please say it again. Please speak slowly. What does … mean? How do you say … in English? | Sorry? Please say it again. Please speak slowly. What does "bill" mean? | A shopkeeper speaks too fast |
+| 3 | `sorry-can-you-repeat` | Sorry? Say It Again · అర్థం కాకపోతే **(MOVED from Week 8, simplified; replaces `who-and-whose`)** | clarifying: Sorry? Please say it again. Please speak slowly. What does … mean? How do you say … in English? | Sorry? Please say it again. Please speak slowly. What does this word mean? | A shopkeeper speaks too fast |
 | 4 | `how-questions` | How Questions · ఎలా, ఎంత | how, how old, how much, how far | How are you? How much is this? How far is the bus stand? | Buying fruit from a cart |
 | 5 | `why-and-because` | Why & Because · ఎందుకు, ఎందుకంటే | why … ? because … | Why are you late? Because the bus was late. | A friend asks why you missed the meeting |
 | 6 | `w2-conversation` | Conversation Day: Meeting Someone at a Wedding · పెళ్లిలో పరిచయం | all question words; asking someone to repeat | — | Getting to know a stranger at a wedding (asking who someone is, and asking them to say a name again); asking the way to the dining hall |
@@ -346,7 +346,7 @@ The Review Day covers the clarifying phrases with the question words. *Whose* is
 | 2 | `telling-the-time` | Telling the Time · సమయం చెప్పడం | o'clock, half past, quarter to | It is half past six. The bus comes at quarter to nine. | Asking the time at a bus stop |
 | 3 | `days-and-dates` | Days, Months & Dates · రోజులు, నెలలు, తేదీలు | on / in / at with time | My birthday is on 15 August. The temple is closed on Mondays. | Booking a day for a doctor's appointment |
 | 4 | `prices-and-money` | Prices & Money · ధరలు, డబ్బు | How much is/are …? rupees, change | How much is this saree? It is 1,500 rupees. | Paying at a shop and getting change |
-| 5 | `my-address` | My Address · నా అడ్రస్ **(NEW; `big-numbers-lakh` MOVED to Week 21)** | door number, street, town, pin code (said digit by digit); spelling your name with the alphabet | My house number is 12-4. The pin code is 522001. Kiran: K, I, R, A, N. | A courier calls to ask for your address and how to spell your name |
+| 5 | `my-address` | My Address · నా అడ్రస్ **(NEW; `big-numbers-lakh` MOVED to Week 21)** | door number, street, town, pin code (said digit by digit); spelling your name with the alphabet | My door number is twelve. Five two two, double zero one. Kiran. K, I, R, A, N. | A courier calls to ask for your address and how to spell your name |
 | 6 | `w3-conversation` | Conversation Day: At the Vegetable Market · కూరగాయల మార్కెట్‌లో | numbers, prices, time, address | — | Buying vegetables; asking when the market closes; giving your address for a home delivery |
 | 7 | `w3-review` | Review | | | |
 
@@ -408,7 +408,7 @@ The Review Day covers phone numbers, prices, times, dates and the address; lakh 
 | 2 | `can-i` | Can I …? · అనుమతి | permission | Can I sit here? Can I use your phone? | Asking for a seat on a bus |
 | 3 | `can-could-would` | Can, Could, Would · మర్యాదగా అడగడం | polite requests (When do I use this?) | Can you help me? Could you help me, please? | Asking a stranger to read a sign |
 | 4 | `could-in-the-past` | I Could … (before) | could / couldn't for past ability | When I was young, I could run fast. | Telling a friend about your childhood |
-| 5 | `please-help-me` | Please Help Me! · సహాయం చేయండి! **(NEW; `sorry-can-you-repeat` MOVED to Week 2)** | asking for help in an emergency: Help! Please call 108. I am lost. I fell. Giving your address. Never assumes family: "Please call this number", "Please call my neighbour". | Please help me. Please call 108. I am lost. I fell down. | You slip on the road and a stranger asks "Are you okay?" |
+| 5 | `please-help-me` | Please Help Me! · సహాయం చేయండి! **(NEW; `sorry-can-you-repeat` MOVED to Week 2)** | asking for help in an emergency: Help! Please call one zero eight (ambulance) or one one two (any emergency). I am lost. I fell. Giving your address. Never assumes family: "Please call this number", "Please call my neighbour". | Please help me. Please call one zero eight. I am lost. I fell down. | You slip on the road and a stranger asks "Are you okay?" |
 | 6 | `w8-conversation` | Conversation Day: Help at the Railway Station · రైల్వే స్టేషన్‌లో సహాయం | requests, clarifying (from Week 2), calling for help | — | Finding the platform; asking a porter for help; a passenger feels faint and you call for help |
 | 7 | `w8-review` | Review | | | |
 
@@ -627,7 +627,7 @@ Each week below: five lessons, a Conversation Day (`w<N>-conversation`) and a re
 |---|---|---|---|---|---|
 | 1 | `deposit-and-withdraw` | Deposit and Withdraw · డబ్బు వేయడం, తీయడం | deposit, withdraw, passbook, slip; You must bring … | I'd like to deposit ten thousand rupees. You must bring your Aadhaar card. | At the cash counter |
 | 2 | `at-the-atm` | At the ATM · ATM దగ్గర | ATM steps; PIN; a stuck card | Enter your PIN. My card is stuck in the machine. | Asking the guard for help at an ATM |
-| 3 | `big-numbers-lakh` | Big Numbers · పెద్ద సంఖ్యలు *(MOVED from Week 3)* | hundred, thousand, lakh = hundred thousand; crore = ten million | One lakh is one hundred thousand. The flat costs fifty lakh rupees. | A friend asks the price of a house |
+| 3 | `big-numbers-lakh` | Big Numbers · పెద్ద సంఖ్యలు *(MOVED from Week 3; the file is parked in `src/content/main/w21/`, unregistered until Week 21 is written)* | hundred, thousand, lakh = hundred thousand; crore = ten million | One lakh is one hundred thousand. The flat costs fifty lakh rupees. | A friend asks the price of a house |
 | 4 | `never-share-your-otp` | Never Share Your OTP · OTP ఎవరికీ చెప్పకండి | never + action; UPI words; fake KYC calls | Never share your OTP. The bank never asks for your PIN. | A "KYC update" caller asks for your OTP |
 | 5 | `its-a-scam` | It's a Scam! · ఇది మోసం! | "digital arrest" and prize calls; hang up and call 1930 | The police never arrest anyone on a video call. I will call 1930. | A fake "police officer" on a video call demands money |
 | 6 | `w21-conversation` | Conversation Day: A Morning at the Bank · బ్యాంకులో ఒక ఉదయం | all of the week | — | Updating KYC at the branch; reporting a failed UPI payment and a fraud call |

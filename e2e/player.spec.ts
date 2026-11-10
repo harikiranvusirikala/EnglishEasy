@@ -10,7 +10,7 @@ const next = (page: Page, name: RegExp = /^Continue/) => page.getByRole("button"
 async function toPractice(page: Page) {
   await page.goto("/learn/play?l=sentence-basics");
   await next(page, /^Start/);
-  for (let i = 0; i < 5; i++) await next(page); // 2 explain cards, 2 don't-say cards, the Sound of the week
+  for (let i = 0; i < 6; i++) await next(page); // 2 explain cards, 2 don't-say cards, the chunks card, the Sound of the week
   await next(page, /^Start/);
 }
 
@@ -56,7 +56,7 @@ test("Day 1: Learn cards, first practice questions and the section summary", asy
   await expect(page.getByRole("heading", { name: /^ఎవరు/ })).toBeVisible(); // Telugu mode by default
   await expect(page.getByText("Who", { exact: true }).first()).toBeVisible();
   await page.screenshot({ path: `${SHOTS}/player-explain.png` });
-  for (let i = 0; i < 5; i++) await next(page);
+  for (let i = 0; i < 6; i++) await next(page);
   await next(page, /^Start/);
 
   await page.getByRole("button", { name: "I eat rice." }).click();

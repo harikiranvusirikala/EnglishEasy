@@ -171,13 +171,14 @@ export function parseProgress(raw: string | null): Progress {
 }
 
 /**
- * "Start over" in Settings: everything learned and the goals are gone. Signed in (`everywhere`), the reset time is kept,
- * so the account and every other phone drop their older progress when they merge; signed out it is this phone only, and
- * signing in later brings the account's progress back.
+ * "Start over" in Settings: everything learned is gone; the goals stay (they are changed in Settings → My tracks).
+ * Signed in (`everywhere`), the reset time is kept, so the account and every other phone drop their older progress when
+ * they merge; signed out it is this phone only, and signing in later brings the account's progress back.
  */
-export function resetProgress(now: string, everywhere: boolean): Progress {
-  const empty = emptyProgress(now);
-  return everywhere ? { ...empty, resetAt: now } : empty;
+export function resetProgress(p: Progress, now: string, everywhere: boolean): Progress {
+  const kept: Progress = { ...emptyProgress(now), tracks: p.tracks, tracksAsked: p.tracksAsked };
+  if (p.tripSoon) kept.tripSoon = true;
+  return everywhere ? { ...kept, resetAt: now } : kept;
 }
 
 /** A local date as "YYYY-MM-DD" (the practice-day format). */

@@ -19,9 +19,9 @@ import { pushNow } from "@/lib/sync";
 import { SettingsCard } from "./SettingsCard";
 
 /**
- * Settings → Start over (owner request, 2026-11-10): clears everything learned and the goals, and the first visit's
- * welcome asks again. Signed in, the account is reset too (now, or when back online) and other phones follow when they
- * sync; signed out, only this phone. Settings and reminders stay. A tap to confirm, never typing.
+ * Settings → Start over (owner request, 2026-11-10): clears everything learned, then Home at Day 1. What Settings can
+ * change (goals, Learn in, theme, text size, audio, reminders) stays. Signed in, the account is reset too (now, or when
+ * back online) and other phones follow when they sync; signed out, only this phone. A tap to confirm, never typing.
  */
 export function StartOver({ course }: { course: Course }) {
   const account = useAccount();
@@ -34,9 +34,10 @@ export function StartOverView({ account, course }: { account: AccountState; cour
   const [asking, setAsking] = useState(false);
   const signedIn = account.kind === "signedIn";
   const confirm = () => {
-    updateProgress(() => resetProgress(new Date().toISOString(), signedIn));
+    updateProgress((p) => resetProgress(p, new Date().toISOString(), signedIn));
+    // Back at Week 1, each goal's "New for you" card comes again at its week.
     const offers = new Set(course.tracks.map((t) => trackOfferKey(t.id)));
-    updateSettings({ onboarded: false, dismissed: getSettings().dismissed.filter((id) => !offers.has(id)) });
+    updateSettings({ dismissed: getSettings().dismissed.filter((id) => !offers.has(id)) });
     if (signedIn) void pushNow(); // offline: the sync sends it when back online
     router.push("/learn");
   };

@@ -34,7 +34,7 @@ function clearedBy(id: string, added: string, other: Progress): boolean {
   return played && other.updatedAt > added;
 }
 
-/** What a copy learned after a reset elsewhere (`at`); everything older, and its goals, are gone with the reset. */
+/** What a copy learned after a reset elsewhere (`at`), and its goals; everything older is gone with the reset. */
 function sinceReset(p: Progress, at: string): Progress {
   const after = <T>(items: Record<string, T>, time: (v: T) => string) => Object.fromEntries(Object.entries(items).filter(([, v]) => time(v) > at));
   const kept: Progress = {
@@ -43,11 +43,12 @@ function sinceReset(p: Progress, at: string): Progress {
     completed: after(p.completed, (c) => c.at),
     mistakes: after(p.mistakes, (added) => added),
     practiceDays: p.practiceDays.filter((d) => d > at.slice(0, 10)),
-    tracks: [],
-    tracksAsked: false,
+    tracks: p.tracks,
+    tracksAsked: p.tracksAsked,
     updatedAt: p.updatedAt,
     resetAt: at,
   };
+  if (p.tripSoon) kept.tripSoon = true;
   const review = after(p.review ?? {}, (r) => r.at);
   if (Object.keys(review).length > 0) kept.review = review;
   if (p.position && p.position.at > at) kept.position = p.position;

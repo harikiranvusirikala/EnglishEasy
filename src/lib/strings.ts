@@ -118,8 +118,8 @@ export const strings = {
   accountPhotoAlt: { en: "Your Google photo", te: "మీ Google ఫోటో" },
   startOver: { en: "Start over", te: "మళ్ళీ మొదటి నుంచి" },
   startOverHint: {
-    en: "Clear your lessons, practice and goals, and begin again from Day 1.",
-    te: "మీ పాఠాలు, practice, లక్ష్యాలు అన్నీ తీసేసి, మళ్ళీ Day 1 నుంచి మొదలుపెట్టండి.",
+    en: "Clear your lessons and practice, and begin again from Day 1.",
+    te: "మీ పాఠాలు, practice అన్నీ తీసేసి, మళ్ళీ Day 1 నుంచి మొదలుపెట్టండి.",
   },
   resetProgress: { en: "Reset progress", te: "ప్రోగ్రెస్ రీసెట్ చేయండి" },
   resetAsk: { en: "Reset all progress?", te: "మొత్తం ప్రోగ్రెస్ రీసెట్ చేయాలా?" },
@@ -133,11 +133,11 @@ export const strings = {
   },
   resetCleared: { en: "Cleared", te: "పోయేవి" },
   resetClearedList: {
-    en: "Lessons done, practice, daily review, streak, goals",
-    te: "పూర్తి చేసిన పాఠాలు, practice, రోజువారీ రివ్యూ, streak, లక్ష్యాలు",
+    en: "Lessons done, practice, daily review, streak",
+    te: "పూర్తి చేసిన పాఠాలు, practice, రోజువారీ రివ్యూ, streak",
   },
   resetKept: { en: "Kept", te: "ఉండేవి" },
-  resetKeptList: { en: "Your settings and reminders", te: "మీ సెట్టింగ్స్, రిమైండర్లు" },
+  resetKeptList: { en: "Everything in Settings: your goals, language, text size, sound and reminders", te: "సెట్టింగ్స్‌లోనివన్నీ: మీ లక్ష్యాలు, భాష, అక్షరాల సైజు, సౌండ్, రిమైండర్లు" },
   resetCannotUndo: { en: "This cannot be undone.", te: "దీన్ని మళ్ళీ వెనక్కి తేలేము." },
   supportCoffee: { en: "Buy me a coffee", te: "నాకు ఒక కాఫీ కొనివ్వండి" },
   supportHint: {

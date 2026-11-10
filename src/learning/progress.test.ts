@@ -143,10 +143,12 @@ describe("parseProgress", () => {
 
 describe("resetProgress", () => {
   const now = "2026-11-10T09:00:00.000Z";
-  it("is empty progress, goals included; signed in it keeps the reset time, which survives a save and load", () => {
-    expect(resetProgress(now, false)).toEqual(emptyProgress(now));
-    const everywhere = resetProgress(now, true);
-    expect(everywhere).toEqual({ ...emptyProgress(now), resetAt: now });
+  const before = { ...emptyProgress(), completed: { d: { at: "t", correct: 1, total: 1 } }, practiceDays: ["2026-11-09"], tracks: ["abroad"], tracksAsked: true, tripSoon: true as const };
+  it("is empty progress but keeps the goals; signed in it keeps the reset time, which survives a save and load", () => {
+    const goals = { tracks: ["abroad"], tracksAsked: true, tripSoon: true };
+    expect(resetProgress(before, now, false)).toEqual({ ...emptyProgress(now), ...goals });
+    const everywhere = resetProgress(before, now, true);
+    expect(everywhere).toEqual({ ...emptyProgress(now), ...goals, resetAt: now });
     expect(parseProgress(JSON.stringify(everywhere))).toEqual(everywhere);
   });
 });

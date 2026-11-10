@@ -49,15 +49,14 @@ describe("Start over", () => {
     expect(push).not.toHaveBeenCalled();
   });
 
-  it("signed out: clears this phone only (no reset time), goals included, and the welcome asks again", () => {
+  it("signed out: clears this phone only (no reset time); goals and settings stay; the goals' offers come again", () => {
     render(<StartOverView account={{ kind: "signedOut" }} course={course} />);
     open();
     confirm();
     const p = getProgress();
-    expect(p).toMatchObject({ completed: {}, activities: {}, practiceDays: [], tracks: [], tracksAsked: false });
-    expect(p.tripSoon).toBeUndefined();
+    expect(p).toMatchObject({ completed: {}, activities: {}, practiceDays: [], tracks: ["abroad"], tracksAsked: true, tripSoon: true });
     expect(p.resetAt).toBeUndefined();
-    expect(getSettings()).toMatchObject({ onboarded: false, theme: "dark", dismissed: ["save-progress-card"] });
+    expect(getSettings()).toMatchObject({ onboarded: true, theme: "dark", dismissed: ["save-progress-card"] });
     expect(pushNow).not.toHaveBeenCalled();
     expect(push).toHaveBeenCalledWith("/learn");
   });

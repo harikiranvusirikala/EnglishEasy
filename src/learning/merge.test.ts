@@ -114,7 +114,7 @@ describe("mergeProgress", () => {
     });
     const reset = make({ activities: { "f.a": rec(T(4)) }, resetAt: T(3), updatedAt: T(4) });
 
-    it("drops what the other copy learned before the reset, and its goals; keeps what came after", () => {
+    it("drops what the other copy learned before the reset; keeps what came after, and the goals", () => {
       for (const m of [mergeProgress(old, reset), mergeProgress(reset, old)]) {
         expect(Object.keys(m.activities).sort()).toEqual(["d.late", "f.a"]);
         expect(m.completed).toEqual({});
@@ -122,20 +122,19 @@ describe("mergeProgress", () => {
         expect(m.review).toBeUndefined();
         expect(m.position).toBeUndefined();
         expect(m.practiceDays).toEqual(["2026-11-05"]);
-        expect(m.tracks).toEqual([]);
-        expect(m.tracksAsked).toBe(false);
-        expect(m.tripSoon).toBeUndefined();
+        expect(m.tracks).toEqual(["abroad"]);
+        expect(m.tracksAsked).toBe(true);
         expect(m.resetAt).toBe(T(3));
       }
     });
 
-    it("an older reset gives way to a newer one, and merging again changes nothing", () => {
+    it("an older reset gives way to a newer one; merging again changes nothing but the goals", () => {
       const newer = make({ resetAt: T(6), updatedAt: T(6) });
       const m = mergeProgress(reset, newer);
       expect(m.activities).toEqual({});
       expect(m.resetAt).toBe(T(6));
       expect(sameProgress(mergeProgress(m, reset), m)).toBe(true);
-      expect(sameProgress(mergeProgress(m, old), m)).toBe(true);
+      expect(mergeProgress(m, old)).toEqual({ ...m, tracks: ["abroad"], tracksAsked: true, updatedAt: T(6) }); // the trip flag follows the copy saved last
     });
   });
 });

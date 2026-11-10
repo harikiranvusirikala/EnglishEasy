@@ -119,8 +119,8 @@ export const day: Lesson = {
       options: ["I going to visit my cousin.", "I am going to visit my cousin.", "I am go to visit my cousin."],
       answer: 1,
       why: {
-        en: "Put am before going to, and the plain verb after it: I am going to visit my cousin.",
-        te: "going to ముందు am, తర్వాత మామూలు verb: I am going to visit my cousin.",
+        en: "Put am before going to, and the plain verb after it.",
+        te: "going to ముందు am, తర్వాత మామూలు verb.",
       },
     },
     {
@@ -131,8 +131,8 @@ export const day: Lesson = {
       options: ["is", "are", "am"],
       answer: 0,
       why: {
-        en: "For one person like she, use is: She is going to cook biryani.",
-        te: "she లాంటి ఒక్కరికి is వస్తుంది: She is going to cook biryani.",
+        en: "For one person like she, use is.",
+        te: "she లాంటి ఒక్కరికి is వస్తుంది.",
       },
     },
     {
@@ -143,8 +143,8 @@ export const day: Lesson = {
       options: ["What are you going to do on Sunday?", "What you going to do on Sunday?", "What are you go to do on Sunday?"],
       answer: 0,
       why: {
-        en: "A plan question puts are before you: What are you going to do on Sunday?",
-        te: "ప్లాన్ అడిగేటప్పుడు you ముందు are వస్తుంది: What are you going to do on Sunday?",
+        en: "A plan question puts are before you.",
+        te: "ప్లాన్ అడిగేటప్పుడు you ముందు are వస్తుంది.",
       },
     },
     {
@@ -154,8 +154,8 @@ export const day: Lesson = {
       wrongIndex: 4,
       fix: "We are going to paint the house.",
       why: {
-        en: "After going to, the verb stays plain, with no -ing: We are going to paint the house.",
-        te: "going to తర్వాత verb మామూలుగా ఉంటుంది, -ing రాదు: We are going to paint the house.",
+        en: "After going to, the verb stays plain, with no -ing.",
+        te: "going to తర్వాత verb మామూలుగా ఉంటుంది, -ing రాదు.",
       },
     },
   ],

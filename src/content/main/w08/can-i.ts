@@ -119,8 +119,8 @@ export const day: Lesson = {
       options: ["I can sit here?", "Can I sit here?", "Can I sitting here?"],
       answer: 1,
       why: {
-        en: "Can comes first, then I, then the plain verb: Can I sit here?",
-        te: "ముందు can, తర్వాత I, తర్వాత verb: Can I sit here?",
+        en: "Can comes first, then I, then the plain verb.",
+        te: "ముందు can, తర్వాత I, తర్వాత verb.",
       },
     },
     {
@@ -131,8 +131,8 @@ export const day: Lesson = {
       options: ["Can", "Do", "Am"],
       answer: 0,
       why: {
-        en: "To ask if something is okay, start with Can: Can I come in?",
-        te: "చేయవచ్చా అని అడగడానికి Can తో మొదలుపెట్టాలి: Can I come in?",
+        en: "To ask if something is okay, start with Can.",
+        te: "చేయవచ్చా అని అడగడానికి Can తో మొదలుపెట్టాలి.",
       },
     },
     {
@@ -145,8 +145,8 @@ export const day: Lesson = {
       options: ["No, sorry. I never share my OTP.", "Yes, of course. It is 4821.", "Can I call you back with it?"],
       answer: 0,
       why: {
-        en: "Real bank staff never ask for your OTP, so always say no: No, sorry. I never share my OTP.",
-        te: "నిజమైన బ్యాంక్ వాళ్ళు ఎప్పుడూ OTP అడగరు, అందుకే చెప్పను అనండి: No, sorry. I never share my OTP.",
+        en: "Real bank staff never ask for your OTP, so always say no.",
+        te: "నిజమైన బ్యాంక్ వాళ్ళు ఎప్పుడూ OTP అడగరు, అందుకే చెప్పను అనండి.",
       },
     },
     {
@@ -156,8 +156,8 @@ export const day: Lesson = {
       wrongIndex: 2,
       fix: "Can I use your phone?",
       why: {
-        en: "Can never takes to after it: Can I use your phone?",
-        te: "can తర్వాత to రాదు, తీసేయాలి: Can I use your phone?",
+        en: "Can never takes to after it.",
+        te: "can తర్వాత to రాదు, తీసేయాలి.",
       },
     },
   ],

@@ -117,8 +117,8 @@ export const day: Lesson = {
       options: ["I was tired, because I slept early.", "I was tired, so I slept early.", "Because I was tired, so I slept early."],
       answer: 1,
       why: {
-        en: "Sleeping early is the result of being tired, so use so: I was tired, so I slept early.",
-        te: "అలసట వల్ల తొందరగా పడుకున్నారు, అది ఫలితం, అందుకే so: I was tired, so I slept early.",
+        en: "Sleeping early is the result of being tired, so use so.",
+        te: "అలసట వల్ల తొందరగా పడుకున్నారు, అది ఫలితం, అందుకే so.",
       },
     },
     {
@@ -129,8 +129,8 @@ export const day: Lesson = {
       options: ["because", "so", "but"],
       answer: 0,
       why: {
-        en: "Being sick is the reason, so because goes before it: I missed it because I was sick.",
-        te: "ఒంట్లో బాగాలేకపోవడం కారణం, దాని ముందు because: I missed it because I was sick.",
+        en: "Being sick is the reason, so because goes before it.",
+        te: "ఒంట్లో బాగాలేకపోవడం కారణం, దాని ముందు because.",
       },
     },
     {
@@ -140,8 +140,8 @@ export const day: Lesson = {
       options: ["Because it rained, so I stayed home.", "It rained, so I stayed home.", "It rained, because I stayed home."],
       answer: 1,
       why: {
-        en: "Use one joining word; staying home is the result, so: It rained, so I stayed home.",
-        te: "కలిపే మాట ఒక్కటే చాలు; ఇంట్లో ఉండటం ఫలితం, అందుకే so: It rained, so I stayed home.",
+        en: "Use one joining word; staying home is the result, so use so.",
+        te: "కలిపే మాట ఒక్కటే చాలు; ఇంట్లో ఉండటం ఫలితం, అందుకే so.",
       },
     },
     {
@@ -151,8 +151,8 @@ export const day: Lesson = {
       wrongIndex: 4,
       fix: "The shop was closed, so I left.",
       why: {
-        en: "You left because the shop was closed; that is a result, so: The shop was closed, so I left.",
-        te: "షాప్ మూసి ఉండటం వల్ల వెళ్ళిపోయారు, అది ఫలితం: The shop was closed, so I left.",
+        en: "You left because the shop was closed; that is a result, so use so.",
+        te: "షాప్ మూసి ఉండటం వల్ల వెళ్ళిపోయారు, అది ఫలితం.",
       },
     },
   ],

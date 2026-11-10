@@ -118,8 +118,8 @@ export const day: Lesson = {
       options: ["I'm sorry to hear that.", "Sorry for hearing that.", "Good to hear that."],
       answer: 0,
       why: {
-        en: "A fever is sad news, so answer kindly: I'm sorry to hear that.",
-        te: "జ్వరం బాధ కలిగించే వార్త, అందుకే ఆప్యాయంగా: I'm sorry to hear that.",
+        en: "A fever is sad news, so answer kindly.",
+        te: "జ్వరం బాధ కలిగించే వార్త, అందుకే ఆప్యాయంగా.",
       },
     },
     {
@@ -130,8 +130,8 @@ export const day: Lesson = {
       options: ["soon", "fast", "early"],
       answer: 0,
       why: {
-        en: "This is a fixed phrase, always with soon: Get well soon.",
-        te: "ఇది ఎప్పుడూ ఇలాగే ఉండే మాట, soon తోనే: Get well soon.",
+        en: "This is a fixed phrase, always with soon.",
+        te: "ఇది ఎప్పుడూ ఇలాగే ఉండే మాట, soon తోనే.",
       },
     },
     {
@@ -142,8 +142,8 @@ export const day: Lesson = {
       options: ["How are you feeling now?", "How you are feeling now?", "How are you feel now?"],
       answer: 0,
       why: {
-        en: "In a question, are comes before you, then feeling: How are you feeling now?",
-        te: "ప్రశ్నలో are ముందు, you తర్వాత, ఆపై feeling: How are you feeling now?",
+        en: "In a question, are comes before you, then feeling.",
+        te: "ప్రశ్నలో are ముందు, you తర్వాత, ఆపై feeling.",
       },
     },
     {
@@ -153,8 +153,8 @@ export const day: Lesson = {
       wrongIndex: 2,
       fix: "I'm sorry to hear that.",
       why: {
-        en: "After sorry, say to hear, not for hear: I'm sorry to hear that.",
-        te: "sorry తర్వాత for కాదు, to hear: I'm sorry to hear that.",
+        en: "After sorry, say to hear, not for hear.",
+        te: "sorry తర్వాత for కాదు, to hear.",
       },
     },
   ],

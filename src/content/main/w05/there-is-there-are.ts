@@ -121,8 +121,8 @@ export const day: Lesson = {
       options: ["There are two bedrooms.", "There is one bedroom.", "There are four bedrooms."],
       answer: 0,
       why: {
-        en: "The board says two bedrooms, and for more than one we say there are: There are two bedrooms.",
-        te: "బోర్డ్ మీద 2 bedrooms అని ఉంది; ఒకటి కంటే ఎక్కువ అయితే there are: There are two bedrooms.",
+        en: "The board says two bedrooms, and for more than one we say there are.",
+        te: "బోర్డ్ మీద 2 bedrooms అని ఉంది; ఒకటి కంటే ఎక్కువ అయితే there are.",
       },
     },
     {
@@ -156,8 +156,8 @@ export const day: Lesson = {
       wrongIndex: 1,
       fix: "There are three rooms.",
       why: {
-        en: "Three rooms are many, so use are: There are three rooms.",
-        te: "మూడు గదులు అంటే చాలా, కాబట్టి are: There are three rooms.",
+        en: "Three rooms are many, so use are.",
+        te: "మూడు గదులు అంటే చాలా, కాబట్టి are.",
       },
     },
   ],

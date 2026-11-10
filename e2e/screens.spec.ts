@@ -93,6 +93,37 @@ test("a section summary", async ({ page }) => {
   await shot(page, "summary");
 });
 
+test("Day 7 (Week 1 review): the practice score, then Week complete", async ({ page }) => {
+  await settings(page, { learnIn: "en" });
+  const day = (await (await page.request.get("/content/w1-review.json")).json()) as PlayableDay;
+  const chosen = day.sections.find((s) => s.kind === "practice")!.activities.filter((a) => a.type === "choose").slice(0, 4);
+  await only(page, "practice", (a) => chosen.some((c) => c.id === a.id), 4, "w1-review");
+  for (const [i, a] of chosen.entries()) {
+    if (a.type !== "choose") continue;
+    const right = a.options[a.answer];
+    const wrong = a.options.filter((o) => o !== right);
+    if (i < 3) {
+      await page.getByRole("button", { name: right, exact: true }).click();
+      await page.getByRole("button", { name: /^Check/ }).click();
+    } else {
+      // The last one wrong twice: the answer is shown.
+      await page.getByRole("button", { name: wrong[0], exact: true }).click();
+      await page.getByRole("button", { name: /^Check/ }).click();
+      await page.getByRole("button", { name: /^Try again/ }).click();
+      await page.getByRole("button", { name: wrong[1], exact: true }).click();
+      await page.getByRole("button", { name: /^Check/ }).click();
+    }
+    await page.getByRole("button", { name: /^Continue/ }).click();
+  }
+  await expect(page.getByRole("heading", { name: "Practice complete" })).toBeVisible();
+  await shot(page, "day7-score");
+  await page.getByRole("button", { name: /^Continue/ }).click();
+  await expect(page.getByRole("heading", { name: "Week 1 Complete!" })).toBeVisible();
+  await shot(page, "day7-week-complete");
+  await page.locator("main").evaluate((m) => (m.scrollTop = m.scrollHeight));
+  await shot(page, "day7-week-complete-end");
+});
+
 test("a Conversation Day dialogue: listen first, question 1 by ear, then the words", async ({ page }) => {
   await installSpeechStub(page);
   await settings(page, { learnIn: "te" });

@@ -117,8 +117,8 @@ export const day: Lesson = {
       options: ["She have a good job.", "She has a good job.", "She is have a good job."],
       answer: 1,
       why: {
-        en: "She is one person, so use has: She has a good job.",
-        te: "she ఒక్కరే, కాబట్టి has: She has a good job.",
+        en: "She is one person, so use has.",
+        te: "she ఒక్కరే, కాబట్టి has.",
       },
     },
     {
@@ -129,8 +129,8 @@ export const day: Lesson = {
       options: ["have", "has", "having"],
       answer: 0,
       why: {
-        en: "After do or does, always use have: Do you have a pen?",
-        te: "do, does తర్వాత ఎప్పుడూ have: Do you have a pen?",
+        en: "After do or does, always use have.",
+        te: "do, does తర్వాత ఎప్పుడూ have.",
       },
     },
     {
@@ -141,8 +141,8 @@ export const day: Lesson = {
       options: ["I am having a sister.", "I have a sister.", "I has a sister."],
       answer: 1,
       why: {
-        en: "Use have with I, never am having: I have a sister.",
-        te: "I తో have వాడాలి, am having కాదు: I have a sister.",
+        en: "Use have with I, never am having.",
+        te: "I తో have వాడాలి, am having కాదు.",
       },
     },
     {

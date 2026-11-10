@@ -122,8 +122,8 @@ export const day: Lesson = {
       options: ["I am liking idli.", "I like idli.", "I likes idli."],
       answer: 1,
       why: {
-        en: "With I, like has no s and no am … -ing: I like idli.",
-        te: "I తో like కి s రాదు, am … -ing రాదు: I like idli.",
+        en: "With I, like has no s and no am … -ing.",
+        te: "I తో like కి s రాదు, am … -ing రాదు.",
       },
     },
     {
@@ -134,8 +134,8 @@ export const day: Lesson = {
       options: ["like", "likes", "liking"],
       answer: 0,
       why: {
-        en: "Doesn't already has the s, so the verb stays plain: He doesn't like coffee.",
-        te: "doesn't లోనే s ఉంది, అందుకే like కి s రాదు: He doesn't like coffee.",
+        en: "Doesn't already has the s, so the verb stays plain.",
+        te: "doesn't లోనే s ఉంది, అందుకే like కి s రాదు.",
       },
     },
     {
@@ -145,8 +145,8 @@ export const day: Lesson = {
       options: ["Do you like dosa?", "Are you like dosa?", "Do you likes dosa?"],
       answer: 0,
       why: {
-        en: "Telugu just ends with ఆ (ఇష్టమా?), but English starts with Do: Do you like dosa?",
-        te: "తెలుగులో చివర 'ఆ' (ఇష్టమా?) చేరుస్తాం; ఇంగ్లీష్‌లో ముందు Do: Do you like dosa?",
+        en: "Telugu just ends with ఆ (ఇష్టమా?), but English starts with Do.",
+        te: "తెలుగులో చివర 'ఆ' (ఇష్టమా?) చేరుస్తాం; ఇంగ్లీష్‌లో ముందు Do.",
       },
     },
     {
@@ -156,8 +156,8 @@ export const day: Lesson = {
       wrongIndex: 1,
       fix: "She likes sweets.",
       why: {
-        en: "She is one person, so the verb takes s: She likes sweets.",
-        te: "she ఒక్కరు, అందుకే verb కి s: She likes sweets.",
+        en: "She is one person, so the verb takes s.",
+        te: "she ఒక్కరు, అందుకే verb కి s.",
       },
     },
   ],

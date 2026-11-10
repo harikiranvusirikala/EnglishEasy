@@ -124,8 +124,8 @@ export const day: Lesson = {
       options: ["I need half kilo beans.", "I need half a kilo of beans.", "I need a half kilos of beans."],
       answer: 1,
       why: {
-        en: "Half needs a after it, and of before the thing: I need half a kilo of beans.",
-        te: "half తర్వాత a, వస్తువు ముందు of: I need half a kilo of beans.",
+        en: "Half needs a after it, and of before the thing.",
+        te: "half తర్వాత a, వస్తువు ముందు of.",
       },
     },
     {
@@ -137,8 +137,8 @@ export const day: Lesson = {
       options: ["of", "in", "for"],
       answer: 0,
       why: {
-        en: "An amount joins its thing with of: Give me a bunch of coriander.",
-        te: "ఎంతో చెప్పే మాటకీ వస్తువుకీ మధ్య of వస్తుంది: Give me a bunch of coriander.",
+        en: "An amount joins its thing with of.",
+        te: "ఎంతో చెప్పే మాటకీ వస్తువుకీ మధ్య of వస్తుంది.",
       },
     },
     {
@@ -148,8 +148,8 @@ export const day: Lesson = {
       options: ["A dozen bananas, please.", "A dozen of banana, please.", "Dozen bananas, please."],
       answer: 0,
       why: {
-        en: "Twelve is a dozen; dozen needs a, but no of: A dozen bananas, please.",
-        te: "పన్నెండు అంటే a dozen; a కావాలి, of అక్కర్లేదు: A dozen bananas, please.",
+        en: "Twelve is a dozen; dozen needs a, but no of.",
+        te: "పన్నెండు అంటే a dozen; a కావాలి, of అక్కర్లేదు.",
       },
     },
     {
@@ -160,8 +160,8 @@ export const day: Lesson = {
       wrongIndex: 4,
       fix: "Can I have two packets of milk?",
       why: {
-        en: "After two, add s to the thing: Can I have two packets of milk?",
-        te: "రెండు అయితే s చేర్చాలి: Can I have two packets of milk?",
+        en: "After two, add s to the thing.",
+        te: "రెండు అయితే s చేర్చాలి.",
       },
     },
   ],

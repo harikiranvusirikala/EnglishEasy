@@ -94,8 +94,8 @@ export const day: Lesson = {
       wrong: "You should to rest.",
       right: "You should rest.",
       why: {
-        en: "After should, the verb comes straight, with no to: You should rest.",
-        te: "should తర్వాత to రాదు, verb నేరుగా వస్తుంది: You should rest.",
+        en: "After should, the verb comes straight, with no to.",
+        te: "should తర్వాత to రాదు, verb నేరుగా వస్తుంది.",
       },
     },
     {
@@ -117,8 +117,8 @@ export const day: Lesson = {
       options: ["You should to rest.", "You should rest.", "You should resting."],
       answer: 1,
       why: {
-        en: "After should, use the plain verb, with no to or -ing: You should rest.",
-        te: "should తర్వాత verb మామూలుగా వస్తుంది, to గానీ -ing గానీ రావు: You should rest.",
+        en: "After should, use the plain verb, with no to or -ing.",
+        te: "should తర్వాత verb మామూలుగా వస్తుంది, to గానీ -ing గానీ రావు.",
       },
     },
     {
@@ -129,8 +129,8 @@ export const day: Lesson = {
       options: ["shouldn't", "should", "don't should"],
       answer: 0,
       why: {
-        en: "Oily food is not a good idea, so shouldn't: You shouldn't eat oily food.",
-        te: "నూనె పదార్థాలు మంచిది కాదు, అందుకే shouldn't: You shouldn't eat oily food.",
+        en: "Oily food is not a good idea, so use shouldn't.",
+        te: "నూనె పదార్థాలు మంచిది కాదు, అందుకే shouldn't.",
       },
     },
     {
@@ -140,8 +140,8 @@ export const day: Lesson = {
       options: ["You should see a doctor.", "You should seeing a doctor.", "You should go doctor."],
       answer: 0,
       why: {
-        en: "After should, the plain verb, and a before doctor: You should see a doctor.",
-        te: "should తర్వాత verb మామూలుగానే, doctor ముందు a: You should see a doctor.",
+        en: "After should, the plain verb, and a before doctor.",
+        te: "should తర్వాత verb మామూలుగానే, doctor ముందు a.",
       },
     },
     {
@@ -151,8 +151,8 @@ export const day: Lesson = {
       wrongIndex: 2,
       fix: "You should drink hot water.",
       why: {
-        en: "After should, say drink, not drinking: You should drink hot water.",
-        te: "should తర్వాత drinking కాదు, drink: You should drink hot water.",
+        en: "After should, say drink, not drinking.",
+        te: "should తర్వాత drinking కాదు, drink.",
       },
     },
   ],

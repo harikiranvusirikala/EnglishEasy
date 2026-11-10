@@ -119,8 +119,8 @@ export const day: Lesson = {
       options: ["I drink always tea.", "I always drink tea.", "I am always drink tea."],
       answer: 1,
       why: {
-        en: "Always goes just before the verb, with no am: I always drink tea.",
-        te: "always నేరుగా verb ముందు వస్తుంది, am రాదు: I always drink tea.",
+        en: "Always goes just before the verb, with no am.",
+        te: "always నేరుగా verb ముందు వస్తుంది, am రాదు.",
       },
     },
     {
@@ -131,8 +131,8 @@ export const day: Lesson = {
       options: ["always", "sometimes", "never"],
       answer: 0,
       why: {
-        en: "The Telugu verb is yes (వస్తారు), so ఎప్పుడూ means every time: He is always on time.",
-        te: "'వస్తారు' అని ఉంది, 'రారు' కాదు; అందుకే ఇక్కడ ఎప్పుడూ = always: He is always on time.",
+        en: "The Telugu verb is yes (వస్తారు), so ఎప్పుడూ means every time.",
+        te: "'వస్తారు' అని ఉంది, 'రారు' కాదు; అందుకే ఇక్కడ ఎప్పుడూ = always.",
       },
     },
     {
@@ -153,8 +153,8 @@ export const day: Lesson = {
       wrongIndex: 1,
       fix: "I never eat late.",
       why: {
-        en: "Telugu puts the no in the verb (తినను); English puts it in never: I never eat late.",
-        te: "తెలుగులో 'లేదు' verb లో ఉంటుంది (తినను); ఇంగ్లీష్‌లో never లోనే ఉంది: I never eat late.",
+        en: "Telugu puts the no in the verb (తినను); English puts it in never.",
+        te: "తెలుగులో 'లేదు' verb లో ఉంటుంది (తినను); ఇంగ్లీష్‌లో never లోనే ఉంది.",
       },
     },
   ],

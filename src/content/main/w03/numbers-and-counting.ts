@@ -117,8 +117,8 @@ export const day: Lesson = {
       options: ["I have sixty years.", "I am sixty years old.", "I sixty years old."],
       answer: 1,
       why: {
-        en: "Say your age with am: I am sixty years old.",
-        te: "వయసుని am తో చెప్పాలి: I am sixty years old.",
+        en: "In English, say your age with am, not have.",
+        te: "ఇంగ్లీష్‌లో వయసుని am తో చెప్పాలి, have తో కాదు.",
       },
     },
     {

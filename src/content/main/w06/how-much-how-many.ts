@@ -123,8 +123,8 @@ export const day: Lesson = {
       options: ["12 biscuits", "100 biscuits", "20 biscuits"],
       answer: 0,
       why: {
-        en: "Pieces tells you how many; grams is the weight and MRP is the price: There are twelve biscuits in this packet.",
-        te: "Pieces ఎన్ని ఉన్నాయో చెప్తుంది; grams బరువు, MRP ధర: There are twelve biscuits in this packet.",
+        en: "Pieces tells you how many; grams is the weight and MRP is the price.",
+        te: "Pieces ఎన్ని ఉన్నాయో చెప్తుంది; grams బరువు, MRP ధర.",
       },
       say: "There are twelve biscuits in this packet.",
     },
@@ -136,8 +136,8 @@ export const day: Lesson = {
       options: ["much", "many", "more"],
       answer: 0,
       why: {
-        en: "We ask ఎంత for rice, not ఎన్ని, so it is how much: How much rice do you want?",
-        te: "బియ్యం 'ఎంత?' అని అడుగుతాం, 'ఎన్ని?' కాదు; అందుకే how much: How much rice do you want?",
+        en: "We ask ఎంత for rice, not ఎన్ని, so it is how much.",
+        te: "బియ్యం 'ఎంత?' అని అడుగుతాం, 'ఎన్ని?' కాదు; అందుకే how much.",
       },
     },
     {
@@ -159,8 +159,8 @@ export const day: Lesson = {
       wrongIndex: 1,
       fix: "How many people are eating?",
       why: {
-        en: "Telugu says ఎంత మంది, but people are counted, so: How many people are eating?",
-        te: "తెలుగులో 'ఎంత మంది' అన్నా, మనుషులను లెక్కపెడతాం; అందుకే how many: How many people are eating?",
+        en: "Telugu says ఎంత మంది, but people are counted, so use how many.",
+        te: "తెలుగులో 'ఎంత మంది' అన్నా, మనుషులను లెక్కపెడతాం; అందుకే how many.",
       },
     },
   ],

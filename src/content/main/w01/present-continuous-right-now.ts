@@ -122,8 +122,8 @@ export const day: Lesson = {
       options: ["She sleeping.", "She is sleeping.", "She is sleep."],
       answer: 1,
       why: {
-        en: "For right now, use is with -ing: She is sleeping.",
-        te: "ఇప్పుడు జరుగుతున్న పనికి is తో -ing: She is sleeping.",
+        en: "For right now, use is with -ing.",
+        te: "ఇప్పుడు జరుగుతున్న పనికి is తో -ing.",
       },
     },
     {
@@ -134,8 +134,8 @@ export const day: Lesson = {
       options: ["is", "are", "am"],
       answer: 1,
       why: {
-        en: "They means many people, so use are: They are watching TV.",
-        te: "they అంటే చాలా మంది, కాబట్టి are: They are watching TV.",
+        en: "They means many people, so use are.",
+        te: "they అంటే చాలా మంది, కాబట్టి are.",
       },
     },
     {
@@ -146,8 +146,8 @@ export const day: Lesson = {
       options: ["I am knowing him.", "I know him.", "I knowing him."],
       answer: 1,
       why: {
-        en: "Know does not use -ing. Say: I know him.",
-        te: "know కి -ing రాదు. ఇలా చెప్పాలి: I know him.",
+        en: "Know does not take -ing: say know, not am knowing.",
+        te: "know కి -ing రాదు: am knowing కాదు, know అనాలి.",
       },
     },
     {
@@ -157,8 +157,8 @@ export const day: Lesson = {
       wrongIndex: 2,
       fix: "He is cooking now.",
       why: {
-        en: "After is, the action needs -ing: He is cooking now.",
-        te: "is తర్వాత verb కి -ing రావాలి: He is cooking now.",
+        en: "After is, the action needs -ing.",
+        te: "is తర్వాత verb కి -ing రావాలి.",
       },
     },
   ],

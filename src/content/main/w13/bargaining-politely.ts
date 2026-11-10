@@ -125,8 +125,8 @@ export const day: Lesson = {
       options: ["Too much! Give for fifty.", "That's a bit expensive. Can you give it for fifty?", "Expensive. Fifty only."],
       answer: 1,
       why: {
-        en: "A bit and Can you keep it kind, not an order: That's a bit expensive. Can you give it for fifty?",
-        te: "a bit, Can you మాటని మెత్తగా చేస్తాయి: That's a bit expensive. Can you give it for fifty?",
+        en: "A bit and Can you keep it kind, not an order.",
+        te: "a bit, Can you మాటని మెత్తగా చేస్తాయి.",
       },
     },
     {
@@ -137,8 +137,8 @@ export const day: Lesson = {
       options: ["reduce", "less", "down"],
       answer: 0,
       why: {
-        en: "Reduce is the verb for making a price less: Can you reduce the price a little?",
-        te: "ధర తగ్గించడానికి verb reduce: Can you reduce the price a little?",
+        en: "Reduce is the verb for making a price less.",
+        te: "ధర తగ్గించడానికి verb reduce.",
       },
     },
     {
@@ -149,8 +149,8 @@ export const day: Lesson = {
       options: ["What is your final price?", "What is the last price?", "What final price is?"],
       answer: 0,
       why: {
-        en: "Final price is understood everywhere, last price only in India: What is your final price?",
-        te: "final price అందరికీ అర్థమవుతుంది, last price మన దగ్గరే: What is your final price?",
+        en: "Final price is understood everywhere, last price only in India.",
+        te: "final price అందరికీ అర్థమవుతుంది, last price మన దగ్గరే.",
       },
     },
     {
@@ -161,8 +161,8 @@ export const day: Lesson = {
       wrongIndex: 4,
       fix: "Can you give it for fifty?",
       why: {
-        en: "Telugu says యాభైకి; in English a price takes for: Can you give it for fifty?",
-        te: "'యాభైకి' లోని 'కి' ఇంగ్లీష్‌లో for అవుతుంది: Can you give it for fifty?",
+        en: "Telugu says యాభైకి; in English a price takes for.",
+        te: "'యాభైకి' లోని 'కి' ఇంగ్లీష్‌లో for అవుతుంది.",
       },
     },
   ],

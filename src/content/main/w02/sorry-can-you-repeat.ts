@@ -128,8 +128,8 @@ export const day: Lesson = {
       options: ["Sorry? Please say it again.", "Hey! Say it again.", "Sorry? Please tell again."],
       answer: 0,
       why: {
-        en: "Start with Sorry? and please so it sounds polite, and use say it for words: Sorry? Please say it again.",
-        te: "మర్యాదగా ఉండాలంటే Sorry?, please తో మొదలుపెట్టండి; మాటలకి say it వాడండి: Sorry? Please say it again.",
+        en: "Start with Sorry? and please so it sounds polite, and use say it for words.",
+        te: "మర్యాదగా ఉండాలంటే Sorry?, please తో మొదలుపెట్టండి; మాటలకి say it వాడండి.",
       },
     },
     {
@@ -140,8 +140,8 @@ export const day: Lesson = {
       options: ["mean", "means", "meaning"],
       answer: 0,
       why: {
-        en: "After does, the action word stays plain, with no s or -ing: What does this word mean?",
-        te: "does తర్వాత verb కి s, -ing రావు: What does this word mean?",
+        en: "After does, the action word stays plain, with no s or -ing.",
+        te: "does తర్వాత verb కి s, -ing రావు.",
       },
     },
     {
@@ -155,8 +155,8 @@ export const day: Lesson = {
       options: ["What do you say this in English?", "How do you say this in English?", "How you say this in English?"],
       answer: 1,
       why: {
-        en: "Telugu ఎలా అంటారు? is How do you say in English, not What: How do you say this in English?",
-        te: "'ఎలా అంటారు?' అంటే ఇంగ్లీష్‌లో How do you say, What కాదు: How do you say this in English?",
+        en: "Telugu ఎలా అంటారు? is How do you say in English, not What.",
+        te: "'ఎలా అంటారు?' అంటే ఇంగ్లీష్‌లో How do you say, What కాదు.",
       },
     },
     {
@@ -166,8 +166,8 @@ export const day: Lesson = {
       wrongIndex: 2,
       fix: "Please say it again.",
       why: {
-        en: "Telugu puts మళ్ళీ first, but English puts it right after say and again at the end: Please say it again.",
-        te: "తెలుగులో 'మళ్ళీ' ముందు వస్తుంది, ఇంగ్లీష్‌లో say తర్వాత it, చివర again: Please say it again.",
+        en: "Telugu puts మళ్ళీ first, but English puts it right after say and again at the end.",
+        te: "తెలుగులో 'మళ్ళీ' ముందు వస్తుంది, ఇంగ్లీష్‌లో say తర్వాత it, చివర again.",
       },
     },
   ],

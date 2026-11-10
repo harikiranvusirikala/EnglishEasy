@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { brokenLessons } from "../../test/fixtures/bad-lessons";
 import { makeLesson } from "../../test/fixtures/lessons";
 import { buildAll } from "./build";
-import { checkCourse, checkDay } from "./checks";
+import { checkCourse, checkDay, whyRepeatsSentence } from "./checks";
 import { course } from "./course";
 import { expandLesson } from "./generate";
 import { isWritten, loadDay, writtenDayIds } from "./load";
@@ -86,3 +86,13 @@ function expandSafely(lesson: Lesson) {
     return { id: lesson.id, kind: "lesson" as const, title: { en: "x", te: "x" }, sections: [] };
   }
 }
+
+describe("whyRepeatsSentence", () => {
+  it("finds a copy of the sentence at the end of an explanation, not a one-word answer explained in words", () => {
+    expect(whyRepeatsSentence("With I, use am: I am hungry.", "I am hungry.")).toBe(true);
+    expect(whyRepeatsSentence("Take out are. We speak Telugu.", "We speak Telugu.")).toBe(true);
+    expect(whyRepeatsSentence("I తో am వాడాలి: I am hungry.", "I am hungry.")).toBe(true);
+    expect(whyRepeatsSentence("With I, always use am, never is or are.", "I am hungry.")).toBe(false);
+    expect(whyRepeatsSentence("Go is special. The past is went.", "went")).toBe(false);
+  });
+});

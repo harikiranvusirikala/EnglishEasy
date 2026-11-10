@@ -18,23 +18,23 @@ export const day: ReviewDay = {
   title: { en: "Food Talk", te: "భోజనం మాటలు" },
   extras: [
     pick("q1", "She ___ sweets.", "ఆవిడకి స్వీట్లు ఇష్టం.", ["like", "likes", "liking"], 1, {
-      en: "She is one person, so the verb takes s: She likes sweets.",
-      te: "she ఒక్కరు, అందుకే verb కి s: She likes sweets.",
+      en: "She is one person, so the verb takes s.",
+      te: "she ఒక్కరు, అందుకే verb కి s.",
     }),
     pick("q2", "I would ___ some tea.", "నాకు కొంచెం టీ కావాలి.", ["like", "likes", "liking"], 0, {
-      en: "To ask politely, use would before like: I would like some tea.",
-      te: "మర్యాదగా అడగడానికి like ముందు would: I would like some tea.",
+      en: "To ask politely, use would before like.",
+      te: "మర్యాదగా అడగడానికి like ముందు would.",
     }),
     pick("q3", "Is there ___ milk?", "పాలు ఏమైనా ఉన్నాయా?", ["a", "any", "many"], 1, {
-      en: "Questions use any, like Telugu ఏమైనా: Is there any milk?",
-      te: "ప్రశ్నలో any, తెలుగు 'ఏమైనా' లాగా: Is there any milk?",
+      en: "Questions use any, like Telugu ఏమైనా.",
+      te: "ప్రశ్నలో any, తెలుగు 'ఏమైనా' లాగా.",
     }),
     pick("q4", "How ___ eggs do you want?", "మీకు ఎన్ని గుడ్లు కావాలి?", ["much", "many", "more"], 1, {
-      en: "We ask ఎన్ని for eggs, and ఎన్ని is how many: How many eggs do you want?",
+      en: "We ask ఎన్ని for eggs, and ఎన్ని is how many.",
       te: "గుడ్లు 'ఎన్ని?' అని అడుగుతాం; ఎన్ని = how many: How many eggs?",
     }),
     pick("q5", "How ___ rice do you want?", "మీకు ఎంత బియ్యం కావాలి?", ["much", "many", "more"], 0, {
-      en: "We ask ఎంత for rice, and ఎంత is how much: How much rice do you want?",
+      en: "We ask ఎంత for rice, and ఎంత is how much.",
       te: "బియ్యం 'ఎంత?' అని అడుగుతాం; ఎంత = how much: How much rice?",
     }),
     pick("q6", "___ wash the rice. Then cook it.", "ముందు బియ్యం కడగండి. తర్వాత ఉడికించండి.", ["First", "Before", "Start"], 0, {

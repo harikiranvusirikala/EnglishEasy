@@ -118,8 +118,8 @@ export const day: Lesson = {
       options: ["Help me.", "Could you help me, please?", "You can help me?"],
       answer: 1,
       why: {
-        en: "With a stranger, ask with Could you and please: Could you help me, please?",
-        te: "తెలియనివాళ్ళను Could you, please తో అడగాలి: Could you help me, please?",
+        en: "With a stranger, ask with Could you and please.",
+        te: "తెలియనివాళ్ళను Could you, please తో అడగాలి.",
       },
     },
     {
@@ -130,8 +130,8 @@ export const day: Lesson = {
       options: ["speak", "speaking", "speaks"],
       answer: 0,
       why: {
-        en: "After could, the verb stays plain, with no s or -ing: Could you speak slowly, please?",
-        te: "could తర్వాత verb కి s, -ing రావు: Could you speak slowly, please?",
+        en: "After could, the verb stays plain, with no s or -ing.",
+        te: "could తర్వాత verb కి s, -ing రావు.",
       },
     },
     {
@@ -141,8 +141,8 @@ export const day: Lesson = {
       options: ["Would you to read this?", "Would you read this for me?", "Would you reading this?"],
       answer: 1,
       why: {
-        en: "Would you takes the plain verb, with no to: Would you read this for me?",
-        te: "Would you తర్వాత to లేకుండా మామూలు verb: Would you read this for me?",
+        en: "Would you takes the plain verb, with no to.",
+        te: "Would you తర్వాత to లేకుండా మామూలు verb.",
       },
     },
     {
@@ -152,8 +152,8 @@ export const day: Lesson = {
       wrongIndex: 2,
       fix: "Could you help me, please?",
       why: {
-        en: "After could, the verb has no -ing: Could you help me, please?",
-        te: "could తర్వాత verb కి -ing రాదు: Could you help me, please?",
+        en: "After could, the verb has no -ing.",
+        te: "could తర్వాత verb కి -ing రాదు.",
       },
     },
   ],

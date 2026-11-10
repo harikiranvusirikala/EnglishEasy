@@ -153,8 +153,8 @@ export const day: Lesson = {
       options: ["Please call to this number.", "Please call this number.", "Call this number, fast."],
       answer: 1,
       why: {
-        en: "Call needs no to after it, and please makes it polite: Please call this number.",
-        te: "call తర్వాత to రాదు, please తో అడిగితే మర్యాదగా ఉంటుంది: Please call this number.",
+        en: "Call needs no to after it, and please makes it polite.",
+        te: "call తర్వాత to రాదు, please తో అడిగితే మర్యాదగా ఉంటుంది.",
       },
     },
     {
@@ -164,8 +164,8 @@ export const day: Lesson = {
       wrongIndex: 2,
       fix: "Yesterday I fell down.",
       why: {
-        en: "Yesterday is finished time, so fall becomes fell: Yesterday I fell down.",
-        te: "Yesterday అంటే అయిపోయిన సమయం, కాబట్టి fall కాదు, fell: Yesterday I fell down.",
+        en: "Yesterday is finished time, so fall becomes fell.",
+        te: "Yesterday అంటే అయిపోయిన సమయం, కాబట్టి fall కాదు, fell.",
       },
     },
   ],

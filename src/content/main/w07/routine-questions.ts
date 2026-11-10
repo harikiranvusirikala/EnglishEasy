@@ -117,8 +117,8 @@ export const day: Lesson = {
       options: ["Does she sleeps early?", "Does she sleep early?", "Do she sleep early?"],
       answer: 1,
       why: {
-        en: "For she, ask with does; does has the s, so sleep has none: Does she sleep early?",
-        te: "she కి does తో అడగాలి; does లోనే s ఉంది, sleep కి రాదు: Does she sleep early?",
+        en: "For she, ask with does; does has the s, so sleep has none.",
+        te: "she కి does తో అడగాలి; does లోనే s ఉంది, sleep కి రాదు.",
       },
     },
     {
@@ -129,8 +129,8 @@ export const day: Lesson = {
       options: ["Do", "Does", "Are"],
       answer: 0,
       why: {
-        en: "Telugu adds ఆ at the end (లేస్తారా?); English starts with Do for you: Do you get up early?",
-        te: "తెలుగులో చివర 'ఆ' (లేస్తారా?); ఇంగ్లీష్‌లో you కి ముందు Do: Do you get up early?",
+        en: "Telugu adds ఆ at the end (లేస్తారా?); English starts with Do for you.",
+        te: "తెలుగులో చివర 'ఆ' (లేస్తారా?); ఇంగ్లీష్‌లో you కి ముందు Do.",
       },
     },
     {
@@ -140,8 +140,8 @@ export const day: Lesson = {
       options: ["Yes, he does.", "Yes, he is.", "Yes, he do."],
       answer: 0,
       why: {
-        en: "A does question gets a does answer, not is: Yes, he does.",
-        te: "does ప్రశ్నకి does తోనే జవాబు, is కాదు: Yes, he does.",
+        en: "A does question gets a does answer, not is.",
+        te: "does ప్రశ్నకి does తోనే జవాబు, is కాదు.",
       },
     },
     {
@@ -151,8 +151,8 @@ export const day: Lesson = {
       wrongIndex: 4,
       fix: "When does the milkman come?",
       why: {
-        en: "Does already has the s, so come stays plain: When does the milkman come?",
-        te: "does లోనే s ఉంది, అందుకే come కి s రాదు: When does the milkman come?",
+        en: "Does already has the s, so come stays plain.",
+        te: "does లోనే s ఉంది, అందుకే come కి s రాదు.",
       },
     },
   ],

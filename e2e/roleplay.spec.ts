@@ -63,6 +63,7 @@ test("Day 1's role play by tapping, with a correction and the summary", async ({
 
   await expect(page.getByRole("heading", { name: "Role play complete" })).toBeVisible();
   await expect(page.getByTestId("score-conversation")).toContainText("7 / 10");
+  await expect.poll(() => page.locator("main").evaluate((m) => m.scrollTop)).toBe(0); // the summary starts at its top
   await page.screenshot({ path: `${SHOTS}/roleplay-summary.png` });
   await next(page);
   await expect(page.getByRole("button", { name: /^(Finish|Continue to Day 2)/ })).toBeVisible();

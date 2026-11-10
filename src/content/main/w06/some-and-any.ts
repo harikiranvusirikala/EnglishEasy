@@ -118,8 +118,8 @@ export const day: Lesson = {
       options: ["There isn't some sugar.", "There isn't any sugar.", "There isn't sugars."],
       answer: 1,
       why: {
-        en: "With not, use any, not some: There isn't any sugar.",
-        te: "not ఉంటే some కాదు, any: There isn't any sugar.",
+        en: "With not, use any, not some.",
+        te: "not ఉంటే some కాదు, any.",
       },
     },
     {
@@ -130,8 +130,8 @@ export const day: Lesson = {
       options: ["many", "any", "a"],
       answer: 1,
       why: {
-        en: "Questions use any, like Telugu ఏమైనా, and milk takes no a: Is there any milk?",
-        te: "ప్రశ్నలో any, తెలుగు 'ఏమైనా' లాగా; milk కి a రాదు: Is there any milk?",
+        en: "Questions use any, like Telugu ఏమైనా, and milk takes no a.",
+        te: "ప్రశ్నలో any, తెలుగు 'ఏమైనా' లాగా; milk కి a రాదు.",
       },
     },
     {
@@ -142,8 +142,8 @@ export const day: Lesson = {
       options: ["We need some oils.", "We need some oil.", "We need a oil."],
       answer: 1,
       why: {
-        en: "Oil is not counted, so no s and no a: We need some oil.",
-        te: "నూనె లెక్కపెట్టం, అందుకే s రాదు, a రాదు: We need some oil.",
+        en: "Oil is not counted, so no s and no a.",
+        te: "నూనె లెక్కపెట్టం, అందుకే s రాదు, a రాదు.",
       },
     },
     {
@@ -154,8 +154,8 @@ export const day: Lesson = {
       wrongIndex: 3,
       fix: "Please buy some rice.",
       why: {
-        en: "Rice is not counted one by one, so it has no s: Please buy some rice.",
-        te: "బియ్యం ఒక్కొక్కటిగా లెక్కపెట్టం, అందుకే s రాదు: Please buy some rice.",
+        en: "Rice is not counted one by one, so it has no s.",
+        te: "బియ్యం ఒక్కొక్కటిగా లెక్కపెట్టం, అందుకే s రాదు.",
       },
     },
   ],

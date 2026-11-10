@@ -118,8 +118,8 @@ export const day: Lesson = {
       options: ["Yesterday I have a fever.", "I had a fever yesterday.", "I having fever yesterday."],
       answer: 1,
       why: {
-        en: "Yesterday is past, so say had, not have: I had a fever yesterday.",
-        te: "నిన్న అంటే past, అందుకే have కాదు had: I had a fever yesterday.",
+        en: "Yesterday is past, so say had, not have.",
+        te: "నిన్న అంటే past, అందుకే have కాదు had.",
       },
     },
     {
@@ -132,8 +132,8 @@ export const day: Lesson = {
       options: ["Twice a day, after food.", "Twice a day, before food.", "Once a day, after food."],
       answer: 0,
       why: {
-        en: "The label says twice a day after food, so eat first and then take it: One tablet, twice a day, after food.",
-        te: "లేబుల్ మీద twice a day, after food అని ఉంది; అంటే రోజుకి రెండుసార్లు, తిన్న తర్వాత: One tablet, twice a day, after food.",
+        en: "The label says twice a day after food, so eat first and then take it.",
+        te: "లేబుల్ మీద twice a day, after food అని ఉంది; అంటే రోజుకి రెండుసార్లు, తిన్న తర్వాత.",
       },
       say: "One tablet, twice a day, after food.",
     },
@@ -145,8 +145,8 @@ export const day: Lesson = {
       options: ["How many times a day?", "How much times a day?", "How many time a day?"],
       answer: 0,
       why: {
-        en: "We count times, so say many, not much: How many times a day?",
-        te: "సార్లు లెక్కపెడతాం, అందుకే much కాదు many: How many times a day?",
+        en: "We count times, so say many, not much.",
+        te: "సార్లు లెక్కపెడతాం, అందుకే much కాదు many.",
       },
     },
     {
@@ -156,8 +156,8 @@ export const day: Lesson = {
       wrongIndex: 1,
       fix: "I feel dizzy in the morning.",
       why: {
-        en: "With I, the verb has no s: I feel dizzy in the morning.",
-        te: "I తో verb కి s రాదు: I feel dizzy in the morning.",
+        en: "With I, the verb has no s.",
+        te: "I తో verb కి s రాదు.",
       },
     },
   ],

@@ -117,8 +117,8 @@ export const day: Lesson = {
       options: ["Will you like some water?", "Would you like some water?", "Do you like some water?"],
       answer: 1,
       why: {
-        en: "Telugu says కావాలా?, but an English offer starts with Would you like: Would you like some water?",
-        te: "తెలుగులో 'కావాలా?' అంటాం; ఇంగ్లీష్‌లో ఇవ్వజూపడానికి Would you like: Would you like some water?",
+        en: "Telugu says కావాలా?, but an English offer starts with Would you like.",
+        te: "తెలుగులో 'కావాలా?' అంటాం; ఇంగ్లీష్‌లో ఇవ్వజూపడానికి Would you like.",
       },
     },
     {
@@ -143,8 +143,8 @@ export const day: Lesson = {
       options: ["No, thank you.", "No, I don't.", "No, I don't want."],
       answer: 0,
       why: {
-        en: "Refuse an offer kindly by adding thank you: No, thank you.",
-        te: "ఇచ్చేది వద్దనేటప్పుడు thank you కలిపి మర్యాదగా చెప్పాలి: No, thank you.",
+        en: "Refuse an offer kindly by adding thank you.",
+        te: "ఇచ్చేది వద్దనేటప్పుడు thank you కలిపి మర్యాదగా చెప్పాలి.",
       },
     },
     {
@@ -154,8 +154,8 @@ export const day: Lesson = {
       wrongIndex: 0,
       fix: "Would you like some snacks?",
       why: {
-        en: "An offer uses would, never will: Would you like some snacks?",
-        te: "ఇవ్వజూపడానికి will కాదు, would: Would you like some snacks?",
+        en: "An offer uses would, never will.",
+        te: "ఇవ్వజూపడానికి will కాదు, would.",
       },
     },
   ],

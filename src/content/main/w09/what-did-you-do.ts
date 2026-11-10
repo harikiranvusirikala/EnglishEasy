@@ -121,8 +121,8 @@ export const day: Lesson = {
       options: ["Where you went?", "Where did you go?", "Where did you went?"],
       answer: 1,
       why: {
-        en: "A past question goes: question word, did, you, plain verb. Where did you go?",
-        te: "వరుస: ప్రశ్న పదం, did, you, మామూలు verb. Where did you go?",
+        en: "A past question goes: question word, did, you, plain verb.",
+        te: "వరుస: ప్రశ్న పదం, did, you, మామూలు verb.",
       },
     },
     {
@@ -133,8 +133,8 @@ export const day: Lesson = {
       options: ["do", "did", "done"],
       answer: 0,
       why: {
-        en: "Did shows the past, so the verb after it stays plain: What did you do on Sunday?",
-        te: "did లోనే గతం ఉంది, అందుకే తర్వాత do మారదు: What did you do on Sunday?",
+        en: "Did shows the past, so the verb after it stays plain.",
+        te: "did లోనే గతం ఉంది, అందుకే తర్వాత do మారదు.",
       },
     },
     {
@@ -144,8 +144,8 @@ export const day: Lesson = {
       options: ["I went to Tirupati.", "I go to Tirupati yesterday.", "I did go Tirupati."],
       answer: 0,
       why: {
-        en: "The question is about the past, so answer with went: I went to Tirupati.",
-        te: "ప్రశ్న గతం గురించి, అందుకే జవాబులో went: I went to Tirupati.",
+        en: "The question is about the past, so answer with went.",
+        te: "ప్రశ్న గతం గురించి, అందుకే జవాబులో went.",
       },
     },
     {
@@ -155,8 +155,8 @@ export const day: Lesson = {
       wrongIndex: 3,
       fix: "Who did you meet?",
       why: {
-        en: "Did already shows the past, so meet stays plain: Who did you meet?",
-        te: "did లోనే గతం ఉంది, అందుకే meet మారదు: Who did you meet?",
+        en: "Did already shows the past, so meet stays plain.",
+        te: "did లోనే గతం ఉంది, అందుకే meet మారదు.",
       },
     },
   ],

@@ -120,8 +120,8 @@ export const day: Lesson = {
       options: ["Myself Kiran.", "My name is Kiran.", "I am name Kiran."],
       answer: 1,
       why: {
-        en: "Give your name with My name is, not Myself: My name is Kiran.",
-        te: "పేరు My name is తో చెప్పండి, Myself తో కాదు: My name is Kiran.",
+        en: "Give your name with My name is, not Myself.",
+        te: "పేరు My name is తో చెప్పండి, Myself తో కాదు.",
       },
     },
     {
@@ -132,8 +132,8 @@ export const day: Lesson = {
       options: ["learning", "learn", "learned"],
       answer: 0,
       why: {
-        en: "It is happening these days, so am with -ing: I am learning English now.",
-        te: "ఈ మధ్య జరుగుతోంది, అందుకే am తో -ing: I am learning English now.",
+        en: "It is happening these days, so am with -ing.",
+        te: "ఈ మధ్య జరుగుతోంది, అందుకే am తో -ing.",
       },
     },
     {
@@ -146,8 +146,8 @@ export const day: Lesson = {
       options: ["I live in Guntur.", "My town Guntur.", "I am 64 years old."],
       answer: 0,
       why: {
-        en: "Where do you live asks for your town, so answer with I live in: I live in Guntur.",
-        te: "Where do you live అంటే మీ ఊరు అడుగుతున్నారు, I live in తో చెప్పండి: I live in Guntur.",
+        en: "Where do you live asks for your town, so answer with I live in.",
+        te: "Where do you live అంటే మీ ఊరు అడుగుతున్నారు, I live in తో చెప్పండి.",
       },
     },
     {
@@ -158,8 +158,8 @@ export const day: Lesson = {
       wrongIndex: 2,
       fix: "I have two brothers.",
       why: {
-        en: "Have for family is not an action, so no -ing: I have two brothers.",
-        te: "కుటుంబం గురించి చెప్పే have కి -ing రాదు: I have two brothers.",
+        en: "Have for family is not an action, so no -ing.",
+        te: "కుటుంబం గురించి చెప్పే have కి -ing రాదు.",
       },
     },
   ],

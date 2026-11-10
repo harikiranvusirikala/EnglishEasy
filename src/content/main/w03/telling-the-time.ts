@@ -143,8 +143,8 @@ export const day: Lesson = {
       options: ["At quarter past eight.", "At quarter to eight.", "At half past seven."],
       answer: 0,
       why: {
-        en: "Fifteen minutes after eight is quarter past eight: The bus comes at quarter past eight.",
-        te: "ఎనిమిది దాటి పదిహేను నిమిషాలు అంటే quarter past eight: The bus comes at quarter past eight.",
+        en: "Fifteen minutes after eight is quarter past eight.",
+        te: "ఎనిమిది దాటి పదిహేను నిమిషాలు అంటే quarter past eight.",
       },
       say: "The bus comes at quarter past eight.",
     },
@@ -155,8 +155,8 @@ export const day: Lesson = {
       wrongIndex: 0,
       fix: "It is six now.",
       why: {
-        en: "Begin with It is: It is six now.",
-        te: "It is తో మొదలుపెట్టాలి: It is six now.",
+        en: "To tell the time, English begins with It is.",
+        te: "సమయం చెప్పాలంటే ఇంగ్లీష్‌లో It is తో మొదలుపెట్టాలి.",
       },
     },
   ],

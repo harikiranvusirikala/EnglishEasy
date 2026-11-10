@@ -78,7 +78,7 @@ export const day: Lesson = {
         },
         {
           form: "how much",
-          useFor: { en: "Use how much for the price.", te: "ధర అడగడానికి how much." },
+          useFor: { en: "Use how much for the price.", te: "ధర ఎంత అని అడగడానికి how much వాడాలి." },
           example: { en: "How much is this?", te: "ఇది ఎంత?" },
         },
         {
@@ -88,7 +88,7 @@ export const day: Lesson = {
         },
         {
           form: "how far",
-          useFor: { en: "Use how far for distance.", te: "దూరం అడగడానికి how far." },
+          useFor: { en: "Use how far for distance.", te: "ఎంత దూరం అని అడగడానికి how far వాడాలి." },
           example: { en: "How far is the bus stand?", te: "బస్ స్టాండ్ ఎంత దూరం?" },
         },
       ],
@@ -122,8 +122,8 @@ export const day: Lesson = {
       options: ["How much is this saree?", "How old is this saree?", "How many is this saree?"],
       answer: 0,
       why: {
-        en: "For a price, ask how much: How much is this saree?",
-        te: "ధర కోసం how much అడగాలి: How much is this saree?",
+        en: "For a price, ask how much.",
+        te: "ధర కోసం how much అడగాలి.",
       },
     },
     {
@@ -134,8 +134,8 @@ export const day: Lesson = {
       options: ["much", "far", "many"],
       answer: 1,
       why: {
-        en: "For distance, use how far: How far is the temple?",
-        te: "దూరం అడగడానికి how far: How far is the temple?",
+        en: "To ask about distance, like ఎంత దూరం, use how far.",
+        te: "ఎంత దూరం అని అడగడానికి how far వాడాలి.",
       },
     },
     {
@@ -145,8 +145,8 @@ export const day: Lesson = {
       options: ["How are you?", "How old are you?", "How many years you are?"],
       answer: 1,
       why: {
-        en: "Telugu counts the years, but English asks how old: How old are you?",
-        te: "తెలుగులో ఎన్నేళ్లు అంటాం, ఇంగ్లీష్‌లో how old అడగాలి: How old are you?",
+        en: "Telugu counts the years, but English asks how old.",
+        te: "తెలుగులో ఎన్నేళ్లు అంటాం, ఇంగ్లీష్‌లో how old అడగాలి.",
       },
     },
     {
@@ -156,8 +156,8 @@ export const day: Lesson = {
       wrongIndex: 2,
       fix: "How much are these bananas?",
       why: {
-        en: "Bananas are more than one, so use are: How much are these bananas?",
-        te: "అరటిపళ్ళు ఒకటి కంటే ఎక్కువ, కాబట్టి are: How much are these bananas?",
+        en: "Bananas are more than one, so use are.",
+        te: "అరటిపళ్ళు ఒకటి కంటే ఎక్కువ, కాబట్టి are.",
       },
     },
   ],

@@ -120,8 +120,8 @@ export const day: Lesson = {
       options: ["Her shop is big.", "His shop is big.", "He shop is big."],
       answer: 1,
       why: {
-        en: "Imran is a man, so use his: His shop is big.",
-        te: "ఇమ్రాన్ మగవారు, కాబట్టి his: His shop is big.",
+        en: "Imran is a man, so use his.",
+        te: "ఇమ్రాన్ మగవారు, కాబట్టి his.",
       },
     },
     {
@@ -144,8 +144,8 @@ export const day: Lesson = {
       options: ["Our house is small.", "Their house is small.", "Our house small."],
       answer: 0,
       why: {
-        en: "Here మా means the family's, so say our, and keep is: Our house is small.",
-        te: "ఇక్కడ 'మా' అంటే కుటుంబం అందరిదీ, కాబట్టి our; is కూడా ఉండాలి: Our house is small.",
+        en: "Here మా means the family's, so say our, and keep is.",
+        te: "ఇక్కడ 'మా' అంటే కుటుంబం అందరిదీ, కాబట్టి our; is కూడా ఉండాలి.",
       },
     },
     {

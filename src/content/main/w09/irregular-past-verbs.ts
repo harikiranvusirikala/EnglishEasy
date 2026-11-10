@@ -104,8 +104,8 @@ export const day: Lesson = {
       wrong: "She buyed a saree.",
       right: "She bought a saree.",
       why: {
-        en: "Buy takes no -ed; its past is bought: She bought a saree.",
-        te: "buy కి -ed రాదు, దాని గతం bought: She bought a saree.",
+        en: "Buy takes no -ed; its past is bought.",
+        te: "buy కి -ed రాదు, దాని గతం bought.",
       },
     },
   ],
@@ -117,8 +117,8 @@ export const day: Lesson = {
       options: ["We eated dosa.", "We ate dosa.", "We eat dosa yesterday."],
       answer: 1,
       why: {
-        en: "Eat takes no -ed; its past is ate: We ate dosa.",
-        te: "eat కి -ed రాదు, దాని గతం ate: We ate dosa.",
+        en: "Eat takes no -ed; its past is ate.",
+        te: "eat కి -ed రాదు, దాని గతం ate.",
       },
     },
     {
@@ -129,8 +129,8 @@ export const day: Lesson = {
       options: ["took", "taked", "take"],
       answer: 0,
       why: {
-        en: "The past of take is took, not taked: I took the bus.",
-        te: "take కి గతం took, taked కాదు: I took the bus.",
+        en: "The past of take is took, not taked.",
+        te: "take కి గతం took, taked కాదు.",
       },
     },
     {
@@ -151,8 +151,8 @@ export const day: Lesson = {
       wrongIndex: 1,
       fix: "He came home late.",
       why: {
-        en: "The past of come is came, not comed: He came home late.",
-        te: "come కి గతం came, comed కాదు: He came home late.",
+        en: "The past of come is came, not comed.",
+        te: "come కి గతం came, comed కాదు.",
       },
     },
   ],

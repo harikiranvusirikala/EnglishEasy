@@ -153,8 +153,8 @@ export const day: Lesson = {
       options: ["Did you ate?", "Did you eat?", "Did you eating?"],
       answer: 1,
       why: {
-        en: "Did already shows the past, so the action word stays plain: Did you eat?",
-        te: "Did లోనే past ఉంది, కాబట్టి verb మారదు: Did you eat?",
+        en: "Did already shows the past, so the action word stays plain.",
+        te: "Did లోనే past ఉంది, కాబట్టి verb మారదు.",
       },
     },
     {
@@ -164,8 +164,8 @@ export const day: Lesson = {
       wrongIndex: 2,
       fix: "Yesterday I went to the market.",
       why: {
-        en: "Yesterday is finished time, so use the past: Yesterday I went to the market.",
-        te: "Yesterday అంటే అయిపోయిన సమయం, కాబట్టి past: Yesterday I went to the market.",
+        en: "Yesterday is finished time, so use the past.",
+        te: "Yesterday అంటే అయిపోయిన సమయం, కాబట్టి past.",
       },
     },
   ],

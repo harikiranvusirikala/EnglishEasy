@@ -117,8 +117,8 @@ export const day: Lesson = {
       options: ["I like tea and coffee.", "I like tea but coffee.", "I like tea also coffee."],
       answer: 0,
       why: {
-        en: "You like both, so join them with and: I like tea and coffee.",
-        te: "రెండూ ఇష్టమే, అందుకే and తో కలపాలి: I like tea and coffee.",
+        en: "You like both, so join them with and.",
+        te: "రెండూ ఇష్టమే, అందుకే and తో కలపాలి.",
       },
     },
     {
@@ -129,8 +129,8 @@ export const day: Lesson = {
       options: ["but", "or", "so"],
       answer: 0,
       why: {
-        en: "He didn't answer, which you didn't expect, so use but: I called him, but he was busy.",
-        te: "అనుకున్నది జరగలేదు, అందుకే but: I called him, but he was busy.",
+        en: "He didn't answer, which you didn't expect, so use but.",
+        te: "అనుకున్నది జరగలేదు, అందుకే but.",
       },
     },
     {
@@ -140,8 +140,8 @@ export const day: Lesson = {
       options: ["She is kind and helpful.", "She is old but very active.", "She is tall and thin."],
       answer: 1,
       why: {
-        en: "Old and very active don't usually go together, so but: She is old but very active.",
-        te: "వయసైనా చాలా చురుకుగా ఉన్నారు, ఇది తేడా, అందుకే but: She is old but very active.",
+        en: "Old and very active don't usually go together, so use but.",
+        te: "వయసైనా చాలా చురుకుగా ఉన్నారు, ఇది తేడా, అందుకే but.",
       },
     },
     {
@@ -151,8 +151,8 @@ export const day: Lesson = {
       wrongIndex: 4,
       fix: "The food was good but expensive.",
       why: {
-        en: "Good is a plus, expensive a minus, so join them with but: The food was good but expensive.",
-        te: "good మంచిది, expensive కాదు, అందుకే but: The food was good but expensive.",
+        en: "Good is a plus, expensive a minus, so join them with but.",
+        te: "good మంచిది, expensive కాదు, అందుకే but.",
       },
     },
   ],

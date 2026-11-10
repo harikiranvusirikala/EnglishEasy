@@ -121,8 +121,8 @@ export const day: Lesson = {
       options: ["You ate?", "Did you eat?", "Did you ate?"],
       answer: 1,
       why: {
-        en: "Did already shows the past, so eat stays plain: Did you eat?",
-        te: "did తోనే past తెలుస్తుంది, అందుకే eat మారదు: Did you eat?",
+        en: "Did already shows the past, so eat stays plain.",
+        te: "did తోనే past తెలుస్తుంది, అందుకే eat మారదు.",
       },
     },
     {
@@ -133,8 +133,8 @@ export const day: Lesson = {
       options: ["will", "is", "are"],
       answer: 0,
       why: {
-        en: "His coming is still ahead, so ask with will: When will he come?",
-        te: "ఆయన రావడం ఇంకా జరగలేదు, అందుకే will: When will he come?",
+        en: "His coming is still ahead, so ask with will.",
+        te: "ఆయన రావడం ఇంకా జరగలేదు, అందుకే will.",
       },
     },
     {
@@ -145,8 +145,8 @@ export const day: Lesson = {
       options: ["Do you live here?", "Are you live here?", "Does you live here?"],
       answer: 0,
       why: {
-        en: "For every day, ask with do, and with you it is do: Do you live here?",
-        te: "రోజూ జరిగేది do తో అడగాలి; you తో are, does కాదు, do: Do you live here?",
+        en: "For every day, ask with do, and with you it is do.",
+        te: "రోజూ జరిగేది do తో అడగాలి; you తో are, does కాదు, do.",
       },
     },
     {
@@ -156,8 +156,8 @@ export const day: Lesson = {
       wrongIndex: 3,
       fix: "How many people live in your house?",
       why: {
-        en: "People means many, so the verb has no s: How many people live in your house?",
-        te: "people అంటే చాలా మంది, అందుకే verb కి s రాదు: How many people live in your house?",
+        en: "People means many, so the verb has no s.",
+        te: "people అంటే చాలా మంది, అందుకే verb కి s రాదు.",
       },
     },
   ],

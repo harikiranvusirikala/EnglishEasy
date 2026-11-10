@@ -146,8 +146,8 @@ export const day: Lesson = {
       options: ["Kitchen is small.", "The kitchen is small.", "A kitchen is small."],
       answer: 1,
       why: {
-        en: "You both know which kitchen, so say the: The kitchen is small.",
-        te: "ఏ వంటగదో ఇద్దరికీ తెలుసు, కాబట్టి the: The kitchen is small.",
+        en: "You both know which kitchen, so say the.",
+        te: "ఏ వంటగదో ఇద్దరికీ తెలుసు, కాబట్టి the.",
       },
     },
     {

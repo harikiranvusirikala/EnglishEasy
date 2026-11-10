@@ -153,8 +153,8 @@ export const day: Lesson = {
       wrongIndex: 1,
       fix: "We speak Telugu.",
       why: {
-        en: "Take out are. We speak Telugu.",
-        te: "are తీసేయండి. We speak Telugu అంటే సరిపోతుంది.",
+        en: "Speak is already the action, so do not add are.",
+        te: "speak నే పని (verb), కాబట్టి are అవసరం లేదు.",
       },
     },
   ],

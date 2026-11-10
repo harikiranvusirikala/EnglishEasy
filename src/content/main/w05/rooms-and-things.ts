@@ -144,8 +144,8 @@ export const day: Lesson = {
       options: ["Close the light.", "Switch off the light.", "Off the light."],
       answer: 1,
       why: {
-        en: "Lights are switched off, never closed: Switch off the light.",
-        te: "లైట్‌కి close కాదు, switch off: Switch off the light.",
+        en: "Lights are switched off, never closed.",
+        te: "లైట్‌కి close కాదు, switch off.",
       },
     },
     {

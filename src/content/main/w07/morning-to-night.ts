@@ -120,8 +120,8 @@ export const day: Lesson = {
       options: ["I walk in morning.", "I walk in the morning.", "I walk at morning."],
       answer: 1,
       why: {
-        en: "Parts of the day need in the, not at: I walk in the morning.",
-        te: "రోజులోని భాగాలకు in the కావాలి, at కాదు: I walk in the morning.",
+        en: "Parts of the day need in the, not at.",
+        te: "రోజులోని భాగాలకు in the కావాలి, at కాదు.",
       },
     },
     {
@@ -133,8 +133,8 @@ export const day: Lesson = {
       options: ["in", "at", "on"],
       answer: 1,
       why: {
-        en: "Night is the odd one: at night, with no the. We pray at night.",
-        te: "రాత్రి ఒక్కటే వేరు: at night, the లేకుండా. We pray at night.",
+        en: "Night is the odd one: at night, with no the.",
+        te: "రాత్రి ఒక్కటే వేరు: at night, the లేకుండా.",
       },
     },
     {

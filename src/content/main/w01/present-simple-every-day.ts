@@ -135,8 +135,8 @@ export const day: Lesson = {
       options: ["I am walk every morning.", "I walk every morning.", "I walking every morning."],
       answer: 1,
       why: {
-        en: "For a habit, say who and then the plain action word, with no am: I walk every morning.",
-        te: "అలవాటుకి ముందు ఎవరు, తర్వాత మామూలు verb; am వద్దు: I walk every morning.",
+        en: "For a habit, say who and then the plain action word, with no am.",
+        te: "అలవాటుకి ముందు ఎవరు, తర్వాత మామూలు verb; am వద్దు.",
       },
     },
     {
@@ -147,8 +147,8 @@ export const day: Lesson = {
       options: ["Do", "Are", "Is"],
       answer: 0,
       why: {
-        en: "To ask about a habit, start with Do. Telugu just adds ఆ, but English needs Do: Do you drink coffee?",
-        te: "అలవాటు గురించి అడగాలంటే Do తో మొదలుపెట్టాలి. తెలుగులో 'ఆ' చాలు, ఇంగ్లీష్‌లో Do కావాలి: Do you drink coffee?",
+        en: "To ask about a habit, start with Do. Telugu just adds ఆ, but English needs Do.",
+        te: "అలవాటు గురించి అడగాలంటే Do తో మొదలుపెట్టాలి. తెలుగులో 'ఆ' చాలు, ఇంగ్లీష్‌లో Do కావాలి.",
       },
     },
     {
@@ -159,8 +159,8 @@ export const day: Lesson = {
       options: ["We going to the temple on Fridays.", "We go to the temple on Fridays.", "We went to the temple on Friday."],
       answer: 1,
       why: {
-        en: "Every Friday is a habit, so use the plain action word with we: We go to the temple on Fridays.",
-        te: "ప్రతి శుక్రవారం అంటే అలవాటు, కాబట్టి we తో మామూలు verb: We go to the temple on Fridays.",
+        en: "Every Friday is a habit, so use the plain action word with we.",
+        te: "ప్రతి శుక్రవారం అంటే అలవాటు, కాబట్టి we తో మామూలు verb.",
       },
     },
     {
@@ -170,8 +170,8 @@ export const day: Lesson = {
       wrongIndex: 2,
       fix: "Do you watch the news?",
       why: {
-        en: "After Do you, use the plain action word, not -ing: Do you watch the news?",
-        te: "Do you తర్వాత మామూలు verb వాడాలి, -ing వద్దు: Do you watch the news?",
+        en: "After Do you, use the plain action word, not -ing.",
+        te: "Do you తర్వాత మామూలు verb వాడాలి, -ing వద్దు.",
       },
     },
   ],

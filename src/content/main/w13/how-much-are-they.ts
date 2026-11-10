@@ -119,8 +119,8 @@ export const day: Lesson = {
       options: ["How much is these apples?", "How much are these apples?", "How much these apples?"],
       answer: 1,
       why: {
-        en: "Apples are more than one, so use are: How much are these apples?",
-        te: "ఆపిల్స్ ఒకటి కంటే ఎక్కువ, అందుకే are: How much are these apples?",
+        en: "Apples are more than one, so use are.",
+        te: "ఆపిల్స్ ఒకటి కంటే ఎక్కువ, అందుకే are.",
       },
     },
     {
@@ -133,8 +133,8 @@ export const day: Lesson = {
       options: ["60 rupees", "30 rupees", "80 rupees"],
       answer: 0,
       why: {
-        en: "Onions are 30 rupees a kilo, so two kilos cost double: That comes to 60 rupees.",
-        te: "ఉల్లిపాయలు కిలో 30 రూపాయలు, రెండు కిలోలు అంటే రెట్టింపు: That comes to 60 rupees.",
+        en: "Onions are 30 rupees a kilo, so two kilos cost double.",
+        te: "ఉల్లిపాయలు కిలో 30 రూపాయలు, రెండు కిలోలు అంటే రెట్టింపు.",
       },
       say: "That comes to 60 rupees.",
     },
@@ -148,8 +148,8 @@ export const day: Lesson = {
       options: ["The total is 240 rupees.", "One kilo is 240 rupees.", "You get 240 rupees back."],
       answer: 0,
       why: {
-        en: "Comes to tells you the total to pay: The total is 240 rupees.",
-        te: "comes to అంటే మొత్తం కట్టాల్సింది: The total is 240 rupees.",
+        en: "Comes to tells you the total to pay.",
+        te: "comes to అంటే మొత్తం కట్టాల్సింది.",
       },
     },
     {
@@ -159,8 +159,8 @@ export const day: Lesson = {
       wrongIndex: 1,
       fix: "Coconuts are 30 rupees each.",
       why: {
-        en: "Coconuts means more than one, so use are: Coconuts are 30 rupees each.",
-        te: "coconuts అంటే ఒకటి కంటే ఎక్కువ, అందుకే are: Coconuts are 30 rupees each.",
+        en: "Coconuts means more than one, so use are.",
+        te: "coconuts అంటే ఒకటి కంటే ఎక్కువ, అందుకే are.",
       },
     },
   ],

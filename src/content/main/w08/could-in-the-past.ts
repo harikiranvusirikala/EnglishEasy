@@ -129,8 +129,8 @@ export const day: Lesson = {
       options: ["couldn't", "can't", "don't"],
       answer: 0,
       why: {
-        en: "Telugu వచ్చేది కాదు is the past, so couldn't, not can't: I couldn't read English then.",
-        te: "'వచ్చేది కాదు' గతం, అందుకే can't కాదు, couldn't: I couldn't read English then.",
+        en: "Telugu వచ్చేది కాదు is the past, so couldn't, not can't.",
+        te: "'వచ్చేది కాదు' గతం, అందుకే can't కాదు, couldn't.",
       },
     },
     {
@@ -140,8 +140,8 @@ export const day: Lesson = {
       options: ["I can climb trees.", "I could climb trees.", "I am climbing trees."],
       answer: 1,
       why: {
-        en: "Could is the past of can, so it tells about before: I could climb trees.",
-        te: "could అంటే గతంలో can; అది ఒకప్పటి గురించి: I could climb trees.",
+        en: "Could is the past of can, so it tells about before.",
+        te: "could అంటే గతంలో can; అది ఒకప్పటి గురించి.",
       },
     },
     {
@@ -151,8 +151,8 @@ export const day: Lesson = {
       wrongIndex: 2,
       fix: "She could sing very well.",
       why: {
-        en: "After could, the verb stays plain, not past: She could sing very well.",
-        te: "could తర్వాత verb మారదు, past form రాదు: She could sing very well.",
+        en: "After could, the verb stays plain, not past.",
+        te: "could తర్వాత verb మారదు, past form రాదు.",
       },
     },
   ],

@@ -119,8 +119,8 @@ export const day: Lesson = {
       options: ["I can able to cook.", "I can cook.", "I can to cook."],
       answer: 1,
       why: {
-        en: "Can already means able, so no able and no to: I can cook.",
-        te: "can అంటేనే 'చేయగలను'; able, to అక్కర్లేదు: I can cook.",
+        en: "Can already means able, so no able and no to.",
+        te: "can అంటేనే 'చేయగలను'; able, to అక్కర్లేదు.",
       },
     },
     {
@@ -131,8 +131,8 @@ export const day: Lesson = {
       options: ["sing", "sings", "singing"],
       answer: 0,
       why: {
-        en: "After can, the verb has no s, even with she: She can sing very well.",
-        te: "she అయినా can తర్వాత verb కి s రాదు: She can sing very well.",
+        en: "After can, the verb has no s, even with she.",
+        te: "she అయినా can తర్వాత verb కి s రాదు.",
       },
     },
     {
@@ -142,8 +142,8 @@ export const day: Lesson = {
       options: ["Can you swim?", "Do you can swim?", "Can you swimming?"],
       answer: 0,
       why: {
-        en: "Telugu ends with ఆ (వచ్చా?); English puts can first: Can you swim?",
-        te: "తెలుగులో చివర 'ఆ' (వచ్చా?); ఇంగ్లీష్‌లో can ముందు: Can you swim?",
+        en: "Telugu ends with ఆ (వచ్చా?); English puts can first.",
+        te: "తెలుగులో చివర 'ఆ' (వచ్చా?); ఇంగ్లీష్‌లో can ముందు.",
       },
     },
     {
@@ -153,8 +153,8 @@ export const day: Lesson = {
       wrongIndex: 2,
       fix: "He can read English.",
       why: {
-        en: "After can, read stays plain, even with he: He can read English.",
-        te: "he అయినా can తర్వాత read కి s రాదు: He can read English.",
+        en: "After can, read stays plain, even with he.",
+        te: "he అయినా can తర్వాత read కి s రాదు.",
       },
     },
   ],

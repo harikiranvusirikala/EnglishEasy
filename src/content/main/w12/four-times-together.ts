@@ -121,8 +121,8 @@ export const day: Lesson = {
       options: ["Yesterday I go out.", "Yesterday I went out.", "Yesterday I will go out."],
       answer: 1,
       why: {
-        en: "Yesterday is over, so use the past form went: Yesterday I went out.",
-        te: "నిన్న అయిపోయింది, అందుకే past form went: Yesterday I went out.",
+        en: "Yesterday is over, so use the past form went.",
+        te: "నిన్న అయిపోయింది, అందుకే past form went.",
       },
     },
     {
@@ -133,8 +133,8 @@ export const day: Lesson = {
       options: ["is", "was", "will"],
       answer: 0,
       why: {
-        en: "Right now means it is happening, so is with -ing: Right now she is sleeping.",
-        te: "ఇప్పుడు జరుగుతోంది, అందుకే is తో -ing: Right now she is sleeping.",
+        en: "Right now means it is happening, so is with -ing.",
+        te: "ఇప్పుడు జరుగుతోంది, అందుకే is తో -ing.",
       },
     },
     {
@@ -144,8 +144,8 @@ export const day: Lesson = {
       options: ["Tomorrow I will visit Ravi.", "Tomorrow I visited Ravi.", "Tomorrow I am visit Ravi."],
       answer: 0,
       why: {
-        en: "Tomorrow is still to come, so say will visit: Tomorrow I will visit Ravi.",
-        te: "రేపు ఇంకా రాలేదు, అందుకే will visit: Tomorrow I will visit Ravi.",
+        en: "Tomorrow is still to come, so say will visit.",
+        te: "రేపు ఇంకా రాలేదు, అందుకే will visit.",
       },
     },
     {
@@ -155,8 +155,8 @@ export const day: Lesson = {
       wrongIndex: 3,
       fix: "Last week we went to Tirupati.",
       why: {
-        en: "Last week is past, so go becomes went: Last week we went to Tirupati.",
-        te: "పోయిన వారం అంటే past, go కాదు went: Last week we went to Tirupati.",
+        en: "Last week is past, so go becomes went.",
+        te: "పోయిన వారం అంటే past, go కాదు went.",
       },
     },
   ],

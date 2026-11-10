@@ -117,8 +117,8 @@ export const day: Lesson = {
       options: ["I'll answer it.", "I answered it.", "I answer it."],
       answer: 0,
       why: {
-        en: "The phone rings now, so you decide now and say I'll: I'll answer it.",
-        te: "ఫోన్ ఇప్పుడే మోగింది, ఇప్పుడే నిర్ణయం, అందుకే I'll: I'll answer it.",
+        en: "The phone rings now, so you decide now and say I'll.",
+        te: "ఫోన్ ఇప్పుడే మోగింది, ఇప్పుడే నిర్ణయం, అందుకే I'll.",
       },
     },
     {
@@ -140,8 +140,8 @@ export const day: Lesson = {
       options: ["I'll carry it.", "I will to carry it.", "I carrying it."],
       answer: 0,
       why: {
-        en: "An offer made right now takes I'll and the plain verb: I'll carry it.",
-        te: "అప్పటికప్పుడు సహాయం చేస్తానంటే I'll, తర్వాత మామూలు verb: I'll carry it.",
+        en: "An offer made right now takes I'll and the plain verb.",
+        te: "అప్పటికప్పుడు సహాయం చేస్తానంటే I'll, తర్వాత మామూలు verb.",
       },
     },
     {
@@ -151,8 +151,8 @@ export const day: Lesson = {
       wrongIndex: 1,
       fix: "I'm going to visit Tirupati.",
       why: {
-        en: "A plan takes am going to, not will going to: I'm going to visit Tirupati.",
-        te: "ప్లాన్‌కి will going to కాదు, am going to: I'm going to visit Tirupati.",
+        en: "A plan takes am going to, not will going to.",
+        te: "ప్లాన్‌కి will going to కాదు, am going to.",
       },
     },
   ],

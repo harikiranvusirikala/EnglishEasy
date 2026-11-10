@@ -122,8 +122,8 @@ export const day: Lesson = {
       options: ["On Friday, at eleven.", "Today, at eleven.", "Three days ago."],
       answer: 0,
       why: {
-        en: "In three days means three days from today, so it is still to come: My check-up is on Friday at eleven.",
-        te: "in 3 days అంటే ఈరోజు నుండి మూడు రోజుల తర్వాత: My check-up is on Friday at eleven.",
+        en: "In three days means three days from today, so it is still to come.",
+        te: "in 3 days అంటే ఈరోజు నుండి మూడు రోజుల తర్వాత.",
       },
       say: "My check-up is on Friday at eleven.",
     },
@@ -135,8 +135,8 @@ export const day: Lesson = {
       options: ["in", "after", "on"],
       answer: 0,
       why: {
-        en: "Counting from now, use in, not after: We'll meet in an hour.",
-        te: "ఇప్పటి నుండి లెక్కపెడితే in, after కాదు: We'll meet in an hour.",
+        en: "Counting from now, use in, not after.",
+        te: "ఇప్పటి నుండి లెక్కపెడితే in, after కాదు.",
       },
     },
     {
@@ -158,8 +158,8 @@ export const day: Lesson = {
       wrongIndex: 3,
       fix: "Can I come next Monday?",
       why: {
-        en: "Next already points to the day, so drop on: Can I come next Monday?",
-        te: "next ఉంటే on తీసేయాలి: Can I come next Monday?",
+        en: "Next already points to the day, so drop on.",
+        te: "next ఉంటే on తీసేయాలి.",
       },
     },
   ],

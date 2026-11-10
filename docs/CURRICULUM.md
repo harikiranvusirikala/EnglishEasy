@@ -38,7 +38,7 @@ The map is a plan, not a contract: weeks can be refined, merged or added. Lesson
 - **Telugu mode explanations**: at most two short sentences (about 25 words); grammar words limited to verb, past, question.
 
 **Explanations ("why", "useFor", hints)**
-- **The why formula**: the rule in plain words + the reason (link it to Telugu when Telugu is the cause) + the right sentence. At least 6 English words (`why-length`). Never only "Don't forget are." or "Like to + come."
+- **The why formula**: the rule in plain words + the reason (link it to Telugu when Telugu is the cause). At least 6 English words (`why-length`). Never only "Don't forget are." or "Like to + come." Don't end with the question's sentence (`why-repeats-sentence`, owner 2026-11-10): after Check the sentence plays first, then the why, and on "Almost" the why alone is the hint, so a copy at its end is heard twice or gives the answer away. Write "With I, always use am, never is or are.", not "With I, use am: I am hungry."
   - Good: "Telugu ఎంత? needs no verb, but English needs is or are: How much are these apples?"
   - Good: "One person (he, she): add s to the verb. She watches TV."
 - Role-play **hints say what to do, not the sentence** (`roleplay-hint`): "Ask the price politely.", "Say yes, and how many kilos you want.", "Tell him politely the change is wrong. Start with Sorry, I think…". The reply itself is never in the hint.

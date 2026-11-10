@@ -64,7 +64,7 @@ Put the simplest, most useful sentences at 0–3. Each core sentence's `extra` i
 - [ ] The pattern is explained in one or two sentences, grammar words limited to verb, past, question
 - [ ] Core 0–3 are the four most useful real-life sentences, each something a polite adult in Andhra or Telangana would really say
 - [ ] Every wrong option is a real Telugu-speaker error or manners slip, wrong in every context; exactly one right answer (CURRICULUM §1 "Distractors")
-- [ ] \* Each "why" gives the rule, the reason (linked to Telugu when Telugu causes it) and the right sentence
+- [ ] \* Each "why" gives the rule and the reason (linked to Telugu when Telugu causes it), and does not end with the question's sentence (it is read just before)
 - [ ] \* Role-play hints say what to do, never the reply; at least one manners slip has a `react`; men have `voice: "b"`
 - [ ] The first and last role-play turns sound like a real start and end
 - [ ] One persistent-error item outside the week's focus, and two recycled words or patterns from 2+ weeks back

@@ -118,8 +118,8 @@ export const day: Lesson = {
       options: ["I carry that.", "I'll carry that.", "I'll to carry that."],
       answer: 1,
       why: {
-        en: "An offer is I'll plus the plain verb, with no to: I'll carry that.",
-        te: "సహాయం చేస్తానంటే I'll, తర్వాత నేరుగా verb, to రాదు: I'll carry that.",
+        en: "An offer is I'll plus the plain verb, with no to.",
+        te: "సహాయం చేస్తానంటే I'll, తర్వాత నేరుగా verb, to రాదు.",
       },
     },
     {
@@ -130,8 +130,8 @@ export const day: Lesson = {
       options: ["won't", "don't", "not"],
       answer: 0,
       why: {
-        en: "To promise not to do something, say won't: I promise I won't be late.",
-        te: "ఏదైనా చేయనని మాట ఇవ్వడానికి won't: I promise I won't be late.",
+        en: "To promise not to do something, say won't.",
+        te: "ఏదైనా చేయనని మాట ఇవ్వడానికి won't.",
       },
     },
     {
@@ -142,8 +142,8 @@ export const day: Lesson = {
       options: ["I'll help you.", "I'll help to you.", "I'm help you."],
       answer: 0,
       why: {
-        en: "Offer help with I'll and the plain verb: I'll help you.",
-        te: "తెలుగులో మీకు అన్నా English లో to రాదు; I'll తో చెప్పండి: I'll help you.",
+        en: "Offer help with I'll and the plain verb.",
+        te: "తెలుగులో మీకు అన్నా English లో to రాదు; I'll తో చెప్పండి.",
       },
     },
     {
@@ -153,8 +153,8 @@ export const day: Lesson = {
       wrongIndex: 1,
       fix: "I'll bring it tomorrow.",
       why: {
-        en: "After will, the verb never takes s: I'll bring it tomorrow.",
-        te: "will తర్వాత verb కి s రాదు: I'll bring it tomorrow.",
+        en: "After will, the verb never takes s.",
+        te: "will తర్వాత verb కి s రాదు.",
       },
     },
   ],

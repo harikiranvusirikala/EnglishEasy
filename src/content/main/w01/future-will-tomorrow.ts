@@ -122,8 +122,8 @@ export const day: Lesson = {
       options: ["I will going.", "I will go.", "I will goes."],
       answer: 1,
       why: {
-        en: "After will, the action stays simple: I will go.",
-        te: "will తర్వాత verb మారదు: I will go.",
+        en: "After will, the action stays simple.",
+        te: "will తర్వాత verb మారదు.",
       },
     },
     {
@@ -134,8 +134,8 @@ export const day: Lesson = {
       options: ["will", "am", "did"],
       answer: 0,
       why: {
-        en: "For tomorrow, put will before the action: I will call you tomorrow.",
-        te: "రేపు చేసే పనికి verb ముందు will: I will call you tomorrow.",
+        en: "For tomorrow, put will before the action.",
+        te: "రేపు చేసే పనికి verb ముందు will.",
       },
     },
     {
@@ -145,8 +145,8 @@ export const day: Lesson = {
       options: ["You come tomorrow?", "Will you come tomorrow?", "Will you coming tomorrow?"],
       answer: 1,
       why: {
-        en: "To ask about tomorrow, put Will first, then you and the plain action word: Will you come tomorrow?",
-        te: "రేపటి గురించి అడగాలంటే మొదట Will, తర్వాత you, మామూలు verb: Will you come tomorrow?",
+        en: "To ask about tomorrow, put Will first, then you and the plain action word.",
+        te: "రేపటి గురించి అడగాలంటే మొదట Will, తర్వాత you, మామూలు verb.",
       },
       fixIt: "question",
     },
@@ -157,8 +157,8 @@ export const day: Lesson = {
       wrongIndex: 2,
       fix: "She will come on Sunday.",
       why: {
-        en: "After will, the action has no -s: She will come on Sunday.",
-        te: "will తర్వాత verb కి -s రాదు: She will come on Sunday.",
+        en: "After will, the action has no -s.",
+        te: "will తర్వాత verb కి -s రాదు.",
       },
     },
   ],

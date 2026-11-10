@@ -121,8 +121,8 @@ export const day: Lesson = {
       options: ["What time the shop opens?", "What time does the shop open?", "What time does the shop opens?"],
       answer: 1,
       why: {
-        en: "With does, the action has no s: What time does the shop open?",
-        te: "does ఉంటే verb కి s రాదు: What time does the shop open?",
+        en: "With does, the action has no s.",
+        te: "does ఉంటే verb కి s రాదు.",
       },
     },
     {
@@ -133,8 +133,8 @@ export const day: Lesson = {
       options: ["in", "on", "at"],
       answer: 2,
       why: {
-        en: "Before a clock time, use at: The bus comes at seven.",
-        te: "గడియారం టైమ్ ముందు at వాడాలి: The bus comes at seven.",
+        en: "Before a clock time, use at.",
+        te: "గడియారం టైమ్ ముందు at వాడాలి.",
       },
     },
     {
@@ -156,8 +156,8 @@ export const day: Lesson = {
       wrongIndex: 1,
       fix: "When will you come?",
       why: {
-        en: "In a question, will comes before you: When will you come?",
-        te: "ప్రశ్నలో will ముందు, you తర్వాత వస్తాయి: When will you come?",
+        en: "In a question, will comes before you.",
+        te: "ప్రశ్నలో will ముందు, you తర్వాత వస్తాయి.",
       },
     },
   ],

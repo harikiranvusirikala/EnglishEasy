@@ -128,8 +128,8 @@ export const day: Lesson = {
       options: ["Who bag is this?", "Whose bag is this?", "Whose this bag is?"],
       answer: 1,
       why: {
-        en: "Whose asks about the owner, the thing comes right after it, then is: Whose bag is this?",
-        te: "యజమాని గురించి whose; దాని తర్వాత వెంటనే వస్తువు, తర్వాత is: Whose bag is this?",
+        en: "Whose asks about the owner, the thing comes right after it, then is.",
+        te: "యజమాని గురించి whose; దాని తర్వాత వెంటనే వస్తువు, తర్వాత is.",
       },
     },
     {
@@ -142,8 +142,8 @@ export const day: Lesson = {
       options: ["It's Mohan's.", "It's Kavitha's.", "It's Mohan."],
       answer: 0,
       why: {
-        en: "The parcel belongs to the name after To, and we add 's to it: It's Mohan's.",
-        te: "To తర్వాత ఉన్న పేరు వారిదే పార్సెల్; ఆ పేరుకి 's కలపాలి: It's Mohan's.",
+        en: "The parcel belongs to the name after To, and we add 's to it.",
+        te: "To తర్వాత ఉన్న పేరు వారిదే పార్సెల్; ఆ పేరుకి 's కలపాలి.",
       },
     },
     {

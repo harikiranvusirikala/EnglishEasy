@@ -28,24 +28,24 @@ export const day: ReviewDay = {
       ],
     },
     pick("q1", "I ___ tired today.", "ఈ రోజు నాకు అలసటగా ఉంది.", ["feel", "feels", "feeling"], 0, {
-      en: "With I, the verb has no s: I feel tired today.",
-      te: "I తో verb కి s రాదు: I feel tired today.",
+      en: "With I, the verb has no s.",
+      te: "I తో verb కి s రాదు.",
     }),
     pick("q2", "My knee ___.", "నా మోకాలు నొప్పిగా ఉంది.", ["hurts", "is paining", "hurting"], 0, {
-      en: "One knee is like he or she, so add s: My knee hurts.",
-      te: "ఒక మోకాలు he, she లాంటిదే, అందుకే verb కి s: My knee hurts.",
+      en: "One knee is like he or she, so add s.",
+      te: "ఒక మోకాలు he, she లాంటిదే, అందుకే verb కి s.",
     }),
     pick("q3", "You ___ rest.", "మీరు విశ్రాంతి తీసుకోవాలి.", ["should", "should to", "shoulds"], 0, {
-      en: "After should, the verb comes straight, with no to: You should rest.",
-      te: "should తర్వాత to రాదు, verb నేరుగా వస్తుంది: You should rest.",
+      en: "After should, the verb comes straight, with no to.",
+      te: "should తర్వాత to రాదు, verb నేరుగా వస్తుంది.",
     }),
     pick("q4", "I ___ a fever yesterday.", "నిన్న నాకు జ్వరం వచ్చింది.", ["had", "have", "has"], 0, {
-      en: "Yesterday is past, so have becomes had: I had a fever yesterday.",
-      te: "నిన్న అంటే past, అందుకే have కాదు had: I had a fever yesterday.",
+      en: "Yesterday is past, so have becomes had.",
+      te: "నిన్న అంటే past, అందుకే have కాదు had.",
     }),
     pick("q5", "I'm sorry ___ hear that.", "అది విని బాధగా ఉంది.", ["to", "for", "of"], 0, {
-      en: "After sorry, say to and then the verb: I'm sorry to hear that.",
-      te: "sorry తర్వాత to, ఆ తర్వాత verb: I'm sorry to hear that.",
+      en: "After sorry, say to and then the verb.",
+      te: "sorry తర్వాత to, ఆ తర్వాత verb.",
     }),
   ],
 };

@@ -117,8 +117,8 @@ export const day: Lesson = {
       options: ["I am feel tired.", "I feel tired.", "I feeling tired."],
       answer: 1,
       why: {
-        en: "Feel is the verb here, so it needs no am: I feel tired.",
-        te: "ఇక్కడ feel అనేదే verb, am అక్కర్లేదు: I feel tired.",
+        en: "Feel is the verb here, so it needs no am.",
+        te: "ఇక్కడ feel అనేదే verb, am అక్కర్లేదు.",
       },
     },
     {
@@ -130,8 +130,8 @@ export const day: Lesson = {
       options: ["feel", "feels", "feeling"],
       answer: 1,
       why: {
-        en: "One person (he, she): add s to the verb. She feels sad today.",
-        te: "ఒక్కరి గురించి (he, she) అయితే verb కి s చేర్చాలి: She feels sad today.",
+        en: "One person (he, she): add s to the verb.",
+        te: "ఒక్కరి గురించి (he, she) అయితే verb కి s చేర్చాలి.",
       },
     },
     {
@@ -141,8 +141,8 @@ export const day: Lesson = {
       options: ["Are you okay?", "Is you okay?", "Do you okay?"],
       answer: 0,
       why: {
-        en: "With you, the question starts with are: Are you okay?",
-        te: "you తో ప్రశ్న are తో మొదలవుతుంది: Are you okay?",
+        en: "With you, the question starts with are.",
+        te: "you తో ప్రశ్న are తో మొదలవుతుంది.",
       },
     },
     {
@@ -152,8 +152,8 @@ export const day: Lesson = {
       wrongIndex: 2,
       fix: "I feel much better today.",
       why: {
-        en: "Very goes with good; with better, use much: I feel much better today.",
-        te: "very అనేది good తో వస్తుంది; better తో much వాడాలి: I feel much better today.",
+        en: "Very goes with good; with better, use much.",
+        te: "very అనేది good తో వస్తుంది; better తో much వాడాలి.",
       },
     },
   ],

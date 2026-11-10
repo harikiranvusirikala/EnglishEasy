@@ -120,8 +120,8 @@ export const day: Lesson = {
       options: ["My knee is paining.", "My knee hurts.", "My knee hurting."],
       answer: 1,
       why: {
-        en: "Hurts already means it is in pain, so no is paining: My knee hurts.",
-        te: "hurts అంటేనే నొప్పిగా ఉంది; is paining అనకూడదు: My knee hurts.",
+        en: "Hurts already means it is in pain, so no is paining.",
+        te: "hurts అంటేనే నొప్పిగా ఉంది; is paining అనకూడదు.",
       },
     },
     {
@@ -132,8 +132,8 @@ export const day: Lesson = {
       options: ["cough", "cold", "fever"],
       answer: 0,
       why: {
-        en: "A cough is దగ్గు; a cold is జలుబు. So: I have a cough.",
-        te: "దగ్గు అంటే cough; జలుబు అంటే cold. అందుకే: I have a cough.",
+        en: "A cough is దగ్గు; a cold is జలుబు.",
+        te: "దగ్గు అంటే cough; జలుబు అంటే cold.",
       },
     },
     {
@@ -144,8 +144,8 @@ export const day: Lesson = {
       options: ["I have a headache.", "I am headache.", "My head is paining."],
       answer: 0,
       why: {
-        en: "Telugu says నాకు తలనొప్పి, but English needs have: I have a headache.",
-        te: "తెలుగులో 'నాకు తలనొప్పి' అంటాం; ఇంగ్లీష్‌లో have కావాలి: I have a headache.",
+        en: "Telugu says నాకు తలనొప్పి, but English needs have.",
+        te: "తెలుగులో 'నాకు తలనొప్పి' అంటాం; ఇంగ్లీష్‌లో have కావాలి.",
       },
     },
     {
@@ -155,8 +155,8 @@ export const day: Lesson = {
       wrongIndex: 3,
       fix: "My back hurts a lot.",
       why: {
-        en: "Use hurts, not is paining: My back hurts a lot.",
-        te: "is paining కాదు, hurts అనాలి: My back hurts a lot.",
+        en: "For pain in a body part, English says hurts, not is paining.",
+        te: "శరీరంలో నొప్పికి ఇంగ్లీష్‌లో hurts అంటారు, is paining కాదు.",
       },
     },
   ],

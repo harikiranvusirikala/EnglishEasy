@@ -122,8 +122,8 @@ export const day: Lesson = {
       options: ["I hungry.", "I am hungry.", "I is hungry."],
       answer: 1,
       why: {
-        en: "With I, use am: I am hungry.",
-        te: "I తో am వాడాలి: I am hungry.",
+        en: "With I, always use am, never is or are.",
+        te: "I తో ఎప్పుడూ am వాడాలి, is లేదా are కాదు.",
       },
     },
     {
@@ -134,8 +134,8 @@ export const day: Lesson = {
       options: ["am", "is", "are"],
       answer: 1,
       why: {
-        en: "She is one person, so use is: She is a teacher.",
-        te: "she అంటే ఒక్కరు, కాబట్టి is: She is a teacher.",
+        en: "She is one person, so use is.",
+        te: "she అంటే ఒక్కరు, కాబట్టి is.",
       },
     },
     {
@@ -153,8 +153,8 @@ export const day: Lesson = {
       wrongIndex: 1,
       fix: "He is my friend.",
       why: {
-        en: "Am goes only with I. He is one person, so use is: He is my friend.",
-        te: "am ఒక్క I తోనే. he అంటే ఒక్కరు, కాబట్టి is: He is my friend.",
+        en: "Am goes only with I. He is one person, so use is.",
+        te: "am ఒక్క I తోనే. he అంటే ఒక్కరు, కాబట్టి is.",
       },
     },
   ],

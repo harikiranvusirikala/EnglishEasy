@@ -117,8 +117,8 @@ export const day: Lesson = {
       options: ["Yesterday she cook pulihora.", "Yesterday she cooked pulihora.", "Yesterday she cooking pulihora."],
       answer: 1,
       why: {
-        en: "Yesterday means the past, so cook becomes cooked: Yesterday she cooked pulihora.",
-        te: "yesterday అంటే గతం, అందుకే cook కాదు cooked: Yesterday she cooked pulihora.",
+        en: "Yesterday means the past, so cook becomes cooked.",
+        te: "yesterday అంటే గతం, అందుకే cook కాదు cooked.",
       },
     },
     {
@@ -129,8 +129,8 @@ export const day: Lesson = {
       options: ["talk", "talked", "talking"],
       answer: 1,
       why: {
-        en: "The talk is over, so add -ed for the past: We talked for an hour.",
-        te: "మాట్లాడటం అయిపోయింది, అందుకే -ed చేర్చాలి: We talked for an hour.",
+        en: "The talk is over, so add -ed for the past.",
+        te: "మాట్లాడటం అయిపోయింది, అందుకే -ed చేర్చాలి.",
       },
     },
     {
@@ -151,8 +151,8 @@ export const day: Lesson = {
       wrongIndex: 2,
       fix: "I didn't watch TV.",
       why: {
-        en: "Didn't already shows the past, so watch takes no -ed: I didn't watch TV.",
-        te: "didn't లోనే గతం ఉంది, అందుకే watch కి -ed రాదు: I didn't watch TV.",
+        en: "Didn't already shows the past, so watch takes no -ed.",
+        te: "didn't లోనే గతం ఉంది, అందుకే watch కి -ed రాదు.",
       },
     },
   ],

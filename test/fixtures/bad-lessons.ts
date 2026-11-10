@@ -23,6 +23,10 @@ export const brokenLessons: Record<string, Lesson> = {
     const p = practice(l, "p1");
     if (p.type === "choose") p.options = ["I eat rice.", "I eat rice.", "Eat I rice."];
   }),
+  "why-repeats-sentence": broken((l) => {
+    const p = practice(l, "p4");
+    if (p.type === "findMistake" && p.why) p.why = { ...p.why, en: `${p.why.en.replace(/\.$/, "")}: ${p.fix}` };
+  }),
   "seo-length": broken((l) => {
     l.seo.description = "x".repeat(161);
   }),

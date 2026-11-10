@@ -117,8 +117,8 @@ export const day: Lesson = {
       options: ["They was at home.", "They were at home.", "They are at home yesterday."],
       answer: 1,
       why: {
-        en: "In the past, they always takes were, never was: They were at home.",
-        te: "గతంలో they తో ఎప్పుడూ were వస్తుంది, was రాదు: They were at home.",
+        en: "In the past, they always takes were, never was.",
+        te: "గతంలో they తో ఎప్పుడూ were వస్తుంది, was రాదు.",
       },
     },
     {
@@ -129,8 +129,8 @@ export const day: Lesson = {
       options: ["Was", "Were", "Are"],
       answer: 1,
       why: {
-        en: "In the past, you takes were, even for one person: Were you tired yesterday?",
-        te: "ఒక్కరినే అడిగినా, గతంలో you తో were వస్తుంది: Were you tired yesterday?",
+        en: "In the past, you takes were, even for one person.",
+        te: "ఒక్కరినే అడిగినా, గతంలో you తో were వస్తుంది.",
       },
     },
     {
@@ -143,8 +143,8 @@ export const day: Lesson = {
       options: ["No, I was not at home.", "No, I were not at home.", "Yes, I was at home."],
       answer: 0,
       why: {
-        en: "The message says you were not at home, and with I we use was: No, I was not at home.",
-        te: "మెసేజ్‌లో మీరు ఇంట్లో లేరని ఉంది; I తో was వాడాలి: No, I was not at home.",
+        en: "The message says you were not at home, and with I we use was.",
+        te: "మెసేజ్‌లో మీరు ఇంట్లో లేరని ఉంది; I తో was వాడాలి.",
       },
     },
     {
@@ -154,8 +154,8 @@ export const day: Lesson = {
       wrongIndex: 1,
       fix: "Where were you on Sunday?",
       why: {
-        en: "With you, always say were, even for one person: Where were you on Sunday?",
-        te: "ఒక్కరినే అడిగినా you తో were అనాలి: Where were you on Sunday?",
+        en: "With you, always say were, even for one person.",
+        te: "ఒక్కరినే అడిగినా you తో were అనాలి.",
       },
     },
   ],

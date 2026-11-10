@@ -120,8 +120,8 @@ export const day: Lesson = {
       options: ["Can I have a bag, please?", "I want bag.", "Can I has a bag?"],
       answer: 0,
       why: {
-        en: "Can I have and please make it a kind request: Can I have a bag, please?",
-        te: "Can I have, please కలిస్తే మర్యాదగా అడిగినట్టు: Can I have a bag, please?",
+        en: "Can I have and please make it a kind request.",
+        te: "Can I have, please కలిస్తే మర్యాదగా అడిగినట్టు.",
       },
     },
     {
@@ -132,8 +132,8 @@ export const day: Lesson = {
       options: ["have", "has", "having"],
       answer: 0,
       why: {
-        en: "After can, the verb stays plain, so have: Can I have two kilos of tomatoes?",
-        te: "can తర్వాత verb మారదు, అందుకే have: Can I have two kilos of tomatoes?",
+        en: "After can, the verb stays plain, so use have.",
+        te: "can తర్వాత verb మారదు, అందుకే have.",
       },
     },
     {
@@ -143,8 +143,8 @@ export const day: Lesson = {
       options: ["Here you are.", "Here is you.", "You take."],
       answer: 0,
       why: {
-        en: "This fixed phrase is said while handing something over: Here you are.",
-        te: "ఏదైనా చేతికి ఇచ్చేటప్పుడు అనే మాట ఇదే: Here you are.",
+        en: "This fixed phrase is said while handing something over.",
+        te: "ఏదైనా చేతికి ఇచ్చేటప్పుడు అనే మాట ఇదే.",
       },
     },
     {
@@ -155,8 +155,8 @@ export const day: Lesson = {
       wrongIndex: 4,
       fix: "Can I have two kilos of onions?",
       why: {
-        en: "After two, kilo takes s: Can I have two kilos of onions?",
-        te: "రెండు అయితే kilo కి s చేర్చాలి: Can I have two kilos of onions?",
+        en: "Two is more than one, so kilo takes s.",
+        te: "రెండు అంటే ఒకటి కంటే ఎక్కువ, కాబట్టి kilo కి s చేర్చాలి.",
       },
     },
   ],

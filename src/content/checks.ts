@@ -20,6 +20,33 @@ const MAX_EXPANDED = 20; // 19, plus the Sound of the week card on a week's firs
 /** Explanations give the reason, not a restated answer (CURRICULUM §1 "why formula"; content review 2026-11-09). */
 export const MIN_WHY_WORDS = 6;
 
+/**
+ * Does an explanation end with the sentence the screen has just read (after ": ", ". ", ", " or a dash)? After Check
+ * the sentence plays, then the explanation, so a copy at its end is heard twice, and on "Almost" it gives the answer
+ * away (owner, 2026-11-10). One-word answers explained in words ("The past is went.") are fine.
+ */
+export function whyRepeatsSentence(why: string, sentence: string): boolean {
+  const core = sentence.trim().replace(/[.?!]+$/, "");
+  if (core.split(/\s+/).length < 2) return false;
+  const escaped = core.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return new RegExp(`(?:[:.,—–])\\s+${escaped}[.?!]*\\s*$`, "i").test(why);
+}
+
+/** The sentence a question reads before its explanation after Check (as `spokenTexts` lists it). */
+function readBeforeWhy(a: Activity): string | undefined {
+  switch (a.type) {
+    case "choose":
+    case "readIt":
+      return a.say ?? a.options[a.answer];
+    case "fillBlank":
+      return a.sentence.replace("___", a.options[a.answer] ?? "");
+    case "findMistake":
+      return a.fix;
+    default:
+      return undefined;
+  }
+}
+
 /** The cast (CURRICULUM §1): a man's lines are recorded in voice "b", a woman's in voice "a". */
 export const MEN = ["Ramana", "Venkat", "Prasad", "Ravi", "Mohan", "Srinivas", "Suresh", "Narayana", "Imran", "Rahim", "John", "David", "Raju", "Krishna", "Gopal", "Ramesh", "Satish", "Joseph", "Kumar", "Arjun", "Rohan", "Daniel"];
 export const WOMEN = ["Lakshmi", "Kamala", "Usha", "Padma", "Sita", "Anitha", "Rani", "Jyothi", "Swapna", "Salma", "Fatima", "Mary", "Grace", "Sarala", "Radha", "Geetha", "Kavitha", "Ayesha", "Ruth", "Diya", "Meera", "Zoya"];
@@ -240,7 +267,15 @@ function activityProblems(a: Activity, where: string, stage: number | null): str
 
   const why = "why" in a ? a.why : undefined;
   if (why && wordCount(why.en) < MIN_WHY_WORDS) {
-    out.push(`why-length: ${where} why "${why.en}" is under ${MIN_WHY_WORDS} words (give the reason: rule + Telugu link + the right sentence)`);
+    out.push(`why-length: ${where} why "${why.en}" is under ${MIN_WHY_WORDS} words (give the reason: the rule, and the Telugu link where it helps)`);
+  }
+  const read = readBeforeWhy(a);
+  if (why && read) {
+    for (const lang of ["en", "te"] as const) {
+      if (whyRepeatsSentence(why[lang], read)) {
+        out.push(`why-repeats-sentence: ${where} why (${lang}) ends with "${read}"; the sentence is read just before it, so end with the reason`);
+      }
+    }
   }
   for (const text of spokenOf(a)) {
     if (AUDIO_SYMBOLS.test(text)) out.push(`audio-symbols: ${where} "${text}" has a symbol a voice would read out or trip on (( ) / … ₹)`);

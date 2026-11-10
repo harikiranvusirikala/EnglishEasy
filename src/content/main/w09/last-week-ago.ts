@@ -120,8 +120,8 @@ export const day: Lesson = {
       options: ["It started before two days.", "It started two days ago.", "It started ago two days."],
       answer: 1,
       why: {
-        en: "Ago comes after the time, just like క్రితం: It started two days ago.",
-        te: "క్రితం లాగే ago సమయం తర్వాత వస్తుంది: It started two days ago.",
+        en: "Ago comes after the time, just like క్రితం.",
+        te: "క్రితం లాగే ago సమయం తర్వాత వస్తుంది.",
       },
     },
     {
@@ -132,8 +132,8 @@ export const day: Lesson = {
       options: ["last", "ago", "before"],
       answer: 0,
       why: {
-        en: "For the week before this one, say last week: I saw him last week.",
-        te: "ఈ వారానికి ముందు వారం అంటే last week: I saw him last week.",
+        en: "For the week before this one, say last week.",
+        te: "ఈ వారానికి ముందు వారం అంటే last week.",
       },
     },
     {
@@ -144,8 +144,8 @@ export const day: Lesson = {
       options: ["I had a fever yesterday night.", "I had a fever last night.", "I had a fever night last."],
       answer: 1,
       why: {
-        en: "For the night before today, English says last night: I had a fever last night.",
-        te: "నిన్న రాత్రికి English లో last night అనాలి: I had a fever last night.",
+        en: "For the night before today, English says last night.",
+        te: "నిన్న రాత్రికి English లో last night అనాలి.",
       },
     },
     {
@@ -156,8 +156,8 @@ export const day: Lesson = {
       wrongIndex: 3,
       fix: "We moved here five years ago.",
       why: {
-        en: "Ago comes after the time, like క్రితం, so not before: We moved here five years ago.",
-        te: "క్రితం లాగే ago సమయం తర్వాత వస్తుంది, before రాదు: We moved here five years ago.",
+        en: "Ago comes after the time, like క్రితం, so not before.",
+        te: "క్రితం లాగే ago సమయం తర్వాత వస్తుంది, before రాదు.",
       },
     },
   ],

@@ -116,8 +116,8 @@ export const day: Lesson = {
       options: ["Would you like to come for lunch?", "Would you like coming for lunch?", "You like come for lunch?"],
       answer: 0,
       why: {
-        en: "To invite politely, say Would you like to, then the plain verb: Would you like to come for lunch?",
-        te: "మర్యాదగా పిలవడానికి Would you like to, తర్వాత మామూలు verb: Would you like to come for lunch?",
+        en: "To invite politely, say Would you like to, then the plain verb.",
+        te: "మర్యాదగా పిలవడానికి Would you like to, తర్వాత మామూలు verb.",
       },
     },
     {
@@ -128,8 +128,8 @@ export const day: Lesson = {
       options: ["inviting", "invite", "invited"],
       answer: 0,
       why: {
-        en: "After for, the verb takes -ing: Thank you for inviting me.",
-        te: "for తర్వాత verb కి -ing వస్తుంది: Thank you for inviting me.",
+        en: "After for, the verb takes -ing.",
+        te: "for తర్వాత verb కి -ing వస్తుంది.",
       },
     },
     {
@@ -139,8 +139,8 @@ export const day: Lesson = {
       options: ["Sorry, I can't. I have another function.", "No, I won't come.", "Not coming."],
       answer: 0,
       why: {
-        en: "A plain no sounds rude, so say sorry and give a reason: Sorry, I can't. I have another function.",
-        te: "నేరుగా no అంటే కటువుగా ఉంటుంది; sorry చెప్పి కారణం చెప్పండి: Sorry, I can't. I have another function.",
+        en: "A plain no sounds rude, so say sorry and give a reason.",
+        te: "నేరుగా no అంటే కటువుగా ఉంటుంది; sorry చెప్పి కారణం చెప్పండి.",
       },
     },
     {
@@ -150,8 +150,8 @@ export const day: Lesson = {
       wrongIndex: 4,
       fix: "Would you like to come for lunch?",
       why: {
-        en: "After like to, the verb stays plain, so come, not coming: Would you like to come for lunch?",
-        te: "like to తర్వాత verb మామూలుగానే, coming కాదు come: Would you like to come for lunch?",
+        en: "After like to, the verb stays plain, so come, not coming.",
+        te: "like to తర్వాత verb మామూలుగానే, coming కాదు come.",
       },
     },
   ],

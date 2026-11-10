@@ -95,7 +95,7 @@ export const day: Lesson = {
         },
         {
           form: "who",
-          useFor: { en: "Use who to ask about a person.", te: "ఒక మనిషి ఎవరో అడగడానికి who." },
+          useFor: { en: "Use who to ask about a person.", te: "ఒక మనిషి ఎవరో అడగడానికి who వాడాలి." },
           example: { en: "Who is that man?", te: "ఆయన ఎవరు?" },
         },
       ],
@@ -131,8 +131,8 @@ export const day: Lesson = {
       options: ["Where you live?", "Where do you live?", "Where does you live?"],
       answer: 1,
       why: {
-        en: "With you and an action word, use do: Where do you live?",
-        te: "you తో, live లాంటి verb ఉంటే do వాడాలి: Where do you live?",
+        en: "With you and an action word, use do.",
+        te: "you తో, live లాంటి verb ఉంటే do వాడాలి.",
       },
     },
     {
@@ -143,8 +143,8 @@ export const day: Lesson = {
       options: ["What", "Where", "Who"],
       answer: 0,
       why: {
-        en: "We ask for a name with what: What is your name?",
-        te: "పేరు అడగడానికి what వాడతాం: What is your name?",
+        en: "We ask for a name with what.",
+        te: "పేరు అడగడానికి what వాడతాం.",
       },
     },
     {
@@ -158,8 +158,8 @@ export const day: Lesson = {
       options: ["Who that man is?", "Who is that man?", "That man is who?"],
       answer: 1,
       why: {
-        en: "For a person, ask with who, and put is before that man: Who is that man?",
-        te: "మనిషి గురించి who తో అడగాలి, is ని that man ముందు పెట్టాలి: Who is that man?",
+        en: "For a person, ask with who, and put is before that man.",
+        te: "మనిషి గురించి who తో అడగాలి, is ని that man ముందు పెట్టాలి.",
       },
     },
     {
@@ -170,8 +170,8 @@ export const day: Lesson = {
       wrongIndex: 1,
       fix: "Where are you going?",
       why: {
-        en: "In a question, are comes before you: Where are you going?",
-        te: "ప్రశ్నలో are ముందు, you తర్వాత వస్తాయి: Where are you going?",
+        en: "In a question, are comes before you.",
+        te: "ప్రశ్నలో are ముందు, you తర్వాత వస్తాయి.",
       },
     },
   ],

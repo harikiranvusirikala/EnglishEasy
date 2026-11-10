@@ -119,8 +119,8 @@ export const day: Lesson = {
       options: ["Are these mangoes ripe?", "Is these mangoes ripe?", "These mangoes ripe?"],
       answer: 0,
       why: {
-        en: "Mangoes are more than one, so the question starts with are: Are these mangoes ripe?",
-        te: "మామిడిపండ్లు చాలా ఉన్నాయి, అందుకే ప్రశ్న are తో: Are these mangoes ripe?",
+        en: "Mangoes are more than one, so the question starts with are.",
+        te: "మామిడిపండ్లు చాలా ఉన్నాయి, అందుకే ప్రశ్న are తో.",
       },
     },
     {
@@ -154,8 +154,8 @@ export const day: Lesson = {
       wrongIndex: 0,
       fix: "Is the spinach fresh today?",
       why: {
-        en: "We don't count spinach, we see it as one heap, so is: Is the spinach fresh today?",
-        te: "spinach ని లెక్కపెట్టం, ఒక్కటిగానే చూస్తాం, అందుకే is: Is the spinach fresh today?",
+        en: "We don't count spinach, we see it as one heap, so use is.",
+        te: "spinach ని లెక్కపెట్టం, ఒక్కటిగానే చూస్తాం, అందుకే is.",
       },
     },
   ],

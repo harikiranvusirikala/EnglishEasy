@@ -108,7 +108,7 @@ export const day: Lesson = {
       wrong: "Why you didn't come?",
       right: "Why didn't you come?",
       why: {
-        en: "In a question, didn't comes before you: Why didn't you come?",
+        en: "In a question, didn't comes before you.",
         te: "ప్రశ్నలో didn't ముందు, you తర్వాత వస్తాయి: Why didn't you come?",
       },
     },
@@ -122,8 +122,8 @@ export const day: Lesson = {
       options: ["Why you are late?", "Why are you late?", "Why is you late?"],
       answer: 1,
       why: {
-        en: "Why, then are, then you: Why are you late?",
-        te: "ముందు why, తర్వాత are, తర్వాత you: Why are you late?",
+        en: "In a question, are comes before you: why, then are, then you.",
+        te: "ప్రశ్నలో are ని you కంటే ముందు పెట్టాలి: ముందు why, తర్వాత are, తర్వాత you.",
       },
     },
     {
@@ -160,8 +160,8 @@ export const day: Lesson = {
       wrongIndex: 1,
       fix: "Why didn't you come?",
       why: {
-        en: "In a question, didn't comes before you: Why didn't you come?",
-        te: "ప్రశ్నలో didn't, you కంటే ముందు వస్తుంది: Why didn't you come?",
+        en: "In a question, didn't comes before you.",
+        te: "ప్రశ్నలో didn't, you కంటే ముందు వస్తుంది.",
       },
     },
   ],

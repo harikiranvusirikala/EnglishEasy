@@ -139,8 +139,8 @@ export const day: Lesson = {
       options: ["is", "are", "am"],
       answer: 0,
       why: {
-        en: "Telugu needs no word here, but English needs is for one number: My door number is twelve.",
-        te: "తెలుగులో ఇక్కడ పదం అక్కర్లేదు, కానీ ఇంగ్లీష్‌లో ఒక్క నంబర్‌కి is కావాలి: My door number is twelve.",
+        en: "Telugu needs no word here, but English needs is for one number.",
+        te: "తెలుగులో ఇక్కడ పదం అక్కర్లేదు, కానీ ఇంగ్లీష్‌లో ఒక్క నంబర్‌కి is కావాలి.",
       },
     },
     {
@@ -151,8 +151,8 @@ export const day: Lesson = {
       options: ["What is your name spelling?", "How do you spell your name?", "How you spell your name?"],
       answer: 1,
       why: {
-        en: "Spell is the action word, and do comes after how: How do you spell your name?",
-        te: "spell ని verb గా వాడాలి, how తర్వాత do రావాలి: How do you spell your name?",
+        en: "Spell is the action word, and do comes after how.",
+        te: "spell ని verb గా వాడాలి, how తర్వాత do రావాలి.",
       },
     },
     {
@@ -163,8 +163,8 @@ export const day: Lesson = {
       wrongIndex: 2,
       fix: "I live on Gandhi Road.",
       why: {
-        en: "Use on with the name of a road. At needs the door number too, like at twelve, Gandhi Road. So: I live on Gandhi Road.",
-        te: "రోడ్డు పేరుతో on వాడాలి. డోర్ నంబర్ కూడా చెప్తేనే at: at twelve, Gandhi Road. కాబట్టి: I live on Gandhi Road.",
+        en: "Use on with the name of a road. At needs the door number too, like at twelve, Gandhi Road.",
+        te: "రోడ్డు పేరుతో on వాడాలి. డోర్ నంబర్ కూడా చెప్తేనే at: at twelve, Gandhi Road.",
       },
     },
   ],

@@ -22,28 +22,28 @@ export const day: ReviewDay = {
   title: { en: "Stage 1 Review", te: "పునాది పునశ్చరణ" },
   extras: [
     pick("q1", "She ___ to the temple every day.", "ఆవిడ రోజూ గుడికి వెళ్తారు.", ["goes", "go", "going"], 0, {
-      en: "Every day, one person (she): add s to the verb. She goes to the temple every day.",
-      te: "రోజూ జరిగేది, ఒక్కరు (she) అయితే verb కి s: She goes to the temple every day.",
+      en: "Every day, one person (she): add s to the verb.",
+      te: "రోజూ జరిగేది, ఒక్కరు (she) అయితే verb కి s.",
     }),
     pick("q2", "Right now I ___ cooking.", "ఇప్పుడు నేను వంట చేస్తున్నాను.", ["am", "was", "will"], 0, {
-      en: "Right now it is happening, so am with -ing: Right now I am cooking.",
-      te: "ఇప్పుడు జరుగుతోంది, అందుకే am తో -ing: Right now I am cooking.",
+      en: "Right now it is happening, so am with -ing.",
+      te: "ఇప్పుడు జరుగుతోంది, అందుకే am తో -ing.",
     }),
     pick("q3", "Yesterday we ___ a film.", "నిన్న మేము సినిమా చూశాం.", ["watched", "watch", "will watch"], 0, {
-      en: "Yesterday is past, so watch becomes watched: Yesterday we watched a film.",
-      te: "నిన్న అంటే past, watch కాదు watched: Yesterday we watched a film.",
+      en: "Yesterday is past, so watch becomes watched.",
+      te: "నిన్న అంటే past, watch కాదు watched.",
     }),
     pick("q4", "Tomorrow I ___ call you.", "రేపు నేను మీకు ఫోన్ చేస్తాను.", ["will", "did", "am"], 0, {
-      en: "Tomorrow is still to come, so will goes before call: Tomorrow I will call you.",
-      te: "రేపు ఇంకా రాలేదు, అందుకే call ముందు will: Tomorrow I will call you.",
+      en: "Tomorrow is still to come, so will goes before call.",
+      te: "రేపు ఇంకా రాలేదు, అందుకే call ముందు will.",
     }),
     pick("q5", "___ you eat lunch?", "మీరు భోజనం చేశారా?", ["Did", "Have", "Are"], 0, {
-      en: "Telugu చేశారా? is past, and English asks about the past with did: Did you eat lunch?",
-      te: "'చేశారా?' past; ఇంగ్లీష్‌లో past ప్రశ్న did తో మొదలవుతుంది: Did you eat lunch?",
+      en: "Telugu చేశారా? is past, and English asks about the past with did.",
+      te: "'చేశారా?' past; ఇంగ్లీష్‌లో past ప్రశ్న did తో మొదలవుతుంది.",
     }),
     pick("q6", "I was tired, ___ I slept early.", "అలసిపోయాను, అందుకే తొందరగా పడుకున్నాను.", ["so", "because", "but"], 0, {
-      en: "Sleeping early is the result of being tired, so use so: I was tired, so I slept early.",
-      te: "అలసట వల్ల తొందరగా పడుకున్నారు, అది ఫలితం, అందుకే so: I was tired, so I slept early.",
+      en: "Sleeping early is the result of being tired, so use so.",
+      te: "అలసట వల్ల తొందరగా పడుకున్నారు, అది ఫలితం, అందుకే so.",
     }),
     {
       id: "m1",

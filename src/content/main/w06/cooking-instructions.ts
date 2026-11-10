@@ -115,8 +115,8 @@ export const day: Lesson = {
       options: ["Onions cut.", "Cut the onions.", "You cutting the onions."],
       answer: 1,
       why: {
-        en: "A step starts with the action, not with the thing as in Telugu: Cut the onions.",
-        te: "తెలుగులా వస్తువుతో కాదు, verb తో మొదలుపెట్టాలి: Cut the onions.",
+        en: "A step starts with the action, not with the thing as in Telugu.",
+        te: "తెలుగులా వస్తువుతో కాదు, verb తో మొదలుపెట్టాలి.",
       },
     },
     {
@@ -138,8 +138,8 @@ export const day: Lesson = {
       options: ["Mix it well.", "Mix it good.", "Well mix it."],
       answer: 0,
       why: {
-        en: "Here బాగా tells how to mix, so it is well, not good: Mix it well.",
-        te: "ఇక్కడ 'బాగా' ఎలా కలపాలో చెప్తుంది, అందుకే well, good కాదు: Mix it well.",
+        en: "Here బాగా tells how to mix, so it is well, not good.",
+        te: "ఇక్కడ 'బాగా' ఎలా కలపాలో చెప్తుంది, అందుకే well, good కాదు.",
       },
     },
     {
@@ -150,8 +150,8 @@ export const day: Lesson = {
       wrongIndex: 3,
       fix: "Don't add too much salt.",
       why: {
-        en: "Salt is not counted, so too much, not too many: Don't add too much salt.",
-        te: "ఉప్పు లెక్కపెట్టం, అందుకే too many కాదు, too much: Don't add too much salt.",
+        en: "Salt is not counted, so too much, not too many.",
+        te: "ఉప్పు లెక్కపెట్టం, అందుకే too many కాదు, too much.",
       },
     },
   ],

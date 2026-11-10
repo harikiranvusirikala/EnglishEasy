@@ -34,12 +34,12 @@ export const day: ReviewDay = {
       te: "నెల ఒక్కటే అయితే in వాడాలి: in November.",
     }),
     pick("q5", "What ___ your address?", "మీ అడ్రస్ ఏంటి?", ["is", "are", "do"], 0, {
-      en: "Telugu మీ అడ్రస్ ఏంటి? has no is, but English needs it: What is your address?",
-      te: "'మీ అడ్రస్ ఏంటి?' లో is లాంటి పదం ఉండదు, కానీ ఇంగ్లీష్‌లో కావాలి: What is your address?",
+      en: "Telugu మీ అడ్రస్ ఏంటి? has no is, but English needs it.",
+      te: "'మీ అడ్రస్ ఏంటి?' లో is లాంటి పదం ఉండదు, కానీ ఇంగ్లీష్‌లో కావాలి.",
     }),
     pick("q6", "How do you ___ your name?", "మీ పేరు స్పెల్లింగ్ ఏంటి?", ["spell", "spelling", "tell spelling"], 0, {
-      en: "In English, spell is the action word, so no tell: How do you spell your name?",
-      te: "ఇంగ్లీష్‌లో spell నే verb గా వాడతాం, tell అక్కర్లేదు: How do you spell your name?",
+      en: "In English, spell is the action word, so tell is not needed.",
+      te: "ఇంగ్లీష్‌లో spell నే verb గా వాడతాం, tell అక్కర్లేదు.",
     }),
   ],
 };

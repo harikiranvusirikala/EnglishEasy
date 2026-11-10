@@ -117,8 +117,8 @@ export const day: Lesson = {
       options: ["He is grey hair.", "He has grey hair.", "He have grey hair."],
       answer: 1,
       why: {
-        en: "For hair, use has: He has grey hair.",
-        te: "జుట్టుకి has: He has grey hair.",
+        en: "Hair is something he has, so use has with he.",
+        te: "జుట్టు అతనికి ఉన్నది, కాబట్టి he తో has వాడాలి.",
       },
     },
     {
@@ -140,8 +140,8 @@ export const day: Lesson = {
       options: ["What does he look like?", "How does he look like?", "What is he look like?"],
       answer: 0,
       why: {
-        en: "Use what and does with look like: What does he look like?",
-        te: "look like తో what, does వాడాలి: What does he look like?",
+        en: "Use what and does with look like.",
+        te: "look like తో what, does వాడాలి.",
       },
     },
     {

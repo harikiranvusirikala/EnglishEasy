@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { Bi } from "@/components/ui/Bi";
 import { Icon } from "@/components/ui/icons";
 import { Illustration } from "@/components/illustrations/Illustration";
@@ -27,8 +28,14 @@ function Score({ label, value, testId }: { label: BiLabel; value: number; testId
 /** "Role play complete": what went well, what to practice, and the Speaking and Conversation scores out of 10 (VISION §7). */
 export function RolePlaySummary({ roleplay, score, onNext }: { roleplay: Pick<RolePlay, "skills">; score: RolePlayScore; onNext: () => void }) {
   const label = (id: string) => roleplay.skills.find((s) => s.id === id)?.label;
+  const top = useRef<HTMLDivElement>(null);
+  // It replaces the conversation in the same step, which was scrolled to its end: start at the top, like a new step.
+  useEffect(() => {
+    const scroller = top.current?.closest("main");
+    if (scroller) scroller.scrollTop = 0;
+  }, []);
   return (
-    <div className="flex flex-col gap-5 pt-2">
+    <div ref={top} className="flex flex-col gap-5 pt-2">
       <div className="flex flex-col items-center gap-2 text-center">
         <Illustration name="complete" className="w-48 animate-pop-in motion-reduce:animate-none" />
         <h1 className="font-display text-[2rem] leading-tight font-bold text-ink">

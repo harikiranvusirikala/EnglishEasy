@@ -18,8 +18,8 @@ export const day: ReviewDay = {
   title: { en: "People Around Me", te: "నా చుట్టూ మనుషులు" },
   extras: [
     pick("q1", "He ___ a small shop.", "ఆయనకి ఒక చిన్న షాపు ఉంది.", ["have", "has", "is"], 1, {
-      en: "He is one person, so use has: He has a small shop.",
-      te: "he ఒక్కరే, కాబట్టి has: He has a small shop.",
+      en: "He is one person, so use has.",
+      te: "he ఒక్కరే, కాబట్టి has.",
     }),
     pick("q2", "Padma is my friend. ___ house is big.", "పద్మ నా స్నేహితురాలు. ఆవిడ ఇల్లు పెద్దది.", ["His", "Her", "She"], 1, {
       en: "Padma is a woman, so use her.",

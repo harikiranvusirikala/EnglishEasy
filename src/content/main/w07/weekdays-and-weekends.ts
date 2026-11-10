@@ -148,8 +148,8 @@ export const day: Lesson = {
       options: ["No, it is closed on Sundays.", "Yes, from 9 am to 9 pm.", "Yes, but only in the morning."],
       answer: 0,
       why: {
-        en: "The board says Sunday closed, so the shop is open only from Monday to Saturday: No, it is closed on Sundays.",
-        te: "బోర్డ్ మీద Sunday Closed అని ఉంది, అంటే ఆదివారం షాపు తెరవరు: No, it is closed on Sundays.",
+        en: "The board says Sunday closed, so the shop is open only from Monday to Saturday.",
+        te: "బోర్డ్ మీద Sunday Closed అని ఉంది, అంటే ఆదివారం షాపు తెరవరు.",
       },
     },
     {
@@ -160,8 +160,8 @@ export const day: Lesson = {
       wrongIndex: 5,
       fix: "She goes to the bank every Tuesday.",
       why: {
-        en: "With every, drop on: She goes to the bank every Tuesday.",
-        te: "every ఉంటే on తీసేయాలి: She goes to the bank every Tuesday.",
+        en: "Every already points to the days, so drop on.",
+        te: "every లోనే ఏ రోజో ఉంది, కాబట్టి on తీసేయాలి.",
       },
     },
   ],

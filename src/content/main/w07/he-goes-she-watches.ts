@@ -119,8 +119,8 @@ export const day: Lesson = {
       options: ["She watch TV at night.", "She watches TV at night.", "She watchs TV at night."],
       answer: 1,
       why: {
-        en: "She is one person, and watch ends in ch, so add es: She watches TV at night.",
-        te: "she ఒక్కరు, watch చివర ch, అందుకే es: She watches TV at night.",
+        en: "She is one person, and watch ends in ch, so add es.",
+        te: "she ఒక్కరు, watch చివర ch, అందుకే es.",
       },
     },
     {
@@ -132,8 +132,8 @@ export const day: Lesson = {
       options: ["get", "gets", "getting"],
       answer: 1,
       why: {
-        en: "Ravi is one person, so the verb takes s: Ravi gets up at five.",
-        te: "రవి గారు ఒక్కరు, అందుకే verb కి s: Ravi gets up at five.",
+        en: "Ravi is one person, so the verb takes s.",
+        te: "రవి గారు ఒక్కరు, అందుకే verb కి s.",
       },
     },
     {
@@ -143,8 +143,8 @@ export const day: Lesson = {
       options: ["He doesn't works on Sundays.", "He doesn't work on Sundays.", "He don't work on Sundays."],
       answer: 1,
       why: {
-        en: "Doesn't already carries the s, so work stays plain: He doesn't work on Sundays.",
-        te: "doesn't లోనే s ఉంది, అందుకే work కి s రాదు: He doesn't work on Sundays.",
+        en: "Doesn't already carries the s, so work stays plain.",
+        te: "doesn't లోనే s ఉంది, అందుకే work కి s రాదు.",
       },
     },
     {
@@ -155,8 +155,8 @@ export const day: Lesson = {
       wrongIndex: 1,
       fix: "Padma teaches music.",
       why: {
-        en: "Padma is one person, and teach ends in ch, so: Padma teaches music.",
-        te: "పద్మ గారు ఒక్కరు, teach చివర ch, అందుకే es: Padma teaches music.",
+        en: "Padma is one person, and teach ends in ch, so add es: teaches.",
+        te: "పద్మ గారు ఒక్కరు, teach చివర ch, అందుకే es.",
       },
     },
   ],

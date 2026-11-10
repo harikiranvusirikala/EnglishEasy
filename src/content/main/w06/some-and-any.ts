@@ -101,6 +101,7 @@ export const day: Lesson = {
     {
       id: "l4",
       type: "dontSay",
+      fixIt: "plural",
       wrong: "I need some rices.",
       right: "I need some rice.",
       why: {
@@ -136,6 +137,7 @@ export const day: Lesson = {
     {
       id: "p3",
       type: "choose",
+      fixIt: "plural",
       prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
       options: ["We need some oils.", "We need some oil.", "We need a oil."],
       answer: 1,
@@ -147,6 +149,7 @@ export const day: Lesson = {
     {
       id: "p4",
       type: "findMistake",
+      fixIt: "plural",
       sentence: "Please buy some rices.",
       wrongIndex: 3,
       fix: "Please buy some rice.",
@@ -198,7 +201,7 @@ export const day: Lesson = {
         hint: { en: "Tell him one thing you need, like rice.", te: "కావాల్సిన ఒక వస్తువు చెప్పండి, ఉదాహరణకు బియ్యం." },
         replies: [
           { say: "We need some rice.", good: true, skill: "some" },
-          { say: "We need some rices.", good: false, skill: "some" },
+          { say: "We need some rices.", good: false, skill: "some", fixIt: "plural" },
         ],
       },
       {
@@ -216,7 +219,7 @@ export const day: Lesson = {
         hint: { en: "Ask him kindly to buy some eggs too.", te: "గుడ్లు కూడా కొనమని మర్యాదగా అడగండి." },
         replies: [
           { say: "Please buy some eggs.", good: true, skill: "some" },
-          { say: "Please buy some egg.", good: false, skill: "some" },
+          { say: "Please buy some egg.", good: false, skill: "some", fixIt: "plural" },
           {
             say: "Eggs. Go quickly.",
             good: false,

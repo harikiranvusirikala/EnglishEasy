@@ -96,6 +96,7 @@ export const day: Lesson = {
     {
       id: "l3",
       type: "dontSay",
+      fixIt: "preposition",
       wrong: "Please call to this number.",
       right: "Please call this number.",
       why: {
@@ -144,6 +145,7 @@ export const day: Lesson = {
     {
       id: "p3",
       type: "choose",
+      fixIt: "preposition",
       prompt: {
         en: "You want a stranger to call your friend. You show your phone. What do you say?",
         te: "మీ స్నేహితులకి ఫోన్ చేయమని ఒకరిని అడగాలి. మీ ఫోన్ చూపిస్తున్నారు. ఏమంటారు?",
@@ -171,6 +173,7 @@ export const day: Lesson = {
     {
       id: "s1",
       type: "situation",
+      fixIt: "be",
       situation: {
         en: "You are in a new town and cannot find your way. Ask a shopkeeper for help.",
         te: "కొత్త ఊరిలో దారి తెలియడం లేదు. ఒక షాపు ఆయన్ని సహాయం అడగండి.",
@@ -182,6 +185,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "be",
       situation: {
         en: "You called one zero eight. The operator asks for your address. It is ten, Station Road.",
         te: "మీరు 108 కి ఫోన్ చేశారు. ఆపరేటర్ మీ అడ్రస్ అడుగుతున్నారు. అది పది, స్టేషన్ రోడ్.",
@@ -227,7 +231,7 @@ export const day: Lesson = {
         hint: { en: "Say you can't, because of the pain in your leg.", te: "కాలు నొప్పి వల్ల నిలబడలేనని చెప్పండి." },
         replies: [
           { say: "No, I can't. My leg hurts.", good: true, skill: "help" },
-          { say: "No, I can't. My leg is paining.", good: false, skill: "help" },
+          { say: "No, I can't. My leg is paining.", good: false, skill: "help", fixIt: "indian-english" },
         ],
       },
       {
@@ -245,7 +249,7 @@ export const day: Lesson = {
         hint: { en: "Give your door number and road: 10, Station Road.", te: "మీ డోర్ నంబర్, రోడ్ చెప్పండి: 10, స్టేషన్ రోడ్." },
         replies: [
           { say: "My address is ten, Station Road.", good: true, skill: "help" },
-          { say: "My address ten, Station Road.", good: false, skill: "help" },
+          { say: "My address ten, Station Road.", good: false, skill: "help", fixIt: "be" },
         ],
       },
     ],

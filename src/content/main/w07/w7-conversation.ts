@@ -116,7 +116,7 @@ export const day: ConversationDay = {
           hint: { en: "Say you watch it on some days, and when.", te: "కొన్ని రోజులు చూస్తానని, ఎప్పుడో చెప్పండి." },
           replies: [
             { say: "Sometimes, in the evening.", good: true, skill: "routine" },
-            { say: "Sometimes, in evening.", good: false, skill: "routine" },
+            { say: "Sometimes, in evening.", good: false, skill: "routine", fixIt: "article" },
           ],
         },
         {
@@ -166,7 +166,7 @@ export const day: ConversationDay = {
           hint: { en: "Say not often, only on special days.", te: "ఎప్పుడో ఒకసారి, పండగలప్పుడు మాత్రమే అని చెప్పండి." },
           replies: [
             { say: "Sometimes, at festivals.", good: true, skill: "often" },
-            { say: "Sometimes, in festivals.", good: false, skill: "often" },
+            { say: "Sometimes, in festivals.", good: false, skill: "often", fixIt: "preposition" },
           ],
         },
         {
@@ -175,7 +175,7 @@ export const day: ConversationDay = {
           hint: { en: "Say how often, using every.", te: "every వాడి, ఎన్నిసార్లో చెప్పండి." },
           replies: [
             { say: "I walk every morning.", good: true, skill: "often" },
-            { say: "I walk every mornings.", good: false, skill: "often" },
+            { say: "I walk every mornings.", good: false, skill: "often", fixIt: "plural" },
             {
               say: "Doctor, just give me tablets.",
               good: false,
@@ -189,7 +189,7 @@ export const day: ConversationDay = {
           hint: { en: "Say yes, and how many glasses a day.", te: "అవునని, రోజుకు ఎన్ని గ్లాసులో చెప్పండి." },
           replies: [
             { say: "Yes, eight glasses a day.", good: true, skill: "often" },
-            { say: "Yes, eight glass a day.", good: false, skill: "often" },
+            { say: "Yes, eight glass a day.", good: false, skill: "often", fixIt: "plural" },
           ],
         },
       ],

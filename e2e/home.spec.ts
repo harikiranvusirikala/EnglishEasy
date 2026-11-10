@@ -12,6 +12,10 @@ test("fresh visitor: language choice, Home, Day 1, back Home shows progress", as
   await page.screenshot({ path: `${SHOTS}/onboarding.png` });
   await page.getByRole("button", { name: /Explanations in English/ }).click();
   await expect(page.locator("html")).toHaveAttribute("data-learn-in", "en");
+  await expect(page.getByRole("heading", { name: "What do you want English for?" })).toBeVisible(); // step 2: goals
+  await page.getByRole("button", { name: /Talking with my family/ }).click();
+  await page.screenshot({ path: `${SHOTS}/onboarding-goals.png` });
+  await page.getByRole("button", { name: /Start learning/ }).click();
 
   await expect(page.getByRole("link", { name: /Start Day 1/ })).toBeVisible();
   await expect(page.getByRole("heading", { name: /Good (morning|afternoon|evening)/ })).toBeVisible();

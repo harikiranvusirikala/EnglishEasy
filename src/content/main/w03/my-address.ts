@@ -110,6 +110,7 @@ export const day: Lesson = {
     {
       id: "l4",
       type: "dontSay",
+      fixIt: "indian-english",
       wrong: "What is your name spelling?",
       right: "How do you spell your name?",
       why: {
@@ -145,6 +146,7 @@ export const day: Lesson = {
     {
       id: "p3",
       type: "choose",
+      fixIt: "indian-english",
       prompt: { en: "You want to write down a new neighbour's name. What do you ask?", te: "కొత్త పక్కింటి వారి పేరు రాసుకోవాలి. ఏమని అడుగుతారు?" },
       options: ["What is your name spelling?", "How do you spell your name?", "How you spell your name?"],
       answer: 1,
@@ -156,6 +158,7 @@ export const day: Lesson = {
     {
       id: "p4",
       type: "findMistake",
+      fixIt: "preposition",
       sentence: "I live at Gandhi Road.",
       wrongIndex: 2,
       fix: "I live on Gandhi Road.",
@@ -169,6 +172,7 @@ export const day: Lesson = {
     {
       id: "s1",
       type: "situation",
+      fixIt: "be",
       situation: {
         en: "The shopkeeper will send your rice home. He asks your address. It is twelve, Gandhi Road.",
         te: "షాపు ఆయన బియ్యం ఇంటికి పంపిస్తారు. మీ అడ్రస్ అడుగుతున్నారు. అది పన్నెండు, గాంధీ రోడ్.",
@@ -209,7 +213,7 @@ export const day: Lesson = {
         hint: { en: "Give your door number and road: 12, Gandhi Road.", te: "మీ డోర్ నంబర్, రోడ్ చెప్పండి: 12, గాంధీ రోడ్." },
         replies: [
           { say: "My address is twelve, Gandhi Road.", good: true, skill: "address" },
-          { say: "My address twelve, Gandhi Road.", good: false, skill: "address" },
+          { say: "My address twelve, Gandhi Road.", good: false, skill: "address", fixIt: "be" },
           {
             say: "Why? Who are you?",
             good: false,
@@ -241,7 +245,7 @@ export const day: Lesson = {
         hint: { en: "Agree, thank her, and say you will see her then.", te: "సరే అని, థాంక్స్ చెప్పి, అప్పుడు కలుద్దామని చెప్పండి." },
         replies: [
           { say: "Okay, thank you. See you at five.", good: true },
-          { say: "Okay, thank you. See you on five.", good: false },
+          { say: "Okay, thank you. See you on five.", good: false, fixIt: "preposition" },
         ],
       },
     ],

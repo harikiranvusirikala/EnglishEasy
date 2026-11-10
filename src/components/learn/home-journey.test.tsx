@@ -2,7 +2,7 @@ import { act, render, screen, within, fireEvent } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { Course } from "@/learning/recommend";
 import { completeDay } from "@/learning/progress";
-import { updateProgress } from "@/lib/progress-store";
+import { getProgress, updateProgress } from "@/lib/progress-store";
 import { updateSettings } from "@/lib/settings-store";
 import { fixtureCourse, makePlayable, standardShape } from "../../../test/fixtures/course";
 vi.mock("@/lib/account", () => ({ useAccount: () => ({ kind: "signedOut" }) }));
@@ -50,7 +50,12 @@ describe("Home", () => {
     render(<Home course={fixtureCourse} written={["a1", "a2", "b1"]} />);
     expect(screen.getByText("How would you like to learn?")).toBeTruthy();
     fireEvent.click(screen.getByRole("button", { name: /Explanations in English/ }));
+    expect(screen.getByText("What do you want English for?")).toBeTruthy(); // step 2: the goals
+    fireEvent.click(screen.getByRole("button", { name: /Abroad/ }));
+    fireEvent.click(screen.getByRole("button", { name: /My trip is soon/ }));
+    fireEvent.click(screen.getByRole("button", { name: /Start learning/ }));
     expect(await screen.findByRole("link", { name: /Start Day 78/ })).toBeTruthy();
+    expect(getProgress()).toMatchObject({ tracks: ["abroad"], tracksAsked: true, tripSoon: true });
     expect(document.documentElement.getAttribute("data-learn-in")).toBe("en");
   });
 

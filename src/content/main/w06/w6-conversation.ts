@@ -63,6 +63,7 @@ export const day: ConversationDay = {
     {
       id: "s3",
       type: "situation",
+      fixIt: "state-ing",
       situation: {
         en: "Tell your host you love the food.",
         te: "భోజనం చాలా నచ్చిందని ఇంటివారికి చెప్పండి.",
@@ -117,7 +118,7 @@ export const day: ConversationDay = {
           hint: { en: "Say a little spice is fine, but not too much.", te: "కొంచెం కారం పర్లేదు, మరీ ఎక్కువ వద్దని చెప్పండి." },
           replies: [
             { say: "A little. Not too spicy, please.", good: true, skill: "food" },
-            { say: "A little. Not too much spicy.", good: false, skill: "food" },
+            { say: "A little. Not too much spicy.", good: false, skill: "food", fixIt: "indian-english" },
           ],
         },
         {
@@ -170,7 +171,7 @@ export const day: ConversationDay = {
           hint: { en: "Order some idlis and dosas. Say how many.", te: "ఇడ్లీలు, దోసెలు ఆర్డర్ చేయండి. ఎన్నో చెప్పండి." },
           replies: [
             { say: "Four idlis and two dosas, please.", good: true, skill: "many" },
-            { say: "Four idli and two dosa, please.", good: false, skill: "many" },
+            { say: "Four idli and two dosa, please.", good: false, skill: "many", fixIt: "plural" },
           ],
         },
         {
@@ -179,7 +180,7 @@ export const day: ConversationDay = {
           hint: { en: "Order coffee for two people.", te: "ఇద్దరికి కాఫీ ఆర్డర్ చేయండి." },
           replies: [
             { say: "Two coffees, please.", good: true, skill: "many" },
-            { say: "Two coffee, please.", good: false, skill: "many" },
+            { say: "Two coffee, please.", good: false, skill: "many", fixIt: "plural" },
           ],
         },
         {

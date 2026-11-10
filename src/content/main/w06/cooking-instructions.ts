@@ -145,6 +145,7 @@ export const day: Lesson = {
     {
       id: "p4",
       type: "findMistake",
+      fixIt: "plural",
       sentence: "Don't add too many salt.",
       wrongIndex: 3,
       fix: "Don't add too much salt.",
@@ -169,6 +170,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "plural",
       situation: {
         en: "Tell someone not to add too much chilli.",
         te: "మరీ ఎక్కువ కారం వేయవద్దని చెప్పండి.",
@@ -214,7 +216,7 @@ export const day: Lesson = {
         hint: { en: "Tell him how long to wait.", te: "ఎంతసేపు ఆగాలో చెప్పండి." },
         replies: [
           { say: "Wait for ten minutes.", good: true, skill: "steps" },
-          { say: "Wait since ten minutes.", good: false, skill: "steps" },
+          { say: "Wait since ten minutes.", good: false, skill: "steps", fixIt: "preposition" },
         ],
       },
       {

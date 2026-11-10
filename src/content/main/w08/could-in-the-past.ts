@@ -198,7 +198,7 @@ export const day: Lesson = {
         hint: { en: "Tell him one thing you could do as a child.", te: "చిన్నప్పుడు మీకు వచ్చిన ఒక పని చెప్పండి." },
         replies: [
           { say: "I could climb trees.", good: true, skill: "could" },
-          { say: "I could climbed trees.", good: false, skill: "could" },
+          { say: "When I small, I could climb trees.", good: false, skill: "could", fixIt: "be" },
         ],
       },
       {

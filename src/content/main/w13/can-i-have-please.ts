@@ -103,6 +103,7 @@ export const day: Lesson = {
     {
       id: "l4",
       type: "dontSay",
+      fixIt: "indian-english",
       wrong: "Give one cover.",
       right: "Can I have a bag, please?",
       why: {
@@ -149,6 +150,7 @@ export const day: Lesson = {
     {
       id: "p4",
       type: "findMistake",
+      fixIt: "plural",
       sentence: "Can I have two kilo of onions?",
       wrongIndex: 4,
       fix: "Can I have two kilos of onions?",
@@ -173,6 +175,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "indian-english",
       situation: {
         en: "Ask the seller for a bag.",
         te: "అమ్మేవారిని ఒక సంచి అడగండి.",
@@ -215,7 +218,7 @@ export const day: Lesson = {
         hint: { en: "Ask for tomatoes too: two kilos.", te: "టమాటాలు కూడా అడగండి: రెండు కిలోలు." },
         replies: [
           { say: "Can I have two kilos of tomatoes?", good: true, skill: "ask" },
-          { say: "Can I have two kilo tomato?", good: false, skill: "ask" },
+          { say: "Can I have two kilo tomato?", good: false, skill: "ask", fixIt: "plural" },
         ],
       },
       {
@@ -224,7 +227,7 @@ export const day: Lesson = {
         hint: { en: "Say yes, and ask for one politely.", te: "అవునని, ఒక సంచి మర్యాదగా అడగండి." },
         replies: [
           { say: "Yes, can I have a bag, please?", good: true, skill: "ask" },
-          { say: "Yes, give one cover.", good: false, skill: "ask" },
+          { say: "Yes, give one cover.", good: false, skill: "ask", fixIt: "indian-english" },
         ],
       },
       {
@@ -233,7 +236,7 @@ export const day: Lesson = {
         hint: { en: "Say that is all, and thank him.", te: "అంతే అని, ఆయనకి థాంక్స్ చెప్పండి." },
         replies: [
           { say: "Yes, that's all. Thank you.", good: true },
-          { say: "Yes, that is all only. Thank you.", good: false },
+          { say: "Yes, that is all only. Thank you.", good: false, fixIt: "indian-english" },
         ],
       },
     ],

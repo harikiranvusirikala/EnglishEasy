@@ -96,6 +96,7 @@ export const day: Lesson = {
     {
       id: "l3",
       type: "dontSay",
+      fixIt: "preposition",
       wrong: "The keys are table on.",
       right: "The keys are on the table.",
       why: {
@@ -106,6 +107,7 @@ export const day: Lesson = {
     {
       id: "l4",
       type: "dontSay",
+      fixIt: "preposition",
       wrong: "The bank is next the temple.",
       right: "The bank is next to the temple.",
       why: {
@@ -152,6 +154,7 @@ export const day: Lesson = {
     {
       id: "p4",
       type: "findMistake",
+      fixIt: "preposition",
       sentence: "The remote is the TV behind.",
       wrongIndex: 3,
       fix: "The remote is behind the TV.",
@@ -225,7 +228,7 @@ export const day: Lesson = {
         hint: { en: "Look, say yes, and say where they are.", te: "చూసి, అవునని చెప్పి, ఎక్కడ ఉన్నాయో చెప్పండి." },
         replies: [
           { say: "Yes! They are under the newspaper.", good: true, skill: "place" },
-          { say: "Yes! They are the newspaper under.", good: false, skill: "place" },
+          { say: "Yes! They are the newspaper under.", good: false, skill: "place", fixIt: "preposition" },
         ],
       },
       {
@@ -234,7 +237,7 @@ export const day: Lesson = {
         hint: { en: "Thank her, and say she is kind.", te: "ఆవిడకి థాంక్స్ చెప్పి, మీరు చాలా మంచివారు అని చెప్పండి." },
         replies: [
           { say: "Oh, thank you. You are very kind.", good: true },
-          { say: "Oh, thank you. You very kind.", good: false },
+          { say: "Oh, thank you. You very kind.", good: false, fixIt: "be" },
         ],
       },
     ],

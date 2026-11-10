@@ -222,7 +222,7 @@ export const day: Lesson = {
         hint: { en: "Ask why a new park is needed.", te: "కొత్త పార్క్ ఎందుకు అవసరమో అడగండి." },
         replies: [
           { say: "Why do we need a new park?", good: true, skill: "reason" },
-          { say: "Why we need a new park?", good: false, skill: "reason" },
+          { say: "Why we need a new park?", good: false, skill: "reason", fixIt: "question" },
         ],
       },
       {

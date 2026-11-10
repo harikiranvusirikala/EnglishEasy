@@ -93,6 +93,7 @@ export const day: Lesson = {
     {
       id: "l3",
       type: "dontSay",
+      fixIt: "question",
       wrong: "Where you went?",
       right: "Where did you go?",
       why: {
@@ -115,6 +116,7 @@ export const day: Lesson = {
     {
       id: "p1",
       type: "choose",
+      fixIt: "question",
       prompt: { en: "Choose the correct question.", te: "సరైన ప్రశ్నను ఎంచుకోండి." },
       options: ["Where you went?", "Where did you go?", "Where did you went?"],
       answer: 1,
@@ -162,6 +164,7 @@ export const day: Lesson = {
     {
       id: "s1",
       type: "situation",
+      fixIt: "question",
       situation: {
         en: "Your friend went to a wedding. Ask what she ate.",
         te: "మీ స్నేహితురాలు ఒక పెళ్ళికి వెళ్ళారు. అక్కడ ఏం తిన్నారో అడగండి.",
@@ -221,7 +224,7 @@ export const day: Lesson = {
         hint: { en: "Ask him how he spent the time.", te: "ఇంట్లో ఏం చేశారో ఆయన్ని అడగండి." },
         replies: [
           { say: "What did you do at home?", good: true, skill: "ask" },
-          { say: "What you did at home?", good: false, skill: "ask" },
+          { say: "What you did at home?", good: false, skill: "ask", fixIt: "question" },
           {
             say: "So you did nothing at all?",
             good: false,

@@ -100,6 +100,7 @@ export const day: Lesson = {
     {
       id: "l4",
       type: "dontSay",
+      fixIt: "question",
       wrong: "What time she sleeps?",
       right: "What time does she sleep?",
       why: {
@@ -170,6 +171,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "question",
       situation: {
         en: "Ask your friend what time her sister sleeps.",
         te: "మీ స్నేహితురాలి చెల్లెలు ఎన్ని గంటలకు పడుకుంటారో అడగండి.",
@@ -232,7 +234,7 @@ export const day: Lesson = {
         hint: { en: "Ask about the time his brother gets home.", te: "ఆయన అన్నయ్య ఇంటికి ఎన్ని గంటలకు వస్తారో అడగండి." },
         replies: [
           { say: "What time does he come home?", good: true, skill: "ask" },
-          { say: "What time he comes home?", good: false, skill: "ask" },
+          { say: "What time he comes home?", good: false, skill: "ask", fixIt: "question" },
         ],
       },
     ],

@@ -43,8 +43,17 @@ describe("course map", () => {
     for (const id of ids) expect(id.length).toBeLessThanOrEqual(40);
   });
 
-  it("lists the two tracks offered at Week 13, all unreleased", () => {
-    expect(course.tracks.map((t) => [t.id, t.weeks.length, t.offerAtWeek])).toEqual([["grandchildren", 8, 13], ["abroad", 12, 13]]);
+  it("lists the six tracks (CURRICULUM §8), each offered at its own week, all unreleased", () => {
+    expect(course.tracks.map((t) => [t.id, t.weeks.length, t.offerAtWeek])).toEqual([
+      ["family", 6, 4],
+      ["grandchildren", 8, 8],
+      ["abroad", 12, 8],
+      ["work", 8, 12],
+      ["care", 6, 18],
+      ["faith", 5, 33],
+    ]);
+    expect(course.tracks.find((t) => t.id === "abroad")?.soonWeek).toBe(4);
+    expect(course.tracks.every((t) => t.weeks.every((w) => !w.released))).toBe(true);
   });
 });
 

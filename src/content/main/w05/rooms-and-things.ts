@@ -91,6 +91,7 @@ export const day: Lesson = {
     {
       id: "l3",
       type: "dontSay",
+      fixIt: "preposition",
       wrong: "Please on the fan.",
       right: "Please switch on the fan.",
       why: {
@@ -101,6 +102,7 @@ export const day: Lesson = {
     {
       id: "l4",
       type: "dontSay",
+      fixIt: "indian-english",
       wrong: "Close the light.",
       right: "Switch off the light.",
       why: {
@@ -113,6 +115,7 @@ export const day: Lesson = {
     {
       id: "p1",
       type: "choose",
+      fixIt: "preposition",
       prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
       options: ["Please on the fan.", "Please switch on the fan.", "Please open the fan."],
       answer: 1,
@@ -136,6 +139,7 @@ export const day: Lesson = {
     {
       id: "p3",
       type: "choose",
+      fixIt: "indian-english",
       prompt: { en: "You are leaving the room. What do you say about the light?", te: "మీరు గది నుండి వెళ్తున్నారు. లైట్ గురించి ఏమంటారు?" },
       options: ["Close the light.", "Switch off the light.", "Off the light."],
       answer: 1,
@@ -147,6 +151,7 @@ export const day: Lesson = {
     {
       id: "p4",
       type: "findMistake",
+      fixIt: "indian-english",
       sentence: "Please close the fan.",
       wrongIndex: 1,
       fix: "Please switch off the fan.",
@@ -171,6 +176,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "preposition",
       situation: {
         en: "It is dark. Ask your friend to switch on the light.",
         te: "చీకటిగా ఉంది. లైట్ వేయమని మీ స్నేహితుడిని అడగండి.",
@@ -207,7 +213,7 @@ export const day: Lesson = {
         hint: { en: "Offer to do something with the fan.", te: "ఫ్యాన్ వేస్తానని చెప్పండి." },
         replies: [
           { say: "I will switch on the fan.", good: true, skill: "ask" },
-          { say: "I will on the fan.", good: false, skill: "ask" },
+          { say: "I will on the fan.", good: false, skill: "ask", fixIt: "preposition" },
         ],
       },
       {
@@ -216,7 +222,7 @@ export const day: Lesson = {
         hint: { en: "Say no, and say which room it is.", te: "కాదని చెప్పి, ఇది ఏ గదో చెప్పండి." },
         replies: [
           { say: "No, this is the bedroom.", good: true },
-          { say: "No, this is bedroom.", good: false },
+          { say: "No, this is bedroom.", good: false, fixIt: "article" },
         ],
       },
       {

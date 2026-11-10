@@ -148,6 +148,7 @@ export const day: Lesson = {
         en: "To ask about tomorrow, put Will first, then you and the plain action word: Will you come tomorrow?",
         te: "రేపటి గురించి అడగాలంటే మొదట Will, తర్వాత you, మామూలు verb: Will you come tomorrow?",
       },
+      fixIt: "question",
     },
     {
       id: "p4",

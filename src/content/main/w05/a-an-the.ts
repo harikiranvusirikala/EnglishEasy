@@ -91,6 +91,7 @@ export const day: Lesson = {
     {
       id: "l3",
       type: "dontSay",
+      fixIt: "article",
       wrong: "I want pen.",
       right: "I want a pen.",
       why: {
@@ -113,6 +114,7 @@ export const day: Lesson = {
     {
       id: "p1",
       type: "choose",
+      fixIt: "article",
       prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
       options: ["I have a umbrella.", "I have an umbrella.", "I have umbrella."],
       answer: 1,
@@ -136,6 +138,7 @@ export const day: Lesson = {
     {
       id: "p3",
       type: "choose",
+      fixIt: "article",
       prompt: {
         en: "You and a guest are in your house. Which sentence is right?",
         te: "మీరు, ఒక అతిథి మీ ఇంట్లో ఉన్నారు. ఏ వాక్యం సరైనది?",
@@ -163,6 +166,7 @@ export const day: Lesson = {
     {
       id: "s1",
       type: "situation",
+      fixIt: "article",
       situation: {
         en: "At a shop, ask for one pen.",
         te: "షాప్‌లో ఒక పెన్ అడగండి.",
@@ -174,6 +178,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "article",
       situation: {
         en: "It is raining. Tell your friend you have an umbrella.",
         te: "వర్షం పడుతోంది. మీ దగ్గర గొడుగు ఉందని మీ స్నేహితులకి చెప్పండి.",
@@ -219,7 +224,7 @@ export const day: Lesson = {
         hint: { en: "Ask the price of the notebook he gave you.", te: "ఆయన ఇచ్చిన నోట్‌బుక్ ధర అడగండి." },
         replies: [
           { say: "How much is the notebook?", good: true, skill: "articles" },
-          { say: "How much is notebook?", good: false, skill: "articles" },
+          { say: "How much is notebook?", good: false, skill: "articles", fixIt: "article" },
         ],
       },
       {

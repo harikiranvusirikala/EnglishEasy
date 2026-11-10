@@ -98,6 +98,7 @@ export const day: Lesson = {
     {
       id: "l3",
       type: "dontSay",
+      fixIt: "indian-english",
       wrong: "What is the last price?",
       right: "What is your final price?",
       why: {
@@ -143,6 +144,7 @@ export const day: Lesson = {
     {
       id: "p3",
       type: "choose",
+      fixIt: "indian-english",
       prompt: { en: "Ask for the seller's lowest price.", te: "అమ్మేవారి తక్కువ ధర అడగండి." },
       options: ["What is your final price?", "What is the last price?", "What final price is?"],
       answer: 0,
@@ -154,6 +156,7 @@ export const day: Lesson = {
     {
       id: "p4",
       type: "findMistake",
+      fixIt: "preposition",
       sentence: "Can you give it in fifty?",
       wrongIndex: 4,
       fix: "Can you give it for fifty?",
@@ -178,6 +181,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "preposition",
       situation: {
         en: "Ask the seller to give it for 400.",
         te: "400 కి ఇవ్వమని అమ్మేవారిని అడగండి.",
@@ -214,7 +218,7 @@ export const day: Lesson = {
         hint: { en: "Offer your price: 350.", te: "మీ ధర చెప్పండి: 350." },
         replies: [
           { say: "Can you give it for 350?", good: true, skill: "bargain" },
-          { say: "Can you give it in 350?", good: false, skill: "bargain" },
+          { say: "Can you give it in 350?", good: false, skill: "bargain", fixIt: "preposition" },
           {
             say: "Soft? It looks very cheap.",
             good: false,

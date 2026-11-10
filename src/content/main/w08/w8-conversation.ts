@@ -52,6 +52,7 @@ export const day: ConversationDay = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "indian-english",
       situation: {
         en: "You did not hear the platform number. Ask again.",
         te: "ప్లాట్‌ఫామ్ నంబర్ మీకు వినిపించలేదు. మళ్ళీ అడగండి.",
@@ -93,7 +94,7 @@ export const day: ConversationDay = {
           hint: { en: "Ask which platform the Tirupati train leaves from.", te: "తిరుపతి రైలు ఏ ప్లాట్‌ఫామ్ నుండో అడగండి." },
           replies: [
             { say: "Which platform for the Tirupati train?", good: true, skill: "ask" },
-            { say: "Tirupati train which platform going?", good: false, skill: "ask" },
+            { say: "Tirupati train which platform going?", good: false, skill: "ask", fixIt: "question" },
           ],
         },
         {
@@ -102,7 +103,7 @@ export const day: ConversationDay = {
           hint: { en: "You didn't hear well. Ask her to repeat, politely.", te: "సరిగ్గా వినిపించలేదు. మళ్ళీ చెప్పమని మర్యాదగా అడగండి." },
           replies: [
             { say: "Could you say that again, please?", good: true, skill: "clarify" },
-            { say: "Could you tell that again, please?", good: false, skill: "clarify" },
+            { say: "Could you tell that again, please?", good: false, skill: "clarify", fixIt: "indian-english" },
             {
               say: "What? Speak properly!",
               good: false,
@@ -117,7 +118,7 @@ export const day: ConversationDay = {
           hint: { en: "Stairs are hard for you. Ask about a lift.", te: "మెట్లు ఎక్కడం కష్టం. లిఫ్ట్ గురించి అడగండి." },
           replies: [
             { say: "Is there a lift?", good: true, skill: "ask" },
-            { say: "Is there lift?", good: false, skill: "ask" },
+            { say: "Is there lift?", good: false, skill: "ask", fixIt: "article" },
           ],
         },
         {
@@ -161,7 +162,7 @@ export const day: ConversationDay = {
           hint: { en: "Say yes, he can talk, but he is very weak.", te: "అవును, మాట్లాడగలరు, కానీ చాలా నీరసంగా ఉన్నారని చెప్పండి." },
           replies: [
             { say: "Yes, he can. He is very weak.", good: true, skill: "help" },
-            { say: "Yes, he can talking. He is weak.", good: false, skill: "help" },
+            { say: "Yes, he can. He feel very weak.", good: false, skill: "help", fixIt: "he-she-s" },
           ],
         },
         {

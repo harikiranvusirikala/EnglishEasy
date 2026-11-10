@@ -165,6 +165,7 @@ export const day: Lesson = {
     {
       id: "s1",
       type: "situation",
+      fixIt: "be",
       situation: {
         en: "A friend asks: How are you? Answer in English.",
         te: "మీ స్నేహితులు అడుగుతున్నారు: How are you? ఇంగ్లీష్‌లో జవాబు చెప్పండి.",

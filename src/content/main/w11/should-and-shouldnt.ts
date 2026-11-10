@@ -171,6 +171,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "question",
       situation: {
         en: "Ask the doctor what you should do.",
         te: "మీరు ఏం చేయాలో డాక్టర్‌ని అడగండి.",
@@ -231,7 +232,7 @@ export const day: Lesson = {
         hint: { en: "Wish him well as you leave.", te: "వెళ్తూ, త్వరగా కోలుకోమని చెప్పండి." },
         replies: [
           { say: "Take care. Get well soon.", good: true },
-          { say: "Take care. Get well fastly.", good: false },
+          { say: "Take care. Get well fastly.", good: false, fixIt: "indian-english" },
         ],
       },
     ],

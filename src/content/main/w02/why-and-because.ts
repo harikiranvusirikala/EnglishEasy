@@ -93,6 +93,7 @@ export const day: Lesson = {
     {
       id: "l3",
       type: "dontSay",
+      fixIt: "question",
       wrong: "Why you are late?",
       right: "Why are you late?",
       why: {
@@ -103,6 +104,7 @@ export const day: Lesson = {
     {
       id: "l4",
       type: "dontSay",
+      fixIt: "question",
       wrong: "Why you didn't come?",
       right: "Why didn't you come?",
       why: {
@@ -115,6 +117,7 @@ export const day: Lesson = {
     {
       id: "p1",
       type: "choose",
+      fixIt: "question",
       prompt: { en: "Choose the correct question.", te: "సరైన ప్రశ్నను ఎంచుకోండి." },
       options: ["Why you are late?", "Why are you late?", "Why is you late?"],
       answer: 1,
@@ -152,6 +155,7 @@ export const day: Lesson = {
     {
       id: "p4",
       type: "findMistake",
+      fixIt: "question",
       sentence: "Why you didn't come?",
       wrongIndex: 1,
       fix: "Why didn't you come?",
@@ -176,6 +180,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "question",
       situation: {
         en: "The shop is closed today. Ask the watchman why.",
         te: "ఈ రోజు షాప్ మూసి ఉంది. వాచ్‌మన్‌ని ఎందుకని అడగండి.",
@@ -219,7 +224,7 @@ export const day: Lesson = {
         hint: { en: "Say yes, you are fine now.", te: "అవును, ఇప్పుడు బాగున్నానని చెప్పండి." },
         replies: [
           { say: "Yes, I am fine now.", good: true },
-          { say: "Yes, I fine now.", good: false },
+          { say: "Yes, I fine now.", good: false, fixIt: "be" },
         ],
       },
       {
@@ -228,7 +233,7 @@ export const day: Lesson = {
         hint: { en: "Ask her the reason.", te: "ఎందుకని అడగండి." },
         replies: [
           { say: "Why was it long?", good: true, skill: "why" },
-          { say: "Why it was long?", good: false, skill: "why" },
+          { say: "Why it was long?", good: false, skill: "why", fixIt: "question" },
         ],
       },
       {
@@ -237,7 +242,7 @@ export const day: Lesson = {
         hint: { en: "Say you understand, and thank her.", te: "అర్థమైందని చెప్పి, thank you చెప్పండి." },
         replies: [
           { say: "Oh, I see. Thank you.", good: true },
-          { say: "Oh, I seeing. Thank you.", good: false },
+          { say: "Oh, I seeing. Thank you.", good: false, fixIt: "state-ing" },
         ],
       },
     ],

@@ -91,6 +91,7 @@ export const day: Lesson = {
     {
       id: "l3",
       type: "dontSay",
+      fixIt: "indian-english",
       wrong: "This papaya is too much big.",
       right: "This papaya is too big.",
       why: {
@@ -113,6 +114,7 @@ export const day: Lesson = {
     {
       id: "p1",
       type: "choose",
+      fixIt: "be",
       prompt: { en: "Ask if the mangoes are ready to eat.", te: "మామిడిపండ్లు తినడానికి సిద్ధంగా ఉన్నాయా అని అడగండి." },
       options: ["Are these mangoes ripe?", "Is these mangoes ripe?", "These mangoes ripe?"],
       answer: 0,
@@ -147,6 +149,7 @@ export const day: Lesson = {
     {
       id: "p4",
       type: "findMistake",
+      fixIt: "plural",
       sentence: "Are the spinach fresh today?",
       wrongIndex: 0,
       fix: "Is the spinach fresh today?",
@@ -171,6 +174,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "indian-english",
       situation: {
         en: "The tomatoes are too soft. Tell the seller.",
         te: "టమాటాలు మరీ మెత్తగా ఉన్నాయి. అమ్మేవారికి చెప్పండి.",
@@ -206,7 +210,7 @@ export const day: Lesson = {
         hint: { en: "Ask politely for the two that are ripe.", te: "పండిన ఆ రెండూ ఇవ్వమని మర్యాదగా అడగండి." },
         replies: [
           { say: "Give me the ripe ones, please.", good: true, skill: "describe" },
-          { say: "Give me ripe one, please.", good: false, skill: "describe" },
+          { say: "Give me ripe one, please.", good: false, skill: "describe", fixIt: "article" },
         ],
       },
       {
@@ -215,7 +219,7 @@ export const day: Lesson = {
         hint: { en: "Say no, and give the reason: its size.", te: "వద్దని, కారణం చెప్పండి: దాని సైజు." },
         replies: [
           { say: "No, it's too big for me.", good: true, skill: "describe" },
-          { say: "No, it's too much big for me.", good: false, skill: "describe" },
+          { say: "No, it's too much big for me.", good: false, skill: "describe", fixIt: "indian-english" },
         ],
       },
       {
@@ -224,7 +228,7 @@ export const day: Lesson = {
         hint: { en: "Ask if you can pick the tomatoes yourself.", te: "టమాటాలు మీరే ఏరుకోవచ్చా అని అడగండి." },
         replies: [
           { say: "Can I choose the tomatoes myself?", good: true },
-          { say: "Myself I will choose the tomatoes.", good: false },
+          { say: "Myself I will choose the tomatoes.", good: false, fixIt: "indian-english" },
           {
             say: "Let me choose. You give bad ones.",
             good: false,

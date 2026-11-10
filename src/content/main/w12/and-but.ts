@@ -160,6 +160,7 @@ export const day: Lesson = {
     {
       id: "s1",
       type: "situation",
+      fixIt: "indian-english",
       situation: {
         en: "Say that you like idli and dosa.",
         te: "మీకు ఇడ్లీ, దోసె ఇష్టమని చెప్పండి.",

@@ -94,6 +94,7 @@ export const day: Lesson = {
     {
       id: "l3",
       type: "dontSay",
+      fixIt: "be",
       wrong: "I hungry.",
       right: "I am hungry.",
       why: {
@@ -116,6 +117,7 @@ export const day: Lesson = {
     {
       id: "p1",
       type: "choose",
+      fixIt: "be",
       prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
       options: ["I hungry.", "I am hungry.", "I is hungry."],
       answer: 1,
@@ -139,6 +141,7 @@ export const day: Lesson = {
     {
       id: "p3",
       type: "choose",
+      fixIt: "be",
       prompt: { en: "Which sentence means: మేము సంతోషంగా ఉన్నాం?", te: "మేము సంతోషంగా ఉన్నాం — ఇంగ్లీష్‌లో ఏది సరైనది?" },
       options: ["We happy.", "We is happy.", "We are happy."],
       answer: 2,
@@ -159,6 +162,7 @@ export const day: Lesson = {
     {
       id: "s1",
       type: "situation",
+      fixIt: "indian-english",
       situation: {
         en: "A new neighbour says: Hello! I am Usha. What is your name? Say your name in English.",
         te: "కొత్తగా వచ్చిన పక్కింటావిడ అంటున్నారు: Hello! I am Usha. What is your name? మీ పేరు ఇంగ్లీష్‌లో చెప్పండి.",
@@ -170,6 +174,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "be",
       situation: {
         en: "A friend asks: Are you tired? Say yes, in English.",
         te: "మీ స్నేహితులు అడుగుతున్నారు: Are you tired? అవును అని ఇంగ్లీష్‌లో చెప్పండి.",
@@ -213,8 +218,8 @@ export const day: Lesson = {
         hint: { en: "Greet her, give your name, and say you are glad to meet her.", te: "పలకరించి, మీ పేరు చెప్పి, కలిసినందుకు సంతోషం అని చెప్పండి." },
         replies: [
           { say: "Hello, I'm Kiran. Nice to meet you.", good: true, skill: "be" },
-          { say: "Hello, I Kiran. Nice to meet you.", good: false, skill: "be" },
-          { say: "Myself Kiran.", good: false, skill: "polite" },
+          { say: "Hello, I Kiran. Nice to meet you.", good: false, skill: "be", fixIt: "be" },
+          { say: "Myself Kiran.", good: false, skill: "polite", fixIt: "indian-english" },
         ],
       },
       {
@@ -224,7 +229,7 @@ export const day: Lesson = {
         replies: [
           { say: "Yes, I am.", good: true, skill: "be" },
           { say: "Yes, I are.", good: false, skill: "be" },
-          { say: "Yes, I tired.", good: false, skill: "be" },
+          { say: "Yes, I tired.", good: false, skill: "be", fixIt: "be" },
         ],
       },
       {

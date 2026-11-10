@@ -91,6 +91,7 @@ export const day: Lesson = {
     {
       id: "l3",
       type: "dontSay",
+      fixIt: "indian-english",
       wrong: "My head is paining.",
       right: "I have a headache.",
       why: {
@@ -101,6 +102,7 @@ export const day: Lesson = {
     {
       id: "l4",
       type: "dontSay",
+      fixIt: "state-ing",
       wrong: "I am having fever.",
       right: "I have a fever.",
       why: {
@@ -113,6 +115,7 @@ export const day: Lesson = {
     {
       id: "p1",
       type: "choose",
+      fixIt: "indian-english",
       prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
       options: ["My knee is paining.", "My knee hurts.", "My knee hurting."],
       answer: 1,
@@ -136,6 +139,7 @@ export const day: Lesson = {
     {
       id: "p3",
       type: "choose",
+      fixIt: "indian-english",
       prompt: { en: "Tell the pharmacist you have a headache.", te: "మీకు తలనొప్పిగా ఉందని ఫార్మసిస్ట్‌కి చెప్పండి." },
       options: ["I have a headache.", "I am headache.", "My head is paining."],
       answer: 0,
@@ -160,6 +164,7 @@ export const day: Lesson = {
     {
       id: "s1",
       type: "situation",
+      fixIt: "article",
       situation: {
         en: "At the pharmacy, say you have a cold.",
         te: "మందుల షాపులో మీకు జలుబు చేసిందని చెప్పండి.",
@@ -171,6 +176,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "indian-english",
       situation: {
         en: "Tell the doctor your back hurts.",
         te: "మీ వీపు నొప్పిగా ఉందని డాక్టర్‌కి చెప్పండి.",
@@ -212,7 +218,7 @@ export const day: Lesson = {
         hint: { en: "Say no, but your head hurts.", te: "లేదని చెప్పి, తల నొప్పిగా ఉందని చెప్పండి." },
         replies: [
           { say: "No, but my head hurts.", good: true, skill: "pain" },
-          { say: "No, but my head is paining.", good: false, skill: "pain" },
+          { say: "No, but my head is paining.", good: false, skill: "pain", fixIt: "indian-english" },
         ],
       },
       {
@@ -230,7 +236,7 @@ export const day: Lesson = {
         hint: { en: "Ask the price.", te: "ధర ఎంతో అడగండి." },
         replies: [
           { say: "How much is it?", good: true },
-          { say: "How much it is?", good: false },
+          { say: "How much it is?", good: false, fixIt: "question" },
         ],
       },
     ],

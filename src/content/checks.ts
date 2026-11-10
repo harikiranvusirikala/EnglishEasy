@@ -2,7 +2,7 @@ import { grammar } from "./grammar";
 import { topics } from "./topics";
 import { activityCount, answerWords, buildTiles } from "./generate";
 import { daySchema } from "./schema";
-import type { Activity, Bi, Day, Lesson, PlayableDay } from "./types";
+import { FIX_IT, type Activity, type Bi, type Day, type FixIt, type Lesson, type PlayableDay } from "./types";
 
 /**
  * The content rules of BUILD_PLAN A3: shape, structure and writing-quality checks.
@@ -164,6 +164,7 @@ function activityProblems(a: Activity, where: string, stage: number | null): str
   switch (a.type) {
     case "choose":
     case "listenChoose":
+    case "readIt":
       out.push(...optionProblems(where, a.options, a.answer));
       break;
     case "fillBlank": {
@@ -371,9 +372,59 @@ export function checkDay(day: Day, playable: PlayableDay, ctx: DayContext): stri
 
 export type CourseItem = { day: Day; weekKey: string };
 
-/** Rules across days: unique day ids, each new word introduced once, no repeated core sentence within a week. */
-export function checkCourse(items: CourseItem[]): string[] {
+/** Every Fix-it tag in a day (any item's `fixIt`). */
+function fixItsOf(day: Day): FixIt[] {
+  const out: FixIt[] = [];
+  const walk = (value: unknown) => {
+    if (Array.isArray(value)) value.forEach(walk);
+    else if (value && typeof value === "object") {
+      const tag = (value as { fixIt?: unknown }).fixIt;
+      if (typeof tag === "string" && tag in FIX_IT) out.push(tag as FixIt);
+      Object.values(value).forEach(walk);
+    }
+  };
+  walk(day);
+  return out;
+}
+
+export const MIN_FIX_ITS_PER_WEEK = 3;
+export const FIX_IT_WINDOW = 3;
+
+/**
+ * The Fix-it strand (CURRICULUM §2) over the main path's written weeks: each week tags at least 3 different errors,
+ * and each error, from its start week, appears at least once in every 3 weeks in a row.
+ */
+export function fixItProblems(items: CourseItem[]): string[] {
+  const byWeek = new Map<number, Set<FixIt>>();
+  for (const { day, weekKey } of items) {
+    const [lane, n] = weekKey.split(":");
+    if (lane !== "main") continue;
+    const set = byWeek.get(Number(n)) ?? new Set<FixIt>();
+    fixItsOf(day).forEach((t) => set.add(t));
+    byWeek.set(Number(n), set);
+  }
+  const weeks = [...byWeek.keys()].sort((a, b) => a - b);
   const out: string[] = [];
+  for (const w of weeks) {
+    const tags = byWeek.get(w)!;
+    if (tags.size < MIN_FIX_ITS_PER_WEEK) out.push(`fix-it-week: Week ${w} tags ${tags.size} Fix-it error(s) (needs at least ${MIN_FIX_ITS_PER_WEEK} different ones)`);
+  }
+  const last = weeks[weeks.length - 1] ?? 0;
+  for (const [tag, { from }] of Object.entries(FIX_IT) as [FixIt, (typeof FIX_IT)[FixIt]][]) {
+    for (let start = from; start + FIX_IT_WINDOW - 1 <= last; start++) {
+      const window = Array.from({ length: FIX_IT_WINDOW }, (_, i) => start + i);
+      if (!window.every((w) => byWeek.has(w))) continue;
+      if (!window.some((w) => byWeek.get(w)!.has(tag))) {
+        out.push(`fix-it-gap: "${tag}" (Fix-it ${FIX_IT[tag].n}) is missing from Weeks ${window[0]}–${window[window.length - 1]} (it must come back at least every ${FIX_IT_WINDOW} weeks from Week ${from})`);
+      }
+    }
+  }
+  return out;
+}
+
+/** Rules across days: unique day ids, each new word introduced once, no repeated core sentence within a week, the Fix-it strand. */
+export function checkCourse(items: CourseItem[]): string[] {
+  const out: string[] = [...fixItProblems(items)];
   const dayIds = new Set<string>();
   const words = new Map<string, string>();
   const coreByWeek = new Map<string, Map<string, string>>();

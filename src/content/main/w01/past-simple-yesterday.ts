@@ -191,6 +191,7 @@ export const day: Lesson = {
       expected: ["Did you eat?"],
       options: ["Did you eat?", "Did you ate?", "Do you ate?"],
       answer: 0,
+      fixIt: "question",
     },
   ],
   roleplay: {

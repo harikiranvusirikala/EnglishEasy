@@ -113,8 +113,9 @@ export const day: Lesson = {
     {
       id: "p1",
       type: "choose",
+      fixIt: "question",
       prompt: { en: "You need help from a stranger. Which is most polite?", te: "ఒక తెలియని వ్యక్తి సహాయం కావాలి. ఏది ఎక్కువ మర్యాదగా ఉంటుంది?" },
-      options: ["Help me.", "Could you help me, please?", "You help me."],
+      options: ["Help me.", "Could you help me, please?", "You can help me?"],
       answer: 1,
       why: {
         en: "With a stranger, ask with Could you and please: Could you help me, please?",

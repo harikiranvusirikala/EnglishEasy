@@ -101,6 +101,7 @@ export const day: Lesson = {
     {
       id: "l4",
       type: "dontSay",
+      fixIt: "indian-english",
       wrong: "Take rest.",
       right: "Get some rest.",
       why: {
@@ -136,6 +137,7 @@ export const day: Lesson = {
     {
       id: "p3",
       type: "choose",
+      fixIt: "question",
       prompt: { en: "Ask your aunt how she feels now.", te: "ఇప్పుడు ఎలా ఉందో మీ అత్తని అడగండి." },
       options: ["How are you feeling now?", "How you are feeling now?", "How are you feel now?"],
       answer: 0,
@@ -221,7 +223,7 @@ export const day: Lesson = {
         hint: { en: "Offer to help her.", te: "ఏమైనా సహాయం కావాలా అని అడగండి." },
         replies: [
           { say: "Do you need anything?", good: true, skill: "kind" },
-          { say: "Are you need anything?", good: false, skill: "kind" },
+          { say: "Are you need anything?", good: false, skill: "kind", fixIt: "question" },
         ],
       },
       {
@@ -230,7 +232,7 @@ export const day: Lesson = {
         hint: { en: "End the call with kind words.", te: "మంచి మాటలతో ఫోన్ ముగించండి." },
         replies: [
           { say: "Take care. Get well soon.", good: true, skill: "kind" },
-          { say: "Take rest. Get well soon.", good: false, skill: "kind" },
+          { say: "Take rest. Get well soon.", good: false, skill: "kind", fixIt: "indian-english" },
         ],
       },
     ],

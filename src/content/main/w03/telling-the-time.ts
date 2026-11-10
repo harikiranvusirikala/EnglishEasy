@@ -135,14 +135,18 @@ export const day: Lesson = {
     },
     {
       id: "p3",
-      type: "choose",
-      prompt: { en: "How do you say 4:15?", te: "4:15 ని ఇంగ్లీష్‌లో ఎలా చెప్తారు?" },
-      options: ["It is quarter past four.", "It is quarter to four.", "It is four and quarter."],
+      type: "readIt",
+      kind: "sign",
+      heading: "Bus Times",
+      lines: ["Guntur 7:30", "Vijayawada 8:15", "Tenali 9:45"],
+      prompt: { en: "When does the bus to Vijayawada come?", te: "విజయవాడ బస్ ఎన్నింటికి వస్తుంది?" },
+      options: ["At quarter past eight.", "At quarter to eight.", "At half past seven."],
       answer: 0,
       why: {
-        en: "4:15 is fifteen minutes after four: quarter past four.",
-        te: "4:15 అంటే నాలుగు దాటి పదిహేను నిమిషాలు: quarter past four.",
+        en: "Fifteen minutes after eight is quarter past eight: The bus comes at quarter past eight.",
+        te: "ఎనిమిది దాటి పదిహేను నిమిషాలు అంటే quarter past eight: The bus comes at quarter past eight.",
       },
+      say: "The bus comes at quarter past eight.",
     },
     {
       id: "p4",
@@ -171,6 +175,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "preposition",
       situation: {
         en: "A friend asks: What time do you sleep? You sleep at 10:30. Answer.",
         te: "మీ స్నేహితులు అడుగుతున్నారు: What time do you sleep? మీరు పదిన్నరకి పడుకుంటారు. జవాబు చెప్పండి.",
@@ -215,7 +220,7 @@ export const day: Lesson = {
         hint: { en: "Ask when the bus comes. Use does.", te: "బస్ ఎప్పుడు వస్తుందో అడగండి. does వాడండి." },
         replies: [
           { say: "When does the bus come?", good: true, skill: "ask" },
-          { say: "When the bus comes?", good: false, skill: "ask" },
+          { say: "When the bus comes?", good: false, skill: "ask", fixIt: "question" },
         ],
       },
       {

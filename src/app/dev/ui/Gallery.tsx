@@ -23,6 +23,17 @@ import { Narrate } from "@/components/player/Narrate";
 import { ThemeMenu } from "@/components/ThemeMenu";
 import { strings } from "@/lib/strings";
 import type { LearnIn } from "@/learning/settings";
+import { TrackOfferCard } from "@/components/learn/Tracks";
+import { course } from "@/content/course";
+import { chooseTracks, emptyProgress } from "@/learning/progress";
+
+/** "New for you" with a sample: My Family with one released week, the learner on Week 4 (no track has lessons yet). */
+const sampleCourse = {
+  ...course,
+  stages: [{ ...course.stages[0], weeks: [{ n: 4, title: { en: "People", te: "మనుషులు" }, released: true, days: [{ id: "sample-day", kind: "lesson" as const, title: { en: "Sample", te: "నమూనా" } }] }] }],
+  tracks: course.tracks.map((t) => (t.id === "family" ? { ...t, weeks: t.weeks.map((w, i) => (i === 0 ? { ...w, released: true, days: [{ id: "fam-f1-sample", kind: "lesson" as const, title: { en: "This Is My Family", te: "ఇది మా కుటుంబం" } }] } : w)) } : t)),
+};
+const sampleProgress = chooseTracks(emptyProgress(), ["family"], new Date(0).toISOString());
 
 const MODES: LearnIn[] = ["te", "en"];
 
@@ -256,6 +267,10 @@ export function Gallery() {
             {strings.galleryToast.en}
           </Toast>
         )}
+      </Block>
+
+      <Block title="Track offer (New for you)">
+        <TrackOfferCard course={sampleCourse} progress={sampleProgress} />
       </Block>
 
       <Dialog open={dialog} onClose={() => setDialog(false)} title={strings.galleryDialogTitle.en}>

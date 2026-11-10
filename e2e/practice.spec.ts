@@ -63,14 +63,15 @@ test("My Sentences lists Day 1's key sentences", async ({ page }) => {
   await expect(page.getByRole("dialog")).toHaveCount(0);
 });
 
-test("Role plays and Speaking only open from finished lessons; tracks stay hidden at launch", async ({ page }) => {
+test("Role plays and Speaking only open from finished lessons; no track is offered while none has lessons", async ({ page }) => {
   await finishedWithMistake(page);
   await page.goto("/learn/practice/roleplays");
   await expect(page.getByRole("button", { name: /Who Does What|Sentence/ }).first()).toBeVisible();
   await page.goto("/learn/practice/speaking");
   await expect(page.getByRole("button", { name: "Start" })).toBeVisible();
   await page.goto("/learn");
-  await expect(page.getByText("Want extra lessons for your life?")).toHaveCount(0);
+  await expect(page.getByRole("region", { name: "New for you" })).toHaveCount(0);
   await page.goto("/learn/settings");
-  await expect(page.getByRole("heading", { name: "My tracks" })).toHaveCount(0);
+  await expect(page.getByRole("heading", { name: "My tracks" })).toBeVisible(); // the first visit's goals, changeable here
+  await expect(page.getByRole("button", { name: /Daily life/ })).toBeDisabled();
 });

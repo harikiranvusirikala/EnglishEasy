@@ -91,6 +91,7 @@ export const day: Lesson = {
     {
       id: "l3",
       type: "dontSay",
+      fixIt: "be",
       wrong: "I going to visit my cousin.",
       right: "I am going to visit my cousin.",
       why: {
@@ -113,6 +114,7 @@ export const day: Lesson = {
     {
       id: "p1",
       type: "choose",
+      fixIt: "be",
       prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
       options: ["I going to visit my cousin.", "I am going to visit my cousin.", "I am go to visit my cousin."],
       answer: 1,
@@ -136,6 +138,7 @@ export const day: Lesson = {
     {
       id: "p3",
       type: "choose",
+      fixIt: "question",
       prompt: { en: "Ask a friend about her plans for Sunday.", te: "ఆదివారం ఏం చేయబోతున్నారో మీ స్నేహితురాలిని అడగండి." },
       options: ["What are you going to do on Sunday?", "What you going to do on Sunday?", "What are you go to do on Sunday?"],
       answer: 0,
@@ -160,6 +163,7 @@ export const day: Lesson = {
     {
       id: "s1",
       type: "situation",
+      fixIt: "be",
       situation: {
         en: "A friend asks about your weekend. Say you are going to visit your cousin.",
         te: "మీ స్నేహితులు మీ వారాంతం గురించి అడుగుతున్నారు. మీ కజిన్ ఇంటికి వెళ్ళబోతున్నారని చెప్పండి.",
@@ -171,6 +175,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "question",
       situation: {
         en: "Ask your neighbour if he is going to come to the function.",
         te: "ఫంక్షన్‌కి వస్తున్నారా అని పొరుగింటాయన్ని అడగండి.",
@@ -198,7 +203,7 @@ export const day: Lesson = {
         hint: { en: "Say which relative you plan to visit.", te: "ఏ బంధువు ఇంటికి వెళ్ళబోతున్నారో చెప్పండి." },
         replies: [
           { say: "I am going to visit my cousin.", good: true, skill: "plan" },
-          { say: "I going to visit my cousin.", good: false, skill: "plan" },
+          { say: "I going to visit my cousin.", good: false, skill: "plan", fixIt: "be" },
           {
             say: "Nothing. Why do you care?",
             good: false,
@@ -212,7 +217,7 @@ export const day: Lesson = {
         hint: { en: "Name the town, and say how you are travelling.", te: "ఊరి పేరు, ఎలా వెళ్తున్నారో చెప్పండి." },
         replies: [
           { say: "In Warangal. I am going by bus.", good: true, skill: "plan" },
-          { say: "In Warangal. I am going in bus.", good: false, skill: "plan" },
+          { say: "In Warangal. I am going in bus.", good: false, skill: "plan", fixIt: "preposition" },
         ],
       },
       {

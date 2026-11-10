@@ -5,7 +5,13 @@ import type { Bi, Day } from "./types";
 export type DayRef = { id: string; kind: Day["kind"]; title: Bi };
 export type Week = { n: number; title: Bi; released: boolean; days: DayRef[] }; // days empty until released
 export type Stage = { n: number; title: Bi; canDo: Bi /* the stage-end checkpoint (CURRICULUM §2b) */; firstWeek: number; lastWeek: number; weeks: Week[] };
-export type Track = { id: "grandchildren" | "abroad"; title: Bi; forWho: Bi; offerAtWeek: 13; weeks: Week[] };
+export type TrackId = "family" | "grandchildren" | "abroad" | "work" | "care" | "faith";
+/**
+ * An optional track (CURRICULUM §8). `goal` is its line in the first visit's "What do you want English for?";
+ * `offerAtWeek` is the main-path week where it is offered to learners who chose it; `soonWeek` is the earlier week for
+ * "My trip is soon" (Abroad).
+ */
+export type Track = { id: TrackId; title: Bi; goal: Bi; forWho: Bi; offerAtWeek: number; soonWeek?: number; weeks: Week[] };
 
 type T = [en: string, te: string];
 
@@ -383,49 +389,148 @@ export const course: { stages: Stage[]; tracks: Track[] } = {
   ],
   tracks: [
     {
+      id: "family",
+      title: { en: "My Family", te: "నా కుటుంబం" },
+      goal: { en: "Talking with my family", te: "నా కుటుంబంతో మాట్లాడటం" },
+      forWho: {
+        en: "For learners who want to talk about their husband or wife, children and in-laws.",
+        te: "భార్య లేదా భర్త, పిల్లలు, అత్తమామల గురించి ఇంగ్లీష్‌లో మాట్లాడాలనుకునే వారికి.",
+      },
+      offerAtWeek: 4,
+      weeks: weeks(1, [
+        ["My Family", "నా కుటుంబం"],
+        ["What They Do", "ఎవరు ఏం చేస్తారు"],
+        ["At Home Together", "ఇంట్లో అందరం"],
+        ["Family Functions", "ఇంట్లో శుభకార్యాలు"],
+        ["Speaking for the Family", "కుటుంబం తరఫున మాట్లాడటం"],
+        ["Family News & Review", "కుటుంబ విశేషాలు"],
+      ]),
+    },
+    {
       id: "grandchildren",
       title: { en: "Talking with Grandchildren", te: "మనవళ్లతో మాట్లాడటం" },
+      goal: { en: "Talking with my grandchildren", te: "మనవళ్లతో మాట్లాడటం" },
       forWho: {
         en: "For learners who want to chat with their grandchildren in English.",
         te: "మనవళ్లతో ఇంగ్లీష్‌లో మాట్లాడాలనుకునే వారికి.",
       },
-      offerAtWeek: 13,
+      offerAtWeek: 8,
       weeks: weeks(1, [
         ["Hello & Video Calls", "హలో, వీడియో కాల్స్"],
-        ["Playing Together", "కలిసి ఆడుకోవడం"],
+        ["Playing Together", "కలిసి ఆడుకుందాం"],
         ["School Talk", "స్కూల్ కబుర్లు"],
-        ["Mealtime", "భోజన సమయం"],
+        ["Mealtime", "భోజనం సమయం"],
         ["Telling Stories", "కథలు చెప్పడం"],
         ["Praise & Care", "మెచ్చుకోలు, జాగ్రత్త"],
-        ["Festivals & Traditions for Kids", "పిల్లల కోసం పండుగలు, సంప్రదాయాలు"],
-        ["Their World & Review", "వాళ్ల ప్రపంచం, పునశ్చరణ"],
+        ["Festivals & Traditions for Kids", "పిల్లలకు మన పండుగలు"],
+        ["Their World & Review", "వాళ్ళ ప్రపంచం"],
       ]),
     },
     {
       id: "abroad",
       title: { en: "Visiting Family Abroad", te: "విదేశాల్లో కుటుంబాన్ని కలవడం" },
+      goal: { en: "Visiting family abroad", te: "విదేశాల్లో కుటుంబాన్ని కలవడం" },
       forWho: {
-        en: "For learners who plan to visit family in another country.",
-        te: "విదేశాల్లో ఉన్న కుటుంబాన్ని కలవడానికి వెళ్లాలనుకునే వారికి.",
+        en: "For learners who plan to visit family in another country: the journey, then living there.",
+        te: "విదేశాల్లో ఉన్న కుటుంబాన్ని కలవడానికి వెళ్లేవారికి: ప్రయాణం, తర్వాత అక్కడి రోజులు.",
       },
-      offerAtWeek: 13,
+      offerAtWeek: 8,
+      soonWeek: 4,
       weeks: weeks(1, [
-        ["Getting Ready", "సిద్ధమవడం"],
-        ["Airport Check-in & Security", "ఎయిర్‌పోర్ట్ చెక్-ఇన్, సెక్యూరిటీ"],
+        ["Getting Ready", "ప్రయాణానికి సిద్ధం"],
+        ["Airport Check-in & Security", "చెక్-ఇన్, సెక్యూరిటీ"],
         ["On the Flight", "విమానంలో"],
         ["Immigration & Customs", "ఇమ్మిగ్రేషన్, కస్టమ్స్"],
-        ["First Days There", "అక్కడ మొదటి రోజులు"],
-        ["Supermarket Abroad", "విదేశంలో సూపర్ మార్కెట్"],
-        ["Doctor & Pharmacy Abroad", "విదేశంలో డాక్టర్, మందుల షాపు"],
-        ["Small Talk with Neighbours", "ఇరుగు పొరుగుతో చిన్న మాటలు"],
-        ["Temple & Community Abroad", "విదేశంలో గుడి, సమాజం"],
         ["Phone, Money & Safety", "ఫోన్, డబ్బు, భద్రత"],
-        ["Sightseeing", "చూడదగిన ప్రదేశాలు"],
-        ["Going Home & Review", "ఇంటికి తిరిగి, పునశ్చరణ"],
+        ["Flying Home", "తిరుగు ప్రయాణం"],
+        ["First Days There", "అక్కడ మొదటి రోజులు"],
+        ["Supermarket Abroad", "విదేశీ సూపర్ మార్కెట్"],
+        ["Doctor & Pharmacy Abroad", "విదేశాల్లో డాక్టర్, మందులు"],
+        ["Small Talk with Neighbours", "పొరుగువాళ్ళతో కబుర్లు"],
+        ["Temple & Community Abroad", "విదేశాల్లో గుడి, సమాజం"],
+        ["Sightseeing & Review", "చూడదగ్గ ప్రదేశాలు, పునశ్చరణ"],
+      ]),
+    },
+    {
+      id: "work",
+      title: { en: "English for Work", te: "పనిలో ఇంగ్లీష్" },
+      goal: { en: "My work", te: "నా పని" },
+      forWho: {
+        en: "For learners who use English at work: shops, driving and delivery, homes, offices, interviews.",
+        te: "పనిలో ఇంగ్లీష్ వాడే వారికి: షాపులు, డ్రైవింగ్, డెలివరీ, ఇళ్ళు, ఆఫీసులు, ఇంటర్వ్యూలు.",
+      },
+      offerAtWeek: 12,
+      weeks: weeks(1, [
+        ["Introducing Yourself at Work", "పనిలో పరిచయం"],
+        ["Job Interviews", "ఉద్యోగ ఇంటర్వ్యూ"],
+        ["Customers in a Shop", "షాపులో కస్టమర్లు"],
+        ["Drivers & Delivery", "డ్రైవర్లు, డెలివరీ"],
+        ["Working in a Home", "ఇళ్ళలో పని"],
+        ["Office & Phone Manners", "ఆఫీసు, ఫోన్ మర్యాదలు"],
+        ["Leave, Pay & Safety", "సెలవు, జీతం, భద్రత"],
+        ["My Work Story & Review", "నా పని కథ"],
+      ]),
+    },
+    {
+      id: "care",
+      title: { en: "Hospital & Caregiving", te: "ఆసుపత్రి, సేవ" },
+      goal: { en: "Hospital and caring for someone", te: "ఆసుపత్రి, ఒకరిని చూసుకోవడం" },
+      forWho: {
+        en: "For learners who stay in hospital, or look after someone who is ill or old.",
+        te: "ఆసుపత్రిలో ఉండేవారికి, లేదా అనారోగ్యంతో ఉన్నవారిని, పెద్దవాళ్ళని చూసుకునే వారికి.",
+      },
+      offerAtWeek: 18,
+      weeks: weeks(1, [
+        ["Admission Day", "ఆసుపత్రిలో చేరే రోజు"],
+        ["On the Ward", "వార్డులో"],
+        ["Speaking for the Patient", "పేషెంట్ తరఫున మాట్లాడటం"],
+        ["Medicines & Care at Home", "ఇంట్లో మందులు, జాగ్రత్త"],
+        ["Caring for an Elder", "పెద్దవాళ్ళ సేవ"],
+        ["Discharge, Bills & Review", "డిశ్చార్జ్, బిల్లులు"],
+      ]),
+    },
+    {
+      id: "faith",
+      title: { en: "Faith & Community", te: "భక్తి, సమాజం" },
+      goal: { en: "Temple, church, mosque and community", te: "గుడి, చర్చి, మసీదు, సమాజం" },
+      forWho: {
+        en: "For learners who want English for the temple, church or mosque, pilgrimages and community service.",
+        te: "గుడి, చర్చి, మసీదు, తీర్థయాత్రలు, సేవా కార్యక్రమాల కోసం ఇంగ్లీష్ కావాలనుకునే వారికి.",
+      },
+      offerAtWeek: 33,
+      weeks: weeks(1, [
+        ["At the Temple, Church or Mosque", "గుడి, చర్చి, మసీదులో"],
+        ["Pilgrimages", "తీర్థయాత్రలు"],
+        ["Explaining My Faith", "మా పూజలు, పండుగల గురించి చెప్పడం"],
+        ["Seva & Service", "సేవా కార్యక్రమాలు"],
+        ["Prayer Groups & Review", "ప్రార్థనా సమావేశాలు, పునశ్చరణ"],
       ]),
     },
   ],
 };
+
+/**
+ * Checkpoints (CURRICULUM §2b): a checkpoint week closes each block of 12–14 weeks; its Review Day is the check, and the
+ * end of the week shows what the learner can now do and a certificate to share. Each checkpoint's data is added when
+ * its week is written (`course.test.ts` checks every released checkpoint week has it).
+ */
+export const CHECKPOINT_WEEKS = [12, 26, 40, 54, 67, 80, 94, 107, 120, 135, 150] as const;
+export type Checkpoint = { n: number; week: number; title: Bi; items: Bi[]; certificate: string };
+export const checkpoints: Checkpoint[] = [
+  {
+    n: 1,
+    week: 12,
+    title: { en: "Foundations", te: "పునాది" },
+    items: [
+      { en: "introduce yourself", te: "మీ గురించి చెప్పడం" },
+      { en: "give your phone number and address", te: "మీ ఫోన్ నంబర్, అడ్రస్ చెప్పడం" },
+      { en: "spell your name", te: "మీ పేరు స్పెల్లింగ్ చెప్పడం" },
+      { en: "ask someone to say it again slowly", te: "మళ్ళీ నెమ్మదిగా చెప్పమని అడగడం" },
+      { en: "ask for help", te: "సహాయం అడగడం" },
+    ],
+    certificate: "I can introduce myself, give my phone number and address, spell my name, ask someone to say it again slowly, and ask for help in English.",
+  },
+];
 
 /** Main-path weeks in course order. */
 export function mainWeeks(): Week[] {

@@ -22,8 +22,8 @@ export const fixtureCourse: Course = {
     },
   ],
   tracks: [
-    { id: "grandchildren", title: bi("Grandchildren"), forWho: bi("For"), offerAtWeek: 13, weeks: [{ n: 1, title: bi("T1"), released: true, days: [ref("g1"), ref("g2")] }] },
-    { id: "abroad", title: bi("Abroad"), forWho: bi("For"), offerAtWeek: 13, weeks: [{ n: 1, title: bi("T1"), released: false, days: [] }] },
+    { id: "grandchildren", title: bi("Grandchildren"), goal: bi("My grandchildren"), forWho: bi("For"), offerAtWeek: 13, weeks: [{ n: 1, title: bi("T1"), released: true, days: [ref("g1"), ref("g2")] }] },
+    { id: "abroad", title: bi("Abroad"), goal: bi("Abroad"), forWho: bi("For"), offerAtWeek: 13, soonWeek: 12, weeks: [{ n: 1, title: bi("T1"), released: false, days: [] }] },
   ],
 };
 

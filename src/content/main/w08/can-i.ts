@@ -91,6 +91,7 @@ export const day: Lesson = {
     {
       id: "l3",
       type: "dontSay",
+      fixIt: "question",
       wrong: "I can sit here?",
       right: "Can I sit here?",
       why: {
@@ -113,6 +114,7 @@ export const day: Lesson = {
     {
       id: "p1",
       type: "choose",
+      fixIt: "question",
       prompt: { en: "Choose the correct question.", te: "సరైన ప్రశ్నను ఎంచుకోండి." },
       options: ["I can sit here?", "Can I sit here?", "Can I sitting here?"],
       answer: 1,
@@ -135,13 +137,16 @@ export const day: Lesson = {
     },
     {
       id: "p3",
-      type: "choose",
-      prompt: { en: "Someone asks: Can I sit here? Say yes politely.", te: "ఒకరు అడుగుతున్నారు: Can I sit here? మర్యాదగా సరే అనండి." },
-      options: ["Yes, of course.", "Yes, you can sitting.", "Yes, I can."],
+      type: "readIt",
+      kind: "message",
+      heading: "City Bank",
+      lines: ["Your OTP is 4821.", "Do not share it with anyone.", "Bank staff will never ask for it."],
+      prompt: { en: "A man calls: I am from the bank. Can I have your OTP? What do you say?", te: "ఒకాయన ఫోన్ చేసి, నేను బ్యాంక్ నుండి మాట్లాడుతున్నాను, మీ OTP చెప్తారా? అని అడుగుతున్నారు. మీరేం చెప్తారు?" },
+      options: ["No, sorry. I never share my OTP.", "Yes, of course. It is 4821.", "Can I call you back with it?"],
       answer: 0,
       why: {
-        en: "They ask about themselves, so say: Yes, of course.",
-        te: "వాళ్ళు తమ గురించి అడుగుతున్నారు, కాబట్టి: Yes, of course.",
+        en: "Real bank staff never ask for your OTP, so always say no: No, sorry. I never share my OTP.",
+        te: "నిజమైన బ్యాంక్ వాళ్ళు ఎప్పుడూ OTP అడగరు, అందుకే చెప్పను అనండి: No, sorry. I never share my OTP.",
       },
     },
     {
@@ -160,6 +165,7 @@ export const day: Lesson = {
     {
       id: "s1",
       type: "situation",
+      fixIt: "question",
       situation: {
         en: "On a bus, ask a woman if you can sit next to her.",
         te: "బస్‌లో ఒకావిడ పక్కన కూర్చోవచ్చా అని అడగండి.",
@@ -171,6 +177,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "question",
       situation: {
         en: "Your phone is off. Ask a shopkeeper if you can use his phone.",
         te: "మీ ఫోన్ ఆఫ్ అయింది. షాప్ ఆయన ఫోన్ వాడుకోవచ్చా అని అడగండి.",
@@ -197,7 +204,7 @@ export const day: Lesson = {
         hint: { en: "Ask politely if you can take the seat.", te: "ఈ సీటులో కూర్చోవచ్చా అని మర్యాదగా అడగండి." },
         replies: [
           { say: "Can I sit here?", good: true, skill: "can-i" },
-          { say: "I can sit here?", good: false, skill: "can-i" },
+          { say: "I can sit here?", good: false, skill: "can-i", fixIt: "question" },
         ],
       },
       {

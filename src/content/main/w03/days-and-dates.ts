@@ -91,6 +91,7 @@ export const day: Lesson = {
     {
       id: "l3",
       type: "dontSay",
+      fixIt: "preposition",
       wrong: "The temple is closed in Monday.",
       right: "The temple is closed on Mondays.",
       why: {
@@ -101,6 +102,7 @@ export const day: Lesson = {
     {
       id: "l4",
       type: "dontSay",
+      fixIt: "preposition",
       wrong: "My birthday is in 15 August.",
       right: "My birthday is on 15 August.",
       why: {
@@ -113,6 +115,7 @@ export const day: Lesson = {
     {
       id: "p1",
       type: "choose",
+      fixIt: "preposition",
       prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
       options: ["Diwali is on November.", "Diwali is in November.", "Diwali is at November."],
       answer: 1,
@@ -124,6 +127,7 @@ export const day: Lesson = {
     {
       id: "p2",
       type: "fillBlank",
+      fixIt: "preposition",
       sentence: "The shop is closed ___ Sundays.",
       te: "షాప్ ఆదివారాలు మూసి ఉంటుంది.",
       options: ["in", "on", "at"],
@@ -147,6 +151,7 @@ export const day: Lesson = {
     {
       id: "p4",
       type: "findMistake",
+      fixIt: "preposition",
       sentence: "Come on Saturday on five.",
       wrongIndex: 3,
       fix: "Come on Saturday at five.",
@@ -160,6 +165,7 @@ export const day: Lesson = {
     {
       id: "s1",
       type: "situation",
+      fixIt: "preposition",
       situation: {
         en: "A friend asks: When is your birthday? It is 15 August. Answer.",
         te: "మీ స్నేహితులు అడుగుతున్నారు: When is your birthday? అది ఆగస్టు 15. జవాబు చెప్పండి.",
@@ -200,7 +206,7 @@ export const day: Lesson = {
         hint: { en: "Ask for a visit on Monday. Use on with the day.", te: "సోమవారం డాక్టర్ గారు ఖాళీగా ఉంటారా అని అడగండి. రోజుకి on." },
         replies: [
           { say: "Is the doctor free on Monday?", good: true, skill: "dates" },
-          { say: "Is the doctor free in Monday?", good: false, skill: "dates" },
+          { say: "Is the doctor free in Monday?", good: false, skill: "dates", fixIt: "preposition" },
         ],
       },
       {
@@ -209,7 +215,7 @@ export const day: Lesson = {
         hint: { en: "Ask about the next day, Tuesday.", te: "తర్వాతి రోజు, మంగళవారం గురించి అడగండి." },
         replies: [
           { say: "What about Tuesday?", good: true, skill: "dates" },
-          { say: "What about in Tuesday?", good: false, skill: "dates" },
+          { say: "What about in Tuesday?", good: false, skill: "dates", fixIt: "preposition" },
         ],
       },
       {
@@ -218,7 +224,7 @@ export const day: Lesson = {
         hint: { en: "Say yes, the day and time are fine.", te: "ఆ రోజు, ఆ టైమ్ మీకు సరిపోతుందని చెప్పండి." },
         replies: [
           { say: "Yes, Tuesday at eleven is fine.", good: true, skill: "dates" },
-          { say: "Yes, Tuesday on eleven is fine.", good: false, skill: "dates" },
+          { say: "Yes, Tuesday on eleven is fine.", good: false, skill: "dates", fixIt: "preposition" },
         ],
       },
       {

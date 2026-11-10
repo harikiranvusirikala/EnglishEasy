@@ -215,7 +215,7 @@ export const day: Lesson = {
         hint: { en: "Ask if he wants tea or juice.", te: "టీ కావాలా, జ్యూస్ కావాలా అని అడగండి." },
         replies: [
           { say: "Would you like tea or juice?", good: true, skill: "offer" },
-          { say: "You would like tea or juice?", good: false, skill: "offer" },
+          { say: "You would like tea or juice?", good: false, skill: "offer", fixIt: "question" },
         ],
       },
       {
@@ -233,7 +233,7 @@ export const day: Lesson = {
         hint: { en: "Say okay, and that you will bring it soon.", te: "సరే అని, వెంటనే తెస్తానని చెప్పండి." },
         replies: [
           { say: "Okay, one minute.", good: true },
-          { say: "Okay, one minutes.", good: false },
+          { say: "Okay, one minutes.", good: false, fixIt: "plural" },
         ],
       },
     ],

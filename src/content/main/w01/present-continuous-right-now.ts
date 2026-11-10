@@ -104,6 +104,7 @@ export const day: Lesson = {
     {
       id: "l4",
       type: "dontSay",
+      fixIt: "state-ing",
       wrong: "I am knowing him.",
       right: "I know him.",
       why: {
@@ -116,6 +117,7 @@ export const day: Lesson = {
     {
       id: "p1",
       type: "choose",
+      fixIt: "be",
       prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
       options: ["She sleeping.", "She is sleeping.", "She is sleep."],
       answer: 1,
@@ -139,6 +141,7 @@ export const day: Lesson = {
     {
       id: "p3",
       type: "choose",
+      fixIt: "state-ing",
       prompt: { en: "Which sentence is correct?", te: "ఏ వాక్యం సరైనది?" },
       options: ["I am knowing him.", "I know him.", "I knowing him."],
       answer: 1,
@@ -163,6 +166,7 @@ export const day: Lesson = {
     {
       id: "s1",
       type: "situation",
+      fixIt: "be",
       situation: {
         en: "A friend calls: What are you doing? Say that you are cooking, in English.",
         te: "స్నేహితులు ఫోన్ చేసి అడుగుతున్నారు: What are you doing? మీరు వంట చేస్తున్నారని ఇంగ్లీష్‌లో చెప్పండి.",
@@ -211,7 +215,7 @@ export const day: Lesson = {
         hint: { en: "Tell him what is on the stove: rice.", te: "పొయ్యి మీద ఏం ఉందో చెప్పండి: అన్నం." },
         replies: [
           { say: "I am cooking rice.", good: true, skill: "now" },
-          { say: "I cooking rice.", good: false, skill: "now" },
+          { say: "I cooking rice.", good: false, skill: "now", fixIt: "be" },
           { say: "I am cook rice.", good: false, skill: "now" },
         ],
       },
@@ -221,7 +225,7 @@ export const day: Lesson = {
         hint: { en: "Say yes, and that you are on the way.", te: "అవును, వస్తున్నానని చెప్పండి." },
         replies: [
           { say: "Yes, I am coming.", good: true, skill: "now" },
-          { say: "Yes, I coming.", good: false, skill: "now" },
+          { say: "Yes, I coming.", good: false, skill: "now", fixIt: "be" },
           { say: "Yes, I am come.", good: false, skill: "now" },
         ],
       },

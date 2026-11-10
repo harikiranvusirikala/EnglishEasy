@@ -91,6 +91,7 @@ export const day: Lesson = {
     {
       id: "l3",
       type: "dontSay",
+      fixIt: "indian-english",
       wrong: "I can able to cook.",
       right: "I can cook.",
       why: {
@@ -113,6 +114,7 @@ export const day: Lesson = {
     {
       id: "p1",
       type: "choose",
+      fixIt: "indian-english",
       prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
       options: ["I can able to cook.", "I can cook.", "I can to cook."],
       answer: 1,
@@ -160,6 +162,7 @@ export const day: Lesson = {
     {
       id: "s1",
       type: "situation",
+      fixIt: "indian-english",
       situation: {
         en: "A neighbour asks: Can you cook? Say yes.",
         te: "పొరుగువారు అడుగుతున్నారు: Can you cook? అవునని చెప్పండి.",
@@ -206,7 +209,7 @@ export const day: Lesson = {
         hint: { en: "Say yes, and one dish you can make.", te: "అవునని, మీరు చేయగలిగే ఒక వంటకం చెప్పండి." },
         replies: [
           { say: "Yes, I can cook pulihora.", good: true, skill: "can" },
-          { say: "Yes, I can able to cook.", good: false, skill: "can" },
+          { say: "Yes, I can able to cook.", good: false, skill: "can", fixIt: "indian-english" },
           {
             say: "Cook? Don't you have a cook?",
             good: false,

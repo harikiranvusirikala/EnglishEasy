@@ -231,7 +231,7 @@ export const day: Lesson = {
         hint: { en: "Say yes, and what time you usually sleep.", te: "అవునని, మామూలుగా ఎన్ని గంటలకు పడుకుంటారో చెప్పండి." },
         replies: [
           { say: "Yes, I usually sleep at ten.", good: true, skill: "often" },
-          { say: "Yes, I usually sleeping at ten.", good: false, skill: "often" },
+          { say: "Yes, I usually sleeping at ten.", good: false, skill: "often", fixIt: "state-ing" },
         ],
       },
     ],

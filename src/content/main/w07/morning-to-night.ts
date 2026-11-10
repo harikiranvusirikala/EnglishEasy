@@ -91,6 +91,7 @@ export const day: Lesson = {
     {
       id: "l3",
       type: "dontSay",
+      fixIt: "article",
       wrong: "I walk in morning.",
       right: "I walk in the morning.",
       why: {
@@ -101,6 +102,7 @@ export const day: Lesson = {
     {
       id: "l4",
       type: "dontSay",
+      fixIt: "preposition",
       wrong: "We pray in the night.",
       right: "We pray at night.",
       why: {
@@ -113,6 +115,7 @@ export const day: Lesson = {
     {
       id: "p1",
       type: "choose",
+      fixIt: "article",
       prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
       options: ["I walk in morning.", "I walk in the morning.", "I walk at morning."],
       answer: 1,
@@ -124,6 +127,7 @@ export const day: Lesson = {
     {
       id: "p2",
       type: "fillBlank",
+      fixIt: "preposition",
       sentence: "We pray ___ night.",
       te: "మేము రాత్రి పూజ చేస్తాం.",
       options: ["in", "at", "on"],
@@ -147,6 +151,7 @@ export const day: Lesson = {
     {
       id: "p4",
       type: "findMistake",
+      fixIt: "preposition",
       sentence: "Mohan cooks on the afternoon.",
       wrongIndex: 2,
       fix: "Mohan cooks in the afternoon.",
@@ -160,6 +165,7 @@ export const day: Lesson = {
     {
       id: "s1",
       type: "situation",
+      fixIt: "article",
       situation: {
         en: "A friend asks: When do you walk? Say in the morning.",
         te: "మీ స్నేహితులు అడుగుతున్నారు: When do you walk? ఉదయం అని చెప్పండి.",
@@ -198,7 +204,7 @@ export const day: Lesson = {
         hint: { en: "Say okay, and suggest the morning.", te: "సరే అని, ఉదయం కలుద్దామా అని అడగండి." },
         replies: [
           { say: "Okay. In the morning?", good: true, skill: "time" },
-          { say: "Okay. In morning?", good: false, skill: "time" },
+          { say: "Okay. In morning?", good: false, skill: "time", fixIt: "article" },
         ],
       },
       {
@@ -207,7 +213,7 @@ export const day: Lesson = {
         hint: { en: "Suggest a time after lunch.", te: "భోజనం తర్వాత కలుద్దామా అని అడగండి." },
         replies: [
           { say: "Then after lunch?", good: true, skill: "time" },
-          { say: "Then after the lunch?", good: false, skill: "time" },
+          { say: "Then after the lunch?", good: false, skill: "time", fixIt: "article" },
         ],
       },
       {
@@ -230,7 +236,7 @@ export const day: Lesson = {
         hint: { en: "Say goodbye until tomorrow evening.", te: "రేపు సాయంత్రం కలుద్దామని చెప్పి వీడ్కోలు చెప్పండి." },
         replies: [
           { say: "See you tomorrow evening!", good: true, skill: "time" },
-          { say: "See you tomorrow in evening!", good: false, skill: "time" },
+          { say: "See you tomorrow in evening!", good: false, skill: "time", fixIt: "article" },
         ],
       },
     ],

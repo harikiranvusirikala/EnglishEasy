@@ -103,6 +103,7 @@ export const day: Lesson = {
     {
       id: "l4",
       type: "dontSay",
+      fixIt: "plural",
       wrong: "I want two kilo rice.",
       right: "I want two kilos of rice.",
       why: {
@@ -114,14 +115,18 @@ export const day: Lesson = {
   practice: [
     {
       id: "p1",
-      type: "choose",
-      prompt: { en: "Choose the correct question.", te: "సరైన ప్రశ్నను ఎంచుకోండి." },
-      options: ["How much eggs do you want?", "How many eggs do you want?", "How many egg do you want?"],
-      answer: 1,
+      type: "readIt",
+      kind: "label",
+      heading: "Glucose Biscuits",
+      lines: ["Pieces: 12", "Net weight: 100 g", "MRP: ₹20", "Best before: 03/2027"],
+      prompt: { en: "How many biscuits are in this packet?", te: "ఈ ప్యాకెట్‌లో ఎన్ని బిస్కెట్లు ఉన్నాయి?" },
+      options: ["12 biscuits", "100 biscuits", "20 biscuits"],
+      answer: 0,
       why: {
-        en: "Eggs are counted one by one, so how many and eggs with s: How many eggs do you want?",
-        te: "గుడ్లు లెక్కపెడతాం, అందుకే how many, eggs కి s: How many eggs do you want?",
+        en: "Pieces tells you how many; grams is the weight and MRP is the price: There are twelve biscuits in this packet.",
+        te: "Pieces ఎన్ని ఉన్నాయో చెప్తుంది; grams బరువు, MRP ధర: There are twelve biscuits in this packet.",
       },
+      say: "There are twelve biscuits in this packet.",
     },
     {
       id: "p2",
@@ -138,6 +143,7 @@ export const day: Lesson = {
     {
       id: "p3",
       type: "choose",
+      fixIt: "plural",
       prompt: { en: "Choose the correct sentence at the shop.", te: "షాప్‌లో సరైన వాక్యం ఎంచుకోండి." },
       options: ["Give me one dozen eggs.", "Give me one dozens eggs.", "Give me one dozen egg."],
       answer: 0,
@@ -162,6 +168,7 @@ export const day: Lesson = {
     {
       id: "s1",
       type: "situation",
+      fixIt: "plural",
       situation: {
         en: "The shopkeeper asks: How much rice? Say two kilos.",
         te: "షాప్ ఆయన అడుగుతున్నారు: How much rice? రెండు కిలోలు అని చెప్పండి.",
@@ -199,7 +206,7 @@ export const day: Lesson = {
         hint: { en: "Ask for rice, and say how many kilos.", te: "బియ్యం అడగండి, ఎన్ని కిలోలో చెప్పండి." },
         replies: [
           { say: "I want two kilos of rice.", good: true, skill: "amount" },
-          { say: "I want two kilo rice.", good: false, skill: "amount" },
+          { say: "I want two kilo rice.", good: false, skill: "amount", fixIt: "plural" },
         ],
       },
       {
@@ -208,7 +215,7 @@ export const day: Lesson = {
         hint: { en: "Ask for a dozen eggs.", te: "ఒక డజను గుడ్లు అడగండి." },
         replies: [
           { say: "One dozen eggs, please.", good: true, skill: "amount" },
-          { say: "One dozens eggs, please.", good: false, skill: "amount" },
+          { say: "One dozens eggs, please.", good: false, skill: "amount", fixIt: "plural" },
         ],
       },
       {
@@ -217,7 +224,7 @@ export const day: Lesson = {
         hint: { en: "Say how many packets you want.", te: "ఎన్ని ప్యాకెట్లు కావాలో చెప్పండి." },
         replies: [
           { say: "Two packets, please.", good: true, skill: "amount" },
-          { say: "Two packet, please.", good: false, skill: "amount" },
+          { say: "Two packet, please.", good: false, skill: "amount", fixIt: "plural" },
         ],
       },
       {

@@ -179,6 +179,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "question",
       situation: {
         en: "Some sandals are near the door, far from you. Ask your friend if they are hers.",
         te: "తలుపు దగ్గర, మీకు దూరంగా కొన్ని చెప్పులు ఉన్నాయి. అవి మీ స్నేహితురాలివా అని అడగండి.",

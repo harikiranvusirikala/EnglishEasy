@@ -37,6 +37,7 @@ export const day: ConversationDay = {
     {
       id: "s1",
       type: "situation",
+      fixIt: "question",
       situation: {
         en: "Ask a guest where she is from.",
         te: "ఒక అతిథిని వారిది ఏ ఊరని అడగండి.",
@@ -59,6 +60,7 @@ export const day: ConversationDay = {
     {
       id: "s3",
       type: "situation",
+      fixIt: "preposition",
       situation: {
         en: "Say that you are going back at five.",
         te: "ఐదు గంటలకు తిరిగి వెళ్తున్నానని చెప్పండి.",
@@ -90,7 +92,7 @@ export const day: ConversationDay = {
           hint: { en: "Say your name.", te: "మీ పేరు చెప్పండి." },
           replies: [
             { say: "My name is Kiran.", good: true, skill: "me" },
-            { say: "Myself Kiran.", good: false, skill: "me" },
+            { say: "Myself Kiran.", good: false, skill: "me", fixIt: "indian-english" },
           ],
         },
         {
@@ -108,7 +110,7 @@ export const day: ConversationDay = {
           hint: { en: "Say how you know her family.", te: "పెళ్లికూతురి వాళ్ళు మీకు ఎలా తెలుసో చెప్పండి." },
           replies: [
             { say: "Her mother is my friend.", good: true, skill: "me" },
-            { say: "Her mother my friend.", good: false, skill: "me" },
+            { say: "Her mother my friend.", good: false, skill: "me", fixIt: "be" },
             {
               say: "Why? Who are you to ask?",
               good: false,
@@ -141,7 +143,7 @@ export const day: ConversationDay = {
           hint: { en: "Say the same back to him.", te: "ఆయనకి అదే మాట తిరిగి చెప్పండి." },
           replies: [
             { say: "Nice to meet you too!", good: true },
-            { say: "Nice meeting to you!", good: false },
+            { say: "Nice meeting to you!", good: false, fixIt: "preposition" },
           ],
         },
       ],
@@ -166,7 +168,7 @@ export const day: ConversationDay = {
           hint: { en: "Tell her where it is: by the kitchen.", te: "ఎక్కడుందో చెప్పండి: వంటగది పక్కన." },
           replies: [
             { say: "It's next to the kitchen.", good: true, skill: "place" },
-            { say: "It's next the kitchen.", good: false, skill: "place" },
+            { say: "It's next the kitchen.", good: false, skill: "place", fixIt: "preposition" },
           ],
         },
         {
@@ -199,7 +201,7 @@ export const day: ConversationDay = {
           hint: { en: "Say you're welcome, and wish her a good time.", te: "పర్లేదు అని, ఫంక్షన్ బాగా ఎంజాయ్ చేయమని చెప్పండి." },
           replies: [
             { say: "You're welcome. Enjoy the function!", good: true, skill: "help" },
-            { say: "You're welcome. Enjoy for the function!", good: false, skill: "help" },
+            { say: "You're welcome. Enjoy for the function!", good: false, skill: "help", fixIt: "preposition" },
           ],
         },
       ],

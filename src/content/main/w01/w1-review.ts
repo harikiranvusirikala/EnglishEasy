@@ -73,7 +73,7 @@ export const day: ReviewDay = {
           hint: { en: "Say how you are, and thank her.", te: "మీరు ఎలా ఉన్నారో చెప్పి, thank you చెప్పండి." },
           replies: [
             { say: "I am fine, thank you.", good: true, skill: "every" },
-            { say: "I fine, thank you.", good: false, skill: "every" },
+            { say: "I fine, thank you.", good: false, skill: "every", fixIt: "be" },
             {
               say: "Fine. Why are you calling?",
               good: false,
@@ -87,7 +87,7 @@ export const day: ReviewDay = {
           hint: { en: "Say one thing you do every morning.", te: "ప్రతి ఉదయం మీరు చేసే ఒక పని చెప్పండి." },
           replies: [
             { say: "I walk every morning.", good: true, skill: "every" },
-            { say: "I walking every morning.", good: false, skill: "every" },
+            { say: "I walking every morning.", good: false, skill: "every", fixIt: "state-ing" },
             { say: "Every morning I walked.", good: false, skill: "every" },
           ],
         },
@@ -97,7 +97,7 @@ export const day: ReviewDay = {
           hint: { en: "Say what you are doing right now.", te: "ఇప్పుడు మీరు ఏం చేస్తున్నారో చెప్పండి." },
           replies: [
             { say: "I am cooking now.", good: true, skill: "now" },
-            { say: "I cooking now.", good: false, skill: "now" },
+            { say: "I cooking now.", good: false, skill: "now", fixIt: "be" },
             { say: "Now I cook.", good: false, skill: "now" },
           ],
         },

@@ -136,6 +136,7 @@ export const day: Lesson = {
     {
       id: "p3",
       type: "choose",
+      fixIt: "state-ing",
       prompt: { en: "Which sentence means: నాకు ఒక చెల్లెలు ఉంది?", te: "నాకు ఒక చెల్లెలు ఉంది — ఇంగ్లీష్‌లో ఏది సరైనది?" },
       options: ["I am having a sister.", "I have a sister.", "I has a sister."],
       answer: 1,
@@ -160,6 +161,7 @@ export const day: Lesson = {
     {
       id: "s1",
       type: "situation",
+      fixIt: "indian-english",
       situation: {
         en: "A neighbour asks: Do you have a brother? Say yes, you have two brothers.",
         te: "పొరుగువారు అడుగుతున్నారు: Do you have a brother? అవును, మీకు ఇద్దరు అన్నదమ్ములు ఉన్నారని చెప్పండి.",

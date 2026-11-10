@@ -58,6 +58,7 @@ export const day: ConversationDay = {
     {
       id: "s3",
       type: "situation",
+      fixIt: "be",
       situation: {
         en: "Tell your friend the plan: you are going to leave at six.",
         te: "ప్లాన్ మీ స్నేహితులకు చెప్పండి: ఆరు గంటలకు బయలుదేరబోతున్నారు.",
@@ -89,7 +90,7 @@ export const day: ConversationDay = {
           hint: { en: "Agree, and ask where you will go.", te: "సరే అని, ఎక్కడికి వెళ్దామో అడగండి." },
           replies: [
             { say: "Good idea! Where are we going?", good: true, skill: "plan" },
-            { say: "Good idea! Where we are going?", good: false, skill: "plan" },
+            { say: "Good idea! Where we are going?", good: false, skill: "plan", fixIt: "question" },
           ],
         },
         {
@@ -130,7 +131,7 @@ export const day: ConversationDay = {
           hint: { en: "Agree, and say when you will phone her.", te: "సరే అని, ఆవిడకి ఎప్పుడు ఫోన్ చేస్తారో చెప్పండి." },
           replies: [
             { say: "Yes. I'll call her tonight.", good: true, skill: "will" },
-            { say: "Yes. I'll phone to her tonight.", good: false, skill: "will" },
+            { say: "Yes. I'll phone to her tonight.", good: false, skill: "will", fixIt: "preposition" },
           ],
         },
       ],
@@ -169,7 +170,7 @@ export const day: ConversationDay = {
           hint: { en: "Say the day and the time.", te: "రోజు, టైమ్ చెప్పండి." },
           replies: [
             { say: "Next Saturday, at six.", good: true, skill: "time" },
-            { say: "On next Saturday, at six.", good: false, skill: "time" },
+            { say: "On next Saturday, at six.", good: false, skill: "time", fixIt: "preposition" },
           ],
         },
         {
@@ -178,7 +179,7 @@ export const day: ConversationDay = {
           hint: { en: "Say where you are travelling to.", te: "ఎక్కడికి వెళ్తున్నారో చెప్పండి." },
           replies: [
             { say: "We're going to Bhadrachalam.", good: true, skill: "book" },
-            { say: "We're going in Bhadrachalam.", good: false, skill: "book" },
+            { say: "We're going in Bhadrachalam.", good: false, skill: "book", fixIt: "preposition" },
           ],
         },
         {

@@ -123,6 +123,7 @@ export const day: Lesson = {
     {
       id: "p1",
       type: "choose",
+      fixIt: "question",
       prompt: { en: "You find a bag on a chair. What do you ask?", te: "కుర్చీ మీద ఒక బ్యాగ్ కనిపించింది. ఏమని అడుగుతారు?" },
       options: ["Who bag is this?", "Whose bag is this?", "Whose this bag is?"],
       answer: 1,
@@ -133,14 +134,16 @@ export const day: Lesson = {
     },
     {
       id: "p2",
-      type: "fillBlank",
-      sentence: "That car is ___.",
-      te: "ఆ కారు సురేష్‌ది.",
-      options: ["Suresh", "Suresh's", "of Suresh"],
-      answer: 1,
+      type: "readIt",
+      kind: "label",
+      heading: "Parcel",
+      lines: ["To: Mohan Rao", "Door No. 12, Gandhi Road, Vijayawada", "From: Kavitha, Hyderabad"],
+      prompt: { en: "You find this parcel at the gate. Whose parcel is it?", te: "గేట్ దగ్గర ఈ పార్సెల్ దొరికింది. ఇది ఎవరిది?" },
+      options: ["It's Mohan's.", "It's Kavitha's.", "It's Mohan."],
+      answer: 0,
       why: {
-        en: "Telugu సురేష్‌ది becomes Suresh's in English, not of Suresh.",
-        te: "తెలుగులో 'సురేష్‌ది' అంటే ఇంగ్లీష్‌లో Suresh's. of Suresh అనరు.",
+        en: "The parcel belongs to the name after To, and we add 's to it: It's Mohan's.",
+        te: "To తర్వాత ఉన్న పేరు వారిదే పార్సెల్; ఆ పేరుకి 's కలపాలి: It's Mohan's.",
       },
     },
     {
@@ -181,6 +184,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "question",
       situation: {
         en: "You find a phone. Ask if it is Padma's phone.",
         te: "మీకు ఒక ఫోన్ దొరికింది. అది పద్మదా అని అడగండి.",

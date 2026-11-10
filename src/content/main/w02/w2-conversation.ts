@@ -36,6 +36,7 @@ export const day: ConversationDay = {
     {
       id: "s1",
       type: "situation",
+      fixIt: "indian-english",
       situation: {
         en: "A guest tells you her name, but the music is loud. Ask her to say it again.",
         te: "ఒక అతిథి తన పేరు చెప్పారు, కానీ మ్యూజిక్ గట్టిగా ఉంది. మళ్ళీ చెప్పమని అడగండి.",
@@ -47,6 +48,7 @@ export const day: ConversationDay = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "question",
       situation: {
         en: "You are hungry. Ask where the dining hall is.",
         te: "మీకు ఆకలిగా ఉంది. భోజనాల హాల్ ఎక్కడ ఉందో అడగండి.",
@@ -58,6 +60,7 @@ export const day: ConversationDay = {
     {
       id: "s3",
       type: "situation",
+      fixIt: "question",
       situation: {
         en: "You want to know the lunch time. Ask.",
         te: "భోజనం ఎన్ని గంటలకో తెలుసుకోవాలి. అడగండి.",
@@ -103,8 +106,8 @@ export const day: ConversationDay = {
           hint: { en: "Say your name. Start with My name is.", te: "మీ పేరు చెప్పండి. My name is తో మొదలుపెట్టండి." },
           replies: [
             { say: "My name is Kiran.", good: true, skill: "answer" },
-            { say: "My name Kiran.", good: false, skill: "answer" },
-            { say: "Myself Kiran.", good: false, skill: "answer" },
+            { say: "My name Kiran.", good: false, skill: "answer", fixIt: "be" },
+            { say: "Myself Kiran.", good: false, skill: "answer", fixIt: "indian-english" },
           ],
         },
         {
@@ -113,8 +116,8 @@ export const day: ConversationDay = {
           hint: { en: "Say your town. Here it is Guntur.", te: "మీ ఊరు చెప్పండి. ఇక్కడ గుంటూరు." },
           replies: [
             { say: "I am from Guntur.", good: true, skill: "answer" },
-            { say: "I from Guntur.", good: false, skill: "answer" },
-            { say: "I am belonging to Guntur.", good: false, skill: "answer" },
+            { say: "I from Guntur.", good: false, skill: "answer", fixIt: "be" },
+            { say: "I am belonging to Guntur.", good: false, skill: "answer", fixIt: "state-ing" },
           ],
         },
         {
@@ -123,7 +126,7 @@ export const day: ConversationDay = {
           hint: { en: "Say how you know her: she lives next door.", te: "ఆవిడ మీకు ఎలా తెలుసో చెప్పండి: మీ పక్కింట్లో ఉంటారు." },
           replies: [
             { say: "She is my neighbour.", good: true, skill: "answer" },
-            { say: "She my neighbour.", good: false, skill: "answer" },
+            { say: "She my neighbour.", good: false, skill: "answer", fixIt: "be" },
             {
               say: "None of your business.",
               good: false,
@@ -137,7 +140,7 @@ export const day: ConversationDay = {
           hint: { en: "A man is waving at Suresh. Ask who he is.", te: "ఒకాయన సురేష్‌కి చేయి ఊపుతున్నారు. ఆయన ఎవరని అడగండి." },
           replies: [
             { say: "Who is that man?", good: true, skill: "ask" },
-            { say: "Who that man is?", good: false, skill: "ask" },
+            { say: "Who that man is?", good: false, skill: "ask", fixIt: "question" },
           ],
         },
         {
@@ -172,7 +175,7 @@ export const day: ConversationDay = {
           hint: { en: "Ask where the dining hall is.", te: "భోజనాల హాల్ ఎక్కడ ఉందో అడగండి." },
           replies: [
             { say: "Where is the dining hall?", good: true, skill: "ask" },
-            { say: "Where the dining hall is?", good: false, skill: "ask" },
+            { say: "Where the dining hall is?", good: false, skill: "ask", fixIt: "question" },
             { say: "What is the dining hall?", good: false, skill: "ask" },
           ],
         },
@@ -191,7 +194,7 @@ export const day: ConversationDay = {
           hint: { en: "Now ask about the lunch time.", te: "ఇప్పుడు భోజనం ఎన్ని గంటలకో అడగండి." },
           replies: [
             { say: "What time is lunch?", good: true, skill: "ask" },
-            { say: "What time lunch is?", good: false, skill: "ask" },
+            { say: "What time lunch is?", good: false, skill: "ask", fixIt: "question" },
           ],
         },
         {

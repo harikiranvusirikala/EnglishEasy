@@ -206,7 +206,7 @@ export const day: Lesson = {
         hint: { en: "Say who you phoned after that.", te: "తర్వాత ఎవరికి ఫోన్ చేశారో చెప్పండి." },
         replies: [
           { say: "I called my sister.", good: true, skill: "ed" },
-          { say: "I calling my sister.", good: false, skill: "ed" },
+          { say: "I called to my sister.", good: false, skill: "ed", fixIt: "preposition" },
         ],
       },
       {

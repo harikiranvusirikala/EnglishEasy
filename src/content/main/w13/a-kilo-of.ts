@@ -106,6 +106,7 @@ export const day: Lesson = {
     {
       id: "l4",
       type: "dontSay",
+      fixIt: "plural",
       wrong: "Two bunch coriander.",
       right: "Two bunches of coriander.",
       why: {
@@ -118,6 +119,7 @@ export const day: Lesson = {
     {
       id: "p1",
       type: "choose",
+      fixIt: "article",
       prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
       options: ["I need half kilo beans.", "I need half a kilo of beans.", "I need a half kilos of beans."],
       answer: 1,
@@ -129,6 +131,7 @@ export const day: Lesson = {
     {
       id: "p2",
       type: "fillBlank",
+      fixIt: "preposition",
       sentence: "Give me a bunch ___ coriander.",
       te: "ఒక కట్ట కొత్తిమీర ఇవ్వండి.",
       options: ["of", "in", "for"],
@@ -152,6 +155,7 @@ export const day: Lesson = {
     {
       id: "p4",
       type: "findMistake",
+      fixIt: "plural",
       sentence: "Can I have two packet of milk?",
       wrongIndex: 4,
       fix: "Can I have two packets of milk?",
@@ -202,7 +206,7 @@ export const day: Lesson = {
         hint: { en: "Ask politely for one bunch of coriander.", te: "ఒక కట్ట కొత్తిమీర మర్యాదగా అడగండి." },
         replies: [
           { say: "Give me a bunch of coriander, please.", good: true, skill: "amount" },
-          { say: "Give me a bunch for coriander.", good: false, skill: "amount" },
+          { say: "Give me a bunch for coriander.", good: false, skill: "amount", fixIt: "preposition" },
           {
             say: "Fresh? These look old to me.",
             good: false,
@@ -217,7 +221,7 @@ export const day: Lesson = {
         hint: { en: "Say you need beans: half a kilo.", te: "అర కిలో బీన్స్ కావాలని చెప్పండి." },
         replies: [
           { say: "I need half a kilo of beans.", good: true, skill: "amount" },
-          { say: "I need half kilo beans.", good: false, skill: "amount" },
+          { say: "I need half kilo beans.", good: false, skill: "amount", fixIt: "article" },
         ],
       },
       {

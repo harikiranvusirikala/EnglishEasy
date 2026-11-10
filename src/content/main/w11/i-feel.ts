@@ -124,6 +124,7 @@ export const day: Lesson = {
     {
       id: "p2",
       type: "fillBlank",
+      fixIt: "he-she-s",
       sentence: "She ___ sad today.",
       te: "ఈ రోజు ఆవిడకి బాధగా ఉంది.",
       options: ["feel", "feels", "feeling"],
@@ -215,7 +216,7 @@ export const day: Lesson = {
         hint: { en: "Say a little, and tell her why.", te: "కొంచెం అని, ఎందుకో ఆవిడకి చెప్పండి." },
         replies: [
           { say: "A little. My friend is unwell.", good: true, skill: "feel" },
-          { say: "A little. My friend unwell.", good: false, skill: "feel" },
+          { say: "A little. My friend unwell.", good: false, skill: "feel", fixIt: "be" },
           {
             say: "That is not your business.",
             good: false,
@@ -230,7 +231,7 @@ export const day: Lesson = {
         hint: { en: "Thank her for her kind words.", te: "ఆవిడ మంచి మాటకి థాంక్స్ చెప్పండి." },
         replies: [
           { say: "Thank you. You are very kind.", good: true },
-          { say: "Thank you. You very kind.", good: false },
+          { say: "Thank you. You very kind.", good: false, fixIt: "be" },
         ],
       },
     ],

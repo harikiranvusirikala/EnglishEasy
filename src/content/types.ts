@@ -10,7 +10,25 @@ type Base = { id: string }; // short id unique within the day ("p1", "s1"); the 
  * A reply option. `react`: what the partner says back to a not-good reply before the correction (optional, spoken in
  * the partner's voice), e.g. "Cheating? Please don't say that. Let me count again."
  */
-export type Reply = { say: string; good: boolean; skill?: string; react?: Bi };
+export type Reply = { say: string; good: boolean; skill?: string; react?: Bi; fixIt?: FixIt };
+
+/**
+ * The Fix-it strand (CURRICULUM §2): the ten errors Telugu speakers keep making, tagged on the item that targets one
+ * (a Don't say card, a question, a not-good reply), so each comes back on a schedule.
+ */
+export const FIX_IT = {
+  be: { n: 1, from: 1, label: "Missing am / is / are" },
+  "he-she-s": { n: 2, from: 7, label: "He / she without -s" },
+  question: { n: 3, from: 1, label: "Do-support and question word order" },
+  article: { n: 4, from: 5, label: "Missing or extra article" },
+  plural: { n: 5, from: 5, label: "Plurals after numbers; uncountables" },
+  preposition: { n: 6, from: 3, label: "Wrong or extra preposition" },
+  "state-ing": { n: 7, from: 1, label: "-ing for states and habits" },
+  duration: { n: 8, from: 31, label: "Present tense for duration" },
+  "negative-answer": { n: 9, from: 34, label: "Yes / no to negative questions" },
+  "indian-english": { n: 10, from: 1, label: "Indian-English habits" },
+} as const;
+export type FixIt = keyof typeof FIX_IT;
 
 export type Turn = {
   partner: string;
@@ -33,15 +51,15 @@ export type Activity = Base &
   (
     | { type: "explain"; heading: Bi; body: Bi; bridge?: { te: string[]; en: Chip[] }; examples: CoreSentence[] }
     | { type: "whenToUse"; heading: Bi; items: { form: string; useFor: Bi; example: CoreSentence }[] }
-    | { type: "dontSay"; wrong: string; right: string; why: Bi }
-    | { type: "choose"; prompt: Bi; say?: string; options: string[]; answer: number; why?: Bi }
-    | { type: "fillBlank"; sentence: string /* one ___ */; te?: string; options: string[]; answer: number; why?: Bi }
+    | { type: "dontSay"; wrong: string; right: string; why: Bi; fixIt?: FixIt }
+    | { type: "choose"; prompt: Bi; say?: string; options: string[]; answer: number; why?: Bi; fixIt?: FixIt }
+    | { type: "fillBlank"; sentence: string /* one ___ */; te?: string; options: string[]; answer: number; why?: Bi; fixIt?: FixIt }
     /** `listen`: build what you hear (the sentence plays; no Telugu, no text). */
     | { type: "arrange"; te?: string; answer: string; extra?: string[]; listen?: true }
     | { type: "translate"; te: string; answer: string; accept?: string[]; extra?: string[] }
     | { type: "match"; pairs: { en: string; te: string }[] } // 3–4 pairs
     /** `wrongIndex` = index of the wrong word in `sentence.split(" ")`; `fix` = the whole corrected sentence. */
-    | { type: "findMistake"; sentence: string; wrongIndex: number; fix: string; why: Bi }
+    | { type: "findMistake"; sentence: string; wrongIndex: number; fix: string; why: Bi; fixIt?: FixIt }
     | { type: "listenChoose"; say: string; prompt: Bi; options: string[]; answer: number }
     /** `steps`: a long sentence said in parts, built up from its end ("yesterday" → "the market yesterday" → all). */
     | { type: "repeat"; say: string; te: string; steps?: string[] }
@@ -49,13 +67,20 @@ export type Activity = Base &
     | { type: "sound"; sound: SoundCard }
     /** Which word did you hear? Two words one sound apart; `answer` is the one played. */
     | { type: "soundPair"; words: [Word, Word]; answer: 0 | 1 }
-    | { type: "situation"; situation: Bi; expected: string[]; options: string[]; answer: number }
+    | { type: "situation"; situation: Bi; expected: string[]; options: string[]; answer: number; fixIt?: FixIt }
     | {
         type: "dialogue";
         title: Bi;
         lines: { speaker: Bi; voice: "a" | "b"; en: string; te: string }[];
         questions: { prompt: Bi; options: string[]; answer: number }[];
       }
+    /**
+     * Read it (CURRICULUM §1a): something real to read, drawn as a card (a message, a label, a sign), then one question.
+     * `heading`: the sender, the product or the sign's title; `lines`: the text; `say`: read aloud after Check (else the answer).
+     */
+    | { type: "readIt"; kind: "message" | "label" | "sign"; heading: string; lines: string[]; prompt: Bi; options: string[]; answer: number; why?: Bi; say?: string; fixIt?: FixIt }
+    /** A checkpoint's speaking mission (CURRICULUM §2b): talk for `seconds` with prompts to lean on; counted by time, never judged. */
+    | { type: "mission"; title: Bi; prompts: string[]; seconds: number }
     | RolePlay
   );
 

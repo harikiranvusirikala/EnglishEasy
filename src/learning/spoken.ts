@@ -59,6 +59,9 @@ function ofActivity(activity: Activity): (string | Bi | Spoken | undefined)[] {
         ]),
       ];
     }
+    case "readIt":
+      return [activity.say ?? activity.options[activity.answer], activity.why];
+    case "mission":
     case "match":
       return [];
   }

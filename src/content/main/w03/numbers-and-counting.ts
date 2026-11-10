@@ -171,6 +171,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "be",
       situation: {
         en: "A delivery man asks for your house number. It is twenty-five. Tell him.",
         te: "డెలివరీ చేసే ఆయన మీ ఇంటి నంబర్ అడుగుతున్నారు. అది ఇరవై ఐదు. ఆయనకి చెప్పండి.",
@@ -198,7 +199,7 @@ export const day: Lesson = {
         hint: { en: "Tell him your house number, 25. Don't forget is.", te: "మీ ఇంటి నంబర్ 25 అని చెప్పండి. is మర్చిపోకండి." },
         replies: [
           { say: "My house number is twenty-five.", good: true, skill: "numbers" },
-          { say: "My house number twenty-five.", good: false, skill: "numbers" },
+          { say: "My house number twenty-five.", good: false, skill: "numbers", fixIt: "be" },
         ],
       },
       {

@@ -16,6 +16,7 @@ export type Progress = {
   position?: { dayId: string; activityId: string; at: string };
   tracks: string[];
   tracksAsked: boolean;
+  tripSoon?: true; // "My trip is soon" (first visit): Abroad is offered from its earlier week
   review?: Record<string, ReviewRecord>; // daily review: `${dayId}.k${n}` → its schedule
   updatedAt: string;
 };
@@ -82,8 +83,12 @@ export function addPracticeDay(p: Progress, date: string, now: string): Progress
   return { ...p, practiceDays: [...p.practiceDays, date].slice(-MAX_PRACTICE_DAYS), updatedAt: now };
 }
 
-export function chooseTracks(p: Progress, tracks: string[], now: string): Progress {
-  return { ...p, tracks: [...tracks], tracksAsked: true, updatedAt: now };
+/** The tracks chosen at the first visit (or in Settings); `tripSoon` for "My trip is soon". */
+export function chooseTracks(p: Progress, tracks: string[], now: string, tripSoon = p.tripSoon === true): Progress {
+  const next: Progress = { ...p, tracks: [...tracks], tracksAsked: true, updatedAt: now };
+  if (tripSoon && tracks.includes("abroad")) next.tripSoon = true;
+  else delete next.tripSoon;
+  return next;
 }
 
 export function isDayComplete(p: Progress, dayId: string): boolean {
@@ -152,6 +157,7 @@ export function parseProgress(raw: string | null): Progress {
   }
   if (Array.isArray(data.tracks)) out.tracks = data.tracks.filter((t): t is string => typeof t === "string");
   out.tracksAsked = data.tracksAsked === true;
+  if (data.tripSoon === true) out.tripSoon = true;
   if (isRecord(data.review)) {
     const review: Record<string, ReviewRecord> = {};
     for (const [key, r] of Object.entries(data.review)) {

@@ -99,6 +99,7 @@ export const day: Lesson = {
     {
       id: "l3",
       type: "dontSay",
+      fixIt: "indian-english",
       wrong: "Please tell again.",
       right: "Please say it again.",
       why: {
@@ -109,6 +110,7 @@ export const day: Lesson = {
     {
       id: "l4",
       type: "dontSay",
+      fixIt: "question",
       wrong: "What this word means?",
       right: "What does this word mean?",
       why: {
@@ -121,6 +123,7 @@ export const day: Lesson = {
     {
       id: "p1",
       type: "choose",
+      fixIt: "indian-english",
       prompt: { en: "You did not hear the shopkeeper. What do you say?", te: "షాపు ఆయన చెప్పింది మీకు వినిపించలేదు. ఏమంటారు?" },
       options: ["Sorry? Please say it again.", "Hey! Say it again.", "Sorry? Please tell again."],
       answer: 0,
@@ -144,6 +147,7 @@ export const day: Lesson = {
     {
       id: "p3",
       type: "choose",
+      fixIt: "question",
       prompt: {
         en: "You know the Telugu word, but not the English one. What do you ask?",
         te: "తెలుగు పదం తెలుసు, కానీ ఇంగ్లీష్ పదం తెలియదు. ఏమని అడుగుతారు?",
@@ -240,7 +244,7 @@ export const day: Lesson = {
         hint: { en: "You don't know the word herbal. Ask what it means.", te: "herbal అనే పదం మీకు తెలియదు. దాని అర్థం అడగండి." },
         replies: [
           { say: "What does herbal mean?", good: true, skill: "clarify" },
-          { say: "What herbal means?", good: false, skill: "clarify" },
+          { say: "What herbal means?", good: false, skill: "clarify", fixIt: "question" },
         ],
       },
       {
@@ -249,7 +253,7 @@ export const day: Lesson = {
         hint: { en: "Thank him, and say it is clear to you now.", te: "థాంక్స్ చెప్పి, ఇప్పుడు అర్థమైందని చెప్పండి." },
         replies: [
           { say: "Thank you. Now I understand.", good: true, skill: "polite" },
-          { say: "Thank you. Now I am understanding.", good: false, skill: "clarify" },
+          { say: "Thank you. Now I am understanding.", good: false, skill: "clarify", fixIt: "state-ing" },
         ],
       },
     ],

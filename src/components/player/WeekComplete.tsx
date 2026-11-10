@@ -13,6 +13,8 @@ import { Icon } from "@/components/ui/icons";
 import { course as realCourse } from "@/content/course";
 import type { PlayableDay } from "@/content/types";
 import { weekEnd } from "@/learning/week-complete";
+import { checkpointOfWeek } from "@/learning/checkpoint";
+import { CheckpointResult } from "./CheckpointResult";
 import type { Course } from "@/learning/recommend";
 import { fill, strings } from "@/lib/strings";
 import { Confetti, useNextReady } from "./LessonComplete";
@@ -26,44 +28,51 @@ export function WeekComplete({ day, onReview, course = realCourse }: { day: Play
   const nextReady = useNextReady(nextFirst?.id);
   if (!end) return null;
   const { week, stage, stageEnd, days, nextWeek } = end;
+  const checkpoint = stage ? checkpointOfWeek(week.n) : null; // a checkpoint week ends with its result (CURRICULUM §2b)
 
   return (
     <>
       <Confetti />
       <div className="flex flex-col gap-5">
-        <header className="flex flex-col items-center gap-1 text-center">
-          <Illustration name={stageEnd ? "complete" : "week"} className="w-56 animate-pop-in motion-reduce:animate-none" />
-          <h1 className="font-display mt-2 text-[2.3rem] leading-tight font-bold text-ink">
-            <Bi label={fill(strings.weekComplete, { n: week.n })} />
-          </h1>
-          <p className="text-xl text-ink-2">
-            {week.title.en}
-          </p>
-        </header>
+        {checkpoint ? (
+          <CheckpointResult checkpoint={checkpoint} course={course} />
+        ) : (
+          <>
+            <header className="flex flex-col items-center gap-1 text-center">
+              <Illustration name={stageEnd ? "complete" : "week"} className="w-56 animate-pop-in motion-reduce:animate-none" />
+              <h1 className="font-display mt-2 text-[2.3rem] leading-tight font-bold text-ink">
+                <Bi label={fill(strings.weekComplete, { n: week.n })} />
+              </h1>
+              <p className="text-xl text-ink-2">
+                {week.title.en}
+              </p>
+            </header>
 
-        <div className={`${card} flex flex-col gap-3`}>
-          <p className="flex items-center justify-between gap-3 text-lg font-semibold text-ink">
-            <Bi label={fill(strings.weekDays, { done: days.length, total: days.length })} className="items-start" />
-            <span className={badge("good")}>100%</span>
-          </p>
-          <ProgressBar label={strings.progressLabel.en} value={1} max={1} />
-        </div>
+            <div className={`${card} flex flex-col gap-3`}>
+              <p className="flex items-center justify-between gap-3 text-lg font-semibold text-ink">
+                <Bi label={fill(strings.weekDays, { done: days.length, total: days.length })} className="items-start" />
+                <span className={badge("good")}>100%</span>
+              </p>
+              <ProgressBar label={strings.progressLabel.en} value={1} max={1} />
+            </div>
 
-        <section className="flex flex-col gap-3">
-          <h2 className={sectionTitle}>
-            <Bi label={strings.youPractised} className="items-start" />
-          </h2>
-          <ul className={`${cardFlush} divide-y divide-line`}>
-            {days.map((d) => (
-              <li key={d.id} className="flex items-center gap-3 px-4 py-3 text-lg text-ink">
-                <span aria-hidden="true" className="flex size-7 shrink-0 items-center justify-center rounded-full bg-good text-good-soft">
-                  <Icon name="check" className="size-4" strokeWidth={3} />
-                </span>
-                {d.title.en}
-              </li>
-            ))}
-          </ul>
-        </section>
+            <section className="flex flex-col gap-3">
+              <h2 className={sectionTitle}>
+                <Bi label={strings.youPractised} className="items-start" />
+              </h2>
+              <ul className={`${cardFlush} divide-y divide-line`}>
+                {days.map((d) => (
+                  <li key={d.id} className="flex items-center gap-3 px-4 py-3 text-lg text-ink">
+                    <span aria-hidden="true" className="flex size-7 shrink-0 items-center justify-center rounded-full bg-good text-good-soft">
+                      <Icon name="check" className="size-4" strokeWidth={3} />
+                    </span>
+                    {d.title.en}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </>
+        )}
 
         {stageEnd && stage && (
           <section className={`${brandCard} flex flex-col gap-3`} data-testid="stage-complete">

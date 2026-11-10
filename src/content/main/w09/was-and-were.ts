@@ -135,13 +135,16 @@ export const day: Lesson = {
     },
     {
       id: "p3",
-      type: "choose",
-      prompt: { en: "Which sentence is about the past?", te: "గతం గురించి చెప్పే వాక్యం ఏది?" },
-      options: ["The shop is closed.", "The shop was closed.", "The shop be closed."],
-      answer: 1,
+      type: "readIt",
+      kind: "message",
+      heading: "Speed Courier",
+      lines: ["We were at your door yesterday at 4:30 pm.", "You were not at home.", "Your parcel is with the watchman now."],
+      prompt: { en: "Read the message. A neighbour asks: Were you at home yesterday afternoon? What do you say?", te: "మెసేజ్ చదవండి. పక్కింటివాళ్ళు అడుగుతున్నారు: Were you at home yesterday afternoon? మీరేం చెప్తారు?" },
+      options: ["No, I was not at home.", "No, I were not at home.", "Yes, I was at home."],
+      answer: 0,
       why: {
-        en: "Was is the past of is: The shop was closed.",
-        te: "is కి గతం was: The shop was closed.",
+        en: "The message says you were not at home, and with I we use was: No, I was not at home.",
+        te: "మెసేజ్‌లో మీరు ఇంట్లో లేరని ఉంది; I తో was వాడాలి: No, I was not at home.",
       },
     },
     {
@@ -221,7 +224,7 @@ export const day: Lesson = {
         hint: { en: "Say yes, and that it was full of people.", te: "అవును అని, చాలా మంది జనం ఉన్నారని చెప్పండి." },
         replies: [
           { say: "Yes, there were many people.", good: true, skill: "was" },
-          { say: "Yes, there was many people.", good: false, skill: "was" },
+          { say: "Yes, there were many peoples.", good: false, skill: "was", fixIt: "plural" },
         ],
       },
       {

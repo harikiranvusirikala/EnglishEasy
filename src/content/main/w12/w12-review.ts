@@ -2,7 +2,8 @@ import type { Activity, Bi, ReviewDay } from "../../types";
 
 /**
  * Week 12, Day 7 (CURRICULUM §3): Stage 1 Review — the automatic review (with a role play from the Conversation Day),
- * a mixed round across tenses and questions, and a 6-turn celebration call that uses all of Stage 1.
+ * a mixed round across tenses and questions, the 30-second speaking mission (Checkpoint 1, CURRICULUM §2b), and a 6-turn
+ * celebration call that uses all of Stage 1.
  */
 
 const pick = (id: string, sentence: string, te: string, options: string[], answer: number, why: Bi): Activity => ({
@@ -45,6 +46,13 @@ export const day: ReviewDay = {
       te: "అలసట వల్ల తొందరగా పడుకున్నారు, అది ఫలితం, అందుకే so: I was tired, so I slept early.",
     }),
     {
+      id: "m1",
+      type: "mission",
+      title: { en: "All about me", te: "నా గురించి" },
+      prompts: ["My name is …", "I live in …", "Every day I …", "I like …", "Tomorrow I will …"],
+      seconds: 30,
+    },
+    {
       id: "r1",
       type: "roleplay",
       title: { en: "Celebrating Stage 1", te: "స్టేజ్ 1 పండుగ" },
@@ -67,7 +75,7 @@ export const day: ReviewDay = {
           hint: { en: "Say yes, and how you feel.", te: "అవునని, మీకు ఎలా ఉందో చెప్పండి." },
           replies: [
             { say: "Yes! I am very happy.", good: true, skill: "now" },
-            { say: "Yes! I very happy.", good: false, skill: "now" },
+            { say: "Yes! I very happy.", good: false, skill: "now", fixIt: "be" },
             {
               say: "So what? It was easy.",
               good: false,
@@ -82,7 +90,7 @@ export const day: ReviewDay = {
           hint: { en: "Say what you do every morning.", te: "రోజూ ఉదయం ఏం చేస్తారో చెప్పండి." },
           replies: [
             { say: "I practice English every morning.", good: true, skill: "every" },
-            { say: "I practicing English every morning.", good: false, skill: "every" },
+            { say: "I practicing English every morning.", good: false, skill: "every", fixIt: "state-ing" },
           ],
         },
         {
@@ -100,7 +108,7 @@ export const day: ReviewDay = {
           hint: { en: "Say what you are doing right now.", te: "ఇప్పుడు ఏం చేస్తున్నారో చెప్పండి." },
           replies: [
             { say: "I am talking to you in English!", good: true, skill: "now" },
-            { say: "I talking to you in English!", good: false, skill: "now" },
+            { say: "I talking to you in English!", good: false, skill: "now", fixIt: "be" },
           ],
         },
         {

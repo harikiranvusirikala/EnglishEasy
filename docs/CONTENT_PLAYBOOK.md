@@ -52,6 +52,12 @@ Put the simplest, most useful sentences at 0–3. Each core sentence's `extra` i
 
 **Warm-up** is automatic: a key sentence of the lesson before (what does it mean?), and one by ear from about a week or a month back. Nothing to write. Authored options are shuffled by the generator, so the right answer may sit anywhere in `options`.
 
+**Fix-it** (CURRICULUM §2): every lesson has at least one item tagged `fixIt: "<error>"` (a Don't say card, a question with that error as a wrong option, or a not-good reply); each week covers at least 3 different errors, and each started error comes back at least every 3 weeks (`check-week` enforces the week and course rules).
+
+**Read it** (CURRICULUM §1a): from Week 3, one lesson of the week has a `readIt` in its practice (a message, label or sign drawn as a card, then one question), in place of one recognise item, so the counts stay.
+
+**Checkpoint weeks** (CURRICULUM §2b): add the checkpoint to `checkpoints` in `course.ts` (its can-do items and certificate line), and a `mission` (the speaking mission) to the Review Day's `extras`.
+
 **Sound of the week** (CURRICULUM §2a): add the week's entry to `src/content/sounds.ts` (the card and 5 word pairs with Telugu meanings) when writing a main-path week.
 
 **Before registering, check each lesson against this list** (the starred ones are automatic):

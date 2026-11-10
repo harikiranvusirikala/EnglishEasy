@@ -91,6 +91,7 @@ export const day: Lesson = {
     {
       id: "l3",
       type: "dontSay",
+      fixIt: "indian-english",
       wrong: "It started before two days.",
       right: "It started two days ago.",
       why: {
@@ -101,6 +102,7 @@ export const day: Lesson = {
     {
       id: "l4",
       type: "dontSay",
+      fixIt: "indian-english",
       wrong: "I had a fever yesterday night.",
       right: "I had a fever last night.",
       why: {
@@ -113,6 +115,7 @@ export const day: Lesson = {
     {
       id: "p1",
       type: "choose",
+      fixIt: "indian-english",
       prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
       options: ["It started before two days.", "It started two days ago.", "It started ago two days."],
       answer: 1,
@@ -136,6 +139,7 @@ export const day: Lesson = {
     {
       id: "p3",
       type: "choose",
+      fixIt: "indian-english",
       prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
       options: ["I had a fever yesterday night.", "I had a fever last night.", "I had a fever night last."],
       answer: 1,
@@ -147,6 +151,7 @@ export const day: Lesson = {
     {
       id: "p4",
       type: "findMistake",
+      fixIt: "indian-english",
       sentence: "We moved here before five years.",
       wrongIndex: 3,
       fix: "We moved here five years ago.",
@@ -160,6 +165,7 @@ export const day: Lesson = {
     {
       id: "s1",
       type: "situation",
+      fixIt: "indian-english",
       situation: {
         en: "The doctor asks: When did the pain start? Say two days ago.",
         te: "డాక్టర్ అడుగుతున్నారు: When did the pain start? రెండు రోజుల క్రితం అని చెప్పండి.",
@@ -171,6 +177,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "indian-english",
       situation: {
         en: "Say that you went to Tirupati last month.",
         te: "మీరు పోయిన నెల తిరుపతి వెళ్ళారని చెప్పండి.",
@@ -197,7 +204,7 @@ export const day: Lesson = {
         hint: { en: "Tell her where it hurts.", te: "ఎక్కడ నొప్పిగా ఉందో చెప్పండి." },
         replies: [
           { say: "I have a pain in my leg.", good: true },
-          { say: "I am having pain in my leg.", good: false },
+          { say: "I am having pain in my leg.", good: false, fixIt: "state-ing" },
           {
             say: "You're the doctor. You tell me.",
             good: false,
@@ -211,7 +218,7 @@ export const day: Lesson = {
         hint: { en: "Tell her when the pain began.", te: "నొప్పి ఎప్పుడు మొదలైందో చెప్పండి." },
         replies: [
           { say: "It started two days ago.", good: true, skill: "when" },
-          { say: "It started before two days.", good: false, skill: "when" },
+          { say: "It started before two days.", good: false, skill: "when", fixIt: "indian-english" },
         ],
       },
       {
@@ -220,7 +227,7 @@ export const day: Lesson = {
         hint: { en: "Say no, and that you walked a lot the week before.", te: "లేదు అని, పోయిన వారం చాలా నడిచారని చెప్పండి." },
         replies: [
           { say: "No. I walked a lot last week.", good: true, skill: "when" },
-          { say: "No. I walked a lot before week.", good: false, skill: "when" },
+          { say: "No. I walked a lot before week.", good: false, skill: "when", fixIt: "indian-english" },
         ],
       },
       {
@@ -229,7 +236,7 @@ export const day: Lesson = {
         hint: { en: "Say yes, and when you took it.", te: "అవును అని, ఎప్పుడు వేసుకున్నారో చెప్పండి." },
         replies: [
           { say: "Yes, I took one last night.", good: true, skill: "when" },
-          { say: "Yes, I took one yesterday night.", good: false, skill: "when" },
+          { say: "Yes, I took one yesterday night.", good: false, skill: "when", fixIt: "indian-english" },
         ],
       },
     ],

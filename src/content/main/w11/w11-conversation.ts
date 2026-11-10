@@ -38,6 +38,7 @@ export const day: ConversationDay = {
     {
       id: "s1",
       type: "situation",
+      fixIt: "indian-english",
       situation: {
         en: "Tell the doctor you have a headache.",
         te: "మీకు తలనొప్పిగా ఉందని డాక్టర్‌కి చెప్పండి.",
@@ -49,6 +50,7 @@ export const day: ConversationDay = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "question",
       situation: {
         en: "Ask the doctor if you should take tablets.",
         te: "మాత్రలు వేసుకోవాలా అని డాక్టర్‌ని అడగండి.",
@@ -90,7 +92,7 @@ export const day: ConversationDay = {
           hint: { en: "Tell her what is wrong: your stomach.", te: "ఏమైందో చెప్పండి: కడుపు నొప్పి." },
           replies: [
             { say: "I have a stomach ache.", good: true, skill: "tell" },
-            { say: "I am having stomach pain.", good: false, skill: "tell" },
+            { say: "I am having stomach pain.", good: false, skill: "tell", fixIt: "state-ing" },
           ],
         },
         {
@@ -99,7 +101,7 @@ export const day: ConversationDay = {
           hint: { en: "Tell her when it started (past).", te: "ఎప్పుడు మొదలైందో చెప్పండి (past)." },
           replies: [
             { say: "It started last night.", good: true, skill: "tell" },
-            { say: "It started yesterday night.", good: false, skill: "tell" },
+            { say: "It started yesterday night.", good: false, skill: "tell", fixIt: "indian-english" },
           ],
         },
         {
@@ -173,7 +175,7 @@ export const day: ConversationDay = {
           hint: { en: "Ask the price.", te: "ధర ఎంతో అడగండి." },
           replies: [
             { say: "How much is it?", good: true, skill: "ask" },
-            { say: "How much it is?", good: false, skill: "ask" },
+            { say: "How much it is?", good: false, skill: "ask", fixIt: "question" },
           ],
         },
         {

@@ -91,6 +91,7 @@ export const day: Lesson = {
     {
       id: "l3",
       type: "dontSay",
+      fixIt: "indian-english",
       wrong: "Myself Kiran.",
       right: "My name is Kiran.",
       why: {
@@ -101,6 +102,7 @@ export const day: Lesson = {
     {
       id: "l4",
       type: "dontSay",
+      fixIt: "state-ing",
       wrong: "I am having two brothers.",
       right: "I have two brothers.",
       why: {
@@ -113,6 +115,7 @@ export const day: Lesson = {
     {
       id: "p1",
       type: "choose",
+      fixIt: "indian-english",
       prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
       options: ["Myself Kiran.", "My name is Kiran.", "I am name Kiran."],
       answer: 1,
@@ -135,18 +138,22 @@ export const day: Lesson = {
     },
     {
       id: "p3",
-      type: "choose",
-      prompt: { en: "Which sentence is about every day?", te: "రోజూ జరిగేదాని గురించిన వాక్యం ఏది?" },
-      options: ["I walk every morning.", "I am walking now.", "I walked yesterday."],
+      type: "readIt",
+      kind: "label",
+      heading: "Visitor Card",
+      lines: ["Name: Kiran", "Age: 64", "Town: Guntur", "Mobile No.: 98480 12345"],
+      prompt: { en: "This is your card at a meeting. Someone asks: Where do you live? What do you say?", te: "ఇది మీటింగ్‌లో మీ కార్డ్. ఒకరు అడుగుతున్నారు: Where do you live? మీరేం చెప్తారు?" },
+      options: ["I live in Guntur.", "My town Guntur.", "I am 64 years old."],
       answer: 0,
       why: {
-        en: "For every day, use the plain verb, with no am or -ing: I walk every morning.",
-        te: "రోజూ జరిగేదానికి verb మామూలుగా, am గానీ -ing గానీ లేకుండా: I walk every morning.",
+        en: "Where do you live asks for your town, so answer with I live in: I live in Guntur.",
+        te: "Where do you live అంటే మీ ఊరు అడుగుతున్నారు, I live in తో చెప్పండి: I live in Guntur.",
       },
     },
     {
       id: "p4",
       type: "findMistake",
+      fixIt: "state-ing",
       sentence: "I am having two brothers.",
       wrongIndex: 2,
       fix: "I have two brothers.",
@@ -160,6 +167,7 @@ export const day: Lesson = {
     {
       id: "s1",
       type: "situation",
+      fixIt: "indian-english",
       situation: {
         en: "At a community meeting, say your name.",
         te: "కాలనీ మీటింగ్‌లో మీ పేరు చెప్పండి.",
@@ -171,6 +179,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "be",
       situation: {
         en: "Say what you are learning these days.",
         te: "ఈ మధ్య ఏం నేర్చుకుంటున్నారో చెప్పండి.",
@@ -197,7 +206,7 @@ export const day: Lesson = {
         hint: { en: "Say your name.", te: "మీ పేరు చెప్పండి." },
         replies: [
           { say: "My name is Kiran.", good: true, skill: "me" },
-          { say: "Myself Kiran.", good: false, skill: "me" },
+          { say: "Myself Kiran.", good: false, skill: "me", fixIt: "indian-english" },
         ],
       },
       {

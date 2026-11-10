@@ -94,6 +94,7 @@ export const day: Lesson = {
     {
       id: "l3",
       type: "dontSay",
+      fixIt: "state-ing",
       wrong: "I am liking idli.",
       right: "I like idli.",
       why: {
@@ -116,6 +117,7 @@ export const day: Lesson = {
     {
       id: "p1",
       type: "choose",
+      fixIt: "state-ing",
       prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
       options: ["I am liking idli.", "I like idli.", "I likes idli."],
       answer: 1,
@@ -163,6 +165,7 @@ export const day: Lesson = {
     {
       id: "s1",
       type: "situation",
+      fixIt: "state-ing",
       situation: {
         en: "A friend asks: Do you like coffee? Say no, you like tea.",
         te: "మీ స్నేహితులు అడుగుతున్నారు: Do you like coffee? లేదు, మీకు టీ ఇష్టమని చెప్పండి.",
@@ -174,6 +177,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "be",
       situation: {
         en: "Someone asks: What is your favourite food? Say idli.",
         te: "ఒకరు అడుగుతున్నారు: What is your favourite food? ఇడ్లీ అని చెప్పండి.",
@@ -203,7 +207,7 @@ export const day: Lesson = {
         },
         replies: [
           { say: "My favourite food is pesarattu.", good: true, skill: "like" },
-          { say: "My favourite food pesarattu.", good: false, skill: "like" },
+          { say: "My favourite food pesarattu.", good: false, skill: "like", fixIt: "be" },
         ],
       },
       {
@@ -241,7 +245,7 @@ export const day: Lesson = {
         hint: { en: "Invite her for lunch on Sunday.", te: "ఆదివారం భోజనానికి రమ్మని పిలవండి." },
         replies: [
           { say: "Then come for lunch on Sunday.", good: true },
-          { say: "Then come for lunch in Sunday.", good: false },
+          { say: "Then come for lunch in Sunday.", good: false, fixIt: "preposition" },
         ],
       },
     ],

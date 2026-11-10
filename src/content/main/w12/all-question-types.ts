@@ -92,6 +92,7 @@ export const day: Lesson = {
     {
       id: "l3",
       type: "dontSay",
+      fixIt: "question",
       wrong: "You ate?",
       right: "Did you eat?",
       why: {
@@ -102,6 +103,7 @@ export const day: Lesson = {
     {
       id: "l4",
       type: "dontSay",
+      fixIt: "question",
       wrong: "When he will come?",
       right: "When will he come?",
       why: {
@@ -114,6 +116,7 @@ export const day: Lesson = {
     {
       id: "p1",
       type: "choose",
+      fixIt: "question",
       prompt: { en: "Choose the correct question.", te: "సరైన ప్రశ్నను ఎంచుకోండి." },
       options: ["You ate?", "Did you eat?", "Did you ate?"],
       answer: 1,
@@ -137,6 +140,7 @@ export const day: Lesson = {
     {
       id: "p3",
       type: "choose",
+      fixIt: "question",
       prompt: { en: "Ask a new neighbour if she lives here.", te: "కొత్త పొరుగావిడ ఇక్కడే ఉంటారా అని అడగండి." },
       options: ["Do you live here?", "Are you live here?", "Does you live here?"],
       answer: 0,
@@ -161,6 +165,7 @@ export const day: Lesson = {
     {
       id: "s1",
       type: "situation",
+      fixIt: "question",
       situation: {
         en: "Your friend looks hungry. Ask if she ate.",
         te: "మీ స్నేహితురాలు ఆకలిగా ఉన్నట్టున్నారు. తిన్నారా అని అడగండి.",
@@ -172,6 +177,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "question",
       situation: {
         en: "Ask when the doctor will come.",
         te: "డాక్టర్ ఎప్పుడు వస్తారో అడగండి.",
@@ -210,7 +216,7 @@ export const day: Lesson = {
         hint: { en: "Say how many live in your house.", te: "మీ ఇంట్లో ఎంత మంది ఉంటారో చెప్పండి." },
         replies: [
           { say: "Three people live here.", good: true, skill: "answer" },
-          { say: "Three peoples live here.", good: false, skill: "answer" },
+          { say: "Three peoples live here.", good: false, skill: "answer", fixIt: "plural" },
         ],
       },
       {
@@ -228,7 +234,7 @@ export const day: Lesson = {
         hint: { en: "Ask her the reason for the survey.", te: "ఈ సర్వే ఎందుకో ఆవిడని అడగండి." },
         replies: [
           { say: "What is this survey for?", good: true, skill: "ask" },
-          { say: "This survey is for what?", good: false, skill: "ask" },
+          { say: "This survey is for what?", good: false, skill: "ask", fixIt: "question" },
           {
             say: "Finally! That took so long.",
             good: false,

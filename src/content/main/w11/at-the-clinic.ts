@@ -101,6 +101,7 @@ export const day: Lesson = {
     {
       id: "l4",
       type: "dontSay",
+      fixIt: "indian-english",
       wrong: "I am not getting sleep.",
       right: "I can't sleep at night.",
       why: {
@@ -123,19 +124,23 @@ export const day: Lesson = {
     },
     {
       id: "p2",
-      type: "fillBlank",
-      sentence: "The pain ___ on Monday.",
-      te: "నొప్పి సోమవారం మొదలైంది.",
-      options: ["started", "starts", "start"],
+      type: "readIt",
+      kind: "label",
+      heading: "Paracetamol Tablets 500 mg",
+      lines: ["Dose: 1 tablet", "Twice a day, after food", "Keep away from children", "EXP: 08/2027"],
+      prompt: { en: "When do you take this tablet?", te: "ఈ మాత్ర ఎప్పుడు వేసుకోవాలి?" },
+      options: ["Twice a day, after food.", "Twice a day, before food.", "Once a day, after food."],
       answer: 0,
       why: {
-        en: "Monday is over, so the verb is past: The pain started on Monday.",
-        te: "సోమవారం అయిపోయింది, అందుకే verb past: The pain started on Monday.",
+        en: "The label says twice a day after food, so eat first and then take it: One tablet, twice a day, after food.",
+        te: "లేబుల్ మీద twice a day, after food అని ఉంది; అంటే రోజుకి రెండుసార్లు, తిన్న తర్వాత: One tablet, twice a day, after food.",
       },
+      say: "One tablet, twice a day, after food.",
     },
     {
       id: "p3",
       type: "choose",
+      fixIt: "plural",
       prompt: { en: "The doctor gives you tablets. Ask how often to take them.", te: "డాక్టర్ మాత్రలు ఇచ్చారు. ఎన్నిసార్లు వేసుకోవాలో అడగండి." },
       options: ["How many times a day?", "How much times a day?", "How many time a day?"],
       answer: 0,
@@ -160,6 +165,7 @@ export const day: Lesson = {
     {
       id: "s1",
       type: "situation",
+      fixIt: "article",
       situation: {
         en: "Tell the receptionist you have an appointment at ten.",
         te: "మీకు పది గంటలకు అపాయింట్‌మెంట్ ఉందని రిసెప్షనిస్ట్‌కి చెప్పండి.",
@@ -171,6 +177,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "indian-english",
       situation: {
         en: "Tell the doctor you can't sleep at night.",
         te: "రాత్రి నిద్ర పట్టడం లేదని డాక్టర్‌కి చెప్పండి.",
@@ -216,7 +223,7 @@ export const day: Lesson = {
         hint: { en: "Say no, and when you can't sleep.", te: "లేదని, ఎప్పుడు నిద్ర పట్టడం లేదో చెప్పండి." },
         replies: [
           { say: "No, I can't sleep at night.", good: true, skill: "tell" },
-          { say: "No, I am not getting sleep.", good: false, skill: "tell" },
+          { say: "No, I am not getting sleep.", good: false, skill: "tell", fixIt: "indian-english" },
         ],
       },
       {
@@ -225,7 +232,7 @@ export const day: Lesson = {
         hint: { en: "Ask how often to take it.", te: "రోజుకు ఎన్నిసార్లు వేసుకోవాలో అడగండి." },
         replies: [
           { say: "How many times a day?", good: true, skill: "tell" },
-          { say: "How much times a day?", good: false, skill: "tell" },
+          { say: "How much times a day?", good: false, skill: "tell", fixIt: "plural" },
           {
             say: "Just give me an injection.",
             good: false,

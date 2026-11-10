@@ -64,6 +64,7 @@ export const day: ConversationDay = {
     {
       id: "s3",
       type: "situation",
+      fixIt: "question",
       situation: {
         en: "Ask the seller what time the market closes.",
         te: "మార్కెట్ ఎన్ని గంటలకి మూసేస్తారో అమ్మే ఆయన్ని అడగండి.",
@@ -163,7 +164,7 @@ export const day: ConversationDay = {
           hint: { en: "Ask her what time she closes. Use do.", te: "ఆవిడ ఎన్ని గంటలకి మూసేస్తారో అడగండి. do వాడండి." },
           replies: [
             { say: "What time do you close?", good: true, skill: "ask" },
-            { say: "What time you close?", good: false, skill: "ask" },
+            { say: "What time you close?", good: false, skill: "ask", fixIt: "question" },
           ],
         },
         {
@@ -172,7 +173,7 @@ export const day: ConversationDay = {
           hint: { en: "Tell her you will return at eight.", te: "ఎనిమిదికి మళ్ళీ వస్తానని చెప్పండి." },
           replies: [
             { say: "I will come back at eight.", good: true, skill: "time" },
-            { say: "I will come back on eight.", good: false, skill: "time" },
+            { say: "I will come back on eight.", good: false, skill: "time", fixIt: "preposition" },
             {
               say: "That is not your business.",
               good: false,
@@ -187,7 +188,7 @@ export const day: ConversationDay = {
           hint: { en: "Give your door number and road: 12, Gandhi Road.", te: "మీ డోర్ నంబర్, రోడ్ చెప్పండి: 12, గాంధీ రోడ్." },
           replies: [
             { say: "My address is twelve, Gandhi Road.", good: true, skill: "address" },
-            { say: "My address twelve, Gandhi Road.", good: false, skill: "address" },
+            { say: "My address twelve, Gandhi Road.", good: false, skill: "address", fixIt: "be" },
           ],
         },
         {

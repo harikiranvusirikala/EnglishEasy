@@ -28,7 +28,7 @@ import { InstallCard } from "./InstallCard";
 import { ReminderCard } from "./Reminder";
 import { SaveProgressCard } from "./SaveProgressCard";
 import { Onboarding } from "./Onboarding";
-import { TrackSuggestionCard, TracksCard } from "./Tracks";
+import { TrackOfferCard, TrackSuggestionCard } from "./Tracks";
 
 const GREETING = { morning: strings.greetMorning, afternoon: strings.greetAfternoon, evening: strings.greetEvening };
 
@@ -262,7 +262,7 @@ export function Home({ course, written }: { course: Course; written: string[] })
   const progress = useProgress();
   const clock = useClock();
   const name = firstName(useAccount());
-  if (settings && !settings.onboarded) return <Onboarding />;
+  if (settings && !settings.onboarded) return <Onboarding course={course} />;
   const practised = progress && clock ? practisedThisWeek(progress.practiceDays, clock.today) : 0;
   return (
     <main className="mx-auto flex w-full max-w-xl flex-col gap-6 px-4 pt-5 pb-6 md:max-w-6xl md:px-6 md:pt-8">
@@ -285,7 +285,7 @@ export function Home({ course, written }: { course: Course; written: string[] })
             <TrackSuggestionCard course={course} progress={progress} written={written} />
             <SaveProgressCard />
             <ReminderCard finishedLessons={Object.keys(progress.completed).length} />
-            <TracksCard course={course} progress={progress} />
+            <TrackOfferCard course={course} progress={progress} />
             <InstallCard />
           </div>
           <div className="flex flex-col gap-5">

@@ -1,8 +1,8 @@
 import { render, screen, fireEvent, waitFor, within } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { completeDay } from "@/learning/progress";
+import { chooseTracks, completeDay } from "@/learning/progress";
 import { getProgress, updateProgress, useProgress } from "@/lib/progress-store";
-import { updateSettings } from "@/lib/settings-store";
+import { getSettings, updateSettings } from "@/lib/settings-store";
 import { fixtureCourse, makePlayable, standardShape } from "../../../test/fixtures/course";
 import type { Course } from "@/learning/recommend";
 import { Home } from "./Home";
@@ -45,37 +45,31 @@ describe("tracks (fixture course: one track released)", () => {
     expect(screen.queryByText("Want extra lessons for your life?")).toBeNull();
   });
 
-  it("offers only released tracks at Week 13, saves the choice, then suggests the track lesson", async () => {
-    finish("a1", "a2");
+  it("offers a chosen track as New for you at its week; Start opens it, then its lessons are suggested", async () => {
+    updateProgress((p) => chooseTracks(p, ["grandchildren"], NOW));
+    finish("a1", "a2"); // Week 13: the fixture's offer week
     render(<Home course={fixtureCourse} written={written} />);
-    const region = await screen.findByRole("region", { name: "Want extra lessons for your life?" });
-    expect(within(region).getByRole("button", { name: /Grandchildren/ })).toBeTruthy();
-    expect(within(region).queryByRole("button", { name: /Abroad/ })).toBeNull();
-    const save = within(region).getByRole("button", { name: "Save" }) as HTMLButtonElement;
-    expect(save.disabled).toBe(true);
-    fireEvent.click(within(region).getByRole("button", { name: /Grandchildren/ }));
-    fireEvent.click(save);
-    await waitFor(() => expect(getProgress().tracks).toEqual(["grandchildren"]));
-    expect(getProgress().tracksAsked).toBe(true);
-    expect(screen.queryByText("Want extra lessons for your life?")).toBeNull();
-    const suggestion = await screen.findByRole("region", { name: "Your extra lesson" });
-    expect(within(suggestion).getByText("g1")).toBeTruthy();
-    expect(within(suggestion).getByRole("link", { name: "Start extra lesson" }).getAttribute("href")).toBe("/learn/play?l=g1");
+    const offer = await screen.findByRole("region", { name: "New for you" });
+    expect(within(offer).getByText("Grandchildren")).toBeTruthy();
+    expect(within(offer).getByRole("link", { name: "Start Grandchildren" }).getAttribute("href")).toBe("/learn/play?l=g1");
+    expect(screen.queryByRole("region", { name: "Your extra lesson" })).toBeNull(); // not started yet
   });
 
-  it("None of these asks once and suggests nothing", async () => {
+  it("Not now hides New for you for good; a track not chosen is never offered", async () => {
+    updateProgress((p) => chooseTracks(p, ["grandchildren"], NOW));
     finish("a1", "a2");
     render(<Home course={fixtureCourse} written={written} />);
-    fireEvent.click(await screen.findByRole("button", { name: "None of these" }));
-    await waitFor(() => expect(getProgress()).toMatchObject({ tracks: [], tracksAsked: true }));
-    expect(screen.queryByRole("region", { name: "Your extra lesson" })).toBeNull();
+    const offer = await screen.findByRole("region", { name: "New for you" });
+    fireEvent.click(within(offer).getByRole("button", { name: "Not now" }));
+    await waitFor(() => expect(screen.queryByRole("region", { name: "New for you" })).toBeNull());
+    expect(getSettings().dismissed).toContain("track-offer:grandchildren");
   });
 
   it("My tracks in Settings toggles a track; Journey lists chosen tracks", async () => {
     const { unmount } = render(<MyTracksHarness />);
-    fireEvent.click(await screen.findByRole("button", { name: /Grandchildren/ }));
+    fireEvent.click(await screen.findByRole("button", { name: /My grandchildren/ }));
     await waitFor(() => expect(getProgress().tracks).toEqual(["grandchildren"]));
-    expect(screen.getByRole("button", { name: /Grandchildren/ }).getAttribute("aria-pressed")).toBe("true");
+    expect(screen.getByRole("button", { name: /My grandchildren/ }).getAttribute("aria-pressed")).toBe("true");
     unmount();
 
     render(<Journey course={fixtureCourse} written={written} />);
@@ -85,11 +79,10 @@ describe("tracks (fixture course: one track released)", () => {
     expect(within(section).getByRole("link", { name: /g1/ })).toBeTruthy();
   });
 
-  it("shows nothing for My tracks when no track is released", () => {
-    const none: Course = { ...fixtureCourse, tracks: fixtureCourse.tracks.map((t) => ({ ...t, weeks: [{ ...t.weeks[0], released: false, days: [] }] })) };
-    const progress = getProgress();
-    const { container } = render(<MyTracks course={none} progress={progress} />);
-    expect(container.innerHTML).toBe("");
+  it("My tracks lists every track as a goal, released or not, with Daily life always on", () => {
+    render(<MyTracks course={fixtureCourse} progress={getProgress()} />);
+    expect((screen.getByRole("button", { name: /Daily life/ }) as HTMLButtonElement).disabled).toBe(true);
+    expect(screen.getByRole("button", { name: /Abroad/ })).toBeTruthy();
   });
 });
 

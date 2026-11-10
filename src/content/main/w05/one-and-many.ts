@@ -91,6 +91,7 @@ export const day: Lesson = {
     {
       id: "l3",
       type: "dontSay",
+      fixIt: "plural",
       wrong: "There are fifty peoples.",
       right: "There are fifty people.",
       why: {
@@ -101,6 +102,7 @@ export const day: Lesson = {
     {
       id: "l4",
       type: "dontSay",
+      fixIt: "plural",
       wrong: "I need ten cup.",
       right: "I need ten cups.",
       why: {
@@ -113,6 +115,7 @@ export const day: Lesson = {
     {
       id: "p1",
       type: "choose",
+      fixIt: "plural",
       prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
       options: ["Two childs are playing.", "Two children are playing.", "Two childrens are playing."],
       answer: 1,
@@ -136,6 +139,7 @@ export const day: Lesson = {
     {
       id: "p3",
       type: "choose",
+      fixIt: "plural",
       prompt: { en: "Which word fits? Fifty … came to the function.", te: "ఏ పదం సరిపోతుంది? ఫంక్షన్‌కి యాభై … వచ్చారు." },
       options: ["person", "people", "peoples"],
       answer: 1,
@@ -147,6 +151,7 @@ export const day: Lesson = {
     {
       id: "p4",
       type: "findMistake",
+      fixIt: "plural",
       sentence: "One man and two womans came.",
       wrongIndex: 4,
       fix: "One man and two women came.",
@@ -160,6 +165,7 @@ export const day: Lesson = {
     {
       id: "s1",
       type: "situation",
+      fixIt: "plural",
       situation: {
         en: "You are ordering for a function. Say you need twenty plates.",
         te: "మీరు ఫంక్షన్ కోసం ఆర్డర్ చేస్తున్నారు. ఇరవై ప్లేట్లు కావాలని చెప్పండి.",
@@ -171,6 +177,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "plural",
       situation: {
         en: "Tell the cook that fifty people are coming.",
         te: "యాభై మంది వస్తున్నారని వంటవారికి చెప్పండి.",
@@ -206,7 +213,7 @@ export const day: Lesson = {
         hint: { en: "Say how many guests are coming: fifty.", te: "ఎంతమంది వస్తున్నారో చెప్పండి: యాభై మంది." },
         replies: [
           { say: "Fifty people are coming.", good: true, skill: "many" },
-          { say: "Fifty peoples are coming.", good: false, skill: "many" },
+          { say: "Fifty peoples are coming.", good: false, skill: "many", fixIt: "plural" },
         ],
       },
       {
@@ -215,7 +222,7 @@ export const day: Lesson = {
         hint: { en: "Say yes, and ask for sixty.", te: "అవునని చెప్పి, అరవై కప్పులు అడగండి." },
         replies: [
           { say: "Yes, sixty cups, please.", good: true, skill: "many" },
-          { say: "Yes, sixty cup, please.", good: false, skill: "many" },
+          { say: "Yes, sixty cup, please.", good: false, skill: "many", fixIt: "plural" },
         ],
       },
       {
@@ -224,7 +231,7 @@ export const day: Lesson = {
         hint: { en: "Say yes, fifty of them.", te: "అవును, యాభై కావాలని చెప్పండి." },
         replies: [
           { say: "Yes, fifty chairs, please.", good: true, skill: "many" },
-          { say: "Yes, fifty chair, please.", good: false, skill: "many" },
+          { say: "Yes, fifty chair, please.", good: false, skill: "many", fixIt: "plural" },
           {
             say: "Of course! Don't ask silly questions.",
             good: false,

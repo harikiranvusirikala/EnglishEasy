@@ -191,3 +191,89 @@ test("the lesson page's key sentences", async ({ page }) => {
   await listen.scrollIntoViewIfNeeded();
   await shot(page, "lesson-page");
 });
+
+/** Day 1 with its sections replaced by `activities` in one section (for screens whose content isn't written yet). */
+async function inject(page: Page, activities: Activity[], kind = "practice") {
+  await page.route("**/content/sentence-basics.json", async (route) => {
+    const day = (await (await route.fetch()).json()) as PlayableDay;
+    day.sections = [{ kind: kind as PlayableDay["sections"][number]["kind"], activities }, { kind: "wrapup", activities: [] }];
+    await route.fulfill({ json: day });
+  });
+  await page.goto("/learn/play?l=sentence-basics");
+  await page.getByRole("button", { name: /^Start/ }).click();
+}
+
+test("first visit: what do you want English for?", async ({ page }) => {
+  await page.addInitScript(([key]) => localStorage.setItem(key, JSON.stringify({ theme: "light", learnIn: "en" })), [SETTINGS_KEY] as const);
+  await page.goto("/learn");
+  await page.getByRole("button", { name: /Explanations in English/ }).click();
+  await page.getByRole("button", { name: /Talking with my family/ }).click();
+  await page.getByRole("button", { name: /Visiting family abroad/ }).click();
+  await page.getByRole("button", { name: /My trip is soon/ }).click();
+  await shot(page, "goals");
+});
+
+test("Home: New for you (gallery sample, since no track has lessons yet)", async ({ page }) => {
+  await settings(page, { learnIn: "en" });
+  await page.goto("/dev/ui");
+  const offer = page.getByRole("region", { name: "New for you" });
+  await offer.scrollIntoViewIfNeeded();
+  await offer.screenshot({ path: `${SHOTS}/screen-track-offer.png` });
+});
+
+test("a checkpoint week ends with the result and the certificate", async ({ page }) => {
+  await settings(page, { learnIn: "en" });
+  await page.route("**/content/w12-review.json", async (route) => {
+    const day = (await (await route.fetch()).json()) as PlayableDay;
+    day.sections = day.sections.filter((s) => s.kind === "wrapup");
+    await route.fulfill({ json: day });
+  });
+  await page.goto("/learn/play?l=w12-review");
+  await expect(page.getByRole("heading", { name: "Checkpoint 1 complete" })).toBeVisible();
+  await shot(page, "checkpoint");
+  await page.getByRole("button", { name: /Get your certificate/ }).scrollIntoViewIfNeeded();
+  await shot(page, "checkpoint-list");
+  await page.getByRole("button", { name: /Get your certificate/ }).click();
+  await expect(page.getByRole("img", { name: /Your certificate/ })).toBeVisible();
+  await shot(page, "certificate");
+});
+
+const readIt = (kind: "message" | "label" | "sign", heading: string, lines: string[], prompt: string, options: string[]): Activity => ({
+  id: `sentence-basics.read-${kind}`,
+  type: "readIt",
+  kind,
+  heading,
+  lines,
+  prompt: { en: prompt, te: prompt },
+  options,
+  answer: 0,
+});
+
+test("Read it: a message, a label and a sign", async ({ page }) => {
+  await settings(page, { learnIn: "en" });
+  await inject(page, [
+    readIt("message", "VM-BANK", ["Your OTP is 4821. Do not share it with anyone. Bank staff never ask for it."], "Someone calls and asks for this number. What do you do?", ["I say no and cut the call.", "I tell them the number.", "I send it on WhatsApp."]),
+    readIt("label", "PARACETAMOL 500 mg", ["Dose: 1 tablet, 3 times a day", "Take: after food", "EXP: 03/2027", "Keep away from children"], "When do you take it?", ["After eating", "Before eating", "Only at night"]),
+    readIt("sign", "OUT PATIENTS (OP)", ["Ground floor →"], "Where do you go to see a doctor?", ["Ground floor", "First floor", "Outside"]),
+  ]);
+  await expect(page.getByText("Read the message.")).toBeVisible();
+  await shot(page, "read-message");
+  for (const next of ["label", "sign"]) {
+    await page.getByRole("button", { name: /^(I say no|After eating)/ }).click();
+    await page.getByRole("button", { name: /^Check/ }).click();
+    await page.getByRole("button", { name: /^Continue/ }).click();
+    await expect(page.getByText(`Read the ${next}.`)).toBeVisible();
+    await shot(page, `read-${next}`);
+  }
+});
+
+test("a checkpoint's speaking mission", async ({ page }) => {
+  await installSpeechStub(page);
+  await settings(page, { learnIn: "en" });
+  await inject(page, [{ id: "sentence-basics.m1", type: "mission", title: { en: "All about me", te: "నా గురించి" }, prompts: ["My name is …", "I live in …", "Every day I …", "I like …", "Tomorrow I will …"], seconds: 30 }], "speak");
+  await shot(page, "mission");
+  await page.getByRole("button", { name: "Start", exact: true }).click();
+  await expect(page.getByText(/of 0:30$/)).toBeVisible();
+  await page.waitForTimeout(2200);
+  await shot(page, "mission-running");
+});

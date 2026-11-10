@@ -93,6 +93,7 @@ export const day: Lesson = {
     {
       id: "l3",
       type: "dontSay",
+      fixIt: "question",
       wrong: "What time the shop opens?",
       right: "What time does the shop open?",
       why: {
@@ -115,6 +116,7 @@ export const day: Lesson = {
     {
       id: "p1",
       type: "choose",
+      fixIt: "question",
       prompt: { en: "Choose the correct question.", te: "సరైన ప్రశ్నను ఎంచుకోండి." },
       options: ["What time the shop opens?", "What time does the shop open?", "What time does the shop opens?"],
       answer: 1,
@@ -149,6 +151,7 @@ export const day: Lesson = {
     {
       id: "p4",
       type: "findMistake",
+      fixIt: "question",
       sentence: "When you will come?",
       wrongIndex: 1,
       fix: "When will you come?",
@@ -173,6 +176,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "question",
       situation: {
         en: "You want to know the day of the function. Ask your neighbour.",
         te: "ఫంక్షన్ ఎప్పుడో తెలుసుకోవాలి. పక్కింటి వాళ్లని అడగండి.",
@@ -203,7 +207,7 @@ export const day: Lesson = {
         hint: { en: "Ask what time the shop opens tomorrow.", te: "రేపు షాప్ ఎన్ని గంటలకు తెరుస్తారో అడగండి." },
         replies: [
           { say: "What time do you open tomorrow?", good: true, skill: "ask" },
-          { say: "What time you open tomorrow?", good: false, skill: "ask" },
+          { say: "What time you open tomorrow?", good: false, skill: "ask", fixIt: "question" },
           {
             say: "Open now. I need sugar.",
             good: false,
@@ -218,7 +222,7 @@ export const day: Lesson = {
         replies: [
           { say: "When do you close?", good: true, skill: "ask" },
           { say: "What time do you close?", good: true, skill: "ask" },
-          { say: "When you close?", good: false, skill: "ask" },
+          { say: "When you close?", good: false, skill: "ask", fixIt: "question" },
         ],
       },
       {

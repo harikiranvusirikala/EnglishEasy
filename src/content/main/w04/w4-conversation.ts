@@ -40,6 +40,7 @@ export const day: ConversationDay = {
     {
       id: "s1",
       type: "situation",
+      fixIt: "indian-english",
       situation: {
         en: "Tell your new friend: you have one brother and one sister.",
         te: "మీ కొత్త స్నేహితులకు చెప్పండి: మీకు ఒక అన్నయ్య, ఒక చెల్లెలు ఉన్నారు.",
@@ -62,6 +63,7 @@ export const day: ConversationDay = {
     {
       id: "s3",
       type: "situation",
+      fixIt: "question",
       situation: {
         en: "You find a water bottle on the park bench. Ask your new friend whose it is.",
         te: "పార్క్ బెంచీ మీద ఒక నీళ్ళ సీసా కనిపించింది. అది ఎవరిదో మీ కొత్త స్నేహితులను అడగండి.",
@@ -93,7 +95,7 @@ export const day: ConversationDay = {
           hint: { en: "Say who you live with: your sister.", te: "మీరు ఎవరితో ఉంటారో చెప్పండి: మీ చెల్లెలు." },
           replies: [
             { say: "I live with my sister.", good: true, skill: "people" },
-            { say: "I live my sister.", good: false, skill: "people" },
+            { say: "I live my sister.", good: false, skill: "people", fixIt: "preposition" },
           ],
         },
         {
@@ -156,7 +158,7 @@ export const day: ConversationDay = {
           hint: { en: "Say yes, and say who: your friend Sita.", te: "అవునని చెప్పి, ఎవరో చెప్పండి: మీ స్నేహితురాలు సీత." },
           replies: [
             { say: "Yes, my friend Sita.", good: true },
-            { say: "Yes, I am looking my friend.", good: false },
+            { say: "Yes, I am looking my friend.", good: false, fixIt: "preposition" },
           ],
         },
         {

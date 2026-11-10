@@ -201,7 +201,7 @@ Revised 2026-11-09 (curriculum review). The table shows where each point is intr
 |---|---|---|---|
 | 1 | Missing am / is / are | I hungry. → I am hungry. | 1 |
 | 2 | He / she without -s | He go to the office. → He goes to the office. | 1 (recognition), 7 |
-| 3 | Do-support and question word order | Why you are late? → Why are you late? You like tea? → Do you like tea? | 2 |
+| 3 | Do-support and question word order | Why you are late? → Why are you late? You like tea? → Do you like tea? | 1 (Week 1 teaches Do you…? and Will you…?) |
 | 4 | Missing or extra article | I want pen. → I want a pen. | 5 |
 | 5 | Plurals after numbers; uncountables | two kilo → two kilos; furnitures → furniture | 5 |
 | 6 | Wrong or extra preposition | on the light → switch on the light; discuss about it → discuss it; return back → return | 3 |

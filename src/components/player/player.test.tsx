@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, within } from "@testing-library/react";
+import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import { beforeAll, describe, expect, it, vi } from "vitest";
 import day1 from "../../../public/content/sentence-basics.json";
 import type { Activity, PlayableDay } from "@/content/types";
@@ -8,6 +8,8 @@ import { Choose } from "./Choose";
 import { Build } from "./Build";
 import { DontSayCard, ExplainCard, SoundCard, WhenToUseCard } from "./cards";
 import { SoundPair } from "./SoundPair";
+import { ReadIt } from "./ReadIt";
+import { Mission } from "./Mission";
 import { FillBlank } from "./FillBlank";
 import { ListenChoose } from "./ListenChoose";
 import { Player } from "./Player";
@@ -251,6 +253,76 @@ describe("Sound of the week", () => {
     expect(screen.getByText("విని, వాక్యాన్ని పేర్చండి.")).toBeTruthy();
     expect(narrate).toHaveBeenCalledWith("I eat rice.", { voice: undefined });
     expect(screen.getByRole("button", { name: "rice." })).toBeTruthy();
+  });
+});
+
+describe("Read it", () => {
+  const sms: Extract<Activity, { type: "readIt" }> = {
+    id: "d.r1",
+    type: "readIt",
+    kind: "message",
+    heading: "VM-BANK",
+    lines: ["Your OTP is 4821. Do not share it with anyone."],
+    prompt: { en: "Someone calls and asks for this number. What do you do?", te: "ఎవరైనా ఫోన్ చేసి ఈ నంబర్ అడిగితే ఏం చేస్తారు?" },
+    options: ["I tell them the number.", "I say no and cut the call."],
+    answer: 1,
+    why: { en: "Never share an OTP: the bank never asks for it.", te: "OTP ఎవరికీ చెప్పకండి: బ్యాంక్ ఎప్పుడూ అడగదు." },
+  };
+
+  it("draws the message to read, then asks its question with the usual answer bar", () => {
+    updateSettings({ learnIn: "en", autoPlay: true });
+    vi.mocked(narrateAll).mockClear();
+    render(<ReadIt activity={sms} onAnswer={vi.fn()} onNext={vi.fn()} />);
+    expect(screen.getByText("Read the message.")).toBeTruthy();
+    expect(screen.getByText("VM-BANK")).toBeTruthy();
+    expect(screen.getByText(/Your OTP is 4821/)).toBeTruthy();
+    fireEvent.click(screen.getByRole("button", { name: "I say no and cut the call." }));
+    fireEvent.click(screen.getByRole("button", { name: /^Check/ }));
+    expect(screen.getByText("Correct!")).toBeTruthy();
+    expect(narrateAll).toHaveBeenLastCalledWith(["I say no and cut the call.", "Never share an OTP: the bank never asks for it."], expect.objectContaining({ voice: undefined }));
+  });
+
+  it("a label shows its field names in bold; a sign is a board", () => {
+    updateSettings({ learnIn: "en" });
+    const { unmount } = render(<ReadIt activity={{ ...sms, kind: "label", heading: "PARACETAMOL 500 mg", lines: ["Take: after food"] }} onAnswer={vi.fn()} onNext={vi.fn()} />);
+    expect(screen.getByText("Read the label.")).toBeTruthy();
+    expect(screen.getByText("Take:").tagName).toBe("SPAN");
+    unmount();
+    render(<ReadIt activity={{ ...sms, kind: "sign", heading: "OUT PATIENTS", lines: ["Ground floor"] }} onAnswer={vi.fn()} onNext={vi.fn()} />);
+    expect(screen.getByText("Read the sign.")).toBeTruthy();
+    expect(screen.getByText("OUT PATIENTS")).toBeTruthy();
+  });
+});
+
+describe("Speaking mission", () => {
+  const mission: Extract<Activity, { type: "mission" }> = { id: "d.m1", type: "mission", title: { en: "All about me", te: "నా గురించి" }, prompts: ["My name is …", "I live in …"], seconds: 30 };
+
+  it("counts the time while the learner talks and ends by itself, never judging the words", () => {
+    vi.useFakeTimers();
+    try {
+      updateSettings({ learnIn: "en", noSpeaking: true }); // no microphone: a Start button, the same timer
+      const onNext = vi.fn();
+      render(<Mission activity={mission} onNext={onNext} />);
+      expect(screen.getByText("My name is …")).toBeTruthy();
+      fireEvent.click(screen.getByRole("button", { name: "Start" }));
+      act(() => void vi.advanceTimersByTime(10_000));
+      expect(screen.getByText("0:10 of 0:30")).toBeTruthy();
+      act(() => void vi.advanceTimersByTime(21_000));
+      expect(screen.getByText("Well done! You spoke for 30 seconds.")).toBeTruthy();
+      fireEvent.click(screen.getByRole("button", { name: /^Continue/ }));
+      expect(onNext).toHaveBeenCalledOnce();
+    } finally {
+      vi.useRealTimers();
+      updateSettings({ noSpeaking: false });
+    }
+  });
+
+  it("Not now always goes on (speaking never blocks progress)", () => {
+    updateSettings({ learnIn: "en" });
+    const onNext = vi.fn();
+    render(<Mission activity={mission} onNext={onNext} />);
+    fireEvent.click(screen.getByRole("button", { name: "Not now" }));
+    expect(onNext).toHaveBeenCalledOnce();
   });
 });
 

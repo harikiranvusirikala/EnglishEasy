@@ -79,6 +79,7 @@ export function shuffled(a: Activity): Activity {
     case "fillBlank":
     case "situation":
     case "listenChoose":
+    case "readIt":
       return { ...a, ...reorder(a.options, a.answer, a.id) };
     case "dialogue":
       return { ...a, questions: a.questions.map((q, i) => ({ ...q, ...reorder(q.options, q.answer, `${a.id}.${i}`) })) };

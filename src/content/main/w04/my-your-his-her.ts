@@ -139,6 +139,7 @@ export const day: Lesson = {
     {
       id: "p3",
       type: "choose",
+      fixIt: "be",
       prompt: { en: "Which sentence means: మా ఇల్లు చిన్నది (the family's house)?", te: "మా ఇల్లు చిన్నది (కుటుంబం అందరిదీ) — ఏది సరైనది?" },
       options: ["Our house is small.", "Their house is small.", "Our house small."],
       answer: 0,
@@ -174,6 +175,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "be",
       situation: {
         en: "Someone points to your bag and asks: Is this your bag? Say yes.",
         te: "ఒకరు మీ బ్యాగ్ చూపించి అడుగుతున్నారు: Is this your bag? అవునని చెప్పండి.",
@@ -201,7 +203,7 @@ export const day: Lesson = {
         hint: { en: "Say who he is: your brother.", te: "ఈయన ఎవరో చెప్పండి: మీ అన్నయ్య." },
         replies: [
           { say: "This is my brother.", good: true, skill: "whose" },
-          { say: "This my brother.", good: false, skill: "whose" },
+          { say: "This my brother.", good: false, skill: "whose", fixIt: "be" },
           {
             say: "Can't you see? My brother.",
             good: false,
@@ -233,7 +235,7 @@ export const day: Lesson = {
         hint: { en: "Say yes, it is your family's house.", te: "అవును, అది మీ కుటుంబం ఇల్లు అని చెప్పండి." },
         replies: [
           { say: "Yes, that is our house.", good: true, skill: "whose" },
-          { say: "Yes, that our house.", good: false, skill: "whose" },
+          { say: "Yes, that our house.", good: false, skill: "whose", fixIt: "be" },
         ],
       },
     ],

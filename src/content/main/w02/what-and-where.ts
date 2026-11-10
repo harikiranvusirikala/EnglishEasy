@@ -103,6 +103,7 @@ export const day: Lesson = {
     {
       id: "l3",
       type: "dontSay",
+      fixIt: "question",
       wrong: "Where you live?",
       right: "Where do you live?",
       why: {
@@ -125,6 +126,7 @@ export const day: Lesson = {
     {
       id: "p1",
       type: "choose",
+      fixIt: "question",
       prompt: { en: "Choose the correct question.", te: "సరైన ప్రశ్నను ఎంచుకోండి." },
       options: ["Where you live?", "Where do you live?", "Where does you live?"],
       answer: 1,
@@ -148,6 +150,7 @@ export const day: Lesson = {
     {
       id: "p3",
       type: "choose",
+      fixIt: "question",
       prompt: {
         en: "A man waves at you. You do not know him. What do you ask your friend?",
         te: "ఒకాయన మీకు చేయి ఊపుతున్నారు. ఆయన మీకు తెలియదు. మీ స్నేహితులను ఏమని అడుగుతారు?",
@@ -162,6 +165,7 @@ export const day: Lesson = {
     {
       id: "p4",
       type: "findMistake",
+      fixIt: "question",
       sentence: "Where you are going?",
       wrongIndex: 1,
       fix: "Where are you going?",
@@ -186,6 +190,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "question",
       situation: {
         en: "You see a new fruit at the shop. Ask what it is.",
         te: "షాప్‌లో ఒక కొత్త పండు కనిపించింది. అది ఏంటో అడగండి.",
@@ -216,7 +221,7 @@ export const day: Lesson = {
         hint: { en: "Say your name. Start with My name is.", te: "మీ పేరు చెప్పండి. My name is తో మొదలుపెట్టండి." },
         replies: [
           { say: "My name is Kiran.", good: true, skill: "answer" },
-          { say: "My name Kiran.", good: false, skill: "answer" },
+          { say: "My name Kiran.", good: false, skill: "answer", fixIt: "be" },
           {
             say: "Why? Who are you?",
             good: false,
@@ -240,7 +245,7 @@ export const day: Lesson = {
         replies: [
           { say: "I am a teacher.", good: true, skill: "answer" },
           { say: "I am retired.", good: true, skill: "answer" },
-          { say: "I teacher.", good: false, skill: "answer" },
+          { say: "I teacher.", good: false, skill: "answer", fixIt: "be" },
         ],
       },
       {
@@ -249,7 +254,7 @@ export const day: Lesson = {
         hint: { en: "Now ask where he works.", te: "ఇప్పుడు ఆయన ఎక్కడ పని చేస్తారో అడగండి." },
         replies: [
           { say: "Where do you work?", good: true, skill: "ask" },
-          { say: "Where you work?", good: false, skill: "ask" },
+          { say: "Where you work?", good: false, skill: "ask", fixIt: "question" },
           { say: "What you work?", good: false, skill: "ask" },
         ],
       },

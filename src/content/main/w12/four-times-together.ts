@@ -215,7 +215,7 @@ export const day: Lesson = {
         hint: { en: "Say what you are cooking right now.", te: "ఇప్పుడు ఏం వండుతున్నారో చెప్పండి." },
         replies: [
           { say: "I am cooking lunch.", good: true, skill: "now" },
-          { say: "I cooking lunch.", good: false, skill: "now" },
+          { say: "I cooking lunch.", good: false, skill: "now", fixIt: "be" },
           {
             say: "Why do you ask so many questions?",
             good: false,

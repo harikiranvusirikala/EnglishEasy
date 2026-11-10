@@ -108,6 +108,7 @@ export const day: Lesson = {
     {
       id: "l3",
       type: "dontSay",
+      fixIt: "state-ing",
       wrong: "I am walking every day.",
       right: "I walk every day.",
       why: {
@@ -153,6 +154,7 @@ export const day: Lesson = {
     {
       id: "p3",
       type: "choose",
+      fixIt: "state-ing",
       prompt: { en: "Which sentence means: మేము ప్రతి శుక్రవారం గుడికి వెళ్తాం?", te: "మేము ప్రతి శుక్రవారం గుడికి వెళ్తాం — ఇంగ్లీష్‌లో ఏది సరైనది?" },
       options: ["We going to the temple on Fridays.", "We go to the temple on Fridays.", "We went to the temple on Friday."],
       answer: 1,

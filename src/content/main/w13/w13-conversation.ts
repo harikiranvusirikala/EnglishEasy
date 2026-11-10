@@ -53,6 +53,7 @@ export const day: ConversationDay = {
     {
       id: "s1",
       type: "situation",
+      fixIt: "plural",
       situation: {
         en: "Ask the seller for two kilos of potatoes.",
         te: "అమ్మేవారిని రెండు కిలోల బంగాళాదుంపలు అడగండి.",
@@ -105,7 +106,7 @@ export const day: ConversationDay = {
           hint: { en: "Ask politely for two kilos of onions.", te: "రెండు కిలోల ఉల్లిపాయలు మర్యాదగా అడగండి." },
           replies: [
             { say: "Can I have two kilos of onions, please?", good: true, skill: "ask" },
-            { say: "Can I have two kilo onion, please?", good: false, skill: "ask" },
+            { say: "Can I have two kilo onion, please?", good: false, skill: "ask", fixIt: "plural" },
           ],
         },
         {
@@ -114,7 +115,7 @@ export const day: ConversationDay = {
           hint: { en: "Ask for some beans and some coriander, with the amounts.", te: "అర కిలో బీన్స్, ఒక కట్ట కొత్తిమీర అడగండి." },
           replies: [
             { say: "Half a kilo of beans and a bunch of coriander.", good: true, skill: "ask" },
-            { say: "Half kilo beans and one bunch coriander.", good: false, skill: "ask" },
+            { say: "Half kilo beans and one bunch coriander.", good: false, skill: "ask", fixIt: "article" },
           ],
         },
         {
@@ -146,7 +147,7 @@ export const day: ConversationDay = {
           hint: { en: "Thank her, and say how much you want.", te: "థాంక్స్ చెప్పి, ఎంత కావాలో చెప్పండి." },
           replies: [
             { say: "Thank you. One kilo, please.", good: true, skill: "ask" },
-            { say: "Thank you. One kilos, please.", good: false, skill: "ask" },
+            { say: "Thank you. One kilos, please.", good: false, skill: "ask", fixIt: "plural" },
           ],
         },
       ],

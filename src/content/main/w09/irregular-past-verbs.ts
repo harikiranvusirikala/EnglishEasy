@@ -229,7 +229,7 @@ export const day: Lesson = {
         hint: { en: "Say how you came back home.", te: "ఇంటికి ఎలా వచ్చారో చెప్పండి." },
         replies: [
           { say: "I took an auto.", good: true, skill: "past" },
-          { say: "I taked an auto.", good: false, skill: "past" },
+          { say: "I took auto.", good: false, skill: "past", fixIt: "article" },
         ],
       },
     ],

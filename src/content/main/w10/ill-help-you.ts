@@ -101,6 +101,7 @@ export const day: Lesson = {
     {
       id: "l4",
       type: "dontSay",
+      fixIt: "be",
       wrong: "I will not late.",
       right: "I won't be late.",
       why: {
@@ -136,6 +137,7 @@ export const day: Lesson = {
     {
       id: "p3",
       type: "choose",
+      fixIt: "preposition",
       prompt: { en: "Your neighbour has heavy bags. Offer help.", te: "పొరుగువారి దగ్గర బరువైన సంచులు ఉన్నాయి. సహాయం చేస్తానని చెప్పండి." },
       options: ["I'll help you.", "I'll help to you.", "I'm help you."],
       answer: 0,
@@ -171,6 +173,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "indian-english",
       situation: {
         en: "Promise your friend you will call tonight.",
         te: "ఈ రాత్రి ఫోన్ చేస్తానని మీ స్నేహితులకు మాట ఇవ్వండి.",
@@ -221,7 +224,7 @@ export const day: Lesson = {
         hint: { en: "Say yes, and promise a time.", te: "సరే అని, ఏ టైమ్‌కి వస్తారో మాట ఇవ్వండి." },
         replies: [
           { say: "Yes, I will come at ten.", good: true, skill: "will" },
-          { say: "Yes, I'll come ten o'clock.", good: false, skill: "will" },
+          { say: "Yes, I'll come ten o'clock.", good: false, skill: "will", fixIt: "preposition" },
         ],
       },
       {
@@ -230,7 +233,7 @@ export const day: Lesson = {
         hint: { en: "Promise you will be on time.", te: "టైమ్‌కి వస్తానని మాట ఇవ్వండి." },
         replies: [
           { say: "I won't be late.", good: true, skill: "will" },
-          { say: "I won't late.", good: false, skill: "will" },
+          { say: "I won't late.", good: false, skill: "will", fixIt: "be" },
         ],
       },
     ],

@@ -170,6 +170,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "preposition",
       situation: {
         en: "Invite your neighbour to your house on Sankranti.",
         te: "సంక్రాంతికి మీ ఇంటికి రమ్మని పొరుగువారిని పిలవండి.",
@@ -205,7 +206,7 @@ export const day: Lesson = {
         hint: { en: "Say the festival day and the time.", te: "పండుగ రోజు, టైమ్ చెప్పండి." },
         replies: [
           { say: "On Sankranti, at one o'clock.", good: true, skill: "invite" },
-          { say: "In Sankranti, at one o'clock.", good: false, skill: "invite" },
+          { say: "In Sankranti, at one o'clock.", good: false, skill: "invite", fixIt: "preposition" },
         ],
       },
       {
@@ -223,7 +224,7 @@ export const day: Lesson = {
         hint: { en: "Reply to her thanks, and say goodbye till the festival.", te: "ఆవిడ థాంక్స్‌కి జవాబు చెప్పి, పండుగ రోజు కలుద్దాం అని చెప్పండి." },
         replies: [
           { say: "You are welcome. See you on Sankranti!", good: true, skill: "invite" },
-          { say: "You are welcome. See you in Sankranti!", good: false, skill: "invite" },
+          { say: "You are welcome. See you in Sankranti!", good: false, skill: "invite", fixIt: "preposition" },
           {
             say: "Okay. Don't come late.",
             good: false,

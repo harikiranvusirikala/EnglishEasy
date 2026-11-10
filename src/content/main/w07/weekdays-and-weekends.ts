@@ -93,6 +93,7 @@ export const day: Lesson = {
     {
       id: "l3",
       type: "dontSay",
+      fixIt: "preposition",
       wrong: "I go to the temple in Sundays.",
       right: "I go to the temple on Sundays.",
       why: {
@@ -103,6 +104,7 @@ export const day: Lesson = {
     {
       id: "l4",
       type: "dontSay",
+      fixIt: "preposition",
       wrong: "I rest on every weekend.",
       right: "I rest every weekend.",
       why: {
@@ -115,6 +117,7 @@ export const day: Lesson = {
     {
       id: "p1",
       type: "choose",
+      fixIt: "preposition",
       prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
       options: ["The market is busy in Saturdays.", "The market is busy on Saturdays.", "The market is busy at Saturdays."],
       answer: 1,
@@ -137,18 +140,22 @@ export const day: Lesson = {
     },
     {
       id: "p3",
-      type: "choose",
-      prompt: { en: "Which days are the weekend?", te: "వారాంతం అంటే ఏ రోజులు?" },
-      options: ["Monday and Tuesday", "Saturday and Sunday", "Friday and Monday"],
-      answer: 1,
+      type: "readIt",
+      kind: "sign",
+      heading: "Sri Sai Kirana Store",
+      lines: ["Open: Monday to Saturday", "9 am to 9 pm", "Sunday: Closed"],
+      prompt: { en: "Can you buy rice here on Sunday?", te: "ఆదివారం ఇక్కడ బియ్యం కొనొచ్చా?" },
+      options: ["No, it is closed on Sundays.", "Yes, from 9 am to 9 pm.", "Yes, but only in the morning."],
+      answer: 0,
       why: {
-        en: "The weekend is Saturday and Sunday.",
-        te: "weekend అంటే శని, ఆదివారాలు.",
+        en: "The board says Sunday closed, so the shop is open only from Monday to Saturday: No, it is closed on Sundays.",
+        te: "బోర్డ్ మీద Sunday Closed అని ఉంది, అంటే ఆదివారం షాపు తెరవరు: No, it is closed on Sundays.",
       },
     },
     {
       id: "p4",
       type: "findMistake",
+      fixIt: "preposition",
       sentence: "She goes to the bank on every Tuesday.",
       wrongIndex: 5,
       fix: "She goes to the bank every Tuesday.",
@@ -162,6 +169,7 @@ export const day: Lesson = {
     {
       id: "s1",
       type: "situation",
+      fixIt: "preposition",
       situation: {
         en: "A friend asks: What do you do on Sundays? Say you go to the temple.",
         te: "మీ స్నేహితులు అడుగుతున్నారు: What do you do on Sundays? గుడికి వెళ్తానని చెప్పండి.",
@@ -173,6 +181,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "preposition",
       situation: {
         en: "Say that you rest every weekend.",
         te: "మీరు ప్రతి వారాంతం విశ్రాంతి తీసుకుంటారని చెప్పండి.",
@@ -199,7 +208,7 @@ export const day: Lesson = {
         hint: { en: "Tell her what you do on Sundays. Start with On Sundays.", te: "ఆదివారాలు ఏం చేస్తారో చెప్పండి. On Sundays తో మొదలుపెట్టండి." },
         replies: [
           { say: "On Sundays I go to the temple.", good: true, skill: "days" },
-          { say: "In Sundays I go to the temple.", good: false, skill: "days" },
+          { say: "In Sundays I go to the temple.", good: false, skill: "days", fixIt: "preposition" },
         ],
       },
       {
@@ -218,7 +227,7 @@ export const day: Lesson = {
         replies: [
           { say: "Yes, from Monday to Friday.", good: true, skill: "days" },
           { say: "No, I am retired.", good: true },
-          { say: "Yes, since Monday to Friday.", good: false, skill: "days" },
+          { say: "Yes, since Monday to Friday.", good: false, skill: "days", fixIt: "preposition" },
         ],
       },
       {
@@ -227,7 +236,7 @@ export const day: Lesson = {
         hint: { en: "Agree, but warn her about the Saturday crowd.", te: "సరే అని, శనివారం రద్దీ గురించి చెప్పండి." },
         replies: [
           { say: "Okay, but it is busy on Saturdays.", good: true, skill: "days" },
-          { say: "Okay, but it is busy in Saturdays.", good: false, skill: "days" },
+          { say: "Okay, but it is busy in Saturdays.", good: false, skill: "days", fixIt: "preposition" },
           {
             say: "No. I don't like going with you.",
             good: false,

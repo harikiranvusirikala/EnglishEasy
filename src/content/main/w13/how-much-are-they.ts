@@ -91,6 +91,7 @@ export const day: Lesson = {
     {
       id: "l3",
       type: "dontSay",
+      fixIt: "be",
       wrong: "How much these apples?",
       right: "How much are these apples?",
       why: {
@@ -113,6 +114,7 @@ export const day: Lesson = {
     {
       id: "p1",
       type: "choose",
+      fixIt: "be",
       prompt: { en: "Ask the price of these apples.", te: "ఈ ఆపిల్స్ ధర అడగండి." },
       options: ["How much is these apples?", "How much are these apples?", "How much these apples?"],
       answer: 1,
@@ -123,15 +125,18 @@ export const day: Lesson = {
     },
     {
       id: "p2",
-      type: "fillBlank",
-      sentence: "How much ___ this pumpkin?",
-      te: "ఈ గుమ్మడికాయ ఎంత?",
-      options: ["is", "are", "do"],
+      type: "readIt",
+      kind: "sign",
+      heading: "Today's Prices",
+      lines: ["Tomatoes ₹40 a kilo", "Onions ₹30 a kilo", "Beans ₹60 a kilo", "Coconut ₹25 each"],
+      prompt: { en: "You want two kilos of onions. How much is that?", te: "మీకు రెండు కిలోల ఉల్లిపాయలు కావాలి. ఎంత అవుతుంది?" },
+      options: ["60 rupees", "30 rupees", "80 rupees"],
       answer: 0,
       why: {
-        en: "One pumpkin is one thing, so use is: How much is this pumpkin?",
-        te: "గుమ్మడికాయ ఒక్కటే, అందుకే is: How much is this pumpkin?",
+        en: "Onions are 30 rupees a kilo, so two kilos cost double: That comes to 60 rupees.",
+        te: "ఉల్లిపాయలు కిలో 30 రూపాయలు, రెండు కిలోలు అంటే రెట్టింపు: That comes to 60 rupees.",
       },
+      say: "That comes to 60 rupees.",
     },
     {
       id: "p3",
@@ -174,6 +179,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "question",
       situation: {
         en: "Ask how much you have to pay in all.",
         te: "మొత్తం ఎంత కట్టాలో అడగండి.",
@@ -210,7 +216,7 @@ export const day: Lesson = {
         hint: { en: "Say okay, and how much you want.", te: "సరే అని, ఎంత కావాలో చెప్పండి." },
         replies: [
           { say: "Okay, give me one kilo.", good: true },
-          { say: "Okay, give me one kilos.", good: false },
+          { say: "Okay, give me one kilos.", good: false, fixIt: "plural" },
           {
             say: "200? Are you cheating me?",
             good: false,

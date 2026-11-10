@@ -73,6 +73,9 @@ export function mergeProgress(a: Progress, b: Progress): Progress {
   };
   // A resume point is dropped when its day was finished after it was set (completing a day clears it).
   if (Object.keys(review).length > 0) merged.review = review;
+  // The trip flag follows the copy saved last (it changes with the tracks choice).
+  const newer = a.updatedAt >= b.updatedAt ? a : b;
+  if (newer.tripSoon) merged.tripSoon = true;
   if (position && !(position.dayId in completed && completed[position.dayId].at >= position.at)) merged.position = position;
   return merged;
 }

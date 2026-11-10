@@ -197,7 +197,7 @@ export const day: Lesson = {
         hint: { en: "Say who you are waiting for: your cousin.", te: "ఎవరి కోసం ఎదురుచూస్తున్నారో చెప్పండి: మీ కజిన్." },
         replies: [
           { say: "I am waiting for my cousin.", good: true },
-          { say: "I am waiting my cousin.", good: false },
+          { say: "I am waiting my cousin.", good: false, fixIt: "preposition" },
         ],
       },
       {
@@ -230,7 +230,7 @@ export const day: Lesson = {
         hint: { en: "Say yes, it is your cousin, and thank her.", te: "అవును, ఆయనే అని చెప్పి, ఆవిడకి థాంక్స్ చెప్పండి." },
         replies: [
           { say: "Yes! That is him. Thank you.", good: true },
-          { say: "Yes! That him. Thank you.", good: false },
+          { say: "Yes! That him. Thank you.", good: false, fixIt: "be" },
         ],
       },
     ],

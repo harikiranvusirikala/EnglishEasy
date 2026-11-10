@@ -91,6 +91,7 @@ export const day: Lesson = {
     {
       id: "l3",
       type: "dontSay",
+      fixIt: "he-she-s",
       wrong: "He go to the temple.",
       right: "He goes to the temple.",
       why: {
@@ -113,6 +114,7 @@ export const day: Lesson = {
     {
       id: "p1",
       type: "choose",
+      fixIt: "he-she-s",
       prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
       options: ["She watch TV at night.", "She watches TV at night.", "She watchs TV at night."],
       answer: 1,
@@ -124,6 +126,7 @@ export const day: Lesson = {
     {
       id: "p2",
       type: "fillBlank",
+      fixIt: "he-she-s",
       sentence: "Ravi ___ up at five.",
       te: "రవి గారు ఐదు గంటలకు లేస్తారు.",
       options: ["get", "gets", "getting"],
@@ -147,6 +150,7 @@ export const day: Lesson = {
     {
       id: "p4",
       type: "findMistake",
+      fixIt: "he-she-s",
       sentence: "Padma teach music.",
       wrongIndex: 1,
       fix: "Padma teaches music.",
@@ -160,6 +164,7 @@ export const day: Lesson = {
     {
       id: "s1",
       type: "situation",
+      fixIt: "he-she-s",
       situation: {
         en: "Tell a friend about your neighbour: he walks every day.",
         te: "మీ పొరుగాయన గురించి స్నేహితులకు చెప్పండి: ఆయన రోజూ నడుస్తారు.",
@@ -171,6 +176,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "he-she-s",
       situation: {
         en: "Say that your friend Mary watches TV at night.",
         te: "మీ స్నేహితురాలు మేరీ రాత్రి TV చూస్తారని చెప్పండి.",
@@ -197,7 +203,7 @@ export const day: Lesson = {
         hint: { en: "Say yes, and tell her about his morning walk.", te: "అవునని చెప్పి, ఆయన ఉదయం నడక గురించి చెప్పండి." },
         replies: [
           { say: "Yes, he walks every morning.", good: true, skill: "s" },
-          { say: "Yes, he walk every morning.", good: false, skill: "s" },
+          { say: "Yes, he walk every morning.", good: false, skill: "s", fixIt: "he-she-s" },
           {
             say: "Him? He is old and fat.",
             good: false,
@@ -211,7 +217,7 @@ export const day: Lesson = {
         hint: { en: "Tell her the time he gets up. Remember the s.", te: "ఆయన ఎన్ని గంటలకు లేస్తారో చెప్పండి. s మర్చిపోకండి." },
         replies: [
           { say: "He gets up at five.", good: true, skill: "s" },
-          { say: "He get up at five.", good: false, skill: "s" },
+          { say: "He get up at five.", good: false, skill: "s", fixIt: "he-she-s" },
         ],
       },
       {
@@ -220,7 +226,7 @@ export const day: Lesson = {
         hint: { en: "Say no, and what he does at home.", te: "లేదని, ఆయన ఇంట్లో ఏం చేస్తారో చెప్పండి." },
         replies: [
           { say: "No. He cooks and watches TV.", good: true, skill: "s" },
-          { say: "No. He cook and watch TV.", good: false, skill: "s" },
+          { say: "No. He cook and watch TV.", good: false, skill: "s", fixIt: "he-she-s" },
         ],
       },
       {
@@ -229,7 +235,7 @@ export const day: Lesson = {
         hint: { en: "Tell her what work Padma does.", te: "పద్మ గారు ఏం పని చేస్తారో చెప్పండి." },
         replies: [
           { say: "She teaches music at a school.", good: true, skill: "s" },
-          { say: "She teach music at a school.", good: false, skill: "s" },
+          { say: "She teach music at a school.", good: false, skill: "s", fixIt: "he-she-s" },
         ],
       },
     ],

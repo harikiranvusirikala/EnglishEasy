@@ -91,6 +91,7 @@ export const day: Lesson = {
     {
       id: "l3",
       type: "dontSay",
+      fixIt: "indian-english",
       wrong: "Near my house one temple is there.",
       right: "There is a temple near my house.",
       why: {
@@ -112,13 +113,16 @@ export const day: Lesson = {
   practice: [
     {
       id: "p1",
-      type: "choose",
-      prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
-      options: ["There is two shops.", "There are two shops.", "There are two shop."],
-      answer: 1,
+      type: "readIt",
+      kind: "sign",
+      heading: "TO LET",
+      lines: ["House for rent", "2 bedrooms, 1 hall, 1 kitchen", "Near the bus stand", "Call 98480 12345"],
+      prompt: { en: "How many bedrooms are there in this house?", te: "ఈ ఇంట్లో ఎన్ని bedrooms ఉన్నాయి?" },
+      options: ["There are two bedrooms.", "There is one bedroom.", "There are four bedrooms."],
+      answer: 0,
       why: {
-        en: "Two shops are many: there are, and shops with s.",
-        te: "రెండు షాపులు అంటే చాలా: there are, shops కి s.",
+        en: "The board says two bedrooms, and for more than one we say there are: There are two bedrooms.",
+        te: "బోర్డ్ మీద 2 bedrooms అని ఉంది; ఒకటి కంటే ఎక్కువ అయితే there are: There are two bedrooms.",
       },
     },
     {
@@ -136,6 +140,7 @@ export const day: Lesson = {
     {
       id: "p3",
       type: "choose",
+      fixIt: "indian-english",
       prompt: { en: "Which sentence means: మా ఇంటి దగ్గర ఒక పార్క్ ఉంది?", te: "మా ఇంటి దగ్గర ఒక పార్క్ ఉంది — ఇంగ్లీష్‌లో ఏది సరైనది?" },
       options: ["Near my house one park is there.", "There is a park near my house.", "There are a park near my house."],
       answer: 1,
@@ -171,6 +176,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "indian-english",
       situation: {
         en: "Tell a friend about your house: it has two rooms.",
         te: "మీ ఇంటి గురించి స్నేహితులకి చెప్పండి: రెండు గదులు ఉన్నాయి.",
@@ -220,7 +226,7 @@ export const day: Lesson = {
         hint: { en: "Say yes, one is close by.", te: "అవును, దగ్గర్లోనే ఒకటి ఉందని చెప్పండి." },
         replies: [
           { say: "Yes, there is one nearby.", good: true, skill: "there" },
-          { say: "Yes, nearby one is there.", good: false, skill: "there" },
+          { say: "Yes, nearby one is there.", good: false, skill: "there", fixIt: "indian-english" },
         ],
       },
       {

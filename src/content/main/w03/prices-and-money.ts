@@ -171,6 +171,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "be",
       situation: {
         en: "Ask the price of this saree.",
         te: "ఈ చీర ధర అడగండి.",
@@ -224,7 +225,7 @@ export const day: Lesson = {
         hint: { en: "Ask the price of the bag first.", te: "ముందు సంచి ధర ఎంతో అడగండి." },
         replies: [
           { say: "How much is the bag?", good: true, skill: "ask" },
-          { say: "How much the bag is?", good: false, skill: "ask" },
+          { say: "How much the bag is?", good: false, skill: "ask", fixIt: "question" },
         ],
       },
       {

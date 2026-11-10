@@ -52,6 +52,7 @@ export const day: ConversationDay = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "preposition",
       situation: {
         en: "Your guest feels hot. Say you will switch on the fan.",
         te: "మీ అతిథికి వేడిగా ఉంది. ఫ్యాన్ వేస్తానని చెప్పండి.",
@@ -63,6 +64,7 @@ export const day: ConversationDay = {
     {
       id: "s3",
       type: "situation",
+      fixIt: "preposition",
       situation: {
         en: "Your guest asks for the bathroom. It is next to the kitchen. Tell them.",
         te: "మీ అతిథి బాత్‌రూమ్ ఎక్కడని అడుగుతున్నారు. అది వంటగది పక్కన ఉంది. చెప్పండి.",
@@ -119,7 +121,7 @@ export const day: ConversationDay = {
           replies: [
             { say: "Put it on the chair.", good: true, skill: "home" },
             { say: "Keep it on the chair.", good: true, skill: "home" },
-            { say: "Keep it the chair on.", good: false, skill: "home" },
+            { say: "Keep it the chair on.", good: false, skill: "home", fixIt: "preposition" },
           ],
         },
         {
@@ -128,7 +130,7 @@ export const day: ConversationDay = {
           hint: { en: "Offer to do something about the light.", te: "లైట్ వేస్తానని చెప్పండి." },
           replies: [
             { say: "I will switch on the light.", good: true, skill: "polite" },
-            { say: "I will on the light.", good: false, skill: "polite" },
+            { say: "I will on the light.", good: false, skill: "polite", fixIt: "preposition" },
           ],
         },
         {
@@ -137,7 +139,7 @@ export const day: ConversationDay = {
           hint: { en: "Say yes, and say it is beside the temple.", te: "అవునని చెప్పి, గుడి పక్కన ఉందని చెప్పండి." },
           replies: [
             { say: "Yes, next to the temple.", good: true, skill: "home" },
-            { say: "Yes, next the temple.", good: false, skill: "home" },
+            { say: "Yes, next the temple.", good: false, skill: "home", fixIt: "preposition" },
           ],
         },
       ],
@@ -163,7 +165,7 @@ export const day: ConversationDay = {
           hint: { en: "Say which room the light is in.", te: "లైట్ ఏ గదిలో ఉందో చెప్పండి." },
           replies: [
             { say: "The light in the kitchen.", good: true, skill: "place" },
-            { say: "The light on the kitchen.", good: false, skill: "place" },
+            { say: "The light on the kitchen.", good: false, skill: "place", fixIt: "preposition" },
           ],
         },
         {
@@ -172,7 +174,7 @@ export const day: ConversationDay = {
           hint: { en: "Tell him where: at the back of the door.", te: "అది ఎక్కడ ఉందో చెప్పండి: తలుపు వెనకాల." },
           replies: [
             { say: "It is behind the door.", good: true, skill: "place" },
-            { say: "It is the door behind.", good: false, skill: "place" },
+            { say: "It is the door behind.", good: false, skill: "place", fixIt: "preposition" },
           ],
         },
         {

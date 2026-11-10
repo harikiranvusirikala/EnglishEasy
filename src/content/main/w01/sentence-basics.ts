@@ -173,6 +173,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "state-ing",
       situation: {
         en: "A neighbour asks: Which language do you speak at home? Answer in English.",
         te: "పక్కింటి వాళ్లు అడుగుతున్నారు: ఇంట్లో మీరు ఏ భాష మాట్లాడతారు? ఇంగ్లీష్‌లో చెప్పండి.",

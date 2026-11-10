@@ -91,6 +91,7 @@ export const day: Lesson = {
     {
       id: "l3",
       type: "dontSay",
+      fixIt: "preposition",
       wrong: "The doctor will come after two days.",
       right: "The doctor will come in two days.",
       why: {
@@ -101,6 +102,7 @@ export const day: Lesson = {
     {
       id: "l4",
       type: "dontSay",
+      fixIt: "preposition",
       wrong: "Can I come on next Monday?",
       right: "Can I come next Monday?",
       why: {
@@ -112,14 +114,18 @@ export const day: Lesson = {
   practice: [
     {
       id: "p1",
-      type: "choose",
-      prompt: { en: "Choose the correct sentence.", te: "సరైన వాక్యాన్ని ఎంచుకోండి." },
-      options: ["I'll see you last week.", "I'll see you next week.", "I'll see you after week."],
-      answer: 1,
+      type: "readIt",
+      kind: "message",
+      heading: "Sunrise Eye Clinic",
+      lines: ["Your eye check-up is in 3 days.", "Friday, 11 am", "Please bring your old glasses."],
+      prompt: { en: "When is your check-up?", te: "మీ check-up ఎప్పుడు?" },
+      options: ["On Friday, at eleven.", "Today, at eleven.", "Three days ago."],
+      answer: 0,
       why: {
-        en: "For the coming week, say next week; last week is the past: I'll see you next week.",
-        te: "వచ్చే వారం అంటే next week; last week అంటే గతం: I'll see you next week.",
+        en: "In three days means three days from today, so it is still to come: My check-up is on Friday at eleven.",
+        te: "in 3 days అంటే ఈరోజు నుండి మూడు రోజుల తర్వాత: My check-up is on Friday at eleven.",
       },
+      say: "My check-up is on Friday at eleven.",
     },
     {
       id: "p2",
@@ -147,6 +153,7 @@ export const day: Lesson = {
     {
       id: "p4",
       type: "findMistake",
+      fixIt: "preposition",
       sentence: "Can I come on next Monday?",
       wrongIndex: 3,
       fix: "Can I come next Monday?",
@@ -171,6 +178,7 @@ export const day: Lesson = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "preposition",
       situation: {
         en: "Tell a friend that the wedding is next month.",
         te: "పెళ్లి వచ్చే నెలలో అని మీ స్నేహితులకు చెప్పండి.",
@@ -197,7 +205,7 @@ export const day: Lesson = {
         hint: { en: "Ask politely for an appointment.", te: "మర్యాదగా అపాయింట్‌మెంట్ అడగండి." },
         replies: [
           { say: "I'd like an appointment, please.", good: true },
-          { say: "I'd like appointment, please.", good: false },
+          { say: "I'd like appointment, please.", good: false, fixIt: "article" },
           {
             say: "Hello. Give me an appointment.",
             good: false,
@@ -211,7 +219,7 @@ export const day: Lesson = {
         hint: { en: "Say sorry, that day doesn't suit you.", te: "sorry అని, ఆ రోజు మీకు కుదరదని చెప్పండి." },
         replies: [
           { say: "Sorry, I'm busy next Monday.", good: true, skill: "future" },
-          { say: "Sorry, I'm busy on next Monday.", good: false, skill: "future" },
+          { say: "Sorry, I'm busy on next Monday.", good: false, skill: "future", fixIt: "preposition" },
         ],
       },
       {
@@ -229,7 +237,7 @@ export const day: Lesson = {
         hint: { en: "Promise to come on time.", te: "టైమ్‌కి వస్తానని మాట ఇవ్వండి." },
         replies: [
           { say: "I'll be there at ten.", good: true, skill: "future" },
-          { say: "I'll there at ten.", good: false, skill: "future" },
+          { say: "I'll there at ten.", good: false, skill: "future", fixIt: "be" },
         ],
       },
     ],

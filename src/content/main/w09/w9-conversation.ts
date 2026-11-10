@@ -37,6 +37,7 @@ export const day: ConversationDay = {
     {
       id: "s1",
       type: "situation",
+      fixIt: "indian-english",
       situation: {
         en: "Tell a friend you went to Tirupati last week.",
         te: "పోయిన వారం తిరుపతి వెళ్ళానని మీ స్నేహితులకు చెప్పండి.",
@@ -48,6 +49,7 @@ export const day: ConversationDay = {
     {
       id: "s2",
       type: "situation",
+      fixIt: "question",
       situation: {
         en: "Your friend went to a wedding. Ask how she went there.",
         te: "మీ స్నేహితురాలు ఒక పెళ్ళికి వెళ్ళారు. ఎలా వెళ్ళారో అడగండి.",
@@ -131,7 +133,7 @@ export const day: ConversationDay = {
           hint: { en: "Say how many days ago you came back.", te: "ఎన్ని రోజుల క్రితం వచ్చారో చెప్పండి." },
           replies: [
             { say: "We came back two days ago.", good: true, skill: "when" },
-            { say: "We came back before two days.", good: false, skill: "when" },
+            { say: "We came back before two days.", good: false, skill: "when", fixIt: "indian-english" },
           ],
         },
       ],

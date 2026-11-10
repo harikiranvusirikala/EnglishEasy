@@ -209,7 +209,7 @@ export const day: Lesson = {
         hint: { en: "Decide now to phone her later.", te: "తర్వాత ఆవిడకి ఫోన్ చేస్తానని ఇప్పుడే నిర్ణయించి చెప్పండి." },
         replies: [
           { say: "I'll call you in the evening.", good: true, skill: "now" },
-          { say: "I'll call to you in the evening.", good: false, skill: "now" },
+          { say: "I'll call to you in the evening.", good: false, skill: "now", fixIt: "preposition" },
         ],
       },
       {
@@ -232,7 +232,7 @@ export const day: Lesson = {
         hint: { en: "Say okay, and goodbye till tomorrow.", te: "సరే అని, రేపు కలుద్దాం అని చెప్పండి." },
         replies: [
           { say: "Okay. See you tomorrow.", good: true },
-          { say: "Okay. See you on tomorrow.", good: false },
+          { say: "Okay. See you on tomorrow.", good: false, fixIt: "preposition" },
         ],
       },
     ],

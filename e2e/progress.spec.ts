@@ -103,3 +103,29 @@ test("the lesson page holds the Learn content in both languages for search engin
   expect(html).toContain('"name":"Day 1: Who Does What"');
   expect((await request.get("/lessons/not-a-lesson")).status()).toBe(404); // no such lesson
 });
+
+test("a Conversation Day's page shows the conversation (the rest behind a tap), role plays and situations", async ({ page }) => {
+  await page.addInitScript(([key]) => localStorage.setItem(key, JSON.stringify({ learnIn: "en" })), [SETTINGS_KEY]);
+  await page.goto("/lessons/w2-conversation");
+  await expect(page.getByText("Conversation Day", { exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Two guests at a wedding" })).toBeVisible();
+  await expect(page.getByText("Hello! Are you from the bride's side?")).toBeVisible();
+  await expect(page.getByText("It is behind the stage. Come!")).toBeHidden();
+  await page.getByText("Read the whole conversation").click();
+  await expect(page.getByText("It is behind the stage. Come!")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Getting to know a guest" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Situations" })).toBeVisible();
+  await page.screenshot({ path: `${SHOTS}/lesson-page-conversation.png`, fullPage: true });
+});
+
+test("a review day's page links to the days of its week", async ({ page }) => {
+  await page.addInitScript(([key]) => localStorage.setItem(key, JSON.stringify({ learnIn: "en" })), [SETTINGS_KEY]);
+  await page.goto("/lessons/w2-review");
+  await expect(page.getByText("Week 2 review", { exact: true })).toBeVisible();
+  await expect(page.getByText(/^Practice everything from Week 2 again: /)).toBeVisible();
+  const days = page.getByRole("article").getByRole("link");
+  await expect(days).toHaveCount(6);
+  await page.screenshot({ path: `${SHOTS}/lesson-page-review.png`, fullPage: true });
+  await days.last().click();
+  await expect(page).toHaveURL(/\/lessons\/w2-conversation$/);
+});

@@ -400,7 +400,7 @@ The current stage is open; finished stages are folded; future stages are one car
 
 ## 10.4 Lesson overview
 
-Title (English + Telugu), the pattern, % and section checklist, **Start / Continue / Review**, and **Share this lesson** (WhatsApp). The Learn content is shown on this page too, so search engines can find "past tense explained in Telugu".
+Title (English + Telugu), the pattern, % and section checklist, **Start / Continue / Review**, and **Share this lesson** (WhatsApp). The Learn content is shown on this page too, so search engines can find "past tense explained in Telugu". A Conversation Day's page shows its conversation (the first lines, the rest behind a tap, since the app has it heard first), its role plays and situations; a review day's page links to the days of its week, each with its first key sentence.
 
 ## 10.5 Lesson player
 

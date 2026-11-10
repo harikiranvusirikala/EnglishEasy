@@ -30,6 +30,7 @@ export function LandingFooter() {
         <nav aria-label={strings.landingFooterAbout.en} className="flex flex-col gap-1">
           <p className="mb-1 text-sm font-bold tracking-wider text-ink uppercase">{strings.landingFooterAbout.en}</p>
           <Link href="/privacy" className={LINK}>
+            <Icon name="shield" className="size-5" />
             {strings.landingPrivacy.en}
           </Link>
           <a href={SOURCE_URL} target="_blank" rel="noopener noreferrer" aria-label={`${strings.landingSourceCode.en} ${strings.opensNewTab.en}`} className={LINK}>

@@ -123,10 +123,21 @@ test("role play: the partner reacts to a manners slip", async ({ page }) => {
   await settings(page, { learnIn: "en" });
   await only(page, "roleplay", () => true);
   await page.getByRole("button", { name: /^Show replies/ }).click();
+  await clearOfBar(page); // the replies scroll up above the Speak bar
   await page.getByRole("button", { name: "Why do you ask?", exact: true }).click();
   await expect(page.getByText("Oh, just asking! I like tea.")).toBeVisible();
+  await clearOfBar(page); // and so does the partner's reaction, above the taller "Almost" bar
   await shot(page, "roleplay-react");
 });
+
+/** The end of the step's content is above the fixed bottom bar (nothing hidden behind it). */
+async function clearOfBar(page: Page) {
+  await expect(async () => {
+    const box = await page.locator("[data-scroll-end]").boundingBox();
+    const bar = await page.locator("[data-bottom-bar]").boundingBox();
+    expect(box && bar && box.y + box.height <= bar.y).toBe(true);
+  }).toPass({ timeout: 3000 });
+}
 
 test("Sound of the week: the card, and which word did you hear", async ({ page }) => {
   await installSpeechStub(page);

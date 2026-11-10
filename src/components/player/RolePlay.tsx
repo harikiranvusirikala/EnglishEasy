@@ -110,6 +110,7 @@ export function RolePlay({ activity, onNext }: { activity: RolePlayActivity; onA
   const end = useRef<HTMLDivElement>(null);
 
   const replied = log.length > turn; // this turn has its reply
+  const repliesShown = choosing || shown === turn;
   const last = turn === turns.length - 1;
   const current = turns[turn];
   const order = useMemo(() => shuffle(current.replies.map((_, i) => i), `${activity.id}.${turn}`), [activity.id, current, turn]);
@@ -123,9 +124,15 @@ export function RolePlay({ activity, onNext }: { activity: RolePlayActivity; onA
     };
   }, []);
 
+  // The newest line, reply or the replies themselves come into view above the bottom bar (the end marker's scroll
+  // margin is the bar's height). Two frames later: a bar that just grew (feedback) publishes its new height after its
+  // next layout, and an effect after a tap can run before that frame.
   useEffect(() => {
-    end.current?.scrollIntoView?.({ block: "nearest" });
-  }, [turn, log.length, hint, miss]);
+    let frame = requestAnimationFrame(() => {
+      frame = requestAnimationFrame(() => end.current?.scrollIntoView?.({ block: "end" }));
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [turn, log.length, hint, miss, repliesShown]);
 
   const forward = () => {
     if (last) setSummary(true);
@@ -162,7 +169,6 @@ export function RolePlay({ activity, onNext }: { activity: RolePlayActivity; onA
 
   const lastReply = log[turn];
   const corrected = replied && lastReply && !lastReply.good; // only a not-good reply waits for Continue
-  const repliesShown = choosing || shown === turn;
   const voice = activity.voice;
   return (
     <>
@@ -233,7 +239,7 @@ export function RolePlay({ activity, onNext }: { activity: RolePlayActivity; onA
             ))}
           </div>
         )}
-        <div ref={end} />
+        <div ref={end} data-scroll-end className="scroll-mb-[calc(var(--bar-h,10rem)+1rem)]" />
       </div>
 
       <BottomBar tone={corrected || (!replied && miss) ? "almost" : "neutral"}>

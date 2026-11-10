@@ -22,6 +22,8 @@ const VARIANTS = {
   onBrand: "bg-white text-[#0b4f49] shadow-[0_10px_24px_-12px_rgb(0_0_0/0.55)] hover:bg-[#f0fdfa]",
   /** Red only for destructive actions (the Sign out confirmation). */
   danger: "bg-danger-fill text-on-danger hover:brightness-110",
+  /** A white button with red text that opens a destructive confirmation (Settings → Reset progress). */
+  dangerOutline: "border border-line-strong bg-surface text-danger shadow-card hover:border-danger/50 hover:bg-sunken",
 };
 
 const SIZES = {

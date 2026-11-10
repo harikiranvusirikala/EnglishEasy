@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { makePlayable, standardShape } from "../../test/fixtures/course";
-import { addPracticeDay, chooseTracks, completeDay, dateKey, dayIdOf, emptyProgress, markViewed, parseProgress, recordAnswer, setPosition, skipActivity } from "./progress";
+import { addPracticeDay, chooseTracks, completeDay, dateKey, dayIdOf, emptyProgress, markViewed, parseProgress, recordAnswer, resetProgress, setPosition, skipActivity } from "./progress";
 
 const T = (n: number) => `2026-11-0${n}T10:00:00.000Z`;
 
@@ -138,6 +138,16 @@ describe("parseProgress", () => {
     expect(p.practiceDays).toEqual(["2026-01-01"]);
     expect(p.position).toBeUndefined();
     expect(p.tracks).toEqual(["abroad"]);
+  });
+});
+
+describe("resetProgress", () => {
+  const now = "2026-11-10T09:00:00.000Z";
+  it("is empty progress, goals included; signed in it keeps the reset time, which survives a save and load", () => {
+    expect(resetProgress(now, false)).toEqual(emptyProgress(now));
+    const everywhere = resetProgress(now, true);
+    expect(everywhere).toEqual({ ...emptyProgress(now), resetAt: now });
+    expect(parseProgress(JSON.stringify(everywhere))).toEqual(everywhere);
   });
 });
 

@@ -135,7 +135,7 @@ describe("Skeleton, Toast, icons, button", () => {
     }
   });
   it("every button uses design tokens (they follow Night by themselves) and keeps a 52px target", () => {
-    for (const variant of ["primary", "secondary", "soft", "ghost", "accent", "danger"] as const) {
+    for (const variant of ["primary", "secondary", "soft", "ghost", "accent", "danger", "dangerOutline"] as const) {
       for (const size of ["md", "lg", "pill"] as const) {
         const classes = button(variant, size);
         // A raw palette colour would need a dark: twin; buttons use tokens only.

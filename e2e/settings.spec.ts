@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { PROGRESS_KEY } from "../src/learning/progress";
 import { SETTINGS_KEY } from "../src/learning/settings";
 
 test.skip(({ isMobile }) => !isMobile, "the settings flow is checked on the phone project");
@@ -41,6 +42,35 @@ test("Night, A++ and English mode apply before first paint, survive a reload, an
 
   const saved = await page.evaluate((key) => JSON.parse(localStorage.getItem(key)!), SETTINGS_KEY);
   expect(saved).toMatchObject({ theme: "dark", textSize: "A++", learnIn: "en" });
+});
+
+test("Start over: asks first, clears progress and goals, keeps settings, and the welcome asks again", async ({ page }) => {
+  await page.goto("/learn/settings");
+  await page.evaluate(
+    ([pk, sk]) => {
+      const at = "2026-11-08T10:00:00.000Z";
+      localStorage.setItem(pk, JSON.stringify({ version: 1, activities: {}, completed: { "sentence-basics": { at, correct: 9, total: 10 } }, mistakes: {}, practiceDays: ["2026-11-08"], tracks: ["abroad"], tracksAsked: true, updatedAt: at }));
+      localStorage.setItem(sk, JSON.stringify({ learnIn: "en", textSize: "A+", onboarded: true }));
+    },
+    [PROGRESS_KEY, SETTINGS_KEY] as const,
+  );
+  await page.reload();
+  await page.getByRole("button", { name: "Reset progress" }).click();
+  const dialog = page.getByRole("dialog", { name: "Reset all progress?" });
+  await expect(dialog).toContainText("on this phone and starts again from Day 1");
+  await page.waitForTimeout(300); // the sheet slides in (240 ms)
+  await dialog.screenshot({ path: `${SHOTS}/settings-reset-phone.png` });
+  await dialog.getByRole("button", { name: "Cancel" }).click();
+  await expect(dialog).toBeHidden();
+
+  await page.getByRole("button", { name: "Reset progress" }).click();
+  await dialog.getByRole("button", { name: "Reset progress" }).click();
+  await expect(page).toHaveURL(/\/learn$/);
+  await expect(page.getByRole("heading", { name: /How would you like to learn/ })).toBeVisible();
+  const [progress, saved] = await page.evaluate(([pk, sk]) => [JSON.parse(localStorage.getItem(pk)!), JSON.parse(localStorage.getItem(sk)!)], [PROGRESS_KEY, SETTINGS_KEY] as const);
+  expect(progress).toMatchObject({ completed: {}, practiceDays: [], tracks: [], tracksAsked: false });
+  expect(progress.resetAt).toBeUndefined(); // signed out: this phone only
+  expect(saved).toMatchObject({ textSize: "A+", onboarded: false });
 });
 
 test("component gallery in Day and Night", async ({ page }) => {

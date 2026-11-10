@@ -59,6 +59,11 @@ async function finish(deps: SyncDeps, remote: Progress | null): Promise<{ status
   return { status: result.status, synced: result.sent };
 }
 
+/** Sends the phone's progress to the account now (after "Start over"), not after the usual wait. Browser only. */
+export async function pushNow(): Promise<SyncStatus> {
+  return (await push(browserDeps())).status;
+}
+
 /** Keeps the account and the phone in step until the returned function is called. Browser only. */
 export function startProgressSync(deps: SyncDeps = browserDeps()): () => void {
   let stopped = false;

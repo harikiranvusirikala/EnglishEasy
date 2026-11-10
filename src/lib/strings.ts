@@ -116,6 +116,29 @@ export const strings = {
   signOutKeep: { en: "Stay signed in", te: "సైన్ ఇన్‌లోనే ఉండండి" },
   signOutFailed: { en: "Couldn't sign out. Please try again.", te: "సైన్ అవుట్ చేయలేకపోయాము. దయచేసి మళ్ళీ ప్రయత్నించండి." },
   accountPhotoAlt: { en: "Your Google photo", te: "మీ Google ఫోటో" },
+  startOver: { en: "Start over", te: "మళ్ళీ మొదటి నుంచి" },
+  startOverHint: {
+    en: "Clear your lessons, practice and goals, and begin again from Day 1.",
+    te: "మీ పాఠాలు, practice, లక్ష్యాలు అన్నీ తీసేసి, మళ్ళీ Day 1 నుంచి మొదలుపెట్టండి.",
+  },
+  resetProgress: { en: "Reset progress", te: "ప్రోగ్రెస్ రీసెట్ చేయండి" },
+  resetAsk: { en: "Reset all progress?", te: "మొత్తం ప్రోగ్రెస్ రీసెట్ చేయాలా?" },
+  resetBodyPhone: {
+    en: "This clears your progress on this phone and starts again from Day 1.",
+    te: "ఈ ఫోన్‌లో మీ ప్రోగ్రెస్ అంతా పోయి, మళ్ళీ Day 1 నుంచి మొదలవుతుంది.",
+  },
+  resetBodyAccount: {
+    en: "This clears your progress on this phone and in your account ({email}), so every phone you sign in on starts again from Day 1.",
+    te: "ఈ ఫోన్‌లో, మీ ఖాతాలో ({email}) మీ ప్రోగ్రెస్ అంతా పోతుంది. మీరు సైన్ ఇన్ చేసే ప్రతి ఫోన్‌లో మళ్ళీ Day 1 నుంచి మొదలవుతుంది.",
+  },
+  resetCleared: { en: "Cleared", te: "పోయేవి" },
+  resetClearedList: {
+    en: "Lessons done, practice, daily review, streak, goals",
+    te: "పూర్తి చేసిన పాఠాలు, practice, రోజువారీ రివ్యూ, streak, లక్ష్యాలు",
+  },
+  resetKept: { en: "Kept", te: "ఉండేవి" },
+  resetKeptList: { en: "Your settings and reminders", te: "మీ సెట్టింగ్స్, రిమైండర్లు" },
+  resetCannotUndo: { en: "This cannot be undone.", te: "దీన్ని మళ్ళీ వెనక్కి తేలేము." },
   supportCoffee: { en: "Buy me a coffee", te: "నాకు ఒక కాఫీ కొనివ్వండి" },
   supportHint: {
     en: "EnglishEasy is free. If it helps you, you can support it.",

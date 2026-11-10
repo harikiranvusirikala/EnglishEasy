@@ -18,6 +18,7 @@ export type Progress = {
   tracksAsked: boolean;
   tripSoon?: true; // "My trip is soon" (first visit): Abroad is offered from its earlier week
   review?: Record<string, ReviewRecord>; // daily review: `${dayId}.k${n}` → its schedule
+  resetAt?: string; // "Start over" while signed in: progress from before this time is dropped on every device (merge.ts)
   updatedAt: string;
 };
 
@@ -158,6 +159,7 @@ export function parseProgress(raw: string | null): Progress {
   if (Array.isArray(data.tracks)) out.tracks = data.tracks.filter((t): t is string => typeof t === "string");
   out.tracksAsked = data.tracksAsked === true;
   if (data.tripSoon === true) out.tripSoon = true;
+  if (typeof data.resetAt === "string") out.resetAt = data.resetAt;
   if (isRecord(data.review)) {
     const review: Record<string, ReviewRecord> = {};
     for (const [key, r] of Object.entries(data.review)) {
@@ -166,6 +168,16 @@ export function parseProgress(raw: string | null): Progress {
     if (Object.keys(review).length > 0) out.review = review;
   }
   return out;
+}
+
+/**
+ * "Start over" in Settings: everything learned and the goals are gone. Signed in (`everywhere`), the reset time is kept,
+ * so the account and every other phone drop their older progress when they merge; signed out it is this phone only, and
+ * signing in later brings the account's progress back.
+ */
+export function resetProgress(now: string, everywhere: boolean): Progress {
+  const empty = emptyProgress(now);
+  return everywhere ? { ...empty, resetAt: now } : empty;
 }
 
 /** A local date as "YYYY-MM-DD" (the practice-day format). */

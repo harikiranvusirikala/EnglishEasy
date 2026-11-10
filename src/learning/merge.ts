@@ -1,6 +1,6 @@
 import { dayIdOf, MAX_PRACTICE_DAYS, type ActivityRecord, type Progress } from "./progress";
 
-/** Merging two copies of one learner's progress (BUILD_PLAN A7). Pure; nothing learned on either side is lost. */
+/** Merging two copies of one learner's progress (BUILD_PLAN A7). Pure; nothing learned on either side is lost, except what a signed-in "Start over" cleared. */
 
 type Completed = Progress["completed"][string];
 
@@ -34,7 +34,33 @@ function clearedBy(id: string, added: string, other: Progress): boolean {
   return played && other.updatedAt > added;
 }
 
+/** What a copy learned after a reset elsewhere (`at`); everything older, and its goals, are gone with the reset. */
+function sinceReset(p: Progress, at: string): Progress {
+  const after = <T>(items: Record<string, T>, time: (v: T) => string) => Object.fromEntries(Object.entries(items).filter(([, v]) => time(v) > at));
+  const kept: Progress = {
+    version: 1,
+    activities: after(p.activities, (r) => r.at),
+    completed: after(p.completed, (c) => c.at),
+    mistakes: after(p.mistakes, (added) => added),
+    practiceDays: p.practiceDays.filter((d) => d > at.slice(0, 10)),
+    tracks: [],
+    tracksAsked: false,
+    updatedAt: p.updatedAt,
+    resetAt: at,
+  };
+  const review = after(p.review ?? {}, (r) => r.at);
+  if (Object.keys(review).length > 0) kept.review = review;
+  if (p.position && p.position.at > at) kept.position = p.position;
+  return kept;
+}
+
 export function mergeProgress(a: Progress, b: Progress): Progress {
+  // "Start over" on a signed-in phone: the copy that has not seen the latest reset keeps only what came after it.
+  const resetA = a.resetAt ?? "";
+  const resetB = b.resetAt ?? "";
+  if (resetA > resetB) b = sinceReset(b, resetA);
+  else if (resetB > resetA) a = sinceReset(a, resetB);
+
   const completed: Progress["completed"] = { ...a.completed };
   for (const [id, summary] of Object.entries(b.completed)) completed[id] = id in completed ? betterCompleted(completed[id], summary) : summary;
 
@@ -73,6 +99,7 @@ export function mergeProgress(a: Progress, b: Progress): Progress {
   };
   // A resume point is dropped when its day was finished after it was set (completing a day clears it).
   if (Object.keys(review).length > 0) merged.review = review;
+  if (a.resetAt) merged.resetAt = a.resetAt; // both copies now share the latest reset
   // The trip flag follows the copy saved last (it changes with the tracks choice).
   const newer = a.updatedAt >= b.updatedAt ? a : b;
   if (newer.tripSoon) merged.tripSoon = true;

@@ -98,6 +98,46 @@ describe("mergeProgress", () => {
     expect(sameProgress(mergeProgress(m, a), m)).toBe(true);
     expect(sameProgress(mergeProgress(m, b), m)).toBe(true);
   });
+
+  describe("after a signed-in Start over", () => {
+    const old = make({
+      activities: { "d.x": rec(T(2)), "d.late": rec(T(5)) },
+      completed: { e: { at: T(2), correct: 3, total: 4 } },
+      mistakes: { "d.y": T(2) },
+      practiceDays: ["2026-11-02", "2026-11-05"],
+      position: { dayId: "d", activityId: "d.x", at: T(2) },
+      tracks: ["abroad"],
+      tracksAsked: true,
+      tripSoon: true,
+      review: { "e.k0": { box: 2, due: "2026-11-09", at: T(2) } },
+      updatedAt: T(5),
+    });
+    const reset = make({ activities: { "f.a": rec(T(4)) }, resetAt: T(3), updatedAt: T(4) });
+
+    it("drops what the other copy learned before the reset, and its goals; keeps what came after", () => {
+      for (const m of [mergeProgress(old, reset), mergeProgress(reset, old)]) {
+        expect(Object.keys(m.activities).sort()).toEqual(["d.late", "f.a"]);
+        expect(m.completed).toEqual({});
+        expect(m.mistakes).toEqual({});
+        expect(m.review).toBeUndefined();
+        expect(m.position).toBeUndefined();
+        expect(m.practiceDays).toEqual(["2026-11-05"]);
+        expect(m.tracks).toEqual([]);
+        expect(m.tracksAsked).toBe(false);
+        expect(m.tripSoon).toBeUndefined();
+        expect(m.resetAt).toBe(T(3));
+      }
+    });
+
+    it("an older reset gives way to a newer one, and merging again changes nothing", () => {
+      const newer = make({ resetAt: T(6), updatedAt: T(6) });
+      const m = mergeProgress(reset, newer);
+      expect(m.activities).toEqual({});
+      expect(m.resetAt).toBe(T(6));
+      expect(sameProgress(mergeProgress(m, reset), m)).toBe(true);
+      expect(sameProgress(mergeProgress(m, old), m)).toBe(true);
+    });
+  });
 });
 
 describe("sameProgress", () => {

@@ -21,8 +21,8 @@ const MAX_EXPANDED = 20; // 19, plus the Sound of the week card on a week's firs
 export const MIN_WHY_WORDS = 6;
 
 /** The cast (CURRICULUM §1): a man's lines are recorded in voice "b", a woman's in voice "a". */
-export const MEN = ["Ramana", "Venkat", "Prasad", "Ravi", "Mohan", "Srinivas", "Suresh", "Narayana", "Imran", "Rahim", "John", "David", "Raju", "Krishna", "Gopal", "Ramesh", "Satish", "Joseph", "Kumar"];
-export const WOMEN = ["Lakshmi", "Kamala", "Usha", "Padma", "Sita", "Anitha", "Rani", "Jyothi", "Swapna", "Salma", "Fatima", "Mary", "Grace", "Sarala", "Radha", "Geetha", "Kavitha", "Ayesha", "Ruth"];
+export const MEN = ["Ramana", "Venkat", "Prasad", "Ravi", "Mohan", "Srinivas", "Suresh", "Narayana", "Imran", "Rahim", "John", "David", "Raju", "Krishna", "Gopal", "Ramesh", "Satish", "Joseph", "Kumar", "Arjun", "Rohan", "Daniel"];
+export const WOMEN = ["Lakshmi", "Kamala", "Usha", "Padma", "Sita", "Anitha", "Rani", "Jyothi", "Swapna", "Salma", "Fatima", "Mary", "Grace", "Sarala", "Radha", "Geetha", "Kavitha", "Ayesha", "Ruth", "Diya", "Meera", "Zoya"];
 /** The names a learner may give as their own: they suit anyone (CURRICULUM §1). */
 export const LEARNER_NAMES = ["Kiran", "Sai"];
 

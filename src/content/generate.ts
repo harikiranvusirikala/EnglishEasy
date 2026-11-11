@@ -83,6 +83,10 @@ export function shuffled(a: Activity): Activity {
       return { ...a, ...reorder(a.options, a.answer, a.id) };
     case "dialogue":
       return { ...a, questions: a.questions.map((q, i) => ({ ...q, ...reorder(q.options, q.answer, `${a.id}.${i}`) })) };
+    case "story":
+      return { ...a, questions: a.questions.map((q, i) => ({ ...q, ...reorder(q.options, q.answer, `${a.id}.${i}`) })) };
+    case "passage":
+      return { ...a, questions: a.questions.map((q, i) => ({ ...q, ...reorder(q.options, q.answer, `${a.id}.${i}`) })) };
     default:
       return a;
   }

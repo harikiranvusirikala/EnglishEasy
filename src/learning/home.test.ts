@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { fixtureCourse } from "../../test/fixtures/course";
-import { currentStageIndex, isFirstVisit, locateDay, practisedThisWeek, timeOfDay, weekStrip } from "./home";
+import { ENGLISH_CARD_ID, currentStageIndex, englishCardVisible, isFirstVisit, locateDay, practisedThisWeek, timeOfDay, weekStrip } from "./home";
 import { completeDay, emptyProgress, recordAnswer, setPosition } from "./progress";
 import { makePlayable } from "../../test/fixtures/course";
 
@@ -48,5 +48,26 @@ describe("isFirstVisit / currentStageIndex", () => {
   });
   it("opens the stage holding the recommended day", () => {
     expect(currentStageIndex(fixtureCourse, emptyProgress())).toBe(0);
+  });
+});
+
+describe("englishCardVisible (owner, 2026-11-11)", () => {
+  const stage = fixtureCourse.stages[0];
+  const day = (id: string) => ({ id, kind: "lesson" as const, title: { en: id, te: `${id} తె` } });
+  const course = {
+    ...fixtureCourse,
+    stages: [1, 2, 3].map((n) => ({ ...stage, n, firstWeek: n, lastWeek: n, weeks: [{ n, title: stage.weeks[0].title, released: true, days: [day(`s${n}`)] }] })),
+  };
+  const inStage3 = ["s1", "s2"].reduce((p, id) => completeDay(p, makePlayable(id, { learn: 1 }), NOW), emptyProgress());
+  const te = { learnIn: "te", dismissed: [] };
+
+  it("shows in Telugu mode once the next lesson is in Stage 3", () => {
+    expect(englishCardVisible(course, inStage3, te)).toBe(true);
+    expect(englishCardVisible(course, emptyProgress(), te)).toBe(false);
+  });
+
+  it("never shows in English mode, or after Try English or Not now", () => {
+    expect(englishCardVisible(course, inStage3, { learnIn: "en", dismissed: [] })).toBe(false);
+    expect(englishCardVisible(course, inStage3, { learnIn: "te", dismissed: [ENGLISH_CARD_ID] })).toBe(false);
   });
 });

@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { AUDIO_VOICES } from "../learning/audio-manifest";
 import { FIX_IT, type Activity, type ConversationDay, type Day, type FixIt, type Lesson, type PlayableDay, type ReviewDay } from "./types";
 
 /** zod schema for content (BUILD_PLAN A3). Shape only; the writing rules are in `checks.ts`. */
@@ -10,6 +11,7 @@ const core = z.object({ en: text, te: text, extra: z.array(text).optional() }).s
 const index = z.number().int().min(0);
 const fixIt = z.enum(Object.keys(FIX_IT) as [FixIt, ...FixIt[]]).optional();
 const options = z.array(text).min(2).max(4);
+const voice = z.enum(AUDIO_VOICES);
 
 const word = z.object({ en: text, te: text }).strict();
 const soundSide = z.object({ label: text, how: biSchema, words: z.array(text).min(2).max(4) }).strict();
@@ -29,7 +31,7 @@ const rolePlayShape = {
   title: biSchema,
   scene: biSchema,
   partner: biSchema,
-  voice: z.enum(["a", "b"]).optional(),
+  voice: voice.optional(),
   skills: z.array(z.object({ id: text, label: biSchema }).strict()),
   turns: z.array(turn).min(1),
 };
@@ -56,8 +58,30 @@ export const activitySchema = z.discriminatedUnion("type", [
       id: text,
       type: z.literal("dialogue"),
       title: biSchema,
-      lines: z.array(z.object({ speaker: biSchema, voice: z.enum(["a", "b"]), en: text, te: text }).strict()).min(2),
+      lines: z.array(z.object({ speaker: biSchema, voice, en: text, te: text }).strict()).min(2),
       questions: z.array(z.object({ prompt: biSchema, options, answer: index }).strict()).min(1),
+    })
+    .strict(),
+  z
+    .object({
+      id: text,
+      type: z.literal("story"),
+      title: biSchema,
+      teller: biSchema,
+      voice,
+      parts: z.array(z.object({ en: text, te: text }).strict()).min(3).max(8),
+      questions: z.array(z.object({ prompt: biSchema, options, answer: index }).strict()).min(2).max(5),
+    })
+    .strict(),
+  z
+    .object({
+      id: text,
+      type: z.literal("passage"),
+      kind: z.enum(["letter", "notice", "news", "recipe"]),
+      heading: text,
+      lines: z.array(text).min(4).max(12),
+      questions: z.array(z.object({ prompt: biSchema, options, answer: index, why: biSchema.optional() }).strict()).min(2).max(3),
+      fixIt,
     })
     .strict(),
   z.object({ id: text, type: z.literal("readIt"), kind: z.enum(["message", "label", "sign"]), heading: text, lines: z.array(text).min(1).max(6), prompt: biSchema, options, answer: index, why: biSchema.optional(), say: text.optional(), fixIt }).strict(),

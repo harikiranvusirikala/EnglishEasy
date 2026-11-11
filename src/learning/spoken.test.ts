@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import type { PlayableDay } from "@/content/types";
-import { askText, spokenTexts } from "./spoken";
+import { accentDialogue, samplePassage, sampleStory } from "../../test/fixtures/stage3";
+import { askText, passageText, spokenTexts } from "./spoken";
 
 const prompt = { en: 'What does "I walk every morning." mean?', te: '"I walk every morning." అంటే ఏంటి?' };
 
@@ -62,5 +63,23 @@ describe("spokenTexts", () => {
       { text: "Hello.", voice: "b" },
       { text: "Asha", voice: "a" },
     ]);
+  });
+});
+
+describe("spokenTexts for a story, a passage and accent voices", () => {
+  it("lists each story part in the teller's voice, the whole passage, the answers and reasons, and accent lines in their voice", () => {
+    const day: PlayableDay = {
+      id: "s",
+      kind: "review",
+      title: { en: "Review", te: "రివ్యూ" },
+      sections: [{ kind: "practice", activities: [sampleStory, samplePassage, accentDialogue] }],
+    };
+    const texts = spokenTexts(day);
+    expect(texts).toContainEqual({ text: sampleStory.parts[0].en, voice: "a" });
+    expect(texts).toContainEqual({ text: "A lost purse on a bus", voice: "a" });
+    expect(texts).toContainEqual({ text: passageText(samplePassage.lines), voice: "a" });
+    expect(texts).toContainEqual({ text: samplePassage.questions[1].why!.te, voice: "a" });
+    expect(texts).toContainEqual({ text: accentDialogue.lines[0].en, voice: "us-m" });
+    expect(texts).toContainEqual({ text: accentDialogue.lines[4].en, voice: "gb-f" });
   });
 });

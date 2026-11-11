@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { englishVoices, pickEnglishVoice, pickPartnerVoice, pickTeluguVoice, type VoiceInfo } from "./voice-pick";
+import { englishVoices, pickAccentVoice, pickEnglishVoice, pickPartnerVoice, pickTeluguVoice, type VoiceInfo } from "./voice-pick";
 
 const v = (name: string, lang: string, voiceURI = name): VoiceInfo => ({ name, lang, voiceURI });
 
@@ -73,5 +73,14 @@ describe("pickPartnerVoice", () => {
     const first = pickEnglishVoice(IPHONE, null);
     expect(pickPartnerVoice(IPHONE, first)?.name).toBe("Rishi");
     expect(pickPartnerVoice([v("Veena", "en-IN")], v("Veena", "en-IN"))).toBeNull();
+  });
+});
+
+describe("pickAccentVoice", () => {
+  it("finds an American or British voice, else none", () => {
+    const voices = [v("Rishi", "en-IN"), v("Samantha", "en-US"), v("Daniel", "en_GB")];
+    expect(pickAccentVoice(voices, "us")?.name).toBe("Samantha");
+    expect(pickAccentVoice(voices, "gb")?.name).toBe("Daniel");
+    expect(pickAccentVoice([v("Rishi", "en-IN")], "us")).toBeNull();
   });
 });

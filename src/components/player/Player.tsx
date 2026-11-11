@@ -28,6 +28,8 @@ import { FillBlank } from "./FillBlank";
 import { FindMistake } from "./FindMistake";
 import { ListenChoose } from "./ListenChoose";
 import { Dialogue } from "./Dialogue";
+import { Passage } from "./Passage";
+import { Story } from "./Story";
 import { Match } from "./Match";
 import { Repeat } from "./Repeat";
 import { RolePlay } from "./RolePlay";
@@ -43,7 +45,8 @@ import { SECTION_ABOUT, SECTION_ICON, SECTION_ILLUSTRATION, SECTION_NAME } from 
 export const CARD_TYPES: Activity["type"][] = ["explain", "whenToUse", "dontSay", "sound"];
 const SCORED_SECTIONS: SectionKind[] = ["warmup", "practice", "speak"];
 /** Questions have a right answer; cards, dialogues and role plays do not. */
-export const isQuestion = (activity: Activity) => !CARD_TYPES.includes(activity.type) && activity.type !== "roleplay" && activity.type !== "dialogue" && activity.type !== "mission";
+export const isQuestion = (activity: Activity) =>
+  !CARD_TYPES.includes(activity.type) && activity.type !== "roleplay" && activity.type !== "dialogue" && activity.type !== "story" && activity.type !== "mission";
 
 type Step =
   | { kind: "intro"; section: number }
@@ -251,6 +254,10 @@ export function ActivityView({
       return <Situation activity={activity} onAnswer={onAnswer} onNext={onNext} />;
     case "dialogue":
       return <Dialogue activity={activity} onNext={onNext} />;
+    case "story":
+      return <Story activity={activity} onNext={onNext} />;
+    case "passage":
+      return <Passage activity={activity} onAnswer={onAnswer} onNext={onNext} />;
     case "roleplay":
       return <RolePlay activity={activity} onNext={onNext} />;
     default:

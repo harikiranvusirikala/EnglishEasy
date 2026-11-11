@@ -18,6 +18,9 @@ export function askText(prompt: Bi, say: string | undefined): Bi | string | unde
   return say && prompt.en.includes(say) && prompt.te.includes(say) ? prompt : say;
 }
 
+/** What a passage's Listen reads: all its lines, in order. */
+export const passageText = (lines: string[]) => lines.join(" ");
+
 function ofActivity(activity: Activity): (string | Bi | Spoken | undefined)[] {
   switch (activity.type) {
     case "explain":
@@ -61,6 +64,10 @@ function ofActivity(activity: Activity): (string | Bi | Spoken | undefined)[] {
     }
     case "readIt":
       return [activity.say ?? activity.options[activity.answer], activity.why];
+    case "story":
+      return [...activity.parts.map((p) => ({ text: p.en, voice: activity.voice })), ...activity.questions.map((q) => q.options[q.answer])];
+    case "passage":
+      return [passageText(activity.lines), ...activity.questions.flatMap((q) => [q.options[q.answer], q.why])];
     case "mission":
     case "match":
       return [];

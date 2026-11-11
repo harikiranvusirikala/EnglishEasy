@@ -2,6 +2,7 @@ import { grammar } from "./grammar";
 import { topics } from "./topics";
 import { activityCount, answerWords, buildTiles } from "./generate";
 import { daySchema } from "./schema";
+import { isManVoice } from "../learning/audio-manifest";
 import { FIX_IT, type Activity, type Bi, type Day, type FixIt, type Lesson, type PlayableDay } from "./types";
 
 /**
@@ -65,6 +66,8 @@ export const TELUGU_AVOID: { text: string; use: string }[] = [
 const AUDIO_SYMBOLS = /[()/…₹]|\.\.\./;
 
 const nameIn = (text: string, names: string[]) => names.find((n) => new RegExp(`\\b${n}\\b`).test(text));
+/** A paragraph's sentences (a story part, a passage), for the stage length limit. */
+const sentencesIn = (text: string) => text.split(/(?<=[.?!])\s+/).filter((t) => t.trim());
 const plainWords = (s: string) => s.toLowerCase().replace(/[^a-z' ]+/g, " ").replace(/\s+/g, " ").trim();
 
 /** Phrases that assume the learner has a family; only optional tracks may use them (CURRICULUM §1). */
@@ -160,6 +163,10 @@ function sentencesOf(a: Activity): string[] {
       return a.turns.flatMap((t) => [t.partner, ...t.replies.flatMap((r) => [r.say, ...(r.react ? [r.react.en] : [])])]);
     case "findMistake":
       return [a.fix];
+    case "story":
+      return a.parts.flatMap((p) => sentencesIn(p.en));
+    case "passage":
+      return a.lines.flatMap(sentencesIn);
     default:
       return [];
   }
@@ -172,6 +179,10 @@ function spokenOf(a: Activity): string[] {
       return a.turns.flatMap((t) => [t.partner, ...t.replies.flatMap((r) => [r.say, ...(r.react ? [r.react.en] : [])])]);
     case "dialogue":
       return a.lines.map((l) => l.en);
+    case "story":
+      return a.parts.map((p) => p.en);
+    case "passage":
+      return a.lines;
     case "situation":
       return [...a.options, ...a.expected];
     default:
@@ -219,14 +230,29 @@ function activityProblems(a: Activity, where: string, stage: number | null): str
     case "dialogue":
       a.questions.forEach((q, i) => out.push(...optionProblems(`${where} question ${i + 1}`, q.options, q.answer)));
       a.lines.forEach((l) => {
-        if (nameIn(l.speaker.en, MEN) && l.voice !== "b") out.push(`voice: ${where} ${l.speaker.en} is a man; his lines need voice "b"`);
-        if (nameIn(l.speaker.en, WOMEN) && l.voice !== "a") out.push(`voice: ${where} ${l.speaker.en} is a woman; her lines need voice "a"`);
+        if (nameIn(l.speaker.en, MEN) && !isManVoice(l.voice)) out.push(`voice: ${where} ${l.speaker.en} is a man; his lines need voice "b"`);
+        if (nameIn(l.speaker.en, WOMEN) && isManVoice(l.voice)) out.push(`voice: ${where} ${l.speaker.en} is a woman; her lines need voice "a"`);
+      });
+      break;
+    case "story":
+      a.questions.forEach((q, i) => out.push(...optionProblems(`${where} question ${i + 1}`, q.options, q.answer)));
+      if (nameIn(a.teller.en, MEN) && !isManVoice(a.voice)) out.push(`voice: ${where} the teller ${a.teller.en} is a man; set voice: "b"`);
+      if (nameIn(a.teller.en, WOMEN) && isManVoice(a.voice)) out.push(`voice: ${where} the teller ${a.teller.en} is a woman; set voice: "a"`);
+      break;
+    case "passage":
+      a.questions.forEach((q, i) => {
+        out.push(...optionProblems(`${where} question ${i + 1}`, q.options, q.answer));
+        if (q.why && wordCount(q.why.en) < MIN_WHY_WORDS) out.push(`why-length: ${where} question ${i + 1} why "${q.why.en}" is under ${MIN_WHY_WORDS} words (give the reason: the rule, and the Telugu link where it helps)`);
+        for (const lang of ["en", "te"] as const) {
+          const right = q.options[q.answer];
+          if (q.why && right && whyRepeatsSentence(q.why[lang], right)) out.push(`why-repeats-sentence: ${where} question ${i + 1} why (${lang}) ends with "${right}"; the answer is read just before it, so end with the reason`);
+        }
       });
       break;
     case "roleplay": {
       const man = nameIn(a.partner.en, MEN);
-      if (man && a.voice !== "b") out.push(`voice: ${where} the partner ${man} is a man; set voice: "b"`);
-      if (nameIn(a.partner.en, WOMEN) && a.voice === "b") out.push(`voice: ${where} the partner is a woman; remove voice: "b"`);
+      if (man && !isManVoice(a.voice)) out.push(`voice: ${where} the partner ${man} is a man; set voice: "b"`);
+      if (nameIn(a.partner.en, WOMEN) && isManVoice(a.voice)) out.push(`voice: ${where} the partner is a woman; remove voice: "b"`);
       if (!a.turns.some((t) => t.replies.some((r) => r.react))) {
         out.push(`roleplay-react: ${where} no not-good reply has a reaction (give at least one, ideally to a manners slip)`);
       }
@@ -364,6 +390,7 @@ export function checkDay(day: Day, playable: PlayableDay, ctx: DayContext): stri
       if (a.type === "fillBlank" && a.te) teluguFields.push(a.te);
       if (a.type === "match") a.pairs.forEach((p) => teluguFields.push(p.te));
       if (a.type === "dialogue") a.lines.forEach((l) => teluguFields.push(l.te));
+      if (a.type === "story") a.parts.forEach((p) => teluguFields.push(p.te));
       if (a.type === "roleplay") a.turns.forEach((t) => teluguFields.push(t.te));
     }
   }

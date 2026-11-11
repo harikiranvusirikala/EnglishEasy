@@ -1,10 +1,10 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import { audioUrl, parseManifest, speechText, type AudioManifest } from "@/learning/audio-manifest";
+import { accentOf, audioUrl, isManVoice, parseManifest, speechText, type AudioManifest, type AudioVoice } from "@/learning/audio-manifest";
 import type { Spoken } from "@/learning/spoken";
 import { splitScripts, type Run } from "@/learning/split-scripts";
-import { pickEnglishVoice, pickPartnerVoice, pickTeluguVoice } from "@/learning/voice-pick";
+import { pickAccentVoice, pickEnglishVoice, pickPartnerVoice, pickTeluguVoice } from "@/learning/voice-pick";
 import { getSettings } from "./settings-store";
 
 // Recorded clips first (`npm run audio`; BUILD_PLAN "one recorded voice"), else the phone's own voices (A6). Browser only:
@@ -18,8 +18,8 @@ const VOICES_WAIT_MS = 1500;
 
 export type SpeakOptions = {
   slow?: boolean;
-  /** Dialogue speaker: "b" gets a different voice if there is one, else a lower pitch. */
-  voice?: "a" | "b";
+  /** Dialogue speaker: "b" gets a different voice if there is one, else a lower pitch; an accent voice an American or British one. */
+  voice?: AudioVoice;
   /** Called once when everything has been read (not when speech is replaced or stopped). Dialogues use it to move to the next line. */
   onEnd?: () => void;
 };
@@ -219,9 +219,13 @@ function say(runs: Run[], options: SpeakOptions, afterCancel: boolean) {
   const voices = getVoices();
   const settings = getSettings();
   const first = pickEnglishVoice(voices, settings.voiceURI);
-  const partner = options.voice === "b" ? pickPartnerVoice(voices, first) : null;
-  const english = partner ?? first;
-  const lowered = options.voice === "b" && !partner; // no second voice: a lower pitch tells the speakers apart
+  const accent = accentOf(options.voice);
+  const accented = accent ? pickAccentVoice(voices, accent) : null;
+  const man = isManVoice(options.voice);
+  const partner = man && !accented ? pickPartnerVoice(voices, first) : null;
+  const english = accented ?? partner ?? first;
+  const lowered = man && !partner; // no second voice: a lower pitch tells the speakers apart
+  const englishLang = accent === "us" ? "en-US" : accent === "gb" ? "en-GB" : "en-IN";
   const telugu = pickTeluguVoice(voices, settings.teluguVoiceURI);
   const utterances: SpeechSynthesisUtterance[] = [];
   // One speaker per line (owner, 2026-11-10): a line with Telugu in it is read whole by the Telugu voice, which reads
@@ -229,7 +233,7 @@ function say(runs: Run[], options: SpeakOptions, afterCancel: boolean) {
   if (telugu && runs.some((run) => run.script === "te")) {
     utterances.push(utterance(runs.map((run) => run.text).join(" "), telugu, "te-IN", options));
   } else {
-    for (const run of runs) if (run.script !== "te") utterances.push(utterance(run.text, english, "en-IN", options, lowered ? 0.8 : 1));
+    for (const run of runs) if (run.script !== "te") utterances.push(utterance(run.text, english, englishLang, options, lowered ? 0.8 : 1));
   }
   enqueue(utterances, afterCancel, options.onEnd);
 }

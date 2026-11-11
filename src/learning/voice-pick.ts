@@ -46,3 +46,9 @@ export function pickPartnerVoice<T extends VoiceInfo>(voices: readonly T[], firs
   const others = englishVoices(voices).filter((voice) => voice.voiceURI !== first?.voiceURI);
   return others.find((voice) => has(voice, MALE)) ?? others[0] ?? null;
 }
+
+/** An American ("us") or British ("gb") English voice for an accent lesson's lines, else null (the usual voice reads it). */
+export function pickAccentVoice<T extends VoiceInfo>(voices: readonly T[], accent: "us" | "gb"): T | null {
+  const want = accent === "us" ? "en-us" : "en-gb";
+  return voices.find((voice) => lang(voice) === want) ?? null;
+}

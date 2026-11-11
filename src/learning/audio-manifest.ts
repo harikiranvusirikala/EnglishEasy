@@ -4,7 +4,18 @@
  */
 
 export type AudioManifest = Record<string, string>;
-export type AudioVoice = "a" | "b";
+/**
+ * The recorded voices: "a" (a woman) and "b" (a man) read everything; the accent voices (American and British, a woman
+ * and a man each) are only for lessons about other accents (Week 78 and the Abroad track; owner, 2026-11-11).
+ */
+export const AUDIO_VOICES = ["a", "b", "us-f", "us-m", "gb-f", "gb-m"] as const;
+export type AudioVoice = (typeof AUDIO_VOICES)[number];
+export type Accent = "us" | "gb";
+
+/** A man's voice ("b", "us-m", "gb-m"): his lines sit on the right in a conversation. */
+export const isManVoice = (voice: AudioVoice | undefined) => voice === "b" || voice === "us-m" || voice === "gb-m";
+/** The accent an accent voice speaks with; the usual voices have none. */
+export const accentOf = (voice: AudioVoice | undefined): Accent | null => (voice?.startsWith("us-") ? "us" : voice?.startsWith("gb-") ? "gb" : null);
 
 const ONES = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
 const TENS = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
@@ -54,8 +65,8 @@ export function textHash(text: string): string {
   return hash.toString(16).padStart(8, "0");
 }
 
-/** The manifest key: the text's hash, with `b-` in front for the second dialogue voice. */
-export const audioKey = (text: string, voice: AudioVoice = "a") => (voice === "b" ? `b-${textHash(text)}` : textHash(text));
+/** The manifest key: the text's hash, with the voice in front for every voice but "a" (`b-3f9a12bc`, `us-f-3f9a12bc`). */
+export const audioKey = (text: string, voice: AudioVoice = "a") => (voice === "a" ? textHash(text) : `${voice}-${textHash(text)}`);
 
 /** Where a key's clip lives under /audio/: a subfolder named by the hash's first two digits (`3f/b-3f9a12bc.mp3`). */
 export const clipFile = (key: string) => `${key.slice(-8, -6)}/${key}.mp3`;

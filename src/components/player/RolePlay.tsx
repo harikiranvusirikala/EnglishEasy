@@ -14,6 +14,7 @@ import { scoreRolePlay, type TurnResult } from "@/learning/roleplay-score";
 import { judgeSpeech } from "@/learning/speech-match";
 import { listen, stopListening } from "@/lib/listen";
 import { strings } from "@/lib/strings";
+import { AccentLabel } from "./Accent";
 import { Bubble } from "./Bubble";
 import { MicButton } from "./MicButton";
 import { ListenInline } from "./Narrate";
@@ -54,6 +55,7 @@ function PartnerBubble({
       name={
         <span className="flex items-center gap-2.5">
           {name.en}
+          <AccentLabel voice={voice} />
           <span className="inline-flex items-center gap-2.5 text-lg font-normal">
             <ListenInline read={[english]} auto={auto ? [english] : undefined} then={auto && then ? { text: then } : undefined} voice={voice} slow place="row" />
             {learnIn === "te" && <MeaningToggle on={meaning} onToggle={() => setMeaning((m) => !m)} />}

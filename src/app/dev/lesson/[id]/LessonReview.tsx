@@ -105,6 +105,47 @@ function Body({ activity }: { activity: Activity }) {
           <Both text={activity.why} />
         </>
       );
+    case "story":
+      return (
+        <>
+          <Both text={activity.title} />
+          <p className="text-ink-2">
+            {activity.teller.en} · voice {activity.voice}
+          </p>
+          {activity.parts.map((part, i) => (
+            <div key={i} className="grid grid-cols-2 gap-3">
+              <p lang="te">{part.te}</p>
+              <p>
+                {part.en} <Narrate text={part.en} variant="compact" voice={activity.voice} />
+              </p>
+            </div>
+          ))}
+          {activity.questions.map((q, i) => (
+            <div key={i}>
+              <Both text={q.prompt} />
+              <Options options={q.options} answer={q.answer} />
+            </div>
+          ))}
+        </>
+      );
+    case "passage":
+      return (
+        <>
+          <p className="font-bold">
+            {activity.heading} ({activity.kind})
+          </p>
+          {activity.lines.map((line, i) => (
+            <p key={i}>{line}</p>
+          ))}
+          {activity.questions.map((q, i) => (
+            <div key={i}>
+              <Both text={q.prompt} />
+              <Options options={q.options} answer={q.answer} />
+              {q.why && <Both text={q.why} />}
+            </div>
+          ))}
+        </>
+      );
     default:
       return <pre className="overflow-x-auto text-sm">{JSON.stringify(activity, null, 1)}</pre>; // types a later step builds
   }

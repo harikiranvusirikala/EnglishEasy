@@ -56,6 +56,8 @@ Put the simplest, most useful sentences at 0–3. Each core sentence's `extra` i
 
 **Read it** (CURRICULUM §1a): from Week 3, one lesson of the week has a `readIt` in its practice (a message, label or sign drawn as a card, then one question), in place of one recognise item, so the counts stay.
 
+**From Week 41** (owner, 2026-11-11; samples in `test/fixtures/stage3.ts`): the Review Day's `extras` end with a `story` (one teller with their voice, 4–6 parts of 2–4 sentences with their Telugu, then 4 questions: the big picture by ear, then details), and one lesson a week has a `passage` (a letter, notice, news item or recipe of 6–12 read-aloud lines, 2–3 questions with reasons) in place of its Read it. Accent voices (`us-f`, `us-m`, `gb-f`, `gb-m`) only in Week 78 and the Abroad track.
+
 **Checkpoint weeks** (CURRICULUM §2b): add the checkpoint to `checkpoints` in `course.ts` (its can-do items and certificate line), and a `mission` (the speaking mission) to the Review Day's `extras`.
 
 **Sound of the week** (CURRICULUM §2a): add the week's entry to `src/content/sounds.ts` (the card and 5 word pairs with Telugu meanings) when writing a main-path week.

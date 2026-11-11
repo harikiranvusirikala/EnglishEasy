@@ -12,8 +12,18 @@ import { buildAll } from "../src/content/build";
 import { audioKey, clipFile, speechText, type AudioVoice } from "../src/learning/audio-manifest";
 import { spokenTexts, type Spoken } from "../src/learning/spoken";
 
-/** Shruti reads Telugu and the English inside it with an Indian accent; Mohan is the second dialogue voice. */
-const VOICES: Record<AudioVoice, string> = { a: "te-IN-ShrutiNeural", b: "te-IN-MohanNeural" };
+/**
+ * Shruti reads Telugu and the English inside it with an Indian accent; Mohan is the second dialogue voice. The accent
+ * voices (American and British, a woman and a man each) speak only in lessons about accents (owner, 2026-11-11).
+ */
+const VOICES: Record<AudioVoice, string> = {
+  a: "te-IN-ShrutiNeural",
+  b: "te-IN-MohanNeural",
+  "us-f": "en-US-JennyNeural",
+  "us-m": "en-US-GuyNeural",
+  "gb-f": "en-GB-SoniaNeural",
+  "gb-m": "en-GB-RyanNeural",
+};
 const AT_ONCE = 4;
 const outDir = join(process.cwd(), "public", "audio");
 

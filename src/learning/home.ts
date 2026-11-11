@@ -66,6 +66,14 @@ export function currentStageIndex(course: Course, p: Progress): number {
   return i < 0 ? 0 : i;
 }
 
+/** The one-time card suggesting English explanations (VISION §4.3; owner, 2026-11-11). */
+export const ENGLISH_CARD_ID = "english-mode";
+
+/** It shows in Telugu mode, until dismissed, once the next lesson is in Stage 3 or later (stage index 2+). */
+export function englishCardVisible(course: Course, p: Progress, settings: { learnIn: string; dismissed: string[] }): boolean {
+  return settings.learnIn === "te" && !settings.dismissed.includes(ENGLISH_CARD_ID) && currentStageIndex(course, p) >= 2;
+}
+
 /** Whether a day was started or finished (used for "Continue" versus "Start" before its content is loaded). */
 export function dayTouched(dayId: string, p: Progress): boolean {
   return dayId in p.completed || dayStarted(dayId, p);

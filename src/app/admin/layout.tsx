@@ -9,6 +9,9 @@ import { requireSiteAdmin } from "@/server/permissions";
 
 export const metadata: Metadata = { title: "Admin · EnglishEasy", robots: { index: false, follow: false } };
 
+// Rendered for each request, never at build time: a build must not need the database (it failed when MongoDB was out of reach).
+export const dynamic = "force-dynamic";
+
 const TABS = [
   { href: "/admin", label: "Site stats" },
   { href: "/admin/feedback", label: "Feedback" },

@@ -24,6 +24,7 @@ import { loadLesson } from "@/lib/lesson-data";
 import { useProgress } from "@/lib/progress-store";
 import { useSettings } from "@/lib/settings-store";
 import { fill, strings, type Bi as BiLabel } from "@/lib/strings";
+import { EnglishModeCard } from "./EnglishModeCard";
 import { InstallCard } from "./InstallCard";
 import { ReminderCard } from "./Reminder";
 import { SaveProgressCard } from "./SaveProgressCard";
@@ -280,6 +281,7 @@ export function Home({ course, written }: { course: Course; written: string[] })
       {progress && settings ? (
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-[1.35fr_1fr] lg:items-start">
           <div className="flex flex-col gap-5">
+            <EnglishModeCard course={course} progress={progress} />
             <TodayCard course={course} progress={progress} written={written} />
             {clock && <ReviewCard progress={progress} today={clock.today} />}
             <TrackSuggestionCard course={course} progress={progress} written={written} />

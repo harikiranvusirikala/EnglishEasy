@@ -23,6 +23,7 @@ import { Narrate } from "@/components/player/Narrate";
 import { ThemeMenu } from "@/components/ThemeMenu";
 import { strings } from "@/lib/strings";
 import type { LearnIn } from "@/learning/settings";
+import { EnglishModeCardView } from "@/components/learn/EnglishModeCard";
 import { TrackOfferCard } from "@/components/learn/Tracks";
 import { course } from "@/content/course";
 import { chooseTracks, emptyProgress } from "@/learning/progress";
@@ -63,6 +64,7 @@ function BothModes({ children }: { children: (mode: LearnIn) => ReactNode }) {
 export function Gallery() {
   const [dialog, setDialog] = useState(false);
   const [toast, setToast] = useState(false);
+  const [englishTried, setEnglishTried] = useState(false);
   const [on, setOn] = useState(true);
   const [pick, setPick] = useState("b");
 
@@ -271,6 +273,10 @@ export function Gallery() {
 
       <Block title="Track offer (New for you)">
         <TrackOfferCard course={sampleCourse} progress={sampleProgress} />
+      </Block>
+
+      <Block title="English explanations (once, from Stage 3)">
+        {englishTried ? <Toast>{strings.englishCardDone.en}</Toast> : <EnglishModeCardView onTry={() => setEnglishTried(true)} onNotNow={() => setEnglishTried(true)} />}
       </Block>
 
       <Dialog open={dialog} onClose={() => setDialog(false)} title={strings.galleryDialogTitle.en}>

@@ -1,5 +1,10 @@
 /** Content types (BUILD_PLAN A3). Content is data; the engine in `src/learning/` and the generator only read it. */
 
+import type { AudioVoice } from "../learning/audio-manifest";
+
+/** A recorded voice: "a" a woman, "b" a man; the accent voices ("us-f", "us-m", "gb-f", "gb-m") only where a lesson is about accents. */
+export type Voice = AudioVoice;
+
 export type Bi = { en: string; te: string }; // English + Telugu (Telugu mode text may mix in English words)
 export type Chip = { text: string; role: "who" | "action" | "what" | "when" };
 export type CoreSentence = { en: string; te: string; extra?: string[] }; // extra = distractor tiles
@@ -42,7 +47,7 @@ export type RolePlay = {
   title: Bi;
   scene: Bi;
   partner: Bi;
-  voice?: "a" | "b"; // the partner's recorded voice: "b" (male) for a man, else "a"
+  voice?: Voice; // the partner's recorded voice: "b" (or a man's accent voice) for a man, else "a"
   skills: { id: string; label: Bi }[];
   turns: Turn[];
 };
@@ -71,8 +76,32 @@ export type Activity = Base &
     | {
         type: "dialogue";
         title: Bi;
-        lines: { speaker: Bi; voice: "a" | "b"; en: string; te: string }[];
+        lines: { speaker: Bi; voice: Voice; en: string; te: string }[];
         questions: { prompt: Bi; options: string[]; answer: number }[];
+      }
+    /**
+     * Listen to a story (CURRICULUM §1a; owner, 2026-11-11): one teller, heard first in `parts` (paragraphs of 2–5
+     * sentences, each with its Telugu), question 1 by ear, then the words and the detail questions. Ends a Review Day.
+     */
+    | {
+        type: "story";
+        title: Bi;
+        teller: Bi;
+        voice: Voice;
+        parts: { en: string; te: string }[];
+        questions: { prompt: Bi; options: string[]; answer: number }[];
+      }
+    /**
+     * Read a short passage (VISION §5; owner, 2026-11-11): a letter, notice, news item or recipe of 6–12 lines, read
+     * first (Listen reads it all), then 2–3 questions with the passage folded above them. Scored as one item.
+     */
+    | {
+        type: "passage";
+        kind: "letter" | "notice" | "news" | "recipe";
+        heading: string;
+        lines: string[];
+        questions: { prompt: Bi; options: string[]; answer: number; why?: Bi }[];
+        fixIt?: FixIt;
       }
     /**
      * Read it (CURRICULUM §1a): something real to read, drawn as a card (a message, a label, a sign), then one question.

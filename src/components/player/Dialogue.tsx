@@ -10,6 +10,8 @@ import type { Activity } from "@/content/types";
 import { useLearnIn, useSettings } from "@/lib/settings-store";
 import { speak, stopSpeaking } from "@/lib/speak";
 import { fill, strings } from "@/lib/strings";
+import { accentOf, isManVoice } from "@/learning/audio-manifest";
+import { AccentLabel } from "./Accent";
 import { Bubble } from "./Bubble";
 import { ListenInline } from "./Narrate";
 import { BottomBar, MainButton } from "./parts";
@@ -70,22 +72,24 @@ function Speakers({ lines, playing }: { lines: Line[]; playing: number | null })
 }
 
 /** One line once the words are shown: its Listen (and Slow) and, in Telugu mode, "అ" for its meaning, on the name row. */
-function LineBubble({ line, active }: { line: Line; active: boolean }) {
+function LineBubble({ line, active, withAccents }: { line: Line; active: boolean; withAccents: boolean }) {
   const learnIn = useLearnIn();
   const [meaning, setMeaning] = useState(false);
+  const man = isManVoice(line.voice);
   return (
     <Bubble
-      side={line.voice === "b" ? "right" : "left"}
+      side={man ? "right" : "left"}
       name={
         <span className="flex items-center gap-2.5">
           {line.speaker.en}
+          <AccentLabel voice={line.voice} withAccents={withAccents} />
           <span className="inline-flex items-center gap-2.5 text-lg font-normal">
             <ListenInline read={[line.en]} voice={line.voice} slow place="row" />
             {learnIn === "te" && <MeaningToggle on={meaning} onToggle={() => setMeaning((m) => !m)} />}
           </span>
         </span>
       }
-      initial={line.voice === "b" ? undefined : line.speaker.en.trim().charAt(0).toUpperCase()}
+      initial={man ? undefined : line.speaker.en.trim().charAt(0).toUpperCase()}
       active={active}
     >
       <p>{line.en}</p>
@@ -115,6 +119,7 @@ export function Dialogue({ activity, onNext }: { activity: DialogueActivity; onA
   const at = cursor === undefined ? (settings?.autoPlay === true ? 0 : null) : cursor;
   const playing = at !== null && at < lines.length ? at : null;
   const question = asking === null ? undefined : questions[asking];
+  const withAccents = lines.some((line) => accentOf(line.voice) !== null); // an accent lesson names every line's accent
 
   useEffect(() => {
     if (playing === null) return;
@@ -197,7 +202,7 @@ export function Dialogue({ activity, onNext }: { activity: DialogueActivity; onA
         {shown && (
           <div className="flex flex-col gap-3" aria-label={activity.title.en}>
             {lines.map((line, i) => (
-              <LineBubble key={i} line={line} active={playing === i} />
+              <LineBubble key={i} line={line} active={playing === i} withAccents={withAccents} />
             ))}
           </div>
         )}

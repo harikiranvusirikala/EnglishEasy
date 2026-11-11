@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { audioKey, audioUrl, clipFile, parseManifest, speechText, textHash } from "./audio-manifest";
+import { accentOf, audioKey, audioUrl, clipFile, isManVoice, parseManifest, speechText, textHash, type AudioVoice } from "./audio-manifest";
 
 describe("audio manifest", () => {
   it("hashes the same text to the same 8 hex digits, ignoring extra spaces", () => {
@@ -56,5 +56,20 @@ describe("speechText numbers (content review 2026-11-09)", () => {
     const { speechText } = await import("./audio-manifest");
     expect(speechText("మొత్తం 130 రూపాయలు అయింది.")).toBe("మొత్తం 130 రూపాయలు అయింది.");
     expect(speechText("It is 2.5 kilos.")).toBe("It is 2.5 kilos.");
+  });
+});
+
+describe("accent voices (owner, 2026-11-11)", () => {
+  it("keep the keys of the usual voices and prefix the accent ones", () => {
+    const hash = textHash("Take the lift.");
+    expect(audioKey("Take the lift.")).toBe(hash);
+    expect(audioKey("Take the lift.", "b")).toBe(`b-${hash}`);
+    expect(audioKey("Take the lift.", "us-f")).toBe(`us-f-${hash}`);
+    expect(clipFile(audioKey("Take the lift.", "gb-m"))).toBe(`${hash.slice(0, 2)}/gb-m-${hash}.mp3`);
+  });
+
+  it("know who is a man and which accent a voice has", () => {
+    expect(["a", "b", "us-f", "us-m", "gb-f", "gb-m"].map((v) => isManVoice(v as AudioVoice))).toEqual([false, true, false, true, false, true]);
+    expect(["a", "b", "us-f", "gb-m"].map((v) => accentOf(v as AudioVoice))).toEqual([null, null, "us", "gb"]);
   });
 });

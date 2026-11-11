@@ -113,6 +113,15 @@ describe("Journey", () => {
     window.history.replaceState(null, "", "/");
   });
 
+  it("shows a later stage with released weeks as a folded section, not a coming-later card", async () => {
+    const course: Course = { ...big, stages: big.stages.map((s) => (s.n === 2 ? { ...s, weeks: [{ n: 5, title: bi("W5"), released: true, days: [ref("c1")] }, ...s.weeks.slice(1)] } : s)) };
+    render(<Journey course={course} written={["a1", "a2", "b1", "c1"]} />);
+    expect((await screen.findByText(/Stage 1 · One/)).closest("details")!.open).toBe(true);
+    const stage2 = screen.getByText(/Stage 2 · Two/).closest("details")!;
+    expect(stage2.open).toBe(false); // the learner is still in Stage 1
+    expect(stage2.textContent).toContain("W5");
+  });
+
   it("folds a finished stage", async () => {
     updateProgress((p) => ["a1", "a2", "b1"].reduce((acc, id) => completeDay(acc, makePlayable(id, standardShape), "2026-11-07T10:00:00.000Z"), p));
     const course: Course = { ...big, stages: big.stages.map((s) => (s.n === 1 ? { ...s, weeks: s.weeks.filter((w) => w.released) } : s)).map((s) => (s.n === 2 ? { ...s, weeks: [{ n: 5, title: bi("W5"), released: true, days: [ref("c1")] }] } : s)) };

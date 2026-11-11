@@ -291,8 +291,8 @@ function JourneyBody({ course, progress, written }: { course: Course; progress: 
     <div className="flex flex-col gap-4">
       {course.stages.map((stage, i) => {
         const name = fill(strings.journeyStage, { n: stage.n, title: stage.title });
-        if (i > current) {
-          // Future stages are one card each: name, then the "can do" line (full width) and week count.
+        if (i > current && !stage.weeks.some((w) => w.released)) {
+          // Stages with nothing released yet are one card each: name, then the "can do" line (full width) and week count.
           return (
             <section key={stage.n} aria-label={name.en} className={`${card} flex flex-col gap-3`}>
               <div className="flex items-center gap-4">

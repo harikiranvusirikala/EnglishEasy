@@ -627,7 +627,7 @@ Each week below: five lessons, a Conversation Day (`w<N>-conversation`) and a re
 |---|---|---|---|---|---|
 | 1 | `deposit-and-withdraw` | Deposit and Withdraw · డబ్బు వేయడం, తీయడం | deposit, withdraw, passbook, slip; You must bring … | I'd like to deposit ten thousand rupees. You must bring your Aadhaar card. | At the cash counter |
 | 2 | `at-the-atm` | At the ATM · ATM దగ్గర | ATM steps; PIN; a stuck card | Enter your PIN. My card is stuck in the machine. | Asking the guard for help at an ATM |
-| 3 | `big-numbers-lakh` | Big Numbers · పెద్ద సంఖ్యలు *(MOVED from Week 3; the file is parked in `src/content/main/w21/`, unregistered until Week 21 is written)* | hundred, thousand, lakh = hundred thousand; crore = ten million | One lakh is one hundred thousand. The flat costs fifty lakh rupees. | A friend asks the price of a house |
+| 3 | `big-numbers-lakh` | Big Numbers · పెద్ద సంఖ్యలు *(MOVED from Week 3)* | hundred, thousand, lakh = hundred thousand; crore = ten million | One lakh is one hundred thousand. The flat costs fifty lakh rupees. | A friend asks the price of a house |
 | 4 | `never-share-your-otp` | Never Share Your OTP · OTP ఎవరికీ చెప్పకండి | never + action; UPI words; fake KYC calls | Never share your OTP. The bank never asks for your PIN. | A "KYC update" caller asks for your OTP |
 | 5 | `its-a-scam` | It's a Scam! · ఇది మోసం! | "digital arrest" and prize calls; hang up and call 1930 | The police never arrest anyone on a video call. I will call 1930. | A fake "police officer" on a video call demands money |
 | 6 | `w21-conversation` | Conversation Day: A Morning at the Bank · బ్యాంకులో ఒక ఉదయం | all of the week | — | Updating KYC at the branch; reporting a failed UPI payment and a fraud call |

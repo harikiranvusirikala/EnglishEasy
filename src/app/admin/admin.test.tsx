@@ -57,7 +57,8 @@ describe("/admin", () => {
     const week1 = screen.getByRole("rowheader", { name: "Week 1 · English Foundations" }).closest("tr")!;
     expect(Array.from(week1.querySelectorAll("td"), (td) => td.textContent)).toEqual(["1", "5", "3", "2"]); // easy, just right, too hard, reports
     expect(screen.getByRole("rowheader", { name: "Week 13 · Shopping at the Market" })).toBeTruthy();
-    expect(screen.queryByRole("rowheader", { name: /^Week 14/ })).toBeNull(); // not released
+    expect(screen.getByRole("rowheader", { name: "Week 40 · Checkpoint: Stage 2 Review" })).toBeTruthy();
+    expect(screen.queryByRole("rowheader", { name: /^Week 41/ })).toBeNull(); // not released
   });
 });
 

@@ -24,13 +24,13 @@ describe("course map", () => {
     }
   });
 
-  it("releases Stage 1 (Weeks 1–12) and Week 13, with seven day refs each and unique ids", () => {
-    expect(mainWeeks().filter((w) => w.released).map((w) => w.n)).toEqual(Array.from({ length: 13 }, (_, i) => i + 1));
+  it("releases Stages 1 and 2 (Weeks 1–40), with seven day refs each and unique ids", () => {
+    expect(mainWeeks().filter((w) => w.released).map((w) => w.n)).toEqual(Array.from({ length: 40 }, (_, i) => i + 1));
     for (const w of [...mainWeeks(), ...course.tracks.flatMap((t) => t.weeks)]) {
       if (!w.released) expect(w.days).toEqual([]);
     }
     const refs = releasedDayRefs();
-    expect(refs).toHaveLength(91);
+    expect(refs).toHaveLength(280);
     expect(refs[0].ref.id).toBe("sentence-basics");
     expect(refs[6]).toMatchObject({ ref: { id: "w1-review", kind: "review" } });
     expect(refs[12]).toMatchObject({ ref: { id: "w2-conversation", kind: "conversation" } });
@@ -38,6 +38,9 @@ describe("course map", () => {
     expect(refs[83]).toMatchObject({ ref: { id: "w12-review", kind: "review" } });
     expect(refs[84]).toMatchObject({ ref: { id: "can-i-have-please", kind: "lesson" } });
     expect(refs[90]).toMatchObject({ ref: { id: "w13-review", kind: "review" } });
+    expect(refs[153]).toMatchObject({ ref: { id: "w22-review", kind: "review" } });
+    expect(refs[216]).toMatchObject({ ref: { id: "w31-review", kind: "review" } });
+    expect(refs[279]).toMatchObject({ ref: { id: "w40-review", kind: "review" } });
     const ids = refs.map((r) => r.ref.id);
     expect(new Set(ids).size).toBe(ids.length);
     for (const id of ids) expect(id.length).toBeLessThanOrEqual(40);
@@ -85,7 +88,10 @@ describe("dayAfter", () => {
     expect(dayAfter("w1-review")).toMatchObject({ ref: { id: "what-and-where" }, number: 8 });
     expect(dayAfter("w2-review")).toMatchObject({ ref: { id: "numbers-and-counting" }, number: 15 });
     expect(dayAfter("w12-review")).toMatchObject({ ref: { id: "can-i-have-please" }, number: 85 });
-    expect(dayAfter("w13-review")).toBeNull();
+    expect(dayAfter("w13-review")).toMatchObject({ ref: { id: "excuse-me-where-is" }, number: 92 });
+    expect(dayAfter("w22-review")).toMatchObject({ ref: { id: "a-table-for-two" }, number: 155 });
+    expect(dayAfter("w31-review")).toMatchObject({ ref: { id: "happy-sankranti" }, number: 218 });
+    expect(dayAfter("w40-review")).toBeNull();
     expect(dayAfter("nope")).toBeNull();
   });
 });

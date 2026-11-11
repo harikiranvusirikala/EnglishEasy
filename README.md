@@ -10,7 +10,7 @@ Plan and vision are in `docs/` (start with `docs/BUILD_PLAN.md`).
 
 ## Features
 
-- Thirteen weeks released (91 days): Stage 1 (Weeks 1–12) and the start of Stage 2. Each lesson: explain, practice, speak, role play; each week ends with a Conversation Day and a review.
+- Forty weeks released (280 days): Stage 1 (Weeks 1–12) and Stage 2 (Weeks 13–40). Each lesson: explain, practice, speak, role play; each week ends with a Conversation Day and a review.
 - Learn in Telugu or English. Two recorded voices on every phone, a woman's and a man's (made ahead of time with `npm run audio`), read the sentences, questions and conversations; longer sentences can also be played slowly. The phone's own voice is only a backup.
 - Hear first: Conversation Days are heard before they are read, "build what you hear" tiles come from the voice alone, and a Sound of the week trains the sounds Telugu speakers find hard (v/w, ship/sheep, thirteen/thirty, th…) with a "which word did you hear?" question in every lesson. Long sentences are repeated in steps.
 - Role plays: speak first (the replies are one tap away), hints say what to do, and the other person answers back to what you say.

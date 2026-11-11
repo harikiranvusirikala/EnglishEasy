@@ -71,7 +71,7 @@ export function Build({ activity, onAnswer, onNext }: Props) {
             {activity.te}
           </p>
         )}
-        {activity.te && activity.type === "arrange" && !byEar && <Meaning className="text-lg text-ink-2">{activity.te}</Meaning>}
+        {activity.te && activity.type === "arrange" && !byEar && <Meaning className="font-display text-[1.7rem] leading-snug font-semibold text-ink">{activity.te}</Meaning>}
         {byEar && <ListenHero say={activity.answer} />}
 
         <div

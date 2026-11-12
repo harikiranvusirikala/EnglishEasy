@@ -38,7 +38,7 @@ test("Home at night", async ({ page }) => {
   await page.screenshot({ path: `${SHOTS}/home-night.png`, fullPage: true });
 });
 
-test("Journey: Stage 1 open with all twelve weeks, Stage 2 folded with its weeks, later stages are cards", async ({ page }) => {
+test("Journey: Stage 1 open with all twelve weeks, Stage 2 folded with its weeks, unreleased stages are cards", async ({ page }) => {
   await page.addInitScript(([key]) => localStorage.setItem(key, JSON.stringify({ learnIn: "en", onboarded: true })), [SETTINGS_KEY]);
   await page.goto("/learn");
   await page.getByRole("link", { name: "Journey" }).click();
@@ -53,7 +53,8 @@ test("Journey: Stage 1 open with all twelve weeks, Stage 2 folded with its weeks
   await expect(stage2).toHaveJSProperty("open", false); // released, but the learner is in Stage 1
   await stage2.locator("summary").click();
   await expect(page.getByRole("button", { name: /Getting Around Town.*Week 14/ })).toBeVisible();
-  await expect(page.getByRole("region", { name: /Stage 3/ })).toBeVisible(); // nothing released yet: a card
+  await expect(page.locator("details", { hasText: "Stage 3" })).toHaveJSProperty("open", false); // released weeks, folded
+  await expect(page.getByRole("region", { name: /Stage 4/ })).toBeVisible(); // nothing released yet: a card
   await expect(page.getByRole("region", { name: /Stage 5/ })).toBeVisible();
   await page.screenshot({ path: `${SHOTS}/journey.png`, fullPage: true });
 });

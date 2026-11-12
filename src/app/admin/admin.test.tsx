@@ -58,7 +58,12 @@ describe("/admin", () => {
     expect(Array.from(week1.querySelectorAll("td"), (td) => td.textContent)).toEqual(["1", "5", "3", "2"]); // easy, just right, too hard, reports
     expect(screen.getByRole("rowheader", { name: "Week 13 · Shopping at the Market" })).toBeTruthy();
     expect(screen.getByRole("rowheader", { name: "Week 40 · Checkpoint: Stage 2 Review" })).toBeTruthy();
-    expect(screen.queryByRole("rowheader", { name: /^Week 41/ })).toBeNull(); // not released
+    expect(screen.getByRole("rowheader", { name: "Week 49 · Online Shopping & Deliveries" })).toBeTruthy();
+    expect(screen.getByRole("rowheader", { name: "Week 58 · At the Enquiry Counter" })).toBeTruthy();
+    expect(screen.getByRole("rowheader", { name: "Week 67 · Checkpoint: Getting Things Done" })).toBeTruthy();
+    expect(screen.getByRole("rowheader", { name: "Week 76 · Chatting at the Park" })).toBeTruthy();
+    expect(screen.getByRole("rowheader", { name: "Week 80 · Checkpoint: Stage 3 Review" })).toBeTruthy();
+    expect(screen.queryByRole("rowheader", { name: /^Week 81/ })).toBeNull(); // not released
   });
 });
 

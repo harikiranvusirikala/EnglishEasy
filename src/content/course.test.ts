@@ -24,13 +24,13 @@ describe("course map", () => {
     }
   });
 
-  it("releases Stages 1 and 2 (Weeks 1–40), with seven day refs each and unique ids", () => {
-    expect(mainWeeks().filter((w) => w.released).map((w) => w.n)).toEqual(Array.from({ length: 40 }, (_, i) => i + 1));
+  it("releases Stages 1–3 (Weeks 1–80), with seven day refs each and unique ids", () => {
+    expect(mainWeeks().filter((w) => w.released).map((w) => w.n)).toEqual(Array.from({ length: 80 }, (_, i) => i + 1));
     for (const w of [...mainWeeks(), ...course.tracks.flatMap((t) => t.weeks)]) {
       if (!w.released) expect(w.days).toEqual([]);
     }
     const refs = releasedDayRefs();
-    expect(refs).toHaveLength(280);
+    expect(refs).toHaveLength(560);
     expect(refs[0].ref.id).toBe("sentence-basics");
     expect(refs[6]).toMatchObject({ ref: { id: "w1-review", kind: "review" } });
     expect(refs[12]).toMatchObject({ ref: { id: "w2-conversation", kind: "conversation" } });
@@ -41,6 +41,11 @@ describe("course map", () => {
     expect(refs[153]).toMatchObject({ ref: { id: "w22-review", kind: "review" } });
     expect(refs[216]).toMatchObject({ ref: { id: "w31-review", kind: "review" } });
     expect(refs[279]).toMatchObject({ ref: { id: "w40-review", kind: "review" } });
+    expect(refs[342]).toMatchObject({ ref: { id: "w49-review", kind: "review" } });
+    expect(refs[405]).toMatchObject({ ref: { id: "w58-review", kind: "review" } });
+    expect(refs[468]).toMatchObject({ ref: { id: "w67-review", kind: "review" } });
+    expect(refs[531]).toMatchObject({ ref: { id: "w76-review", kind: "review" } });
+    expect(refs[559]).toMatchObject({ ref: { id: "w80-review", kind: "review" } });
     const ids = refs.map((r) => r.ref.id);
     expect(new Set(ids).size).toBe(ids.length);
     for (const id of ids) expect(id.length).toBeLessThanOrEqual(40);
@@ -91,7 +96,12 @@ describe("dayAfter", () => {
     expect(dayAfter("w13-review")).toMatchObject({ ref: { id: "excuse-me-where-is" }, number: 92 });
     expect(dayAfter("w22-review")).toMatchObject({ ref: { id: "a-table-for-two" }, number: 155 });
     expect(dayAfter("w31-review")).toMatchObject({ ref: { id: "happy-sankranti" }, number: 218 });
-    expect(dayAfter("w40-review")).toBeNull();
+    expect(dayAfter("w40-review")).toMatchObject({ ref: { id: "first-then-story-steps" }, number: 281 });
+    expect(dayAfter("w49-review")).toMatchObject({ ref: { id: "because-so-thats-why-returns" }, number: 344 });
+    expect(dayAfter("w58-review")).toMatchObject({ ref: { id: "the-shop-which-repairs-radios" }, number: 407 });
+    expect(dayAfter("w67-review")).toMatchObject({ ref: { id: "stopped-smoking-healthy-habits" }, number: 470 });
+    expect(dayAfter("w76-review")).toMatchObject({ ref: { id: "bored-or-boring-films" }, number: 533 });
+    expect(dayAfter("w80-review")).toBeNull();
     expect(dayAfter("nope")).toBeNull();
   });
 });

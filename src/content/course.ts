@@ -451,48 +451,408 @@ const stage2Weeks: Week[] = [
 
 // Stages 3–5 (CURRICULUM §5–§7; reordered 2026-11-09 by the curriculum review: survival topics earlier, life themes for
 // every grammar week, checkpoint weeks about every 12–14 weeks).
-const stage3Weeks = weeks(41, [
-  ["Telling a Story", "కథ చెప్పడం"],
-  ["When I Was Young", "నేను చిన్నప్పుడు"],
-  ["My Life Story", "నా జీవిత కథ"],
-  ["Clothes & the Tailor", "బట్టలు, టైలర్"],
-  ["Describing Places", "మా ఊరు ఎలా ఉంటుంది"],
-  ["Giving Opinions", "అభిప్రాయాలు చెప్పడం"],
-  ["Comparing & Choosing", "పోల్చి ఎంచుకోవడం"],
-  ["If It Rains …", "వర్షం పడితే …"],
-  ["Online Shopping & Deliveries", "ఆన్‌లైన్ షాపింగ్, డెలివరీలు"],
-  ["Problems, Returns & Refunds", "సమస్యలు, రిటర్న్, రీఫండ్"],
-  ["Understanding the Doctor", "డాక్టర్ చెప్పేది అర్థం చేసుకోవడం"],
-  ["A Hospital Stay", "ఆసుపత్రిలో ఉండటం"],
-  ["Waiting in Line", "క్యూలో ఎదురుచూపు"],
-  ["Checkpoint: Telling and Explaining", "చెక్‌పాయింట్: చెప్పడం, వివరించడం"],
-  ["Travel in India & Pilgrimage", "ప్రయాణాలు, తీర్థయాత్రలు"],
-  ["Made in India: Labels & Signs", "మేడ్ ఇన్ ఇండియా: లేబుల్స్, బోర్డులు"],
-  ["The Doctor Said …", "డాక్టర్ ఏం చెప్పారంటే …"],
-  ["At the Enquiry Counter", "ఎంక్వయిరీ కౌంటర్ దగ్గర"],
-  ["The Shop Where …", "… దొరికే షాపు"],
-  ["Money, Savings & Pensions", "డబ్బు, పొదుపు, పెన్షన్"],
-  ["News Headlines", "వార్తల హెడ్‌లైన్స్"],
-  ["Formal Requests & Calling Offices", "ఆఫీసులకు మర్యాదగా అడగడం"],
-  ["Official Letters & Notices", "ఆఫీసు ఉత్తరాలు, నోటీసులు"],
-  ["Hosting Guests", "అతిథులకు మర్యాదలు"],
-  ["Social Occasions", "శుభకార్యాలు, పరామర్శలు"],
-  ["Phrasal Verbs at Home", "ఇంట్లో phrasal verbs"],
-  ["Checkpoint: Getting Things Done", "చెక్‌పాయింట్: పనులు చక్కబెట్టడం"],
-  ["Healthy Habits", "మంచి అలవాట్లు"],
-  ["If I Had More Time …", "నాకు ఇంకా టైమ్ ఉంటే …"],
-  ["Wishes & Regrets", "అలా జరిగుంటే బాగుండేది"],
-  ["Prices Have Gone Up", "ధరలు పెరిగిపోయాయి"],
-  ["Maybe, Probably, Definitely", "బహుశా, తప్పకుండా"],
-  ["It Must Be …", "అది … అయ్యుంటుంది"],
-  ["How It Works", "ఇది ఎలా పనిచేస్తుంది"],
-  ["Neighbourhood Problems", "కాలనీ సమస్యలు"],
-  ["Chatting at the Park", "పార్క్‌లో కబుర్లు"],
-  ["Films, TV & Serials", "సినిమాలు, టీవీ, సీరియల్స్"],
-  ["Different Accents", "వేర్వేరు యాసలు"],
-  ["Persuading Gently", "మెల్లగా ఒప్పించడం"],
-  ["Checkpoint: Stage 3 Review", "చెక్‌పాయింట్: ధైర్యంగా మాట్లాడటం పునశ్చరణ"],
-]);
+const week41Days: DayRef[] = [
+  { id: "first-then-story-steps", kind: "lesson", title: { en: "First, Then, After That", te: "ముందు, తర్వాత" } },
+  { id: "story-while-i-was-waiting", kind: "lesson", title: { en: "While I Was Waiting", te: "ఎదురుచూస్తుండగా" } },
+  { id: "suddenly-luckily-story-words", kind: "lesson", title: { en: "Suddenly, Luckily", te: "ఉన్నట్టుండి, అదృష్టం కొద్దీ" } },
+  { id: "what-happened-next-story", kind: "lesson", title: { en: "What Happened Next?", te: "తర్వాత ఏమైంది?" } },
+  { id: "story-the-purse-on-the-bus", kind: "lesson", title: { en: "The Purse on the Bus", te: "బస్సులో పర్సు" } },
+  { id: "w41-conversation", kind: "conversation", title: { en: "What a Day!", te: "ఏం రోజు అది!" } },
+  { id: "w41-review", kind: "review", title: { en: "Story Time", te: "కథల సమయం" } },
+];
+const week42Days: DayRef[] = [
+  { id: "used-to-village-life", kind: "lesson", title: { en: "We Used to Live in a Village", te: "ఒకప్పుడు ఊర్లో ఉండేవాళ్ళం" } },
+  { id: "didnt-use-to-have-a-tv", kind: "lesson", title: { en: "We Didn't Use to Have a TV", te: "అప్పుడు TV లేదు" } },
+  { id: "school-days-teacher-used-to", kind: "lesson", title: { en: "My School Days", te: "నా స్కూల్ రోజులు" } },
+  { id: "games-we-used-to-play", kind: "lesson", title: { en: "Games We Used to Play", te: "చిన్నప్పటి ఆటలు" } },
+  { id: "childhood-festival-memories", kind: "lesson", title: { en: "Festivals When I Was Young", te: "చిన్నప్పటి పండుగలు" } },
+  { id: "w42-conversation", kind: "conversation", title: { en: "Memories of the Village", te: "ఊరి జ్ఞాపకాలు" } },
+  { id: "w42-review", kind: "review", title: { en: "Those Were the Days", te: "ఆ రోజులే వేరు" } },
+];
+const week43Days: DayRef[] = [
+  { id: "where-i-was-born-life-story", kind: "lesson", title: { en: "Where I Was Born", te: "నేను పుట్టిన ఊరు" } },
+  { id: "my-working-years-life-story", kind: "lesson", title: { en: "My Working Years", te: "నేను పని చేసిన రోజులు" } },
+  { id: "lived-here-since-life-story", kind: "lesson", title: { en: "I've Lived Here Since 1995", te: "1995 నుంచి ఇక్కడే" } },
+  { id: "biggest-changes-in-my-life", kind: "lesson", title: { en: "The Biggest Changes", te: "పెద్ద మార్పులు" } },
+  { id: "my-life-story-in-brief", kind: "lesson", title: { en: "My Life in a Few Sentences", te: "నా జీవితం కొన్ని మాటల్లో" } },
+  { id: "w43-conversation", kind: "conversation", title: { en: "An Interview for the Colony Magazine", te: "కాలనీ పత్రిక ఇంటర్వ్యూ" } },
+  { id: "w43-review", kind: "review", title: { en: "My Story So Far", te: "ఇప్పటి వరకు నా కథ" } },
+];
+const week44Days: DayRef[] = [
+  { id: "colours", kind: "lesson", title: { en: "Colours", te: "రంగులు" } },
+  { id: "the-best-and-cheapest", kind: "lesson", title: { en: "The Best, The Cheapest", te: "అన్నిటికంటే" } },
+  { id: "a-nice-red-saree", kind: "lesson", title: { en: "A Nice Red Saree", te: "రంగు, సైజు వరుస" } },
+  { id: "does-it-fit", kind: "lesson", title: { en: "Does It Fit?", te: "సరిపోతుందా?" } },
+  { id: "at-the-tailor", kind: "lesson", title: { en: "At the Tailor", te: "టైలర్ దగ్గర" } },
+  { id: "w44-conversation", kind: "conversation", title: { en: "Clothes for a Wedding", te: "పెళ్లికి బట్టలు" } },
+  { id: "w44-review", kind: "review", title: { en: "Choosing Clothes", te: "బట్టలు ఎంచుకోవడం" } },
+];
+const week45Days: DayRef[] = [
+  { id: "there-was-there-were", kind: "lesson", title: { en: "There Was, There Were", te: "ఉండేది, ఉండేవి" } },
+  { id: "then-and-now", kind: "lesson", title: { en: "Then and Now", te: "అప్పుడు, ఇప్పుడు" } },
+  { id: "famous-for-chillies", kind: "lesson", title: { en: "Famous for Chillies", te: "మా ఊరు దేనికి ప్రసిద్ధి" } },
+  { id: "the-best-place-to-visit", kind: "lesson", title: { en: "The Best Place to Visit", te: "చూడదగ్గ ప్రదేశం" } },
+  { id: "whats-it-like", kind: "lesson", title: { en: "What's It Like?", te: "ఎలా ఉంటుంది?" } },
+  { id: "w45-conversation", kind: "conversation", title: { en: "Showing a Visitor Around", te: "ఊరు చూపించడం" } },
+  { id: "w45-review", kind: "review", title: { en: "Our Town, Then and Now", te: "మా ఊరు: అప్పుడు, ఇప్పుడు" } },
+];
+const week46Days: DayRef[] = [
+  { id: "i-think-local-opinions", kind: "lesson", title: { en: "I Think, I Don't Think", te: "నా ఉద్దేశంలో" } },
+  { id: "in-my-opinion-the-park", kind: "lesson", title: { en: "In My Opinion", te: "నా అభిప్రాయం ప్రకారం" } },
+  { id: "i-agree-but-colony", kind: "lesson", title: { en: "I Agree, But", te: "ఒప్పుకుంటాను, కానీ" } },
+  { id: "disagreeing-politely-plastic-ban", kind: "lesson", title: { en: "I'm Not So Sure", te: "నాకు అలా అనిపించడం లేదు" } },
+  { id: "what-do-you-think-library", kind: "lesson", title: { en: "What Do You Think?", te: "మీకేమనిపిస్తుంది?" } },
+  { id: "w46-conversation", kind: "conversation", title: { en: "The Residents' Meeting", te: "రెసిడెంట్స్ మీటింగ్" } },
+  { id: "w46-review", kind: "review", title: { en: "What's Your Opinion?", te: "మీ అభిప్రాయం ఏంటి?" } },
+];
+const week47Days: DayRef[] = [
+  { id: "as-good-as-comparing-phones", kind: "lesson", title: { en: "As Good As", te: "అంతే బాగుంది" } },
+  { id: "not-as-cheap-as-recharge-plans", kind: "lesson", title: { en: "Not as Cheap As", te: "అంత చవక కాదు" } },
+  { id: "i-prefer-the-train", kind: "lesson", title: { en: "I Prefer the Train", te: "నాకు రైలే ఇష్టం" } },
+  { id: "id-rather-choosing-a-clinic", kind: "lesson", title: { en: "I'd Rather", te: "దానికంటే ఇదే మేలు" } },
+  { id: "which-would-you-choose-fan", kind: "lesson", title: { en: "Which Would You Choose?", te: "మీరైతే ఏది తీసుకుంటారు?" } },
+  { id: "w47-conversation", kind: "conversation", title: { en: "Buying a New TV", te: "కొత్త TV కొనడం" } },
+  { id: "w47-review", kind: "review", title: { en: "Making a Choice", te: "ఎంపిక చేసుకోవడం" } },
+];
+const week48Days: DayRef[] = [
+  { id: "if-it-rains-ill-stay-home", kind: "lesson", title: { en: "If It Rains, I'll Stay Home", te: "వర్షం పడితే ఇంట్లోనే" } },
+  { id: "if-the-train-is-late", kind: "lesson", title: { en: "If the Train Is Late", te: "రైలు ఆలస్యం అయితే" } },
+  { id: "if-you-feel-dizzy-advice", kind: "lesson", title: { en: "If You Feel Dizzy", te: "కళ్ళు తిరిగితే" } },
+  { id: "what-if-the-power-goes-off", kind: "lesson", title: { en: "What Will You Do If …?", te: "ఒకవేళ … అయితే?" } },
+  { id: "if-all-goes-well-trip-plans", kind: "lesson", title: { en: "If All Goes Well", te: "అంతా బాగుంటే" } },
+  { id: "w48-conversation", kind: "conversation", title: { en: "A Trip to Araku", te: "అరకు ప్రయాణం" } },
+  { id: "w48-review", kind: "review", title: { en: "If Plans Change", te: "ప్లాన్ మారితే" } },
+];
+const week49Days: DayRef[] = [
+  { id: "placing-an-order-online", kind: "lesson", title: { en: "Placing an Order", te: "ఆర్డర్ పెట్టడం" } },
+  { id: "when-will-my-order-arrive", kind: "lesson", title: { en: "When Will It Arrive?", te: "ఎప్పుడు వస్తుంది?" } },
+  { id: "reading-the-delivery-code", kind: "lesson", title: { en: "Reading the Code", te: "కోడ్ చెప్పడం" } },
+  { id: "parcel-says-delivered-but", kind: "lesson", title: { en: "It Says Delivered, But", te: "డెలివరీ అయిందంటోంది, కానీ" } },
+  { id: "leave-the-parcel-with-the-guard", kind: "lesson", title: { en: "Leave It With the Guard", te: "సెక్యూరిటీ దగ్గర ఇవ్వండి" } },
+  { id: "w49-conversation", kind: "conversation", title: { en: "The Wrong Parcel", te: "తప్పు పార్సెల్" } },
+  { id: "w49-review", kind: "review", title: { en: "Your Parcel Is on the Way", te: "మీ పార్సెల్ దారిలో ఉంది" } },
+];
+const week50Days: DayRef[] = [
+  { id: "because-so-thats-why-returns", kind: "lesson", title: { en: "Because, So, That's Why", te: "అందుకే" } },
+  { id: "im-afraid-polite-complaints", kind: "lesson", title: { en: "I'm Afraid There's a Problem", te: "ఒక చిన్న సమస్య ఉంది అండీ" } },
+  { id: "id-like-to-return-this-kettle", kind: "lesson", title: { en: "I'd Like to Return This", te: "ఇది వాపస్ ఇవ్వాలి" } },
+  { id: "when-will-i-get-my-refund", kind: "lesson", title: { en: "When Will I Get My Refund?", te: "రీఫండ్ ఎప్పుడు?" } },
+  { id: "firm-and-polite-ask-the-manager", kind: "lesson", title: { en: "Could I Speak to the Manager?", te: "మేనేజర్‌తో మాట్లాడతాను" } },
+  { id: "w50-conversation", kind: "conversation", title: { en: "A Faulty Ceiling Fan", te: "పని చేయని ఫ్యాన్" } },
+  { id: "w50-review", kind: "review", title: { en: "Returns and Refunds", te: "వాపస్, రీఫండ్" } },
+];
+const week51Days: DayRef[] = [
+  { id: "my-medical-history-new-doctor", kind: "lesson", title: { en: "My Medical History", te: "నా ఆరోగ్య వివరాలు" } },
+  { id: "do-you-mean-doctor-checking", kind: "lesson", title: { en: "Do You Mean …?", te: "అంటే …?" } },
+  { id: "so-i-should-doctor-advice", kind: "lesson", title: { en: "So I Should Walk Every Day?", te: "అంటే రోజూ నడవాలా?" } },
+  { id: "reading-a-test-report", kind: "lesson", title: { en: "My Test Report", te: "టెస్ట్ రిపోర్ట్" } },
+  { id: "options-and-next-steps-doctor", kind: "lesson", title: { en: "What Are the Options?", te: "ఇంకా ఏ దారులు ఉన్నాయి?" } },
+  { id: "w51-conversation", kind: "conversation", title: { en: "A Follow-Up Visit", te: "ఫాలో-అప్ విజిట్" } },
+  { id: "w51-review", kind: "review", title: { en: "Checking With the Doctor", te: "డాక్టర్‌తో సరిచూసుకోవడం" } },
+];
+const week52Days: DayRef[] = [
+  { id: "admission-day-hospital-stay", kind: "lesson", title: { en: "Admission Day", te: "ఆసుపత్రిలో చేరే రోజు" } },
+  { id: "visitors-allowed-hospital-stay", kind: "lesson", title: { en: "Are Visitors Allowed?", te: "విజిటర్స్‌ని రానిస్తారా?" } },
+  { id: "on-the-ward-calling-the-nurse", kind: "lesson", title: { en: "On the Ward", te: "వార్డులో" } },
+  { id: "before-after-until-operation", kind: "lesson", title: { en: "Before, After, Until", te: "ముందు, తర్వాత, అప్పటివరకు" } },
+  { id: "discharge-day-and-the-bill", kind: "lesson", title: { en: "Discharge and the Bill", te: "డిశ్చార్జ్, బిల్లు" } },
+  { id: "w52-conversation", kind: "conversation", title: { en: "Visiting a Neighbour in Hospital", te: "ఆసుపత్రిలో పొరుగువారిని చూడటం" } },
+  { id: "w52-review", kind: "review", title: { en: "Hospital Rules", te: "ఆసుపత్రి నియమాలు" } },
+];
+const week53Days: DayRef[] = [
+  { id: "ive-been-waiting-for-an-hour", kind: "lesson", title: { en: "I've Been Waiting for an Hour", te: "గంట నుంచి ఎదురుచూస్తున్నాను" } },
+  { id: "how-long-have-you-been-waiting", kind: "lesson", title: { en: "How Long Have You Been Waiting?", te: "ఎంతసేపట్నుంచి ఉన్నారు?" } },
+  { id: "still-going-or-done-queue", kind: "lesson", title: { en: "Still Going or Done?", te: "ఇంకా చేస్తున్నారా, అయిపోయిందా?" } },
+  { id: "someone-jumped-the-queue", kind: "lesson", title: { en: "Someone Jumped the Queue", te: "క్యూలో ముందుకు దూరారు" } },
+  { id: "how-much-longer-in-the-queue", kind: "lesson", title: { en: "How Much Longer?", te: "ఇంకా ఎంతసేపు?" } },
+  { id: "w53-conversation", kind: "conversation", title: { en: "A Long Wait at the Hospital", te: "ఆసుపత్రిలో చాలాసేపు" } },
+  { id: "w53-review", kind: "review", title: { en: "Still in the Queue", te: "ఇంకా క్యూలోనే" } },
+];
+const week54Days: DayRef[] = [
+  { id: "stories-and-memories-mix", kind: "lesson", title: { en: "Stories and Memories", te: "కథలు, జ్ఞాపకాలు" } },
+  { id: "opinions-and-choices-mix", kind: "lesson", title: { en: "Opinions and Choices", te: "అభిప్రాయాలు, ఎంపికలు" } },
+  { id: "shop-and-hospital-problems-mix", kind: "lesson", title: { en: "Problems Sorted", te: "సమస్యలు తీరాయి" } },
+  { id: "fix-it-clinic-3", kind: "lesson", title: { en: "Fix-It Clinic", te: "తప్పులు సరిచేసుకుందాం" } },
+  { id: "childhood-story-in-one-minute", kind: "lesson", title: { en: "A Story From My Childhood", te: "నా చిన్నప్పటి కథ" } },
+  { id: "w54-conversation", kind: "conversation", title: { en: "Tea With Old Friends", te: "పాత స్నేహితులతో టీ" } },
+  { id: "w54-review", kind: "review", title: { en: "Checkpoint", te: "చెక్‌పాయింట్" } },
+];
+const week55Days: DayRef[] = [
+  { id: "travelling-to-tirupati-plans", kind: "lesson", title: { en: "We're Going to Tirupati", te: "తిరుపతి వెళ్తున్నాం" } },
+  { id: "booking-a-train-berth", kind: "lesson", title: { en: "Booking a Train Ticket", te: "రైలు టికెట్ బుకింగ్" } },
+  { id: "hotel-check-in-on-a-trip", kind: "lesson", title: { en: "Checking In", te: "హోటల్‌లో చెక్-ఇన్" } },
+  { id: "darshan-tickets-and-queues", kind: "lesson", title: { en: "Darshan Tickets and Queues", te: "దర్శనం టికెట్లు, క్యూలు" } },
+  { id: "catching-the-platform-announcement", kind: "lesson", title: { en: "Listen to the Announcement", te: "అనౌన్స్‌మెంట్ వినండి" } },
+  { id: "w55-conversation", kind: "conversation", title: { en: "A Group Trip to Srisailam", te: "శ్రీశైలం యాత్ర" } },
+  { id: "w55-review", kind: "review", title: { en: "Ready for the Trip", te: "ప్రయాణానికి రెడీ" } },
+];
+const week56Days: DayRef[] = [
+  { id: "made-in-india-labels", kind: "lesson", title: { en: "Made in India", te: "మేడ్ ఇన్ ఇండియా" } },
+  { id: "best-before-reading-labels", kind: "lesson", title: { en: "Best Before", te: "ఎప్పటిలోపు వాడాలి" } },
+  { id: "signs-is-not-permitted", kind: "lesson", title: { en: "Parking Is Not Permitted", te: "ఇక్కడ పార్కింగ్ చేయకూడదు" } },
+  { id: "are-these-handwoven-questions", kind: "lesson", title: { en: "Are These Woven by Hand?", te: "ఇవి చేనేతవేనా?" } },
+  { id: "famous-products-of-our-region", kind: "lesson", title: { en: "Famous Products", te: "మన ప్రాంతం ప్రత్యేకతలు" } },
+  { id: "w56-conversation", kind: "conversation", title: { en: "At a Handloom Exhibition", te: "చేనేత ఎగ్జిబిషన్" } },
+  { id: "w56-review", kind: "review", title: { en: "Read the Label", te: "లేబుల్ చదవండి" } },
+];
+const week57Days: DayRef[] = [
+  { id: "she-said-that-doctor-news", kind: "lesson", title: { en: "She Said That", te: "ఆవిడ చెప్పారు" } },
+  { id: "told-me-to-walk-doctor", kind: "lesson", title: { en: "She Told Me to Walk", te: "నడవమని చెప్పారు" } },
+  { id: "said-or-told-messages", kind: "lesson", title: { en: "Said or Told?", te: "said ఆ, told ఆ?" } },
+  { id: "passing-on-office-messages", kind: "lesson", title: { en: "The Bank Called", te: "బ్యాంక్ నుంచి ఫోన్" } },
+  { id: "what-did-they-say-meeting", kind: "lesson", title: { en: "What Did She Say?", te: "ఆవిడ ఏం చెప్పారు?" } },
+  { id: "w57-conversation", kind: "conversation", title: { en: "A Message From the Clinic", te: "క్లినిక్ నుంచి మెసేజ్" } },
+  { id: "w57-review", kind: "review", title: { en: "Passing It On", te: "మాట అందించడం" } },
+];
+const week58Days: DayRef[] = [
+  { id: "can-you-tell-me-where-enquiry", kind: "lesson", title: { en: "Can You Tell Me Where?", te: "ఎక్కడో చెప్తారా?" } },
+  { id: "do-you-know-when-the-train", kind: "lesson", title: { en: "Do You Know When?", te: "ఎప్పుడో తెలుసా?" } },
+  { id: "id-like-to-know-help-desk", kind: "lesson", title: { en: "I'd Like to Know", te: "తెలుసుకోవాలి అండీ" } },
+  { id: "polite-or-direct-questions", kind: "lesson", title: { en: "Polite or Direct?", te: "సూటిగా ఆ, మర్యాదగా ఆ?" } },
+  { id: "enquiring-for-a-neighbour", kind: "lesson", title: { en: "Asking for Someone Else", te: "ఇంకొకరి కోసం అడగడం" } },
+  { id: "w58-conversation", kind: "conversation", title: { en: "At the Bus Station Enquiry", te: "బస్ స్టేషన్ ఎంక్వయిరీ" } },
+  { id: "w58-review", kind: "review", title: { en: "Polite Questions", te: "మర్యాద ప్రశ్నలు" } },
+];
+const week59Days: DayRef[] = [
+  { id: "the-shop-which-repairs-radios", kind: "lesson", title: { en: "The Shop Which Repairs Radios", te: "రేడియోలు రిపేర్ చేసే షాపు" } },
+  { id: "the-place-where-we-had-lunch", kind: "lesson", title: { en: "The Place Where We Had Lunch", te: "మనం భోజనం చేసిన చోటు" } },
+  { id: "the-man-whose-shop", kind: "lesson", title: { en: "The Man Whose Shop Is Near the Temple", te: "గుడి దగ్గర షాపున్న ఆయన" } },
+  { id: "recommend-a-dentist-who", kind: "lesson", title: { en: "Do You Know a Good Dentist?", te: "మంచి డెంటిస్ట్ తెలుసా?" } },
+  { id: "best-places-in-our-area", kind: "lesson", title: { en: "The Best Places in Our Area", te: "మా ఏరియాలో మంచి చోట్లు" } },
+  { id: "w59-conversation", kind: "conversation", title: { en: "A Visitor From Chennai", te: "చెన్నై నుంచి అతిథి" } },
+  { id: "w59-review", kind: "review", title: { en: "Good Places, Good People", te: "మంచి చోట్లు, మంచి మనుషులు" } },
+];
+const week60Days: DayRef[] = [
+  { id: "lakh-and-million-money", kind: "lesson", title: { en: "Lakh and Million", te: "లక్ష, మిలియన్" } },
+  { id: "interest-rate-per-cent", kind: "lesson", title: { en: "Seven Per Cent Interest", te: "ఏడు శాతం వడ్డీ" } },
+  { id: "opening-a-fixed-deposit", kind: "lesson", title: { en: "Opening a Fixed Deposit", te: "FD తెరవడం" } },
+  { id: "asking-about-a-pension", kind: "lesson", title: { en: "Asking About a Pension", te: "పెన్షన్ గురించి అడగడం" } },
+  { id: "saving-and-spending-habits", kind: "lesson", title: { en: "Saving and Spending", te: "పొదుపు, ఖర్చు" } },
+  { id: "w60-conversation", kind: "conversation", title: { en: "At the Bank Manager's Desk", te: "బ్యాంక్ మేనేజర్ దగ్గర" } },
+  { id: "w60-review", kind: "review", title: { en: "Money Talk", te: "డబ్బు మాటలు" } },
+];
+const week61Days: DayRef[] = [
+  { id: "headlines-in-the-present", kind: "lesson", title: { en: "Rains Hit the City", te: "హెడ్‌లైన్స్ చదవడం" } },
+  { id: "headlines-without-is-or-was", kind: "lesson", title: { en: "Flyover Opened", te: "ఫ్లైఓవర్ ప్రారంభం" } },
+  { id: "headlines-with-to-for-future", kind: "lesson", title: { en: "Metro to Start in May", te: "మే నుంచి మెట్రో" } },
+  { id: "did-you-hear-the-local-news", kind: "lesson", title: { en: "Did You Hear?", te: "విన్నారా?" } },
+  { id: "is-this-news-forward-true", kind: "lesson", title: { en: "Is It True?", te: "ఇది నిజమేనా?" } },
+  { id: "w61-conversation", kind: "conversation", title: { en: "The Morning Paper", te: "పొద్దున పేపర్" } },
+  { id: "w61-review", kind: "review", title: { en: "In the News", te: "వార్తల్లో" } },
+];
+const week62Days: DayRef[] = [
+  { id: "would-you-mind-office-call", kind: "lesson", title: { en: "Would You Mind Checking?", te: "కొంచెం చూస్తారా?" } },
+  { id: "is-it-ok-if-appointments", kind: "lesson", title: { en: "Is It OK If I Come on Thursday?", te: "గురువారం రావొచ్చా?" } },
+  { id: "could-you-possibly-formal", kind: "lesson", title: { en: "Could You Possibly …?", te: "వీలైతే … చేస్తారా?" } },
+  { id: "im-calling-about-formal-call", kind: "lesson", title: { en: "I'm Calling About", te: "… గురించి ఫోన్ చేశాను" } },
+  { id: "following-up-a-formal-request", kind: "lesson", title: { en: "Following Up", te: "మళ్ళీ గుర్తు చేయడం" } },
+  { id: "w62-conversation", kind: "conversation", title: { en: "A Call to the Electricity Office", te: "కరెంట్ ఆఫీసుకి ఫోన్" } },
+  { id: "w62-review", kind: "review", title: { en: "Calling an Office", te: "ఆఫీసుకి ఫోన్ చేయడం" } },
+];
+const week63Days: DayRef[] = [
+  { id: "parts-of-an-official-letter", kind: "lesson", title: { en: "Dear Sir or Madam", te: "ఉత్తరం మొదలు, ముగింపు" } },
+  { id: "you-are-requested-to-letters", kind: "lesson", title: { en: "You Are Requested To", te: "దయచేసి … చేయండి" } },
+  { id: "power-shutdown-notice", kind: "lesson", title: { en: "Supply Will Be Interrupted", te: "కరెంట్ ఉండదు" } },
+  { id: "a-final-reminder-letter", kind: "lesson", title: { en: "A Final Reminder", te: "చివరి రిమైండర్" } },
+  { id: "is-this-letter-real", kind: "lesson", title: { en: "Is This Letter Real?", te: "ఇది నిజమైన ఉత్తరమేనా?" } },
+  { id: "w63-conversation", kind: "conversation", title: { en: "A Letter From the Bank", te: "బ్యాంక్ నుంచి ఉత్తరం" } },
+  { id: "w63-review", kind: "review", title: { en: "Letters and Notices", te: "ఉత్తరాలు, నోటీసులు" } },
+];
+const week64Days: DayRef[] = [
+  { id: "would-you-like-guest-offers", kind: "lesson", title: { en: "Would You Like Some Coffee?", te: "కాఫీ తాగుతారా?" } },
+  { id: "help-yourself-make-yourself-at-home", kind: "lesson", title: { en: "Help Yourself", te: "మొహమాటపడకండి" } },
+  { id: "a-little-a-few-serving-food", kind: "lesson", title: { en: "A Little, A Few", te: "కొంచెం, కొన్ని" } },
+  { id: "how-to-make-pesarattu-recipe", kind: "lesson", title: { en: "How Do You Make It?", te: "ఎలా చేస్తారు?" } },
+  { id: "thank-you-for-coming-guests", kind: "lesson", title: { en: "Thank You for Coming", te: "వచ్చినందుకు థ్యాంక్స్" } },
+  { id: "w64-conversation", kind: "conversation", title: { en: "Guests for Lunch", te: "భోజనానికి అతిథులు" } },
+  { id: "w64-review", kind: "review", title: { en: "A Warm Welcome", te: "ఆప్యాయంగా ఆహ్వానం" } },
+];
+const week65Days: DayRef[] = [
+  { id: "best-wishes-at-a-wedding", kind: "lesson", title: { en: "Best Wishes for the Wedding", te: "పెళ్లికి శుభాకాంక్షలు" } },
+  { id: "congratulations-on-the-new-home", kind: "lesson", title: { en: "Congratulations on the New Home", te: "గృహప్రవేశం" } },
+  { id: "sorry-for-your-loss-condolence", kind: "lesson", title: { en: "I'm Sorry for Your Loss", te: "పరామర్శ" } },
+  { id: "offering-help-after-bad-news", kind: "lesson", title: { en: "Is There Anything I Can Do?", te: "నా వల్ల ఏమైనా సహాయం కావాలా?" } },
+  { id: "a-few-words-at-a-function", kind: "lesson", title: { en: "A Few Words at a Function", te: "ఫంక్షన్‌లో రెండు మాటలు" } },
+  { id: "w65-conversation", kind: "conversation", title: { en: "A Week of Functions", te: "ఫంక్షన్ల వారం" } },
+  { id: "w65-review", kind: "review", title: { en: "Kind Words", te: "మంచి మాటలు" } },
+];
+const week66Days: DayRef[] = [
+  { id: "turn-on-turn-off-at-home", kind: "lesson", title: { en: "Turn On, Turn Off", te: "ఆన్ చేయడం, ఆఫ్ చేయడం" } },
+  { id: "pick-up-put-away-tidying", kind: "lesson", title: { en: "Pick Up, Put Away", te: "తీయడం, సర్దడం" } },
+  { id: "look-for-find-out-at-home", kind: "lesson", title: { en: "Look For, Find Out", te: "వెతకడం, తెలుసుకోవడం" } },
+  { id: "weve-run-out-of-sugar", kind: "lesson", title: { en: "We've Run Out of Sugar", te: "చక్కెర అయిపోయింది" } },
+  { id: "clearing-out-the-storeroom", kind: "lesson", title: { en: "Clearing Out the Storeroom", te: "స్టోర్‌రూమ్ ఖాళీ చేయడం" } },
+  { id: "w66-conversation", kind: "conversation", title: { en: "Cleaning Before Ugadi", te: "ఉగాది ముందు శుభ్రం" } },
+  { id: "w66-review", kind: "review", title: { en: "Jobs Around the House", te: "ఇంటి పనులు" } },
+];
+const week67Days: DayRef[] = [
+  { id: "trips-and-enquiries-mix", kind: "lesson", title: { en: "Trips and Enquiries", te: "ప్రయాణాలు, ఎంక్వయిరీలు" } },
+  { id: "messages-and-letters-mix", kind: "lesson", title: { en: "Messages and Letters", te: "మెసేజ్‌లు, ఉత్తరాలు" } },
+  { id: "money-and-guests-mix", kind: "lesson", title: { en: "Money and Guests", te: "డబ్బు, అతిథులు" } },
+  { id: "fix-it-clinic-4", kind: "lesson", title: { en: "Fix-It Clinic", te: "తప్పులు సరిచేసుకుందాం" } },
+  { id: "a-trip-i-took-ninety-seconds", kind: "lesson", title: { en: "A Trip I Took", te: "నేను చేసిన ప్రయాణం" } },
+  { id: "w67-conversation", kind: "conversation", title: { en: "A Weekend Trip", te: "వీకెండ్ ట్రిప్" } },
+  { id: "w67-review", kind: "review", title: { en: "Checkpoint", te: "చెక్‌పాయింట్" } },
+];
+const week68Days: DayRef[] = [
+  { id: "stopped-smoking-healthy-habits", kind: "lesson", title: { en: "Stop Smoking, Keep Walking", te: "మానేయడం, కొనసాగించడం" } },
+  { id: "decided-to-walk-healthy-habits", kind: "lesson", title: { en: "I've Decided to Walk", te: "నడవాలని నిర్ణయించుకున్నాను" } },
+  { id: "too-much-not-enough-food-sleep", kind: "lesson", title: { en: "Too Much, Not Enough", te: "మరీ ఎక్కువ, సరిపోదు" } },
+  { id: "you-ought-to-health-advice", kind: "lesson", title: { en: "You Ought To", te: "చేయడం మంచిది" } },
+  { id: "my-healthy-routine-now", kind: "lesson", title: { en: "My Healthy Routine", te: "నా మంచి అలవాట్లు" } },
+  { id: "w68-conversation", kind: "conversation", title: { en: "The Yoga Class", te: "యోగా క్లాస్" } },
+  { id: "w68-review", kind: "review", title: { en: "Good Habits Every Day", te: "రోజూ మంచి అలవాట్లు" } },
+];
+const week69Days: DayRef[] = [
+  { id: "if-i-had-more-time-dreams", kind: "lesson", title: { en: "If I Had More Time", te: "టైమ్ ఎక్కువ ఉంటే" } },
+  { id: "what-would-you-do-if-quiz", kind: "lesson", title: { en: "What Would You Do?", te: "మీరైతే ఏం చేస్తారు?" } },
+  { id: "if-i-were-you-advice", kind: "lesson", title: { en: "If I Were You", te: "నేను మీ స్థానంలో ఉంటే" } },
+  { id: "real-or-imagined-if", kind: "lesson", title: { en: "Real or Imagined?", te: "జరిగేదా, ఊహించేదా?" } },
+  { id: "if-i-could-change-one-thing", kind: "lesson", title: { en: "If I Could Change One Thing", te: "ఒక్కటి మార్చగలిగితే" } },
+  { id: "w69-conversation", kind: "conversation", title: { en: "Dreams Over Tea", te: "టీ తాగుతూ కలలు" } },
+  { id: "w69-review", kind: "review", title: { en: "Dreams and Advice", te: "కలలు, సలహాలు" } },
+];
+const week70Days: DayRef[] = [
+  { id: "i-wish-i-could-swim", kind: "lesson", title: { en: "I Wish I Could Swim", te: "ఈత వస్తే బాగుండేది" } },
+  { id: "i-wish-it-wasnt-so-hot", kind: "lesson", title: { en: "I Wish It Wasn't So Hot", te: "ఇంత ఎండ లేకపోతే బాగుండు" } },
+  { id: "i-should-have-brought-an-umbrella", kind: "lesson", title: { en: "I Should Have Brought an Umbrella", te: "గొడుగు తెచ్చుకోవాల్సింది" } },
+  { id: "never-mind-replying-to-regrets", kind: "lesson", title: { en: "Never Mind", te: "పర్వాలేదు" } },
+  { id: "looking-back-on-choices", kind: "lesson", title: { en: "Looking Back", te: "వెనక్కి తిరిగి చూస్తే" } },
+  { id: "w70-conversation", kind: "conversation", title: { en: "A Rainy Day Out", te: "వర్షంలో బయట" } },
+  { id: "w70-review", kind: "review", title: { en: "Wishes and Small Regrets", te: "కోరికలు, చిన్న బాధలు" } },
+];
+const week71Days: DayRef[] = [
+  { id: "prices-have-gone-up-market", kind: "lesson", title: { en: "Prices Have Gone Up", te: "ధరలు పెరిగాయి" } },
+  { id: "getting-more-expensive-every-year", kind: "lesson", title: { en: "It's Getting Hotter", te: "రోజురోజుకీ పెరుగుతోంది" } },
+  { id: "a-dosa-used-to-cost", kind: "lesson", title: { en: "A Dosa Used to Cost Two Rupees", te: "అప్పట్లో దోస రెండు రూపాయలు" } },
+  { id: "the-way-we-shop-has-changed", kind: "lesson", title: { en: "The Way We Shop Has Changed", te: "మనం కొనే తీరు మారింది" } },
+  { id: "managing-rising-prices", kind: "lesson", title: { en: "Managing the Budget", te: "ఖర్చులు సర్దుకోవడం" } },
+  { id: "w71-conversation", kind: "conversation", title: { en: "Old Prices, New Prices", te: "పాత ధరలు, కొత్త ధరలు" } },
+  { id: "w71-review", kind: "review", title: { en: "Then and Now", te: "అప్పుడు, ఇప్పుడు" } },
+];
+const week72Days: DayRef[] = [
+  { id: "ill-definitely-come-invitation", kind: "lesson", title: { en: "I'll Definitely Come", te: "తప్పకుండా వస్తాను" } },
+  { id: "it-might-rain-later-plans", kind: "lesson", title: { en: "It Might Rain Later", te: "వర్షం పడొచ్చు" } },
+  { id: "i-might-not-make-it", kind: "lesson", title: { en: "I Might Not Make It", te: "రాలేకపోవచ్చు" } },
+  { id: "how-sure-are-you-results", kind: "lesson", title: { en: "How Sure Are You?", te: "ఎంత ఖచ్చితంగా?" } },
+  { id: "maybe-next-month-plans", kind: "lesson", title: { en: "Maybe Next Month", te: "వచ్చే నెల కావచ్చు" } },
+  { id: "w72-conversation", kind: "conversation", title: { en: "Will the Function Go Ahead?", te: "ఫంక్షన్ జరుగుతుందా?" } },
+  { id: "w72-review", kind: "review", title: { en: "Sure or Not Sure?", te: "ఖచ్చితమా, అనుమానమా?" } },
+];
+const week73Days: DayRef[] = [
+  { id: "there-must-be-a-power-cut", kind: "lesson", title: { en: "There Must Be a Power Cut", te: "కరెంట్ పోయి ఉంటుంది" } },
+  { id: "the-shop-might-be-closed", kind: "lesson", title: { en: "It Might Be Closed", te: "మూసేసి ఉండొచ్చు" } },
+  { id: "that-cant-be-my-bill", kind: "lesson", title: { en: "That Can't Be Right", te: "అలా అయ్యుండదు" } },
+  { id: "he-must-be-sleeping-guesses", kind: "lesson", title: { en: "He Must Be Sleeping", te: "నిద్రపోతూ ఉంటారు" } },
+  { id: "why-is-the-road-blocked", kind: "lesson", title: { en: "Why Is the Road Blocked?", te: "రోడ్డు ఎందుకు మూసేశారు?" } },
+  { id: "w73-conversation", kind: "conversation", title: { en: "Where Is Everyone?", te: "అందరూ ఎక్కడ?" } },
+  { id: "w73-review", kind: "review", title: { en: "Guess the Reason", te: "కారణం ఊహించండి" } },
+];
+const week74Days: DayRef[] = [
+  { id: "first-then-how-it-works", kind: "lesson", title: { en: "How Does It Work?", te: "ఇది ఎలా పనిచేస్తుంది?" } },
+  { id: "the-milk-is-collected-dairy", kind: "lesson", title: { en: "The Milk Is Collected", te: "పాలు సేకరిస్తారు" } },
+  { id: "how-your-application-is-processed", kind: "lesson", title: { en: "How Your Application Is Processed", te: "మీ అప్లికేషన్ ఎలా ముందుకు వెళ్తుంది" } },
+  { id: "using-a-cash-deposit-machine", kind: "lesson", title: { en: "Using a Cash Deposit Machine", te: "క్యాష్ డిపాజిట్ మెషీన్" } },
+  { id: "how-mango-pickle-is-made", kind: "lesson", title: { en: "How Avakaya Is Made", te: "ఆవకాయ ఎలా పెడతారు" } },
+  { id: "w74-conversation", kind: "conversation", title: { en: "A New Water Purifier", te: "కొత్త వాటర్ ప్యూరిఫైయర్" } },
+  { id: "w74-review", kind: "review", title: { en: "Step by Step", te: "ఒక్కో step గా" } },
+];
+const week75Days: DayRef[] = [
+  { id: "garbage-hasnt-been-collected", kind: "lesson", title: { en: "The Garbage Hasn't Been Collected", te: "చెత్త తీసుకెళ్లలేదు" } },
+  { id: "no-water-since-monday-complaint", kind: "lesson", title: { en: "We Haven't Had Water Since Monday", te: "సోమవారం నుంచి నీళ్ళు లేవు" } },
+  { id: "the-road-is-full-of-potholes", kind: "lesson", title: { en: "The Road Is Full of Potholes", te: "రోడ్డంతా గుంతలే" } },
+  { id: "registering-a-civic-complaint", kind: "lesson", title: { en: "Registering a Complaint", te: "ఫిర్యాదు చేయడం" } },
+  { id: "speaking-at-the-ward-meeting", kind: "lesson", title: { en: "Speaking at the Ward Meeting", te: "వార్డ్ మీటింగ్‌లో మాట్లాడటం" } },
+  { id: "w75-conversation", kind: "conversation", title: { en: "Power Cuts in Summer", te: "వేసవిలో కరెంట్ కోతలు" } },
+  { id: "w75-review", kind: "review", title: { en: "Speaking Up for Our Colony", te: "మా కాలనీ కోసం మాట్లాడటం" } },
+];
+const week76Days: DayRef[] = [
+  { id: "youre-new-here-arent-you", kind: "lesson", title: { en: "You're New Here, Aren't You?", te: "మీరు ఇక్కడికి కొత్త కదా?" } },
+  { id: "you-live-nearby-dont-you", kind: "lesson", title: { en: "You Live Nearby, Don't You?", te: "మీరు దగ్గర్లోనే ఉంటారు కదా?" } },
+  { id: "asking-or-agreeing-tags", kind: "lesson", title: { en: "Asking or Agreeing?", te: "అడుగుతున్నారా, ఒప్పుకుంటున్నారా?" } },
+  { id: "so-do-i-neither-do-i", kind: "lesson", title: { en: "So Do I, Neither Do I", te: "నేను కూడా" } },
+  { id: "keeping-the-park-chat-going", kind: "lesson", title: { en: "Keeping the Chat Going", te: "కబుర్లు కొనసాగించడం" } },
+  { id: "w76-conversation", kind: "conversation", title: { en: "Evening at the Park", te: "పార్క్‌లో సాయంత్రం" } },
+  { id: "w76-review", kind: "review", title: { en: "Isn't It? So Do I!", te: "కదా? నేను కూడా!" } },
+];
+const week77Days: DayRef[] = [
+  { id: "bored-or-boring-films", kind: "lesson", title: { en: "Bored or Boring?", te: "బోర్ కొట్టిందా, బోరింగా ఉందా?" } },
+  { id: "interested-or-interesting-shows", kind: "lesson", title: { en: "Interested or Interesting?", te: "ఆసక్తి" } },
+  { id: "so-good-such-a-good-serial", kind: "lesson", title: { en: "So Good, Such a Good Story", te: "అంత బాగుంది" } },
+  { id: "what-are-you-watching-these-days", kind: "lesson", title: { en: "What Are You Watching These Days?", te: "ఈ మధ్య ఏం చూస్తున్నారు?" } },
+  { id: "my-favourite-old-telugu-film", kind: "lesson", title: { en: "My Favourite Old Film", te: "నాకు ఇష్టమైన పాత సినిమా" } },
+  { id: "w77-conversation", kind: "conversation", title: { en: "A Film at the Theatre", te: "థియేటర్‌లో సినిమా" } },
+  { id: "w77-review", kind: "review", title: { en: "Let's Talk About Films", te: "సినిమాల గురించి మాట్లాడుకుందాం" } },
+];
+const week78Days: DayRef[] = [
+  { id: "lift-or-elevator-accents", kind: "lesson", title: { en: "Lift or Elevator?", te: "లిఫ్ట్ ఆ, ఎలివేటర్ ఆ?" } },
+  { id: "say-that-again-other-accents", kind: "lesson", title: { en: "Could You Say That Again?", te: "మళ్ళీ చెప్తారా?" } },
+  { id: "hearing-the-american-t", kind: "lesson", title: { en: "The American T, the British R", te: "అమెరికన్, బ్రిటిష్ ఉచ్చారణ" } },
+  { id: "same-thing-different-words", kind: "lesson", title: { en: "Same Thing, Different Words", te: "ఒకే అర్థం, వేరే పదాలు" } },
+  { id: "following-a-video-from-abroad", kind: "lesson", title: { en: "Following a Video", te: "వీడియో అర్థం చేసుకోవడం" } },
+  { id: "w78-conversation", kind: "conversation", title: { en: "Visitors From Abroad", te: "విదేశీ అతిథులు" } },
+  { id: "w78-review", kind: "review", title: { en: "Many Accents, One English", te: "యాసలు వేరు, ఇంగ్లీష్ ఒకటే" } },
+];
+const week79Days: DayRef[] = [
+  { id: "you-should-really-try-it", kind: "lesson", title: { en: "You Should Really Try It", te: "ఒక్కసారి try చేయండి" } },
+  { id: "it-might-be-better-to", kind: "lesson", title: { en: "It Might Be Better To", te: "అలా చేస్తే మంచిదేమో" } },
+  { id: "giving-reasons-to-persuade", kind: "lesson", title: { en: "The Good Thing Is", te: "ఇందులో మంచి ఏంటంటే" } },
+  { id: "answering-doubts-gently", kind: "lesson", title: { en: "I Understand, But", te: "మీరు చెప్పేది అర్థమైంది, కానీ" } },
+  { id: "persuading-the-colony-together", kind: "lesson", title: { en: "Let's Do It Together", te: "కలిసి చేద్దాం" } },
+  { id: "w79-conversation", kind: "conversation", title: { en: "Joining the Walking Group", te: "వాకింగ్ గ్రూప్‌లో చేరడం" } },
+  { id: "w79-review", kind: "review", title: { en: "Kind Words That Persuade", te: "ఒప్పించే మంచి మాటలు" } },
+];
+const week80Days: DayRef[] = [
+  { id: "habits-and-dreams-mix", kind: "lesson", title: { en: "Habits and Dreams", te: "అలవాట్లు, కలలు" } },
+  { id: "guesses-and-plans-mix", kind: "lesson", title: { en: "Guesses and Plans", te: "ఊహలు, ప్లాన్లు" } },
+  { id: "town-problems-and-persuading-mix", kind: "lesson", title: { en: "Town Problems", te: "ఊరి సమస్యలు" } },
+  { id: "fix-it-clinic-5", kind: "lesson", title: { en: "Fix-It Clinic", te: "తప్పులు సరిచేసుకుందాం" } },
+  { id: "my-town-in-two-minutes", kind: "lesson", title: { en: "My Town in Two Minutes", te: "రెండు నిమిషాల్లో మా ఊరు" } },
+  { id: "w80-conversation", kind: "conversation", title: { en: "A Visit From the Corporator", te: "కార్పొరేటర్ సందర్శన" } },
+  { id: "w80-review", kind: "review", title: { en: "Stage 3 Review", te: "ధైర్యంగా మాట్లాడటం పునశ్చరణ" } },
+];
+const stage3Weeks: Week[] = [
+  { ...week(41, ["Telling a Story", "కథ చెప్పడం"]), released: true, days: week41Days },
+  { ...week(42, ["When I Was Young", "నేను చిన్నప్పుడు"]), released: true, days: week42Days },
+  { ...week(43, ["My Life Story", "నా జీవిత కథ"]), released: true, days: week43Days },
+  { ...week(44, ["Clothes & the Tailor", "బట్టలు, టైలర్"]), released: true, days: week44Days },
+  { ...week(45, ["Describing Places", "మా ఊరు ఎలా ఉంటుంది"]), released: true, days: week45Days },
+  { ...week(46, ["Giving Opinions", "అభిప్రాయాలు చెప్పడం"]), released: true, days: week46Days },
+  { ...week(47, ["Comparing & Choosing", "పోల్చి ఎంచుకోవడం"]), released: true, days: week47Days },
+  { ...week(48, ["If It Rains …", "వర్షం పడితే …"]), released: true, days: week48Days },
+  { ...week(49, ["Online Shopping & Deliveries", "ఆన్‌లైన్ షాపింగ్, డెలివరీలు"]), released: true, days: week49Days },
+  { ...week(50, ["Problems, Returns & Refunds", "సమస్యలు, రిటర్న్, రీఫండ్"]), released: true, days: week50Days },
+  { ...week(51, ["Understanding the Doctor", "డాక్టర్ చెప్పేది అర్థం చేసుకోవడం"]), released: true, days: week51Days },
+  { ...week(52, ["A Hospital Stay", "ఆసుపత్రిలో ఉండటం"]), released: true, days: week52Days },
+  { ...week(53, ["Waiting in Line", "క్యూలో ఎదురుచూపు"]), released: true, days: week53Days },
+  { ...week(54, ["Checkpoint: Telling and Explaining", "చెక్‌పాయింట్: చెప్పడం, వివరించడం"]), released: true, days: week54Days },
+  { ...week(55, ["Travel in India & Pilgrimage", "ప్రయాణాలు, తీర్థయాత్రలు"]), released: true, days: week55Days },
+  { ...week(56, ["Made in India: Labels & Signs", "మేడ్ ఇన్ ఇండియా: లేబుల్స్, బోర్డులు"]), released: true, days: week56Days },
+  { ...week(57, ["The Doctor Said …", "డాక్టర్ ఏం చెప్పారంటే …"]), released: true, days: week57Days },
+  { ...week(58, ["At the Enquiry Counter", "ఎంక్వయిరీ కౌంటర్ దగ్గర"]), released: true, days: week58Days },
+  { ...week(59, ["The Shop Where …", "… దొరికే షాపు"]), released: true, days: week59Days },
+  { ...week(60, ["Money, Savings & Pensions", "డబ్బు, పొదుపు, పెన్షన్"]), released: true, days: week60Days },
+  { ...week(61, ["News Headlines", "వార్తల హెడ్‌లైన్స్"]), released: true, days: week61Days },
+  { ...week(62, ["Formal Requests & Calling Offices", "ఆఫీసులకు మర్యాదగా అడగడం"]), released: true, days: week62Days },
+  { ...week(63, ["Official Letters & Notices", "ఆఫీసు ఉత్తరాలు, నోటీసులు"]), released: true, days: week63Days },
+  { ...week(64, ["Hosting Guests", "అతిథులకు మర్యాదలు"]), released: true, days: week64Days },
+  { ...week(65, ["Social Occasions", "శుభకార్యాలు, పరామర్శలు"]), released: true, days: week65Days },
+  { ...week(66, ["Phrasal Verbs at Home", "ఇంట్లో phrasal verbs"]), released: true, days: week66Days },
+  { ...week(67, ["Checkpoint: Getting Things Done", "చెక్‌పాయింట్: పనులు చక్కబెట్టడం"]), released: true, days: week67Days },
+  { ...week(68, ["Healthy Habits", "మంచి అలవాట్లు"]), released: true, days: week68Days },
+  { ...week(69, ["If I Had More Time …", "నాకు ఇంకా టైమ్ ఉంటే …"]), released: true, days: week69Days },
+  { ...week(70, ["Wishes & Regrets", "అలా జరిగుంటే బాగుండేది"]), released: true, days: week70Days },
+  { ...week(71, ["Prices Have Gone Up", "ధరలు పెరిగిపోయాయి"]), released: true, days: week71Days },
+  { ...week(72, ["Maybe, Probably, Definitely", "బహుశా, తప్పకుండా"]), released: true, days: week72Days },
+  { ...week(73, ["It Must Be …", "అది … అయ్యుంటుంది"]), released: true, days: week73Days },
+  { ...week(74, ["How It Works", "ఇది ఎలా పనిచేస్తుంది"]), released: true, days: week74Days },
+  { ...week(75, ["Neighbourhood Problems", "కాలనీ సమస్యలు"]), released: true, days: week75Days },
+  { ...week(76, ["Chatting at the Park", "పార్క్‌లో కబుర్లు"]), released: true, days: week76Days },
+  { ...week(77, ["Films, TV & Serials", "సినిమాలు, టీవీ, సీరియల్స్"]), released: true, days: week77Days },
+  { ...week(78, ["Different Accents", "వేర్వేరు యాసలు"]), released: true, days: week78Days },
+  { ...week(79, ["Persuading Gently", "మెల్లగా ఒప్పించడం"]), released: true, days: week79Days },
+  { ...week(80, ["Checkpoint: Stage 3 Review", "చెక్‌పాయింట్: ధైర్యంగా మాట్లాడటం పునశ్చరణ"]), released: true, days: week80Days },
+];
 
 const stage4Weeks = weeks(81, [
   ["Catching Up with an Old Friend", "పాత స్నేహితులతో కబుర్లు"],
@@ -798,6 +1158,48 @@ export const checkpoints: Checkpoint[] = [
     ],
     certificate:
       "I can fill a form and spell names aloud, ask at a government office, report a broken product and get a visit date, make small talk and plans, and say sorry and thank you naturally in English.",
+  },
+  {
+    n: 4,
+    week: 54,
+    title: { en: "Telling and Explaining", te: "చెప్పడం, వివరించడం" },
+    items: [
+      { en: "tell a story from your past", te: "మీ గతంలోని ఒక కథ చెప్పడం" },
+      { en: "give an opinion with a reason", te: "కారణంతో సహా మీ అభిప్రాయం చెప్పడం" },
+      { en: "return something you bought", te: "కొన్న వస్తువుని వాపస్ ఇవ్వడం" },
+      { en: "follow the doctor's explanation", te: "డాక్టర్ చెప్పేది అర్థం చేసుకోవడం" },
+      { en: "manage a hospital stay", te: "ఆసుపత్రిలో ఉండాల్సి వచ్చినప్పుడు పనులన్నీ చూసుకోవడం" },
+    ],
+    certificate:
+      "I can tell a story from my past, give an opinion with a reason, return something I bought, follow the doctor's explanation and manage a hospital stay in English.",
+  },
+  {
+    n: 5,
+    week: 67,
+    title: { en: "Getting Things Done", te: "పనులు చక్కబెట్టడం" },
+    items: [
+      { en: "book a trip and follow announcements", te: "ప్రయాణం బుక్ చేసి, అనౌన్స్‌మెంట్లు అర్థం చేసుకోవడం" },
+      { en: "pass on what the doctor said", te: "డాక్టర్ చెప్పింది ఇంకొకరికి చెప్పడం" },
+      { en: "ask at an enquiry counter", te: "ఎంక్వయిరీ కౌంటర్ దగ్గర మర్యాదగా అడగడం" },
+      { en: "talk about savings and pensions", te: "పొదుపు, పెన్షన్ల గురించి మాట్లాడటం" },
+      { en: "understand an official letter and look after guests", te: "ఆఫీసు ఉత్తరం అర్థం చేసుకోవడం, అతిథులకు మర్యాదలు చేయడం" },
+    ],
+    certificate:
+      "I can book a trip and follow announcements, pass on what the doctor said, ask at an enquiry counter, talk about savings and pensions, understand an official letter and look after guests in English.",
+  },
+  {
+    n: 6,
+    week: 80,
+    title: { en: "Confident Conversations", te: "ధైర్యంగా మాట్లాడటం" },
+    items: [
+      { en: "talk about healthy habits", te: "మంచి అలవాట్ల గురించి మాట్లాడటం" },
+      { en: "imagine and regret", te: "ఇలా ఉంటే బాగుండు, అలా చేయాల్సింది అని చెప్పడం" },
+      { en: "guess the reason for something", te: "ఏదైనా ఎందుకు జరిగిందో ఊహించి చెప్పడం" },
+      { en: "complain to officials about local problems", te: "ఊరి సమస్యల గురించి అధికారులకు ఫిర్యాదు చేయడం" },
+      { en: "follow other accents and persuade gently", te: "వేరే యాసలు అర్థం చేసుకోవడం, మెల్లగా ఒప్పించడం" },
+    ],
+    certificate:
+      "I can talk about healthy habits, imagine and regret, guess the reason for something, complain to officials about local problems, follow other accents and persuade gently in English.",
   },
 ];
 

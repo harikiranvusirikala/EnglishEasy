@@ -67,7 +67,7 @@ for (const week of course.stages.flatMap((s) => s.weeks).filter((w) => w.release
         const title = day.kind === "conversation" && day.dialogue.type === "dialogue" ? day.dialogue.title.en : "";
         await expect(page.getByText(title)).toBeVisible();
       } else {
-        await expect(page.getByRole("button", { name: /^(Continue|Check)/ }).first()).toBeVisible();
+        await expect(page.getByRole("button", { name: /^(Continue|Check|Questions)/ }).first()).toBeVisible(); // a passage opens on its text, then Questions
       }
       await page.goto(`/lessons/${ref.id}`);
       await expect(page.getByRole("heading", { level: 1, name: ref.title.en })).toBeVisible();

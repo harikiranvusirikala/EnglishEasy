@@ -67,7 +67,7 @@ const AUDIO_SYMBOLS = /[()/…₹]|\.\.\./;
 
 const nameIn = (text: string, names: string[]) => names.find((n) => new RegExp(`\\b${n}\\b`).test(text));
 /** A paragraph's sentences (a story part, a passage), for the stage length limit. */
-const sentencesIn = (text: string) => text.split(/(?<=[.?!])\s+/).filter((t) => t.trim());
+const sentencesIn = (text: string) => text.split(/(?<=[.?!]["”’]?)\s+/).filter((t) => t.trim()); // after a closing quote too
 const plainWords = (s: string) => s.toLowerCase().replace(/[^a-z' ]+/g, " ").replace(/\s+/g, " ").trim();
 
 /** Phrases that assume the learner has a family; only optional tracks may use them (CURRICULUM §1). */
